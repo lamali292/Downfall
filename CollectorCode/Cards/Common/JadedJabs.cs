@@ -14,8 +14,6 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class JadedJabs : CollectorCardModel, IUsesPyredCards
 {
-    private decimal? _cost;
-    
     public JadedJabs() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
@@ -23,10 +21,14 @@ public class JadedJabs : CollectorCardModel, IUsesPyredCards
         WithCalculatedDamage(14, 3, Calc, DamageProps.card, 2, 1);
     }
 
-    private static decimal Calc(CardModel card, Creature? arg2)
+    private static decimal Calc(CardModel card, Creature? creature)
     {
-        if (card is not JadedJabs get || get._cost is null){return 0;}
-        return (decimal)get._cost;
+        if (card is IUsesPyredCards usesPyredCards)
+        {
+            return usesPyredCards.PyredCards.FirstOrDefault()?.EnergyCost.GetAmountToSpend() ?? 0;
+        }
+
+        return 0;
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -34,7 +36,8 @@ public class JadedJabs : CollectorCardModel, IUsesPyredCards
     public IEnumerable<CardModel> PyredCards { get; set; } = [];
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        _cost = PyredCards.FirstOrDefault()?.EnergyCost.GetAmountToSpend() ?? 0;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
+
+
 }

@@ -5,18 +5,21 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Champ.ChampCode.Powers;
 
-public class BerserkerStylePower : ChampPowerModel, IModifySkillBonus
+public class DoubleStylePower : ChampPowerModel, IModifySkillBonus
 {
-    public BerserkerStylePower()
+    public DoubleStylePower()
     {
+        WithTip<CounterPower>();
         WithTip<VigorPower>();
     }
+    
 
 
     public int ModifySkillBonus<TPower>(ChampStanceModel stance, int amount)
         where TPower : PowerModel
     {
-        if (typeof(TPower) != typeof(VigorPower) || stance.Owner.Creature != Owner) return amount;
-        return amount + Amount;
+        
+        if ((typeof(TPower) == typeof(VigorPower) || typeof(TPower) ==  typeof(CounterPower)) && stance.Owner.Creature == Owner) return amount+ Amount;
+        return amount;
     }
 }

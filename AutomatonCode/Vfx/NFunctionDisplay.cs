@@ -2,6 +2,8 @@
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Piles;
+using BaseLib.Config;
+using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Combat;
@@ -25,22 +27,40 @@ public partial class NFunctionDisplay : Control
     private const string DisplayScenePath = "res://Automaton/scenes/ui/function_display.tscn";
 
     /// <summary>Top-left corner of the first panel, in combat-UI coordinates.</summary>
-    private static readonly Vector2 FixedPosition = new(30f, 130f);
+    private static readonly Vector2 FixedPosition = new(30f, 145f);
 
     /// <summary>Horizontal distance between the panels of different players.</summary>
-    private const float PlayerColumnSpacing = 420f;
+    private const float PlayerColumnSpacing = 340f;
+
+    /// <summary>How long the drawer slide takes, in seconds.</summary>
+    private const float DrawerSlideDuration = 0.25f;
+
+    /// <summary>Points right, in the direction the drawer opens.</summary>
+    private const string RightArrowTexturePath = "res://images/packed/common_ui/settings_tiny_right_arrow.png";
+
+    /// <summary>Points left, in the direction the drawer closes.</summary>
+    private const string LeftArrowTexturePath = "res://images/packed/common_ui/settings_tiny_left_arrow.png";
+
+    private const float ArrowValueDefault = 0.9f;
+    private const float ArrowValueHovered = 1.2f;
 
     private Player? _player;
     private CardPile? _pile;
     private MegaLabel? _title;
-    private TextureRect? _portrait;
     private HBoxContainer? _pips;
     private TextureRect? _pipTemplate;
     private Control? _encodePanel;
     private MegaRichTextLabel? _encodeText;
     private Control? _compilePanel;
     private MegaRichTextLabel? _compileText;
+    private Control? _layout;
+    private TextureButton? _toggleButton;
+    private ShaderMaterial? _toggleShader;
     private Tween? _showTween;
+    private Tween? _drawerTween;
+    private Tween? _toggleHoverTween;
+    private float _openX;
+    private bool _isOpen = true;
     private readonly List<CardModel> _shownSource = new();
 
     public static void ShowFor(Player player)
@@ -69,15 +89,27 @@ public partial class NFunctionDisplay : Control
     {
         MouseFilter = MouseFilterEnum.Ignore;
         Position = FixedPosition + new Vector2(PlayerColumnSpacing * PlayerIndex(), 0f);
+        _openX = Position.X;
 
         _title = GetNode<MegaLabel>("%Title");
-        _portrait = GetNode<TextureRect>("%Portrait");
         _pips = GetNode<HBoxContainer>("%Pips");
         _pipTemplate = GetNode<TextureRect>("%PipTemplate");
+        _pipTemplate.Visible = false;
         _encodePanel = GetNode<Control>("%EncodePanel");
         _encodeText = GetNode<MegaRichTextLabel>("%EncodeText");
         _compilePanel = GetNode<Control>("%CompilePanel");
         _compileText = GetNode<MegaRichTextLabel>("%CompileText");
+        _layout = GetNode<Control>("Layout");
+        _toggleButton = GetNode<TextureButton>("%ToggleButton");
+        _toggleShader = _toggleButton.Material as ShaderMaterial;
+        _toggleButton.Pressed += OnToggleButtonPressed;
+        _toggleButton.MouseEntered += OnToggleButtonHoverStart;
+        _toggleButton.MouseExited += OnToggleButtonHoverEnd;
+
+        _isOpen = DownfallConfig.AutomatonFunctionDisplayOpen;
+        Position = new Vector2(_isOpen ? _openX : ClosedX(), Position.Y);
+        ApplyToggleAppearance();
+
         GetNode<MegaLabel>("%EncodeTitle").SetTextAutoSize(
             new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText());
         GetNode<MegaLabel>("%CompileTitle").SetTextAutoSize(
@@ -108,6 +140,56 @@ public partial class NFunctionDisplay : Control
         }
 
         CombatManager.Instance.CombatEnded -= OnCombatEnded;
+        if (_toggleButton != null)
+        {
+            _toggleButton.Pressed -= OnToggleButtonPressed;
+            _toggleButton.MouseEntered -= OnToggleButtonHoverStart;
+            _toggleButton.MouseExited -= OnToggleButtonHoverEnd;
+        }
+    }
+
+    private float ClosedX() => _openX - (_layout?.Size.X ?? 0f);
+
+    private void OnToggleButtonPressed()
+    {
+        _isOpen = !_isOpen;
+        DownfallConfig.AutomatonFunctionDisplayOpen = _isOpen;
+        ModConfig.SaveDebounced<DownfallConfig>();
+
+        var targetX = _isOpen ? _openX : ClosedX();
+        _drawerTween?.Kill();
+        _drawerTween = CreateTween();
+        _drawerTween.TweenProperty(this, "position:x", targetX, DrawerSlideDuration)
+            .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Cubic);
+
+        ApplyToggleAppearance();
+    }
+
+    /// <summary>Arrow points in the direction the button will move the drawer: left (close) while open,
+    /// right (open) while closed.</summary>
+    private void ApplyToggleAppearance()
+    {
+        if (_toggleButton == null) return;
+        var path = _isOpen ? LeftArrowTexturePath : RightArrowTexturePath;
+        _toggleButton.TextureNormal = ResourceLoader.Load<Texture2D>(path);
+    }
+
+    private void OnToggleButtonHoverStart()
+    {
+        _toggleHoverTween?.Kill();
+        _toggleShader?.SetShaderParameter("v", ArrowValueHovered);
+        _toggleButton!.Scale = Vector2.One * 1.1f;
+    }
+
+    private void OnToggleButtonHoverEnd()
+    {
+        if (_toggleShader == null) return;
+        _toggleHoverTween?.Kill();
+        _toggleHoverTween = CreateTween().SetParallel();
+        _toggleHoverTween.TweenMethod(Callable.From<float>(v => _toggleShader.SetShaderParameter("v", v)),
+            ArrowValueHovered, ArrowValueDefault, 0.5).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Expo);
+        _toggleHoverTween.TweenProperty(_toggleButton, "scale", Vector2.One, 0.5)
+            .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Expo);
     }
 
     private void OnCombatEnded(CombatRoom room)
@@ -150,7 +232,6 @@ public partial class NFunctionDisplay : Control
         }
 
         _title?.SetTextAutoSize(fn.Title);
-        if (_portrait != null) _portrait.Texture = fn.GetPortraitTexture();
         RefreshPips(cards.Count, AutomatonCmd.GetMax(_player));
 
         _encodeText.Text = JoinLines(fn.GetEncodeLines());

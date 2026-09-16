@@ -164,9 +164,7 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
     {
         return _pile?.Cards.ToList() ?? [];
     }
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => GetCards().SelectMany(e => e.HoverTips);
-
+    
     private void AnimateTo(bool fanned, double time,
         Tween.EaseType ease, Tween.TransitionType trans)
     {

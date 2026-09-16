@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Piles;
 using Godot;
@@ -27,16 +28,14 @@ public partial class NEncodePile : NCreatureFollowingCardPile
     protected override HoverTip BuildHoverTip()
         => new(new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.title"),
             new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description"));
-
+    
     protected override LocString BuildEmptyPileMessage()
         => new("combat_messages", "OPEN_EMPTY_ENCODE");
 
 
     private CardModel? _previewModel;
     private readonly List<CardModel> _previewSource = new();
-
-    // Compile effects of the previewed Function, shown as a hover tip (they are not printed on the Function itself).
-    private string _compileLines = string.Empty;
+    
 
     protected override List<CardModel> GetCards()
     {
@@ -67,23 +66,6 @@ public partial class NEncodePile : NCreatureFollowingCardPile
         return AutomatonHook.ModifyCompiledFunction(player.Creature.CombatState!, model,
             player, out _);
 
-    }
-
-    protected override void AfterCardVisualsRefreshed(IReadOnlyList<CardModel> models)
-    {
-        _compileLines = string.Join("\n", models.OfType<FunctionCard>()
-            .SelectMany(fn => fn.GetCompileLines())
-            .Where(l => !string.IsNullOrWhiteSpace(l)));
-    }
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips
-    {
-        get
-        {
-            if (_compileLines.Length > 0)
-                yield return new HoverTip(new LocString("static_hover_tips", "AUTOMATON-COMPILE.title"), _compileLines);
-            foreach (var tip in base.ExtraHoverTips) yield return tip;
-        }
     }
 
     public static void RevealFor(Player player)

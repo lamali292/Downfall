@@ -24,4 +24,8 @@ public class DownfallConfig : SimpleModConfig
     
     [ConfigSection("Dev")]
     public static bool DevMode { get; set; } = false;
+
+    // Persisted UI state, not a user-facing setting.
+    [ConfigHideInUI, ConfigIgnoreRestoreDefaults]
+    public static bool AutomatonFunctionDisplayOpen { get; set; } = true;
 }

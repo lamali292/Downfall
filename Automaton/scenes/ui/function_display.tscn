@@ -4,10 +4,12 @@
 [ext_resource type="Texture2D" path="res://images/ui/hover_tip.png" id="2_bgtex"]
 [ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_one.tres" id="3_bold"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="4_label"]
+[ext_resource type="Texture2D" path="res://Automaton/images/powers/full_release_power.png" id="4_y4npu"]
 [ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="5_reg"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="6_rich"]
 [ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="7_hsv"]
-[ext_resource type="Texture2D" path="res://Automaton/images/ui/orb.png" id="8_orb"]
+[ext_resource type="Texture2D" path="res://images/packed/common_ui/settings_tiny_right_arrow.png" id="9_arrowr"]
+[ext_resource type="Texture2D" path="res://images/packed/common_ui/settings_tiny_left_arrow.png" id="10_arrowl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_compile"]
 shader = ExtResource("7_hsv")
@@ -15,45 +17,45 @@ shader_parameter/h = 0.96
 shader_parameter/s = 1.6
 shader_parameter/v = 0.95
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_toggle"]
+resource_local_to_scene = true
+shader = ExtResource("7_hsv")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 0.9
+
 [node name="FunctionDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 400.0
+offset_right = 179.0
 offset_bottom = 200.0
 mouse_filter = 2
 script = ExtResource("1_fndsp")
 
 [node name="Layout" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 400.0
+offset_right = 279.0
 offset_bottom = 200.0
 mouse_filter = 2
 theme_override_constants/separation = 4
 
-[node name="Header" type="HBoxContainer" parent="Layout"]
+[node name="HeaderMargin" type="MarginContainer" parent="Layout"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+
+[node name="Header" type="HBoxContainer" parent="Layout/HeaderMargin"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="Portrait" type="TextureRect" parent="Layout/Header"]
+[node name="Title" type="Label" parent="Layout/HeaderMargin/Header"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(104, 78)
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="HeaderText" type="VBoxContainer" parent="Layout/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_constants/separation = 2
-
-[node name="Title" type="Label" parent="Layout/Header/HeaderText"]
-unique_name_in_owner = true
-layout_mode = 2
+clip_text = true
 theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
@@ -67,19 +69,19 @@ vertical_alignment = 1
 script = ExtResource("4_label")
 AutoSizeEnabled = false
 
-[node name="Pips" type="HBoxContainer" parent="Layout/Header/HeaderText"]
+[node name="Pips" type="HBoxContainer" parent="Layout/HeaderMargin/Header"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(116, 26)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 4
 
-[node name="PipTemplate" type="TextureRect" parent="Layout/Header/HeaderText/Pips"]
+[node name="PipTemplate" type="TextureRect" parent="Layout/HeaderMargin/Header/Pips"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("8_orb")
+texture = ExtResource("4_y4npu")
 expand_mode = 1
 stretch_mode = 5
 
@@ -142,7 +144,7 @@ AutoSizeEnabled = false
 
 [node name="EncodeText" type="RichTextLabel" parent="Layout/EncodePanel/TextContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
@@ -154,9 +156,7 @@ theme_override_fonts/normal_font = ExtResource("5_reg")
 theme_override_fonts/bold_font = ExtResource("3_bold")
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = ""
 fit_content = true
-autowrap_mode = 3
 script = ExtResource("6_rich")
 AutoSizeEnabled = false
 
@@ -218,9 +218,23 @@ text = "Compile"
 script = ExtResource("4_label")
 AutoSizeEnabled = false
 
+[node name="ToggleButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_toggle")
+layout_mode = 0
+offset_left = 279.0
+offset_top = 64.0
+offset_right = 327.0
+offset_bottom = 136.0
+pivot_offset = Vector2(24, 36)
+focus_mode = 2
+texture_normal = ExtResource("10_arrowl")
+ignore_texture_size = true
+stretch_mode = 4
+
 [node name="CompileText" type="RichTextLabel" parent="Layout/CompilePanel/TextContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
@@ -232,8 +246,6 @@ theme_override_fonts/normal_font = ExtResource("5_reg")
 theme_override_fonts/bold_font = ExtResource("3_bold")
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = ""
 fit_content = true
-autowrap_mode = 3
 script = ExtResource("6_rich")
 AutoSizeEnabled = false
