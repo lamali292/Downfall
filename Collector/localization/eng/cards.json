@@ -75,7 +75,7 @@
   "COLLECTOR-IRONBARK_KINDLING.title": "Ironbark Kindling",
   "COLLECTOR-IT_MATTERS_NOT.description": "Gain {Block:diff()} [gold]Block[/gold].\nIncrease ALL enemy [gold]Weak[/gold], [gold]Vulnerable[/gold] and [gold]Miasma[/gold] by {ItMattersNot:diff()}.",
   "COLLECTOR-IT_MATTERS_NOT.title": "It Matters Not",
-  "COLLECTOR-JADED_JABS.description": "Deal {Damage:diff()} damage.\nDeal damage additional times equal to the [gold]Pyred[/gold] card's cost.",
+  "COLLECTOR-JADED_JABS.description": "Deal {CalculationBase:diff()} damage.\nDeals additional damage equal to {ExtraDamage:diff()} times the [gold]Pyred[/gold] card's cost.",
   "COLLECTOR-JADED_JABS.title": "Jaded Jabs",
   "COLLECTOR-KARMA.description": "At the end of your turn, gain {KarmaPower:diff()} [gold]Block[/gold] for each enemy with {Debuffs:diff()} or more unique debuffs.",
   "COLLECTOR-KARMA.title": "Karma",
