@@ -132,15 +132,18 @@ public class StashCmd
 
     public static async Task StashFromHand(CardModel source, PlayerChoiceContext ctx)
     {
-        var amount = source.DynamicVars["Stash"].IntValue;
-        var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
+        var amount = source.DynamicVars.Stash.IntValue;
+        var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount)
+        {
+            RequireManualConfirmation = amount > 1
+        };
         var cards = await CardSelectCmd.FromHand(ctx, source.Owner, prefs, null, source);
         await Stash(ctx, source.Owner, cards);
     }
 
     public static async Task StashFromDraw(CardModel source, PlayerChoiceContext ctx)
     {
-        var amount = source.DynamicVars["Stash"].IntValue;
+        var amount = source.DynamicVars.Stash.IntValue;
         var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
         var cards = await CardSelectCmd.FromCombatPile(ctx, PileType.Draw.GetPile(source.Owner), source.Owner, prefs);
         await Stash(ctx, source.Owner, cards);
@@ -149,7 +152,7 @@ public class StashCmd
     public static async Task StashFromPiles(CardModel source, PlayerChoiceContext ctx, Func<CardModel,bool>? filter = null, 
         params PileType[] pileTypes)
     {
-        var amount = source.DynamicVars["Stash"].IntValue;
+        var amount = source.DynamicVars.Stash.IntValue;
         var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
         var cards = await DownfallCardCmd.MulitPileSelect(ctx, source.Owner, prefs, filter, pileTypes);
         await Stash(ctx, source.Owner, cards);
