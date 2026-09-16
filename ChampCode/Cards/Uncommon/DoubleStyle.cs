@@ -14,8 +14,7 @@ public class DoubleStyle : ChampCardModel
 {
     public DoubleStyle() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<DefensiveStylePower>(2, 1, false);
-        WithPower<BerserkerStylePower>(2, 1, false);
+        WithPower<DoubleStylePower>(2, 1, false);
         WithTip<VigorPower>();
         WithTip<CounterPower>();
         WithTip(ChampKeyword.TriggerSkillBonus);
@@ -26,7 +25,6 @@ public class DoubleStyle : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DefensiveStylePower>(ctx, this);
-        await CommonActions.ApplySelf<BerserkerStylePower>(ctx, this);
+        await CommonActions.ApplySelf<DoubleStylePower>(ctx, this);
     }
 }
