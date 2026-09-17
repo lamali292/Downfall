@@ -1,0 +1,8 @@
+{
+    "COLLECTOR-BOTTLED_ROPE.title": "Corde Embouteillée",
+    "COLLECTOR-BOTTLED_ROPE.description": "Appliquez [blue]{WeakPower}[/blue] de [gold]Faiblesse[/gold].\nAppliquez [blue]{VulnerablePower}[/blue] de [gold]Vulnérabilité[/gold].\nAppliquez [blue]{MiasmaPower}[/blue] de [gold]Miasme[/gold].",
+    "COLLECTOR-LAMP_OIL.title": "Lampe à Huile",
+    "COLLECTOR-LAMP_OIL.description": "[gold]Attisez[/gold] de [blue]{Kindle}[/blue].",
+    "COLLECTOR-SMOKE_BOMB.title": "Bombe Fumigène",
+    "COLLECTOR-SMOKE_BOMB.description": "Appliquez [blue]{Miasma}[/blue] de [gold]Miasme[/gold] à TOUS les ennemis."
+}

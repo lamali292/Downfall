@@ -56,7 +56,7 @@
     "HERMIT-GLARE.title": "グレア",
     "HERMIT-GLARE.description": "[gold]脱力[/gold]{WeakPower:diff()}を付与する。\n[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。",
     "HERMIT-TAKE_COVER.title": "カバー",
-    "HERMIT-TAKE_COVER.description": "[gold]防御[/gold]を[gold]手札[/gold]に加える。\nそれを{IfUpgraded:show:X+1|X}回[gold]アップグレード[/gold]する。\nこのターン、それはコストを支払わずにプレイできる。",
+    "HERMIT-TAKE_COVER.description": "[gold]防御[/gold]を1枚[gold]手札[/gold]に加える。\nそれを{IfUpgraded:show:X+1|X}回[gold]アップグレード[/gold]する。\nこのターン、それはコストを支払わずにプレイできる。",
     "HERMIT-MISFIRE.title": "ミスファイア",
     "HERMIT-MISFIRE.description": "{Damage:diff()}ダメージを与える。\n[red]不器用[/red]を1枚[gold]山札[/gold]に混ぜる。",
     "HERMIT-SPRAY_PRAY.title": "乱射",
