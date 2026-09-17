@@ -24,7 +24,7 @@
     "DOWNFALL-ENERGIZED_POWER.description": "ターン開始時、{energyPrefix:energyIcons(1)}を得る。",
     "DOWNFALL-ENERGIZED_POWER.smartDescription": "ターン開始時、{Amount:energyIcons()}を得る。",
     "DOWNFALL-COPY_NEXT_TURN_POWER.title": "カード獲得",
-    "DOWNFALL-COPY_NEXT_TURN_POWER.description": "次のターン開始時、[gold]手札[/gold]に加えるカードを選ぶ。",
+    "DOWNFALL-COPY_NEXT_TURN_POWER.description": "次のターン開始時、保存されたカードを[gold]手札[/gold]に加える。",
     "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "次のターン開始時、[gold]{card}[/gold]を[gold]手札[/gold]に加える。",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.title": "次ターン筋力",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.description": "次のターン、[gold]筋力[/gold]を得る。",

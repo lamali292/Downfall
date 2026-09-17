@@ -1,3 +1,3 @@
 {
-    "COLLECTIBLE_REWARD": "{essence}エッセンスを消費して{Card}を入手する。"
+    "COLLECTIBLE_REWARD": "[gold]{Card}[/gold]をデッキに追加する。"
 }

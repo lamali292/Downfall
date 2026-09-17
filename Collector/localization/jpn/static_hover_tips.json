@@ -1,4 +1,10 @@
 {
     "COLLECTOR-KINDLE.title": "点火",
-    "COLLECTOR-KINDLE.description": "[gold]トーチヘッド[/gold]を召喚する。既に召喚されている場合、この戦闘の間その最大HPを増加させる。"
+    "COLLECTOR-KINDLE.smartTitle": "点火 {Kindle}",
+    "COLLECTOR-KINDLE.description": "[gold]トーチヘッド[/gold]を召喚する。すでに召喚されている場合、この戦闘中、その最大HPを増加させる。",
+    "COLLECTOR-KINDLE.smartDescription": "HPが[blue]{Kindle}[/blue]の[gold]トーチヘッド[/gold]を召喚する。すでに召喚されている場合、この戦闘中、その最大HPを[blue]{Kindle}[/blue]増加させる。",
+    "COLLECTOR-RESERVE.title": "リザーブ",
+    "COLLECTOR-RESERVE.description": "[gold]エナジー[/gold]が残っていない場合、[gold]手札[/gold]からカードをプレイする時にエナジーの代わりに使われる。\nターンが経過しても保持される。",
+    "COLLECTOR-PYRED.description": "[gold]火葬[/gold]により[gold]廃棄[/gold]されたカード。",
+    "COLLECTOR-PYRED.title": "火葬された"
 }
