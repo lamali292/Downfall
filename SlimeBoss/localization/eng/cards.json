@@ -17,7 +17,7 @@
   "SLIMEBOSS-DOUSE_IN_SLIME.title": "Douse in Slime",
   "SLIMEBOSS-DUPLICATED_FORM.description": "{IfUpgraded:show:Gain {energyPrefix:energyIcons(1)} each turn.\n|}The first card each turn that targets enemies is played twice.",
   "SLIMEBOSS-DUPLICATED_FORM.title": "Duplicated Form",
-  "SLIMEBOSS-EQUALIZE.description": "Deal {Damage:diff()} damage.\nHeal {Heal:diff()} HP.\n[gold]Consume[/gold]: Play this twice.",
+  "SLIMEBOSS-EQUALIZE.description": "Deal {Damage:diff()} damage.\nHeal {Heal:diff()} HP.\n[gold]Consume[/gold]: Repeat this effect.",
   "SLIMEBOSS-EQUALIZE.title": "Equalize",
   "SLIMEBOSS-FLAME_TACKLE.description": "Deal {Damage:diff()} damage.\nTake {SelfDamage:inverseDiff()} damage.\n\"Tackle\" cards deal {FlameTacklePower:diff()} additional damage this combat.",
   "SLIMEBOSS-FLAME_TACKLE.title": "Flame Tackle",
