@@ -1,0 +1,184 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="1_font"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="2_titlefont"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/NUploadArtPopup.cs" id="4_script"]
+
+[node name="UploadPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_script")
+
+[node name="Dim" type="ColorRect" parent="."]
+unique_name_in_owner = true
+mouse_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(860, 0)
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="CenterContainer/Panel"]
+layout_mode = 2
+color = Color(0.182, 0.2604, 0.28, 0.94)
+
+[node name="Shadow" type="ColorRect" parent="CenterContainer/Panel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.35)
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="LeftVBox" type="VBoxContainer" parent="CenterContainer/Panel/Margin/HBox"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_titlefont")
+theme_override_font_sizes/font_size = 28
+text = "Submit Card Art"
+horizontal_alignment = 1
+
+[node name="CategoryLabel" type="Label" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 20
+text = "Card"
+
+[node name="ChooseCardButton" type="Button" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PreviewFrame" type="PanelContainer" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+
+[node name="PreviewBackground" type="ColorRect" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/PreviewFrame"]
+layout_mode = 2
+color = Color(0.1, 0.13, 0.15, 0.6)
+
+[node name="Preview" type="TextureRect" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/PreviewFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ChooseButton" type="Button" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Status" type="Label" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.7, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 18
+text = ""
+autowrap_mode = 2
+
+[node name="ButtonRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 2
+
+[node name="CancelButton" type="Button" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/ButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SubmitButton" type="Button" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/ButtonRow"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RightVBox" type="VBoxContainer" parent="CenterContainer/Panel/Margin/HBox"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="RulesTitle" type="Label" parent="CenterContainer/Panel/Margin/HBox/RightVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_fonts/font = ExtResource("2_titlefont")
+theme_override_font_sizes/font_size = 22
+text = "Submission Rules"
+
+[node name="RulesText" type="RichTextLabel" parent="CenterContainer/Panel/Margin/HBox/RightVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("1_font")
+theme_override_fonts/bold_font = ExtResource("2_titlefont")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "- You must sign in with Steam to upload. Your submission is tied to your Steam account.
+- [b]No NSFW, gore, or otherwise offensive content[/b] - this will get your Steam account banned from uploading.
+- [b]No AI-generated art.[/b]
+- Submissions are reviewed before they appear for voting.
+- [b]Images must be an exact fixed size:[/b]
+   - Normal cards: 500x380 or 1000x760 px
+   - Ancient cards: 606x852 px
+- You can withdraw your own pending submission any time from \"My Submissions\"."
+
+[node name="SizeHint" type="Label" parent="CenterContainer/Panel/Margin/HBox/RightVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.85, 1, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 18
+text = "Required size: 500x380 or 1000x760 px"
+autowrap_mode = 2

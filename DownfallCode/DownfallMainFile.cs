@@ -35,6 +35,7 @@ public static class DownfallMainFile
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("card_modifiers");
         CustomLocTableManager.Register("artists");
+        CustomLocTableManager.Register("voting_ui");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
 
@@ -59,7 +60,7 @@ public static class DownfallMainFile
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Art Voting",
-            IsVisible = () => false,
+            IsVisible = () => true,
             SubmenuType = typeof(NArtVotingScreen),
             CreateSubmenu = NArtVotingScreen.Create,
             OnPress = stack =>

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://DownfallCode/Voting/NReportReasonToggle.cs" id="1_script"]
+
+[node name="ReportReasonToggle" type="Button"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Reason"
+script = ExtResource("1_script")
