@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="1_font"]
 [ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="2_titlefont"]
 [ext_resource type="Script" path="res://DownfallCode/Voting/NMySubmissionsPopup.cs" id="3_script"]
+[ext_resource type="PackedScene" path="res://Downfall/scenes/voting/steam_profile_badge.tscn" id="4_badge"]
 
 [node name="MySubmissionsPopup" type="Control"]
 layout_mode = 3
@@ -135,7 +136,15 @@ theme_override_constants/separation = 10
 
 [node name="ButtonRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/VBox"]
 layout_mode = 2
-alignment = 2
+theme_override_constants/separation = 12
+
+[node name="ProfileBadge" parent="CenterContainer/Panel/Margin/VBox/ButtonRow" instance=ExtResource("4_badge")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="BottomSpacer" type="Control" parent="CenterContainer/Panel/Margin/VBox/ButtonRow"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="CloseButton" type="Button" parent="CenterContainer/Panel/Margin/VBox/ButtonRow"]
 unique_name_in_owner = true

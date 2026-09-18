@@ -9,6 +9,6 @@ public interface ICompilable
 
     string CompileString(CardModel card)
     {
-        return string.Join("\n", Compilations.Select(c => c.GetDescription(card).GetFormattedText()));
+        return string.Join("\n", Compilations.Select(c => c.GetDescription(card, true).GetFormattedText()));
     }
 }

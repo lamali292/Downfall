@@ -301,6 +301,32 @@ public partial class VotingApi : Node
     }
 
     /// <summary>
+    /// The real, server-verified steamid64 backing the current
+    /// <see cref="VotingAuth"/> session - not necessarily the same account
+    /// as whichever Steam client happens to be running the game locally
+    /// (usually true, but the browser sign-in could be a different
+    /// account). Used to show "you're signed in as ..." against the
+    /// account that's actually authenticated, not a guess.
+    /// </summary>
+    public async Task<string?> GetMySteamId()
+    {
+        var token = VotingAuth.Token;
+        if (token == null)
+            return null;
+
+        var (code, resp) = await SendAuthed($"{BaseUrl}/my/profile", HttpClient.Method.Get, token);
+
+        if (code != 200)
+        {
+            GD.PrintErr($"GetMySteamId {code}: {resp}");
+            return null;
+        }
+
+        var d = Json.ParseString(resp).AsGodotDictionary();
+        return d["steamId"].VariantType == Variant.Type.Nil ? null : d["steamId"].AsString();
+    }
+
+    /// <summary>
     /// Saves this account's art-credit name - it's looked up live wherever a
     /// submission is displayed (server-side, joined on steam_id), so this
     /// applies to every submission that account has ever made, not just

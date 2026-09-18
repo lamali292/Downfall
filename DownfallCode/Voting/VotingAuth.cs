@@ -20,6 +20,15 @@ public static class VotingAuth
     public static bool IsSignedIn => Token != null;
 
     /// <summary>
+    /// Fired right after a successful <see cref="LoginAsync"/> - lets UI
+    /// that opened before sign-in happened (e.g. the upload popup, which
+    /// only signs in lazily on Submit) refresh once a session actually
+    /// exists, instead of only checking <see cref="IsSignedIn"/> once at
+    /// open time.
+    /// </summary>
+    public static event Action? SignedIn;
+
+    /// <summary>
     /// Signs in if there's no session yet (opening the Steam login page),
     /// otherwise returns immediately. Used by every write endpoint that now
     /// requires a Steam-verified identity (voting, flagging, uploading) so
@@ -55,6 +64,7 @@ public static class VotingAuth
                 case "completed" when token != null:
                     Token = token;
                     Save(token);
+                    SignedIn?.Invoke();
                     return (true, VotingUi.Loc("DOWNFALL-VOTING.status_login_success"));
                 case "banned":
                     return (false, VotingUi.Loc("DOWNFALL-VOTING.error_login_banned"));

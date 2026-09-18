@@ -97,7 +97,7 @@
   "AUTOMATON-FUNCTION.functionParentheses": "()",
   "AUTOMATON-FUNCTION.title": "{prefix}{name}{end3}{end4}{parentheses}",
   "AUTOMATON-PERFECTION.functionName": "perfection()",
-  "AUTOMATON-INFINITE_LOOP_COMPILE.compile": "Gain a copy of [gold]{Card}[/gold] with {CompileLoopIncrease:diff()} additional damage.",
+  "AUTOMATON-INFINITE_LOOP_COMPILE.compile": "Gain a copy of {OnCard:cond:this|an [gold]Infinite Loop[/gold]} with {CompileLoopCount:diff()} additional damage.",
   "AUTOMATON-STRENGTH_COMPILE.compile": "Gain {CompileStrength:diff()} [gold]Strength[/gold].",
   "AUTOMATON-THORNS_COMPILE.compile": "Gain {CompileThorns:diff()} [gold]Thorns[/gold].",
   "AUTOMATON-DAZED_TO_DRAW_COMPILE.compile": "Add {CompileDazed:diff()} [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].",
