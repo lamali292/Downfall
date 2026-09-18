@@ -51,6 +51,33 @@ public partial class VotingApi : Node
     }
 
     /// <summary>
+    /// Every card currently open for art submission - admin-curated
+    /// server-side (see voting_missing_art_cards), not inferred from the
+    /// client's own asset state. Public/anonymous, same as browsing the
+    /// feed. Returns an empty list on failure rather than null so callers
+    /// (the card picker) degrade to "nothing to pick" instead of crashing.
+    /// </summary>
+    public async Task<List<ArtData>> GetMissingCards()
+    {
+        var (code, resp) = await Send($"{BaseUrl}/missing-cards", HttpClient.Method.Get);
+
+        if (code != 200)
+        {
+            GD.PrintErr($"GetMissingCards {code}: {resp}");
+            return [];
+        }
+
+        var parsed = Json.ParseString(resp);
+        if (parsed.VariantType != Variant.Type.Array)
+            return [];
+
+        return parsed.AsGodotArray()
+            .Select(item => item.AsGodotDictionary())
+            .Select(d => new ArtData { ModelId = new ModelId(d["category"].AsString(), d["entry"].AsString()) })
+            .ToList();
+    }
+
+    /// <summary>
     /// One page of a server-sorted feed across every card the voting screen
     /// wants to show at once (a single request instead of one per card).
     /// Missing-art status doesn't gate browsing/voting - only uploading (see
@@ -110,7 +137,6 @@ public partial class VotingApi : Node
                 Id = d["id"].AsInt64(),
                 ImagePath = d["image_url"].AsString(),
                 Author = d["author"].AsString(),
-                Name = d["name"].AsString(),
                 Upvotes = d["upvotes"].AsInt32(),
                 Liked = d["my_vote"].AsBool(),
                 MyFlags = flags,
@@ -126,22 +152,23 @@ public partial class VotingApi : Node
         return (items, nextOffset);
     }
 
+    // Voting and flagging require a Steam-verified session (same one
+    // uploading uses), not just the anonymous UserIdentity.Id hash - that
+    // used to be all the server checked, which made votes/reports trivial
+    // to sybil with made-up ids. EnsureSignedIn opens the Steam login page
+    // the first time (session persists ~30 days after that), so this is a
+    // one-off prompt in practice, not one per click.
+
     public async Task CastVote(long submissionId)
     {
-        var user = UserIdentity.Id;
-        if (user == null)
+        if (!await VotingAuth.EnsureSignedIn())
         {
-            GD.PrintErr("CastVote skipped: no SteamID (Steam not running)");
+            GD.PrintErr("CastVote skipped: not signed in with Steam");
             return;
         }
 
-        var body = Json.Stringify(new Dictionary
-        {
-            { "submissionId", submissionId },
-            { "user", user }
-        });
-
-        var (code, resp) = await Send($"{BaseUrl}/vote", HttpClient.Method.Post, body);
+        var body = Json.Stringify(new Dictionary { { "submissionId", submissionId } });
+        var (code, resp) = await SendAuthed($"{BaseUrl}/vote", HttpClient.Method.Post, VotingAuth.Token!, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"CastVote {code}: {resp}");
@@ -149,20 +176,14 @@ public partial class VotingApi : Node
 
     public async Task ClearVote(long submissionId)
     {
-        var user = UserIdentity.Id;
-        if (user == null)
+        if (!await VotingAuth.EnsureSignedIn())
         {
-            GD.PrintErr("ClearVote skipped: no SteamID");
+            GD.PrintErr("ClearVote skipped: not signed in with Steam");
             return;
         }
 
-        var body = Json.Stringify(new Dictionary
-        {
-            { "submissionId", submissionId },
-            { "user", user }
-        });
-
-        var (code, resp) = await Send($"{BaseUrl}/unvote", HttpClient.Method.Post, body);
+        var body = Json.Stringify(new Dictionary { { "submissionId", submissionId } });
+        var (code, resp) = await SendAuthed($"{BaseUrl}/unvote", HttpClient.Method.Post, VotingAuth.Token!, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ClearVote {code}: {resp}");
@@ -170,22 +191,20 @@ public partial class VotingApi : Node
 
     public async Task ToggleFlag(long submissionId, string reason, bool on)
     {
-        var user = UserIdentity.Id;
-        if (user == null)
+        if (!await VotingAuth.EnsureSignedIn())
         {
-            GD.PrintErr("ToggleFlag skipped: no SteamID (Steam not running)");
+            GD.PrintErr("ToggleFlag skipped: not signed in with Steam");
             return;
         }
 
         var body = Json.Stringify(new Dictionary
         {
             { "submissionId", submissionId },
-            { "user", user },
             { "reason", reason },
             { "on", on }
         });
 
-        var (code, resp) = await Send($"{BaseUrl}/flag", HttpClient.Method.Post, body);
+        var (code, resp) = await SendAuthed($"{BaseUrl}/flag", HttpClient.Method.Post, VotingAuth.Token!, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ToggleFlag {code}: {resp}");
@@ -201,22 +220,20 @@ public partial class VotingApi : Node
         if (add.Count == 0 && remove.Count == 0)
             return;
 
-        var user = UserIdentity.Id;
-        if (user == null)
+        if (!await VotingAuth.EnsureSignedIn())
         {
-            GD.PrintErr("ToggleFlags skipped: no SteamID (Steam not running)");
+            GD.PrintErr("ToggleFlags skipped: not signed in with Steam");
             return;
         }
 
         var body = Json.Stringify(new Dictionary
         {
             { "submissionId", submissionId },
-            { "user", user },
             { "add", new Godot.Collections.Array(add.Select(r => (Variant)r).ToArray()) },
             { "remove", new Godot.Collections.Array(remove.Select(r => (Variant)r).ToArray()) },
         });
 
-        var (code, resp) = await Send($"{BaseUrl}/flag/batch", HttpClient.Method.Post, body);
+        var (code, resp) = await SendAuthed($"{BaseUrl}/flag/batch", HttpClient.Method.Post, VotingAuth.Token!, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ToggleFlags {code}: {resp}");
@@ -259,10 +276,60 @@ public partial class VotingApi : Node
         return (status, token);
     }
 
+    // ---- Artist credit name (one per Steam account, not per submission) ----
+
+    /// <summary>
+    /// The credit name previously saved for this account via
+    /// <see cref="SetMyCreditName"/>, or null if none has been set yet.
+    /// </summary>
+    public async Task<string?> GetMyCreditName()
+    {
+        var token = VotingAuth.Token;
+        if (token == null)
+            return null;
+
+        var (code, resp) = await SendAuthed($"{BaseUrl}/my/profile", HttpClient.Method.Get, token);
+
+        if (code != 200)
+        {
+            GD.PrintErr($"GetMyCreditName {code}: {resp}");
+            return null;
+        }
+
+        var d = Json.ParseString(resp).AsGodotDictionary();
+        return d["creditName"].VariantType == Variant.Type.Nil ? null : d["creditName"].AsString();
+    }
+
+    /// <summary>
+    /// Saves this account's art-credit name - it's looked up live wherever a
+    /// submission is displayed (server-side, joined on steam_id), so this
+    /// applies to every submission that account has ever made, not just
+    /// future uploads. Renaming is server-rate-limited; a failed rename
+    /// because of that comes back as <paramref name="error"/> rather than
+    /// a generic failure.
+    /// </summary>
+    public async Task<(bool ok, string? error)> SetMyCreditName(string creditName)
+    {
+        var token = VotingAuth.Token;
+        if (token == null)
+            return (false, null);
+
+        var body = Json.Stringify(new Dictionary { { "creditName", creditName } });
+        var (code, resp) = await SendAuthed($"{BaseUrl}/my/profile", HttpClient.Method.Put, token, body);
+
+        if (code is < 200 or > 299)
+        {
+            GD.PrintErr($"SetMyCreditName {code}: {resp}");
+            return (false, TryGetServerErrorMessage(resp) ?? VotingUi.Loc("DOWNFALL-VOTING.error_credit_name_save_failed"));
+        }
+
+        return (true, null);
+    }
+
     // ---- Upload (requires a Steam-verified session from VotingAuth) ----
 
     public async Task<(bool ok, string error)> UploadSubmission(
-        ModelId modelId, string cardName, string authorName, string imagePath)
+        ModelId modelId, string imagePath)
     {
         var token = VotingAuth.Token;
         if (token == null)
@@ -300,8 +367,6 @@ public partial class VotingApi : Node
 
         AddField("category", modelId.Category);
         AddField("entry", modelId.Entry);
-        AddField("name", cardName);
-        AddField("author", authorName);
 
         body.AddRange(Encoding.UTF8.GetBytes(
             $"--{boundary}\r\nContent-Disposition: form-data; name=\"image\"; filename=\"upload.{ext}\"\r\n" +
@@ -366,7 +431,6 @@ public partial class VotingApi : Node
             {
                 Id = d["id"].AsInt64(),
                 ImagePath = d["image_url"].VariantType == Variant.Type.Nil ? null : d["image_url"].AsString(),
-                Name = d["name"].AsString(),
                 Status = d["status"].AsString(),
                 ModelId = new ModelId(d["category"].AsString(), d["entry"].AsString()),
                 Upvotes = d["upvotes"].AsInt32(),
@@ -394,18 +458,17 @@ public partial class VotingApi : Node
 
     private static string DescribeUploadError(long code, string body)
     {
-        // The 429 body's message comes straight from the server (it knows the
-        // configured MAX_PENDING_PER_USER limit); everything else is a plain
-        // HTTP status with no useful body, so those get a localized message.
-        if (code == 429)
-            return TryGetServerErrorMessage(body) ?? VotingUi.Loc("DOWNFALL-VOTING.error_upload_too_many_pending");
-
+        // 401/403/413 are plain HTTP statuses with no useful body, so those
+        // get a fixed localized message. Everything else (400s in
+        // particular - wrong size, corrupt file, NSFW-filter rejection...)
+        // carries a specific server-authored { error } message that's more
+        // useful than a generic "upload failed" - prefer that when present.
         return code switch
         {
             401 => VotingUi.Loc("DOWNFALL-VOTING.error_upload_session_expired"),
             403 => VotingUi.Loc("DOWNFALL-VOTING.error_login_banned"),
             413 => VotingUi.Loc("DOWNFALL-VOTING.error_upload_too_large"),
-            _ => VotingUi.Loc("DOWNFALL-VOTING.error_upload_generic", ("code", code.ToString())),
+            _ => TryGetServerErrorMessage(body) ?? VotingUi.Loc("DOWNFALL-VOTING.error_upload_generic", ("code", code.ToString())),
         };
     }
 
@@ -449,7 +512,6 @@ public partial class VotingApi : Node
                 Id = d["id"].AsInt64(),
                 ImagePath = d["image_url"].AsString(),
                 Author = d["author"].AsString(),
-                Name = d["name"].AsString(),
                 Upvotes = d["upvotes"].AsInt32(),
                 Liked = d["my_vote"].AsBool(),
                 MyFlags = flags,

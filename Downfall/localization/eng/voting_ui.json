@@ -11,6 +11,12 @@
   "DOWNFALL-VOTING.choose_card_button": "Choose Card...",
   "DOWNFALL-VOTING.select_card_title": "Choose a Card",
 
+  "DOWNFALL-VOTING.credit_name_label": "Credit Name",
+  "DOWNFALL-VOTING.credit_name_hint": "Shown as the artist on all your submissions - one name per Steam account, not per image.",
+  "DOWNFALL-VOTING.save_credit_name_button": "Save",
+  "DOWNFALL-VOTING.status_credit_name_saved": "Saved!",
+  "DOWNFALL-VOTING.error_credit_name_save_failed": "Could not save your credit name.",
+
   "DOWNFALL-VOTING.choose_image_button": "Choose Image...",
   "DOWNFALL-VOTING.choose_image_dialog_title": "Choose card art",
   "DOWNFALL-VOTING.cancel_button": "Cancel",
@@ -19,7 +25,10 @@
   "DOWNFALL-VOTING.withdraw_button": "Withdraw",
 
   "DOWNFALL-VOTING.rules_title": "Submission Rules",
-  "DOWNFALL-VOTING.rules_text": "- You must sign in with Steam to upload. Your submission is tied to your Steam account.\n- [b]No NSFW, gore, or otherwise offensive content[/b] - this will get your Steam account banned from uploading.\n- [b]No AI-generated art.[/b]\n- Submissions are reviewed before they appear for voting.\n- [b]Images must be an exact fixed size:[/b]\n   - Normal cards: 500x380 or 1000x760 px\n   - Ancient cards: 606x852 px\n- You can withdraw your own pending submission any time from \"My Submissions\".",
+  "DOWNFALL-VOTING.rules_text": "- Steam sign-in required - tied to your account.\n- [b]No AI-generated art.[/b]\n- [b]You must own the rights[/b] (or have the artist's permission), and be okay with us using it.\n- [b]No NSFW, gore, or offensive content[/b]\n- Reviewed before appearing for voting.",
+
+  "DOWNFALL-VOTING.guidelines_title": "Art Guidelines",
+  "DOWNFALL-VOTING.guidelines_text": "- [b]Exact size required:[/b]\n   - Normal: 500x380 or 1000x760 px\n   - Ancient: 606x852 px\n- [b]No text or culture-specific symbols[/b] (even $/€) - keep it culturally neutral.\n- [b]Match the game's look:[/b] painted, Slay the Spire \"beta art\", or STS2 illustration style - see existing cards.",
 
   "DOWNFALL-VOTING.size_hint_normal": "Required size: 500x380 or 1000x760 px",
   "DOWNFALL-VOTING.size_hint_ancient": "Required size: 606x852 px (Ancient card)",

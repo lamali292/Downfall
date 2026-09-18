@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 // TaskHelper
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
@@ -35,6 +36,16 @@ public partial class NArtVotingScreen : NSubmenu
 {
     private const string ScenePath = "res://Downfall/scenes/voting/voting.tscn";
     private const string VoteCardScenePath = "res://Downfall/scenes/voting/art_row.tscn";
+    private const string MusicEvent = "event:/music/downfall_menu";
+
+    // This screen is only ever reached from the main menu (see
+    // DownfallMainFile's MainMenuButtonRegistry entry), whose own music is
+    // already playing underneath when this screen opens - StopMusic() on
+    // close would kill that too and leave the main menu silent, since
+    // NMainMenu only (re-)starts its music from its own OnSubmenuOpened,
+    // which doesn't fire again for the screen underneath a popped submenu.
+    // Resume it explicitly instead of a blanket stop.
+    private const string MainMenuMusicEvent = "event:/music/menu_update";
     private const int PageSize = 30;
 
     // How close to the bottom (0-100, matches NScrollbar.Value) triggers
@@ -104,6 +115,8 @@ public partial class NArtVotingScreen : NSubmenu
 
     public override void OnSubmenuOpened()
     {
+        NAudioManager.Instance?.PlayMusic(MusicEvent);
+
         if (!_loaded)
         {
             _loaded = true;
@@ -114,6 +127,12 @@ public partial class NArtVotingScreen : NSubmenu
         {
             _scroll?.InstantlyScrollToTop();
         }
+    }
+
+    public override void OnSubmenuClosed()
+    {
+        base.OnSubmenuClosed();
+        NAudioManager.Instance?.PlayMusic(MainMenuMusicEvent);
     }
 
     // ---- Feed loading (paginated, cached per sort+pool combo) ----

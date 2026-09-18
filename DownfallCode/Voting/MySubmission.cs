@@ -11,7 +11,6 @@ public record MySubmission
 {
     public required long Id { get; init; }
     public required string? ImagePath { get; init; }
-    public required string Name { get; init; }
     public required string Status { get; init; }
     public required ModelId ModelId { get; init; }
     public required int Upvotes { get; init; }

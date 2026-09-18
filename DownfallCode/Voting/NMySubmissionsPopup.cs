@@ -31,6 +31,10 @@ public partial class NMySubmissionsPopup : Control
     private Label _status = null!;
     private VBoxContainer _list = null!;
     private Button _closeButton = null!;
+    private Label _creditNameLabel = null!;
+    private LineEdit _creditNameEdit = null!;
+    private Button _saveCreditNameButton = null!;
+    private Label _creditNameStatus = null!;
 
     public override void _Ready()
     {
@@ -39,10 +43,18 @@ public partial class NMySubmissionsPopup : Control
         _status = GetNode<Label>("%Status");
         _list = GetNode<VBoxContainer>("%List");
         _closeButton = GetNode<Button>("%CloseButton");
+        _creditNameLabel = GetNode<Label>("%CreditNameLabel");
+        _creditNameEdit = GetNode<LineEdit>("%CreditNameEdit");
+        _saveCreditNameButton = GetNode<Button>("%SaveCreditNameButton");
+        _creditNameStatus = GetNode<Label>("%CreditNameStatus");
 
         _title.Text = VotingUi.Loc("DOWNFALL-VOTING.my_submissions_button");
+        _creditNameLabel.Text = VotingUi.Loc("DOWNFALL-VOTING.credit_name_label");
+        _creditNameEdit.TooltipText = VotingUi.Loc("DOWNFALL-VOTING.credit_name_hint");
         VotingUi.StyleActionButton(_closeButton, primary: false);
+        VotingUi.StyleActionButton(_saveCreditNameButton, primary: false);
         _closeButton.Text = VotingUi.Loc("DOWNFALL-VOTING.close_button");
+        _saveCreditNameButton.Text = VotingUi.Loc("DOWNFALL-VOTING.save_credit_name_button");
 
         _dim.GuiInput += e =>
         {
@@ -50,6 +62,26 @@ public partial class NMySubmissionsPopup : Control
                 QueueFree();
         };
         _closeButton.Pressed += QueueFree;
+        _saveCreditNameButton.Pressed += () => TaskHelper.RunSafely(SaveCreditName());
+    }
+
+    private async Task SaveCreditName()
+    {
+        var creditName = _creditNameEdit.Text.Trim();
+        if (creditName.Length == 0)
+            return;
+
+        _saveCreditNameButton.Disabled = true;
+        _creditNameStatus.Text = "";
+
+        var (ok, error) = await VotingApi.Instance.SetMyCreditName(creditName);
+        if (!IsInstanceValid(this))
+            return;
+
+        _saveCreditNameButton.Disabled = false;
+        _creditNameStatus.Text = ok
+            ? VotingUi.Loc("DOWNFALL-VOTING.status_credit_name_saved")
+            : error ?? VotingUi.Loc("DOWNFALL-VOTING.error_credit_name_save_failed");
     }
 
     private async Task Load()
@@ -66,6 +98,12 @@ public partial class NMySubmissionsPopup : Control
                 return;
             }
         }
+
+        var saved = await VotingApi.Instance.GetMyCreditName();
+        if (!IsInstanceValid(this))
+            return;
+        if (!string.IsNullOrEmpty(saved))
+            _creditNameEdit.Text = saved;
 
         await Refresh();
     }
