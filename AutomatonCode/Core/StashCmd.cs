@@ -170,15 +170,22 @@ public class StashCmd
         int n = 1)
     {
         var cards = player.StashPile;
+        var combatState = player.Creature.CombatState;
+        if (combatState == null) return [];
+        if (!Hook.ShouldDraw(combatState, player, true, out var modifier))
+        {
+            if (modifier == null) return [];
+            await Hook.AfterPreventingDraw(combatState, modifier);
+            return [];
+        }
         var result = await CardPileCmd.Add(cards.Take(n).ToList(), PileType.Hand);
         foreach (var cardPileAddResult in result)
         {
             var drawn = cardPileAddResult.cardAdded;
-            var combatState = drawn.CombatState!;
             CombatManager.Instance.History.Add(combatState,
-                new CardDrawnEntry(drawn, combatState.RoundNumber, combatState.CurrentSide, false,
+                new CardDrawnEntry(drawn, combatState.RoundNumber, combatState.CurrentSide, true,
                     CombatManager.Instance.History, combatState.Players));
-            await Hook.AfterCardDrawn(combatState, ctx, drawn, false);
+            await Hook.AfterCardDrawn(combatState, ctx, drawn, true);
         }
 
         return result;

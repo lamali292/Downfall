@@ -12,5 +12,5 @@
   "AUTOMATON-ENCODE_PILE.description": "An Orb holding up to [blue]3[/blue] cards. When full, compiles effects above [gold]Encode[/gold] into a [blue]1[/blue]-cost Function card.",
 
   "AUTOMATON-STASH_PILE.title": "Stash Orb",
-  "AUTOMATON-STASH_PILE.description": "An Orb holding up to [blue]5[/blue] cards. At turn start, draw the oldest card."
+  "AUTOMATON-STASH_PILE.description": "An Orb holding up to [blue]5[/blue] cards. At the start of each turn, draw the oldest card."
 }
