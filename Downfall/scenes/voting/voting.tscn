@@ -20,7 +20,8 @@
 [ext_resource type="Texture2D" path="res://Hexaghost/images/character/character_icon.png" id="14_2mbmw"]
 [ext_resource type="Texture2D" path="res://SlimeBoss/images/character/character_icon.png" id="15_ivt4w"]
 [ext_resource type="Texture2D" path="res://Snecko/images/character/character_icon.png" id="16_jkyqy"]
-[ext_resource type="PackedScene" path="res://scenes/screens/card_library/library_sort_button.tscn" id="17_fnmll"]
+[ext_resource type="PackedScene" path="res://Downfall/scenes/voting/voting_sort_button.tscn" id="17_fnmll"]
+[ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NScrollableContainer.cs" id="18_scrlv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibwph"]
 resource_local_to_scene = true
@@ -304,7 +305,7 @@ texture = ExtResource("16_jkyqy")
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
-[node name="LikeSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
+[node name="HotSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -312,7 +313,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
-[node name="NewSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
+[node name="LikeSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -320,7 +321,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
-[node name="AlphabetSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
+[node name="NewSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -328,74 +329,92 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer2"]
-clip_children = 1
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Content" type="HFlowContainer" parent="HBoxContainer/MarginContainer2/ColorRect"]
+[node name="ScrollView" type="Control" parent="HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
-layout_mode = 1
+layout_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 600.0
+script = ExtResource("18_scrlv")
+
+[node name="Mask" type="ColorRect" parent="HBoxContainer/MarginContainer2/ScrollView"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="HFlowContainer" parent="HBoxContainer/MarginContainer2/ScrollView/Mask"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+alignment = 0
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 
-[node name="VoteCard" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard2" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard2" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard3" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard3" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard4" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard4" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard5" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard5" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard6" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard6" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard7" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard7" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard8" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard8" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="VoteCard9" parent="HBoxContainer/MarginContainer2/ColorRect/Content" instance=ExtResource("8_vcard")]
+[node name="VoteCard9" parent="HBoxContainer/MarginContainer2/ScrollView/Mask/Content" instance=ExtResource("8_vcard")]
 layout_mode = 2
 script = null
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 100
-
-[node name="Scrollbar" parent="HBoxContainer/MarginContainer" instance=ExtResource("6_76oc8")]
+[node name="Scrollbar" parent="HBoxContainer/MarginContainer2/ScrollView" instance=ExtResource("6_76oc8")]
 custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = 20.0
+offset_right = -10.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 2
 focus_behavior_recursive = 0
 mouse_behavior_recursive = 0
 accessibility_name = ""

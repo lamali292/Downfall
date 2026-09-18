@@ -1,0 +1,68 @@
+{
+  "DOWNFALL-VOTING.upload_button": "Upload Art",
+  "DOWNFALL-VOTING.my_submissions_button": "My Submissions",
+
+  "DOWNFALL-VOTING.sort_hot": "Hot",
+  "DOWNFALL-VOTING.sort_top": "Top",
+  "DOWNFALL-VOTING.sort_new": "New",
+
+  "DOWNFALL-VOTING.upload_title": "Submit Card Art",
+  "DOWNFALL-VOTING.category_label": "Card",
+  "DOWNFALL-VOTING.choose_card_button": "Choose Card...",
+  "DOWNFALL-VOTING.select_card_title": "Choose a Card",
+
+  "DOWNFALL-VOTING.choose_image_button": "Choose Image...",
+  "DOWNFALL-VOTING.choose_image_dialog_title": "Choose card art",
+  "DOWNFALL-VOTING.cancel_button": "Cancel",
+  "DOWNFALL-VOTING.submit_button": "Submit",
+  "DOWNFALL-VOTING.close_button": "Close",
+  "DOWNFALL-VOTING.withdraw_button": "Withdraw",
+
+  "DOWNFALL-VOTING.rules_title": "Submission Rules",
+  "DOWNFALL-VOTING.rules_text": "- You must sign in with Steam to upload. Your submission is tied to your Steam account.\n- [b]No NSFW, gore, or otherwise offensive content[/b] - this will get your Steam account banned from uploading.\n- [b]No AI-generated art.[/b]\n- Submissions are reviewed before they appear for voting.\n- [b]Images must be an exact fixed size:[/b]\n   - Normal cards: 500x380 or 1000x760 px\n   - Ancient cards: 606x852 px\n- You can withdraw your own pending submission any time from \"My Submissions\".",
+
+  "DOWNFALL-VOTING.size_hint_normal": "Required size: 500x380 or 1000x760 px",
+  "DOWNFALL-VOTING.size_hint_ancient": "Required size: 606x852 px (Ancient card)",
+
+  "DOWNFALL-VOTING.error_choose_image": "Choose an image first.",
+  "DOWNFALL-VOTING.error_no_category": "No category selected.",
+  "DOWNFALL-VOTING.error_wrong_size": "Image doesn't match the required size. {requirement}",
+  "DOWNFALL-VOTING.error_size_mismatch": "Image is {width}x{height} px - {requirement}",
+
+  "DOWNFALL-VOTING.status_signing_in": "Opening Steam sign-in in your browser...",
+  "DOWNFALL-VOTING.status_uploading": "Uploading...",
+  "DOWNFALL-VOTING.status_uploaded": "Uploaded!",
+  "DOWNFALL-VOTING.status_loading": "Loading...",
+  "DOWNFALL-VOTING.status_empty": "You haven't submitted any art yet.",
+  "DOWNFALL-VOTING.status_count": "{count} submission(s).",
+  "DOWNFALL-VOTING.status_approved": "Approved - {votes} upvote(s)",
+  "DOWNFALL-VOTING.status_rejected": "Rejected",
+  "DOWNFALL-VOTING.status_pending": "Pending review",
+
+  "DOWNFALL-VOTING.error_load_failed": "Could not load your submissions.",
+  "DOWNFALL-VOTING.error_withdraw_failed": "Could not withdraw that submission.",
+
+  "DOWNFALL-VOTING.error_login_unreachable": "Could not reach the voting server.",
+  "DOWNFALL-VOTING.error_login_banned": "This Steam account can't upload art.",
+  "DOWNFALL-VOTING.error_login_expired": "Login expired - please try again.",
+  "DOWNFALL-VOTING.error_login_generic": "Something went wrong talking to the voting server.",
+  "DOWNFALL-VOTING.error_login_timeout": "Timed out waiting for Steam sign-in.",
+  "DOWNFALL-VOTING.status_login_success": "Signed in.",
+
+  "DOWNFALL-VOTING.error_upload_session_expired": "Your Steam sign-in expired - please sign in again.",
+  "DOWNFALL-VOTING.error_upload_too_large": "Image is too large (max 8 MB).",
+  "DOWNFALL-VOTING.error_upload_generic": "Upload failed ({code}).",
+  "DOWNFALL-VOTING.error_upload_too_many_pending": "You have too many submissions awaiting review.",
+  "DOWNFALL-VOTING.error_upload_not_signed_in": "Not signed in with Steam.",
+  "DOWNFALL-VOTING.error_file_read": "Could not read file: {error}",
+  "DOWNFALL-VOTING.error_unsupported_type": "Only PNG, JPG or WEBP images are supported.",
+
+  "DOWNFALL-VOTING.report_title": "Report Submission",
+  "DOWNFALL-VOTING.report_subtitle": "Let moderators know what's wrong with this piece. You can pick more than one reason.",
+  "DOWNFALL-VOTING.report_reason_ai": "AI-generated",
+  "DOWNFALL-VOTING.report_reason_stolen": "Stolen / copyright",
+  "DOWNFALL-VOTING.report_reason_inappropriate": "NSFW / inappropriate",
+  "DOWNFALL-VOTING.report_reason_offtopic": "Off-topic",
+  "DOWNFALL-VOTING.report_reason_other": "Other",
+  "DOWNFALL-VOTING.send_report_button": "Send Report"
+}

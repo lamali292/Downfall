@@ -65,7 +65,7 @@ fmod/.cache/
 !ImageGen/images/
 !ImageGen/images/**/
 !ImageGen/images/**/*.png
-
+VotingServer
 
 *.import
 /dist/
