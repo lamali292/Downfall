@@ -148,13 +148,19 @@ public partial class NFunctionDisplay : Control
             PositionNextToAnchor();
     }
 
+    /// <summary>
+    /// Placed to the left of the pile, not the right: <see cref="NEncodePile"/>'s own base-game
+    /// hover tip (its title/description tooltip) already opens rightward
+    /// (<c>HoverTipAlignment.Right</c> in <c>NCustomCombatCardPile.OnFocus</c>), and sits on top
+    /// of/hides this panel when both land in the same spot.
+    /// </summary>
     private void PositionNextToAnchor()
     {
         if (_followAnchor == null) return;
-        var panelHeight = _layout?.Size.Y ?? 0f;
+        var panelSize = _layout?.Size ?? Vector2.Zero;
         GlobalPosition = _followAnchor.GlobalPosition + new Vector2(
-            _followAnchor.Size.X + HoverGap,
-            _followAnchor.Size.Y * 0.5f - panelHeight * 0.5f);
+            -panelSize.X - HoverGap,
+            _followAnchor.Size.Y * 0.5f - panelSize.Y * 0.5f);
     }
 
     private void OnCombatEnded(CombatRoom room)

@@ -26,15 +26,15 @@ public abstract partial class NCreatureFollowingCardPile : NCustomCombatCardPile
     protected virtual float HoverStepDeg => 12f;
     protected virtual float HoverRightSpacing => 40f;
     
-    protected virtual float BigScale => 0.8f;
-    protected virtual float SmallScale => 0.25f;
+    protected virtual float BigScale => 0.8f * 0.6f;
+    protected virtual float SmallScale => 0.25f * 0.6f;
 
     protected abstract Vector2 FollowOffset { get; }
 
     protected override bool SelfPositions => true;
 
-    protected virtual float BobAmplitude => 8f;
-    protected virtual float BobSpeed => 0.8f;
+    protected virtual float BobAmplitude => 4f;
+    protected virtual float BobSpeed => 0.35f;
     protected virtual float BobPhase => 0f;
 
     private Vector2 IconCenter =>
