@@ -168,7 +168,7 @@
     "SNECKO-SHED.title": "脱皮",
     "SNECKO-SHED.description": "[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。\nコストが{energyPrefix:energyIcons(0)}になったカード1枚につき{Block:diff()}[gold]ブロック[/gold]を得る。",
     "SNECKO-SHAPESHIFT.title": "変身",
-    "SNECKO-SHAPESHIFT.description": "[gold]手札[/gold]を、同じレアリティのランダムな{IfUpgraded:show:[gold]アップグレード[/gold]された|}[gold]他クラス[/gold]カードに[gold]変化[/gold]させる。",
+    "SNECKO-SHAPESHIFT.description": "[gold]手札[/gold]すべてを、同じレアリティのランダムな{IfUpgraded:show:[gold]アップグレード[/gold]された|}[gold]他クラス[/gold]カードに[gold]変化[/gold]させる。",
     "SNECKO-SSSHARING.title": "シェアリング",
     "SNECKO-SSSHARING.description": "すべてのプレイヤーは、ランダムな[gold]他クラス[/gold]カードを{Cards:diff()}枚[gold]手札[/gold]に加える。\nこのターン、{Cards:plural:それは|それらは}コストを支払わずにプレイできる。",
     "SNECKO-MIMICRY.title": "擬態",
@@ -190,5 +190,5 @@
     "SNECKO-MUDDY.title": "泥んこ",
     "SNECKO-MUDDY.description": "味方を1人選ぶ。\n次のターン開始時、その味方は追加でカードを{DrawCardsNextTurnPower:diff()}枚引き、[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。",
     "SNECKO-VENOMOLOGY.title": "毒液学",
-    "SNECKO-VENOMOLOGY.description": "このターン、他のプレイヤーは対象の敵にデバフを付与するたび、追加で[gold]猛毒[/gold]{VenomologyPower:diff()}を付与する。"
+    "SNECKO-VENOMOLOGY.description": "このターン、対象の敵は他のプレイヤーにデバフを付与されるたび、[gold]猛毒[/gold]{VenomologyPower:diff()}を得る。"
 }
