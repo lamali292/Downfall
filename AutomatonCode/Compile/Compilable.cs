@@ -37,8 +37,9 @@ public abstract class Compilable
     }
 
     protected abstract decimal GetSourceValue(CardModel card);
-
-    public virtual LocString GetDescription(CardModel card)
+    
+    
+    public virtual LocString GetDescription(CardModel card, bool onCard)
     {
         var description = Description;
         DynamicVar dynVar;
@@ -51,6 +52,7 @@ public abstract class Compilable
             dynVar = FunctionDynamicVar;
             dynVar.BaseValue = GetSourceValue(card);
         }
+        description.Add("OnCard", onCard);
         description.Add(dynVar);
         return description;
     }

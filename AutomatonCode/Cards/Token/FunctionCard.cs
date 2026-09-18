@@ -145,13 +145,13 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
             if (compilable.MergesOnFunction)
             {
                 if (DynamicVars[compilable.FunctionDynamicVar.Name].BaseValue > 0)
-                    yield return compilable.GetDescription(this).GetFormattedText();
+                    yield return compilable.GetDescription(this, false).GetFormattedText();
             }
             else
             {
                 foreach (var sourceCard in _sourceCards)
                     if (sourceCard is ICompilable ic && ic.Compilations.Any(c => c.GetType() == compilable.GetType()))
-                        yield return compilable.GetDescription(sourceCard).GetFormattedText();
+                        yield return compilable.GetDescription(sourceCard, false).GetFormattedText();
             }
         }
     }

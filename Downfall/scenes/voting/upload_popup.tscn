@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="1_font"]
 [ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="2_titlefont"]
 [ext_resource type="Script" path="res://DownfallCode/Voting/NUploadArtPopup.cs" id="4_script"]
+[ext_resource type="PackedScene" path="res://Downfall/scenes/voting/steam_profile_badge.tscn" id="5_badge"]
 
 [node name="UploadPopup" type="Control"]
 layout_mode = 3
@@ -181,16 +182,28 @@ theme_override_font_sizes/font_size = 18
 text = ""
 autowrap_mode = 2
 
-[node name="ButtonRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+[node name="BottomRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ProfileBadge" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/BottomRow" instance=ExtResource("5_badge")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="BottomSpacer" type="Control" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/BottomRow"]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 2
 
-[node name="CancelButton" type="Button" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/ButtonRow"]
+[node name="CancelButton" type="Button" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/BottomRow/ButtonRow"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SubmitButton" type="Button" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/ButtonRow"]
+[node name="SubmitButton" type="Button" parent="CenterContainer/Panel/Margin/HBox/LeftVBox/BottomRow/ButtonRow"]
 unique_name_in_owner = true
 layout_mode = 2
 

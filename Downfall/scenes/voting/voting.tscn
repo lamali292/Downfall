@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" path="res://Snecko/images/character/character_icon.png" id="16_jkyqy"]
 [ext_resource type="PackedScene" path="res://Downfall/scenes/voting/voting_sort_button.tscn" id="17_fnmll"]
 [ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NScrollableContainer.cs" id="18_scrlv"]
+[ext_resource type="PackedScene" path="res://Downfall/scenes/voting/steam_profile_badge.tscn" id="19_badge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibwph"]
 resource_local_to_scene = true
@@ -324,6 +325,14 @@ layout_mode = 2
 [node name="NewSorter" parent="HBoxContainer/VotingFilter/MarginContainer/TopVBox" instance=ExtResource("17_fnmll")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="ProfileBadge" parent="HBoxContainer/VotingFilter/MarginContainer" instance=ExtResource("19_badge")]
+layout_mode = 1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_bottom = -12.0
+grow_vertical = 0
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
