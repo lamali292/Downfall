@@ -1,23 +1,12 @@
-﻿using Downfall.DownfallCode.Audio;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Nodes.Audio;
 
 namespace Downfall.DownfallCode.Patches;
 
-internal static class SfxOverride
-{
-    public static bool ShouldRunOriginal(string path)
-    {
-        return string.IsNullOrEmpty(path) || !FmodStudio.TryPlayEvent(path);
-    }
-}
-
-// SfxCmd.Play and NAudioManager.PlayOneShot can each get inlined by the JIT, so a
-// single patch site misses cases. We patch every entry point; returning false skips
-// the original, so a chained call only triggers the override once.
-
+// Vanilla's own SfxCmd.Play / NAudioManager.PlayOneShot resolve Downfall's event paths
+// natively once our banks are loaded (verified in-game: they share the same FmodServer
+// Studio System instance as the base game). No interception needed there — this patch
+// only exists to flush our queued RegisterBank calls once deferred init completes.
 [HarmonyPatch(typeof(OneTimeInitialization), nameof(OneTimeInitialization.ExecuteDeferred))]
 internal static class DeferredInitializationFmodFlushPatch
 {
@@ -26,42 +15,11 @@ internal static class DeferredInitializationFmodFlushPatch
     {
         try
         {
-            FmodStudio.OnDeferredInitializationCompleted();
+            Audio.FmodStudio.OnDeferredInitializationCompleted();
         }
         catch (Exception ex)
         {
             DownfallMainFile.Logger.Warn($"[Audio] deferred FMOD flush hook failed: {ex.Message}");
         }
-    }
-}
-
-[HarmonyPatch(typeof(SfxCmd), nameof(SfxCmd.Play), typeof(string), typeof(float))]
-internal static class SfxPlayPatch
-{
-    [HarmonyPrefix]
-    public static bool Prefix(string sfx)
-    {
-        return SfxOverride.ShouldRunOriginal(sfx);
-    }
-}
-
-[HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot), typeof(string), typeof(float))]
-internal static class PlayOneShotPatch
-{
-    [HarmonyPrefix]
-    public static bool Prefix(string path)
-    {
-        return SfxOverride.ShouldRunOriginal(path);
-    }
-}
-
-[HarmonyPatch(typeof(NAudioManager), nameof(NAudioManager.PlayOneShot),
-    typeof(string), typeof(Dictionary<string, float>), typeof(float))]
-internal static class PlayOneShotDictPatch
-{
-    [HarmonyPrefix]
-    public static bool Prefix(string path)
-    {
-        return SfxOverride.ShouldRunOriginal(path);
     }
 }
