@@ -19,6 +19,21 @@ public static class VotingAuth
 
     public static bool IsSignedIn => Token != null;
 
+    /// <summary>
+    /// Signs in if there's no session yet (opening the Steam login page),
+    /// otherwise returns immediately. Used by every write endpoint that now
+    /// requires a Steam-verified identity (voting, flagging, uploading) so
+    /// callers don't each have to repeat the "am I signed in" dance.
+    /// </summary>
+    public static async Task<bool> EnsureSignedIn()
+    {
+        if (IsSignedIn)
+            return true;
+
+        var (ok, _) = await LoginAsync();
+        return ok;
+    }
+
     public static async Task<(bool ok, string status)> LoginAsync()
     {
         var (state, loginUrl) = await VotingApi.Instance.StartSteamLogin();

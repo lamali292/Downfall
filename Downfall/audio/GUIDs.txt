@@ -10,6 +10,7 @@
 {25843eb8-0f79-4253-aed6-bee1449d8e7e} bus:/master/sfx/chorus
 {9062adad-d974-41ef-b812-79c56bb6c25f} bus:/master/sfx_ducking_bass
 {bfa231d3-c7a0-4395-bb21-4afdf4149043} bus:/master/sfx_ducking_big
+{b11fbba1-55fb-4bd5-834f-8b270282275f} event:/music/downfall_menu
 {967dc07c-40a1-4ead-a074-05b054215d2f} event:/sfx/characters/automaton-automaton/automaton-automaton_select
 {48552819-831a-439c-bbec-9fb3c6ea95ec} event:/sfx/characters/awakened-awakened/awakened-awakened_select
 {f59162b4-57c4-458a-b36c-fbceca9a6f47} event:/sfx/characters/champ-champ/champ-champ_select

@@ -45,7 +45,7 @@ public partial class NSelectCardPopup : Control
         _current = popup;
         popup.TreeExiting += () => _current = null;
         parent.AddChild(popup);
-        popup.Open(onSelected);
+        TaskHelper.RunSafely(popup.Open(onSelected));
     }
 
     private ColorRect _dim = null!;
@@ -211,10 +211,20 @@ public partial class NSelectCardPopup : Control
         _grid.Connect(NCardGrid.SignalName.HolderPressed, Callable.From<NCardHolder>(OnHolderPressed));
     }
 
-    private void Open(Action<ArtData> onSelected)
+    private async Task Open(Action<ArtData> onSelected)
     {
         _onSelected = onSelected;
-        var categories = MissingArtCards.ComputeAll();
+
+        _noResultsLabel.Text = VotingUi.Loc("DOWNFALL-VOTING.status_loading");
+        _noResultsLabel.Visible = true;
+
+        var categories = await VotingApi.Instance.GetMissingCards();
+        if (!IsInstanceValid(this))
+            return;
+
+        _noResultsLabel.Text = new LocString("card_library", "NO_RESULTS").GetFormattedText();
+        _noResultsLabel.Visible = false;
+
         _byId = categories.Where(c => c.Card != null).ToDictionary(c => c.Card!.Id);
 
         var pools = categories

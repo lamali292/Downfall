@@ -78,6 +78,39 @@ theme_override_font_sizes/font_size = 28
 text = "My Submissions"
 horizontal_alignment = 1
 
+[node name="CreditNameRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CreditNameLabel" type="Label" parent="CenterContainer/Panel/Margin/VBox/CreditNameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 18
+text = "Credit Name"
+
+[node name="CreditNameEdit" type="LineEdit" parent="CenterContainer/Panel/Margin/VBox/CreditNameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_length = 64
+placeholder_text = "Anonymous"
+
+[node name="SaveCreditNameButton" type="Button" parent="CenterContainer/Panel/Margin/VBox/CreditNameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CreditNameStatus" type="Label" parent="CenterContainer/Panel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.7, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 16
+text = ""
+autowrap_mode = 2
+
 [node name="Status" type="Label" parent="CenterContainer/Panel/Margin/VBox"]
 unique_name_in_owner = true
 layout_mode = 2

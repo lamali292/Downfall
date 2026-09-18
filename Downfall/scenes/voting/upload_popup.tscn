@@ -34,7 +34,7 @@ grow_vertical = 2
 
 [node name="Panel" type="PanelContainer" parent="CenterContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(860, 0)
+custom_minimum_size = Vector2(1180, 0)
 layout_mode = 2
 
 [node name="Background" type="ColorRect" parent="CenterContainer/Panel"]
@@ -65,6 +65,49 @@ theme_override_constants/margin_bottom = 24
 [node name="HBox" type="HBoxContainer" parent="CenterContainer/Panel/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 24
+
+[node name="GuidelinesColumn" type="VBoxContainer" parent="CenterContainer/Panel/Margin/HBox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GuidelinesTitle" type="Label" parent="CenterContainer/Panel/Margin/HBox/GuidelinesColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_fonts/font = ExtResource("2_titlefont")
+theme_override_font_sizes/font_size = 22
+text = "Art Guidelines"
+
+[node name="GuidelinesText" type="RichTextLabel" parent="CenterContainer/Panel/Margin/HBox/GuidelinesColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("1_font")
+theme_override_fonts/bold_font = ExtResource("2_titlefont")
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "- [b]Images must be an exact fixed size:[/b]
+   - Normal cards: 500x380 or 1000x760 px
+   - Ancient cards: 606x852 px
+- [b]No text or culture-specific symbols on the image[/b] - not even currency symbols like $ or €. Art must stay culturally neutral since it ships to every region/language.
+- [b]Match the game's look:[/b] aim for a painted, Slay the Spire \"beta art\" style, or Slay the Spire 2's own illustration style - check existing card art for reference."
+
+[node name="SizeHint" type="Label" parent="CenterContainer/Panel/Margin/HBox/GuidelinesColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.85, 1, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 18
+text = "Required size: 500x380 or 1000x760 px"
+autowrap_mode = 2
 
 [node name="LeftVBox" type="VBoxContainer" parent="CenterContainer/Panel/Margin/HBox"]
 custom_minimum_size = Vector2(440, 0)
@@ -114,6 +157,21 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="CreditNameLabel" type="Label" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 20
+text = "Credit Name"
+
+[node name="CreditNameEdit" type="LineEdit" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Shown as the artist on all your submissions - one name per Steam account, not per image."
+max_length = 64
+placeholder_text = "Anonymous"
+
 [node name="Status" type="Label" parent="CenterContainer/Panel/Margin/HBox/LeftVBox"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -136,13 +194,12 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="RightVBox" type="VBoxContainer" parent="CenterContainer/Panel/Margin/HBox"]
-custom_minimum_size = Vector2(340, 0)
+[node name="RulesColumn" type="VBoxContainer" parent="CenterContainer/Panel/Margin/HBox"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="RulesTitle" type="Label" parent="CenterContainer/Panel/Margin/HBox/RightVBox"]
+[node name="RulesTitle" type="Label" parent="CenterContainer/Panel/Margin/HBox/RulesColumn"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
@@ -150,9 +207,9 @@ theme_override_fonts/font = ExtResource("2_titlefont")
 theme_override_font_sizes/font_size = 22
 text = "Submission Rules"
 
-[node name="RulesText" type="RichTextLabel" parent="CenterContainer/Panel/Margin/HBox/RightVBox"]
+[node name="RulesText" type="RichTextLabel" parent="CenterContainer/Panel/Margin/HBox/RulesColumn"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 420)
+custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
@@ -169,16 +226,4 @@ text = "- You must sign in with Steam to upload. Your submission is tied to your
 - [b]No NSFW, gore, or otherwise offensive content[/b] - this will get your Steam account banned from uploading.
 - [b]No AI-generated art.[/b]
 - Submissions are reviewed before they appear for voting.
-- [b]Images must be an exact fixed size:[/b]
-   - Normal cards: 500x380 or 1000x760 px
-   - Ancient cards: 606x852 px
 - You can withdraw your own pending submission any time from \"My Submissions\"."
-
-[node name="SizeHint" type="Label" parent="CenterContainer/Panel/Margin/HBox/RightVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.85, 1, 1)
-theme_override_fonts/font = ExtResource("1_font")
-theme_override_font_sizes/font_size = 18
-text = "Required size: 500x380 or 1000x760 px"
-autowrap_mode = 2

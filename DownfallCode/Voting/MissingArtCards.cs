@@ -1,7 +1,6 @@
 using Automaton.AutomatonCode.Core;
 using Awakened.AwakenedCode.Core;
 using Champ.ChampCode.Core;
-using Downfall.DownfallCode.Abstract;
 using Guardian.GuardianCode.Core;
 using Hermit.HermitCode.Core;
 using Hexaghost.HexaghostCode.Core;
@@ -16,6 +15,12 @@ namespace Downfall.DownfallCode.Voting;
 /// Domain logic for "which cards are open for art submission" - shared by
 /// the voting grid, the upload popup and the card picker, none of which
 /// should need to know about each other to answer this question themselves.
+/// Which cards actually qualify is admin-curated server-side
+/// (<see cref="VotingApi.GetMissingCards"/>, backed by
+/// <c>voting_missing_art_cards</c>) rather than inferred here from the
+/// client's own asset state - a card can already have placeholder "beta
+/// art" and still need real art, which a "does the portrait resolve to
+/// todo.tres" check would miss.
 /// </summary>
 public static class MissingArtCards
 {
@@ -25,21 +30,6 @@ public static class MissingArtCards
     private static readonly (int w, int h)[] NormalSizes = [(500, 380), (1000, 760)];
     private const int AncientWidth = 606;
     private const int AncientHeight = 852;
-
-    /// <summary>
-    /// Every Downfall card whose portrait still resolves to its "todo.tres"
-    /// placeholder (see StringExtensions.CardImageAtlasPath). Derived from
-    /// game data, not a server-curated list.
-    /// </summary>
-    public static List<ArtData> ComputeAll()
-    {
-        return ModelDb.AllCards
-            .Where(card => TryGetPool(card, out _) &&
-                           card is DownfallCardModel { CustomPortraitPath: { } path } &&
-                           path.EndsWith("todo.tres"))
-            .Select(card => new ArtData { ModelId = card.Id })
-            .ToList();
-    }
 
     public static VotingPool PoolFor(CardModel? card)
     {

@@ -44,7 +44,11 @@ public partial class NUploadArtPopup : Control
     private Button _submitButton = null!;
     private Label _rulesTitle = null!;
     private RichTextLabel _rulesText = null!;
+    private Label _guidelinesTitle = null!;
+    private RichTextLabel _guidelinesText = null!;
     private Label _sizeHint = null!;
+    private Label _creditNameLabel = null!;
+    private LineEdit _creditNameEdit = null!;
 
     private ArtData? _selectedCategory;
     private string? _selectedPath;
@@ -64,12 +68,20 @@ public partial class NUploadArtPopup : Control
         _submitButton = GetNode<Button>("%SubmitButton");
         _rulesTitle = GetNode<Label>("%RulesTitle");
         _rulesText = GetNode<RichTextLabel>("%RulesText");
+        _guidelinesTitle = GetNode<Label>("%GuidelinesTitle");
+        _guidelinesText = GetNode<RichTextLabel>("%GuidelinesText");
         _sizeHint = GetNode<Label>("%SizeHint");
+        _creditNameLabel = GetNode<Label>("%CreditNameLabel");
+        _creditNameEdit = GetNode<LineEdit>("%CreditNameEdit");
 
         _title.Text = VotingUi.Loc("DOWNFALL-VOTING.upload_title");
         _categoryLabel.Text = VotingUi.Loc("DOWNFALL-VOTING.category_label");
         _rulesTitle.Text = VotingUi.Loc("DOWNFALL-VOTING.rules_title");
         _rulesText.Text = VotingUi.Loc("DOWNFALL-VOTING.rules_text");
+        _guidelinesTitle.Text = VotingUi.Loc("DOWNFALL-VOTING.guidelines_title");
+        _guidelinesText.Text = VotingUi.Loc("DOWNFALL-VOTING.guidelines_text");
+        _creditNameLabel.Text = VotingUi.Loc("DOWNFALL-VOTING.credit_name_label");
+        _creditNameEdit.TooltipText = VotingUi.Loc("DOWNFALL-VOTING.credit_name_hint");
 
         VotingUi.StyleActionButton(_chooseCardButton, primary: false);
         VotingUi.StyleActionButton(_chooseButton, primary: true);
@@ -95,6 +107,22 @@ public partial class NUploadArtPopup : Control
     {
         _onUploaded = onUploaded;
         RevalidateSelectedImage();
+
+        _creditNameEdit.Text = Steamworks.SteamFriends.GetPersonaName() ?? "";
+
+        // Only fetches if a session already exists - Submit() signs in
+        // lazily, so a first-time uploader won't have one yet at Open() time,
+        // and the Steam persona name above is already a reasonable default
+        // for that case.
+        if (VotingAuth.IsSignedIn)
+            TaskHelper.RunSafely(LoadSavedCreditName());
+    }
+
+    private async Task LoadSavedCreditName()
+    {
+        var saved = await VotingApi.Instance.GetMyCreditName();
+        if (IsInstanceValid(this) && !string.IsNullOrEmpty(saved))
+            _creditNameEdit.Text = saved;
     }
 
     private void OnChooseCardPressed()
@@ -173,10 +201,16 @@ public partial class NUploadArtPopup : Control
 
         _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_uploading");
 
-        var author = Steamworks.SteamFriends.GetPersonaName();
-        var cardName = category.Card?.Title ?? category.ModelId.Entry;
-        var (uploaded, error) = await VotingApi.Instance.UploadSubmission(
-            category.ModelId, cardName, string.IsNullOrEmpty(author) ? "Anonymous" : author, _selectedPath);
+        var creditName = _creditNameEdit.Text.Trim();
+        var (renamed, renameError) = await VotingApi.Instance.SetMyCreditName(string.IsNullOrEmpty(creditName) ? "Anonymous" : creditName);
+        if (!renamed && renameError != null)
+        {
+            // Rename didn't take (e.g. rate-limited) - upload still proceeds
+            // under whichever credit name the account already had saved.
+            DownfallMainFile.Logger.Info($"[VotingApi] credit-name update skipped: {renameError}");
+        }
+
+        var (uploaded, error) = await VotingApi.Instance.UploadSubmission(category.ModelId, _selectedPath);
 
         if (!uploaded)
         {
