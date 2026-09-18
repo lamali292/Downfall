@@ -1,7 +1,7 @@
 {
   "AWAKENED-ALTAR.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Exhaust[/gold] a card.\n[gold]Conjure[/gold].",
   "AWAKENED-ALTAR.title": "Altar",
-  "AWAKENED-ANCESTRAL_GROUNDS.description": "Gain {Block:diff()} [gold]Block[/gold].\nAt the start of your next {AncestralGroundsPower:diff()} turns, gain {Energy:energyIcons()} and put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
+  "AWAKENED-ANCESTRAL_GROUNDS.description": "Gain {Block:diff()} [gold]Block[/gold].\nAt the start of your next {AncestralGroundsPower:diff()} turns, gain {Energy:energyIcons()} and add a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
   "AWAKENED-ANCESTRAL_GROUNDS.title": "Ancestral Grounds",
   "AWAKENED-APHOTIC_FOUNT.description": "[gold]Conjure[/gold].\nWhenever you play [gold]Cryostasis[/gold], gain {AphoticFountPower:diff()} [gold]Plating[/gold].",
   "AWAKENED-APHOTIC_FOUNT.title": "Aphotic Fount",
