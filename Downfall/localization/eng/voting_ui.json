@@ -44,7 +44,7 @@
   "DOWNFALL-VOTING.status_loading": "Loading...",
   "DOWNFALL-VOTING.status_empty": "You haven't submitted any art yet.",
   "DOWNFALL-VOTING.status_count": "{count} submission(s).",
-  "DOWNFALL-VOTING.status_approved": "Approved - {votes} upvote(s)",
+  "DOWNFALL-VOTING.status_approved": "Approved - {votes} {votes:plural:upvote|upvotes}",
   "DOWNFALL-VOTING.status_rejected": "Rejected",
   "DOWNFALL-VOTING.status_pending": "Pending review",
 

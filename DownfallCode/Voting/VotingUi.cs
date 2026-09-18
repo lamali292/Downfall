@@ -17,11 +17,11 @@ public static class VotingUi
 
     public static string Loc(string key) => new LocString(LocTable, key).GetFormattedText();
 
-    public static string Loc(string key, params (string Name, string Value)[] vars)
+    public static string Loc(string key, params (string Name, object Value)[] vars)
     {
         var loc = new LocString(LocTable, key);
         foreach (var (name, value) in vars)
-            loc.Add(name, value);
+            loc.AddObj(name, value);
         return loc.GetFormattedText();
     }
 
