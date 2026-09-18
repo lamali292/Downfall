@@ -130,7 +130,7 @@ public partial class NMySubmissionsPopup : Control
             return;
         }
 
-        _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_count", ("count", submissions.Count.ToString()));
+        _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_count", ("count", submissions.Count));
 
         foreach (var sub in submissions)
             BuildRow(sub);
@@ -177,7 +177,7 @@ public partial class NMySubmissionsPopup : Control
 
         var (statusText, statusColor) = sub.Status switch
         {
-            "approved" => (VotingUi.Loc("DOWNFALL-VOTING.status_approved", ("votes", sub.Upvotes.ToString())), new Color(0.5f, 0.9f, 0.5f)),
+            "approved" => (VotingUi.Loc("DOWNFALL-VOTING.status_approved", ("votes", sub.Upvotes)), new Color(0.5f, 0.9f, 0.5f)),
             "rejected" => (VotingUi.Loc("DOWNFALL-VOTING.status_rejected"), new Color(0.9f, 0.4f, 0.4f)),
             _ => (VotingUi.Loc("DOWNFALL-VOTING.status_pending"), new Color(0.9f, 0.8f, 0.4f)),
         };
