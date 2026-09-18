@@ -28,6 +28,18 @@ public partial class NEncodePile : NCreatureFollowingCardPile
     protected override HoverTip BuildHoverTip()
         => new(new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.title"),
             new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description"));
+
+    protected override void OnFocus()
+    {
+        base.OnFocus();
+        NFunctionDisplay.RevealNextTo(this);
+    }
+
+    protected override void OnUnfocus()
+    {
+        base.OnUnfocus();
+        NFunctionDisplay.HideReveal();
+    }
     
     protected override LocString BuildEmptyPileMessage()
         => new("combat_messages", "OPEN_EMPTY_ENCODE");
