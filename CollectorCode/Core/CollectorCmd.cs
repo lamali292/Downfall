@@ -10,6 +10,7 @@ using Downfall.DownfallCode;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
+using Godot;
 using Guardian.GuardianCode.Cards.Rare;
 using Hexaghost.HexaghostCode.Cards.Rare;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -23,6 +24,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using SlimeBoss.SlimeBossCode.Cards.Rare;
@@ -109,7 +111,39 @@ public class CollectorCmd
         int hp,
         AbstractModel? source)
     {
-        return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
+        var torchhead = await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
+        RefreshTorchheadIntent(torchhead);
+        RefreshTorchheadScale(torchhead);
+        return torchhead;
+    }
+
+    /// <summary>
+    /// Torchhead never runs a real monster turn (it's summoned mid-combat, and its attack fires
+    /// from TorchheadPower.AfterSideTurnEnd instead), so its move is never rolled by the normal
+    /// enemy turn loop and its intent icon would stay blank. Call this whenever the pet is summoned
+    /// or its damage may have changed, so the shown value stays accurate.
+    /// </summary>
+    public static void RefreshTorchheadIntent(Creature torchhead)
+    {
+        var combatState = torchhead.CombatState;
+        if (combatState == null) return;
+        torchhead.PrepareForNextTurn(combatState.Players.Select(p => p.Creature));
+    }
+
+    private const float TorchheadMinScale = 1f;
+    private const float TorchheadMaxScale = 1.75f;
+    private const float TorchheadScaleCapHp = 80f;
+
+    /// <summary>
+    /// Grows Torchhead's visuals with its Max HP, same idea as Osty (NCreature.OstyScaleToSize) -
+    /// that method is hardcoded to Osty's own scale/offset constants though, so this mirrors just
+    /// the size half via the generic NCreature.ScaleTo, with Torchhead's own range/cap.
+    /// </summary>
+    public static void RefreshTorchheadScale(Creature torchhead)
+    {
+        var t = Mathf.Clamp(torchhead.MaxHp / TorchheadScaleCapHp, 0f, 1f);
+        var scale = Mathf.Lerp(TorchheadMinScale, TorchheadMaxScale, t);
+        NCombatRoom.Instance?.GetCreatureNode(torchhead)?.ScaleTo(scale, 0.75);
     }
 
     public static Task GainReserve(AbstractModel card)

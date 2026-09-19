@@ -176,7 +176,7 @@
   "SNECKO-WHIPLASH.title": "Whiplash",
   "SNECKO-WHIPLASH.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Overflow[/gold]: Apply {PowerVar:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies, increased by the cost of this card.",
   "SNECKO-DICE_CASE.title": "Dice Case",
-  "SNECKO-DICE_CASE.description": "At the start of your turn, add a [gold]Soul Roll[/gold] to this player's [gold]Hand[/gold].",
+  "SNECKO-DICE_CASE.description": "Choose an ally.\nAt the start of your turn, add a [gold]Soul Roll[/gold] to their [gold]Hand[/gold].",
   "SNECKO-FLURRY.title": "Flurry",
   "SNECKO-FLURRY.description": "Deal {Damage:diff()} damage.\n[gold]Upgrade[/gold] {Cards:diff()} random cards in your [gold]Draw Pile[/gold].",
   "SNECKO-SOUL_REFRESH.title": "Soul Refresh",

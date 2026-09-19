@@ -39,6 +39,8 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
         if (petOwner == null || creature == null || !participants.Contains(creature)) return;
         await CollectorCmd.TorchheadAttack(petOwner,  DynamicVars.TorchheadDamage.IntValue).ExecuteIfPresent(ctx);
 
+        if (Owner.IsAlive)
+            CollectorCmd.RefreshTorchheadIntent(Owner);
     }
     
     public override Creature ModifyUnblockedDamageTarget(
