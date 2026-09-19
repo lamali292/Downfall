@@ -33,6 +33,6 @@ public class Fork : AutomatonCardModel
         // TODO: use CreateCloneForPlayer on main / beta merge
         var clone = card.CreateClone();
         clone._owner = cardPlay.Target.Player;
-        await CardPileCmd.Add(clone, PileType.Hand);
+        await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, Owner);
     }
 }
