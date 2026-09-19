@@ -32,5 +32,5 @@ scale = Vector2(-1, 1)
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(8, -285)
+position = Vector2(3, -315)
 scale = Vector2(-1, 1)
