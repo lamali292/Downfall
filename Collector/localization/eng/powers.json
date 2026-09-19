@@ -128,5 +128,8 @@
   "COLLECTOR-CHRONO_BOOST_POWER.smartDescription": "Every [blue]{CardPlays}[/blue] cards you play, gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
   "COLLECTOR-GREMLIN_AXE_POWER.title": "Gremlin Axe",
   "COLLECTOR-GREMLIN_AXE_POWER.description": "Whenever you play a Skill, gain [gold]Vigor[/gold].",
-  "COLLECTOR-GREMLIN_AXE_POWER.smartDescription": "Whenever you play a Skill, gain [blue]{Amount}[/blue] [gold]Vigor[/gold]."
+  "COLLECTOR-GREMLIN_AXE_POWER.smartDescription": "Whenever you play a Skill, gain [blue]{Amount}[/blue] [gold]Vigor[/gold].",
+  "COLLECTOR-PLAYER_SLIPPERY_POWER.title": "Slippery",
+  "COLLECTOR-PLAYER_SLIPPERY_POWER.description": "When you would lose HP, reduce the amount lost to [blue]1[/blue].",
+  "COLLECTOR-PLAYER_SLIPPERY_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you would lose HP, reduce the amount lost to [blue]1[/blue]."
 }
