@@ -1,7 +1,7 @@
 {
     "AWAKENED-ALTAR.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nカードを1枚[gold]廃棄[/gold]する。\n[gold]召喚[/gold]する。",
     "AWAKENED-ALTAR.title": "祭壇",
-    "AWAKENED-ANCESTRAL_GROUNDS.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次の{AncestralGroundsPower:diff()}ターン開始時、{Energy:energyIcons()}を得て、[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。",
+    "AWAKENED-ANCESTRAL_GROUNDS.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次の{AncestralGroundsPower:diff()}ターン開始時、{Energy:energyIcons()}を得て、[gold]虚無[/gold]を1枚[gold]山札[/gold]の一番上に加える。",
     "AWAKENED-ANCESTRAL_GROUNDS.title": "祖霊の地",
     "AWAKENED-APHOTIC_FOUNT.description": "[gold]召喚[/gold]する。\n[gold]氷結[/gold]をプレイするたび、[gold]プレート[/gold]{AphoticFountPower:diff()}を得る。",
     "AWAKENED-APHOTIC_FOUNT.title": "暗黒の泉",
@@ -38,7 +38,7 @@
     "AWAKENED-CHOSEN_VERSE.title": "選ばれた詩句",
     "AWAKENED-CLARION_CALL.description": "{Damage:diff()}ダメージを与える。\n次に[gold]ドレイン[/gold]した時、{energyPrefix:energyIcons(1)}を得る。",
     "AWAKENED-CLARION_CALL.title": "呼び寄せる声",
-    "AWAKENED-CLUTCH.description": "{Damage:diff()}ダメージを与える。\nコスト0{energyPrefix:energyIcons(1)}のカードを1枚引く。",
+    "AWAKENED-CLUTCH.description": "{Damage:diff()}ダメージを与える。\n[gold]山札[/gold]からランダムなコスト0{energyPrefix:energyIcons(1)}のカードを1枚[gold]手札[/gold]に加える。",
     "AWAKENED-CLUTCH.title": "クラッチ",
     "AWAKENED-CRUSHER.description": "{Damage:diff()}ダメージを与える。\nカードを1枚作成するたび、プレイするまでこのカードのコストが1減少する。",
     "AWAKENED-CRUSHER.title": "クラッシャー",

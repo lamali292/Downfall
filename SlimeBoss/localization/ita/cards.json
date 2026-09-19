@@ -17,7 +17,6 @@
     "SLIMEBOSS-DOUSE_IN_SLIME.title": "Immergi nella Melma",
     "SLIMEBOSS-DUPLICATED_FORM.description": "{IfUpgraded:show:Ottieni {energyPrefix:energyIcons(1)} each turn.\n|}La prima carta ogni turno che bersaglia nemici viene giocata due volte.",
     "SLIMEBOSS-DUPLICATED_FORM.title": "Forma Duplicata",
-    "SLIMEBOSS-EQUALIZE.description": "Infliggi {Damage:diff()} di danno.\nCura {Heal:diff()} PF.\n[gold]Consuma[/gold]: Play this twice.",
     "SLIMEBOSS-EQUALIZE.title": "Equilibra",
     "SLIMEBOSS-FLAME_TACKLE.description": "Infliggi {Damage:diff()} di danno.\nSubisci {SelfDamage:inverseDiff()} di danno.\n\"Placcaggio\" cards deal {FlameTacklePower:diff()} additional damage this combat.",
     "SLIMEBOSS-FLAME_TACKLE.title": "Placcaggio Infuocato",

@@ -21,8 +21,6 @@
     "DOWNFALL-SOUL_BURN_POWER.description": "Dans [blue]3[/blue] tours, cet ennemi perd des PV au début de son tour, puis la [gold]Brûlure[/gold] est retirée.",
     "DOWNFALL-SOUL_BURN_POWER.smartDescription": "Dans [blue]{Turns}[/blue] {Turns:plural:tour|tours}, cet ennemi perd [blue]{Amount}[/blue] PV au début de son tour, puis la [gold]Brûlure[/gold] est retirée.",
     "DOWNFALL-ENERGIZED_POWER.title": "Énergisé",
-    "DOWNFALL-ENERGIZED_POWER.description": "Gagnez {energyPrefix:energyIcons(1)} au début de chaque tour.",
-    "DOWNFALL-ENERGIZED_POWER.smartDescription": "Gagnez {Amount:energyIcons()} au début de chaque tour.",
     "DOWNFALL-COPY_NEXT_TURN_POWER.title": "Gain de carte",
     "DOWNFALL-COPY_NEXT_TURN_POWER.description": "Au début de votre prochain tour, ajoutez une carte sauvegardée dans votre [gold]Main[/gold].",
     "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "Au début de votre tour, ajoutez [gold]{card}[/gold] dans votre [gold] Main[/gold].",

@@ -28,5 +28,8 @@
     "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "次のターン開始時、[gold]{card}[/gold]を[gold]手札[/gold]に加える。",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.title": "次ターン筋力",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.description": "次のターン、[gold]筋力[/gold]を得る。",
-    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "次のターン、[gold]筋力[/gold]{Amount:cond:>0?[blue]{Amount}[/blue]を得る|[blue]{NAmount}[/blue]を失う}。"
+    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "次のターン、[gold]筋力[/gold]{Amount:cond:>0?[blue]{Amount}[/blue]を得る|[blue]{NAmount}[/blue]を失う}。",
+    "DOWNFALL-DRAINED_POWER.title": "ドレイン",
+    "DOWNFALL-DRAINED_POWER.description": "次のターン、{energyPrefix:energyIcons(1)}を失う。",
+    "DOWNFALL-DRAINED_POWER.smartDescription": "次のターン、[blue]{Amount}[/blue]{energyPrefix:energyIcons(1)}を失う。"
 }

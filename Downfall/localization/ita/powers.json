@@ -21,8 +21,6 @@
     "DOWNFALL-SOUL_BURN_POWER.description": "Tra [blue]3[/blue] turni, questo nemico perde PS all'inizio del suo turno, poi [gold]Ustione dell'Anima[/gold] viene rimosso.",
     "DOWNFALL-SOUL_BURN_POWER.smartDescription": "Tra [blue]{Turns}[/blue] {Turns:plural:turno|turni}, questo nemico perde [blue]{Amount}[/blue] PS all'inizio del suo turno, poi [gold]Ustione dell'Anima[/gold] viene rimosso.",
     "DOWNFALL-ENERGIZED_POWER.title": "Energizzato",
-    "DOWNFALL-ENERGIZED_POWER.description": "Ottieni {energyPrefix:energyIcons(1)} all'inizio di ogni turno.",
-    "DOWNFALL-ENERGIZED_POWER.smartDescription": "Ottieni {Amount:energyIcons()} all'inizio di ogni turno.",
     "DOWNFALL-COPY_NEXT_TURN_POWER.title": "Carta Acquisita",
     "DOWNFALL-COPY_NEXT_TURN_POWER.description": "All'inizio del tuo prossimo turno, aggiungi una carta salvata nella tua [gold]Mano[/gold].",
     "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "All'inizio del tuo prossimo turno, aggiungi [gold]{card}[/gold] nella tua [gold]Mano[/gold].",

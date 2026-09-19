@@ -1,7 +1,5 @@
 {
     "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "Terreni Ancestrali",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "All'inizio del tuo prossimo turno, ottieni {energyPrefix:energyIcons(2)} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo di Pesca[/gold].",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "All'inizio dei prossimi {Amount:plural:turno|[blue]{Amount}[/blue] turni}, ottieni {energyPrefix:energyIcons(2)} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo di Pesca[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "Terreni Ancestrali+",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "All'inizio del tuo prossimo turno, ottieni {energyPrefix:energyIcons(3)} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo di Pesca[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "All'inizio dei prossimi {Amount:plural:turno|[blue]{Amount}[/blue] turni}, ottieni {energyPrefix:energyIcons(3)} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo di Pesca[/gold].",
