@@ -22,6 +22,9 @@ public class DownfallConfig : SimpleModConfig
     public static bool HideSlimeboss { get; set; } = false;
     public static bool HideSnecko { get; set; } = false;
     
+    [ConfigSection("UI")]
+    public static bool ShowArtSubmissionButton { get; set; } = true;
+
     [ConfigSection("Dev")]
     public static bool DevMode { get; set; } = false;
 }
