@@ -10,11 +10,12 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KnightsCard : Collectible<KnightsElite>
 {
-    public KnightsCard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.4f)
-    {
+    public KnightsCard() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.4f)
+    {//Todo: See if players like draw or power version more.
         WithTip(CardKeyword.Ethereal);
         WithPower<MachineLearningPower>(2, false);
         WithPower<KnightsCardPower>(1, false);
+        //WithCards(3, 1);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
     }
 
@@ -22,5 +23,7 @@ public class KnightsCard : Collectible<KnightsElite>
     {
         await CommonActions.ApplySelf<MachineLearningPower>(ctx, this);
         await CommonActions.ApplySelf<KnightsCardPower>(ctx, this);
+        //var cards = (await CommonActions.Draw(this, ctx)).ToList();
+        //"Draw {Cards:diff()} cards and make them Ethereal this turn."
     }
 }
