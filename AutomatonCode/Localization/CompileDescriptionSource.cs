@@ -1,5 +1,6 @@
 using Automaton.AutomatonCode.Interfaces;
 using Downfall.DownfallCode.Localization;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
@@ -12,8 +13,10 @@ public class CompileDescriptionSource : IExtraDescriptionSource
         if (card is not ICompilable compilable) yield break;
         var text = compilable.CompileString(card);
         var title = new LocString("static_hover_tips", "AUTOMATON-COMPILE.title").GetFormattedText();
-        var period = new LocString("card_keywords", "PERIOD").GetFormattedText();
         var suffix = $"[gold]{title}[/gold]";
-        yield return string.IsNullOrEmpty(text) ? suffix : $"{suffix} - {text}";
+        var compile = new LocString("encode", "AUTOMATON-COMPILE.format");
+        compile.Add("compile", suffix);
+        compile.Add("text", text);
+        yield return compile.GetFormattedText();
     }
 }
