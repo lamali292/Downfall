@@ -3,8 +3,10 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -16,11 +18,18 @@ public class VeilOfSmoke : CollectorCardModel
         WithPower<VeilOfSmokePower>(6, 2, false);
         WithTip(StaticHoverTip.Block);
         WithKeyword(CardKeyword.Exhaust);
+        WithVar("Turns", 1);
+        WithVar("Calc", (int)Calc(this, Owner.Creature));
+    }
+    
+    private decimal Calc(CardModel card, Creature? creature)
+    {
+        return (card.Owner.Hand.Count(c => c.Type is CardType.Status)+1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var turns = 1 + Owner.Hand.Count(e => e.Type == CardType.Status);
+        var turns = 1 + Owner.Hand.Count(e => e.Type is CardType.Status);
         (await CommonActions.ApplySelf<VeilOfSmokePower>(ctx, this, turns))?
             .SetBlock(DynamicVars.Power<VeilOfSmokePower>().IntValue);
     }

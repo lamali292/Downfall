@@ -166,7 +166,7 @@
   "COLLECTOR-ASHES_TO_ASHES.title": "Enrichment",
   "COLLECTOR-ASHES_TO_ASHES.description": "Whenever you create an [gold]Ember[/gold], [gold]Upgrade[/gold] it{AshesToAshesPower:plural:| {:diff()} times}.",
   "COLLECTOR-VEIL_OF_SMOKE.title": "Veil of Smoke",
-  "COLLECTOR-VEIL_OF_SMOKE.description": "At the end of your turn, gain {VeilOfSmokePower:diff()} [gold]Block[/gold], lasting an additional turn for each Status card in your [gold]Hand[/gold].",
+  "COLLECTOR-VEIL_OF_SMOKE.description": "At the end of the next {Turns:diff()} turn, increased by {Turns:diff()} for each [gold]Status[/gold] card in your [gold]Hand[/gold], gain {VeilOfSmokePower:diff()} [gold]Block[/gold].{InCombat:\n(lasts {Calc:diff() turns.)}",
   "COLLECTOR-REFINED_FUEL.title": "Refined Fuel",
   "COLLECTOR-REFINED_FUEL.description": "The first {RefinedFuelPower:plural:time|{RefinedFuelPower:diff()} times} you [gold]Pyre[/gold] a Status each turn, gain {Reserve:reserveIcons()} next turn.",
   "COLLECTOR-QUENCHING_DREGS.title": "Quenching Dregs",
@@ -270,5 +270,5 @@
   "COLLECTOR-ROTSHROOM.title": "Rotshroom",
   "COLLECTOR-ROTSHROOM.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "COLLECTOR-SLAG_TEAM.title": "Slag Team",
-  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], put this into your [gold]Hand[/gold]."
+  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nAdd [gold]Soot[/gold] to your [gold]Hand[/gold].\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], put this into your [gold]Hand[/gold]."
 }

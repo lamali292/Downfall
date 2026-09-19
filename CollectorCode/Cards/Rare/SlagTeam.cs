@@ -4,11 +4,13 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -17,11 +19,12 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
 {
     public SlagTeam() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithTorchheadDamage(6, 3);
+        WithTorchheadDamage(11, 4);
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
-        WithTip<Ember>();
+        WithCardTip<Ember>();
+        WithCardTip<Soot>();
     }
     
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
@@ -29,6 +32,7 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
     }
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
