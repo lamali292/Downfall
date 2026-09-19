@@ -60,7 +60,7 @@
   "SNECKO-THROWING_CARDS_POWER.description": "The next time you play an [gold]Offclass[/gold] card, deal damage to a random enemy and draw a card.",
   "SNECKO-THROWING_CARDS_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you play an [gold]Offclass[/gold] card, deal [blue]{Damage:diff()}[/blue] damage to a random enemy and draw {Cards:plural:a card|[blue]{}[/blue] cards}",
   "SNECKO-DICE_CASE_POWER.title": "Dice Case",
-  "SNECKO-DICE_CASE_POWER.description": "At the start of your turn, add a [gold]Soul Roll[/gold] to another player's [gold]Hand[/gold].",
+  "SNECKO-DICE_CASE_POWER.description": "At the start of your turn, add a [gold]Soul Roll[/gold] to an ally's [gold]Hand[/gold].",
   "SNECKO-DICE_CASE_POWER.smartDescription": "At the start of your turn, add {Amount:plural:a [gold]Soul Roll[/gold]|[blue]{}[/blue] [gold]Soul Rolls[/gold]} to [orange]{OtherName}[/orange]'s [gold]Hand[/gold].",
   "SNECKO-GAMBLE_POWER.title": "Gamble",
   "SNECKO-GAMBLE_POWER.description": "Next turn, draw cards and [gold]Muddle[/gold] them.",
