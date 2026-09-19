@@ -2,9 +2,13 @@ using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Cards.Uncommon;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
+using Collector.CollectorCode.Intents;
+using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.TestCode;
 
@@ -76,5 +80,50 @@ public class CollectorTests
             "Ember should return to Hand after its turn-end effect, not be discarded.");
         Assert.IsTrue(ctx.Player.Creature.CurrentHp < startingHp,
             "Ember's turn-end effect should still deal its self-damage.");
+    }
+
+    // Regression guard: Torchhead auto-attacks from TorchheadPower.AfterSideTurnEnd instead of acting
+    // through the normal monster move state machine, so its NextMove is never rolled by the enemy turn
+    // loop unless CollectorCmd.RefreshTorchheadIntent does it manually - without that call, the intent
+    // icon stays blank. Also checks the displayed value is post-power (Weak), not just the base amount.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadIntentShowsCurrentAndPowerModifiedDamage(TestContext ctx)
+    {
+        var torchhead = await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+
+        var intent = torchhead.Monster.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
+        Assert.IsTrue(intent != null,
+            "Torchhead's move state should carry a TorchheadAttackIntent so its intent icon shows.");
+
+        var baseLabel = intent!.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
+        Assert.IsTrue(baseLabel.Contains("5"), $"Intent should show the base 5 damage, got '{baseLabel}'.");
+
+        await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), torchhead, 1, ctx.Player.Creature, null);
+        var weakenedLabel = intent.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
+
+        Assert.IsTrue(weakenedLabel.Contains("3"),
+            $"Weak should reduce Torchhead's displayed intent damage from 5 to 3, got '{weakenedLabel}'.");
+    }
+
+    // Regression guard: Torchhead's intent description should say whether it hits all enemies or
+    // just the lowest-HP one (CollectorHook.ShouldTorchheadTargetAll), since that's a real gameplay
+    // difference (e.g. EquipAxePower) that was previously invisible in the intent tooltip.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadIntentDescriptionReflectsTargetingMode(TestContext ctx)
+    {
+        var torchhead = await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var intent = torchhead.Monster.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
+        Assert.IsTrue(intent != null, "Torchhead's move state should carry a TorchheadAttackIntent.");
+
+        var targets = ctx.Combat.Players.Select(p => p.Creature);
+        var singleTargetDescription = intent!.GetHoverTip(targets, torchhead).Description;
+        Assert.IsTrue(singleTargetDescription.Contains("least HP"),
+            $"Without EquipAxe, Torchhead should target the enemy with the least HP, got '{singleTargetDescription}'.");
+
+        await PowerCmd.Apply<EquipAxePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        var allTargetsDescription = intent.GetHoverTip(targets, torchhead).Description;
+
+        Assert.IsTrue(allTargetsDescription.Contains("ALL enemies"),
+            $"With EquipAxe, Torchhead should target all enemies, got '{allTargetsDescription}'.");
     }
 }

@@ -109,7 +109,22 @@ public class CollectorCmd
         int hp,
         AbstractModel? source)
     {
-        return await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
+        var torchhead = await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
+        RefreshTorchheadIntent(torchhead);
+        return torchhead;
+    }
+
+    /// <summary>
+    /// Torchhead never runs a real monster turn (it's summoned mid-combat, and its attack fires
+    /// from TorchheadPower.AfterSideTurnEnd instead), so its move is never rolled by the normal
+    /// enemy turn loop and its intent icon would stay blank. Call this whenever the pet is summoned
+    /// or its damage may have changed, so the shown value stays accurate.
+    /// </summary>
+    public static void RefreshTorchheadIntent(Creature torchhead)
+    {
+        var combatState = torchhead.CombatState;
+        if (combatState == null) return;
+        torchhead.PrepareForNextTurn(combatState.Players.Select(p => p.Creature));
     }
 
     public static Task GainReserve(AbstractModel card)
