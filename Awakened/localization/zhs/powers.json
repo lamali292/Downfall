@@ -1,7 +1,5 @@
 {
     "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "先祖圣地",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "在你的下个回合开始时，获得{energyPrefix:energyIcons(2)}，并将一张[gold]虚空[/gold]放到你的[gold]抽牌堆[/gold]顶部。",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "在你的下[blue]{Amount}[/blue]个回合开始时，获得{energyPrefix:energyIcons(2)}，并将一张[gold]虚空[/gold]放到你的[gold]抽牌堆[/gold]顶部。",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "先祖圣地+",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "在你的下个回合开始时，获得{energyPrefix:energyIcons(3)}，并将一张[gold]虚空[/gold]放到你的[gold]抽牌堆[/gold]顶部。",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "在你的下[blue]{Amount}[/blue]个回合开始时，获得{energyPrefix:energyIcons(3)}，并将一张[gold]虚空[/gold]放到你的[gold]抽牌堆[/gold]顶部。",

@@ -1,7 +1,5 @@
 {
     "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "선조의 땅",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "다음 턴 시작 시, {energyPrefix:energyIcons(2)}를 얻고 [gold]공허[/gold]를 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "다음 {Amount:plural:턴|{Amount} 턴} 시작 시, {energyPrefix:energyIcons(2)}를 얻고 [gold]공허[/gold]를 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "선조의 땅+",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "다음 턴 시작 시, {energyPrefix:energyIcons(3)}를 얻고 [gold]공허[/gold]를 뽑을 카드 더미 맨 위에 놓습니다.",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "다음 {Amount:plural:턴|{Amount} 턴} 시작 시, {energyPrefix:energyIcons(3)}를 얻고 [gold]공허[/gold]를 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",

@@ -1,6 +1,5 @@
 {
     "SNECKO-LOADED_DIE.title": "Dé Pipé",
-    "SNECKO-LOADED_DIE.description": "Lorsqu'une carte est [gold]Confondue[/gold], gagnez [blue]{Block}[/blue] [gold]d'Armure[/gold].",
     "SNECKO-LOADED_DIE.flavor": "Garantit d'arnaquer les plus naïfs.",
     "SNECKO-LUCKY_HORSESHOE.title": "Fer à Cheval Porte-bonheur",
     "SNECKO-LUCKY_HORSESHOE.description": "Lorsque vous le ramassez, choisissez [blue]1[/blue] Personnage parmi [blue]3[/blue]. Obtenez [blue]3[/blue] cartes [gold]Peu Communes Améliorées[/gold] et [blue]2[/blue] cartes [gold]Rares[/gold]. Tous les combats donnent en récompense supplémentaire une carte de ce personnage.",
@@ -30,7 +29,6 @@
     "SNECKO-SUPER_SNECKO_SOUL.description": "Au début de chaque combat, ajoutez [gold]Lancer de l'Âme[/gold] dans votre [gold]Main[/gold].\nAu début de votre tour, piochez une carte et [gold]Confondez-la[/gold].",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "Œuf inconnu",
-    "SNECKO-UNIDENTIFIED_EGG.description": "Lorsque vous ajoutez une carte [gold]Hors-Classe[/gold] dans votre [gold]Deck[/gold], [gold]Améliorez-la[/gold]. \nLorsque vous le récupérez, [gold]Améliorez[/gold] [blue]{Cards}[/blue] cartes [gold]Hors-Classe[/gold] aléatoires.",
     "SNECKO-UNIDENTIFIED_EGG.flavor": "Qu'en sortira-t-il ? Payez 1000€ pour le voir.",
     "SEA_GLASS.SNECKO-SNECKO.title": "Verre prismé",
     "SNECKO-SNECKO_CHOICE.title": "Bénédiction de/du {character}",

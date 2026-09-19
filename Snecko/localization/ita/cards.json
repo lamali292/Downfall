@@ -4,7 +4,6 @@
     "SNECKO-BEHOLD.title": "Ecco!",
     "SNECKO-BELITTLE.description": "Il nemico perde {ExtraDamage:diff()} PS per ogni effetto negativo che hanno.{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon Debuff.}{IsTargeting:cond:\n(Loses {CalculatedDamage:diff()} HP)|}",
     "SNECKO-BELITTLE.title": "Sminuisci",
-    "SNECKO-BEYOND_ARMOR.description": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nDraw {Cards:diff()} casuale [gold]FuoriClasse[/gold] {Cards:plural:card|cards}.{InCombat:cond:|\n[gold]Gift[/gold]: Common.}",
     "SNECKO-BEYOND_ARMOR.title": "Oltre l'Armatura",
     "SNECKO-BLUNDERBUS.description": "Infliggi {Damage:diff()} danno a TUTTI i nemici.\nRipeti per ogni carta con {Energy:energyIcons()} di costo in [gold]Mano[/gold].",
     "SNECKO-BLUNDERBUS.title": "Archibugio",

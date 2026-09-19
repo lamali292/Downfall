@@ -46,8 +46,6 @@
     "AUTOMATON-SELF_REPAIR_POWER.description": "Alla fine del combattimento, curi PS.",
     "AUTOMATON-SELF_REPAIR_POWER.smartDescription": "Alla fine del combattimento, curi [blue]{Amount}[/blue] PS.",
     "AUTOMATON-REPULSE_POWER.title": "Respingi",
-    "AUTOMATON-REPULSE_POWER.description": "Ogni volta che crei uno Stato, ottieni [gold]Blocco[/gold].",
-    "AUTOMATON-REPULSE_POWER.smartDescription": "Ogni volta che crei uno Stato, ottieni [blue]{Amount}[/blue] [gold]Blocco[/gold].",
     "AUTOMATON-CRASHOUT_POWER.title": "Debug",
     "AUTOMATON-CRASHOUT_POWER.description": "Ogni volta che giochi una carta Stato, infliggi danno a un nemico casuale.",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "Ogni volta che giochi una carta Stato, infliggi [blue]{Amount}[/blue] danno a un nemico casuale.",
@@ -66,7 +64,6 @@
     "AUTOMATON-COPY_PASTE_POWER.smartDescription": "{Amount:plural:La prossima carta|[blue]{}[/blue] prossime carte} che giochi in questo turno che {Amount:plural:costa|costano} {energyPrefix:energyIcons(1)} o meno {Amount:plural:viene|vengono} giocata/e una volta extra.",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "Elisir Alchirico",
     "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.description": "La prossima Funzione che crei è gratuita da giocare.",
-    "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "{Amount:plural:La prossima Funzione|[gold]{}[/gold] prossime Funzioni} che crei {Amount:plural:è|sono} gratuita/e da giocare.",
     "AUTOMATON-SHARE_POWER.title": "Condividi",
     "AUTOMATON-SHARE_POWER.description": "Ogni volta che ottieni [gold]Blocco[/gold] da una Funzione, l'alleato con meno [gold]Blocco[/gold] ottiene [gold]Blocco[/gold].",
     "AUTOMATON-SHARE_POWER.smartDescription": "Ogni volta che ottieni [gold]Blocco[/gold] da una Funzione, l'alleato con meno [gold]Blocco[/gold] ottiene [blue]{Amount}[/blue] [gold]Blocco[/gold]."

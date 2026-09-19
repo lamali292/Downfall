@@ -1,7 +1,6 @@
 {
     "HEXAGHOST-ADVANCING_GUARD.description": "Дает {Block:diff()} [gold]защиты[/gold].",
     "HEXAGHOST-ADVANCING_GUARD.title": "Авангард",
-    "HEXAGHOST-APOCRYPHRA.title": "Апокриф",
     "HEXAGHOST-APOCRYPHRA.description": "Наносит {Damage:diff()} урона и [afterlife]накладывает {SoulBurnPower:diff()} Ожога души на ВСЕХ врагов.[/afterlife]\n[afterlife]Возвращается в руку.[/afterlife]",
     "HEXAGHOST-BACKTRACK_SMACK.description": "Наносит {Damage:diff()} урона дважды.",
     "HEXAGHOST-BACKTRACK_SMACK.title": "Пощечина с отступлением",

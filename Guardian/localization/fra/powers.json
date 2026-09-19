@@ -18,8 +18,6 @@
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.description": "Lorsque vous entrez en [gold]Mode Défensif[/gold], [gold]Polissez[/gold] de [blue]1[/blue].",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.smartDescription": "Lorsque vous entrez le [gold]Mode Défensif[/gold], [gold]Polissez[/gold] de [blue]{Amount}[/blue].",
     "GUARDIAN-EXHAUST_STATUSES_POWER.title": "Répulseur",
-    "GUARDIAN-EXHAUST_STATUSES_POWER.description": "Lorsque vous piochez la première carte Statut ou Malédiction chaque tour, [gold]Épuisez-la[/gold] et piochez une carte.",
-    "GUARDIAN-EXHAUST_STATUSES_POWER.smartDescription": "Lorsque vous piochez {Amount:plural:la|les} {Amount:plural:|{Amount} } {Amount:plural:première|premières} {Amount:plural:carte|cartes} Statut ou Malédiction chaque tour, [gold]Épuisez-la[/gold] et piochez une carte.",
     "GUARDIAN-FLOATING_ORBS_POWER.title": "Orbes flottants",
     "GUARDIAN-FLOATING_ORBS_POWER.description": "Lorsque vous jouez une carte coûtant 0{energyPrefix:energyIcons(1)}, infligez des dégâts à un ennemi aléatoire.",
     "GUARDIAN-FLOATING_ORBS_POWER.smartDescription": "Lorsque vous jouez une carte coûtant 0{energyPrefix:energyIcons(1)}, infligez [blue]{Amount}[/blue] dégâts à un ennemi aléatoire.",

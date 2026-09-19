@@ -17,7 +17,6 @@
     "SLIMEBOSS-DOUSE_IN_SLIME.title": "점액 투척",
     "SLIMEBOSS-DUPLICATED_FORM.description": "{IfUpgraded:show:매 턴 {energyPrefix:energyIcons(1)}를 얻습니다.\n|}매 턴 적을 대상으로 하는 첫 번째 카드가 두 번 발동합니다.",
     "SLIMEBOSS-DUPLICATED_FORM.title": "복제된 형상",
-    "SLIMEBOSS-EQUALIZE.description": "{Damage:diff()} 피해를 줍니다.\n{Heal:diff()} 체력을 회복합니다.\n[gold]소모[/gold] - 두 번 발동합니다.",
     "SLIMEBOSS-EQUALIZE.title": "평형화",
     "SLIMEBOSS-FLAME_TACKLE.description": "{Damage:diff()} 피해를 줍니다.\n{SelfDamage:inverseDiff()} 피해를 받습니다.\n이번 전투 동안 당신의 '태클' 카드들이 {FlameTacklePower:diff()}만큼 추가 피해를 줍니다.",
     "SLIMEBOSS-FLAME_TACKLE.title": "타오르는 태클",

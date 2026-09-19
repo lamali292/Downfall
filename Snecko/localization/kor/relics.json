@@ -1,6 +1,5 @@
 {
     "SNECKO-LOADED_DIE.title": "조작된 주사위",
-    "SNECKO-LOADED_DIE.description": "카드가 [gold]혼란[/gold]될 때마다, [blue]{Block:diff()}[/blue] [gold]방어도[/gold]를 얻습니다.",
     "SNECKO-LOADED_DIE.flavor": "치즈로 꽉 채워져 있습니다.",
     "SNECKO-LUCKY_HORSESHOE.title": "행운의 편자",
     "SNECKO-LUCKY_HORSESHOE.description": "획득 시, 3명의 캐릭터 중 1명을 선택합니다. 선택한 캐릭터의 강화된 고급 카드 3장과 희귀(Rare) 카드 2장을 선택해 [gold]덱[/gold]에 추가합니다. 이후 모든 전투에서 선택한 캐릭터의 카드가 추가 보상 카드로 등장합니다.",
@@ -27,6 +26,5 @@
     "SNECKO-SUPER_SNECKO_SOUL.title": "슈퍼 스네코의 영혼",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "정체불명의 알",
-    "SNECKO-UNIDENTIFIED_EGG.description": "덱에 [gold]타직업[/gold] 카드를 추가할 때마다 그 카드를 강화합니다.\n획득 시, 무작위 [gold]타직업[/gold] 카드 [blue]{Cards}[/blue]장을 [gold]강화[/gold]합니다.",
     "SNECKO-UNIDENTIFIED_EGG.flavor": "무엇이 부화할까요? 보려면 1,000달러를 내세요."
 }
