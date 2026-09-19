@@ -1,7 +1,6 @@
 {
     "AWAKENED-ALTAR.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\n[gold]Esaurisci[/gold] una carta.\n[gold]Evoca[/gold].",
     "AWAKENED-ALTAR.title": "Altare",
-    "AWAKENED-ANCESTRAL_GROUNDS.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nAll'inizio dei prossimi {AncestralGroundsPower:diff()} turni, ottieni {Energy:energyIcons()} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo Pesca[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS.title": "Terreni Ancestrali",
     "AWAKENED-APHOTIC_FOUNT.description": "[gold]Evoca[/gold].\nOgni volta che giochi [gold]Criostasi[/gold], ottieni {AphoticFountPower:diff()} [gold]Placcatura[/gold].",
     "AWAKENED-APHOTIC_FOUNT.title": "Fonte Afotica",
@@ -33,7 +32,6 @@
     "AWAKENED-CHOSEN_VERSE.title": "Verso Scelto",
     "AWAKENED-CLARION_CALL.description": "Infliggi {Damage:diff()} di danno.\nLa prossima volta che vieni [gold]Drenato[/gold], ottieni {energyPrefix:energyIcons(1)}.",
     "AWAKENED-CLARION_CALL.title": "Chiamata di Chiarina",
-    "AWAKENED-CLUTCH.description": "Infliggi {Damage:diff()} di danno.\nPesca una carta da 0{energyPrefix:energyIcons(1)}.",
     "AWAKENED-CLUTCH.title": "Artiglio",
     "AWAKENED-CRUSHER.description": "Infliggi {Damage:diff()} di danno.\nQuando viene creata una carta, riduci il costo di questa carta di 1 finché non viene giocata.",
     "AWAKENED-CRUSHER.title": "Schiacciatore",

@@ -25,7 +25,6 @@
     "AWAKENED-RIPPED_DOLL.description": "All'inizio dei primi [blue]2[/blue] turni di combattimento, [gold]Evoca[/gold].",
     "AWAKENED-RIPPED_DOLL.flavor": "L'ultimo ricordo del tuo precedente sé. Conserva ancora magie latenti.",
     "AWAKENED-SHREDDED_DOLL.title": "Bambola a Brandelli",
-    "AWAKENED-SHREDDED_DOLL.description": "All'inizio del tuo turno, [gold]Evoca[/gold].\nInizia il combattimento con [blue]{RitualPower:diff()}[/blue] [gold]Rituale[/gold].",
     "AWAKENED-SHREDDED_DOLL.flavor": "Un promemoria della tua debolezza, eppure non riesci ancora a lasciar andare.",
     "AWAKENED-TOME_OF_PORTALMANCY.title": "Tomo di Portalmanzia",
     "AWAKENED-TOME_OF_PORTALMANCY.description": "Ogni volta che crei un [gold]Vuoto[/gold], applica [blue]2[/blue] [gold]Manaustione[/gold] a TUTTI i nemici.",
