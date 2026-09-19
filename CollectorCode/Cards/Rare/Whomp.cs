@@ -1,8 +1,12 @@
 using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -11,8 +15,17 @@ public class Whomp : CollectorCardModel
 {
     public Whomp() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(14, 4);
-        WithKindle(10, 3);
+        WithDamage(14, 3);
+        WithKindle(11, 3);
+        if (IsUpgraded)
+        {
+            WithUpgradedCardTip<Ember>();
+        }
+        else
+        {
+            WithCardTip<Burn>();
+        }
+        //WithUpgradeChangingCardTip<Burn, Ember>();
         WithKeyword(CardKeyword.Exhaust);
     }
 
@@ -22,5 +35,9 @@ public class Whomp : CollectorCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CollectorCmd.Kindle(ctx, this);
+        if (IsUpgraded)
+            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue, CardPilePosition.Bottom, true);
+        else 
+            await DownfallCardCmd.GiveCard<Burn>(Owner, PileType.Hand);
     }
 }

@@ -3,8 +3,10 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -14,9 +16,10 @@ public class Bonfire : CollectorCardModel
     public Bonfire() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
-        WithBlock(12, 4);
+        WithBlock(13, 4);
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
+        WithCardTip<Soot>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -26,5 +29,6 @@ public class Bonfire : CollectorCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
+        await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
     }
 }
