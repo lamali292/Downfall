@@ -18,15 +18,18 @@
     "DOWNFALL-TEMP_HP_POWER.description": "戦闘終了時まで、ダメージを防ぐ。",
     "DOWNFALL-TEMP_HP_POWER.smartDescription": "戦闘終了時まで、[blue]{Amount}[/blue]ダメージを防ぐ。",
     "DOWNFALL-SOUL_BURN_POWER.title": "ソウルバーン",
-    "DOWNFALL-SOUL_BURN_POWER.description": "[blue]3[/blue]ターン後、この敵は自身のターン開始時にHPを失い、その後[gold]ソウルバーン[/gold]は取り除かれる。",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "[blue]{Turns}[/blue]ターン後の敵のターン開始時、この敵はHPを[blue]{Amount}[/blue]失い、すべての[gold]ソウルバーン[/gold]を取り除く。",
+    "DOWNFALL-SOUL_BURN_POWER.description": "[blue]3[/blue]ターン後の敵のターン開始時、HPを失う。",
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "[blue]{Turns}[/blue]ターン後の敵のターン開始時、HPを[blue]{Amount}[/blue]失う。",
     "DOWNFALL-ENERGIZED_POWER.title": "エナジー化",
     "DOWNFALL-ENERGIZED_POWER.description": "ターン開始時、{energyPrefix:energyIcons(1)}を得る。",
     "DOWNFALL-ENERGIZED_POWER.smartDescription": "ターン開始時、{Amount:energyIcons()}を得る。",
-    "DOWNFALL-COPY_NEXT_TURN_POWER.title": "カード獲得",
-    "DOWNFALL-COPY_NEXT_TURN_POWER.description": "次のターン開始時、[gold]手札[/gold]に加えるカードを選ぶ。",
+    "DOWNFALL-COPY_NEXT_TURN_POWER.title": "次ターンカード獲得",
+    "DOWNFALL-COPY_NEXT_TURN_POWER.description": "次のターン開始時、保存されたカードを[gold]手札[/gold]に加える。",
     "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "次のターン開始時、[gold]{card}[/gold]を[gold]手札[/gold]に加える。",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.title": "次ターン筋力",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.description": "次のターン、[gold]筋力[/gold]を得る。",
-    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "次のターン、[gold]筋力[/gold]{Amount:cond:>0?[blue]{Amount}[/blue]を得る|[blue]{NAmount}[/blue]を失う}。"
+    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "次のターン、[gold]筋力[/gold]{Amount:cond:>0?[blue]{Amount}[/blue]を得る|[blue]{NAmount}[/blue]を失う}。",
+    "DOWNFALL-DRAINED_POWER.title": "ドレイン",
+    "DOWNFALL-DRAINED_POWER.description": "次のターン、{energyPrefix:energyIcons(1)}を失う。",
+    "DOWNFALL-DRAINED_POWER.smartDescription": "次のターン、[blue]{Amount}[/blue]{energyPrefix:energyIcons(1)}を失う。"
 }

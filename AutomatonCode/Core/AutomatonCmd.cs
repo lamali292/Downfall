@@ -54,7 +54,7 @@ public static class AutomatonCmd
         var player = card.Owner;
         if (LocalContext.IsMe(player))
             Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();
-        NFunctionDisplay.ShowFor(player);
+        NFunctionDisplay.EnsureFor(player);
         await Cmd.Wait(0.2f);
         await CardPileCmd.Add(card, EncodePile.FunctionSequence);
         await Cmd.Wait(0.2f);

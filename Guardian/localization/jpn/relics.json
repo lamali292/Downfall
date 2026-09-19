@@ -6,7 +6,7 @@
     "GUARDIAN-BOTTLED_BLACK_HOLE.description": "取得時、カード1枚に[purple]時紡ぎ[/purple]を[gold]エンチャント[/gold]する。",
     "GUARDIAN-BOTTLED_BLACK_HOLE.flavor": "どこかで、途方もない何かが知られるのを待っている。",
     "GUARDIAN-BRONZE_GEAR.title": "ブロンズギア",
-    "GUARDIAN-BRONZE_GEAR.description": "各戦闘開始時、[gold]ギアアップ[/gold]を[gold]手札[/gold]に加える。\nガーディアンは、ランダムなコモンの[gold]ジェム[/gold]をデッキに追加した状態でゲームを開始する。",
+    "GUARDIAN-BRONZE_GEAR.description": "戦闘開始時、[gold]ギアアップ[/gold]を1枚[gold]手札[/gold]に加える。\n取得時、ランダムなコモンの[gold]ジェム[/gold]を1枚[gold]デッキ[/gold]に追加する。",
     "GUARDIAN-BRONZE_GEAR.flavor": "最も必要とされる場所を守る。",
     "GUARDIAN-CRYO_CHAMBER.title": "冷凍チャンバー",
     "GUARDIAN-CRYO_CHAMBER.description": "戦闘開始時、追加の[gold]停滞[/gold]スロットを[blue]1[/blue]得る。カードが[gold]停滞[/gold]するたび、戦闘中、そのカードを[gold]アップグレード[/gold]する。",

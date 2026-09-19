@@ -5,7 +5,7 @@
     "SNECKO-BEHOLD.title": "見よ！",
     "SNECKO-BELITTLE.description": "敵は、持っている固有のデバフ1種類につき{ExtraDamage:diff()}HPを失う。{InCombat:cond:|\n[gold]ギフト[/gold]：アンコモンのデバフ。}{IsTargeting:cond:\n({CalculatedDamage:diff()}HPを失う)|}",
     "SNECKO-BELITTLE.title": "軽視",
-    "SNECKO-BEYOND_ARMOR.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nランダムな[gold]他クラス[/gold]カードを{Cards:diff()}枚引く。{InCombat:cond:|\n[gold]ギフト[/gold]：コモン。}",
+    "SNECKO-BEYOND_ARMOR.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]山札[/gold]からランダムな[gold]他クラス[/gold]カードを{Cards:diff()}枚[gold]手札[/gold]に加える。{InCombat:cond:|\n[gold]ギフト[/gold]：コモン。}",
     "SNECKO-BEYOND_ARMOR.title": "ビヨンドアーマー",
     "SNECKO-BLUNDERBUS.description": "すべての敵に{Damage:diff()}ダメージを与える。\n[gold]手札[/gold]にあるコストが{Energy:energyIcons()}以上のカード1枚につき繰り返す。",
     "SNECKO-BLUNDERBUS.title": "ブランダーバス",
@@ -168,7 +168,7 @@
     "SNECKO-SHED.title": "脱皮",
     "SNECKO-SHED.description": "[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。\nコストが{energyPrefix:energyIcons(0)}になったカード1枚につき{Block:diff()}[gold]ブロック[/gold]を得る。",
     "SNECKO-SHAPESHIFT.title": "変身",
-    "SNECKO-SHAPESHIFT.description": "[gold]手札[/gold]を、同じレアリティのランダムな{IfUpgraded:show:[gold]アップグレード[/gold]された|}[gold]他クラス[/gold]カードに[gold]変化[/gold]させる。",
+    "SNECKO-SHAPESHIFT.description": "[gold]手札[/gold]すべてを、同じレアリティのランダムな{IfUpgraded:show:[gold]アップグレード[/gold]された|}[gold]他クラス[/gold]カードに[gold]変化[/gold]させる。",
     "SNECKO-SSSHARING.title": "シェアリング",
     "SNECKO-SSSHARING.description": "すべてのプレイヤーは、ランダムな[gold]他クラス[/gold]カードを{Cards:diff()}枚[gold]手札[/gold]に加える。\nこのターン、{Cards:plural:それは|それらは}コストを支払わずにプレイできる。",
     "SNECKO-MIMICRY.title": "擬態",
@@ -190,5 +190,5 @@
     "SNECKO-MUDDY.title": "泥んこ",
     "SNECKO-MUDDY.description": "味方を1人選ぶ。\n次のターン開始時、その味方は追加でカードを{DrawCardsNextTurnPower:diff()}枚引き、[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。",
     "SNECKO-VENOMOLOGY.title": "毒液学",
-    "SNECKO-VENOMOLOGY.description": "このターン、他のプレイヤーは対象の敵にデバフを付与するたび、追加で[gold]猛毒[/gold]{VenomologyPower:diff()}を付与する。"
+    "SNECKO-VENOMOLOGY.description": "このターン、対象の敵は他のプレイヤーにデバフを付与されるたび、[gold]猛毒[/gold]{VenomologyPower:diff()}を得る。"
 }

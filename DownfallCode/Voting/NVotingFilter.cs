@@ -1,7 +1,6 @@
 ﻿using Godot;
-// NButton, NClickableControl
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Nodes.GodotExtensions; // NSearchBar, NCardViewSortButton
+using MegaCrit.Sts2.Core.Nodes.CommonUi; // NSearchBar
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions; // NClickableControl
 using MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary;  // NCardPoolFilter
 
 namespace Downfall.DownfallCode.Voting;
@@ -11,15 +10,13 @@ public partial class NVotingFilter : Control
     [Signal]
     public delegate void FilterChangedEventHandler();
 
-    private enum SortMode { Likes, New, Alphabet }
+    public enum SortMode { Top, New, Hot }
 
     private NSearchBar _searchBar = null!;
     private readonly Dictionary<NCardPoolFilter, VotingPool> _pools = new();
 
-    private NCardViewSortButton _likeSorter = null!;
-    private NCardViewSortButton _newSorter = null!;
-    private NCardViewSortButton _alphabetSorter = null!;
-    private SortMode _activeSort = SortMode.Likes;
+    private readonly Dictionary<SortMode, NVotingSortButton> _sorters = new();
+    private SortMode _activeSort = SortMode.Hot;
 
     public override void _Ready()
     {
@@ -38,9 +35,10 @@ public partial class NVotingFilter : Control
         RegisterPool("%SlimebossPool", VotingPool.Slimeboss);
         RegisterPool("%SneckoPool",    VotingPool.Snecko);
 
-        _likeSorter     = RegisterSorter("%LikeSorter",     "Likes",    SortMode.Likes);
-        _newSorter      = RegisterSorter("%NewSorter",      "New",      SortMode.New);
-        _alphabetSorter = RegisterSorter("%AlphabetSorter", "Name",     SortMode.Alphabet);
+        RegisterSorter("%HotSorter",  VotingUi.Loc("DOWNFALL-VOTING.sort_hot"), SortMode.Hot);
+        RegisterSorter("%LikeSorter", VotingUi.Loc("DOWNFALL-VOTING.sort_top"), SortMode.Top);
+        RegisterSorter("%NewSorter",  VotingUi.Loc("DOWNFALL-VOTING.sort_new"), SortMode.New);
+        _sorters[_activeSort].IsActive = true;
     }
 
     private void RegisterPool(string path, VotingPool pool)
@@ -52,55 +50,56 @@ public partial class NVotingFilter : Control
             Callable.From<NCardPoolFilter>(_ => EmitChanged()));
     }
 
-    private NCardViewSortButton RegisterSorter(string path, string label, SortMode mode)
+    /// <summary>
+    /// Single-state switches: clicking one selects it as the active sort
+    /// (always "best first" - highest votes / newest / hottest) and
+    /// highlights it; clicking the already-active one is a no-op, not a
+    /// flip. See <see cref="NVotingSortButton"/> for why this isn't the
+    /// vanilla card-library sort button.
+    /// </summary>
+    private void RegisterSorter(string path, string label, SortMode mode)
     {
-        var sorter = GetNode<NCardViewSortButton>(path);
+        var sorter = GetNode<NVotingSortButton>(path);
         sorter.SetLabel(label);
+        _sorters[mode] = sorter;
         sorter.Connect(NClickableControl.SignalName.Released,
-            Callable.From<NButton>(_ => { _activeSort = mode; EmitChanged(); }));
-        return sorter;
+            Callable.From<NVotingSortButton>(_ => Select(mode)));
+    }
+
+    private void Select(SortMode mode)
+    {
+        if (_activeSort == mode)
+            return;
+
+        _sorters[_activeSort].IsActive = false;
+        _activeSort = mode;
+        _sorters[_activeSort].IsActive = true;
+        EmitChanged();
     }
 
     private void EmitChanged() => EmitSignal(SignalName.FilterChanged);
 
     // ---- The only surface NArtVotingScreen depends on ----
 
-    public bool Matches(NVoteCard card)
+    /// <summary>
+    /// Which sort is active right now. Sorting and pool scoping both happen
+    /// server-side (see <see cref="NArtVotingScreen"/>'s feed cache) so this
+    /// and <see cref="SelectedPools"/> are what the screen keys its
+    /// per-(sort, pool set) page cache on - only the search box stays a
+    /// purely local filter over whatever's already loaded.
+    /// </summary>
+    public SortMode ActiveSort => _activeSort;
+
+    /// <summary>Empty means "no pool filter" (every pool matches).</summary>
+    public IReadOnlySet<VotingPool> SelectedPools =>
+        _pools.Where(kv => kv.Key.IsSelected).Select(kv => kv.Value).ToHashSet();
+
+    public bool MatchesSearch(NVoteCard card)
     {
         var query = _searchBar.Text?.Trim() ?? string.Empty;
-        if (query.Length > 0 &&
-            !card.CardName.Contains(query, StringComparison.OrdinalIgnoreCase) &&
-            !card.Author.Contains(query,   StringComparison.OrdinalIgnoreCase))
-            return false;
-
-        var selected = _pools.Where(kv => kv.Key.IsSelected)
-                             .Select(kv => kv.Value)
-                             .ToHashSet();
-        if (selected.Count > 0 && !selected.Contains(card.Pool))
-            return false;
-
-        return true;
-    }
-
-    public List<NVoteCard> Sort(IEnumerable<NVoteCard> cards)
-    {
-        return _activeSort switch
-        {
-            SortMode.Likes => Directional(cards, _likeSorter, c => c.Likes)
-                                .ThenBy(c => c.CardName, StringComparer.OrdinalIgnoreCase).ToList(),
-            SortMode.New   => Directional(cards, _newSorter, c => c.SubmittedAt).ToList(),
-            _              => Directional(cards, _alphabetSorter, c => c.CardName,
-                                          StringComparer.OrdinalIgnoreCase).ToList(),
-        };
-    }
-
-    private static IOrderedEnumerable<NVoteCard> Directional<TKey>(
-        IEnumerable<NVoteCard> cards, NCardViewSortButton sorter,
-        Func<NVoteCard, TKey> key, IComparer<TKey>? comparer = null)
-    {
-        return sorter.IsDescending
-            ? cards.OrderByDescending(key, comparer)
-            : cards.OrderBy(key, comparer);
+        return query.Length == 0 ||
+               card.CardName.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+               card.Author.Contains(query, StringComparison.OrdinalIgnoreCase);
     }
 }
 

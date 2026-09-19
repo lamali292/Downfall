@@ -1,7 +1,6 @@
 {
     "HEXAGHOST-ADVANCING_GUARD.description": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
     "HEXAGHOST-ADVANCING_GUARD.title": "팽창된 보호",
-    "HEXAGHOST-APOCRYPHRA.title": "아포크리파",
     "HEXAGHOST-BACKTRACK_SMACK.description": "피해를 {Damage:diff()}만큼 2번 줍니다.",
     "HEXAGHOST-BACKTRACK_SMACK.title": "되짚어 치기",
     "HEXAGHOST-BAD_OMEN.description": "현재 유령불꽃을 선택한 유령불꽃으로 변경합니다.",

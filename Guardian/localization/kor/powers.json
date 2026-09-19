@@ -18,8 +18,6 @@
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.description": "[gold]방어 모드[/gold]에 진입하면 [blue]1[/blue] [gold]연마[/gold]합니다.",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.smartDescription": "[gold]방어 모드[/gold]에 진입하면 [blue]{Amount}[/blue] [gold]연마[/gold]합니다.",
     "GUARDIAN-EXHAUST_STATUSES_POWER.title": "반발",
-    "GUARDIAN-EXHAUST_STATUSES_POWER.description": "매 턴 처음 상태이상이나 저주 카드를 뽑을 때, 그것들을 [gold]소멸[/gold]시키고 카드를 한 장 뽑습니다.",
-    "GUARDIAN-EXHAUST_STATUSES_POWER.smartDescription": "매 턴 처음으로 {Amount:plural:|{Amount}장의 }상태이상 또는 저주 {Amount:plural:카드를|카드들을} 뽑을 때, 그것들을 [gold]소멸[/gold]시키고 카드를 한 장 뽑습니다.",
     "GUARDIAN-FLOATING_ORBS_POWER.title": "떠다니는 구체",
     "GUARDIAN-FLOATING_ORBS_POWER.description": "비용이 0{energyPrefix:energyIcons(1)}인 카드를 낼 때마다, 무작위 적에게 피해를 줍니다.",
     "GUARDIAN-FLOATING_ORBS_POWER.smartDescription": "비용이 0{energyPrefix:energyIcons(1)}인 카드를 낼 때마다, 무작위 적에게 [blue]{Amount}[/blue]의 피해를 줍니다.",

@@ -1,7 +1,5 @@
 {
     "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "Terres Ancestrales",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "Au début de votre prochain tour, gagnez {energyPrefix:energyIcons(2)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "Au début {Amount:plural:de votre prochain tour|de vos [blue]{Amount}[/blue] prochains tours}, gagnez {energyPrefix:energyIcons(2)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "Terres ancestrales+",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "Au début de votre prochain tour, gagnez {energyPrefix:energyIcons(3)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "Au début {Amount:plural:de votre prochain tour|de vos [blue]{Amount}[/blue] prochains tours}, gagnez {energyPrefix:energyIcons(3)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
@@ -47,9 +45,6 @@
     "AWAKENED-ECLIPSE_EMBRACE_POWER.title": "Étreinte d'Éclipse",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "Chaque fois que vous [gold]Épuisez[/gold] un [gold]Néant[/gold], gagnez {energyPrefix:energyIcons(1)} et piochez une carte au tour suivant.",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.smartDescription": "Chaque fois que vous [gold]Épuisez[/gold] un [gold]Néant[/gold], gagnez {Amount:energyIcons()} et piochez {Amount:plural:une carte|[blue]{Amount}[/blue] cartes} au tour suivant.",
-    "AWAKENED-ENSORCELATE_POWER.title": "Ensorcellement",
-    "AWAKENED-ENSORCELATE_POWER.description": "Le prochain [gold]Pouvoir[/gold] est gratuit à jouer.",
-    "AWAKENED-ENSORCELATE_POWER.smartDescription": "{Amount:plural:Le prochain [gold]Pouvoir[/gold] est gratuit|Les [blue]{Amount}[/blue] prochains [gold]Pouvoirs[/gold] sont gratuits} à jouer.",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "Culte Fervent",
     "AWAKENED-FERVENT_WORSHIP_POWER.description": "Au début de votre tour, perdez de la [gold]Force[/gold].",
     "AWAKENED-FERVENT_WORSHIP_POWER.smartDescription": "Au début de votre tour, perdez [blue]{Amount}[/blue] de [gold]Force[/gold].",

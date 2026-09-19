@@ -49,8 +49,6 @@
     "AUTOMATON-SELF_REPAIR_POWER.description": "Al final del combate, cúrate {SelfRepairPower:diff()} de PV.",
     "AUTOMATON-SELF_REPAIR_POWER.smartDescription": "Al final del combate, cúrate {SelfRepairPower:diff()} de PV.",
     "AUTOMATON-REPULSE_POWER.title": "Repulsor",
-    "AUTOMATON-REPULSE_POWER.description": "Siempre que crees un Estado, obtén {RepulsePower:diff()} de [gold]Bloqueo[/gold].",
-    "AUTOMATON-REPULSE_POWER.smartDescription": "Siempre que crees un Estado, obtén {RepulsePower:diff()} de [gold]Bloqueo[/gold].",
     "AUTOMATON-CRASHOUT_POWER.title": "Depurar",
     "AUTOMATON-CRASHOUT_POWER.description": "Cada vez que juegues una carta de Estado, inflige daño a un enemigo aleatorio.",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "Cada vez que juegues una carta de Estado, inflige [blue]{Amount}[/blue] de daño a un enemigo aleatorio.",

@@ -5,7 +5,6 @@
     "SNECKO-BEHOLD.title": "Contemplez !",
     "SNECKO-BELITTLE.description": "L'ennemi perd {ExtraDamage:diff()} PV pour chaque débuff unique qu'ils ont.{InCombat:cond:|\n[gold]Cadeau[/gold]: Débuff Peu Commun.}{IsTargeting:cond:\n(Perd {CalculatedDamage:diff()} PV)|}",
     "SNECKO-BELITTLE.title": "Dépréciation",
-    "SNECKO-BEYOND_ARMOR.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nPiochez {Cards:diff()} {Cards:plural:carte [gold]Hors-classe[/gold] aléatoire|cartes [gold]Hors-classe[/gold] aléatoires}.{InCombat:cond:|\n[gold]Cadeau[/gold]: Commune.}",
     "SNECKO-BEYOND_ARMOR.title": "Armure de l'Au-delà",
     "SNECKO-BLUNDERBUS.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis.\nRépétez ceci pour chaque carte dans votre [gold]Main[/gold] qui coûte {Energy:energyIcons()} ou plus.",
     "SNECKO-BLUNDERBUS.title": "Trombourde",

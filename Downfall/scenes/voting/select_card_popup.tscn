@@ -1,0 +1,430 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://DownfallCode/Voting/NSelectCardPopup.cs" id="1_script"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="2_font"]
+[ext_resource type="Script" path="res://src/Core/Nodes/CommonUi/NSearchBar.cs" id="3_searchbar"]
+[ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NMegaLineEdit.cs" id="4_lineedit"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/CardLibrary/NClearSearchButton.cs" id="5_clearbtn"]
+[ext_resource type="Texture2D" path="res://images/atlases/compressed.sprites/back_button_x.tres" id="6_clearicon"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="7_richtext"]
+[ext_resource type="PackedScene" path="res://scenes/screens/card_library/card_type_tickbox.tscn" id="8_typetick"]
+[ext_resource type="PackedScene" path="res://scenes/screens/card_library/rarity_tickbox.tscn" id="9_raritytick"]
+[ext_resource type="PackedScene" path="res://scenes/screens/card_library/card_cost_tickbox.tscn" id="10_costtick"]
+[ext_resource type="PackedScene" path="res://scenes/screens/card_library/library_sort_button.tscn" id="11_sortbtn"]
+[ext_resource type="Texture2D" path="res://images/packed/card_library/type_sort_skill.png" id="12_skillicon"]
+[ext_resource type="Texture2D" path="res://images/packed/card_library/type_sort_power.png" id="13_powericon"]
+[ext_resource type="Texture2D" path="res://images/packed/card_library/type_sort_other.png" id="14_othericon"]
+
+[node name="SelectCardPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Dim" type="ColorRect" parent="."]
+unique_name_in_owner = true
+mouse_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Frame" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Frame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13, 0.17, 0.19, 0.98)
+
+[node name="Shadow" type="ColorRect" parent="Frame"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.35)
+
+[node name="Body" type="HBoxContainer" parent="Frame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Sidebar" type="Control" parent="Frame/Body"]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 2
+
+[node name="SidebarPanel" type="ColorRect" parent="Frame/Body/Sidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.182, 0.2604, 0.28, 0.5)
+
+[node name="SidebarShadow" type="ColorRect" parent="Frame/Body/Sidebar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+custom_minimum_size = Vector2(4, 0)
+color = Color(0.2346, 0.325947, 0.34, 1)
+
+[node name="SidebarMargin" type="MarginContainer" parent="Frame/Body/Sidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TopVBox" type="VBoxContainer" parent="Frame/Body/Sidebar/SidebarMargin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SearchBar" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+script = ExtResource("3_searchbar")
+
+[node name="TextArea" type="LineEdit" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/SearchBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Search..."
+script = ExtResource("4_lineedit")
+
+[node name="ClearButton" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/SearchBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("5_clearbtn")
+
+[node name="Image" type="TextureRect" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/SearchBar/ClearButton"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(24, 24)
+mouse_filter = 2
+texture = ExtResource("6_clearicon")
+expand_mode = 1
+
+[node name="Spacer2" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="PoolFilters" type="GridContainer" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="Spacer" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="TypeModule" type="VBoxContainer" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TypeSorter" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule" instance=ExtResource("11_sortbtn")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TypeToggler" type="HBoxContainer" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Indent" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule/TypeToggler"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="AttackType" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule/TypeToggler" instance=ExtResource("8_typetick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SkillType" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule/TypeToggler" instance=ExtResource("8_typetick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule/TypeToggler/SkillType" index="0"]
+texture = ExtResource("12_skillicon")
+
+[node name="PowerType" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule/TypeToggler" instance=ExtResource("8_typetick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule/TypeToggler/PowerType" index="0"]
+texture = ExtResource("13_powericon")
+
+[node name="OtherType" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule/TypeToggler" instance=ExtResource("8_typetick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Image" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule/TypeToggler/OtherType" index="0"]
+texture = ExtResource("14_othericon")
+
+[node name="TypeSpacer" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/TypeModule"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="RarityModule" type="VBoxContainer" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="RaritySorter" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule" instance=ExtResource("11_sortbtn")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RarityToggler" type="VBoxContainer" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CommonRarity" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule/RarityToggler" instance=ExtResource("9_raritytick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UncommonRarity" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule/RarityToggler" instance=ExtResource("9_raritytick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule/RarityToggler/UncommonRarity" index="1"]
+modulate = Color(0.529412, 0.807843, 0.921569, 1)
+text = "Uncommon"
+
+[node name="RareRarity" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule/RarityToggler" instance=ExtResource("9_raritytick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule/RarityToggler/RareRarity" index="1"]
+modulate = Color(0.937255, 0.784314, 0.317647, 1)
+text = "Rare"
+
+[node name="OtherRarity" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule/RarityToggler" instance=ExtResource("9_raritytick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule/RarityToggler/OtherRarity" index="1"]
+modulate = Color(0.933333, 0.509804, 0.933333, 1)
+text = "Other"
+
+[node name="RaritySpacer" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/RarityModule"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="CostModule" type="VBoxContainer" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CostSorter" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule" instance=ExtResource("11_sortbtn")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CostToggler" type="HBoxContainer" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Indent" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Cost0" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler" instance=ExtResource("10_costtick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Cost1" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler" instance=ExtResource("10_costtick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler/Cost1/Image" index="2"]
+text = "1"
+
+[node name="Cost2" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler" instance=ExtResource("10_costtick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler/Cost2/Image" index="2"]
+text = "2"
+
+[node name="Cost3+" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler" instance=ExtResource("10_costtick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler/Cost3+/Image" index="2"]
+text = "3+"
+
+[node name="CostX" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler" instance=ExtResource("10_costtick")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule/CostToggler/CostX/Image" index="2"]
+text = "X"
+
+[node name="CostSpacer" type="Control" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox/CostModule"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="AlphabetSorter" parent="Frame/Body/Sidebar/SidebarMargin/TopVBox" instance=ExtResource("11_sortbtn")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BottomVBox" type="VBoxContainer" parent="Frame/Body/Sidebar/SidebarMargin"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="CancelButton" type="Button" parent="Frame/Body/Sidebar/SidebarMargin/BottomVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Content" type="Control" parent="Frame/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="Frame/Body/Content"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+text = "Choose a Card"
+horizontal_alignment = 1
+
+[node name="GridHost" type="Control" parent="Frame/Body/Content"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardCountLabel" type="RichTextLabel" parent="Frame/Body/Content"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -36.0
+offset_right = -12.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("7_richtext")
+MaxFontSize = 18
+
+[node name="NoResultsLabel" type="RichTextLabel" parent="Frame/Body/Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "No cards found."
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_richtext")
+MaxFontSize = 32

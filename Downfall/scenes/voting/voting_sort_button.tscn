@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://DownfallCode/Voting/NVotingSortButton.cs" id="1_vsb"]
+[ext_resource type="Texture2D" path="res://images/ui/reward_screen/reward_item_button.png" id="2_vsb"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_one.tres" id="3_vsb"]
+[ext_resource type="Texture2D" path="res://images/atlases/ui_atlas.sprites/sort_descending.tres" id="4_vsb"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="5_vsb"]
+[ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="6_vsb"]
+
+[node name="VotingSortButton" type="Control"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 42.0
+focus_mode = 2
+script = ExtResource("1_vsb")
+
+[node name="Visuals" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ButtonImage" type="TextureRect" parent="Visuals"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_vsb")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Visuals"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Visuals/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_vsb")
+theme_override_font_sizes/font_size = 22
+text = "SORTER_NAME"
+vertical_alignment = 1
+script = ExtResource("5_vsb")
+AutoSizeEnabled = false
+
+[node name="Image" type="TextureRect" parent="Visuals/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_vsb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SelectionReticle" parent="." instance=ExtResource("6_vsb")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -7.0
+offset_right = 4.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2

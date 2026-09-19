@@ -82,7 +82,6 @@
     "AUTOMATON-REPAIR.description": "전투 종료 시, 체력을 {SelfRepairPower:diff()} 회복합니다.",
     "AUTOMATON-REPLICATE.description": "[gold]버린 카드 더미[/gold]에 이 카드의 복사본을 1장 추가합니다.",
     "AUTOMATON-REPLICATE.title": "복제",
-    "AUTOMATON-REPULSOR.description": "상태이상 카드를 생성할 때마다, 방어도를 {RepulsePower:diff()} 얻습니다.",
     "AUTOMATON-REPULSOR.title": "반발력",
     "AUTOMATON-RETURN.description": "[gold]버린 카드 더미[/gold]에서 카드를 한 장 골라 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.\n다음 턴에 {Energy:energyIcons()}를 얻습니다.",
     "AUTOMATON-RETURN.title": "반환",
@@ -133,6 +132,5 @@
     "AUTOMATON-FLAWLESS_ARTIFACT.title": "무결점 아티팩트",
     "AUTOMATON-FORK.title": "포크",
     "AUTOMATON-UPTICK.title": "업틱",
-    "AUTOMATON-HOOK.title": "훅",
-    "AUTOMATON-HOOK.description": "방어도를 {Block:diff()} 얻습니다.\n[gold]뽑을 카드 더미[/gold]에서 카드를 한 장 [gold]보관[/gold]합니다."
+    "AUTOMATON-HOOK.title": "훅"
 }

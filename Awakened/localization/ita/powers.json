@@ -1,7 +1,5 @@
 {
     "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "Terreni Ancestrali",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "All'inizio del tuo prossimo turno, ottieni {energyPrefix:energyIcons(2)} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo di Pesca[/gold].",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "All'inizio dei prossimi {Amount:plural:turno|[blue]{Amount}[/blue] turni}, ottieni {energyPrefix:energyIcons(2)} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo di Pesca[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "Terreni Ancestrali+",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "All'inizio del tuo prossimo turno, ottieni {energyPrefix:energyIcons(3)} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo di Pesca[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "All'inizio dei prossimi {Amount:plural:turno|[blue]{Amount}[/blue] turni}, ottieni {energyPrefix:energyIcons(3)} e metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo di Pesca[/gold].",
@@ -45,9 +43,6 @@
     "AWAKENED-ECLIPSE_EMBRACE_POWER.title": "Abbraccio dell'Eclissi",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "Ogni volta che [gold]Esaurisci[/gold] un [gold]Vuoto[/gold], ottieni {energyPrefix:energyIcons(1)} e pesca una carta il prossimo turno.",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.smartDescription": "Ogni volta che [gold]Esaurisci[/gold] un [gold]Vuoto[/gold], ottieni {Amount:energyIcons()} e pesca {Amount:plural:una carta|[blue]{Amount}[/blue] carte} il prossimo turno.",
-    "AWAKENED-ENSORCELATE_POWER.title": "Stregare",
-    "AWAKENED-ENSORCELATE_POWER.description": "Il prossimo [gold]Potere[/gold] è gratuito da giocare.",
-    "AWAKENED-ENSORCELATE_POWER.smartDescription": "I prossimi {Amount:plural:[gold]Potere[/gold] è|[blue]{Amount}[/blue] [gold]Poteri[/gold] sono} gratuiti da giocare.",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "Adorazione Fervente",
     "AWAKENED-FROM_WITHIN_POWER.title": "Dal Profondo",
     "AWAKENED-FROM_WITHIN_POWER.description": "La prossima volta che giochi una carta Incolore, ottieni {energyPrefix:energyIcons(1)}.",
