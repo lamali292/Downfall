@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.Screens.MainMenu;
 
 namespace Downfall.DownfallCode.Voting;
@@ -30,8 +31,11 @@ public static class MainMenuButtonRegistry
 	{
 		public Func<NSubmenu?>? CreateSubmenu; // how to build it
 		public Func<bool> IsVisible = () => true;
-		public required string Label; // or a LocString key
+		public required string Label; // plain-text fallback; used as-is if LocLabel is null
+		public LocString? LocLabel; // preferred: localizable label, takes priority over Label when set
 		public Action<NMainMenuSubmenuStack?>? OnPress; // custom action, OR:
 		public Type? SubmenuType; // push this submenu
+
+		public string GetDisplayText() => LocLabel?.GetFormattedText() ?? Label;
 	}
 }

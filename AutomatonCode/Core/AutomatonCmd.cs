@@ -112,6 +112,19 @@ public static class AutomatonCmd
         return card is IEncodable { CanPlayerEncode: true };
     }
 
+    /// <summary>
+    ///     True if playing this card will end up in the Encode pile, either normally
+    ///     (<see cref="IsEncodable"/>) or because some other listener force-encodes it (see
+    ///     <see cref="IForceEncodesCard"/>, e.g. Platinum Core on basic Strikes/Defends). Effects
+    ///     that redirect/consume "non-Encode" card plays (Bronze Orb, Summon Orb) should check this
+    ///     instead of <see cref="IsEncodable"/> so they don't fight over the same card play.
+    /// </summary>
+    public static bool WillAutoEncode(CardModel card)
+    {
+        return IsEncodable(card) ||
+               AutomatonHook.WillForceEncode(card.Owner.Creature.CombatState, card);
+    }
+
     public static async Task EncodeEffect(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (card is not IEncodable encodable) return;

@@ -40,6 +40,6 @@ public class SummonOrbPower : AutomatonPowerModel
         return cardPlay.IsFirstInSeries &&
                card.Type is CardType.Attack or CardType.Skill &&
                !card.Keywords.Contains(CardKeyword.Exhaust) &&
-               !AutomatonCmd.IsEncodable(card);
+               !AutomatonCmd.WillAutoEncode(card);
     }
 }
