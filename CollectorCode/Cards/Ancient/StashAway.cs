@@ -27,7 +27,7 @@ public class StashAway : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
-        for (var v = 0; v < x; v++)
+        for (var v = 0; v < (x+1); v++)
         {
             await CommonActions.CardBlock(this, cardPlay);
         }
