@@ -3,7 +3,6 @@
     "SNECKO-AMASS.title": "축적",
     "SNECKO-BEHOLD.title": "보아라!",
     "SNECKO-BELITTLE.title": "비하",
-    "SNECKO-BEYOND_ARMOR.description": "{Block:diff()} [gold]방어도[/gold]를 얻습니다.\n무작위 [gold]타직업[/gold] {Cards:plural:카드 1장을|카드 {}장을} 뽑습니다.{InCombat:cond:|\n[gold]선물[/gold]: 일반 카드.}",
     "SNECKO-BEYOND_ARMOR.title": "장갑 너머",
     "SNECKO-BLUNDERBUS.title": "나팔총",
     "SNECKO-BLUNDER_GUARD.title": "허점 보완",

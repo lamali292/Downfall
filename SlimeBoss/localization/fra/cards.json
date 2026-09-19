@@ -17,7 +17,6 @@
     "SLIMEBOSS-DOUSE_IN_SLIME.title": "Couvrir de Slime",
     "SLIMEBOSS-DUPLICATED_FORM.description": "{IfUpgraded:show:Gagnez {energyPrefix:energyIcons(1)} chaque tour.\n}La première carte jouée chaque tour qui cible les ennemis est jouée deux fois.",
     "SLIMEBOSS-DUPLICATED_FORM.title": "Forme Dupliquée",
-    "SLIMEBOSS-EQUALIZE.description": "Infligez {Damage:diff()} dégâts.\nSoignez-vous de {Heal:diff()} PV.\n[gold]Consumez[/gold]: Jouez ceci deux fois.",
     "SLIMEBOSS-EQUALIZE.title": "Égalisation",
     "SLIMEBOSS-FLAME_TACKLE.description": "Infligez {Damage:diff()} dégâts.\nPrenez {SelfDamage:inverseDiff()} dégâts.\nLes cartes \"Tacle\" infligent {FlameTacklePower:diff()} dégâts supplémentaires ce combat.",
     "SLIMEBOSS-FLAME_TACKLE.title": "Tacle Enflammé",

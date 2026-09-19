@@ -1,7 +1,5 @@
 {
     "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "Terres Ancestrales",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "Au début de votre prochain tour, gagnez {energyPrefix:energyIcons(2)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "Au début {Amount:plural:de votre prochain tour|de vos [blue]{Amount}[/blue] prochains tours}, gagnez {energyPrefix:energyIcons(2)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "Terres ancestrales+",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "Au début de votre prochain tour, gagnez {energyPrefix:energyIcons(3)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "Au début {Amount:plural:de votre prochain tour|de vos [blue]{Amount}[/blue] prochains tours}, gagnez {energyPrefix:energyIcons(3)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",

@@ -1,6 +1,5 @@
 {
     "SNECKO-LOADED_DIE.title": "Dado Truccato",
-    "SNECKO-LOADED_DIE.description": "Whenever a card is [gold]Confuso[/gold], gain [blue]{Block}[/blue] [gold]Blocco[/gold].",
     "SNECKO-LOADED_DIE.flavor": "Ripieno di formaggio.",
     "SNECKO-LUCKY_HORSESHOE.title": "Ferro di Cavallo Fortunato",
     "SNECKO-LUCKY_HORSESHOE.description": "Upon pickup, choose [blue]1[/blue] of [blue]3[/blue] Characters. Obtain [blue]3[/blue] [gold]Potenziata[/gold] [gold]Non Comune[/gold] cards and [blue]2[/blue] [gold]Rara[/gold] cards. All combats drop an additional card reward of the chosen character's cards.",
@@ -24,7 +23,6 @@
     "SNECKO-SNECKO_SOUL.description": "At the start of each combat, add [gold]Tiro dell'Anima[/gold] to your [gold]Mano[/gold].",
     "SNECKO-SUPER_SNECKO_SOUL.title": "Super Anima di Snecko",
     "SNECKO-UNIDENTIFIED_EGG.title": "Uovo Non Identificato",
-    "SNECKO-UNIDENTIFIED_EGG.description": "Whenever you add an [gold]FuoriClasse[/gold] card to your [gold]Mazzo[/gold], [gold]Potenziamento[/gold] esso.\nUpon pickup, [gold]Potenziamento[/gold] [blue]{Cards}[/blue] casuale [gold]FuoriClasse[/gold] cards.",
     "SNECKO-UNIDENTIFIED_EGG.flavor": "Cosa si schiuderà? Paga 1000$ per vedere.",
     "SEA_GLASS.SNECKO-SNECKO.title": "Vetro Prisma"
 }

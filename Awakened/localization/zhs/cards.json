@@ -1,7 +1,6 @@
 {
     "AWAKENED-ALTAR.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]消耗[/gold]一张牌。\n[gold]念咒[/gold]。",
     "AWAKENED-ALTAR.title": "祭坛",
-    "AWAKENED-ANCESTRAL_GROUNDS.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n下2个回合开始时，获得{Energy:energyIcons()}，并将一张[gold]虚空[/gold]放到你的[gold]抽牌堆[/gold]顶部。",
     "AWAKENED-ANCESTRAL_GROUNDS.title": "先祖圣地",
     "AWAKENED-APHOTIC_FOUNT.description": "[gold]念咒[/gold]。\n每当你打出[gold]凝霜[/gold]时，获得{AphoticFountPower:diff()}层[gold]覆甲[/gold]。",
     "AWAKENED-APHOTIC_FOUNT.title": "无光涌泉",
@@ -38,7 +37,6 @@
     "AWAKENED-CHOSEN_VERSE.title": "被拣选的诗句",
     "AWAKENED-CLARION_CALL.description": "造成{Damage:diff()}点伤害。\n下次[gold]力竭[/gold]时，获得{energyPrefix:energyIcons(1)}。",
     "AWAKENED-CLARION_CALL.title": "号召",
-    "AWAKENED-CLUTCH.description": "造成{Damage:diff()}点伤害。\n抽1张0{energyPrefix:energyIcons(1)}牌。",
     "AWAKENED-CLUTCH.title": "紧握",
     "AWAKENED-CRUSHER.description": "造成{Damage:diff()}点伤害。\n每当你生成一张牌时，此牌的耗能将在下一次打出前降低1。",
     "AWAKENED-CRUSHER.title": "粉碎者",

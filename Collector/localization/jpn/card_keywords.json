@@ -1,7 +1,7 @@
 {
-    "COLLECTOR-PYRE.description": "エネルギーコストの支払いに加えて、[gold]手札[/gold]のカードを1枚[gold]廃棄[/gold]する必要がある。",
+    "COLLECTOR-PYRE.description": "[gold]手札[/gold]のカードを1枚[gold]廃棄[/gold]しないとプレイできない。",
     "COLLECTOR-PYRE.title": "火葬",
-    "COLLECTOR-MEGAPYRE.description": "エネルギーコストの支払いに加えて、[gold]手札[/gold]のカードをすべて[gold]廃棄[/gold]する必要がある。",
+    "COLLECTOR-MEGAPYRE.description": "[gold]手札[/gold]のカードをすべて[gold]廃棄[/gold]しないとプレイできない。",
     "COLLECTOR-MEGAPYRE.title": "大火葬",
     "COLLECTOR-FLICKER.description": "このカードはプレイした時ではなく、[gold]廃棄[/gold]した時に効果が発動する。",
     "COLLECTOR-FLICKER.title": "明滅"

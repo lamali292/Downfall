@@ -18,8 +18,6 @@
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.description": "Ogni volta che entri in [gold]Modalità Difensiva[/gold], [gold]Lucida[/gold] [blue]1[/blue].",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.smartDescription": "Ogni volta che entri in [gold]Modalità Difensiva[/gold], [gold]Lucida[/gold] [blue]{Amount}[/blue].",
     "GUARDIAN-EXHAUST_STATUSES_POWER.title": "Repulsore",
-    "GUARDIAN-EXHAUST_STATUSES_POWER.description": "Quando peschi la prima carta Stato o Maledizione ogni turno, [gold]Esauriscile[/gold] e pesca una carta.",
-    "GUARDIAN-EXHAUST_STATUSES_POWER.smartDescription": "Quando peschi {Amount:plural:|{Amount} }carta/e Stato o Maledizione {Amount:plural:|{Amount} }ogni turno, [gold]Esauriscile[/gold] e pesca una carta.",
     "GUARDIAN-FLOATING_ORBS_POWER.title": "Sfere Fluttuanti",
     "GUARDIAN-FLOATING_ORBS_POWER.description": "Ogni volta che giochi una carta da 0{energyPrefix:energyIcons(1)}, infliggi danno a un nemico casuale.",
     "GUARDIAN-FLOATING_ORBS_POWER.smartDescription": "Ogni volta che giochi una carta da 0{energyPrefix:energyIcons(1)}, infliggi [blue]{Amount}[/blue] di danno a un nemico casuale.",
