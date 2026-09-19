@@ -102,5 +102,6 @@
   "AUTOMATON-THORNS_COMPILE.compile": "Gain {CompileThorns:diff()} [gold]Thorns[/gold].",
   "AUTOMATON-DAZED_TO_DRAW_COMPILE.compile": "Add {CompileDazed:diff()} [gold]Dazed[/gold] into your [gold]Draw Pile[/gold].",
   "AUTOMATON-BURN_TO_DRAW_COMPILE.compile": "Add {CompileBurn:diff()} {CompileBurn:plural:[gold]Burn[/gold]|[gold]Burns[/gold]} into your [gold]Draw Pile[/gold].",
-  "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]Stash[/gold] {CompileErrors:diff()} [gold]{CompileErrors:plural:Error|Errors}[/gold]."
+  "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]Stash[/gold] {CompileErrors:diff()} [gold]{CompileErrors:plural:Error|Errors}[/gold].",
+  "AUTOMATON-COMPILE.format": "{compile} - {text}"
 }
