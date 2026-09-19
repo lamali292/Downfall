@@ -25,7 +25,6 @@
     "AWAKENED-RIPPED_DOLL.description": "Au début des [blue]2[/blue] premiers tours de chaque combat, [gold]Conjurez[/gold].",
     "AWAKENED-RIPPED_DOLL.flavor": "Le dernier vestige de qui vous étiez. Elle contient encore une magie latente.",
     "AWAKENED-SHREDDED_DOLL.title": "Poupée en Lambeaux",
-    "AWAKENED-SHREDDED_DOLL.description": "Au début de votre tour, [gold]Conjurez[/gold].\nCommencez le combat avec [blue]{RitualPower:diff()}[/blue] de [gold]Rituel[/gold].",
     "AWAKENED-SHREDDED_DOLL.flavor": "Un rappel de votre faiblesse, et pourtant vous ne pouvez toujours pas vous en séparer.",
     "AWAKENED-TOME_OF_PORTALMANCY.title": "Tome de Portalomancie",
     "AWAKENED-TOME_OF_PORTALMANCY.description": "Chaque fois que vous créez un [gold]Néant[/gold], appliquez [blue]2[/blue] de [gold]Manabrûlure[/gold] à TOUS les ennemis.",

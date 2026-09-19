@@ -5,7 +5,6 @@
     "SNECKO-BEHOLD.title": "见证吧！",
     "SNECKO-BELITTLE.description": "目标敌人每有一种负面效果，失去{ExtraDamage:diff()}点生命。{InCombat:cond:|\n[gold]赠礼[/gold]：罕见负面状态牌。}{IsTargeting:cond:\n（失去{CalculatedDamage:diff()}点生命）|}",
     "SNECKO-BELITTLE.title": "看扁",
-    "SNECKO-BEYOND_ARMOR.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n将[gold]抽牌堆[/gold]中的{Cards:diff()}张随机[gold]异色[/gold]牌放入你的[gold]手牌[/gold]。{InCombat:cond:|\n[gold]赠礼[/gold]：普通牌。}",
     "SNECKO-BEYOND_ARMOR.title": "超越护甲",
     "SNECKO-BLUNDERBUS.description": "对所有敌人造成{Damage:diff()}点伤害。\n你[gold]手牌[/gold]中每有一张耗能大于等于3的牌，重复一次。",
     "SNECKO-BLUNDERBUS.title": "火枪乱射",

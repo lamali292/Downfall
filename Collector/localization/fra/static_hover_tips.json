@@ -1,0 +1,10 @@
+{
+    "COLLECTOR-KINDLE.title": "Attiser",
+    "COLLECTOR-KINDLE.smartTitle": "Attiser de {Kindle}",
+    "COLLECTOR-KINDLE.description": "Invoque [gold]Tête de Torche[/gold]. Si celui-ci est déjà invoqué, augmente ses PV Max pour ce combat.",
+    "COLLECTOR-KINDLE.smartDescription": "Invoque [gold]Tête de Torche[/gold] avec [blue]{Kindle}[/blue] PV. Si celui-ci est déjà invoqué, augmente ses PV Max de [blue]{Kindle}[/blue] pour ce combat.",
+    "COLLECTOR-RESERVE.title": "Réserve",
+    "COLLECTOR-RESERVE.description": "La Réserve est utilisée pour jouer des cartes de votre [gold]Main[/gold] après que [gold]l'Énergie[/gold] soit épuisée.\nReste entre les tours.",
+    "COLLECTOR-PYRED.description": "Une carte qui a été [gold]Épuisée[/gold] pour jouer une carte avec [gold]Bûcher[/gold].",
+    "COLLECTOR-PYRED.title": "Mis au Bûcher"
+}

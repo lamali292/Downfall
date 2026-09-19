@@ -1,7 +1,7 @@
 {
     "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "祖霊の地",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "次のターン開始時、{energyPrefix:energyIcons(2)}を得て、[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。",
-    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの開始時、{energyPrefix:energyIcons(2)}を得て、[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。",
+    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "次のターン開始時、{energyPrefix:energyIcons(2)}を得て、[gold]虚無[/gold]を1枚[gold]山札[/gold]の一番上に加える。",
+    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの開始時、{energyPrefix:energyIcons(2)}を得て、[gold]虚無[/gold]を1枚[gold]山札[/gold]の一番上に加える。",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "祖霊の地+",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "次のターン開始時、{energyPrefix:energyIcons(3)}を得て、[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの開始時、{energyPrefix:energyIcons(3)}を得て、[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。",
@@ -47,9 +47,6 @@
     "AWAKENED-ECLIPSE_EMBRACE_POWER.title": "月蝕の抱擁",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "[gold]虚無[/gold]を[gold]廃棄[/gold]するたび、次のターン、{energyPrefix:energyIcons(1)}を得て追加でカードを1枚引く。",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.smartDescription": "[gold]虚無[/gold]を[gold]廃棄[/gold]するたび、次のターン、{Amount:energyIcons()}を得て追加でカードを[blue]{Amount}[/blue]枚引く。",
-    "AWAKENED-ENSORCELATE_POWER.title": "魔力付与",
-    "AWAKENED-ENSORCELATE_POWER.description": "次の[gold]パワー[/gold]はコスト0でプレイできる。",
-    "AWAKENED-ENSORCELATE_POWER.smartDescription": "次の[blue]{Amount}[/blue]枚の[gold]パワー[/gold]はコスト0でプレイできる。",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "熱烈な崇拝",
     "AWAKENED-FERVENT_WORSHIP_POWER.description": "ターン開始時、[gold]筋力[/gold]を失う。",
     "AWAKENED-FERVENT_WORSHIP_POWER.smartDescription": "ターン開始時、[gold]筋力[/gold][blue]{Amount}[/blue]を失う。",
@@ -102,5 +99,8 @@
     "AWAKENED-THAUMATURGY_POWER.description": "次のターン開始時、[gold]セレモニー[/gold]を1枚手札に加える。",
     "AWAKENED-THAUMATURGY_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの開始時、[gold]セレモニー[/gold]を1枚手札に加える。",
     "AWAKENED-MANABURN_POWER.remoteDescription": "[orange]{ApplierName}[/orange]が[gold]ドレイン[/gold]するたび、この敵はHPを[blue]{Amount}[/blue]失う。",
-    "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "[orange]{ApplierName}[/orange]がこの敵を攻撃するたび、そのプレイヤーは1ターンの間[gold]筋力[/gold][blue]{Amount}[/blue]を得る。"
+    "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "[orange]{ApplierName}[/orange]がこの敵を攻撃するたび、そのプレイヤーは1ターンの間[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
+    "AWAKENED-SACRAMENTAL_WINE_POWER.title": "聖餐用ワイン",
+    "AWAKENED-SACRAMENTAL_WINE_POWER.description": "パワーをプレイするたび、[gold]ブロック[/gold]を得る。",
+    "AWAKENED-SACRAMENTAL_WINE_POWER.smartDescription": "パワーをプレイするたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。"
 }

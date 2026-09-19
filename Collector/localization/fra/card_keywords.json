@@ -1,0 +1,8 @@
+{
+    "COLLECTOR-PYRE.description": "Nécessite [gold]d'Épuiser[/gold] une carte dans votre [gold]Main[/gold] pour être jouée.",
+    "COLLECTOR-PYRE.title": "Bûcher",
+    "COLLECTOR-MEGAPYRE.description": "Nécessite [gold]d'Épuiser[/gold] TOUTES les cartes dans votre [gold]Main[/gold] pour être jouée.",
+    "COLLECTOR-MEGAPYRE.title": "Méga-Bûcher",
+    "COLLECTOR-FLICKER.description": "Les effets de cette carte s'activent lorsqu'elle est [gold]Épuisée[/gold] au lieu d'être jouée.",
+    "COLLECTOR-FLICKER.title": "Dernière lueur"
+}

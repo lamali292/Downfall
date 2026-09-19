@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="1_font"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/NSteamProfileBadge.cs" id="2_script"]
+
+[node name="SteamProfileBadge" type="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("2_script")
+
+[node name="AvatarFrame" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="AvatarBackground" type="ColorRect" parent="AvatarFrame"]
+layout_mode = 2
+color = Color(0.1, 0.13, 0.15, 0.6)
+
+[node name="Avatar" type="TextureRect" parent="AvatarFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 16
+text = ""

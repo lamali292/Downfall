@@ -28,14 +28,18 @@ public partial class NVoteCard : PanelContainer
 
     private static readonly Dictionary<VotingPool, Texture2D> IconCache = new();
 
-    private static readonly (string reason, string label)[] ReportReasons =
+    internal static Texture2D? GetCharacterIcon(VotingPool pool)
     {
-        ("ai", "AI-generated"),
-        ("stolen", "Stolen / copyright"),
-        ("inappropriate", "NSFW / inappropriate"),
-        ("offtopic", "Off-topic"),
-        ("other", "Other")
-    };
+        if (IconCache.TryGetValue(pool, out var cached))
+            return cached;
+
+        var path = IconPaths[pool];
+        var tex = ResourceLoader.Exists(path) ? GD.Load<Texture2D>(path) : null;
+        if (tex != null)
+            IconCache[pool] = tex;
+
+        return tex;
+    }
 
     private static readonly Color UpColor = new(1f, 0.2f, 0.2f);
     private readonly HashSet<string> _myFlags = new();
@@ -61,7 +65,19 @@ public partial class NVoteCard : PanelContainer
     public string CardName { get; private set; } = "";
     public string Author { get; private set; } = "";
     public int Likes  => _up;
+    public bool Liked => _liked;
     public long SubmittedAt { get; private set; }
+    public long SubmissionId => _submissionId;
+
+    /// <summary>
+    /// Node to open popups (e.g. the report reason picker) from, instead of
+    /// this card itself - set by <see cref="NArtVotingScreen"/> to itself.
+    /// A vote card sits inside a scrolled, clipped grid; a popup added as
+    /// its child would be sized and clipped to the card's small rect rather
+    /// than centered on the whole screen. Falls back to this card if unset
+    /// (e.g. a test instantiates one directly).
+    /// </summary>
+    public Node? PopupHost { get; set; }
 
     /// <summary>
     /// Which character pool this card belongs to. Set by the screen from the
@@ -151,16 +167,7 @@ public partial class NVoteCard : PanelContainer
 
     private void UpdateCharacterIcon()
     {
-        if (!IconCache.TryGetValue(_pool, out var tex))
-        {
-            var path = IconPaths[_pool];
-            tex = ResourceLoader.Exists(path)
-                ? GD.Load<Texture2D>(path)
-                : null;
-
-            if (tex != null)
-                IconCache[_pool] = tex;
-        }
+        var tex = GetCharacterIcon(_pool);
 
         if (tex != null)
             _characterIcon.Texture = tex;
@@ -188,69 +195,15 @@ public partial class NVoteCard : PanelContainer
 
     private void OpenReportPopup()
     {
-        var draft = new HashSet<string>(_myFlags);
-
-        var popup = new PopupPanel();
-        var vbox = new VBoxContainer();
-        popup.AddChild(vbox);
-
-        vbox.AddChild(new Label
-        {
-            Text = "Report this submission:"
-        });
-
-        foreach (var (reason, label) in ReportReasons)
-        {
-            var check = new CheckBox
-            {
-                Text = label,
-                ButtonPressed = draft.Contains(reason)
-            };
-
-            var r = reason;
-
-            check.Toggled += on =>
-            {
-                if (on)
-                    draft.Add(r);
-                else
-                    draft.Remove(r);
-            };
-
-            vbox.AddChild(check);
-        }
-
-        var sendButton = new Button
-        {
-            Text = "Send report"
-        };
-
-        sendButton.Pressed += () =>
-        {
-            SubmitReport(draft);
-            popup.Hide();
-        };
-
-        vbox.AddChild(sendButton);
-
-        AddChild(popup);
-        popup.PopupCentered();
-        popup.PopupHide += () => popup.QueueFree();
+        NReportPopup.OpenFrom(PopupHost ?? this, _myFlags, SubmitReport);
     }
 
     private void SubmitReport(HashSet<string> draft)
     {
-        foreach (var reason in draft)
-        {
-            if (!_myFlags.Contains(reason))
-                _ = VotingApi.Instance.ToggleFlag(_submissionId, reason, true);
-        }
+        var add = draft.Where(r => !_myFlags.Contains(r)).ToList();
+        var remove = _myFlags.Where(r => !draft.Contains(r)).ToList();
 
-        foreach (var reason in _myFlags)
-        {
-            if (!draft.Contains(reason))
-                _ = VotingApi.Instance.ToggleFlag(_submissionId, reason, false);
-        }
+        _ = VotingApi.Instance.ToggleFlags(_submissionId, add, remove);
 
         _myFlags.Clear();
 

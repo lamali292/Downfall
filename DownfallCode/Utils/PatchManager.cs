@@ -38,11 +38,9 @@ public class DownfallPatchManager
             .Add(typeof(ModifyCardDescriptionPatch))
             .Add(typeof(PowerShouldRemoveDueToZeroPatch))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
-            .Add(typeof(PlayOneShotPatch))
-            .Add(typeof(PlayOneShotDictPatch))
-            .Add(typeof(SfxPlayPatch))
             .Add(typeof(NCardUpdateTypePlaquePatch))
             .Add(typeof(NCreatureAnimationPatch))
+            .Add(typeof(RefreshConditionalNextStatesPatch))
             .Add(typeof(FakeMerchantAnimationPatch))
             .Add(typeof(PluralRulesPatch))
             .Add(typeof(TranscendenceTransformationPatch))
@@ -71,12 +69,15 @@ public class DownfallPatchManager
             .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
             .Add(typeof(PersonalHivePowerExemptPatch))
-            .Add(typeof(ScrollBoxesCustomBundlePatch))
-            .Add(typeof(ReturnToHandAfterTurnEndPatch));
+            .Add(typeof(ScrollBoxesCustomBundlePatch));
 
         patcher.Add(typeof(KaleidoscopePoolFilter))
             .Add(typeof(RunConfigSyncHook))
             .Add(typeof(PrismaticGemPoolFilter));
+
+        patcher.Add(GameVersion.HasResolveTurnEndCardEffects
+            ? typeof(ReturnToHandAfterTurnEndPatchBeta)
+            : typeof(ReturnToHandAfterTurnEndPatchMain));
 
         patcher.Add(GameVersion.HasNCardUpdatePortrait
             ? typeof(NCardUpdatePortraitPatch)

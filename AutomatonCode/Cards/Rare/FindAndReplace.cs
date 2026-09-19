@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Piles;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -27,12 +28,13 @@ public class FindAndReplace : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        var choices = Owner.StashPile.Concat(Owner.DrawPile).Concat(Owner.DiscardPile).ToList();
-
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 1, 1);
-        var pileTypes = choices.Where(e => e.Pile != null).Select(e => e.Pile!.Type).Distinct().ToArray();
 
-        var selected = (await DownfallCardCmd.MulitPileSelect(ctx, Owner, prefs, choices, pileTypes)).FirstOrDefault();
+        // The filter+pileTypes overload builds the card list itself, which - unlike handing it a
+        // pre-built list - sorts the draw pile by rarity/id instead of showing its true (secret)
+        // shuffle order.
+        var selected = (await DownfallCardCmd.MulitPileSelect(ctx, Owner, prefs, null,
+            StashPile.Stash, PileType.Draw, PileType.Discard)).FirstOrDefault();
         var sourcePile = selected?.Pile;
         if (sourcePile == null || selected == null) return;
         var index = sourcePile._cards.IndexOf(selected);

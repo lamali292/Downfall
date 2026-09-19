@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Config;
 using Godot;
 using Guardian.GuardianCode.Cards.Basic;
@@ -70,8 +71,12 @@ public class Guardian : DownfallCharacterModel
 
     private Func<Creature, bool> IsDefensive => creature => creature.Player != null && GuardianCmd.IsInMode<GuardianDefensiveMode>(creature.Player);
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
+    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
     {
+        var creature = controller.GetOwningCreature();
+        if (creature == null)
+            return null;
+
         var idle          = new AnimState("idle_loop", true);
         var idleDefensive = new AnimState("idle_loop_defensive", true);
 
@@ -128,6 +133,7 @@ public class Guardian : DownfallCharacterModel
                 state.AddNextState(idleState, idleWhen);
             animator.AddAnyState(CreatureAnimator.hitTrigger, state, when);
         }
+
 
         animator.AddAnyState(CreatureAnimator.deathTrigger, new AnimState("die"));
         return animator;

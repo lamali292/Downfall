@@ -8,7 +8,6 @@ public record ArtEntry
     public required ModelId ModelId { get; init; }
     public required string ImagePath { get; init; }
     public required string Author { get; init; }
-    public required string Name { get; init; }
     public required long SubmittedAt { get; init; }
     public required int Upvotes { get; init; }
     public required bool Liked { get; init; } 

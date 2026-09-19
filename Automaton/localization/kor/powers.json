@@ -39,8 +39,6 @@
     "AUTOMATON-SELF_REPAIR_POWER.description": "전투 종료 시, 체력을 회복합니다.",
     "AUTOMATON-SELF_REPAIR_POWER.smartDescription": "전투 종료 시, 체력을 [blue]{Amount}[/blue] 회복합니다.",
     "AUTOMATON-REPULSE_POWER.title": "반발력",
-    "AUTOMATON-REPULSE_POWER.description": "상태이상 카드를 생성할 때마다, [gold]방어도[/gold]를 얻습니다.",
-    "AUTOMATON-REPULSE_POWER.smartDescription": "상태이상 카드를 생성할 때마다, [gold]방어도[/gold]를 [blue]{Amount}[/blue] 얻습니다.",
     "AUTOMATON-CRASHOUT_POWER.description": "상태이상 카드를 낼 때마다, 무작위 적에게 피해를 줍니다.",
     "AUTOMATON-CRASHOUT_POWER.smartDescription": "상태이상 카드를 낼 때마다, 무작위 적에게 [blue]{Amount}[/blue]의 피해를 줍니다.",
     "AUTOMATON-BURN_OUT_POWER.title": "번아웃",
@@ -56,6 +54,5 @@
     "AUTOMATON-COPY_PASTE_POWER.title": "복사 붙여넣기",
     "AUTOMATON-COPY_PASTE_POWER.description": "이번 턴에 다음으로 내는 비용이 {energyPrefix:energyIcons(1)} 이하인 카드를 한 번 더 사용합니다.",
     "AUTOMATON-COPY_PASTE_POWER.smartDescription": "이번 턴에 다음으로 내는 비용이 {energyPrefix:energyIcons(1)} 이하인 카드 {Amount:plural:1장|[blue]{}[/blue]장}을 한 번 더 사용합니다.",
-    "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "연금술 영약",
-    "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.smartDescription": "다음 생성하는 함수 {Amount:plural:1개|[gold]{}[/gold]개}는 비용이 0입니다."
+    "AUTOMATON-ALCHYRICAL_ELIXIR_POWER.title": "연금술 영약"
 }

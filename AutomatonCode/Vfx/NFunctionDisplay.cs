@@ -1,12 +1,11 @@
-﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Piles;
-using BaseLib.Config;
-using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
@@ -18,31 +17,21 @@ using MegaCrit.Sts2.Core.Rooms;
 namespace Automaton.AutomatonCode.Vfx;
 
 /// <summary>
-/// Fixed-position combat panel listing the Encode and Compile effects of the Function that a
-/// player's Encode pile would currently compile into. One panel per player (any character, local or
-/// remote), created when that player encodes a card and freed once their Encode pile is empty again.
+/// Combat panel listing the Encode and Compile effects of the Function that the local player's
+/// Encode pile would currently compile into. Shown only while hovering <see cref="NEncodePile"/>
+/// (see <see cref="RevealNextTo"/>/<see cref="HideReveal"/>), positioned right next to it, so it
+/// never has a fixed screen spot to fight over with other UI (the multiplayer party list, in
+/// particular - see prior history of this file). Local-player-only: a Function's contents aren't
+/// public information, so it's only ever created for the player whose own Encode pile it previews.
 /// </summary>
 public partial class NFunctionDisplay : Control
 {
     private const string DisplayScenePath = "res://Automaton/scenes/ui/function_display.tscn";
 
-    /// <summary>Top-left corner of the first panel, in combat-UI coordinates.</summary>
-    private static readonly Vector2 FixedPosition = new(30f, 145f);
+    /// <summary>Gap kept between the Encode pile icon and this panel's left edge.</summary>
+    private const float HoverGap = 24f;
 
-    /// <summary>Horizontal distance between the panels of different players.</summary>
-    private const float PlayerColumnSpacing = 340f;
-
-    /// <summary>How long the drawer slide takes, in seconds.</summary>
-    private const float DrawerSlideDuration = 0.25f;
-
-    /// <summary>Points right, in the direction the drawer opens.</summary>
-    private const string RightArrowTexturePath = "res://images/packed/common_ui/settings_tiny_right_arrow.png";
-
-    /// <summary>Points left, in the direction the drawer closes.</summary>
-    private const string LeftArrowTexturePath = "res://images/packed/common_ui/settings_tiny_left_arrow.png";
-
-    private const float ArrowValueDefault = 0.9f;
-    private const float ArrowValueHovered = 1.2f;
+    private static NFunctionDisplay? _instance;
 
     private Player? _player;
     private CardPile? _pile;
@@ -54,23 +43,23 @@ public partial class NFunctionDisplay : Control
     private Control? _compilePanel;
     private MegaRichTextLabel? _compileText;
     private Control? _layout;
-    private TextureButton? _toggleButton;
-    private ShaderMaterial? _toggleShader;
     private Tween? _showTween;
-    private Tween? _drawerTween;
-    private Tween? _toggleHoverTween;
-    private float _openX;
-    private bool _isOpen = true;
+    private Control? _followAnchor;
+    private bool _hasContent;
     private readonly List<CardModel> _shownSource = new();
 
-    public static void ShowFor(Player player)
+    /// <summary>Creates the (initially hidden) display for <paramref name="player"/>'s Encode pile
+    /// if one doesn't already exist. No-op for anyone but the local player.</summary>
+    public static void EnsureFor(Player player)
     {
+        if (!LocalContext.IsMe(player)) return;
         Callable.From(() =>
         {
+            if (_instance != null && IsInstanceValid(_instance) && !_instance.IsQueuedForDeletion())
+                return;
+
             var ui = NCombatRoom.Instance?.Ui;
             if (ui == null || !IsInstanceValid(ui)) return;
-            if (ui.GetChildren().OfType<NFunctionDisplay>().Any(d => d._player == player && !d.IsQueuedForDeletion()))
-                return;
 
             var scene = ResourceLoader.Load<PackedScene>(DisplayScenePath);
             if (scene == null)
@@ -85,11 +74,29 @@ public partial class NFunctionDisplay : Control
         }).CallDeferred();
     }
 
+    /// <summary>Shows the local player's Function preview next to <paramref name="anchor"/> (the
+    /// hovered Encode pile), or does nothing if there's nothing encoded yet to preview.</summary>
+    public static void RevealNextTo(Control anchor)
+    {
+        var inst = _instance;
+        if (inst == null || !IsInstanceValid(inst) || !inst._hasContent) return;
+        inst._followAnchor = anchor;
+        inst.PositionNextToAnchor();
+        inst.FadeIn();
+    }
+
+    public static void HideReveal()
+    {
+        var inst = _instance;
+        if (inst == null || !IsInstanceValid(inst)) return;
+        inst._followAnchor = null;
+        inst.Visible = false;
+    }
+
     public override void _Ready()
     {
         MouseFilter = MouseFilterEnum.Ignore;
-        Position = FixedPosition + new Vector2(PlayerColumnSpacing * PlayerIndex(), 0f);
-        _openX = Position.X;
+        _instance = this;
 
         _title = GetNode<MegaLabel>("%Title");
         _pips = GetNode<HBoxContainer>("%Pips");
@@ -100,15 +107,7 @@ public partial class NFunctionDisplay : Control
         _compilePanel = GetNode<Control>("%CompilePanel");
         _compileText = GetNode<MegaRichTextLabel>("%CompileText");
         _layout = GetNode<Control>("Layout");
-        _toggleButton = GetNode<TextureButton>("%ToggleButton");
-        _toggleShader = _toggleButton.Material as ShaderMaterial;
-        _toggleButton.Pressed += OnToggleButtonPressed;
-        _toggleButton.MouseEntered += OnToggleButtonHoverStart;
-        _toggleButton.MouseExited += OnToggleButtonHoverEnd;
-
-        _isOpen = DownfallConfig.AutomatonFunctionDisplayOpen;
-        Position = new Vector2(_isOpen ? _openX : ClosedX(), Position.Y);
-        ApplyToggleAppearance();
+        Visible = false;
 
         GetNode<MegaLabel>("%EncodeTitle").SetTextAutoSize(
             new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText());
@@ -124,13 +123,13 @@ public partial class NFunctionDisplay : Control
         }
 
         CombatManager.Instance.CombatEnded += OnCombatEnded;
-        // The pile is usually still empty here (ShowFor runs before the card is added): stay hidden, don't free.
-        Refresh(freeWhenEmpty: false);
+        Refresh();
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
+        if (_instance == this) _instance = null;
         if (_pile != null)
         {
             _pile.ContentsChanged -= OnPileChanged;
@@ -140,56 +139,28 @@ public partial class NFunctionDisplay : Control
         }
 
         CombatManager.Instance.CombatEnded -= OnCombatEnded;
-        if (_toggleButton != null)
-        {
-            _toggleButton.Pressed -= OnToggleButtonPressed;
-            _toggleButton.MouseEntered -= OnToggleButtonHoverStart;
-            _toggleButton.MouseExited -= OnToggleButtonHoverEnd;
-        }
     }
 
-    private float ClosedX() => _openX - (_layout?.Size.X ?? 0f);
-
-    private void OnToggleButtonPressed()
+    public override void _Process(double delta)
     {
-        _isOpen = !_isOpen;
-        DownfallConfig.AutomatonFunctionDisplayOpen = _isOpen;
-        ModConfig.SaveDebounced<DownfallConfig>();
-
-        var targetX = _isOpen ? _openX : ClosedX();
-        _drawerTween?.Kill();
-        _drawerTween = CreateTween();
-        _drawerTween.TweenProperty(this, "position:x", targetX, DrawerSlideDuration)
-            .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Cubic);
-
-        ApplyToggleAppearance();
+        base._Process(delta);
+        if (Visible && _followAnchor != null && IsInstanceValid(_followAnchor))
+            PositionNextToAnchor();
     }
 
-    /// <summary>Arrow points in the direction the button will move the drawer: left (close) while open,
-    /// right (open) while closed.</summary>
-    private void ApplyToggleAppearance()
+    /// <summary>
+    /// Placed to the left of the pile, not the right: <see cref="NEncodePile"/>'s own base-game
+    /// hover tip (its title/description tooltip) already opens rightward
+    /// (<c>HoverTipAlignment.Right</c> in <c>NCustomCombatCardPile.OnFocus</c>), and sits on top
+    /// of/hides this panel when both land in the same spot.
+    /// </summary>
+    private void PositionNextToAnchor()
     {
-        if (_toggleButton == null) return;
-        var path = _isOpen ? LeftArrowTexturePath : RightArrowTexturePath;
-        _toggleButton.TextureNormal = ResourceLoader.Load<Texture2D>(path);
-    }
-
-    private void OnToggleButtonHoverStart()
-    {
-        _toggleHoverTween?.Kill();
-        _toggleShader?.SetShaderParameter("v", ArrowValueHovered);
-        _toggleButton!.Scale = Vector2.One * 1.1f;
-    }
-
-    private void OnToggleButtonHoverEnd()
-    {
-        if (_toggleShader == null) return;
-        _toggleHoverTween?.Kill();
-        _toggleHoverTween = CreateTween().SetParallel();
-        _toggleHoverTween.TweenMethod(Callable.From<float>(v => _toggleShader.SetShaderParameter("v", v)),
-            ArrowValueHovered, ArrowValueDefault, 0.5).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Expo);
-        _toggleHoverTween.TweenProperty(_toggleButton, "scale", Vector2.One, 0.5)
-            .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Expo);
+        if (_followAnchor == null) return;
+        var panelSize = _layout?.Size ?? Vector2.Zero;
+        GlobalPosition = _followAnchor.GlobalPosition + new Vector2(
+            -panelSize.X - HoverGap,
+            _followAnchor.Size.Y * 0.5f - panelSize.Y * 0.5f);
     }
 
     private void OnCombatEnded(CombatRoom room)
@@ -197,17 +168,9 @@ public partial class NFunctionDisplay : Control
         if (IsInstanceValid(this) && !IsQueuedForDeletion()) QueueFree();
     }
 
-    private int PlayerIndex()
-    {
-        var players = CombatManager.Instance.DebugOnlyGetState()?.Players;
-        if (players == null || _player == null) return 0;
-        var index = players.ToList().IndexOf(_player);
-        return index < 0 ? 0 : index;
-    }
+    private void OnPileChanged() => Refresh();
 
-    private void OnPileChanged() => Refresh(freeWhenEmpty: true);
-
-    private void Refresh(bool freeWhenEmpty)
+    private void Refresh()
     {
         if (!IsInstanceValid(this) || IsQueuedForDeletion() || _player == null || _encodeText == null || _compileText == null) return;
 
@@ -215,18 +178,19 @@ public partial class NFunctionDisplay : Control
         if (cards.Count == 0)
         {
             _shownSource.Clear();
+            _hasContent = false;
             Visible = false;
-            if (freeWhenEmpty) QueueFree();
             return;
         }
 
-        if (Visible && cards.SequenceEqual(_shownSource)) return;
+        if (_hasContent && cards.SequenceEqual(_shownSource)) return;
         _shownSource.Clear();
         _shownSource.AddRange(cards);
 
         var fn = CreatePreviewModel(_player, cards);
         if (fn == null)
         {
+            _hasContent = false;
             Visible = false;
             return;
         }
@@ -240,8 +204,7 @@ public partial class NFunctionDisplay : Control
         if (_compilePanel != null) _compilePanel.Visible = compile.Length > 0;
         if (_encodePanel != null) _encodePanel.Visible = _encodeText.Text.Length > 0;
 
-        if (!Visible) FadeIn();
-        Visible = true;
+        _hasContent = true;
     }
 
     /// <summary>One pip per Encode slot; filled pips are the cards already in the pile.</summary>
@@ -264,8 +227,9 @@ public partial class NFunctionDisplay : Control
     {
         _showTween?.Kill();
         Modulate = new Color(Modulate, 0f);
+        Visible = true;
         _showTween = CreateTween();
-        _showTween.TweenProperty(this, "modulate:a", 1f, 0.25)
+        _showTween.TweenProperty(this, "modulate:a", 1f, 0.15)
             .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Cubic);
     }
 

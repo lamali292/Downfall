@@ -1,7 +1,7 @@
 {
   "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "Ancestral Grounds",
-  "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "At the start of your next turn, gain  {energyPrefix:energyIcons(2)} and put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
-  "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "At the start of your next {Amount:plural:turn|[blue]{Amount}[/blue] turns}, gain {energyPrefix:energyIcons(2)} and put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
+  "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "At the start of your next turn, gain  {energyPrefix:energyIcons(2)} and add a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
+  "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "At the start of your next {Amount:plural:turn|[blue]{Amount}[/blue] turns}, gain {energyPrefix:energyIcons(2)} and add a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",
   "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "Ancestral Grounds+",
   "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "At the start of your next turn, gain  {energyPrefix:energyIcons(3)} and put a [gold]Void[/gold] on top of your [gold]Draw pile[/gold].",
   "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "At the start of your next {Amount:plural:turn|[blue]{Amount}[/blue] turns}, gain {energyPrefix:energyIcons(3)} and put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].",

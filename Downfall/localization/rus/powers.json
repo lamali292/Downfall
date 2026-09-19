@@ -21,8 +21,6 @@
     "DOWNFALL-SOUL_BURN_POWER.description": "Через [blue]3[/blue] хода это существо теряет ОЗ, затем эффект сбрасывается.",
     "DOWNFALL-SOUL_BURN_POWER.smartDescription": "{Turns:plural(ru):В начале следующего хода|Через [blue]{}[/blue] хода|Через [blue]{}[/blue] ходов} это существо теряет [blue]{Amount}[/blue] ОЗ, затем эффект сбрасывается.",
     "DOWNFALL-ENERGIZED_POWER.title": "Энергичность",
-    "DOWNFALL-ENERGIZED_POWER.description": "Дает {energyPrefix:energyIcons(1)} в начале хода.\",\n  \"DOWNFALL-ENERGIZED_POWER.smartDescription\": \"Дает {Amount:energyIcons()} в начале хода.",
-    "DOWNFALL-ENERGIZED_POWER.smartDescription": "Дает {Amount:energyIcons()} в начале хода.",
     "DOWNFALL-COPY_NEXT_TURN_POWER.title": "Добор карты",
     "DOWNFALL-COPY_NEXT_TURN_POWER.description": "Добавляет в [gold]руку[/gold] сохраненную карту в начале хода.",
     "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "Добавляет в [gold]руку[/gold] сохраненную карту в начале хода.",

@@ -7,6 +7,5 @@
     "AUTOMATON-COMPILE.description": "Se déclenche lorsque cette carte est intégrée à une Fonction.",
     "AUTOMATON-ENCODE_PILE.title": "Orbe d'Encodage",
     "AUTOMATON-ENCODE_PILE.description": "Un Orbe contenant jusqu'à [blue]3[/blue] cartes. Lorsqu'il est rempli, compile les effets au-dessus de [gold]Encodez[/gold] en une Fonction coûtant [blue]1[/blue] Énergie.",
-    "AUTOMATON-STASH_PILE.title": "Orbe de Réserve",
-    "AUTOMATON-STASH_PILE.description": "Un Orbe pouvant contenir jusqu'à [blue]5[/blue] cartes. Au début du tour, piochez la carte la plus ancienne."
+    "AUTOMATON-STASH_PILE.title": "Orbe de Réserve"
 }
