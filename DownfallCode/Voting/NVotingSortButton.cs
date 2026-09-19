@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -73,7 +74,7 @@ public partial class NVotingSortButton : NButton
     {
         base.OnFocus();
         Bump(1.05f);
-        if (NControllerManager.Instance?.IsUsingDirectionalNavigation == true)
+        if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true)
             _selectionReticle.OnSelect();
     }
 
@@ -81,7 +82,7 @@ public partial class NVotingSortButton : NButton
     {
         base.OnUnfocus();
         Bump(_isActive ? 1.05f : 1f);
-        if (NControllerManager.Instance?.IsUsingDirectionalNavigation == true)
+        if (NControllerManager.Instance?.IsUsingButtonInputsCompatibility() == true)
             _selectionReticle.OnDeselect();
     }
 

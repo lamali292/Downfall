@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Hermit.HermitCode.Cards.Common;
 using Hermit.HermitCode.Cards.Multiplayer;
@@ -102,12 +103,27 @@ public class HermitTests
         await ctx.PlayCard(bullet, ctx.Combat.HittableEnemies.First());
 
         var moved = RubberBulletInHandOf(teammate);
+        var stayed = RubberBulletInHandOf(ctx.Player);
         AutoSlayLog.Info($"[HermitTests] rubber bullet: moved={moved != null} dmg={moved?.DynamicVars.Damage.BaseValue} " +
-                         $"ownerHand={RubberBulletInHandOf(ctx.Player) != null} deadOnEntries={DeadOnEntries(bullet)}");
-        Assert.IsTrue(moved != null, "Rubber Bullet should be in the teammate's hand.");
-        Assert.IsTrue(RubberBulletInHandOf(ctx.Player) == null, "Owner should no longer hold a Rubber Bullet.");
-        Assert.AreEqual(baseDamage + increase, moved!.DynamicVars.Damage.BaseValue, "Damage should be increased once.");
-        Assert.AreEqual(1, teammate.Hand.Count(c => c is RubberBullet), "Exactly one copy should exist.");
+                         $"ownerHand={stayed != null} deadOnEntries={DeadOnEntries(bullet)}");
+
+        if (GameVersion.HasCardLocation)
+        {
+            // New engine: the Dead On redirect carries a Player, so the card actually moves.
+            Assert.IsTrue(moved != null, "Rubber Bullet should be in the teammate's hand.");
+            Assert.IsTrue(stayed == null, "Owner should no longer hold a Rubber Bullet.");
+            Assert.AreEqual(baseDamage + increase, moved!.DynamicVars.Damage.BaseValue, "Damage should be increased once.");
+            Assert.AreEqual(1, teammate.Hand.Count(c => c is RubberBullet), "Exactly one copy should exist.");
+        }
+        else
+        {
+            // Old engine: Hook.ModifyCardPlayResultPileTypeAndPosition has no Player, so
+            // ModifyCardPlayResultLocationOldPatch drops the redirect and the card stays put
+            // (see ModifyCardPlayResultLocationPatch.cs) - only the damage increase still applies.
+            Assert.IsTrue(moved == null, "Old engine can't redirect to the teammate's hand.");
+            Assert.IsTrue(stayed != null, "Rubber Bullet should stay in the owner's hand on the old engine.");
+            Assert.AreEqual(baseDamage + increase, stayed!.DynamicVars.Damage.BaseValue, "Damage should be increased once.");
+        }
     }
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit), playerCount: 2)]
@@ -127,7 +143,13 @@ public class HermitTests
                          $"dmg=[{string.Join(",", copies.Select(c => c.DynamicVars.Damage.BaseValue))}] " +
                          $"snipeLeft={ctx.Player.Creature.HasPower<SnipePower>()}");
         Assert.AreEqual(1, copies.Count, "Exactly one Rubber Bullet should exist after a double Dead On.");
-        Assert.IsTrue(copies[0].Owner == teammate, "The single copy should be in the teammate's hand.");
+        if (GameVersion.HasCardLocation)
+            Assert.IsTrue(copies[0].Owner == teammate, "The single copy should be in the teammate's hand.");
+        else
+            // Old engine: Hook.ModifyCardPlayResultPileTypeAndPosition has no Player, so the
+            // redirect to the teammate is dropped (see ModifyCardPlayResultLocationPatch.cs) -
+            // the card stays with its original owner, only the damage stacks.
+            Assert.IsTrue(copies[0].Owner == ctx.Player, "Old engine can't redirect to the teammate's hand.");
         Assert.AreEqual(baseDamage + 2 * increase, copies[0].DynamicVars.Damage.BaseValue,
             "Snipe should have applied the damage increase twice.");
         Assert.IsTrue(!ctx.Player.Creature.HasPower<SnipePower>(), "Snipe should be consumed.");

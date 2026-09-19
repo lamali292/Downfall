@@ -2,6 +2,7 @@
 using Champ.ChampCode.Relics;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
@@ -88,8 +89,12 @@ public class Champ : DownfallCharacterModel
     private Func<Creature, ChampStanceModel?> Stance => creature => creature.Player == null ? null : ChampModel.GetStanceModel(creature.Player);
 
     
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
+    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
     {
+        var creature = controller.GetOwningCreature();
+        if (creature == null)
+            return null;
+
         var idle = new AnimState("idle_loop", true);
         var idleBerserker = new AnimState("idle_loop_berserker", true);
         var idleDefensive = new AnimState("idle_loop_defensive", true);
@@ -116,7 +121,7 @@ public class Champ : DownfallCharacterModel
                 animState.AddNextState(state, when);
             animator.AddAnyState(trigger, animState);
         }
-        
+
         var hurts = new (AnimState state, Func<bool> when)[]
         {
             (new AnimState("hurt_berserker"), () => Stance(creature) is ChampUltimateStance),
