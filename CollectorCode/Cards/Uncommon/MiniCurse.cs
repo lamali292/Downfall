@@ -2,8 +2,10 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
@@ -16,6 +18,7 @@ public class MiniCurse : CollectorCardModel
         WithKeyword(CollectorKeyword.Pyre);
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
+        WithCardTip<Soot>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -26,5 +29,6 @@ public class MiniCurse : CollectorCardModel
     {
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
     }
 }

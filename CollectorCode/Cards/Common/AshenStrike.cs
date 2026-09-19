@@ -18,8 +18,8 @@ public class AshenStrike : CollectorCardModel
     // rename
     public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithTorchheadDamage(14, 3);
-        WithUpgradeChangingCardTip<Burn, Ember>();
+        WithTorchheadDamage(14, 2);
+        WithUpgradeChangingCardTip<Burn, Soot>();
         WithTags(CardTag.Strike);
     }
 
@@ -31,7 +31,7 @@ public class AshenStrike : CollectorCardModel
     {
         await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         if (IsUpgraded)
-            await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
+            await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
         else 
             await DownfallCardCmd.GiveCard<Burn>(Owner, PileType.Hand);
     }
