@@ -1,4 +1,5 @@
 ﻿using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +17,7 @@ public static class AttackCommandExtensions
                 ? slime.Creature
                 : throw new InvalidOperationException("Attacker has already been set.");
             command.ModelSource = card;
-            command.CardPlay = cardPlay;
+            command.SetCardPlayCompat(cardPlay);
             command._attackerAnimName = "Attack";
             command._attackerAnimDelay = 0.3f;
             command._sourceType = AttackCommand.SourceType.Card;

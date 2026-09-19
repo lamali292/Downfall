@@ -1,6 +1,8 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Patches.UI;
 using Godot;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace Downfall.DownfallCode.Abstract;
 
@@ -98,4 +100,28 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
             "vfx/vfx_rock_shatter"
         ];
     }
+
+    /// <summary>
+    ///     Non-looping animation states (and the trigger that plays them) built for every custom
+    ///     character's animator. Override to add character-specific states (see Champ's jump attack) —
+    ///     a fresh list/AnimState instances is returned on every access since each GenerateAnimator call
+    ///     needs its own AnimState objects.
+    /// </summary>
+    protected virtual List<(AnimState state, string trigger)> AnimationStates
+    {
+        get
+        {
+            var cast = new AnimState("cast");
+            return
+            [
+                (cast, CreatureAnimator.castTrigger),
+                (cast, CreatureAnimator.powerUpTrigger),
+                (new AnimState("attack"), CreatureAnimator.attackTrigger),
+                (new AnimState("hurt"), CreatureAnimator.hitTrigger)
+            ];
+        }
+    }
+
+    /// <summary>25% max HP or below, matching the low-health idle/animation variants used by some characters.</summary>
+    protected static bool IsLowHealth(Creature creature) => creature.CurrentHp <= creature.MaxHp * 0.25f;
 }
