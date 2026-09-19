@@ -66,6 +66,7 @@ public class DownfallPatchManager
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(PatchCreatureHoverTips))
             .Add(typeof(MainMenuButtonsPatch))
+            .Add(typeof(MainMenuButtonsVisibilityPatch))
             .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
             .Add(typeof(PersonalHivePowerExemptPatch))

@@ -59,8 +59,9 @@ public static class DownfallMainFile
         
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
-            Label = "Art Voting",
-            IsVisible = () => true,
+            Label = "Art Voting", // fallback if the loc table entry is somehow missing
+            LocLabel = new LocString("main_menu_ui", "DOWNFALL-ART_SUBMISSION"),
+            IsVisible = () => DownfallConfig.ShowArtSubmissionButton,
             SubmenuType = typeof(NArtVotingScreen),
             CreateSubmenu = NArtVotingScreen.Create,
             OnPress = stack =>
