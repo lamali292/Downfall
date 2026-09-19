@@ -1,0 +1,4 @@
+{
+  "COLLECTOR-TORCHHEAD_ATTACK_INTENT.title": "Aggressive",
+  "COLLECTOR-TORCHHEAD_ATTACK_INTENT.description": "Torchhead intends to [gold]Attack[/gold] {TargetsAll:cond:ALL enemies |the enemy with the least HP }for [blue]{Damage}[/blue] damage at the end of your turn."
+}
