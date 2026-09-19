@@ -8,11 +8,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction
+public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction, IForceEncodesCard
 {
     public PlatinumCore() : base(RelicRarity.Starter)
     {
@@ -24,10 +25,14 @@ public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = cardPlay.Card;
-        var owner = card.Owner;
-        if (Owner != owner || !card.IsBasicStrikeOrDefend) return;
+        if (!ForceEncodes(card)) return;
         await AutomatonCmd.EncodeCard(card, ctx);
         Flash();
+    }
+
+    public bool ForceEncodes(CardModel card)
+    {
+        return Owner == card.Owner && card.IsBasicStrikeOrDefend;
     }
 
     public bool ModifyCompiledFunction(FunctionCard function, Player player)
