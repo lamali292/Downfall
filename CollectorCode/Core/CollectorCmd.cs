@@ -10,6 +10,7 @@ using Downfall.DownfallCode;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
+using Godot;
 using Guardian.GuardianCode.Cards.Rare;
 using Hexaghost.HexaghostCode.Cards.Rare;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -23,6 +24,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using SlimeBoss.SlimeBossCode.Cards.Rare;
@@ -111,6 +113,7 @@ public class CollectorCmd
     {
         var torchhead = await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
         RefreshTorchheadIntent(torchhead);
+        RefreshTorchheadScale(torchhead);
         return torchhead;
     }
 
@@ -125,6 +128,22 @@ public class CollectorCmd
         var combatState = torchhead.CombatState;
         if (combatState == null) return;
         torchhead.PrepareForNextTurn(combatState.Players.Select(p => p.Creature));
+    }
+
+    private const float TorchheadMinScale = 1f;
+    private const float TorchheadMaxScale = 1.75f;
+    private const float TorchheadScaleCapHp = 80f;
+
+    /// <summary>
+    /// Grows Torchhead's visuals with its Max HP, same idea as Osty (NCreature.OstyScaleToSize) -
+    /// that method is hardcoded to Osty's own scale/offset constants though, so this mirrors just
+    /// the size half via the generic NCreature.ScaleTo, with Torchhead's own range/cap.
+    /// </summary>
+    public static void RefreshTorchheadScale(Creature torchhead)
+    {
+        var t = Mathf.Clamp(torchhead.MaxHp / TorchheadScaleCapHp, 0f, 1f);
+        var scale = Mathf.Lerp(TorchheadMinScale, TorchheadMaxScale, t);
+        NCombatRoom.Instance?.GetCreatureNode(torchhead)?.ScaleTo(scale, 0.75);
     }
 
     public static Task GainReserve(AbstractModel card)
