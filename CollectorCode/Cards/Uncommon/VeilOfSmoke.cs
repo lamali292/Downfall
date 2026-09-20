@@ -19,12 +19,12 @@ public class VeilOfSmoke : CollectorCardModel
         WithTip(StaticHoverTip.Block);
         WithKeyword(CardKeyword.Exhaust);
         WithVar("Turns", 1);
-        WithVar("Calc", (int)Calc(this, Owner.Creature));
+        WithCalculatedVar("Calc",1, Calc);
     }
     
-    private decimal Calc(CardModel card, Creature? creature)
+    private static decimal Calc(CardModel card, Creature? creature)
     {
-        return (card.Owner.Hand.Count(c => c.Type is CardType.Status)+1);
+        return (card.Owner.Hand.Count(c => c.Type is CardType.Status));
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
