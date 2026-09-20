@@ -26,7 +26,6 @@
     "AUTOMATON-BURN_OUT.description": "每当你[gold]暂存[/gold]状态或[red]诅咒[/red]牌时，将其[gold]消耗[/gold]并对所有敌人造成{BurnOutPower:diff()}点伤害。",
     "AUTOMATON-BURN_OUT.title": "燃烧殆尽",
     "AUTOMATON-BYTE_SHIFT.title": "",
-    "AUTOMATON-CLASS_DEFAULT.description": "[gold]方法[/gold]的伤害和[gold]格挡[/gold]数值增加{ClassDefaultPower:diff()}。",
     "AUTOMATON-CLASS_DEFAULT.title": "默认类",
     "AUTOMATON-CLEAN_CODE.description": "在你的回合结束时，[gold]暂存[/gold]最多{CleanCodePower:diff()}张牌。",
     "AUTOMATON-CLEAN_CODE.title": "简明代码",
@@ -111,6 +110,7 @@
     "AUTOMATON-REPAIR.title": "自我修复",
     "AUTOMATON-REPLICATE.description": "将此牌的复制加入你的[gold]弃牌堆[/gold]。",
     "AUTOMATON-REPLICATE.title": "复现",
+    "AUTOMATON-REPULSOR.description": "每当你抽到一张状态牌时，获得{RepulsePower:diff()}点[gold]格挡[/gold]。",
     "AUTOMATON-REPULSOR.title": "反冲器",
     "AUTOMATON-RETURN.description": "将[gold]弃牌堆[/gold]中的一张牌放到你的[gold]抽牌堆[/gold]顶部。\n在下个回合，获得{Energy:energyIcons()}。",
     "AUTOMATON-RETURN.title": "返回",
@@ -180,9 +180,11 @@
     "AUTOMATON-UPTICK.title": "递增",
     "AUTOMATON-UPTICK.description": "在下个回合，所有玩家抽{DrawCardsNextTurnPower:diff()}张牌并获得{Energy:energyIcons()}。",
     "AUTOMATON-HOOK.title": "挂钩",
+    "AUTOMATON-HOOK.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]暂存[/gold]你[gold]手牌[/gold]、[gold]抽牌堆[/gold]和[gold]弃牌堆[/gold]中各一张牌。",
     "AUTOMATON-EXPORT.title": "导出",
     "AUTOMATON-EXPORT.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n另一名玩家获得{Energy:energyIcons()}。",
     "AUTOMATON-SHARE.title": "共享",
     "AUTOMATON-SHARE.description": "每当你从[gold]方法[/gold]中获得[gold]格挡[/gold]时，[gold]格挡[/gold]最少的盟友获得{SharePower:diff()}点[gold]格挡[/gold]。",
-    "AUTOMATON-BLUESCREEN.title": "蓝屏"
+    "AUTOMATON-BLUESCREEN.title": "蓝屏",
+    "AUTOMATON-BLUESCREEN.description": "给予另一玩家{Block:diff()}点[gold]格挡[/gold]。\n一张[gold]错误[/gold]添加到你的[gold]抽牌堆[/gold]顶部。"
 }

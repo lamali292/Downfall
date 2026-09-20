@@ -1,7 +1,5 @@
 {
     "AUTOMATON-CLASS_DEFAULT_POWER.title": "Classe Predefinita",
-    "AUTOMATON-CLASS_DEFAULT_POWER.description": "Aumenta il danno e il [gold]Blocco[/gold] delle Funzioni.",
-    "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "Aumenta il danno e il [gold]Blocco[/gold] delle Funzioni di [blue]{Amount}[/blue].",
     "AUTOMATON-FULL_RELEASE_POWER.title": "Rilascio Completo",
     "AUTOMATON-FULL_RELEASE_POWER.description": "All'inizio del tuo turno:\n{effects}",
     "AUTOMATON-FULL_RELEASE_POWER.smartDescription": "All'inizio del tuo turno:\n{effects}",

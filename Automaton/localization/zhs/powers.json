@@ -1,7 +1,5 @@
 {
     "AUTOMATON-CLASS_DEFAULT_POWER.title": "默认类",
-    "AUTOMATON-CLASS_DEFAULT_POWER.description": "增加[gold]方法[/gold]的伤害和[gold]格挡[/gold]。",
-    "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "增加[gold]方法[/gold]的伤害和[gold]格挡[/gold][blue]{Amount}[/blue]点。",
     "AUTOMATON-FULL_RELEASE_POWER.title": "正式发布",
     "AUTOMATON-FULL_RELEASE_POWER.description": "在你的回合开始时：\n{effects}",
     "AUTOMATON-FULL_RELEASE_POWER.smartDescription": "在你的回合开始时：\n{effects}",

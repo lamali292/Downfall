@@ -1,6 +1,7 @@
 {
     "HEXAGHOST-ADVANCING_GUARD.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].",
     "HEXAGHOST-ADVANCING_GUARD.title": "Garde Progressive",
+    "HEXAGHOST-APOCRYPHRA.title": "Apocryphe",
     "HEXAGHOST-APOCRYPHRA.description": "Infligez {Damage:diff()} dégâts et [afterlife]appliquez[/afterlife] {SoulBurnPower:diff()} de [afterlife]Calcination à TOUS les ennemies.[/afterlife]\n[afterlife]Remettez cette carte dans votre Main.[/afterlife]",
     "HEXAGHOST-BACKTRACK_SMACK.description": "Infligez {Damage:diff()} dégâts deux fois.",
     "HEXAGHOST-BACKTRACK_SMACK.title": "Coup du Revers",

@@ -48,9 +48,11 @@
     "AUTOMATON-FRAGMENT.functionEnd": "F",
     "AUTOMATON-FRAGMENT.functionName": "Fragment",
     "AUTOMATON-FRAGMENT.functionPrefix": "propre",
+    "AUTOMATON-FRONTLOAD.compile": "La Fonction gagne [gold]Retenue[/gold].",
     "AUTOMATON-FRONTLOAD.functionEnd": "F",
     "AUTOMATON-FRONTLOAD.functionName": "Mur",
     "AUTOMATON-FRONTLOAD.functionPrefix": "rigide",
+    "AUTOMATON-FULL_RELEASE.compile": "La Fonction devient un [gold]Pouvoir[/gold] avec \"Maintenant et au début de votre tour...\".",
     "AUTOMATON-FULL_RELEASE.encode": "La Fonction est un Pouvoir avec \"Maintenant et au début de votre tour...\".",
     "AUTOMATON-FULL_RELEASE.functionEnd": "F",
     "AUTOMATON-FULL_RELEASE.functionName": "Version",
@@ -64,6 +66,7 @@
     "AUTOMATON-MINOR_BEAM.functionEnd": "M",
     "AUTOMATON-MINOR_BEAM.functionName": "Griffure",
     "AUTOMATON-MINOR_BEAM.functionPrefix": "mineur",
+    "AUTOMATON-NULL_POINTER.compile": "La Fonction coûte {Energy:energyIcons()}.",
     "AUTOMATON-NULL_POINTER.functionEnd": "N",
     "AUTOMATON-NULL_POINTER.functionName": "Pointeur",
     "AUTOMATON-NULL_POINTER.functionPrefix": "zéro",
@@ -92,5 +95,11 @@
     "AUTOMATON-TERMINATOR.functionName": "Fin",
     "AUTOMATON-TERMINATOR.functionPrefix": "triste",
     "AUTOMATON-FUNCTION.functionParentheses": "()",
-    "AUTOMATON-PERFECTION.functionName": "perfection()"
+    "AUTOMATON-PERFECTION.functionName": "perfection()",
+    "AUTOMATON-INFINITE_LOOP_COMPILE.compile": "Gagnez une copie {OnCard:cond:de ceci|d'une [gold]Boucle Infinie[/gold]} avec {CompileLoopCount:diff()} dégâts supplémentaires.",
+    "AUTOMATON-STRENGTH_COMPILE.compile": "Gagnez {CompileStrength:diff()} de [gold]Force[/gold].",
+    "AUTOMATON-THORNS_COMPILE.compile": "Gagnez {CompileThorns:diff()} [gold]d'Épines[/gold].",
+    "AUTOMATON-DAZED_TO_DRAW_COMPILE.compile": "Ajoutez {CompileDazed:diff()} [gold]Hébétés[/gold] dans votre [gold]Pioche[/gold].",
+    "AUTOMATON-BURN_TO_DRAW_COMPILE.compile": "Ajoutez {CompileBurn:diff()} {CompileBurn:plural:[gold]Brûlure[/gold]|[gold]Brûlures[/gold]} dans votre [gold]Pioche[/gold].",
+    "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]Réservez[/gold] {CompileErrors:diff()} [gold]{CompileErrors:plural:Erreur|Erreurs}[/gold]."
 }

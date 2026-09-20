@@ -1,0 +1,8 @@
+{
+    "AWAKENED-CULTISTS_DELIGHT.title": "邪教徒特酿",
+    "AWAKENED-CULTISTS_DELIGHT.description": "获得[blue]{CuriosityPower:diff()}[/blue]层[gold]好奇[/gold]。",
+    "AWAKENED-UNHOLY_WATER.title": "亵渎圣水",
+    "AWAKENED-UNHOLY_WATER.description": "给予[blue]{ManaburnPower:diff()}[/blue]层[gold]魔力灼烧[/gold]。",
+    "AWAKENED-SACRAMENTAL_WINE.title": "祝圣酒",
+    "AWAKENED-SACRAMENTAL_WINE.description": "每当你打出能力牌时，获得[blue]{SacramentalWinePower:diff()}[/blue]点[gold]格挡[/gold]。"
+}

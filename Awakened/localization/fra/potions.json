@@ -1,0 +1,8 @@
+{
+    "AWAKENED-CULTISTS_DELIGHT.title": "Délice du Cultiste",
+    "AWAKENED-CULTISTS_DELIGHT.description": "Gagnez [blue]{CuriosityPower:diff()}[/blue] de [gold]Curiosité[/gold].",
+    "AWAKENED-UNHOLY_WATER.title": "Eau Souillée",
+    "AWAKENED-UNHOLY_WATER.description": "Appliquez [blue]{ManaburnPower:diff()}[/blue] de [gold]Manabrûlure[/gold].",
+    "AWAKENED-SACRAMENTAL_WINE.title": "Vin de Messe",
+    "AWAKENED-SACRAMENTAL_WINE.description": "Lorsque vous jouez un Pouvoir, gagnez [blue]{SacramentalWinePower:diff()}[/blue] [gold]d'Armure[/gold]."
+}
