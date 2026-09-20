@@ -197,7 +197,7 @@
   "COLLECTOR-KNOWLEDGE_DEMON_CARD.description": "Choose 1 of {Cards:diff()} [gold]Upgraded[/gold] cards of ANY Color into your [gold]Hand[/gold].\n{IfUpgraded:show:It's free to play this turn.|Reduce its cost by 1 this turn.}",
   "COLLECTOR-KAISER_CRAB_CARD.description": "Deal {Damage:diff()} damage.\nPlay {IfUpgraded:show:an|a random} Attack in your [gold]Hand[/gold].",
   "COLLECTOR-MECHA_KNIGHT_CARD.description": "Gain {OrbSlots:diff()} Orb slots.\nWhenever a card is [gold]Pyred[/gold], [gold]Channel[/gold] {MechaKnightCardPower:diff()} random {MechaKnightCardPower:plural:Orb|Orbs}.",
-  "COLLECTOR-KNIGHTS_CARD.description": "At the start of your turn, draw {MachineLearningPower:diff()} additional {MachineLearningPower:plural:card|cards}.\nALL your cards are [gold]Ethereal[/gold].",
+  "COLLECTOR-KNIGHTS_CARD.description": "Draw {Cards:diff()} cards and make them [gold]Ethereal[/gold] this turn.",
   "COLLECTOR-EQUIP_AXE.title": "Equip: Axe",
   "COLLECTOR-EQUIP_AXE.description": "[gold]Kindle[/gold] {Kindle:diff()}.\n[gold]Torchhead[/gold]'s attacks deal {EquipAxePower:diff()} additional damage and deal damage to ALL enemies.",
   "COLLECTOR-BIDING_BLAST.title": "Biding Blast",
