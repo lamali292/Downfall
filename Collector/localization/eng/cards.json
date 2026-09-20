@@ -1,7 +1,7 @@
 {
   "COLLECTOR-ARROGANCE.description": "Gain {Block:diff()} [gold]Block[/gold].\nYour next Attack this turn also applies {DoomedAttackPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-ARROGANCE.title": "Arrogance",
-  "COLLECTOR-ASHEN_STRIKE.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nAdd {IfUpgraded:show:[gold]Soot[/gold]|a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
+  "COLLECTOR-ASHEN_STRIKE.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nAdd a {IfUpgraded:show:[gold]Soot[/gold]|[gold]Burn[/gold]} into your [gold]Hand[/gold].",
   "COLLECTOR-ASHEN_STRIKE.title": "Candle Strike",
   "COLLECTOR-BELLOW_COLLECTOR.title": "Bellow",
   "COLLECTOR-BELLOW_COLLECTOR.description": "Apply [gold]Miasma[/gold] equal to unused [gold]Block[/gold] last turn.{InCombat:cond:\n(Apply {UnusedBlock:diff()} [gold]Miasma[/gold])|}",
@@ -11,7 +11,7 @@
   "COLLECTOR-BLACK_BINDINGS.title": "Black Bindings",
   "COLLECTOR-BLIGHTNING.title": "Blightning Strike",
   "COLLECTOR-BLIGHTNING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\n[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nApply {MiasmaPower:diff()} [gold]Miasma[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
-  "COLLECTOR-BONFIRE.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}.\nAdd [gold]Soot[/gold] into your [gold]Hand[/gold].",
+  "COLLECTOR-BONFIRE.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}.\nAdd a [gold]Soot[/gold] into your [gold]Hand[/gold].",
   "COLLECTOR-BONFIRE.title": "Bonfire",
   "COLLECTOR-BRAIN_DRAIN.description": "Enemy loses {HpLoss:diff()} HP.\nThe next Colorless card you play costs {energyPrefix:energyIcons(0)}.",
   "COLLECTOR-BRAIN_DRAIN.title": "Brain Drain",
@@ -97,7 +97,7 @@
   "COLLECTOR-PYREWORK.title": "Pyrework",
   "COLLECTOR-RECEIVE_TRIBUTE.description": "Choose 1 of {Cards:diff()} random [gold]Collectable[/gold] cards to add into your [gold]Hand[/gold].\n[gold]Enchant[/gold] it with [purple]Steady[/purple]{IfUpgraded:show: and [gold]Upgrade[/gold] it|}.",
   "COLLECTOR-RECEIVE_TRIBUTE.title": "Receive Tribute",
-  "COLLECTOR-ROAST.description": "Deal {Damage:diff()} damage.\nAdd [gold]Soot[/gold] into your [gold]Hand[/gold].",
+  "COLLECTOR-ROAST.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Soot[/gold] into your [gold]Hand[/gold].",
   "COLLECTOR-ROAST.title": "Roast",
   "COLLECTOR-ROTWOOD_KINDLING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nAdd a [gold]Rotshroom{IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold].",
   "COLLECTOR-ROTWOOD_KINDLING.title": "Rotwood Kindling",
@@ -270,5 +270,5 @@
   "COLLECTOR-ROTSHROOM.title": "Rotshroom",
   "COLLECTOR-ROTSHROOM.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "COLLECTOR-SLAG_TEAM.title": "Slag Team",
-  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nAdd [gold]Soot[/gold] to your [gold]Hand[/gold].\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], put this into your [gold]Hand[/gold]."
+  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nAdd a [gold]Soot[/gold] into your [gold]Hand[/gold].\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], put this into your [gold]Hand[/gold]."
 }
