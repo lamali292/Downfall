@@ -132,7 +132,8 @@ public class StashCmd
 
     public static async Task StashFromHand(CardModel source, PlayerChoiceContext ctx)
     {
-        var amount = source.DynamicVars.Stash.IntValue;
+        var requested = source.DynamicVars.Stash.IntValue;
+        var amount = Math.Min(requested, source.Owner.Hand.Count);
         var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount)
         {
             RequireManualConfirmation = amount > 1
