@@ -96,11 +96,6 @@ public static class AutomatonCmd
         functionCard = AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
         await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
         await Cmd.CustomScaledWait(0.1f, 0.3f);
-        if (LocalContext.IsMe(player))
-            NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(NCardSmithVfx.Create([
-                functionCard
-            ])!);
-        await Cmd.Wait(1.5f);
         var result = await CardPileCmd.AddGeneratedCardToCombat(functionCard, PileType.Hand, player);
         await AutomatonHook.AfterCompilingFunction(ctx, combatState, player, result);
         return functionCard;
