@@ -1,8 +1,11 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 using Snecko.SneckoCode.Cards.Common;
+using Snecko.SneckoCode.Cards.Uncommon;
 using Snecko.SneckoCode.Core;
 
 namespace Downfall.TestCode;
@@ -47,5 +50,22 @@ public class SneckoTests
         await ctx.PlayCard(beyondArmor);
 
         Assert.IsTrue(ctx.Player.Hand.Contains(offclass), "Beyond Armor should put the Offclass card into hand.");
+    }
+
+    // Reported bug: Serpent Idol put its picked card into hand via a plain CardPileCmd.Add, which
+    // never fires AfterCardGeneratedForCombat - card-creation triggers like Pillar of Creation
+    // (and, before an earlier fix, Arsenal for Unending Supply) never saw the card as "generated".
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task SerpentIdolTriggersPillarOfCreation(TestContext ctx)
+    {
+        await PowerCmd.Apply<PillarOfCreationPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+        var serpentIdol = await ctx.AddCardToHand<SerpentIdol>();
+        var blockBefore = ctx.Player.Creature.Block;
+
+        await ctx.PlayCard(serpentIdol);
+
+        Assert.IsTrue(ctx.Player.Creature.Block > blockBefore,
+            "Pillar of Creation should trigger off the card Serpent Idol puts into hand.");
     }
 }
