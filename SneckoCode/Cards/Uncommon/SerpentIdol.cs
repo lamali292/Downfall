@@ -28,6 +28,6 @@ public class SerpentIdol : SneckoCardModel
         if (selectedCard == null) return;
 
         selectedCard.SetToFreeThisTurn();
-        await CardPileCmd.Add(selectedCard, PileType.Hand);
+        await CardPileCmd.AddGeneratedCardsToCombat([selectedCard], PileType.Hand, Owner);
     }
 }
