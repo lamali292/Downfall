@@ -168,7 +168,7 @@ public partial class VotingApi : Node
         }
 
         var body = Json.Stringify(new Dictionary { { "submissionId", submissionId } });
-        var (code, resp) = await SendAuthed($"{BaseUrl}/vote", HttpClient.Method.Post, VotingAuth.Token!, body);
+        var (code, resp) = await SendAuthedRetrying($"{BaseUrl}/vote", HttpClient.Method.Post, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"CastVote {code}: {resp}");
@@ -183,7 +183,7 @@ public partial class VotingApi : Node
         }
 
         var body = Json.Stringify(new Dictionary { { "submissionId", submissionId } });
-        var (code, resp) = await SendAuthed($"{BaseUrl}/unvote", HttpClient.Method.Post, VotingAuth.Token!, body);
+        var (code, resp) = await SendAuthedRetrying($"{BaseUrl}/unvote", HttpClient.Method.Post, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ClearVote {code}: {resp}");
@@ -204,7 +204,7 @@ public partial class VotingApi : Node
             { "on", on }
         });
 
-        var (code, resp) = await SendAuthed($"{BaseUrl}/flag", HttpClient.Method.Post, VotingAuth.Token!, body);
+        var (code, resp) = await SendAuthedRetrying($"{BaseUrl}/flag", HttpClient.Method.Post, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ToggleFlag {code}: {resp}");
@@ -233,7 +233,7 @@ public partial class VotingApi : Node
             { "remove", new Godot.Collections.Array(remove.Select(r => (Variant)r).ToArray()) },
         });
 
-        var (code, resp) = await SendAuthed($"{BaseUrl}/flag/batch", HttpClient.Method.Post, VotingAuth.Token!, body);
+        var (code, resp) = await SendAuthedRetrying($"{BaseUrl}/flag/batch", HttpClient.Method.Post, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ToggleFlags {code}: {resp}");
@@ -547,6 +547,24 @@ public partial class VotingApi : Node
         }
 
         return list;
+    }
+
+    /// <summary>
+    /// Like <see cref="SendAuthed"/>, but a 401 (the server-side session expired or
+    /// was revoked after the local token was already accepted once - see
+    /// <see cref="VotingAuth.ReauthenticateAsync"/>) clears it, re-prompts Steam
+    /// login, and retries the same request once with the new token, instead of
+    /// leaving every write endpoint permanently stuck on a stale token.
+    /// </summary>
+    private async Task<(long code, string body)> SendAuthedRetrying(
+        string url, HttpClient.Method method, string body = "")
+    {
+        var (code, resp) = await SendAuthed(url, method, VotingAuth.Token!, body);
+
+        if (code == 401 && await VotingAuth.ReauthenticateAsync())
+            (code, resp) = await SendAuthed(url, method, VotingAuth.Token!, body);
+
+        return (code, resp);
     }
 
     private Task<(long code, string body)> SendAuthed(
