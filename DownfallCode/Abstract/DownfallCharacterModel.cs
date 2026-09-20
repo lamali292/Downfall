@@ -106,8 +106,13 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     ///     character's animator. Override to add character-specific states (see Champ's jump attack) —
     ///     a fresh list/AnimState instances is returned on every access since each GenerateAnimator call
     ///     needs its own AnimState objects.
+    ///
+    ///     Unrelated to (and deliberately hides, not overrides) the same-named vanilla
+    ///     CharacterModel.AnimationStates: this one feeds only SetupCustomAnimationStates (BaseLib's
+    ///     GenerateAnimatorPatch prefix), which short-circuits vanilla GenerateAnimator entirely for any
+    ///     custom character, so the vanilla property is never reached through this type.
     /// </summary>
-    protected virtual List<(AnimState state, string trigger)> AnimationStates
+    protected new virtual List<(AnimState state, string trigger)> AnimationStates
     {
         get
         {
@@ -122,6 +127,9 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
         }
     }
 
-    /// <summary>25% max HP or below, matching the low-health idle/animation variants used by some characters.</summary>
-    protected static bool IsLowHealth(Creature creature) => creature.CurrentHp <= creature.MaxHp * 0.25f;
+    /// <summary>
+    ///     25% max HP or below, matching the low-health idle/animation variants used by some characters.
+    ///     Unrelated to (and deliberately hides) vanilla CharacterModel.IsLowHealth — see <see cref="AnimationStates"/>.
+    /// </summary>
+    protected new static bool IsLowHealth(Creature creature) => creature.CurrentHp <= creature.MaxHp * 0.25f;
 }
