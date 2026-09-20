@@ -109,7 +109,7 @@
   "SLIMEBOSS-SAMPLING_LICK.title": "Sampling Lick",
   "SLIMEBOSS-SCHLURP.description": "Apply {GoopPower:diff()} [gold]Goop[/gold].\nGain {Cards:diff()} {Cards:plural:[gold]Lick[/gold]|[gold]Licks[/gold]}.",
   "SLIMEBOSS-SCHLURP.title": "Schlurp",
-  "SLIMEBOSS-SERVE_PROTECT.description": "Gain {CalculationExtra:diff()} [gold]Block[/gold] and {BlurExtra:diff()} [gold]Blur[/gold] for each Slime.\n[gold]Absorb[/gold] all Slimes.{InCombat:cond:\n(Gain {CalculatedBlock} [gold]Block[/gold] and {Blur} [gold]Blur[/gold])|}",
+  "SLIMEBOSS-SERVE_PROTECT.description": "Gain {CalculationExtra:diff()} [gold]Block[/gold] and {BlurExtra:diff()} [gold]Blur[/gold] for each Slime.\n[gold]Absorb[/gold] all Slimes.{InCombat:cond:\n(Gain {CalculatedBlock:preview()} [gold]Block[/gold] and {Blur:preview()} [gold]Blur[/gold])|}",
   "SLIMEBOSS-SERVE_PROTECT.title": "Serve & Protect",
   "SLIMEBOSS-SHAPE_OF_PUDDLE.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold].",
   "SLIMEBOSS-SHAPE_OF_PUDDLE.title": "Shape of Puddle",
