@@ -1,7 +1,5 @@
 {
     "AUTOMATON-CLASS_DEFAULT_POWER.title": "Базовый класс",
-    "AUTOMATON-CLASS_DEFAULT_POWER.description": "Повышает даваемую [gold]защиту[/gold] и наносимый урон [gold]Функций[/gold].",
-    "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "Повышает даваемую [gold]защиту[/gold] и наносимый урон [gold]Функций[/gold] на [blue]{Amount}[/blue].",
     "AUTOMATON-FULL_RELEASE_POWER.title": "Релиз",
     "AUTOMATON-FULL_RELEASE_POWER.description": "В начале хода:\n{effects}",
     "AUTOMATON-FULL_RELEASE_POWER.smartDescription": "В начале хода:\n{effects}",

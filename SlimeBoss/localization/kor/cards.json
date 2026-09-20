@@ -107,7 +107,6 @@
     "SLIMEBOSS-SAMPLING_LICK.title": "맛보기",
     "SLIMEBOSS-SCHLURP.description": "{GoopPower:diff()} [gold]점액[/gold]을 부여합니다.\n{Cards:diff()}장의 [gold]핥기[/gold]를 얻습니다.",
     "SLIMEBOSS-SCHLURP.title": "츄릅 꿀꺽",
-    "SLIMEBOSS-SERVE_PROTECT.description": "슬라임 하나당 {CalculationExtra:diff()} [gold]방어도[/gold]와 {BlurExtra:diff()} [gold]잔상[/gold]을 얻습니다.\n모든 슬라임을 [gold]흡수[/gold]합니다.",
     "SLIMEBOSS-SERVE_PROTECT.title": "보호와 봉사",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.description": "{IntangiblePower:diff()} [gold]불가침[/gold]을 얻습니다.",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.title": "웅덩이의 형상",

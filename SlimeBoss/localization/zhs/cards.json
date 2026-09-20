@@ -108,7 +108,6 @@
     "SLIMEBOSS-SAMPLING_LICK.title": "试探舔舐",
     "SLIMEBOSS-SCHLURP.description": "给予{GoopPower:diff()}层[gold]黏液[/gold]。\n获得{Cards:diff()}张[gold]舔舐[/gold]。",
     "SLIMEBOSS-SCHLURP.title": "吸溜",
-    "SLIMEBOSS-SERVE_PROTECT.description": "你每有一只史莱姆，就获得{CalculationExtra:diff()}点[gold]格挡[/gold]和{BlurExtra:diff()}层[gold]残影[/gold]。\n[gold]吸收[/gold]所有史莱姆。{InCombat:cond:\n(获得{CalculatedBlock}点[gold]格挡[/gold]和{Blur}层[gold]残影[/gold])|}",
     "SLIMEBOSS-SERVE_PROTECT.title": "统而御之",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.description": "获得{IntangiblePower:diff()}层[gold]无实体[/gold]。",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.title": "液化",
