@@ -2,15 +2,36 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
+using SlimeBoss.SlimeBossCode.Cards.Rare;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Cards.Uncommon;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace Downfall.TestCode;
 
 public class SlimeBossTests
 {
+    // Regression guard: Duplicated Form checked `cardPlay.Target?.Side == CombatSide.Enemy` to decide
+    // whether a card play targeted an enemy, but AoE cards like Mega-Lick/Iron Fang (TargetType.AllEnemies)
+    // are played with a null Target - there's no single selected creature - so that check always failed
+    // for them and Duplicated Form silently never doubled AoE cards. The fix resolves the card's actual
+    // targets via DownfallCmd.TargetsEnemy (CardModel.MyGetTargets) instead of trusting the raw Target.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task DuplicatedFormDoublesAoeCardsTargetingEnemies(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await PowerCmd.Apply<DuplicatedFormPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+
+        var megaLick = await ctx.AddCardToHand<MegaLick>();
+        await ctx.PlayCard(megaLick, null);
+
+        Assert.AreEqual(2, enemy.GetPower<WeakPower>()?.Amount ?? 0,
+            "Duplicated Form should double an AllEnemies card even though it's played with a null target.");
+    }
+
     // Regression guard: Equalize's Consume effect used to call CardCmd.AutoPlay(this) directly from
     // ConsumeEffect, which fires mid-attack (GoopPower.AfterAttack -> ConsumeGoop), reentering the
     // card's own still-executing OnPlayWrapper (and, outside of tests, its still-in-flight NCard/pile
