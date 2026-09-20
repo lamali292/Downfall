@@ -3,6 +3,7 @@ using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -17,14 +18,7 @@ public class Whomp : CollectorCardModel
     {
         WithDamage(14, 3);
         WithKindle(11, 3);
-        if (IsUpgraded)
-        {
-            WithUpgradedCardTip<Ember>();
-        }
-        else
-        {
-            WithCardTip<Burn>();
-        }
+        WithUpgradeChangingCardTip<Burn, Ember>(modifyUpgradedTipCard: (e, _) => CardCmd.Upgrade(e));
         //WithUpgradeChangingCardTip<Burn, Ember>();
         WithKeyword(CardKeyword.Exhaust);
     }
