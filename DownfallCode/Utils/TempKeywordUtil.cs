@@ -55,6 +55,12 @@ public class TempKeywordUtil() : CustomSingletonModel(HookType.Combat)
         list?.Add(new Entry(card, keyword, condition));
     }
 
+    /// Same as <see cref="Add(CardModel,CardKeyword,TempKeywordRemoveCondition)"/>, applied to every card in <paramref name="cards"/>.
+    public static void Add(IEnumerable<CardModel> cards, CardKeyword keyword, TempKeywordRemoveCondition condition)
+    {
+        foreach (var card in cards) Add(card, keyword, condition);
+    }
+
     /// Removes a specific temporary keyword grant early, regardless of its remove condition.
     public static void Remove(CardModel card, CardKeyword keyword)
     {
