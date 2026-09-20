@@ -29,9 +29,6 @@ public class KnightsCard : Collectible<KnightsElite>
         //ALL your cards are Ethereal.
         
         var cards = (await CommonActions.Draw(this, ctx)).ToList();
-        foreach (var card in cards)
-        {
-            TempKeywordUtil.Add(card, CardKeyword.Ethereal, TempKeywordRemoveCondition.EndOfTurn);
-        }
+        TempKeywordUtil.Add(cards, CardKeyword.Ethereal, TempKeywordRemoveCondition.StartOfEnemyTurn);
     }
 }

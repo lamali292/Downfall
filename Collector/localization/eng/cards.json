@@ -180,7 +180,7 @@
   "COLLECTOR-INFESTED_PRISM_CARD.description": "When you play a Skill, gain {InfestedPrismCardPower:diff()}[gold] Strength[/gold] this turn.",
   "COLLECTOR-DECIMILLIPEDE_CARD.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nGain {Block:diff()} [gold]Block[/gold] now and next turn.",
   "COLLECTOR-WATERFALL_GIANT_CARD.description": "At the end of {WaterfallGiantCardPower:inverseDiff()} turns, apply {MiasmaPower:diff()} [gold]Miasma[/gold] to ALL enemies.",
-  "COLLECTOR-VANTOM_CARD.description": "Gain {RuggedPower:diff()} [gold]Slippery[/gold].",
+  "COLLECTOR-VANTOM_CARD.description": "Gain {PlayerSlipperyPower:diff()} [gold]Slippery[/gold].",
   "COLLECTOR-AEONGLASS_CARD.description": "Deal damage equal to {ExtraDamage:diff()} times the number of cards played this combat.\nAt the start of your turn, this card costs 1 less {energyPrefix:energyIcons(1)}.\n{InCombat:cond:(Deal {CalculatedDamage:diff()} damage)|}",
   "COLLECTOR-SKULKING_COLONY_CARD.description": "Gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
   "COLLECTOR-TERROR_EEL_CARD.description": "Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
