@@ -175,7 +175,6 @@
     "SNECKO-WHIPLASH.title": "鞭尾",
     "SNECKO-WHIPLASH.description": "对所有敌人造成{Damage:diff()}点伤害。\n[gold]溢出[/gold]：给予所有敌人{PowerVar:diff()}层[gold]虚弱[/gold]和[gold]易伤[/gold]，根据此牌的耗能提升效果。",
     "SNECKO-DICE_CASE.title": "骰子盒",
-    "SNECKO-DICE_CASE.description": "选择另一名玩家，其在每回合开始时获得一张[gold]灵魂骰掷[/gold]。",
     "SNECKO-FLURRY.title": "疾袭",
     "SNECKO-FLURRY.description": "造成{Damage:diff()}点伤害。\n随机[gold]升级[/gold]你[gold]抽牌堆[/gold]的{Cards:diff()}张牌。",
     "SNECKO-SOUL_REFRESH.title": "灵魂复苏",

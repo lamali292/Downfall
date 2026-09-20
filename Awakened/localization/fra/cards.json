@@ -1,6 +1,7 @@
 {
     "AWAKENED-ALTAR.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\n[gold]Épuisez[/gold] une carte.\n[gold]Conjurez[/gold].",
     "AWAKENED-ALTAR.title": "Autel",
+    "AWAKENED-ANCESTRAL_GROUNDS.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nAu début de vos {AncestralGroundsPower:diff()} prochains tours, gagnez {Energy:energyIcons()} et ajoutez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS.title": "Terres Ancestrales",
     "AWAKENED-APHOTIC_FOUNT.description": "[gold]Conjurez[/gold].\nChaque fois que vous jouez [gold]Cryostase[/gold], gagnez {AphoticFountPower:diff()} de [gold]Blindage[/gold].",
     "AWAKENED-APHOTIC_FOUNT.title": "Source Aphotique",
@@ -37,6 +38,7 @@
     "AWAKENED-CHOSEN_VERSE.title": "Verset Élu",
     "AWAKENED-CLARION_CALL.description": "Infligez {Damage:diff()} dégâts.\nLa prochaine fois que vous êtes [gold]Drainé[/gold], gagnez {energyPrefix:energyIcons(1)}.",
     "AWAKENED-CLARION_CALL.title": "Appel du Clairon",
+    "AWAKENED-CLUTCH.description": "Infligez {Damage:diff()} dégâts.\nMettez une carte aléatoire coûtant 0{energyPrefix:energyIcons(1)} de votre [gold]Pioche[/gold] vers votre [gold]Main[/gold].",
     "AWAKENED-CLUTCH.title": "Emprise",
     "AWAKENED-CRUSHER.description": "Infligez {Damage:diff()} dégâts.\nLorsqu'une carte est créée, réduisez le coût de cette carte de 1 jusqu'à ce qu'elle soit jouée.",
     "AWAKENED-CRUSHER.title": "Broyeur",

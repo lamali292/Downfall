@@ -60,7 +60,6 @@
     "SNECKO-THROWING_CARDS_POWER.description": "下一次你打出[gold]异色[/gold]牌时，随机造成伤害并抽[blue]1[/blue]张牌。",
     "SNECKO-THROWING_CARDS_POWER.smartDescription": "下[blue]{Amount}[/blue]次你打出一张[gold]异色[/gold]牌时，随机造成[blue]{Damage:diff()}[/blue]点伤害并抽[blue]{Cards:diff()}[/blue]张牌。",
     "SNECKO-DICE_CASE_POWER.title": "骰子盒",
-    "SNECKO-DICE_CASE_POWER.description": "在你的回合开始时，将一张[gold]灵魂骰掷[/gold]加入另一玩家的[gold]手牌[/gold]。",
     "SNECKO-DICE_CASE_POWER.smartDescription": "在你的回合开始时，将[blue]{Amount}[/blue]张[gold]灵魂骰掷[/gold]加入[orange]{OtherName}[/orange]的[gold]手牌[/gold]。",
     "SNECKO-GAMBLE_POWER.title": "全押",
     "SNECKO-GAMBLE_POWER.description": "在下个回合，抽牌并[gold]混淆[/gold]它们。",

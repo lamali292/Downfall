@@ -21,10 +21,15 @@
     "DOWNFALL-SOUL_BURN_POWER.description": "Dans [blue]3[/blue] tours, cet ennemi perd des PV au début de son tour, puis la [gold]Brûlure[/gold] est retirée.",
     "DOWNFALL-SOUL_BURN_POWER.smartDescription": "Dans [blue]{Turns}[/blue] {Turns:plural:tour|tours}, cet ennemi perd [blue]{Amount}[/blue] PV au début de son tour, puis la [gold]Brûlure[/gold] est retirée.",
     "DOWNFALL-ENERGIZED_POWER.title": "Énergisé",
+    "DOWNFALL-ENERGIZED_POWER.description": "Au début de votre tour, gagnez {energyPrefix:energyIcons(1)}.",
+    "DOWNFALL-ENERGIZED_POWER.smartDescription": "Au début de votre tour, gagnez {Amount:energyIcons()}.",
     "DOWNFALL-COPY_NEXT_TURN_POWER.title": "Gain de carte",
     "DOWNFALL-COPY_NEXT_TURN_POWER.description": "Au début de votre prochain tour, ajoutez une carte sauvegardée dans votre [gold]Main[/gold].",
     "DOWNFALL-COPY_NEXT_TURN_POWER.smartDescription": "Au début de votre tour, ajoutez [gold]{card}[/gold] dans votre [gold] Main[/gold].",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.title": "Force au Prochain Tour",
     "DOWNFALL-STRENGTH_NEXT_TURN_POWER.description": "Au prochain tour, gagnez de la [gold]Force[/gold].",
-    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "Au prochain tour, {Amount:cond:>0?gagnez [blue]{Amount}[/blue]|perdez [blue]{NAmount}[/blue]} de [gold]Force[/gold]."
+    "DOWNFALL-STRENGTH_NEXT_TURN_POWER.smartDescription": "Au prochain tour, {Amount:cond:>0?gagnez [blue]{Amount}[/blue]|perdez [blue]{NAmount}[/blue]} de [gold]Force[/gold].",
+    "DOWNFALL-DRAINED_POWER.title": "Drainé",
+    "DOWNFALL-DRAINED_POWER.description": "Gagnez {energyPrefix:energyIcons(1)} en moins au prochain tour.",
+    "DOWNFALL-DRAINED_POWER.smartDescription": "Gagnez [blue]{Amount}[/blue] {energyPrefix:energyIcons(1)} en moins au prochain tour."
 }

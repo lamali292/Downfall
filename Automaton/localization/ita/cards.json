@@ -19,7 +19,6 @@
     "AUTOMATON-BUG_BARRAGE.description": "Aggiungi {Cards:diff()} [gold]Errori[/gold] alla tua [gold]Mano[/gold].\nScarta ogni Stato nella tua [gold]Mano[/gold], poi pesca lo stesso numero di carte, infliggendo {Damage:diff()} di danno per ognuna.",
     "AUTOMATON-BUG_BARRAGE.title": "Raffica di Bug",
     "AUTOMATON-BURN_OUT.title": "Esaurisci",
-    "AUTOMATON-CLASS_DEFAULT.description": "Aumenta il danno e il [gold]Blocco[/gold] delle Funzioni di {ClassDefaultPower:diff()}.",
     "AUTOMATON-CLASS_DEFAULT.title": "Classe Predefinita",
     "AUTOMATON-CLEAN_CODE.title": "Codice Pulito",
     "AUTOMATON-CONSTRUCTOR.description": "Quando [gold]Codificata[/gold] come prima carta, aumenta il suo [gold]Blocco[/gold] di {ExtraBlock:diff()}.",
