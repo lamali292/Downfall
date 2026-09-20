@@ -171,7 +171,9 @@ public abstract class GemModel : CardModifier, ICustomModel
         if (cardPlay?.Card is IGemSocketCard { ShouldPlayGems: false }) return;
         // A gem left over past GemSlots (e.g. a downgrade shrank capacity below what's socketed)
         // stays attached but is inactive - it doesn't play, matching what the socket display shows.
-        if (cardPlay?.Card is IGemSocketCard socket && SocketIndex >= socket.GemSlots) return;
+        // GemCard<T> reports GemSlots == 0 purely so its own overlay stays hidden (it's a standalone
+        // gem, not a real socket) - that must not suppress its single always-present gem.
+        if (cardPlay?.Card is IGemSocketCard socket and not IGemCard && SocketIndex >= socket.GemSlots) return;
         var replay = cardPlay?.Card is IGemSocketCard guardianCardModel ? guardianCardModel.GemReplayCount : 1;
         var affectsAll = cardPlay?.Card is IGemSocketCard { GemsAffectAllPlayers: true };
         var targetPlayers = TargetPlayers(affectsAll).ToList();

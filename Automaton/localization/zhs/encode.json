@@ -48,9 +48,11 @@
     "AUTOMATON-FRAGMENT.functionEnd": "碎片",
     "AUTOMATON-FRAGMENT.functionName": "磁盘",
     "AUTOMATON-FRAGMENT.functionPrefix": "整理",
+    "AUTOMATON-FRONTLOAD.compile": "方法获得[gold]保留[/gold]。",
     "AUTOMATON-FRONTLOAD.functionEnd": "加载",
     "AUTOMATON-FRONTLOAD.functionName": "运行",
     "AUTOMATON-FRONTLOAD.functionPrefix": "干态",
+    "AUTOMATON-FULL_RELEASE.compile": "[gold]方法[/gold]成为能力牌，效果为“现在和在你的回合开始时打出此牌”。",
     "AUTOMATON-FULL_RELEASE.encode": "[gold]方法[/gold]变为能力牌，效果为“现在和在你的回合开始时……”。",
     "AUTOMATON-FULL_RELEASE.functionEnd": "发布",
     "AUTOMATON-FULL_RELEASE.functionName": "提交",
@@ -64,6 +66,7 @@
     "AUTOMATON-MINOR_BEAM.functionEnd": "射线",
     "AUTOMATON-MINOR_BEAM.functionName": "定位",
     "AUTOMATON-MINOR_BEAM.functionPrefix": "浅层",
+    "AUTOMATON-NULL_POINTER.compile": "方法耗能为{Energy:energyIcons()}。",
     "AUTOMATON-NULL_POINTER.functionEnd": "指针",
     "AUTOMATON-NULL_POINTER.functionName": "空载",
     "AUTOMATON-NULL_POINTER.functionPrefix": "轮询",
@@ -92,5 +95,8 @@
     "AUTOMATON-TERMINATOR.functionName": "错误",
     "AUTOMATON-TERMINATOR.functionPrefix": "异常",
     "AUTOMATON-FUNCTION.functionParentheses": "()",
-    "AUTOMATON-PERFECTION.functionName": "完美"
+    "AUTOMATON-PERFECTION.functionName": "完美",
+    "AUTOMATON-STRENGTH_COMPILE.compile": "获得{CompileStrength:diff()}点[gold]力量[/gold]。",
+    "AUTOMATON-THORNS_COMPILE.compile": "获得{CompileThorns:diff()}[gold]荆棘[/gold]。",
+    "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]暂存[/gold]{CompileErrors:diff()}[gold]个错误[/gold]。"
 }

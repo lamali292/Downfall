@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -13,16 +14,17 @@ public class DuplicatedFormPower : SlimeBossPowerModel
 
     private int CardsPlayed => CombatManager.Instance.History.CardPlaysStarted
         .Count(e => e.Actor == Owner && e.CardPlay.IsFirstInSeries &&
-                    e.HappenedThisTurn(CombatState) && e.CardPlay.Target is { Side: CombatSide.Enemy });
+                    e.HappenedThisTurn(CombatState) &&
+                    DownfallCmd.TargetsEnemy(e.CardPlay.Card, e.CardPlay.Target));
 
 
     protected override int? SecondAmount => Math.Min(_visualValue, Amount);
-    
+
 
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
         return card.Owner.Creature != Owner ||
-               target is not { Side: CombatSide.Enemy } ||
+               !DownfallCmd.TargetsEnemy(card, target) ||
                CardsPlayed >= Amount
             ? playCount
             : playCount + 1;

@@ -107,7 +107,6 @@
     "SLIMEBOSS-SAMPLING_LICK.title": "Leccata di Assaggio",
     "SLIMEBOSS-SCHLURP.description": "Apply {GoopPower:diff()} [gold]Melma[/gold].\nGain {Cards:diff()} {Cards:plural:[gold]Lick[/gold]|[gold]Licks[/gold]}.",
     "SLIMEBOSS-SCHLURP.title": "Slorp",
-    "SLIMEBOSS-SERVE_PROTECT.description": "Gain {CalculationExtra:diff()} [gold]Blocco[/gold] and {BlurExtra:diff()} [gold]Sfocatura[/gold] for each Slime.\n[gold]Assorbi[/gold] all Slimes.{InCombat:cond:\n(Gain {CalculatedBlock} [gold]Blocco[/gold] and {Blur} [gold]Sfocatura[/gold])|}",
     "SLIMEBOSS-SERVE_PROTECT.title": "Servi e Proteggi",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.description": "Gain {IntangiblePower:diff()} [gold]Intangibile[/gold].",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.title": "Forma di Pozza",

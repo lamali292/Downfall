@@ -1,5 +1,7 @@
 {
     "AWAKENED-ANCESTRAL_GROUNDS_POWER.title": "Terres Ancestrales",
+    "AWAKENED-ANCESTRAL_GROUNDS_POWER.description": "Au début de votre prochain tour, gagnez {energyPrefix:energyIcons(2)} et ajoutez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
+    "AWAKENED-ANCESTRAL_GROUNDS_POWER.smartDescription": "Au début {Amount:plural:de votre prochain tour|de vos [blue]{Amount}[/blue] prochains tours}, gagnez {energyPrefix:energyIcons(2)} et ajoutez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.title": "Terres ancestrales+",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.description": "Au début de votre prochain tour, gagnez {energyPrefix:energyIcons(3)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
     "AWAKENED-ANCESTRAL_GROUNDS_UPGRADED_POWER.smartDescription": "Au début {Amount:plural:de votre prochain tour|de vos [blue]{Amount}[/blue] prochains tours}, gagnez {energyPrefix:energyIcons(3)} et placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].",
@@ -97,5 +99,8 @@
     "AWAKENED-THAUMATURGY_POWER.description": "Au début de votre prochain tour, obtenez une [gold]Cérémonie[/gold].",
     "AWAKENED-THAUMATURGY_POWER.smartDescription": "Au début {Amount:plural:de votre prochain tour|de vos [blue]{}[/blue] prochains tours}, obtenez une [gold]Cérémonie[/gold].",
     "AWAKENED-MANABURN_POWER.remoteDescription": "Chaque fois que [orange]{ApplierName}[/orange] est [gold]Drainé[/gold], cet ennemi perd [blue]{Amount}[/blue] PV.",
-    "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "Chaque fois que [orange]{ApplierName}[/orange] attaque cet ennemi, il gagne [blue]{Amount}[/blue] de [gold]Force[/gold] pour un tour."
+    "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "Chaque fois que [orange]{ApplierName}[/orange] attaque cet ennemi, il gagne [blue]{Amount}[/blue] de [gold]Force[/gold] pour un tour.",
+    "AWAKENED-SACRAMENTAL_WINE_POWER.title": "Vin de Messe",
+    "AWAKENED-SACRAMENTAL_WINE_POWER.description": "Lorsque vous jouez un Pouvoir, gagnez de [gold]l'Armure[/gold].",
+    "AWAKENED-SACRAMENTAL_WINE_POWER.smartDescription": "Lorsque vous jouez un Pouvoir, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold]."
 }

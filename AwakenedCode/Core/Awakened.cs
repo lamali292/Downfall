@@ -96,7 +96,7 @@ public class Awakened : DownfallCharacterModel
         foreach (var (animState, trigger) in AnimationStates)
         {
             foreach (var (_, state, when) in idles)
-                animState.AddNextState(state, when);
+                animState.AddConditionalNextState(state, when);
             animator.AddAnyState(trigger, animState);
         }
 

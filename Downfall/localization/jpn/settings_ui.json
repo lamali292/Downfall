@@ -25,6 +25,8 @@
     "DOWNFALL-HIDE_SLIMEBOSS.hover.desc": "キャラクター選択画面とカードライブラリのスライムボスを非表示にします。ライブラリへのカード登録状況は維持されます。プレイ中にスライムボスのカードは変わらず出現します。",
     "DOWNFALL-HIDE_SNECKO.title": "スネッコを非表示",
     "DOWNFALL-HIDE_SNECKO.hover.desc": "キャラクター選択画面とカードライブラリのスネッコを非表示にします。ライブラリへのカード登録状況は維持されます。プレイ中にスネッコのカードは変わらず出現します。",
+    "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.title": "アート投稿ボタンを表示",
+    "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.hover.desc": "メインメニューに「Downfallアート投稿」ボタンを表示する。",
     "DOWNFALL-UPLOAD_METRICS.title": "ゲームプレイデータの送信(Downfall)",
     "DOWNFALL-UPLOAD_METRICS.hover.desc": "バグ修正やModのゲームバランス調整のため、Downfallキャラクターのプレイ時のみ、ゲームプレイのデータがDownfall制作者に送信されます。\n\n個人を特定する情報が収集されることは一切ありません。",
     "DOWNFALL-VOTING_SCREEN.ROW_TITLE": "投票"

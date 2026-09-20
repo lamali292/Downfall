@@ -109,7 +109,7 @@
     "SLIMEBOSS-SAMPLING_LICK.title": "味見で舐める",
     "SLIMEBOSS-SCHLURP.description": "[gold]汚泥[/gold]{GoopPower:diff()}を付与する。\n[gold]舐める[/gold]を{Cards:diff()}枚[gold]手札[/gold]に加える。",
     "SLIMEBOSS-SCHLURP.title": "よだれを垂らす",
-    "SLIMEBOSS-SERVE_PROTECT.description": "スライム1体につき{CalculationExtra:diff()}[gold]ブロック[/gold]と[gold]ブラー[/gold]{BlurExtra:diff()}を得る。\nすべてのスライムを[gold]吸収[/gold]する。{InCombat:cond:\n({CalculatedBlock}[gold]ブロック[/gold]と[gold]ブラー[/gold]{Blur}を得る)|}",
+    "SLIMEBOSS-SERVE_PROTECT.description": "スライム1体につき{CalculationExtra:diff()}[gold]ブロック[/gold]と[gold]ブラー[/gold]{BlurExtra:diff()}を得る。\nすべてのスライムを[gold]吸収[/gold]する。{InCombat:cond:\n({CalculatedBlock:preview()}[gold]ブロック[/gold]と[gold]ブラー[/gold]{Blur:preview()}を得る)|}",
     "SLIMEBOSS-SERVE_PROTECT.title": "奉仕 & プロテクト",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.description": "[gold]霊体[/gold]{IntangiblePower:diff()}を得る。",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.title": "形を変える",

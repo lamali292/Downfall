@@ -79,6 +79,19 @@ public static class VotingAuth
         return (false, VotingUi.Loc("DOWNFALL-VOTING.error_login_timeout"));
     }
 
+    /// <summary>
+    /// Clears a session the server has just rejected (401 - expired/revoked) and
+    /// immediately starts a fresh Steam login, so a stale token recovers with one
+    /// more browser prompt instead of failing every request forever until the
+    /// player manually deletes the session file.
+    /// </summary>
+    public static async Task<bool> ReauthenticateAsync()
+    {
+        Logout();
+        var (ok, _) = await LoginAsync();
+        return ok;
+    }
+
     public static void Logout()
     {
         Token = null;

@@ -106,18 +106,18 @@ public class Guardian : DownfallCharacterModel
         
         var transitionIn   = new AnimState("transition_in");
         foreach (var (_, idleState, idleWhen) in idles)
-            transitionIn.AddNextState(idleState, idleWhen);
+            transitionIn.AddConditionalNextState(idleState, idleWhen);
         animator.AddAnyState("TransitionIn", transitionIn);
         
         var transitionOut   = new AnimState("transition_out");
         foreach (var (_, idleState, idleWhen) in idles)
-            transitionOut.AddNextState(idleState, idleWhen);
+            transitionOut.AddConditionalNextState(idleState, idleWhen);
         animator.AddAnyState("TransitionOut", transitionOut);
         
         foreach (var (state, when) in attacks)
         {
             foreach (var (_, idleState, idleWhen) in idles)
-                state.AddNextState(idleState, idleWhen);
+                state.AddConditionalNextState(idleState, idleWhen);
             animator.AddAnyState(CreatureAnimator.attackTrigger, state, when);
         }
 
@@ -130,7 +130,7 @@ public class Guardian : DownfallCharacterModel
         foreach (var (state, when) in hurts)
         {
             foreach (var (_, idleState, idleWhen) in idles)
-                state.AddNextState(idleState, idleWhen);
+                state.AddConditionalNextState(idleState, idleWhen);
             animator.AddAnyState(CreatureAnimator.hitTrigger, state, when);
         }
 

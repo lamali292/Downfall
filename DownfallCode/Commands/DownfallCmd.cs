@@ -1,6 +1,8 @@
 ﻿using BaseLib.Extensions;
+using Downfall.DownfallCode.Extensions;
 using Downfall.DownfallCode.Powers;
 using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,6 +25,18 @@ public class DownfallCmd
     public static bool IsOffclass(CardModel card)
     {
         return card.VisualCardPool != card.Owner.Character.CardPool;
+    }
+
+    /// <summary>
+    ///     True if this card play would hit at least one enemy, whether the card is single-target
+    ///     (e.g. <c>AnyEnemy</c>, where <paramref name="target"/> is the resolved creature) or
+    ///     untargeted AoE (e.g. <c>AllEnemies</c>/<c>RandomEnemy</c>, where <paramref name="target"/>
+    ///     is null). Checking <c>target?.Side == CombatSide.Enemy</c> directly is a bug: it's always
+    ///     false for AoE cards since they're played with a null target.
+    /// </summary>
+    public static bool TargetsEnemy(CardModel card, Creature? target)
+    {
+        return card.MyGetTargets(target).Any(c => c.Side == CombatSide.Enemy);
     }
 
     public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card)

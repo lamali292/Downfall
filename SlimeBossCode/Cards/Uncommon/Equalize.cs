@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -48,7 +49,15 @@ public class Equalize : SlimeBossCardModel, IHasConsumeEffect
         if (_consumedThisPlay)
         {
             _consumedThisPlay = false;
-            await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+
+            // If the first hit already killed the last enemy, combat starts ending right there, and
+            // the attack would have no valid target (vanilla's own multi-play loop in
+            // CardModel.OnPlayWrapper checks this before every extra iteration and stops for the same
+            // reason). The heal still applies regardless: it targets the player, and CreatureCmd.Heal
+            // explicitly still heals players even once combat IsEnding, so that part of "play this
+            // twice" remains worth it.
+            if (!CombatManager.Instance.IsOverOrEnding)
+                await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
             await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
         }
     }
