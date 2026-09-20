@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Cards.Common;
 using Guardian.GuardianCode.Cards.Uncommon;
@@ -300,5 +301,22 @@ public class GuardianTests
         var strengthAfterRestored = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
         Assert.AreEqual(6, strengthAfterRestored - strengthBeforeRestored,
             "Once the slot is restored, the previously-overflowing gem should fire again too, with no re-socketing needed.");
+    }
+
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task StandaloneGemCardStillPlaysItsOwnGemEffect(TestContext ctx)
+    {
+        // Reported bug: GemCard<T> reports GemSlots = 0 (only so its own overlay stays hidden -
+        // it's not a real socket), but GemModel.OnPlay was reusing that same value as a capacity
+        // check (SocketIndex >= GemSlots), which discarded the standalone card's own gem at
+        // index 0 before it ever ran. A bare Ruby card socketed nothing and did nothing.
+        var ruby = await ctx.AddCardToHand<Ruby>();
+        var strengthBefore = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+
+        await ctx.PlayCard(ruby);
+
+        var strengthAfter = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+        Assert.IsTrue(strengthAfter > strengthBefore,
+            "Playing a standalone Ruby gem card should still grant Strength, not silently no-op.");
     }
 }
