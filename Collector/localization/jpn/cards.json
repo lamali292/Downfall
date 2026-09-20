@@ -155,7 +155,7 @@
     "COLLECTOR-DEGRADE.title": "劣化",
     "COLLECTOR-DEGRADE.description": "敵は[gold]筋力[/gold]Xを失う。\n[gold]瘴気[/gold]{MiasmaPower:cond:>1?{:diff()}|}Xを付与する。",
     "COLLECTOR-COALESCENCE_FORM.title": "一体化",
-    "COLLECTOR-COALESCENCE_FORM.description": "{Reserve:reserveIcons()}を得る。\nターン開始時、{CoalescenceFormPower:reserveIcons()}を得る。この効果は毎ターン1増加する。",
+    "COLLECTOR-COALESCENCE_FORM.description": "{Reserve:reserveIcons()}を得る。\nターン開始時、{CoalescenceFormPower:reserveIcons()}を得て、この得る量を1増加させる。",
     "COLLECTOR-ASTRAL_FLAMES.title": "星霊の炎",
     "COLLECTOR-ASTRAL_FLAMES.description": "[gold]手札[/gold]、[gold]山札[/gold]、[gold]捨て札[/gold]のいずれかからカードを1枚[gold]廃棄[/gold]する。\n{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]廃棄[/gold]したカードの{energyPrefix:energyIcons(1)}コスト1つにつき、追加で{Increase:diff()}[gold]ブロック[/gold]を得る。",
     "COLLECTOR-ASHES_OF_CALAMITY.title": "災厄の灰",
