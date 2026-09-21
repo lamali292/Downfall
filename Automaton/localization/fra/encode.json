@@ -101,5 +101,6 @@
     "AUTOMATON-THORNS_COMPILE.compile": "Gagnez {CompileThorns:diff()} [gold]d'Épines[/gold].",
     "AUTOMATON-DAZED_TO_DRAW_COMPILE.compile": "Ajoutez {CompileDazed:diff()} [gold]Hébétés[/gold] dans votre [gold]Pioche[/gold].",
     "AUTOMATON-BURN_TO_DRAW_COMPILE.compile": "Ajoutez {CompileBurn:diff()} {CompileBurn:plural:[gold]Brûlure[/gold]|[gold]Brûlures[/gold]} dans votre [gold]Pioche[/gold].",
-    "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]Réservez[/gold] {CompileErrors:diff()} [gold]{CompileErrors:plural:Erreur|Erreurs}[/gold]."
+    "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]Réservez[/gold] {CompileErrors:diff()} [gold]{CompileErrors:plural:Erreur|Erreurs}[/gold].",
+    "AUTOMATON-COMPILE.format": "{compile} - {text}"
 }

@@ -109,6 +109,7 @@
     "SLIMEBOSS-SAMPLING_LICK.title": "Léchouille Baveuse",
     "SLIMEBOSS-SCHLURP.description": "Appliquez {GoopPower:diff()} de [gold]Goop[/gold].\nObtenez {Cards:diff()} {Cards:plural:[gold]Léchouille[/gold]|[gold]Léchouilles[/gold]}.",
     "SLIMEBOSS-SCHLURP.title": "Sssslurp",
+    "SLIMEBOSS-SERVE_PROTECT.description": "Gagnez {CalculationExtra:diff()} [gold]d'Armure[/gold] et {BlurExtra:diff()} de [gold]Flou[/gold] pour chaque Slime.\n[gold]Absorbez[/gold] tous les Slimes.{InCombat:cond:\n(Gagnez {CalculatedBlock:preview()} [gold]d'Armure[/gold] et {Blur:preview()} de [gold]Flou[/gold])|}",
     "SLIMEBOSS-SERVE_PROTECT.title": "Servir et Protéger",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.description": "Gagnez {IntangiblePower:diff()} [gold]d'Intangible[/gold].",
     "SLIMEBOSS-SHAPE_OF_PUDDLE.title": "Forme de Flaque",
