@@ -19,13 +19,15 @@ public class Recitation : AwakenedCardModel, IChantable
 
     public bool HasChanted { get; set; } = false;
 
-    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
+    // The actual attack (both hits, when chanting) is dealt from OnPlayInternal as a single
+    // AttackCommand so buffs like Vigor - which are consumed after one AttackCommand.Execute -
+    // apply to every hit instead of only the first. AwakenedCmd.Chant still calls this afterward
+    // for its bookkeeping (ChantEntry, HasChanted, IOnChant), so it must not attack again itself.
+    public Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay) => Task.CompletedTask;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var willChant = AwakenedCmd.WasLastCardPlayedPower(cardPlay) || HasChanted;
+        await CommonActions.CardAttack(this, cardPlay, willChant ? 2 : 1).Execute(ctx);
     }
 }
