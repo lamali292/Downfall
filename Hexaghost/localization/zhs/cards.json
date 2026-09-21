@@ -1,6 +1,7 @@
 {
     "HEXAGHOST-ADVANCING_GUARD.description": "获得{Block:diff()}点[gold]格挡[/gold]。",
     "HEXAGHOST-ADVANCING_GUARD.title": "推进",
+    "HEXAGHOST-APOCRYPHRA.title": "伪经",
     "HEXAGHOST-APOCRYPHRA.description": "对所有敌人造成{Damage:diff()}点伤害。[afterlife]给予所有敌人[/afterlife]{SoulBurnPower:diff()}[afterlife]层灼魂。[/afterlife]\n[afterlife]将此牌返回你的手牌。[/afterlife]",
     "HEXAGHOST-BACKTRACK_SMACK.description": "造成{Damage:diff()}点伤害两次。",
     "HEXAGHOST-BACKTRACK_SMACK.title": "回身击",

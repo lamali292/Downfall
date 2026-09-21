@@ -18,6 +18,8 @@
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.description": "每当你进入[gold]防御模式[/gold]时，[gold]抛光[/gold][blue]1[/blue]。",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.smartDescription": "每当你进入[gold]防御模式[/gold]时，[gold]抛光[/gold][blue]{Amount}[/blue]。",
     "GUARDIAN-EXHAUST_STATUSES_POWER.title": "反冲协议",
+    "GUARDIAN-EXHAUST_STATUSES_POWER.description": "每回合你第一次抽到状态或[red]诅咒[/red]牌时，[gold]消耗[/gold]它并抽1张牌。",
+    "GUARDIAN-EXHAUST_STATUSES_POWER.smartDescription": "每回合你{Amount:cond:>1?前|第}[blue]{Amount}[/blue]次抽到状态或[red]诅咒[/red]牌时，[gold]消耗[/gold]它并抽1张牌。",
     "GUARDIAN-FLOATING_ORBS_POWER.title": "浮动圆球",
     "GUARDIAN-FLOATING_ORBS_POWER.description": "每当你打出一张0{energyPrefix:energyIcons(1)}牌时，对随机敌人造成伤害。",
     "GUARDIAN-FLOATING_ORBS_POWER.smartDescription": "每当你打出一张0{energyPrefix:energyIcons(1)}牌时，对随机敌人造成[blue]{Amount}[/blue]点伤害。",

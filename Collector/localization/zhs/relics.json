@@ -1,5 +1,6 @@
 {
     "COLLECTOR-BAG_OF_TRICKS.title": "诡计背包",
+    "COLLECTOR-BAG_OF_TRICKS.description": "每次战斗的前[blue]{MaxUses}[/blue]次[gold]焰葬[/gold]时，在下个回合抽[blue]{Cards:diff()}[/blue]张牌。",
     "COLLECTOR-BAG_OF_TRICKS.flavor": "花样百出。",
     "COLLECTOR-BLOCKED_CHAKRA.title": "魔能封印",
     "COLLECTOR-BLOCKED_CHAKRA.description": "在你的回合开始时，[gold]点灯[/gold][blue]{Kindle:diff()}[/blue]。\n每当[gold]火炬头[/gold]失去生命时，你失去等同于失去量1/3的生命值。",
