@@ -20,6 +20,7 @@ namespace Collector.CollectorCode.Cards.Token;
 [Pool(typeof(StatusCardPool))]
 public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAfterTurnEnd
 {
+    
     public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
         WithKeyword(CardKeyword.Unplayable);

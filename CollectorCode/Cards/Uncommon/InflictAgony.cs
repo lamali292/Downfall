@@ -13,8 +13,8 @@ public class InflictAgony : CollectorCardModel
 {
     public InflictAgony() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(15, 5);
-        WithVar("Power", 2);
+        WithDamage(19);
+        WithVar("Power", 1, 1);
         WithTip<WeakPower>();
         WithTip<VulnerablePower>();
         WithTip<MiasmaPower>();
