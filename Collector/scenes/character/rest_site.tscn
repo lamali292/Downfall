@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 ]
+
+[ext_resource type="SpineAtlasResource" path="res://Collector/scenes/character/spine/rest/skeleton.atlas" id="1_f4clv"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Collector/scenes/character/spine/rest/skeleton.skel" id="2_fpx36"]
+[ext_resource type="PackedScene" path="res://Collector/scenes/character/vfx_stepped_fire.tscn" id="3_rpn8b"]
+[ext_resource type="PackedScene" path="res://Collector/scenes/character/vfx_constant_fire.tscn" id="4_0hbqv"]
+[ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="5_6go7q"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_sgirf"]
+atlas_res = ExtResource("1_f4clv")
+skeleton_file_res = ExtResource("2_fpx36")
+
+[node name="RestSite" type="Node2D"]
+scale = Vector2(0.76, 0.76)
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_sgirf")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+
+[node name="Fireslot" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "fireslot"
+show_behind_parent = true
+position = Vector2(145.85263, -250.51881)
+rotation = -0.15612572
+scale = Vector2(1.6000001, 1.6000001)
+
+[node name="VfxSteppedShaderFire2" parent="SpineSprite/Fireslot" instance=ExtResource("3_rpn8b")]
+scale = Vector2(0.145, 0.145)
+
+[node name="RightEye" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "righteyefireslot"
+show_behind_parent = true
+position = Vector2(-50.37459, -226.48781)
+rotation = 3.124607
+scale = Vector2(1.6, 1.6)
+
+[node name="vfx_fire2" parent="SpineSprite/RightEye" instance=ExtResource("4_0hbqv")]
+position = Vector2(0, -8)
+rotation = 3.1415927
+scale = Vector2(0.2, 0.2)
+
+[node name="LeftEye" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "lefteyefireslot"
+show_behind_parent = true
+position = Vector2(-0.33646297, -225.60959)
+rotation = 3.124607
+scale = Vector2(1.6, 1.6)
+
+[node name="vfx_fire2" parent="SpineSprite/LeftEye" instance=ExtResource("4_0hbqv")]
+position = Vector2(0, -8)
+rotation = 3.1415927
+scale = Vector2(0.2, 0.2)
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("5_6go7q")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -153.0
+offset_top = -350.0
+offset_right = 267.0
+offset_bottom = 320.0
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -155.0
+offset_top = -351.0
+offset_right = 266.0
+offset_bottom = 332.0
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 209.209
+offset_top = -317.103
+offset_right = 209.209
+offset_bottom = -317.103
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -73.6836
+offset_top = -324.997
+offset_right = -73.6836
+offset_bottom = -324.997

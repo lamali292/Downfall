@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Powers;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,6 +18,8 @@ public class BrewOfSharpness : ChampPotionModel
         WithPower<CounterPower>(25);
     }
 
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    
     protected override Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         return MyCommonActions.ApplySelf<CounterPower>(ctx, this);

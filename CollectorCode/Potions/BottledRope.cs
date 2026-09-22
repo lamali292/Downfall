@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -19,6 +20,8 @@ public class BottledRope : CollectorPotionModel
         WithPower<VulnerablePower>(2);
         WithPower<MiasmaPower>(3);
     }
+    
+    protected override Artist Artist => Artist.Get<Fulgur>();
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {

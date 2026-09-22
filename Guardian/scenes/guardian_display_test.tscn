@@ -40,3 +40,39 @@ script = null
 [node name="StasisSlot4" parent="SlotContainer" instance=ExtResource("2_f34uv")]
 layout_mode = 2
 script = null
+
+[node name="StasisSlot5" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null
+
+[node name="StasisSlot6" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null
+
+[node name="StasisSlot7" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null
+
+[node name="StasisSlot8" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null
+
+[node name="StasisSlot9" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null
+
+[node name="StasisSlot10" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null
+
+[node name="StasisSlot11" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null
+
+[node name="StasisSlot12" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null
+
+[node name="StasisSlot13" parent="SlotContainer" instance=ExtResource("2_f34uv")]
+layout_mode = 2
+script = null

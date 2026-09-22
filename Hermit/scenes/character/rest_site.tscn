@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 ]
+
+[ext_resource type="SpineAtlasResource" path="res://Hermit/scenes/character/spine/rest/Hermit.atlas" id="1_keotj"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Hermit/scenes/character/spine/rest/Hermit.skel" id="2_vgfx0"]
+[ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="3_skrqe"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_1g8vy"]
+atlas_res = ExtResource("1_keotj")
+skeleton_file_res = ExtResource("2_vgfx0")
+
+[node name="RestSite" type="Node2D"]
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_1g8vy")
+preview_skin = "default"
+preview_animation = "glory_loop"
+preview_frame = false
+preview_time = 0.0
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("3_skrqe")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -171.0
+offset_top = -305.0
+offset_right = 168.0
+offset_bottom = 82.0
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -171.0
+offset_top = -305.0
+offset_right = 169.73682
+offset_bottom = 82.0
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 209.209
+offset_top = -317.103
+offset_right = 209.209
+offset_bottom = -317.103
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -73.6836
+offset_top = -324.997
+offset_right = -73.6836
+offset_bottom = -324.997

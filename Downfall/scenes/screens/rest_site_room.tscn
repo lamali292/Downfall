@@ -1,0 +1,209 @@
+[gd_scene load_steps=10 format=3 ]
+
+[ext_resource type="Script" path="res://src/Core/Nodes/Rooms/NRestSiteRoom.cs" id="1_grc5d"]
+[ext_resource type="PackedScene" path="res://scenes/rest_site/overgrowth_rest_site.tscn" id="2_5wy61"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="2_yi8tx"]
+[ext_resource type="PackedScene" path="res://Champ/scenes/character/rest_site.tscn" id="3_5wy61"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="3_6owo0"]
+[ext_resource type="PackedScene" path="res://Automaton/scenes/character/rest_site.tscn" id="3_rmow8"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="4_5wy61"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="5_rmow8"]
+[ext_resource type="PackedScene" path="res://scenes/ui/proceed_button.tscn" id="6_rlolg"]
+
+[node name="RestSiteRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_grc5d")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="BgContainer" type="Control" parent="."]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -934.0
+offset_top = -466.0
+offset_right = -933.55
+offset_bottom = -465.55
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="OvergrowthRestSite" parent="BgContainer" instance=ExtResource("2_5wy61")]
+layout_mode = 0
+
+[node name="Character_3" type="Control" parent="BgContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 749.775
+offset_top = 584.775
+offset_right = 749.775
+offset_bottom = 584.775
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="RestSite" parent="BgContainer/Character_3" instance=ExtResource("3_rmow8")]
+
+[node name="Character_4" type="Control" parent="BgContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1091.78
+offset_top = 582.775
+offset_right = 1091.78
+offset_bottom = 582.775
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="RestSite" parent="BgContainer/Character_4" instance=ExtResource("3_5wy61")]
+scale = Vector2(-0.76, 0.76)
+
+[node name="Character_1" type="Control" parent="BgContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 624.775
+offset_top = 641.775
+offset_right = 624.775
+offset_bottom = 641.775
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="RestSite" parent="BgContainer/Character_1" instance=ExtResource("3_rmow8")]
+
+[node name="Character_2" type="Control" parent="BgContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1238.78
+offset_top = 648.775
+offset_right = 1238.78
+offset_bottom = 648.775
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="RestSite" parent="BgContainer/Character_2" instance=ExtResource("3_rmow8")]
+scale = Vector2(-1, 1)
+
+[node name="ChoicesScreen" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Header" type="Label" parent="ChoicesScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -386.0
+offset_right = 500.0
+offset_bottom = -306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_yi8tx")
+theme_override_font_sizes/font_size = 36
+text = "Time for a break..."
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_6owo0")
+AutoSizeEnabled = false
+
+[node name="ChoicesContainer" type="HBoxContainer" parent="ChoicesScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -399.0
+offset_top = -285.0
+offset_right = 400.0
+offset_bottom = -122.121
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="ChoicesScreen"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -411.0
+offset_top = -27.0
+offset_right = 411.0
+offset_bottom = 366.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("4_5wy61")
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
+bbcode_enabled = true
+text = "Upgrade a card in your deck."
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("5_rmow8")
+AutoSizeEnabled = false
+MaxFontSize = 28
+
+[node name="ProceedButton" parent="." instance=ExtResource("6_rlolg")]
+unique_name_in_owner = true
+layout_mode = 1
