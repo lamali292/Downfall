@@ -1,5 +1,3 @@
-using Awakened.AwakenedCode.Cards.Uncommon;
-using Collector.CollectorCode.Cards.Common;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Localization;

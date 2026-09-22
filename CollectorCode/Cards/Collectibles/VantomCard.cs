@@ -1,7 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Powers;
-using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Encounters;

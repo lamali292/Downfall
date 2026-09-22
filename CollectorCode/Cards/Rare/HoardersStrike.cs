@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Interfaces;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;

@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
-using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Token;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;

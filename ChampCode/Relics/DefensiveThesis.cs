@@ -2,9 +2,7 @@ using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Events;
-using Champ.ChampCode.Stance;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.Relics;
 

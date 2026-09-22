@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using BaseLib.Commands;
+﻿using BaseLib.Commands;
 using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;

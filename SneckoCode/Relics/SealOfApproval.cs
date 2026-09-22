@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
