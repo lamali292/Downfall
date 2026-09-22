@@ -18,7 +18,7 @@
     "COLLECTOR-PRISMATIC_TORCH.description": "战斗开始时，[gold]点灯[/gold][blue]{Kindle:diff()}[/blue]。\n在每场[gold]精英[/gold]或[gold]Boss[/gold]战斗后，你的卡牌奖励会额外包含一张[gold]升级过的[/gold][gold]收藏品[/gold]卡牌。",
     "COLLECTOR-PRISMATIC_TORCH.flavor": "各色斑斓的火焰昭示着命运的眷顾。",
     "COLLECTOR-SOUL_LIT_LAMP.title": "燃魂灯",
-    "COLLECTOR-SOUL_LIT_LAMP.description": "每当你[gold]焰葬[/gold]一张耗能为{Energy:energyIcons()}或更高的卡牌时，对所有敌人施加{SoulBurnPower:diff()}层[gold]灼魂[/gold]。",
+    "COLLECTOR-SOUL_LIT_LAMP.description": "每当你[gold]焰葬[/gold]一张耗能不低于{Energy:energyIcons()}的卡牌时，给予所有敌人{SoulBurnPower:diff()}层[gold]灼魂[/gold]。",
     "COLLECTOR-SOUL_LIT_LAMP.flavor": "一件十分阴间的装饰品，从内部传来的不是燃料的燃爆声，而是嘈杂的哀嚎。",
     "COLLECTOR-THE_CONTRACT.title": "交易契约",
     "COLLECTOR-THE_CONTRACT.description": "每场战斗中，当你第一次打出[gold]无色[/gold]牌时，获得等同于其耗能的{energyPrefix:energyIcons(1)}。",
