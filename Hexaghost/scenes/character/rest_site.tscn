@@ -1,0 +1,187 @@
+[gd_scene load_steps=21 format=3 ]
+
+[ext_resource type="SpineAtlasResource" path="res://Hexaghost/scenes/character/spine/rest/skeleton.atlas" id="1_wp0tj"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Hexaghost/scenes/character/spine/rest/skeleton.skel" id="2_yioow"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/outer_smoke.tres" id="3_2rqsa"]
+[ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="3_hg7f6"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/middle_smoke.tres" id="4_7rwyp"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/inner_smoke.tres" id="5_pw8fv"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/cinder_particle.png" id="6_ubph8"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/glow_particles.tres" id="7_0nc6a"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/cinder_particles.tres" id="8_01jdh"]
+[ext_resource type="Shader" path="res://Hexaghost/shaders/hexa_core_glow.gdshader" id="9_fvdr0"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_emission.png" id="10_f5jdk"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/basic_fire_noise.png" id="11_ji51d"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_glow.png" id="12_5hcjs"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_dead.png" id="13_o55yg"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_sn1gt"]
+atlas_res = ExtResource("1_wp0tj")
+skeleton_file_res = ExtResource("2_yioow")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tyuh5"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="QuadMesh" id="QuadMesh_fjg83"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="QuadMesh" id="QuadMesh_tdng2"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_73d0x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qow7a"]
+shader = ExtResource("9_fvdr0")
+shader_parameter/emission_mask = ExtResource("10_f5jdk")
+shader_parameter/noise_texture = ExtResource("11_ji51d")
+shader_parameter/emission_color = Color(0.9, 0.40499997, 0.81750005, 1)
+shader_parameter/emission_strength = 0.25
+shader_parameter/pulse_speed = 1.0000000475
+shader_parameter/pulse_depth = 0.90000004275
+shader_parameter/noise_scale = Vector2(0.75, 0.75)
+shader_parameter/phase_spread = 15.0
+shader_parameter/glow_radius = 15.0000007125
+shader_parameter/glow_intensity = 1.0000000475
+shader_parameter/white_core_threshold = 5.0
+shader_parameter/global_alpha = 1.0
+
+[node name="RestSite" type="Node2D"]
+scale = Vector2(0.76, 0.76)
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_sn1gt")
+preview_skin = "default"
+preview_animation = "glory_loop"
+preview_frame = false
+preview_time = 0.0
+
+[node name="OuterSmokeSlot" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "outer_smoke"
+show_behind_parent = true
+position = Vector2(-36.968506, -98.91056)
+rotation = -0.27925268
+scale = Vector2(1.0000453, 1.0000453)
+
+[node name="outer_smoke" type="MeshInstance2D" parent="SpineSprite/OuterSmokeSlot"]
+unique_name_in_owner = true
+material = ExtResource("3_2rqsa")
+position = Vector2(-9, 0)
+scale = Vector2(999.9999, 999.9999)
+mesh = SubResource("QuadMesh_tyuh5")
+
+[node name="MiddleSmokeSlot" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "middle_smoke"
+show_behind_parent = true
+position = Vector2(-36.968506, -98.91056)
+rotation = -0.27925268
+scale = Vector2(1.0000453, 1.0000453)
+
+[node name="middle_smoke" type="MeshInstance2D" parent="SpineSprite/MiddleSmokeSlot"]
+unique_name_in_owner = true
+material = ExtResource("4_7rwyp")
+position = Vector2(-8.999999, 0)
+scale = Vector2(840, 840)
+mesh = SubResource("QuadMesh_fjg83")
+
+[node name="InnerSmokeSlot" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "inner_smoke"
+show_behind_parent = true
+position = Vector2(-36.968506, -98.91056)
+rotation = -0.27925268
+scale = Vector2(1.0000453, 1.0000453)
+
+[node name="inner_smoke" type="MeshInstance2D" parent="SpineSprite/InnerSmokeSlot"]
+unique_name_in_owner = true
+material = ExtResource("5_pw8fv")
+scale = Vector2(559.99994, 559.99994)
+mesh = SubResource("QuadMesh_tdng2")
+
+[node name="GlowSlot" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "glow"
+show_behind_parent = true
+position = Vector2(-36.968506, -98.91056)
+rotation = -0.27925265
+scale = Vector2(0.23001042, 0.23001042)
+
+[node name="GlowParticles" type="GPUParticles2D" parent="SpineSprite/GlowSlot"]
+visible = false
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_73d0x")
+position = Vector2(5, 5)
+amount = 50
+amount_ratio = 0.5
+texture = ExtResource("6_ubph8")
+lifetime = 1.2
+process_material = ExtResource("7_0nc6a")
+
+[node name="CinderSlot" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "cinder"
+show_behind_parent = true
+position = Vector2(-36.968506, -98.91056)
+rotation = -0.27925268
+scale = Vector2(1.0000453, 1.0000453)
+
+[node name="CinderParticles" type="GPUParticles2D" parent="SpineSprite/CinderSlot"]
+show_behind_parent = true
+scale = Vector2(0.775, 0.775)
+amount = 30
+amount_ratio = 0.5
+texture = ExtResource("6_ubph8")
+lifetime = 1.8
+process_material = ExtResource("8_01jdh")
+
+[node name="CoreSlot" type="SpineSlotNode" parent="SpineSprite"]
+slot_name = "hexacore"
+show_behind_parent = true
+position = Vector2(-36.968506, -98.91056)
+rotation = -0.27925265
+scale = Vector2(0.23001042, 0.23001042)
+
+[node name="HexaCoreGlow" type="Sprite2D" parent="SpineSprite/CoreSlot"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_qow7a")
+position = Vector2(10, 0)
+texture = ExtResource("12_5hcjs")
+
+[node name="HexaCoreDead" type="Sprite2D" parent="SpineSprite/CoreSlot/HexaCoreGlow"]
+show_behind_parent = true
+texture = ExtResource("13_o55yg")
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("3_hg7f6")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -223.6842
+offset_top = -321.05264
+offset_right = 163.1579
+offset_bottom = 80.26315
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -226.3158
+offset_top = -322.3684
+offset_right = 163.1579
+offset_bottom = 81.57895
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 209.209
+offset_top = -317.103
+offset_right = 209.209
+offset_bottom = -317.103
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -73.6836
+offset_top = -324.997
+offset_right = -73.6836
+offset_bottom = -324.997
