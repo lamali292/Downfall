@@ -1,0 +1,13 @@
+skeleton.png
+size:2048,2048
+filter:Linear,Linear
+outer_smoke
+bounds:2,115,1763,1650
+offsets:141,203,2048,2048
+
+skeleton_2.png
+size:2048,2048
+filter:Linear,Linear
+hexa_core_glow
+bounds:2,2,920,1055
+offsets:564,497,2048,2048

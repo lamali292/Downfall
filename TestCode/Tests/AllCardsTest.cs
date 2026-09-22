@@ -1,18 +1,14 @@
-﻿using Automaton.AutomatonCode.Cards.Rare;
-using Champ.ChampCode.Cards.Ancient;
+﻿using Champ.ChampCode.Cards.Ancient;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Characters;
-using MegaCrit.Sts2.Core.Models.Encounters;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.TestCode;
 
-public class TestRuns
+public class AllCardsTest
 {
     // ---- single-combat tests: return Task, take TestContext ----
 

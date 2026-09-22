@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 ]
+[gd_scene load_steps=17 format=3 ]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Rooms/NRestSiteRoom.cs" id="1_grc5d"]
 [ext_resource type="PackedScene" path="res://scenes/rest_site/overgrowth_rest_site.tscn" id="2_5wy61"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" path="res://Awakened/scenes/character/rest_site.tscn" id="4_6jpnq"]
 [ext_resource type="PackedScene" path="res://Guardian/scenes/character/rest_site.tscn" id="5_6jpnq"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="5_rmow8"]
+[ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/rest_site.tscn" id="6_jl133"]
 [ext_resource type="PackedScene" path="res://scenes/ui/proceed_button.tscn" id="6_rlolg"]
 [ext_resource type="PackedScene" path="res://Collector/scenes/character/rest_site.tscn" id="6_vby3d"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/character/rest_site.tscn" id="7_f3lhg"]
@@ -64,12 +65,15 @@ scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="RestSite2" parent="BgContainer/Character_3" instance=ExtResource("3_l0s0g")]
+visible = false
 
 [node name="RestSite" parent="BgContainer/Character_3" instance=ExtResource("4_6jpnq")]
 visible = false
 
 [node name="RestSite3" parent="BgContainer/Character_3" instance=ExtResource("5_6jpnq")]
 visible = false
+
+[node name="RestSite4" parent="BgContainer/Character_3" instance=ExtResource("6_jl133")]
 
 [node name="Character_4" type="Control" parent="BgContainer"]
 layout_mode = 1
@@ -129,6 +133,9 @@ visible = false
 visible = false
 
 [node name="RestSite4" parent="BgContainer/Character_1" instance=ExtResource("5_6jpnq")]
+visible = false
+
+[node name="RestSite5" parent="BgContainer/Character_1" instance=ExtResource("6_jl133")]
 
 [node name="Character_2" type="Control" parent="BgContainer"]
 layout_mode = 1
@@ -159,7 +166,11 @@ visible = false
 scale = Vector2(-0.76, 0.76)
 
 [node name="RestSite4" parent="BgContainer/Character_2" instance=ExtResource("10_jl133")]
+visible = false
 scale = Vector2(-1, 1)
+
+[node name="RestSite5" parent="BgContainer/Character_2" instance=ExtResource("6_jl133")]
+scale = Vector2(-0.76, 0.76)
 
 [node name="ChoicesScreen" type="Control" parent="."]
 unique_name_in_owner = true
