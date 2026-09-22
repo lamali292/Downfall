@@ -13,7 +13,7 @@ public class KaiserCrabCard : Collectible<KaiserCrabBoss>
 {
     public KaiserCrabCard() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
     {
-        WithDamage(16, 7);
+        WithDamage(14, 4);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

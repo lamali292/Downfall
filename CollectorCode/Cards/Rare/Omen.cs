@@ -13,8 +13,8 @@ public class Omen : CollectorCardModel
 {
     public Omen() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<OmenPower>(1, false);
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithPower<OmenPower>(1, 1, false);
+        WithKeyword(CardKeyword.Innate);
         WithTip<StrengthPower>();
     }
 
