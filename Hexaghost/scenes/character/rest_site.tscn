@@ -2,10 +2,10 @@
 
 [ext_resource type="SpineAtlasResource" path="res://Hexaghost/scenes/character/spine/rest/skeleton.atlas" id="1_wp0tj"]
 [ext_resource type="SpineSkeletonFileResource" path="res://Hexaghost/scenes/character/spine/rest/skeleton.skel" id="2_yioow"]
-[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/outer_smoke.tres" id="3_2rqsa"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/outer_smoke_rest.tres" id="3_2rqsa"]
 [ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="3_hg7f6"]
-[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/middle_smoke.tres" id="4_7rwyp"]
-[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/inner_smoke.tres" id="5_pw8fv"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/middle_smoke_rest.tres" id="4_7rwyp"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/inner_smoke_rest.tres" id="5_pw8fv"]
 [ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/cinder_particle.png" id="6_ubph8"]
 [ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/glow_particles.tres" id="7_0nc6a"]
 [ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/cinder_particles.tres" id="8_01jdh"]
@@ -126,8 +126,7 @@ scale = Vector2(1.0000453, 1.0000453)
 
 [node name="CinderParticles" type="GPUParticles2D" parent="SpineSprite/CinderSlot"]
 show_behind_parent = true
-scale = Vector2(0.775, 0.775)
-amount = 30
+amount = 100
 amount_ratio = 0.5
 texture = ExtResource("6_ubph8")
 lifetime = 1.8

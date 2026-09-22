@@ -39,6 +39,7 @@ public class DownfallPatchManager
             .Add(typeof(PowerShouldRemoveDueToZeroPatch))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(NCardUpdateTypePlaquePatch))
+            .Add(typeof(NCreatureAnimationPatch))
             .Add(typeof(RefreshConditionalNextStatesPatch))
             .Add(typeof(PluralRulesPatch))
             .Add(typeof(TranscendenceTransformationPatch))

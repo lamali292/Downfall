@@ -20,6 +20,35 @@ atlas_res = ExtResource("1_xo3hb")
 skeleton_file_res = ExtResource("2_ud1bf")
 default_mix = 0.1
 
+[sub_resource type="QuadMesh" id="QuadMesh_outer"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="QuadMesh" id="QuadMesh_middle"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="QuadMesh" id="QuadMesh_inner"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_glowp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_coreglow"]
+shader = ExtResource("9_coreshader")
+shader_parameter/emission_mask = ExtResource("10_coremask")
+shader_parameter/noise_texture = ExtResource("11_noise")
+shader_parameter/emission_color = Color(0.9, 0.40499997, 0.81750005, 1)
+shader_parameter/emission_strength = 0.25
+shader_parameter/pulse_speed = 1.0000000475
+shader_parameter/pulse_depth = 0.90000004275
+shader_parameter/noise_scale = Vector2(0.75, 0.75)
+shader_parameter/phase_spread = 15.0
+shader_parameter/glow_radius = 15.0000007125
+shader_parameter/glow_intensity = 1.0000000475
+shader_parameter/white_core_threshold = 5.0
+shader_parameter/global_alpha = 1.0
+
 [sub_resource type="Animation" id="Animation_reset"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -403,35 +432,6 @@ _data = {
 &"hurt": SubResource("Animation_hurt")
 }
 
-[sub_resource type="QuadMesh" id="QuadMesh_outer"]
-subdivide_width = 20
-subdivide_depth = 20
-
-[sub_resource type="QuadMesh" id="QuadMesh_middle"]
-subdivide_width = 20
-subdivide_depth = 20
-
-[sub_resource type="QuadMesh" id="QuadMesh_inner"]
-subdivide_width = 20
-subdivide_depth = 20
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_glowp"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_coreglow"]
-shader = ExtResource("9_coreshader")
-shader_parameter/emission_mask = ExtResource("10_coremask")
-shader_parameter/noise_texture = ExtResource("11_noise")
-shader_parameter/emission_color = Color(0.9, 0.40499997, 0.81750005, 1)
-shader_parameter/emission_strength = 0.25
-shader_parameter/pulse_speed = 1.0000000475
-shader_parameter/pulse_depth = 0.90000004275
-shader_parameter/noise_scale = Vector2(0.75, 0.75)
-shader_parameter/phase_spread = 15.0
-shader_parameter/glow_radius = 15.0000007125
-shader_parameter/glow_intensity = 1.0000000475
-shader_parameter/white_core_threshold = 5.0
-shader_parameter/global_alpha = 1.0
-
 [node name="Hexaghost" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_v1k23")
 preview_skin = "Default"
@@ -440,16 +440,11 @@ preview_frame = false
 preview_time = 0.0
 script = ExtResource("8_visualscript")
 
-[node name="GlowAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_glow")
-}
-
 [node name="OuterSmokeSlot" type="SpineSlotNode" parent="."]
 slot_name = "outer_smoke"
 show_behind_parent = true
-position = Vector2(8.833216, -219.43654)
-rotation = 0.116567485
+position = Vector2(2.9143028, -209.69485)
+rotation = 0.0020852995
 scale = Vector2(0.6, 0.6)
 
 [node name="outer_smoke" type="MeshInstance2D" parent="OuterSmokeSlot"]
@@ -462,8 +457,8 @@ mesh = SubResource("QuadMesh_outer")
 [node name="MiddleSmokeSlot" type="SpineSlotNode" parent="."]
 slot_name = "middle_smoke"
 show_behind_parent = true
-position = Vector2(8.833216, -219.43654)
-rotation = 0.116567485
+position = Vector2(2.9143028, -209.69485)
+rotation = 0.0020852995
 scale = Vector2(0.6, 0.6)
 
 [node name="middle_smoke" type="MeshInstance2D" parent="MiddleSmokeSlot"]
@@ -476,8 +471,8 @@ mesh = SubResource("QuadMesh_middle")
 [node name="InnerSmokeSlot" type="SpineSlotNode" parent="."]
 slot_name = "inner_smoke"
 show_behind_parent = true
-position = Vector2(8.833216, -219.43654)
-rotation = 0.116567485
+position = Vector2(2.9143028, -209.69485)
+rotation = 0.0020852995
 scale = Vector2(0.6, 0.6)
 
 [node name="inner_smoke" type="MeshInstance2D" parent="InnerSmokeSlot"]
@@ -489,8 +484,8 @@ mesh = SubResource("QuadMesh_inner")
 [node name="GlowSlot" type="SpineSlotNode" parent="."]
 slot_name = "glow"
 show_behind_parent = true
-position = Vector2(8.833216, -219.43654)
-rotation = 0.11656748
+position = Vector2(2.9143028, -209.69485)
+rotation = 0.0020852995
 scale = Vector2(0.13800001, 0.13800001)
 
 [node name="GlowParticles" type="GPUParticles2D" parent="GlowSlot"]
@@ -507,8 +502,8 @@ process_material = ExtResource("15_glowmat")
 [node name="CinderSlot" type="SpineSlotNode" parent="."]
 slot_name = "cinder"
 show_behind_parent = true
-position = Vector2(8.833216, -219.43654)
-rotation = 0.116567485
+position = Vector2(2.9143028, -209.69485)
+rotation = 0.0020852995
 scale = Vector2(0.6, 0.6)
 
 [node name="CinderParticles" type="GPUParticles2D" parent="CinderSlot"]
@@ -522,8 +517,8 @@ process_material = ExtResource("4_jjjkb")
 [node name="CoreSlot" type="SpineSlotNode" parent="."]
 slot_name = "hexacore"
 show_behind_parent = true
-position = Vector2(8.833216, -219.43654)
-rotation = 0.11656748
+position = Vector2(2.9143028, -209.69485)
+rotation = 0.0020852995
 scale = Vector2(0.13800001, 0.13800001)
 
 [node name="HexaCoreGlow" type="Sprite2D" parent="CoreSlot"]
@@ -535,3 +530,8 @@ texture = ExtResource("12_coretex")
 [node name="HexaCoreDead" type="Sprite2D" parent="CoreSlot/HexaCoreGlow"]
 show_behind_parent = true
 texture = ExtResource("17_fynke")
+
+[node name="GlowAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_glow")
+}

@@ -1,12 +1,15 @@
-[gd_scene load_steps=17 format=3 ]
+[gd_scene load_steps=20 format=3 ]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Rooms/NRestSiteRoom.cs" id="1_grc5d"]
 [ext_resource type="PackedScene" path="res://scenes/rest_site/overgrowth_rest_site.tscn" id="2_5wy61"]
+[ext_resource type="PackedScene" path="res://scenes/rest_site/hive_rest_site.tscn" id="2_jarky"]
 [ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="2_yi8tx"]
 [ext_resource type="PackedScene" path="res://Champ/scenes/character/rest_site.tscn" id="3_5wy61"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="3_6owo0"]
 [ext_resource type="PackedScene" path="res://Snecko/scenes/character/rest_site.tscn" id="3_l0s0g"]
 [ext_resource type="PackedScene" path="res://Automaton/scenes/character/rest_site.tscn" id="3_rmow8"]
+[ext_resource type="PackedScene" path="res://scenes/rest_site/glory_rest_site.tscn" id="3_xuqxl"]
+[ext_resource type="PackedScene" path="res://scenes/rest_site/underdocks_rest_site.tscn" id="4_4hg54"]
 [ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="4_5wy61"]
 [ext_resource type="PackedScene" path="res://Awakened/scenes/character/rest_site.tscn" id="4_6jpnq"]
 [ext_resource type="PackedScene" path="res://Guardian/scenes/character/rest_site.tscn" id="5_6jpnq"]
@@ -45,7 +48,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="HiveRestSite" parent="BgContainer" instance=ExtResource("2_jarky")]
+layout_mode = 0
+
+[node name="GloryRestSite" parent="BgContainer" instance=ExtResource("3_xuqxl")]
+visible = false
+layout_mode = 0
+
+[node name="UnderdocksRestSite" parent="BgContainer" instance=ExtResource("4_4hg54")]
+visible = false
+layout_mode = 0
+
 [node name="OvergrowthRestSite" parent="BgContainer" instance=ExtResource("2_5wy61")]
+visible = false
 layout_mode = 0
 
 [node name="Character_3" type="Control" parent="BgContainer"]
@@ -64,16 +79,16 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
-[node name="RestSite2" parent="BgContainer/Character_3" instance=ExtResource("3_l0s0g")]
+[node name="Snecko" parent="BgContainer/Character_3" instance=ExtResource("3_l0s0g")]
 visible = false
 
-[node name="RestSite" parent="BgContainer/Character_3" instance=ExtResource("4_6jpnq")]
+[node name="Awakened" parent="BgContainer/Character_3" instance=ExtResource("4_6jpnq")]
+
+[node name="Guardian" parent="BgContainer/Character_3" instance=ExtResource("5_6jpnq")]
 visible = false
 
-[node name="RestSite3" parent="BgContainer/Character_3" instance=ExtResource("5_6jpnq")]
+[node name="Hexaghost" parent="BgContainer/Character_3" instance=ExtResource("6_jl133")]
 visible = false
-
-[node name="RestSite4" parent="BgContainer/Character_3" instance=ExtResource("6_jl133")]
 
 [node name="Character_4" type="Control" parent="BgContainer"]
 layout_mode = 1
@@ -91,21 +106,25 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
-[node name="RestSite" parent="BgContainer/Character_4" instance=ExtResource("3_5wy61")]
-scale = Vector2(-0.76, 0.76)
-
-[node name="RestSite2" parent="BgContainer/Character_4" instance=ExtResource("4_6jpnq")]
+[node name="Champ" parent="BgContainer/Character_4" instance=ExtResource("3_5wy61")]
 visible = false
 scale = Vector2(-0.76, 0.76)
 
-[node name="RestSite3" parent="BgContainer/Character_4" instance=ExtResource("5_6jpnq")]
+[node name="Awakened" parent="BgContainer/Character_4" instance=ExtResource("4_6jpnq")]
 visible = false
 scale = Vector2(-0.76, 0.76)
 
-[node name="RestSite4" parent="BgContainer/Character_4" instance=ExtResource("7_f3lhg")]
+[node name="Guardian" parent="BgContainer/Character_4" instance=ExtResource("5_6jpnq")]
+visible = false
+scale = Vector2(-0.76, 0.76)
+
+[node name="Slimeboss" parent="BgContainer/Character_4" instance=ExtResource("7_f3lhg")]
 visible = false
 rotation = -3.1415927
 scale = Vector2(0.76, -0.76)
+
+[node name="Snecko" parent="BgContainer/Character_4" instance=ExtResource("3_l0s0g")]
+scale = Vector2(-0.76, 0.76)
 
 [node name="Character_1" type="Control" parent="BgContainer"]
 layout_mode = 1
@@ -123,19 +142,31 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
-[node name="RestSite2" parent="BgContainer/Character_1" instance=ExtResource("6_vby3d")]
+[node name="Automaton" parent="BgContainer/Character_1" instance=ExtResource("3_rmow8")]
 visible = false
 
-[node name="RestSite" parent="BgContainer/Character_1" instance=ExtResource("3_rmow8")]
+[node name="Awakened" parent="BgContainer/Character_1" instance=ExtResource("4_6jpnq")]
 visible = false
 
-[node name="RestSite3" parent="BgContainer/Character_1" instance=ExtResource("4_6jpnq")]
+[node name="Champ" parent="BgContainer/Character_1" instance=ExtResource("3_5wy61")]
+
+[node name="Collector" parent="BgContainer/Character_1" instance=ExtResource("6_vby3d")]
 visible = false
 
-[node name="RestSite4" parent="BgContainer/Character_1" instance=ExtResource("5_6jpnq")]
+[node name="Guardian" parent="BgContainer/Character_1" instance=ExtResource("5_6jpnq")]
 visible = false
 
-[node name="RestSite5" parent="BgContainer/Character_1" instance=ExtResource("6_jl133")]
+[node name="Hermit" parent="BgContainer/Character_1" instance=ExtResource("10_jl133")]
+visible = false
+
+[node name="Hexaghost" parent="BgContainer/Character_1" instance=ExtResource("6_jl133")]
+visible = false
+
+[node name="Slimeboss" parent="BgContainer/Character_1" instance=ExtResource("7_f3lhg")]
+visible = false
+
+[node name="Snecko" parent="BgContainer/Character_1" instance=ExtResource("3_l0s0g")]
+visible = false
 
 [node name="Character_2" type="Control" parent="BgContainer"]
 layout_mode = 1
@@ -153,23 +184,23 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
-[node name="RestSite" parent="BgContainer/Character_2" instance=ExtResource("3_rmow8")]
+[node name="Automaton" parent="BgContainer/Character_2" instance=ExtResource("3_rmow8")]
 visible = false
 scale = Vector2(-1, 1)
 
-[node name="RestSite2" parent="BgContainer/Character_2" instance=ExtResource("4_6jpnq")]
+[node name="Awakened" parent="BgContainer/Character_2" instance=ExtResource("4_6jpnq")]
 visible = false
 scale = Vector2(-0.76, 0.76)
 
-[node name="RestSite3" parent="BgContainer/Character_2" instance=ExtResource("5_6jpnq")]
-visible = false
+[node name="Guardian" parent="BgContainer/Character_2" instance=ExtResource("5_6jpnq")]
 scale = Vector2(-0.76, 0.76)
 
-[node name="RestSite4" parent="BgContainer/Character_2" instance=ExtResource("10_jl133")]
+[node name="Hermit" parent="BgContainer/Character_2" instance=ExtResource("10_jl133")]
 visible = false
 scale = Vector2(-1, 1)
 
-[node name="RestSite5" parent="BgContainer/Character_2" instance=ExtResource("6_jl133")]
+[node name="Hexaghost" parent="BgContainer/Character_2" instance=ExtResource("6_jl133")]
+visible = false
 scale = Vector2(-0.76, 0.76)
 
 [node name="ChoicesScreen" type="Control" parent="."]
