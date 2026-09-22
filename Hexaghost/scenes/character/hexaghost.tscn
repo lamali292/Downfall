@@ -1,0 +1,537 @@
+[gd_scene load_steps=27 format=3 ]
+
+[ext_resource type="SpineAtlasResource" path="res://Hexaghost/scenes/character/spine/skeleton.atlas" id="1_xo3hb"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Hexaghost/scenes/character/spine/skeleton.skel" id="2_ud1bf"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/cinder_particle.png" id="3_1ltrj"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/cinder_particles.tres" id="4_jjjkb"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/outer_smoke.tres" id="5_dkrpb"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/middle_smoke.tres" id="6_koshk"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/inner_smoke.tres" id="7_ljupi"]
+[ext_resource type="Script" path="res://HexaghostCode/Vfx/NHexaghostVisuals.cs" id="8_visualscript"]
+[ext_resource type="Shader" path="res://Hexaghost/shaders/hexa_core_glow.gdshader" id="9_coreshader"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_emission.png" id="10_coremask"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/basic_fire_noise.png" id="11_noise"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_glow.png" id="12_coretex"]
+[ext_resource type="Material" path="res://Hexaghost/scenes/character/materials/glow_particles.tres" id="15_glowmat"]
+[ext_resource type="Texture2D" path="res://Hexaghost/scenes/character/images/hexa_core_dead.png" id="17_fynke"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_v1k23"]
+atlas_res = ExtResource("1_xo3hb")
+skeleton_file_res = ExtResource("2_ud1bf")
+default_mix = 0.1
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CoreSlot/HexaCoreGlow:material:shader_parameter/emission_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CinderSlot/CinderParticles:process_material:orbit_velocity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.49999994, 0.1000001)]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CinderSlot/CinderParticles:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CinderSlot/CinderParticles:process_material:orbit_velocity:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.49999994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CinderSlot/CinderParticles:process_material:orbit_velocity:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1000001, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CinderSlot/CinderParticles:process_material:emission_ring_radius")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(180, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CinderSlot/CinderParticles:lifetime")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GlowSlot/GlowParticles:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CoreSlot/HexaCoreGlow:material:shader_parameter/global_alpha")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("InnerSmokeSlot/inner_smoke:material:shader_parameter/base_radius")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MiddleSmokeSlot/middle_smoke:material:shader_parameter/base_radius")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.41400003, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("OuterSmokeSlot/outer_smoke:material:shader_parameter/base_radius")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.45000002, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("InnerSmokeSlot/inner_smoke:material:shader_parameter/spin_speed")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.60000026, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MiddleSmokeSlot/middle_smoke:material:shader_parameter/spin_speed")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.40000024, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("OuterSmokeSlot/outer_smoke:material:shader_parameter/spin_speed")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.27500024, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CoreSlot/HexaCoreGlow:material:shader_parameter/emission_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 2, 2, 2),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0, 0, -0.049362253, 0.083333336, 0, 0, 2, -0.028478226, -0.33333334, 0, 0, 3, -0.014239113, -0.1666667, 0, 0, 0.35000002, -0.03180068, 0.19166669, 0, 0, 1.25, -0.014713755, -0.15, 0, 0, 0.5, -0.020884028, 0.125, 0, 0),
+"times": PackedFloat32Array(0, 0.25795814, 0.33534557, 0.43852884, 0.67797065, 0.78352064, 0.9333333)
+}
+
+[sub_resource type="Animation" id="Animation_cast"]
+resource_name = "cast"
+length = 1.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CoreSlot/HexaCoreGlow:material:shader_parameter/emission_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 2, 2),
+"points": PackedFloat32Array(0.25, 0, 0, 0.050000004, 0.083333336, 0.5, -0.25, 0, 0.25, 0, 2, -0.03333333, 0.083333336, 0, 0, 1, -0.01111111, 0.16666667, 0, 0, 2, -0.016666671, 0.16666669, 0, 0, 1.5, -0.01111111, 0.1375, 0.01111111, -0.1375, 0.35, -0.016666671, 0.25, 0, 0),
+"times": PackedFloat32Array(0, 0.22945735, 0.42067182, 0.49715757, 0.61188626, 0.6883721, 0.7648579)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CinderSlot/CinderParticles:process_material:orbit_velocity")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7028638),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.49999994, 0.1000001), Vector2(-1, 0.3), Vector2(-0.49999994, 0.1000001)]
+}
+
+[sub_resource type="Animation" id="Animation_die"]
+resource_name = "die"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InnerSmokeSlot/inner_smoke:material:shader_parameter/base_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(0.5, -0.25, 0, 1, 0, 0.14, -1, 0, 1.0166669, -0.012660101, 0, -0.09826386, 0.023333333, 0, 0),
+"times": PackedFloat32Array(0, 2.4104168, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MiddleSmokeSlot/middle_smoke:material:shader_parameter/base_radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(0.4151709, -0.25, 0, 0.5, 0, 0.021937013, -0.5, 0, 0.5, 0, 0, -0.06736108, 0.003656169, 0, 0),
+"times": PackedFloat32Array(0, 2.5958335, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OuterSmokeSlot/outer_smoke:material:shader_parameter/base_radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(0.45000002, -0.25, 0, 1, 0, 0.057000004, -1, 0, 0.7519125, -0.09825, 0, -0.0055555105, 0.009500001, 0, 0),
+"times": PackedFloat32Array(0, 2.966667, 3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("InnerSmokeSlot/inner_smoke:material:shader_parameter/spin_speed")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.60000026, -0.25, 0, 1, 0, 0.605, -0.667, 0, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MiddleSmokeSlot/middle_smoke:material:shader_parameter/spin_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.40000024, 0, 0, 1, 0, 0.405, -0.333, 0, 0, 0),
+"times": PackedFloat32Array(0, 3)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OuterSmokeSlot/outer_smoke:material:shader_parameter/spin_speed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0.25000024, 0, 0, 1, 0, 0.252, -0.333, 0, 0, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CinderSlot/CinderParticles:amount_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(2, 2, 0, 0),
+"points": PackedFloat32Array(0.2, 0, 0, 1.3333334, 0.031014219, 1, -0.33553225, -0.083333336, 0, 0, 1, -0.14633898, 0, 0, 0, 0, -0.030680936, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 2.0131934, 2.6333334, 2.7666667)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CinderSlot/CinderParticles:process_material:orbit_velocity:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-0.49999994, -0.25, 0, 0.25, 0, -2, -0.33553225, 0.25, 0, 0),
+"times": PackedFloat32Array(0, 2.0131934)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CinderSlot/CinderParticles:process_material:orbit_velocity:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.1000001, -0.25, 0, 0.25, 0, 0.1000001, -0.33553225, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.0131934)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CinderSlot/CinderParticles:process_material:emission_ring_radius")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(180, -0.25, 0, 0.25, 0, 110, -0.16446778, 8.333334, 0, 0),
+"times": PackedFloat32Array(0, 3)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CinderSlot/CinderParticles:lifetime")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1.8, -0.25, 0, 0.25, 0, 0.6, -0.16666667, 0.19999999, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CoreSlot/HexaCoreGlow:material:shader_parameter/emission_strength")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 0, 2),
+"points": PackedFloat32Array(0.25, -0.25, 0, 0.25, 0, 1.5000001, -0.083333336, -0.20833336, 0, 0, 0, -0.083333336, 0.25000003, 0, 0, 2, -0.2891955, -0.33333334, 0, 0, 0, -0.072222196, 0.33333334, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 2.6666667, 3.1)
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("GlowSlot/GlowParticles:emitting")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(2.847913, 3.0211701),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CoreSlot/HexaCoreGlow:material:shader_parameter/global_alpha")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.06666665, 0.16666669, 0, 0),
+"times": PackedFloat32Array(2.4666667, 3.1)
+}
+
+[sub_resource type="Animation" id="Animation_hurt"]
+resource_name = "hurt"
+length = 0.9
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_glow"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"attack": SubResource("Animation_attack"),
+&"cast": SubResource("Animation_cast"),
+&"die": SubResource("Animation_die"),
+&"hurt": SubResource("Animation_hurt")
+}
+
+[sub_resource type="QuadMesh" id="QuadMesh_outer"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="QuadMesh" id="QuadMesh_middle"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="QuadMesh" id="QuadMesh_inner"]
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_glowp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_coreglow"]
+shader = ExtResource("9_coreshader")
+shader_parameter/emission_mask = ExtResource("10_coremask")
+shader_parameter/noise_texture = ExtResource("11_noise")
+shader_parameter/emission_color = Color(0.9, 0.40499997, 0.81750005, 1)
+shader_parameter/emission_strength = 0.25
+shader_parameter/pulse_speed = 1.0000000475
+shader_parameter/pulse_depth = 0.90000004275
+shader_parameter/noise_scale = Vector2(0.75, 0.75)
+shader_parameter/phase_spread = 15.0
+shader_parameter/glow_radius = 15.0000007125
+shader_parameter/glow_intensity = 1.0000000475
+shader_parameter/white_core_threshold = 5.0
+shader_parameter/global_alpha = 1.0
+
+[node name="Hexaghost" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_v1k23")
+preview_skin = "Default"
+preview_animation = "idle_loop"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource("8_visualscript")
+
+[node name="GlowAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_glow")
+}
+
+[node name="OuterSmokeSlot" type="SpineSlotNode" parent="."]
+slot_name = "outer_smoke"
+show_behind_parent = true
+position = Vector2(8.833216, -219.43654)
+rotation = 0.116567485
+scale = Vector2(0.6, 0.6)
+
+[node name="outer_smoke" type="MeshInstance2D" parent="OuterSmokeSlot"]
+unique_name_in_owner = true
+material = ExtResource("5_dkrpb")
+position = Vector2(-9, 0)
+scale = Vector2(999.9999, 999.9999)
+mesh = SubResource("QuadMesh_outer")
+
+[node name="MiddleSmokeSlot" type="SpineSlotNode" parent="."]
+slot_name = "middle_smoke"
+show_behind_parent = true
+position = Vector2(8.833216, -219.43654)
+rotation = 0.116567485
+scale = Vector2(0.6, 0.6)
+
+[node name="middle_smoke" type="MeshInstance2D" parent="MiddleSmokeSlot"]
+unique_name_in_owner = true
+material = ExtResource("6_koshk")
+position = Vector2(-8.999999, 0)
+scale = Vector2(840, 840)
+mesh = SubResource("QuadMesh_middle")
+
+[node name="InnerSmokeSlot" type="SpineSlotNode" parent="."]
+slot_name = "inner_smoke"
+show_behind_parent = true
+position = Vector2(8.833216, -219.43654)
+rotation = 0.116567485
+scale = Vector2(0.6, 0.6)
+
+[node name="inner_smoke" type="MeshInstance2D" parent="InnerSmokeSlot"]
+unique_name_in_owner = true
+material = ExtResource("7_ljupi")
+scale = Vector2(559.99994, 559.99994)
+mesh = SubResource("QuadMesh_inner")
+
+[node name="GlowSlot" type="SpineSlotNode" parent="."]
+slot_name = "glow"
+show_behind_parent = true
+position = Vector2(8.833216, -219.43654)
+rotation = 0.11656748
+scale = Vector2(0.13800001, 0.13800001)
+
+[node name="GlowParticles" type="GPUParticles2D" parent="GlowSlot"]
+visible = false
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_glowp")
+position = Vector2(5, 5)
+amount = 50
+amount_ratio = 0.5
+texture = ExtResource("3_1ltrj")
+lifetime = 1.2
+process_material = ExtResource("15_glowmat")
+
+[node name="CinderSlot" type="SpineSlotNode" parent="."]
+slot_name = "cinder"
+show_behind_parent = true
+position = Vector2(8.833216, -219.43654)
+rotation = 0.116567485
+scale = Vector2(0.6, 0.6)
+
+[node name="CinderParticles" type="GPUParticles2D" parent="CinderSlot"]
+show_behind_parent = true
+amount = 100
+amount_ratio = 0.5
+texture = ExtResource("3_1ltrj")
+lifetime = 1.8
+process_material = ExtResource("4_jjjkb")
+
+[node name="CoreSlot" type="SpineSlotNode" parent="."]
+slot_name = "hexacore"
+show_behind_parent = true
+position = Vector2(8.833216, -219.43654)
+rotation = 0.11656748
+scale = Vector2(0.13800001, 0.13800001)
+
+[node name="HexaCoreGlow" type="Sprite2D" parent="CoreSlot"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_coreglow")
+position = Vector2(10, 0)
+texture = ExtResource("12_coretex")
+
+[node name="HexaCoreDead" type="Sprite2D" parent="CoreSlot/HexaCoreGlow"]
+show_behind_parent = true
+texture = ExtResource("17_fynke")
