@@ -1,7 +1,7 @@
 {
     "AUTOMATON-CLASS_DEFAULT_POWER.title": "クラス初期化",
-    "AUTOMATON-CLASS_DEFAULT_POWER.description": "関数のダメージと[gold]ブロック[/gold]を増加させる。",
-    "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "関数のダメージと[gold]ブロック[/gold]を[blue]{Amount}[/blue]増加させる。",
+    "AUTOMATON-CLASS_DEFAULT_POWER.description": "関数が追加でダメージを与える。\n関数から追加で[gold]ブロック[/gold]を得る。",
+    "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "関数が追加で[blue]{Amount}[/blue]ダメージを与える。\n関数から追加で[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "AUTOMATON-FULL_RELEASE_POWER.title": "フルリリース",
     "AUTOMATON-FULL_RELEASE_POWER.description": "ターン開始時：\n{effects}",
     "AUTOMATON-FULL_RELEASE_POWER.smartDescription": "ターン開始時：\n{effects}",

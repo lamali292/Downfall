@@ -24,7 +24,7 @@
     "AUTOMATON-BUG_BARRAGE.title": "バグ弾幕",
     "AUTOMATON-BURN_OUT.description": "状態異常か[red]呪い[/red]を[gold]格納[/gold]するたび、それを[gold]廃棄[/gold]してすべての敵に{BurnOutPower:diff()}ダメージを与える。",
     "AUTOMATON-BURN_OUT.title": "バーンアウト",
-    "AUTOMATON-CLASS_DEFAULT.description": "関数のダメージと[gold]ブロック[/gold]を{ClassDefaultPower:diff()}増加させる。",
+    "AUTOMATON-CLASS_DEFAULT.description": "関数が追加で{ClassDefaultPower:diff()}ダメージを与える。\n関数から追加で{ClassDefaultPower:diff()}[gold]ブロック[/gold]を得る。",
     "AUTOMATON-CLASS_DEFAULT.title": "クラス初期化",
     "AUTOMATON-CLEAN_CODE.description": "ターン終了時、カードを{CleanCodePower:diff()}枚まで[gold]格納[/gold]してもよい。",
     "AUTOMATON-CLEAN_CODE.title": "コード清書",

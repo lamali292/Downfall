@@ -258,7 +258,7 @@
     "COLLECTOR-LAGAVULIN_CLAW.description": "すべての敵は[gold]敏捷[/gold]{DexterityPower:diff()}を失う。\nターン終了時まですべての敵は[gold]筋力[/gold]{LagavulinClawPower:diff()}を失う。",
     "COLLECTOR-TASKMASTER_WHIP.title": "タスクマスターの鞭",
     "COLLECTOR-TASKMASTER_WHIP.description": "{Damage:diff()}ダメージを与える。\n[gold]瘴気[/gold]{MiasmaPower:diff()}を付与する。",
-    "COLLECTOR-SHAPERS_BLESSING.title": "カタチの祝福",
+    "COLLECTOR-SHAPERS_BLESSING.title": "◆●の祝福",
     "COLLECTOR-SHAPERS_BLESSING.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]プレート[/gold]{PlatingPower:diff()}を得る。",
     "COLLECTOR-YOU_YOURSELF.title": "あなた自身",
     "COLLECTOR-YOU_YOURSELF.description": "[gold]脱力[/gold]{WeakPower:diff()}を付与する。\n[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。\n[gold]瘴気[/gold]{MiasmaPower:diff()}を付与する。\n[gold]点火[/gold]{Kindle:diff()}。",
