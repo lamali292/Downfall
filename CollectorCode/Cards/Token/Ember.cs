@@ -44,6 +44,7 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
         var instance = NCombatRoom.Instance;
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
+        HasSingleTurnRetain = true;
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
     }
 }
