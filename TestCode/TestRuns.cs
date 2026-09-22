@@ -65,6 +65,18 @@ public class TestRuns
             // combat is already fresh (runner called FreshCombat); relics already granted once.
             var card = ctx.Combat.CreateCard(model, ctx.Player);
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, ctx.Player);
+
+            // Regression guard: a missing/misregistered loc table doesn't throw, it silently falls
+            // back to the raw key (e.g. "cards.SLIMEBOSS-SERVE_PROTECT.description") - fetch both
+            // once here so every card's loc actually resolves, not just whichever ones happen to
+            // have a dedicated description test.
+            var title = card.Title;
+            var description = card.GetDescriptionForPile(PileType.Hand);
+            Assert.IsTrue(!string.IsNullOrEmpty(title) && !title.Contains(card.Id.Entry),
+                $"Title for {card.Id.Entry} looks unresolved: '{title}'.");
+            Assert.IsTrue(!string.IsNullOrEmpty(description) && !description.Contains(card.Id.Entry),
+                $"Description for {card.Id.Entry} looks unresolved: '{description}'.");
+
             var target = card.TargetType == TargetType.AnyEnemy
                 ? ctx.Combat.HittableEnemies.FirstOrDefault()
                 : null;

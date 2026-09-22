@@ -1,5 +1,7 @@
 {
     "AUTOMATON-CLASS_DEFAULT_POWER.title": "Classe par Défaut",
+    "AUTOMATON-CLASS_DEFAULT_POWER.description": "Augmentez les dégâts et [gold]l'Armure[/gold] gagnées des Fonctions. ",
+    "AUTOMATON-CLASS_DEFAULT_POWER.smartDescription": "Augmentez les dégâts et [gold]l'Armure[/gold] gagnées des Fonctions de [blue]{Amount}[/blue]. ",
     "AUTOMATON-FULL_RELEASE_POWER.title": "Version Finale",
     "AUTOMATON-FULL_RELEASE_POWER.description": "Au début de votre tour :\n{effects}",
     "AUTOMATON-FULL_RELEASE_POWER.smartDescription": "Au début de votre tour :\n{effects}",

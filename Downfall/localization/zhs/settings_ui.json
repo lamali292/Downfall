@@ -25,6 +25,8 @@
     "DOWNFALL-HIDE_SLIMEBOSS.hover.desc": "从角色选择界面和图鉴中隐藏史莱姆老大。它的卡牌仍在游戏中可见。",
     "DOWNFALL-HIDE_SNECKO.title": "隐藏异蛇",
     "DOWNFALL-HIDE_SNECKO.hover.desc": "从角色选择界面和图鉴中隐藏异蛇。它的卡牌仍在游戏中可见。",
+    "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.title": "在显示“美术投稿”按钮",
+    "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.hover.desc": "从游戏主界面显示或隐藏“为崩坠提供美术投稿”的按钮。",
     "DOWNFALL-UPLOAD_METRICS.title": "上传游戏数据",
     "DOWNFALL-UPLOAD_METRICS.hover.desc": "上传游戏数据可帮助开发组修复错误和调整平衡。仅当作为崩坠角色游玩时才会上传数据。\n\n我们不会收集任何个人身份信息。",
     "DOWNFALL-VOTING_SCREEN.ROW_TITLE": "投票"
