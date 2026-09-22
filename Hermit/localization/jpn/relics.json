@@ -43,6 +43,6 @@
     "HERMIT-BROKEN_TOOTH.description": "エリートを倒すたび、HPを[blue]{Heal}[/blue]回復し、[blue]{Gold}[/blue]ゴールドを得る。",
     "SEA_GLASS.HERMIT-HERMIT.title": "放浪者グラス",
     "HERMIT-SCORCHED_LOCKET.title": "焼け焦げたロケット",
-    "HERMIT-SCORCHED_LOCKET.description": "戦闘開始時、[purple]憤怒[/purple]がエンチャントされた[gold]メメント[/gold]を1枚[gold]手札[/gold]に加える。",
+    "HERMIT-SCORCHED_LOCKET.description": "戦闘開始時、[purple]憤怒[/purple]がエンチャントされた[red]メメント[/red]を1枚[gold]手札[/gold]に加える。",
     "HERMIT-SCORCHED_LOCKET.flavor": "ロケットは内側から燃え、黒い煙を吐き出している。もう決して止まることはない。"
 }

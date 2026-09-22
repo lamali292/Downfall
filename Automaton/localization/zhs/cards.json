@@ -26,6 +26,7 @@
     "AUTOMATON-BURN_OUT.description": "每当你[gold]暂存[/gold]状态或[red]诅咒[/red]牌时，将其[gold]消耗[/gold]并对所有敌人造成{BurnOutPower:diff()}点伤害。",
     "AUTOMATON-BURN_OUT.title": "燃烧殆尽",
     "AUTOMATON-BYTE_SHIFT.title": "",
+    "AUTOMATON-CLASS_DEFAULT.description": "[gold]方法[/gold]的伤害和[gold]格挡[/gold]数值增加{ClassDefaultPower:diff()}。",
     "AUTOMATON-CLASS_DEFAULT.title": "默认类",
     "AUTOMATON-CLEAN_CODE.description": "在你的回合结束时，[gold]暂存[/gold]最多{CleanCodePower:diff()}张牌。",
     "AUTOMATON-CLEAN_CODE.title": "简明代码",

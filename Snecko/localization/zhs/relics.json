@@ -1,5 +1,6 @@
 {
     "SNECKO-LOADED_DIE.title": "注料骰子",
+    "SNECKO-LOADED_DIE.description": "每当你[gold]混淆[/gold]一张牌时，获得等量于其变化后耗能点[gold]格挡[/gold]。",
     "SNECKO-LOADED_DIE.flavor": "灌了奶酪。",
     "SNECKO-LUCKY_HORSESHOE.title": "幸运马蹄",
     "SNECKO-LUCKY_HORSESHOE.description": "拾起时，从[blue]3[/blue]个角色中选择[blue]1[/blue]个，获得来自该角色的[blue]3[/blue]组[gold]升级过的[/gold][gold]罕见[/gold]牌奖励和[blue]2[/blue]组[gold]稀有[/gold]牌奖励。每次战斗结束后，额外掉落一组该角色的卡牌奖励。",
@@ -29,8 +30,11 @@
     "SNECKO-SUPER_SNECKO_SOUL.description": "每场战斗回合开始时，获得一张[gold]灵魂骰掷[/gold]。\n在你的回合开始时，抽1张牌并将其[gold]混淆[/gold]。",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "未知之蛋",
+    "SNECKO-UNIDENTIFIED_EGG.description": "每当你将一张[gold]异色[/gold]牌加入你的[gold]牌组[/gold]时，将其[gold]升级[/gold]。",
     "SNECKO-UNIDENTIFIED_EGG.flavor": "会孵化出什么？付1000金币来看看。",
     "SEA_GLASS.SNECKO-SNECKO.title": "多彩玻璃",
     "SNECKO-SNECKO_CHOICE.title": "{character}的祝福",
-    "SNECKO-SNECKO_CHOICE.description": "你现在会在[gold]赠礼[/gold]中获得[blue]{borrowed}[/blue]的卡牌。"
+    "SNECKO-SNECKO_CHOICE.description": "你现在会在[gold]赠礼[/gold]中获得[blue]{borrowed}[/blue]的卡牌。",
+    "SNECKO-VIPER_SKULL.title": "蝰蛇头骨",
+    "SNECKO-VIPER_SKULL.description": "在每场战斗开始时，给予所有敌人[blue]{VenomPower}[/blue]层[gold]剧毒[/gold]。"
 }
