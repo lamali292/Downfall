@@ -1,7 +1,6 @@
 ﻿using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Afflictions;
 
 namespace Collector.CollectorCode.Powers;
 

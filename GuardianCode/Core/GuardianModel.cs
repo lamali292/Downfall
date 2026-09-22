@@ -8,8 +8,6 @@ using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Piles;
 using Guardian.GuardianCode.Powers;
 using Guardian.GuardianCode.RestSiteOptions;
-using Guardian.GuardianCode.Vfx;
-using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

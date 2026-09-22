@@ -1,5 +1,4 @@
-﻿using Collector.CollectorCode.Cards.Common;
-using Collector.CollectorCode.Core;
+﻿using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
