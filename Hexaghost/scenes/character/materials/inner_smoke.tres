@@ -31,10 +31,10 @@ seamless_blend_skirt = 0.15
 
 [resource]
 shader = ExtResource("1_5ej2l")
-shader_parameter/overall_alpha = 0.750000035625
+shader_parameter/overall_alpha = 1.0
 shader_parameter/custom_base_tint = Color(1, 1, 1, 1)
 shader_parameter/base_texture = ExtResource("2_rfshk")
-shader_parameter/texture_scale = 1.20000005374012
+shader_parameter/texture_scale = 1.5730000714576202
 shader_parameter/spin_speed = 0.60000026
 shader_parameter/base_radius = 0.5
 shader_parameter/inner_noise_tex = SubResource("NoiseTexture2D_yts1c")

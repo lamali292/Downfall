@@ -31,7 +31,7 @@ seamless_blend_skirt = 0.15
 
 [resource]
 shader = ExtResource("1_hborh")
-shader_parameter/overall_alpha = 0.6000000285
+shader_parameter/overall_alpha = 1.0
 shader_parameter/custom_base_tint = Color(1, 1, 1, 1)
 shader_parameter/base_texture = ExtResource("2_nfjyi")
 shader_parameter/texture_scale = 0.80000003474012

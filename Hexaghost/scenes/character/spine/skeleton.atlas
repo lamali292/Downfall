@@ -1,0 +1,6 @@
+skeleton.png
+size:2048,2048
+filter:Linear,Linear
+hexa_core_glow
+bounds:2,2,920,1055
+offsets:564,497,2048,2048

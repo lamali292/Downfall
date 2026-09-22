@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 ]
+
+[ext_resource type="SpineAtlasResource" path="res://Guardian/scenes/character/spine/rest/skeleton.atlas" id="1_28nbm"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Guardian/scenes/character/spine/rest/skeleton.skel" id="2_iv45n"]
+[ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="3_unnpy"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_c7q08"]
+atlas_res = ExtResource("1_28nbm")
+skeleton_file_res = ExtResource("2_iv45n")
+
+[node name="RestSite" type="Node2D"]
+scale = Vector2(0.76, 0.76)
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_c7q08")
+preview_skin = "default"
+preview_animation = "glory_loop"
+preview_frame = false
+preview_time = 0.0
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("3_unnpy")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -230.26315
+offset_top = -364.4737
+offset_right = 185.5263
+offset_bottom = 178.94739
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -231.57895
+offset_top = -361.8421
+offset_right = 188.1579
+offset_bottom = 176.3158
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 209.209
+offset_top = -317.103
+offset_right = 209.209
+offset_bottom = -317.103
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -73.6836
+offset_top = -324.997
+offset_right = -73.6836
+offset_bottom = -324.997
