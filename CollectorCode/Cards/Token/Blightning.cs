@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;

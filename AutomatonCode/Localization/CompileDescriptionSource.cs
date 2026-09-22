@@ -1,6 +1,5 @@
 using Automaton.AutomatonCode.Interfaces;
 using Downfall.DownfallCode.Localization;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
