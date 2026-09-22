@@ -3,7 +3,7 @@
     "SLIMEBOSS-BLACK_HEART_OF_GOO.description": "[gold]泥食い[/gold]するたび、HPを[blue]{Heal}[/blue]回復する（各戦闘で最大[blue]{MaxUses}[/blue]回復まで）。",
     "SLIMEBOSS-BLACK_HEART_OF_GOO.flavor": "ウーズの秘密。",
     "SLIMEBOSS-GOOP_DWELLER.title": "ヘドロの住民",
-    "SLIMEBOSS-GOOP_DWELLER.description": "各戦闘開始時、[gold]ブルーザースライム[/gold]に[gold]分裂[/gold]する。",
+    "SLIMEBOSS-GOOP_DWELLER.description": "戦闘開始時、[gold]ブルーザースライム[/gold]に[gold]分裂[/gold]する。",
     "SLIMEBOSS-GOOP_DWELLER.flavor": "家までついてきちゃった。飼ってもいい？",
     "SLIMEBOSS-GREED_OOZE.title": "グリードウーズ",
     "SLIMEBOSS-GREED_OOZE.description": "各戦闘開始時、グリードウーズを産み出す（[gold]吸収[/gold]されても復活できる）。休憩所では、グリードウーズがあなたの魂を50奪い、自身のダメージを1増加させる。",

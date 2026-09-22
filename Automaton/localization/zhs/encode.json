@@ -96,7 +96,11 @@
     "AUTOMATON-TERMINATOR.functionPrefix": "异常",
     "AUTOMATON-FUNCTION.functionParentheses": "()",
     "AUTOMATON-PERFECTION.functionName": "完美",
+    "AUTOMATON-INFINITE_LOOP_COMPILE.compile": "将{OnCard:cond:此牌的复制|一张[gold]无限循环[/gold]}加入你的手牌，其造成{CompileLoopCount:diff()}点额外伤害。",
     "AUTOMATON-STRENGTH_COMPILE.compile": "获得{CompileStrength:diff()}点[gold]力量[/gold]。",
     "AUTOMATON-THORNS_COMPILE.compile": "获得{CompileThorns:diff()}[gold]荆棘[/gold]。",
-    "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]暂存[/gold]{CompileErrors:diff()}[gold]个错误[/gold]。"
+    "AUTOMATON-DAZED_TO_DRAW_COMPILE.compile": "将{CompileDazed:diff()}张[gold]晕眩[/gold]加入你的[gold]抽牌堆[/gold]。",
+    "AUTOMATON-BURN_TO_DRAW_COMPILE.compile": "将{CompileBurn:diff()}张[gold]灼伤[/gold]加入你的[gold]抽牌堆[/gold]。",
+    "AUTOMATON-ERROR_TO_STASH_COMPILE.compile": "[gold]暂存[/gold]{CompileErrors:diff()}张[gold]错误[/gold]。",
+    "AUTOMATON-COMPILE.format": "{compile}：{text}"
 }
