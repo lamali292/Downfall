@@ -1,11 +1,13 @@
 {
     "COLLECTOR-ARROGANCE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n你本回合下一次攻击时给予{DoomedAttackPower:diff()}层[gold]魂劫[/gold]",
     "COLLECTOR-ARROGANCE.title": "巫傲",
+    "COLLECTOR-ASHEN_STRIKE.title": "烛火打击",
     "COLLECTOR-BELLOW_COLLECTOR.title": "鼓噪",
     "COLLECTOR-BILLOW.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n下个回合，将一张[gold]鼓噪[/gold]加入你的[gold]手牌[/gold]。",
     "COLLECTOR-BILLOW.title": "鼓动",
     "COLLECTOR-BLACK_BINDINGS.description": "给予{WeakPower:diff()}层[gold]虚弱[/gold]。\n敌人每有一种负面效果，就给予{MiasmaExtra:diff()}层[gold]魂劫[/gold]。",
     "COLLECTOR-BLACK_BINDINGS.title": "黑缚咒",
+    "COLLECTOR-BLIGHTNING.title": "惊萎打击",
     "COLLECTOR-BONFIRE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n在下个回合，获得{ReserveNextTurnPower:reserveIcons()}。",
     "COLLECTOR-BONFIRE.title": "篝火",
     "COLLECTOR-BRAIN_DRAIN.description": "敌人失去{HpLoss:diff()}点生命。\n你打出的下一张无色牌消耗为{energyPrefix:energyIcons(0)}。",

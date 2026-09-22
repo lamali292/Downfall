@@ -60,6 +60,7 @@
     "SNECKO-THROWING_CARDS_POWER.description": "La prochaine fois que vous jouez une carte [gold]Hors-classe[/gold], infligez des dégâts à un ennemi aléatoire et piochez une carte.",
     "SNECKO-THROWING_CARDS_POWER.smartDescription": "{Amount:plural:La prochaine fois| Les [blue]{}[/blue] prochaines fois} que vous jouez une carte [gold]Hors-classe[/gold], infligez [blue]{Damage:diff()}[/blue] dégâts à un ennemi aléatoire et piochez {Cards:plural:une carte|[blue]{}[/blue] cartes}.",
     "SNECKO-DICE_CASE_POWER.title": "Étui à Dés",
+    "SNECKO-DICE_CASE_POWER.description": "Au début de votre tour, ajoutez un [gold]Lancer de l'Âme[/gold] dans la [gold]Main[/gold] d'un allié.",
     "SNECKO-DICE_CASE_POWER.smartDescription": "Au début de votre tour, ajoutez {Amount:plural:un [gold]Lancer de l'Âme[/gold]|[blue]{}[/blue] [gold]Lancers de l'Âme[/gold]} dans la [gold]Main[/gold] de [orange]{OtherName}[/orange].",
     "SNECKO-GAMBLE_POWER.title": "Pari",
     "SNECKO-GAMBLE_POWER.description": "Au prochain tour, piochez des cartes et [gold]Confondez-les[/gold].",
