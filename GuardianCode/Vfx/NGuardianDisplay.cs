@@ -20,6 +20,11 @@ public partial class NGuardianDisplay : Control
     private const string DisplayScenePath = "res://Guardian/scenes/guardian_display.tscn";
     private const string StasisSlotScenePath = "res://Guardian/scenes/stasis_slot.tscn";
 
+    // Matches stasis_slot.tscn's custom_minimum_size (80, 110).
+    private const float SlotWidth = 80f;
+    private const float SlotHeight = 110f;
+    private const float MaxSlotContainerWidth = 640f;
+
     private readonly List<NCustomCardHolder> _cardHolders = [];
 
     private readonly Dictionary<NCustomCardHolder, NCardHolder.PressedEventHandler> _pressedHandlers = [];
@@ -138,7 +143,27 @@ public partial class NGuardianDisplay : Control
         if (_creatureHitbox != null)
             DownfallControllerNav.LinkAbove(_cardHolders, _creatureHitbox);
 
+        ApplyWidthCap(_currentMax);
         RefreshCounters();
+    }
+
+    private void ApplyWidthCap(int visibleCount)
+    {
+        if (_slotContainer == null) return;
+
+        if (visibleCount <= 1)
+        {
+            _slotContainer.Scale = Vector2.One;
+            _slotContainer.PivotOffset = Vector2.Zero;
+            return;
+        }
+
+        var separation = _slotContainer.GetThemeConstant("separation");
+        var neededWidth = visibleCount * SlotWidth + (visibleCount - 1) * separation;
+        var scale = Mathf.Min(1f, MaxSlotContainerWidth / neededWidth);
+
+        _slotContainer.PivotOffset = new Vector2(neededWidth / 2f, SlotHeight / 2f);
+        _slotContainer.Scale = Vector2.One * scale;
     }
 
     private void WireInspect(NCustomCardHolder holder)

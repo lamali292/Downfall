@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.DynamicVars;
@@ -17,6 +18,8 @@ public class PolishingOil : GuardianPotionModel
         WithTip(GuardianTip.Polish);
         WithVars(new PolishVar(5));
     }
+    
+    protected override Artist Artist => Artist.Get<Fulgur>();
 
     protected override Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {

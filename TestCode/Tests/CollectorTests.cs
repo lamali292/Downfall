@@ -91,7 +91,7 @@ public class CollectorTests
     {
         var torchhead = await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
 
-        var intent = torchhead.Monster.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
+        var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
         Assert.IsTrue(intent != null,
             "Torchhead's move state should carry a TorchheadAttackIntent so its intent icon shows.");
 
@@ -112,10 +112,10 @@ public class CollectorTests
     public async Task TorchheadIntentDescriptionReflectsTargetingMode(TestContext ctx)
     {
         var torchhead = await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
-        var intent = torchhead.Monster.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
+        var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
         Assert.IsTrue(intent != null, "Torchhead's move state should carry a TorchheadAttackIntent.");
 
-        var targets = ctx.Combat.Players.Select(p => p.Creature);
+        var targets = ctx.Combat.Players.Select(p => p.Creature).ToList();
         var singleTargetDescription = intent!.GetHoverTip(targets, torchhead).Description;
         Assert.IsTrue(singleTargetDescription.Contains("least HP"),
             $"Without EquipAxe, Torchhead should target the enemy with the least HP, got '{singleTargetDescription}'.");
