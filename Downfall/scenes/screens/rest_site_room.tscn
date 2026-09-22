@@ -1,14 +1,17 @@
-[gd_scene load_steps=10 format=3 ]
+[gd_scene load_steps=13 format=3 ]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Rooms/NRestSiteRoom.cs" id="1_grc5d"]
 [ext_resource type="PackedScene" path="res://scenes/rest_site/overgrowth_rest_site.tscn" id="2_5wy61"]
 [ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="2_yi8tx"]
 [ext_resource type="PackedScene" path="res://Champ/scenes/character/rest_site.tscn" id="3_5wy61"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="3_6owo0"]
+[ext_resource type="PackedScene" path="res://Snecko/scenes/character/rest_site.tscn" id="3_l0s0g"]
 [ext_resource type="PackedScene" path="res://Automaton/scenes/character/rest_site.tscn" id="3_rmow8"]
 [ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="4_5wy61"]
+[ext_resource type="PackedScene" path="res://Awakened/scenes/character/rest_site.tscn" id="4_6jpnq"]
 [ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="5_rmow8"]
 [ext_resource type="PackedScene" path="res://scenes/ui/proceed_button.tscn" id="6_rlolg"]
+[ext_resource type="PackedScene" path="res://Collector/scenes/character/rest_site.tscn" id="6_vby3d"]
 
 [node name="RestSiteRoom" type="Control"]
 layout_mode = 3
@@ -57,7 +60,10 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
-[node name="RestSite" parent="BgContainer/Character_3" instance=ExtResource("3_rmow8")]
+[node name="RestSite2" parent="BgContainer/Character_3" instance=ExtResource("3_l0s0g")]
+
+[node name="RestSite" parent="BgContainer/Character_3" instance=ExtResource("4_6jpnq")]
+visible = false
 
 [node name="Character_4" type="Control" parent="BgContainer"]
 layout_mode = 1
@@ -78,6 +84,10 @@ mouse_filter = 2
 [node name="RestSite" parent="BgContainer/Character_4" instance=ExtResource("3_5wy61")]
 scale = Vector2(-0.76, 0.76)
 
+[node name="RestSite2" parent="BgContainer/Character_4" instance=ExtResource("4_6jpnq")]
+visible = false
+scale = Vector2(-0.76, 0.76)
+
 [node name="Character_1" type="Control" parent="BgContainer"]
 layout_mode = 1
 anchors_preset = 8
@@ -94,7 +104,13 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 
+[node name="RestSite2" parent="BgContainer/Character_1" instance=ExtResource("6_vby3d")]
+visible = false
+
 [node name="RestSite" parent="BgContainer/Character_1" instance=ExtResource("3_rmow8")]
+visible = false
+
+[node name="RestSite3" parent="BgContainer/Character_1" instance=ExtResource("4_6jpnq")]
 
 [node name="Character_2" type="Control" parent="BgContainer"]
 layout_mode = 1
@@ -114,6 +130,10 @@ mouse_filter = 2
 
 [node name="RestSite" parent="BgContainer/Character_2" instance=ExtResource("3_rmow8")]
 scale = Vector2(-1, 1)
+
+[node name="RestSite2" parent="BgContainer/Character_2" instance=ExtResource("4_6jpnq")]
+visible = false
+scale = Vector2(-0.76, 0.76)
 
 [node name="ChoicesScreen" type="Control" parent="."]
 unique_name_in_owner = true
@@ -206,4 +226,5 @@ MaxFontSize = 28
 
 [node name="ProceedButton" parent="." instance=ExtResource("6_rlolg")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1

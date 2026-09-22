@@ -32,7 +32,7 @@ public class BookOfSecrets : AwakenedCardModel
         {
             var a = nextSpell.CreateClone();
             a._owner = player;
-            await CardPileCmd.Add(a, PileType.Hand);
+            await CardPileCmd.AddGeneratedCardToCombat(a, PileType.Hand, Owner);
         }
     }
 }
