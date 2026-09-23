@@ -33,8 +33,10 @@ public abstract class CollectorCardModel
     
     protected bool ShouldTorcheadTargetAll => _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
     
-    protected override bool IsPlayable =>
-        !HasPyre|| (HasPyre && Owner.Hand.Any(e => e != this));
+    protected override bool IsPlayable => !IsBlockedByMissingPyreTarget;
+
+    /// <summary>True when this card has Pyre/Megapyre and there's no other hand card to exhaust for it.</summary>
+    public bool IsBlockedByMissingPyreTarget => HasPyre && !Owner.Hand.Any(e => e != this);
 
     private bool HasPyre => Keywords.Contains(CollectorKeyword.Pyre) || Keywords.Contains(CollectorKeyword.Megapyre);
     

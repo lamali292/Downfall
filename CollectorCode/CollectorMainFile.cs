@@ -26,7 +26,8 @@ public static class CollectorMainFile
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
         CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
         CardExecutionRegistry.RegisterAfter(CollectorCardEffectHandler.DoAfterPlayInternal);
-        
+        CustomUnplayableReasonRegistry.Register(new PyreUnplayableReason());
+
         BundledSubmodLocRegistry.Register(ModId);
         
         FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");
