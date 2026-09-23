@@ -34,7 +34,7 @@
     "AWAKENED-CAW.title": "カァ！",
     "AWAKENED-CEREMONY.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。",
     "AWAKENED-CEREMONY.title": "セレモニー",
-    "AWAKENED-CHOSEN_VERSE.description": "このターン、次にプレイする2枚のアタック以外のカードは、追加でカードを1枚引き、{Block:diff()}[gold]ブロック[/gold]を得る。",
+    "AWAKENED-CHOSEN_VERSE.description": "このターン、次の2回アタック以外のカードをプレイした時、カードを1枚引き、{Block:diff()}[gold]ブロック[/gold]を得る。",
     "AWAKENED-CHOSEN_VERSE.title": "選ばれた詩句",
     "AWAKENED-CLARION_CALL.description": "{Damage:diff()}ダメージを与える。\n次に[gold]ドレイン[/gold]した時、{energyPrefix:energyIcons(1)}を得る。",
     "AWAKENED-CLARION_CALL.title": "呼び寄せる声",
