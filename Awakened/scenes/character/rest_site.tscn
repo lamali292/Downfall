@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ma773cmr51un"]
+[gd_scene load_steps=5 format=3 ]
 
-[ext_resource type="SpineAtlasResource" uid="uid://b61jlm36he6qh" path="res://Awakened/scenes/character/spine/rest/awakened.atlas" id="1_nb7hd"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://ducopuuklvtcr" path="res://Awakened/scenes/character/spine/rest/awakened.skel" id="2_hes75"]
-[ext_resource type="PackedScene" uid="uid://bgy88bk44xxvk" path="res://scenes/ui/selection_reticle.tscn" id="3_fhaf1"]
+[ext_resource type="SpineAtlasResource" path="res://Awakened/scenes/character/spine/rest/awakened.atlas" id="1_nb7hd"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Awakened/scenes/character/spine/rest/awakened.skel" id="2_hes75"]
+[ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="3_fhaf1"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_a3nk6"]
 atlas_res = ExtResource("1_nb7hd")
