@@ -14,7 +14,7 @@ scale = Vector2(0.76, 0.76)
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_bqttt")
 preview_skin = "default"
-preview_animation = "glory_loop"
+preview_animation = "overgrowth_loop"
 preview_frame = false
 preview_time = 0.0
 

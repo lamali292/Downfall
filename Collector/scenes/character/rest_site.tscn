@@ -16,16 +16,17 @@ scale = Vector2(0.76, 0.76)
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_sgirf")
 preview_skin = "Default"
-preview_animation = "-- Empty --"
+preview_animation = "overgrowth_loop"
 preview_frame = false
 preview_time = 0.0
 
 [node name="Fireslot" type="SpineSlotNode" parent="SpineSprite"]
 slot_name = "fireslot"
+visible = false
 show_behind_parent = true
-position = Vector2(145.85263, -250.51881)
-rotation = -0.15612572
-scale = Vector2(1.6000001, 1.6000001)
+position = Vector2(180.80553, -230.89519)
+rotation = 0.020510279
+scale = Vector2(1.6999998, 1.6999999)
 
 [node name="VfxSteppedShaderFire2" parent="SpineSprite/Fireslot" instance=ExtResource("3_rpn8b")]
 scale = Vector2(0.145, 0.145)
@@ -33,9 +34,9 @@ scale = Vector2(0.145, 0.145)
 [node name="RightEye" type="SpineSlotNode" parent="SpineSprite"]
 slot_name = "righteyefireslot"
 show_behind_parent = true
-position = Vector2(-50.37459, -226.48781)
-rotation = 3.124607
-scale = Vector2(1.6, 1.6)
+position = Vector2(-32.310825, -254.64372)
+rotation = -3.124607
+scale = Vector2(1.6999999, 1.6999999)
 
 [node name="vfx_fire2" parent="SpineSprite/RightEye" instance=ExtResource("4_0hbqv")]
 position = Vector2(0, -8)
@@ -45,9 +46,9 @@ scale = Vector2(0.2, 0.2)
 [node name="LeftEye" type="SpineSlotNode" parent="SpineSprite"]
 slot_name = "lefteyefireslot"
 show_behind_parent = true
-position = Vector2(-0.33646297, -225.60959)
-rotation = 3.124607
-scale = Vector2(1.6, 1.6)
+position = Vector2(20.792326, -251.9054)
+rotation = -3.124607
+scale = Vector2(1.6999999, 1.6999999)
 
 [node name="vfx_fire2" parent="SpineSprite/LeftEye" instance=ExtResource("4_0hbqv")]
 position = Vector2(0, -8)
@@ -61,18 +62,18 @@ anchors_preset = 0
 [node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("5_6go7q")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -153.0
-offset_top = -350.0
-offset_right = 267.0
-offset_bottom = 320.0
+offset_left = -176.31578
+offset_top = -381.57895
+offset_right = 235.52632
+offset_bottom = 217.10526
 
 [node name="Hitbox" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -155.0
-offset_top = -351.0
-offset_right = 266.0
-offset_bottom = 332.0
+offset_left = -175.0
+offset_top = -380.26315
+offset_right = 234.21051
+offset_bottom = 214.47366
 
 [node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true

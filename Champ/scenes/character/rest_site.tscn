@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c18crwtnd2k4p"]
+[gd_scene load_steps=5 format=3 ]
 
-[ext_resource type="SpineAtlasResource" uid="uid://bfsqcd74iapdt" path="res://Champ/scenes/character/spine/rest/champ.atlas" id="1_a7vyi"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://m5pwhcaaiuiw" path="res://Champ/scenes/character/spine/rest/champ.skel" id="2_8h8jv"]
-[ext_resource type="PackedScene" uid="uid://bgy88bk44xxvk" path="res://scenes/ui/selection_reticle.tscn" id="3_bfh4j"]
+[ext_resource type="SpineAtlasResource" path="res://Champ/scenes/character/spine/rest/champ.atlas" id="1_a7vyi"]
+[ext_resource type="SpineSkeletonFileResource" path="res://Champ/scenes/character/spine/rest/champ.skel" id="2_8h8jv"]
+[ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="3_bfh4j"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_twul1"]
 atlas_res = ExtResource("1_a7vyi")
