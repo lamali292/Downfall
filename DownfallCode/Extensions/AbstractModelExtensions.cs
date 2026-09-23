@@ -1,7 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Patches.Features;
-using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -23,7 +22,7 @@ public static class AbstractModelExtensions
             EnchantmentModel enchantment => enchantment.DynamicVars,
             AfflictionModel affliction => affliction.Card.DynamicVars,
             CardModifier cardModifier => cardModifier.DynamicVars,
-            GhostflameModel ghostflameModel => ghostflameModel.DynamicVars,
+            ICustomAbstractModel custom => custom.DynamicVars,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
 
@@ -37,7 +36,7 @@ public static class AbstractModelExtensions
             AfflictionModel affliction => affliction.Card.Creature,
             CardModifier cardModifier => cardModifier.Owner?.Creature ??
                                          throw new ArgumentException($"Unknown model type: {model.GetType().Name}"),
-            GhostflameModel ghostflameModel => ghostflameModel.Owner.Creature,
+            ICustomAbstractModel custom => custom.Creature,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
         
@@ -51,7 +50,7 @@ public static class AbstractModelExtensions
             AfflictionModel affliction => affliction.Card.Owner,
             CardModifier cardModifier => cardModifier.Owner?.Owner ??
                                          throw new ArgumentException($"CardModifier has no player: {model.GetType().Name}"),
-            GhostflameModel ghostflameModel => ghostflameModel.Owner,
+            ICustomAbstractModel custom => custom.Player,
             _ => throw new ArgumentException($"Unknown model type: {model.GetType().Name}")
         };
 

@@ -9,5 +9,12 @@
         <AssetSourcePath>C:\...\Slay the Spire 2</AssetSourcePath>
          <!-- Enabled Characters -->
         <Submods>Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</Submods>
+
+        <!-- Uncomment to build a separately-installable mod (e.g. a single-character beta) that
+             can be loaded alongside a normal full Downfall install without colliding with it.
+             Leave both unset for a normal release build (defaults to ModId/ModName "Downfall"). -->
+        <!--<Submods>Downfall;Collector</Submods>-->
+        <!--<ModId>DownfallCollectorBeta</ModId>-->
+        <!--<ModName>Downfall - Collector (Beta)</ModName>-->
     </PropertyGroup>
 </Project>

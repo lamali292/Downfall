@@ -7,6 +7,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -31,6 +32,7 @@ public static class AwakenedMainFile
             new ChantDescriptionSource());
 
         BundledSubmodLocRegistry.Register(ModId);
+        VotingPoolRegistry.Register<AwakenedCardPool>(VotingPool.Awakened);
         CombatUiHooks.Register(AwakenedModel.SetupAwakenedCombatUi);
 
         ModPatcher.Create(ModId, Logger)

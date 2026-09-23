@@ -3,14 +3,16 @@ using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using Godot;
-using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.TestSupport;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -72,13 +74,13 @@ public class SoulBurnPower : DownfallPowerModel
         if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/soulburn");
         if (targetAll)
         {
-            foreach (var target in CombatState.HittableEnemies) await HexaghostCmd.SoulburnEffect(target, silent: true);
+            foreach (var target in CombatState.HittableEnemies) await SoulburnEffect(target);
             await CompatibilityCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
         else
         {
-            await HexaghostCmd.SoulburnEffect(Owner, silent: true);
+            await SoulburnEffect(Owner);
             await CompatibilityCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
@@ -90,5 +92,19 @@ public class SoulBurnPower : DownfallPowerModel
             await PowerCmd.Remove(this);
         await DownfallHook.AfterSoulburnDetonate(combatState, ctx, owner);
         await Cmd.CustomScaledWait(0.1f, 0.25f);
+    }
+    
+    public static Task SoulburnEffect(Creature? creature, float scale = 0.8f, bool silent = false)
+    {
+        if (creature == null) return Task.CompletedTask;
+        var child = NGroundFireVfx.Create(creature, VfxColor.Green);
+        if (child == null)
+            return Task.CompletedTask;
+        if (!silent && TestMode.IsOff)
+            SfxCmd.Play("event:/sfx/characters/attack_fire");
+        child.Scale = Vector2.One * scale;
+        var instance = NCombatRoom.Instance;
+        instance?.CombatVfxContainer.AddChildSafely(child);
+        return Task.CompletedTask;
     }
 }

@@ -28,7 +28,7 @@ public class SearingWound : HexaghostCardModel
         {
             var amount = enemy.GetPowerAmount<SoulBurnPower>();
             if (amount <= 0) continue;
-            await HexaghostCmd.SoulburnEffect(enemy, scale);
+            await SoulBurnPower.SoulburnEffect(enemy, scale);
             scale *= 0.9f;
             await CompatibilityCreatureCmd.Damage(ctx, enemy, amount,
                 DamageProps.cardHpLoss,

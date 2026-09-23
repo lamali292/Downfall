@@ -1,5 +1,6 @@
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using SlimeBoss.SlimeBossCode.Patches;
@@ -19,6 +20,7 @@ public static class SlimeBossMainFile
     public static void Initialize()
     {
         BundledSubmodLocRegistry.Register(ModId);
+        VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss);
         HivePowerExemptRegistry.Register<SlimeModel>();
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(SlimeDeathPatches))

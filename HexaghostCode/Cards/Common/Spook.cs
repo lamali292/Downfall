@@ -17,7 +17,7 @@ public class Spook : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await HexaghostCmd.SoulburnEffect(cardPlay.Target);
+        await SoulBurnPower.SoulburnEffect(cardPlay.Target);
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
     }
 }
