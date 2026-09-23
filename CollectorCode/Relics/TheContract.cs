@@ -1,13 +1,10 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 
@@ -20,18 +17,19 @@ public class TheContract : CollectorRelicModel
     public TheContract() : base(RelicRarity.Uncommon)
     {
         WithCards(5);
-        active = true;
+        active = false;
     }
     
     public override async Task AfterObtained()
     {
+        active = true;
         CardCreationOptions options = new CardCreationOptions([ModelDb.CardPool<CollectibleCardPool>()], CardCreationSource.Other, CardRarityOddsType.RegularEncounter);
         var reward = new CardReward(options, 5, Owner);
         await RewardsCmd.OfferCustom(Owner, [reward]);
     }
     public override bool TryModifyCardRewardOptionsLate(Player player, List<CardCreationResult> cardRewards, CardCreationOptions options)
     {
-        if (active)
+        if (active && player == Owner)
         {
             if (options.Flags.HasFlag(CardCreationFlags.NoHookUpgrades))
             {
@@ -48,7 +46,7 @@ public class TheContract : CollectorRelicModel
     {
         foreach (CardCreationResult cardCreationResult in cards.Where(c => c.Card.IsUpgradable && filter(c.Card)))
         {
-            CardModel card = cardCreationResult.Card.Owner.RunState.CloneCard(cardCreationResult.Card);
+            CardModel card = cardCreationResult.Card.Owner.RunState.CloneCard(cardCreationResult.Card); 
             CardCmd.Upgrade(card);
             cardCreationResult.ModifyCard(card);
         }
