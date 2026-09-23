@@ -12,7 +12,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class OakbrimKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
-    public OakbrimKindling() : base(3, CardType.Status, CardRarity.Uncommon, TargetType.Self)
+    public OakbrimKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
