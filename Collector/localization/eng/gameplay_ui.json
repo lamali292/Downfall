@@ -1,3 +1,4 @@
 ﻿{
-  "COLLECTIBLE_REWARD": "Add [gold]{Card}[/gold] to your deck."
+  "COLLECTIBLE_REWARD": "Add [gold]{Card}[/gold] to your deck.",
+  "PYRE_NO_TARGET": "I have nothing\nelse to [jitter][red]Pyre[/red][/jitter]!"
 }

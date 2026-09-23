@@ -20,17 +20,8 @@ public static class PowerExtensions
         public PowerType DownfallType => power.GetTypeForAmount(power.Amount);
         public PowerType GetDownfallTypeForAmount(decimal customAmount)
         {
-            if (customAmount >= 0)
-            {
-                return power.Type;
-            }
-            return power switch
-            {
-                { AllowNegative: true, StackType: PowerStackType.Counter, Type: PowerType.Buff } => PowerType.Debuff,
-                { AllowNegative: true, StackType: PowerStackType.Counter, Type: PowerType.Debuff } => PowerType.Buff,
-                ThornsPower => PowerType.Debuff,
-                _ => power.Type
-            };
+            if (customAmount < 0 && power is ThornsPower) return PowerType.Debuff;
+            return power.GetTypeForAmount(customAmount);
         }
     }
 }
