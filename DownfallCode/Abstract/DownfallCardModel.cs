@@ -38,9 +38,9 @@ public abstract class DownfallCardModel
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (await CardExecutionRegistry.BeforeOnPlayInternal(this, ctx, cardPlay)) return;
+        if (await CardExecutionHooks.BeforeOnPlayInternal(this, ctx, cardPlay)) return;
         await OnPlayInternal(ctx, cardPlay);
-        await CardExecutionRegistry.AfterOnPlayInternal(this, ctx, cardPlay);
+        await CardExecutionHooks.AfterOnPlayInternal(this, ctx, cardPlay);
     }
 
     protected ConstructedCardModel WithPower<T>(int baseVal, int upgrade,

@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 namespace Downfall.DownfallCode.Utils;
 
 // Public entry point for "model changed, refresh my card"
-public static class CardOverlayHooks
+public static class CardOverlaySync
 {
     public static void Refresh(CardModel card)
     {
