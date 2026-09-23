@@ -1,6 +1,9 @@
+using Collector.CollectorCode.Cards.Basic;
+using Collector.CollectorCode.Cards.Common;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Cards.Uncommon;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Intents;
 using Collector.CollectorCode.Powers;
@@ -14,6 +17,61 @@ namespace Downfall.TestCode;
 
 public class CollectorTests
 {
+    private static async Task ClearHand(TestContext ctx)
+    {
+        var hand = PileType.Hand.GetPile(ctx.Player).Cards.ToList();
+        if (hand.Count > 0) await CardPileCmd.Add(hand, PileType.Discard);
+    }
+
+    // Regression guard for the custom "can't play" thought bubble: a Pyre card alone in hand (nothing to
+    // exhaust for it) should be specifically blocked with our PyreNoTarget reason/dialogue, not the generic
+    // "combat_messages.UNPLAYABLE" text.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task PyreCardAloneInHandShowsCustomDialogue(TestContext ctx)
+    {
+        await ClearHand(ctx);
+        var roast = await ctx.AddCardToHand<Roast>();
+
+        var canPlay = roast.CanPlay(out var reason, out var preventer);
+
+        Assert.IsTrue(!canPlay, "A Pyre card alone in hand shouldn't be playable.");
+        Assert.IsTrue(reason.HasFlag(CollectorUnplayableReason.PyreNoTarget),
+            "Reason should carry the custom Pyre-blocked flag.");
+
+        var line = reason.GetPlayerDialogueLine(preventer)?.GetFormattedText();
+        Assert.AreEqual("I have nothing else to burn!", line,
+            "Should show the custom Pyre-blocked dialogue.");
+    }
+
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task PyreCardWithOtherHandCardIsPlayable(TestContext ctx)
+    {
+        await ClearHand(ctx);
+        var roast = await ctx.AddCardToHand<Roast>();
+        await ctx.AddCardToHand<FuelTheFire>();
+
+        Assert.IsTrue(roast.CanPlay(), "Roast should be playable once another card is in hand to exhaust.");
+    }
+
+    // Regression guard for the dialogue priority order: when a Pyre card is ALSO unplayable for a more
+    // pressing reason (not enough energy), the default energy message must win, not our custom Pyre text.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task PyreCardBlockedByEnergyKeepsDefaultDialogue(TestContext ctx)
+    {
+        await ClearHand(ctx);
+        var fuelTheFire = await ctx.AddCardToHand<FuelTheFire>();
+        ctx.Player.PlayerCombatState!.Energy = 0;
+
+        var canPlay = fuelTheFire.CanPlay(out var reason, out var preventer);
+
+        Assert.IsTrue(!canPlay, "FuelTheFire alone in hand with no energy shouldn't be playable.");
+        Assert.IsTrue(reason.HasFlag(UnplayableReason.EnergyCostTooHigh), "Should be blocked by energy.");
+
+        var line = reason.GetPlayerDialogueLine(preventer)?.GetFormattedText();
+        Assert.IsTrue(line != "I have nothing else to burn!",
+            $"Energy-blocked card should keep the default 'not enough energy' text, got '{line}'.");
+    }
+
     // Regression guard for a previously-missing feature: X-cost cards only spent Energy and never
     // touched Reserve, so Collector's Reserve resource did nothing to boost their effect. CardModel.
     // SpendResources() is the only place that actually deducts Energy/sets CapturedXValue (CardCmd.
