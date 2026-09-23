@@ -29,6 +29,6 @@ public class HeatCrush : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).BeforeDamage(() =>
-            HexaghostCmd.SoulburnEffect(cardPlay.Target)).Execute(ctx);
+            SoulBurnPower.SoulburnEffect(cardPlay.Target)).Execute(ctx);
     }
 }

@@ -21,7 +21,7 @@ public class PhantomFireball : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).BeforeDamage(() =>
-            HexaghostCmd.SoulburnEffect(cardPlay.Target)).Execute(ctx);
+            SoulBurnPower.SoulburnEffect(cardPlay.Target)).Execute(ctx);
         if (cardPlay.Target == null || cardPlay.Target.IsDead || !cardPlay.Target.HasPower<SoulBurnPower>()) return;
         var power = cardPlay.Target.GetPower<SoulBurnPower>();
         if (power == null) return;

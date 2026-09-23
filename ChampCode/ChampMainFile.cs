@@ -6,6 +6,7 @@ using Champ.ChampCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -31,6 +32,7 @@ public static class ChampMainFile
         ChampSubscriber.Subscribe();
 
         BundledSubmodLocRegistry.Register(ModId);
+        VotingPoolRegistry.Register<ChampCardPool>(VotingPool.Champ);
 
         FormBoneRegistry.RegisterVoidForm<Core.Champ>("Head");
         FormBoneRegistry.RegisterSerpentForm<Core.Champ>("Neck");

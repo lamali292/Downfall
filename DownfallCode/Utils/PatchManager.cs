@@ -2,8 +2,6 @@
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Patches.KaleidoscopePatch;
-using Hexaghost.HexaghostCode.CustomEnums;
-using SlimeBoss.SlimeBossCode.Patches;
 
 namespace Downfall.DownfallCode.Utils;
 
@@ -39,7 +37,6 @@ public class DownfallPatchManager
             .Add(typeof(PowerShouldRemoveDueToZeroPatch))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(NCardUpdateTypePlaquePatch))
-            .Add(typeof(NCreatureAnimationPatch))
             .Add(typeof(RefreshConditionalNextStatesPatch))
             .Add(typeof(PluralRulesPatch))
             .Add(typeof(TranscendenceTransformationPatch))
@@ -63,7 +60,6 @@ public class DownfallPatchManager
             //.Add(typeof(EnchantmentModelCanEnchantCardVeto))
             .Add(typeof(CardCmdTransformTransformHook))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
-            .Add(typeof(PatchCreatureHoverTips))
             .Add(typeof(MainMenuButtonsPatch))
             .Add(typeof(MainMenuButtonsVisibilityPatch))
             .Add(typeof(CustomSubmenuPatch))

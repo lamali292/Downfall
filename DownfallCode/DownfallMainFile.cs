@@ -8,6 +8,7 @@ using Downfall.DownfallCode.Audio;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Data;
+using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -32,6 +33,7 @@ public static class DownfallMainFile
 
     public static void Initialize()
     {
+        BundledSubmodLocRegistry.Register(ModId);
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("card_modifiers");
         CustomLocTableManager.Register("artists");

@@ -9,9 +9,16 @@
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
         
-        <AssemblyName>Downfall</AssemblyName>
-        <ModOutputFolder>Downfall</ModOutputFolder>
-        
+        <!-- Override ModId/ModName in local.props to build a separately-installable mod (e.g. a
+             single-character beta) alongside the main Downfall install. The DLL and PCK must be
+             named exactly "<id>.dll"/"<id>.pck" for the game's mod loader to find them, so both
+             derive from ModId; the manifest's own filename doesn't matter, only its "id" field
+             does, but it's still named after ModId for clarity in the mods/ folder. -->
+        <ModId Condition="'$(ModId)' == ''">Downfall</ModId>
+        <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
+        <AssemblyName>$(ModId)</AssemblyName>
+        <ModOutputFolder>$(ModId)</ModOutputFolder>
+
         <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</Submods>
         <PackFolders>$(Submods)</PackFolders>
         
@@ -187,9 +194,27 @@
         <Message Text="Building submods: '$(Submods)'" Importance="high"/>
     </Target>
 
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
+    <!-- Downfall.json is the checked-in template/source of truth (CI bumps its version/
+         min_game_version fields in place); this rewrites just "id" and "name" into a copy
+         so a custom ModId/ModName build doesn't collide with a normal Downfall install.
+         With the default ModId/ModName ("Downfall"), the rewrite is a no-op. -->
+    <Target Name="GenerateModManifest">
+        <PropertyGroup>
+            <_ModManifestJson>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\Downfall.json'))</_ModManifestJson>
+            <!-- Anchored to the top-level "id" immediately followed by "name" (the manifest's
+                 first two keys) so this can't also match "id" inside the "dependencies" array. -->
+            <_ModManifestJson>$([System.Text.RegularExpressions.Regex]::Replace($(_ModManifestJson), '("id"\s*:\s*)"[^"]*"(\s*,\s*"name"\s*:\s*)"[^"]*"', '$1"$(ModId)"$2"$(ModName)"'))</_ModManifestJson>
+        </PropertyGroup>
+        <ItemGroup>
+            <_ModManifestLine Remove="@(_ModManifestLine)"/>
+            <_ModManifestLine Include="$(_ModManifestJson)"/>
+        </ItemGroup>
+        <WriteLinesToFile File="$(IntermediateOutputPath)$(ModId).json" Lines="@(_ModManifestLine)" Overwrite="true"/>
+    </Target>
+
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest">
          <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-        <Copy SourceFiles="Downfall.json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="$(IntermediateOutputPath)$(ModId).json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
               DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
@@ -217,7 +242,7 @@
     <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <Message Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/Downfall.pck&quot; $(PackFolders.Replace(';', ' '))"
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; $(PackFolders.Replace(';', ' '))"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
               IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
     </Target>

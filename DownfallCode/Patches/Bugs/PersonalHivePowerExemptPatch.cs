@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace SlimeBoss.SlimeBossCode.Patches;
+namespace Downfall.DownfallCode.Utils;
 
 internal static class HivePowerExemptRegistry
 {

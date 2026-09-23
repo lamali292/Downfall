@@ -35,19 +35,7 @@ public static class HexaghostCmd
     }
 
 
-    public static Task SoulburnEffect(Creature? creature, float scale = 0.8f, bool silent = false)
-    {
-        if (creature == null) return Task.CompletedTask;
-        var child = NGroundFireVfx.Create(creature, VfxColor.Green);
-        if (child == null)
-            return Task.CompletedTask;
-        if (!silent && TestMode.IsOff)
-            SfxCmd.Play("event:/sfx/characters/attack_fire");
-        child.Scale = Vector2.One * scale;
-        var instance = NCombatRoom.Instance;
-        instance?.CombatVfxContainer.AddChildSafely(child);
-        return Task.CompletedTask;
-    }
+ 
 
     public static void ActivateGhostwheel(Player player)
     {

@@ -2,7 +2,7 @@ using HarmonyLib;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
-namespace Downfall.DownfallCode.Patches;
+namespace Hexaghost.HexaghostCode.Patches;
 
 [HarmonyPatch]
 public static class NCreatureAnimationPatch

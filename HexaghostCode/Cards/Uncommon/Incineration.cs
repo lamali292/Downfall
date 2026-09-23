@@ -24,7 +24,7 @@ public class Incineration : HexaghostCardModel
         var scale = 0.8f;
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).BeforeDamage(async () =>
         {
-            await HexaghostCmd.SoulburnEffect(cardPlay.Target, scale);
+            await SoulBurnPower.SoulburnEffect(cardPlay.Target, scale);
             scale += 0.1f;
         }).Execute(ctx);
         for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)

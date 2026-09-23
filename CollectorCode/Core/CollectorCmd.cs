@@ -1,7 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Rare;
-using Awakened.AwakenedCode.Cards.Rare;
-using BaseLib.Extensions;
-using Champ.ChampCode.Cards.Rare;
+﻿using BaseLib.Extensions;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
@@ -9,8 +6,6 @@ using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
 using Godot;
-using Guardian.GuardianCode.Cards.Rare;
-using Hexaghost.HexaghostCode.Cards.Rare;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -23,7 +18,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
-using SlimeBoss.SlimeBossCode.Cards.Rare;
 
 namespace Collector.CollectorCode.Core;
 
@@ -206,12 +200,12 @@ public class CollectorCmd
             { "RUINA2-TWILIGHT_BOSS", ["RUINA2-LAMP", "RUINA2-TWILIGHT", "RUINA2-APOCALYPSE", "RUINA2-JUSTITIA", "RUINA2-BEAK"] },
             { "RUINA2-WHITE_NIGHT_BOSS", ["RUINA2-SOUND_OF_A_STAR", "RUINA2-PENITENCE", "RUINA2-DEAD_SILENCE", "RUINA2-HEAVEN", "RUINA2-PARADISE_LOST"] },
             { "RUINA2-SILENT_GIRL_BOSS", ["RUINA2-FROST_SPLINTER", "RUINA2-REMORSE", "RUINA2-WRIST_CUTTER", "RUINA2-ASPIRATION", "RUINA2-MARIONETTE"] },
-            { "ACTSFROMTHEPAST-SLIME_BOSS_BOSS", [ModelDb.Card<PrepareCrush>().Id.Entry]},
-            { "ACTSFROMTHEPAST-GUARDIAN_BOSS", [ModelDb.Card<BodyCrash>().Id.Entry]},
-            { "ACTSFROMTHEPAST-HEXAGHOST_BOSS", [ModelDb.Card<EtherStep>().Id.Entry]},
-            { "ACTSFROMTHEPAST-BRONZE_AUTOMATON_BOSS", [ModelDb.Card<HyperBeamAutomaton>().Id.Entry]},
-            { "ACTSFROMTHEPAST-CHAMP_BOSS", [ModelDb.Card<MurderStrike>().Id.Entry]},
-            { "ACTSFROMTHEPAST-AWAKENED_ONE_BOSS", [ModelDb.Card<Murder>().Id.Entry]}
+            { "ACTSFROMTHEPAST-SLIME_BOSS_BOSS", ["SLIMEBOSS-PREPARE_CRUSH"]},
+            { "ACTSFROMTHEPAST-GUARDIAN_BOSS", ["GUARDIAN-BODY_CRASH"]},
+            { "ACTSFROMTHEPAST-HEXAGHOST_BOSS", ["HEXAGHOST-ETHER_STEP"]},
+            { "ACTSFROMTHEPAST-BRONZE_AUTOMATON_BOSS", ["AUTOMATON-HYPER_BEAM_AUTOMATON"]},
+            { "ACTSFROMTHEPAST-CHAMP_BOSS", ["CHAMP-MURDER_STRIKE"]},
+            { "ACTSFROMTHEPAST-AWAKENED_ONE_BOSS", ["AWAKENED-MURDER"]}
         };
         if (!moddedEnemyMap.TryGetValue(encounterId.Entry, out var value)) return null;
         if (value.Count > 1) value.StableShuffle(player.PlayerRng.Rewards);
