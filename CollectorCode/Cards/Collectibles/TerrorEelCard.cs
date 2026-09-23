@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 public class TerrorEelCard
     : Collectible<TerrorEelElite>, ISkipReplayOnSelfExhaust
 {
-    public TerrorEelCard() : base(3, CardType.Status, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public TerrorEelCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);

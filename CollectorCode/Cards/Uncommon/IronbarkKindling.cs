@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class IronbarkKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
-    public IronbarkKindling() : base(3, CardType.Status, CardRarity.Uncommon, TargetType.Self)
+    public IronbarkKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
