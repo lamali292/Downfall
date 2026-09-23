@@ -263,5 +263,5 @@
     "COLLECTOR-YOU_YOURSELF.title": "舍你其谁",
     "COLLECTOR-YOU_YOURSELF.description": "[gold]点灯[/gold]{Kindle:diff()}。\n给予{WeakPower:diff()}层[gold]虚弱[/gold]。\n给予{VulnerablePower:diff()}层[gold]易伤[/gold]。\n给予{MiasmaPower:diff()}层[gold]魂劫[/gold]。",
     "COLLECTOR-SENTRY_CORE.title": "哨卫核心",
-    "COLLECTOR-SENTRY_CORE.description": "造成{Damage:diff()}点伤害X次。\n给予{WeakPower:diff()}层[gold]虚弱[/gold]X次。\n将一张[gold]晕眩[/gold]加入脑袋[gold]抽牌堆[/gold]顶。"
+    "COLLECTOR-SENTRY_CORE.description": "造成{Damage:diff()}点伤害X次。\n给予{WeakPower:diff()}层[gold]虚弱[/gold]X次。\n将一张[gold]晕眩[/gold]加入你的[gold]抽牌堆[/gold]顶。"
 }
