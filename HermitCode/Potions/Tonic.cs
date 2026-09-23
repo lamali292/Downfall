@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Commands;
+﻿using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,8 @@ public class Tonic : HermitPotionModel
         WithPower<RuggedPower>(1);
     }
 
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    
     protected override Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         return MyCommonActions.ApplySelf<RuggedPower>(ctx, this);

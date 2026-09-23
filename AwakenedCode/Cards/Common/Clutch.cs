@@ -24,8 +24,11 @@ public class Clutch : AwakenedCardModel
     // Snecko Eye (and anything else that changes a card's cost) must be reflected here: this has
     // to check the card's actual current cost, not its canonical/printed one, or the glow and the
     // pick can disagree about what's really 0-cost right now.
+    //
+    // Use GetWithModifiers directly rather than GetAmountToSpend(): the latter clamps negative
+    // costs to 0, which would make unplayable cards like Ascender's Bane (cost -2) look free.
     private IEnumerable<CardModel> ZeroCostCandidates =>
-        Owner.DrawPile.Where(c => c.EnergyCost.GetAmountToSpend() == 0 && !c.EnergyCost.CostsX);
+        Owner.DrawPile.Where(c => !c.EnergyCost.CostsX && c.EnergyCost.GetWithModifiers(CostModifiers.All) == 0);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

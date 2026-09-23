@@ -26,7 +26,7 @@ public class KnightsCard : Collectible<KnightsElite>
         //At the start of your turn, draw {MachineLearningPower:diff()} additional {MachineLearningPower:plural:card|cards}.
         //ALL your cards are Ethereal.
         
-        var cards = (await CommonActions.Draw(this, ctx)).ToList();
+        var cards = await CommonActions.Draw(this, ctx);
         TempKeywordUtil.Add(cards, CardKeyword.Ethereal, TempKeywordRemoveCondition.StartOfEnemyTurn);
     }
 }

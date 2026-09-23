@@ -1,4 +1,5 @@
 using Godot;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
 namespace Hexaghost.HexaghostCode.Vfx;
 
@@ -10,32 +11,48 @@ public partial class NHexaghostVisuals : Node2D
 	private const float OuterBase = 0.275f;
 
 	private const float SpinPerIgnited = 0.4f;
-	private static readonly StringName SpinParam = "shader_parameter/spin_speed";
-
-	private AnimationTree? _animTree;
 
 	private int _ignitedCount;
 
 	private ShaderMaterial? _innerSmoke;
 	private ShaderMaterial? _middleSmoke;
 	private ShaderMaterial? _outerSmoke;
-	private AnimationNodeStateMachinePlayback? _playback;
+
+	private AnimationPlayer? _glowPlayer;
+	private MegaSprite? _sprite;
 
 	public override void _Ready()
 	{
-		_animTree = GetNode<AnimationTree>("AnimationTree");
-		_animTree.Active = true;
-		_playback = (AnimationNodeStateMachinePlayback)_animTree.Get("parameters/playback");
+		_innerSmoke = MakeUniqueMaterial<MeshInstance2D>("%inner_smoke");
+		_middleSmoke = MakeUniqueMaterial<MeshInstance2D>("%middle_smoke");
+		_outerSmoke = MakeUniqueMaterial<MeshInstance2D>("%outer_smoke");
 
-		var scene = GetNode<Node2D>("%HexaghostScene");
-		_innerSmoke = MakeUniqueSmokeMaterial(scene, "inner_smoke");
-		_middleSmoke = MakeUniqueSmokeMaterial(scene, "middle_smoke");
-		_outerSmoke = MakeUniqueSmokeMaterial(scene, "outer_smoke");
+		_glowPlayer = GetNodeOrNull<AnimationPlayer>("GlowAnimationPlayer");
+
+		// This node's underlying native class is SpineSprite (the script is just attached on top of it).
+		_sprite = new MegaSprite(this);
+
+		// "animation_started" passes 3 native args here (undocumented in our source tree, and not
+		// necessarily 1 as MegaSprite's own C# wrapper methods assume) - typing them as Variant sidesteps
+		// needing to know what they actually are, since we just re-read the current animation ourselves.
+		_sprite.ConnectAnimationStarted(Callable.From<Variant, Variant, Variant>((_, _, _) => SyncGlowAnimation()));
 	}
 
-	private static ShaderMaterial? MakeUniqueSmokeMaterial(Node2D scene, string nodeName)
+	/// <summary>
+	/// The core glow shader pulse and the particle bursts aren't part of the Spine rig - keep them in a
+	/// small local AnimationPlayer and play it under the same name Spine just switched to
+	/// (idle_loop/attack/cast/hurt/die). No-ops for any name with no matching glow track.
+	/// </summary>
+	private void SyncGlowAnimation()
 	{
-		var node = scene.GetNodeOrNull<MeshInstance2D>(nodeName);
+		var name = _sprite?.TryGetAnimationState()?.GetCurrentAnimationName();
+		if (name != null && _glowPlayer != null && _glowPlayer.HasAnimation(name))
+			_glowPlayer.Play(name);
+	}
+
+	private ShaderMaterial? MakeUniqueMaterial<T>(string uniquePath) where T : CanvasItem
+	{
+		var node = GetNodeOrNull<T>(uniquePath);
 		if (node?.Material is not ShaderMaterial shared)
 			return null;
 

@@ -23,6 +23,6 @@ public class HiredGuards : CollectorCardModel
         var player = cardPlay.Target?.Player;
         if (player == null) return;
         await CollectorCmd.Kindle(ctx, player, this);
-        await DownfallCardCmd.GiveCard<Ember>(player, PileType.Hand);
+        await DownfallCardCmd.GiveCard<Ember>(player, PileType.Hand, creator: Owner);
     }
 }

@@ -34,6 +34,8 @@ public abstract class Artist
     }
 }
 
+public class Fulgur : Artist;
+
 public class AlexMdle : Artist;
 
 public class Claude27A : Artist;

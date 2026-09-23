@@ -81,7 +81,7 @@ public static class HexaghostVisualsBridge
 
         var ignited = wheel.Count(f => f.IsIgnited);
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        var bodyVisuals = creatureNode?.GetSpecialNode<NHexaghostVisuals>("%Hexaghost");
+        var bodyVisuals = creatureNode?.GetSpecialNode<NHexaghostVisuals>("%Visuals");
         bodyVisuals?.SetIgnitedCount(ignited);
     }
 

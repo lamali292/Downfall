@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -22,6 +23,8 @@ public class VexingDraughtPotion : AutomatonPotionModel
         WithTip<Burn>();
         WithTip(AutomatonTip.Stash);
     }
+    
+    protected override Artist Artist => Artist.Get<Fulgur>();
 
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
