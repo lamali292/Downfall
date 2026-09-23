@@ -69,7 +69,9 @@ public class DownfallPatchManager
             .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
             .Add(typeof(PersonalHivePowerExemptPatch))
-            .Add(typeof(ScrollBoxesCustomBundlePatch));
+            .Add(typeof(ScrollBoxesCustomBundlePatch))
+            .Add(typeof(CardCanPlayCustomReasonPatch))
+            .Add(typeof(UnplayableReasonDialogueLinePatch));
 
         patcher.Add(typeof(KaleidoscopePoolFilter))
             .Add(typeof(RunConfigSyncHook))
