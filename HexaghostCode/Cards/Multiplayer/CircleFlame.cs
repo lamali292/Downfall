@@ -31,7 +31,7 @@ public class CircleFlame : HexaghostCardModel, IHasAfterlifeEffect
     {
         var target = cardPlay?.Target ?? CombatState?.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         await MyCommonActions.Apply<SoulBurnPower>(ctx, this, target);
-        await HexaghostCmd.SoulburnEffect(target);
+        await SoulBurnPower.SoulburnEffect(target);
         if (!wasExhausted) return;
         var player = Owner.RandomOtherTeammate;
         if (player == null) return;

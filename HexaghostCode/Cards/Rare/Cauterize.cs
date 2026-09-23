@@ -27,7 +27,7 @@ public class Cauterize : HexaghostCardModel
         var scale = 0.8f;
         var attack = await CommonActions.CardAttack(this, cardPlay, hits).BeforeDamage(async () =>
             {
-                await HexaghostCmd.SoulburnEffect(cardPlay.Target, scale);
+                await SoulBurnPower.SoulburnEffect(cardPlay.Target, scale);
                 scale += 0.1f;
             })
             .Execute(ctx);

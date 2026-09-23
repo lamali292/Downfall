@@ -6,7 +6,6 @@ using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
-using SlimeBoss.SlimeBossCode.Patches;
 using Char = Collector.CollectorCode.Cards.Common.Char;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 

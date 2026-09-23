@@ -1,6 +1,7 @@
 using BaseLib.Cards.Variables;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -33,7 +34,7 @@ public class UnleashSpirits : HexaghostCardModel
         var scale = 0.8f;
         await CommonActions.CardAttack(this, cardPlay, (int)repeat).BeforeDamage(async () =>
         {
-            await HexaghostCmd.SoulburnEffect(cardPlay.Target, scale);
+            await SoulBurnPower.SoulburnEffect(cardPlay.Target, scale);
             scale += 0.1f;
         }).Execute(ctx);
     }
