@@ -15,6 +15,8 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
     {
         WithTip(CardKeyword.Unplayable);
         WithHpLoss(50, 16);
+        WithKeyword(CardKeyword.Innate);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
