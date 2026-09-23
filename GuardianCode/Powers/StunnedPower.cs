@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Abstract;
+using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,9 +8,9 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Downfall.DownfallCode.Powers;
+namespace Guardian.GuardianCode.Powers;
 
-public class StunnedPower() : DownfallPowerModel(PowerType.Debuff, PowerStackType.Single)
+public class StunnedPower() : GuardianPowerModel(PowerType.Debuff, PowerStackType.Single)
 {
     public override decimal ModifyHandDraw(Player player, decimal count)
     {

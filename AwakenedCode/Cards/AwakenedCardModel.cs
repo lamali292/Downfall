@@ -3,7 +3,7 @@ using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Powers;
+using Awakened.AwakenedCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;

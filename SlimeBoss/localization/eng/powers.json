@@ -52,5 +52,14 @@
   "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "\"Tackle\" cards deal [blue]{Amount}[/blue] additional damage to you.",
   "SLIMEBOSS-GOOP_POWER.remoteDescription": "The next attack of [orange]{ApplierName}[/orange] deals [blue]{Amount}[/blue] additional damage and triggers [gold]Consume[/gold] effects.",
   "SLIMEBOSS-OOZE_BATH_POWER.remoteDescription": "Gains [blue]{Amount}[/blue] [gold]Goop[/gold] from [orange]{ApplierName}[/orange] at the start of their turn.",
-  "SLIMEBOSS-DOUSE_IN_SLIME_POWER.remoteDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} [orange]{ApplierName}[/orange] attacks this enemy, their [gold]Goop[/gold] wil not be removed."
+  "SLIMEBOSS-DOUSE_IN_SLIME_POWER.remoteDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} [orange]{ApplierName}[/orange] attacks this enemy, their [gold]Goop[/gold] wil not be removed.",
+  "SLIMEBOSS-ENERGIZED_POWER.title": "Energized",
+  "SLIMEBOSS-ENERGIZED_POWER.description": "At the start of your turn, gain {energyPrefix:energyIcons(1)}.",
+  "SLIMEBOSS-ENERGIZED_POWER.smartDescription": "At the start of your turn, gain {Amount:energyIcons()}.",
+  "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.title": "Next Turn Strength",
+  "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.description": "Next turn, gain [gold]Strength[/gold].",
+  "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.smartDescription": "Next turn, {Amount:cond:>0?gain [blue]{Amount}[/blue]|lose [blue]{NAmount}[/blue]} [gold]Strength[/gold].",
+  "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.title": "Next Turn Slime Crush",
+  "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.description": "At the start of your next turn, add [gold]Slime Crush!!![/gold] into your [gold]Hand[/gold].",
+  "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, add [gold]Slime Crush!!![/gold] into your [gold]Hand[/gold]."
 }

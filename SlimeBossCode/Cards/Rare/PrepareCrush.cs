@@ -1,10 +1,10 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
@@ -23,11 +23,9 @@ public class PrepareCrush : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var a = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this, 1);
-        var card = CombatState?.CreateCard<SlimeCrush>(Owner);
-        if (card == null || a == null) return;
-        if (IsUpgraded) card.UpgradeInternal();
-        a.Card = card;
+        var power = await CommonActions.ApplySelf<SlimeCrushNextTurnPower>(ctx, this, 1);
+        if (power == null) return;
+        power.CreateUpgraded = IsUpgraded;
         await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this);
         await CommonActions.ApplySelf<StrengthNextTurnPower>(ctx, this);
     }

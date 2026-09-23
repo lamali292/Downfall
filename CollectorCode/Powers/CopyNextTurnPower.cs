@@ -1,4 +1,4 @@
-﻿using Downfall.DownfallCode.Abstract;
+using Collector.CollectorCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,9 +9,9 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Downfall.DownfallCode.Powers;
+namespace Collector.CollectorCode.Powers;
 
-public class CopyNextTurnPower : DownfallPowerModel
+public class CopyNextTurnPower : CollectorPowerModel
 {
     public CardModel? Card;
     public Action<CardModel>? OnAdd;

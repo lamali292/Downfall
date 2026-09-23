@@ -102,5 +102,8 @@
   "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "Whenever [orange]{ApplierName}[/orange] attacks this enemy, they gain [blue]{Amount}[/blue] [gold]Strength[/gold] for one turn.",
   "AWAKENED-SACRAMENTAL_WINE_POWER.title": "Sacramental Wine",
   "AWAKENED-SACRAMENTAL_WINE_POWER.description": "Whenever you play a Power, gain [gold]Block[/gold]. ",
-  "AWAKENED-SACRAMENTAL_WINE_POWER.smartDescription": "Whenever you play a Power, gain [blue]{Amount}[/blue] [gold]Block[/gold]. "
+  "AWAKENED-SACRAMENTAL_WINE_POWER.smartDescription": "Whenever you play a Power, gain [blue]{Amount}[/blue] [gold]Block[/gold]. ",
+  "AWAKENED-DRAINED_POWER.title": "Drained",
+  "AWAKENED-DRAINED_POWER.description": "Gain less {energyPrefix:energyIcons(1)} next turn.",
+  "AWAKENED-DRAINED_POWER.smartDescription": "Gain [blue]{Amount}[/blue] less {energyPrefix:energyIcons(1)} next turn."
 }
