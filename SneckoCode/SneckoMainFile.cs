@@ -18,8 +18,8 @@ public static class SneckoMainFile
 
     public static void Initialize()
     {
-        CardExecutionRegistry.RegisterBefore(SneckoCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionRegistry.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
+        CardExecutionHooks.RegisterBefore(SneckoCardEffectHandler.DoBeforeOnPlayInternal);
+        CardExecutionHooks.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<SneckoCardPool>(VotingPool.Snecko);
 

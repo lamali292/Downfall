@@ -28,8 +28,8 @@ public static class HexaghostMainFile
     {
         PostInitRegistry.Register(PostModelInit);
         RichTextEffectRegistry.Register<RichTextAfterlife>();
-        CardExecutionRegistry.RegisterBefore(HexaghostCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionRegistry.RegisterAfter(HexaghostCardEffectHandler.DoAfterOnPlayInternal);
+        CardExecutionHooks.RegisterBefore(HexaghostCardEffectHandler.DoBeforeOnPlayInternal);
+        CardExecutionHooks.RegisterAfter(HexaghostCardEffectHandler.DoAfterOnPlayInternal);
         CustomLocTableManager.Register("ghostflames");
         HexaghostSubscriber.Subscribe();
 
