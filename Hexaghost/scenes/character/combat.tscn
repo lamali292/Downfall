@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 ]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_y3h38"]
-[ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/hexaghost_main.tscn" id="2_6yrk5"]
+[ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/hexaghost.tscn" id="2_6yrk5"]
 
 [node name="HexaghostCombat" type="Node2D"]
 script = ExtResource("1_y3h38")
@@ -11,13 +11,8 @@ unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="Visuals" parent="." instance=ExtResource("2_6yrk5")]
 unique_name_in_owner = true
-position = Vector2(2, -190)
-
-[node name="Hexaghost" parent="Visuals" instance=ExtResource("2_6yrk5")]
-unique_name_in_owner = true
-scale = Vector2(0.6, 0.6)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

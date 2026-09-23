@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Extensions;
@@ -20,6 +21,8 @@ public class QuantumElixir : GuardianPotionModel
         WithTip(GuardianTip.Stasis);
     }
 
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         var rng = Owner.RunState.Rng.CombatCardSelection;

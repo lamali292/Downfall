@@ -41,7 +41,6 @@ public class DownfallPatchManager
             .Add(typeof(NCardUpdateTypePlaquePatch))
             .Add(typeof(NCreatureAnimationPatch))
             .Add(typeof(RefreshConditionalNextStatesPatch))
-            .Add(typeof(FakeMerchantAnimationPatch))
             .Add(typeof(PluralRulesPatch))
             .Add(typeof(TranscendenceTransformationPatch))
             .Add(typeof(CardModifierGlowGoldPatch))

@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Cards.Common;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace Downfall.TestCode;
@@ -56,5 +57,31 @@ public class AwakenedTests
         AutoSlayLog.Info($"[AwakenedTests] hymnInHand={ctx.Player.Hand.Contains(hymn)}");
         Assert.IsTrue(!ctx.Player.Hand.Contains(hymn),
             "Clutch should not pick a card that Snecko Eye randomized to a non-zero cost.");
+    }
+
+    // Regression guard: reported by a player - Vigor's damage bonus was only applying to Recitation's
+    // base attack, not to the extra attack triggered by Chant, even though both hits are shown on the
+    // card and should each get the bonus. Root cause was that the chant used a second, separate
+    // AttackCommand - Vigor is consumed after one AttackCommand.Execute(), so only the first hit got
+    // it. Fixed by dealing both hits from a single AttackCommand (hitCount: 2) when chanting.
+    // HasChanted is set directly (rather than playing a Power first) so this isolates Vigor's
+    // per-hit behavior from unrelated turn state.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task VigorAppliesToBothRecitationHitsWhenChanted(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var startHp = enemy.CurrentHp;
+
+        await PowerCmd.Apply<VigorPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 5,
+            ctx.Player.Creature, null);
+
+        var recitation = (Recitation)await ctx.AddCardToHand<Recitation>();
+        recitation.HasChanted = true;
+        await ctx.PlayCard(recitation, enemy);
+
+        var totalDamage = startHp - enemy.CurrentHp;
+        Assert.AreEqual(22, totalDamage,
+            "Vigor should boost both the base attack and the chant-triggered attack from Recitation " +
+            "((6 base + 5 vigor) * 2 hits = 22).");
     }
 }

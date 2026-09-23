@@ -871,6 +871,7 @@ script = ExtResource("1_ip2ae")
 unique_name_in_owner = true
 
 [node name="SmokeParticles" type="GPUParticles2D" parent="HexaghostScene"]
+visible = false
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_7lyxx")
 position = Vector2(-9, 10)

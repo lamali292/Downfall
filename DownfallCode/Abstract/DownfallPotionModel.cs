@@ -13,9 +13,17 @@ public abstract class DownfallPotionModel : ConstructedPotionModel
         WithTips(e => e is DownfallPotionModel { Artist: not null } card ? [card.Artist.HoverTip] : []);
     }
 
-    protected string IconName => Id.Entry
-        .RemovePrefix()
-        .ToLowerInvariant();
+    protected string IconName
+    {
+        get
+        {
+            var name = Id.Entry
+                .RemovePrefix()
+                .ToLowerInvariant();
+            // I wanted to name all potion classes WhateverPotion. but I forgor.
+            return name.EndsWith("_potion") ? name : $"{name}_potion";
+        }
+    }
 
     protected virtual Artist? Artist => null;
 

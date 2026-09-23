@@ -3,6 +3,7 @@ using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Stance;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -22,6 +23,8 @@ public class BottledTechnique : ChampPotionModel
         // WithTip(ChampTip.Stance);
     }
 
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    
     public override bool PassesCustomUsabilityCheck
     {
         get

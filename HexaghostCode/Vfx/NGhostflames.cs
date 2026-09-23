@@ -69,7 +69,7 @@ internal static class GhostflameLayout
         return Vector2.Up * 130f * scaleY + Vector2.Left * 33f * scaleX;
     }
 
-    /// Fallback ring centre when the HexaghostScene node can't be found.
+    /// Fallback ring centre when the Spine "core" bone can't be found.
     public static Vector2 FallbackCenter(Vector2 creatureGlobal, float scaleY)
     {
         return creatureGlobal + Vector2.Up * 170f * scaleY;
@@ -97,7 +97,6 @@ public partial class NGhostflames : Control
     private NFire?[] _fires = [];
 
     private PackedScene? _fireScene;
-    private Node2D? _hexaCenter; // %HexaghostScene inside the creature visuals — the ring's centre
     private Node2D?[] _hitboxAnchors = [];
     private Control?[] _hitboxes = [];
     private NIntent?[] _intents = [];
@@ -290,11 +289,6 @@ public partial class NGhostflames : Control
         _vfxContainer = vfxContainer;
         _ungatedProcessTime = 0;
 
-        _hexaCenter = creatureNode.FindChild("HexaghostScene", true, false) as Node2D;
-        if (_hexaCenter == null)
-            HexaghostMainFile.Logger.Warn(
-                $"[Ghostflames #{Id}] HexaghostScene not found; falling back to creature-origin offset");
-
         DownfallControllerNav.LinkAbove(_reachableHitboxes, creatureNode.Hitbox);
     }
 
@@ -356,14 +350,12 @@ public partial class NGhostflames : Control
         var scaleY = GhostflameLayout.ExtraScale(ct.Scale.Y, containerScale.Y, _creatureNode._tempScale);
         Scale = new Vector2(scaleX, scaleY);
 
-        // Track may have run before the visuals subtree finished entering the tree,
-        // so lazily retry the lookup while it's unresolved.
-        if (_hexaCenter == null || !IsInstanceValid(_hexaCenter))
-            _hexaCenter = _creatureNode.FindChild("HexaghostScene", true, false) as Node2D;
-
-        var globalCenter = _hexaCenter != null && IsInstanceValid(_hexaCenter)
-            ? _hexaCenter.GlobalPosition
-            : GhostflameLayout.FallbackCenter(_creatureNode.GlobalPosition, scaleY);
+        // Ring anchor is the Spine "core" bone's live, animated global position. Only
+        // missing for the brief window before the skeleton finishes loading (async) or
+        // for off-class wheels with no such bone, where we fall back to a fixed offset.
+        var coreBoneCenter = _creatureNode.Visuals?.SpineBody?.GetGlobalBoneTransform("hexacore")?.Origin;
+        var globalCenter = coreBoneCenter
+            ?? GhostflameLayout.FallbackCenter(_creatureNode.GlobalPosition, scaleY);
 
         Position = _vfxContainer.GetGlobalTransform().AffineInverse() * globalCenter;
 

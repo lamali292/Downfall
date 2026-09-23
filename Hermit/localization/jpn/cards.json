@@ -102,7 +102,7 @@
     "HERMIT-GESTALT.title": "ゲシュタルト",
     "HERMIT-GESTALT.description": "[gold]堅牢[/gold]{RuggedPower:diff()}を得る。\n[gold]弱体[/gold]{VulnerablePower:diff()}を得る。",
     "HERMIT-ROUNDHOUSE_KICK.title": "回し蹴り",
-    "HERMIT-ROUNDHOUSE_KICK.description": "すべての敵に{Damage:diff()}ダメージを与える。\nすべての敵はこのターン、[gold]筋力[/gold]を{RoundhouseKickPower:diff()}失う。",
+    "HERMIT-ROUNDHOUSE_KICK.description": "すべての敵に{Damage:diff()}ダメージを与える。\nターン終了時まですべての敵は[gold]筋力[/gold]{RoundhouseKickPower:diff()}を失う。",
     "HERMIT-CURSED_WEAPON.title": "呪いの武器",
     "HERMIT-CURSED_WEAPON.description": "HPを{HpLoss:diff()}失う。\n{Damage:diff()}ダメージを与える。\nすべての[gold]呪いの武器[/gold]のダメージを永続的に{Increase:diff()}増加させる。",
     "HERMIT-ENERVATE.title": "エネルベート",

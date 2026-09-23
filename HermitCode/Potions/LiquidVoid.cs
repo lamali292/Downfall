@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.CustomEnums;
+﻿using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,6 +14,8 @@ public class LiquidVoid() : HermitPotionModel(PotionRarity.Rare, PotionUsage.Com
 {
     public override bool CanBeGeneratedInCombat => false;
 
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 1);

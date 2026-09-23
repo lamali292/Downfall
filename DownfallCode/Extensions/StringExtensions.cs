@@ -174,6 +174,14 @@ public static class StringExtensions
 				() => FallbackScene(primaryPath, "afflictions", "todo_affliction.tscn"));
 		}
 
+		public string RestSiteScenePath(string modId)
+		{
+			var primaryPath = $"res://{ScenePath(modId, "character", path)}";
+			return WithFallback(
+				primaryPath,
+				() => "res://Downfall/scenes/character/error_rest_site.tscn");
+		}
+
 
 		public string? ArtistImagePath()
 		{

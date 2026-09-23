@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,6 +17,8 @@ public class LiquidAccelerant : GuardianPotionModel
         WithTip(GuardianTip.Accelerate);
         WithTip(GuardianTip.Stasis);
     }
+    
+    protected override Artist Artist => Artist.Get<Fulgur>();
 
     protected override Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {

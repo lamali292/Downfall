@@ -2,6 +2,7 @@
 using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Extensions.Potions;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,6 +21,8 @@ public class UnholyWater : AwakenedPotionModel
         WithPower<ManaburnPower>(7);
         WithTip(AwakenedTip.Drained.WithVars(new EnergyVar(1)));
     }
+    
+    protected override Artist Artist => Artist.Get<Fulgur>();
     
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {

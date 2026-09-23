@@ -36,7 +36,7 @@
   "SNECKO-SNECKO_CHOICE.title": "{character}'s Blessing",
   "SNECKO-SNECKO_CHOICE.description": "You now gain cards from [blue]{borrowed}[/blue] in [gold]Gift[/gold] rewards.",
   "SNECKO-SNECKO_CHOICE.flavor": "",
-  "SNECKO-VIPER_SKULL.title": "ViperSkull",
+  "SNECKO-VIPER_SKULL.title": "Viper Skull",
   "SNECKO-VIPER_SKULL.description": "At the start of each combat, apply [blue]{VenomPower}[/blue] [gold]Venom[/gold] to ALL enemies.",
   "SNECKO-VIPER_SKULL.flavor": ""
 }

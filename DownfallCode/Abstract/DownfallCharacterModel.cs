@@ -83,7 +83,7 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
         $"{ModId}/images/character/character_icon_outline.png";
 
     public override string CustomTrailPath => $"res://{ModId}/scenes/character/card_trail.tscn";
-    public override string CustomRestSiteAnimPath => "res://Downfall/scenes/character/error_rest_site.tscn";
+    public override string CustomRestSiteAnimPath => "rest_site.tscn".RestSiteScenePath(ModId);
     public override string CustomMerchantAnimPath => $"res://{ModId}/scenes/character/merchant.tscn";
 
 
