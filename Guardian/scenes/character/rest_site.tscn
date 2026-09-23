@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 ]
+[gd_scene load_steps=5 format=3 uid="uid://cexubw0d0hka8"]
 
-[ext_resource type="SpineAtlasResource" path="res://Guardian/scenes/character/spine/rest/skeleton.atlas" id="1_28nbm"]
-[ext_resource type="SpineSkeletonFileResource" path="res://Guardian/scenes/character/spine/rest/skeleton.skel" id="2_iv45n"]
-[ext_resource type="PackedScene" path="res://scenes/ui/selection_reticle.tscn" id="3_unnpy"]
+[ext_resource type="SpineAtlasResource" uid="uid://dn2a8glhcwg0o" path="res://Guardian/scenes/character/spine/rest/skeleton.atlas" id="1_28nbm"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://bdjnp0rcs0q1h" path="res://Guardian/scenes/character/spine/rest/skeleton.skel" id="2_iv45n"]
+[ext_resource type="PackedScene" uid="uid://bgy88bk44xxvk" path="res://scenes/ui/selection_reticle.tscn" id="3_unnpy"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_c7q08"]
 atlas_res = ExtResource("1_28nbm")
@@ -14,7 +14,7 @@ scale = Vector2(0.76, 0.76)
 [node name="SpineSprite" type="SpineSprite" parent="."]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_c7q08")
 preview_skin = "default"
-preview_animation = "glory_loop"
+preview_animation = "overgrowth_loop"
 preview_frame = false
 preview_time = 0.0
 
