@@ -2,10 +2,13 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Voting;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Localization;
+using Hexaghost.HexaghostCode.Patches;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -31,6 +34,12 @@ public static class HexaghostMainFile
         HexaghostSubscriber.Subscribe();
 
         BundledSubmodLocRegistry.Register(ModId);
+        VotingPoolRegistry.Register<HexaghostCardPool>(VotingPool.Hexaghost);
+
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(NCreatureAnimationPatch))
+            .Add(typeof(PatchCreatureHoverTips))
+            .PatchAll();
     }
 
     private static void PostModelInit()

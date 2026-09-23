@@ -21,14 +21,14 @@ public class FlamesFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
         bool causedByEthereal)
     {
-        foreach (var soulBurnPower in CombatState!.HittableEnemies) await HexaghostCmd.SoulburnEffect(soulBurnPower);
+        foreach (var soulBurnPower in CombatState!.HittableEnemies) await SoulBurnPower.SoulburnEffect(soulBurnPower);
         await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await AfterlifeEffect(ctx, cardPlay, false, false);
-        foreach (var soulBurnPower in CombatState!.HittableEnemies) await HexaghostCmd.SoulburnEffect(soulBurnPower);
+        foreach (var soulBurnPower in CombatState!.HittableEnemies) await SoulBurnPower.SoulburnEffect(soulBurnPower);
         await MyCommonActions.ApplyToAllEnemies<SoulBurnPower>(ctx, this);
     }
 }

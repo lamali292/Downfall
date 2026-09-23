@@ -41,7 +41,7 @@ public class Sear : HexaghostCardModel, ITranscendenceCard, IHasAfterlifeEffect
         if (cardPlay.Target == null) return;
 
         await CommonActions.CardAttack(this, cardPlay).BeforeDamage(() =>
-            HexaghostCmd.SoulburnEffect(cardPlay.Target)).Execute(ctx);
+            SoulBurnPower.SoulburnEffect(cardPlay.Target)).Execute(ctx);
         await AfterlifeEffect(ctx, cardPlay, false, false);
     }
 }

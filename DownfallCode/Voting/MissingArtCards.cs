@@ -1,13 +1,5 @@
-using Automaton.AutomatonCode.Core;
-using Awakened.AwakenedCode.Core;
-using Champ.ChampCode.Core;
-using Guardian.GuardianCode.Core;
-using Hermit.HermitCode.Core;
-using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
-using SlimeBoss.SlimeBossCode.Core;
-using Snecko.SneckoCode.Core;
 
 namespace Downfall.DownfallCode.Voting;
 
@@ -39,20 +31,7 @@ public static class MissingArtCards
 
     public static bool TryGetPool(CardModel? card, out VotingPool pool)
     {
-        switch (card?.Pool)
-        {
-            case AutomatonCardPool: pool = VotingPool.Automaton; return true;
-            case AwakenedCardPool:  pool = VotingPool.Awakened;  return true;
-            case ChampCardPool:     pool = VotingPool.Champ;     return true;
-            case GuardianCardPool:  pool = VotingPool.Guardian;  return true;
-            case HermitCardPool:    pool = VotingPool.Hermit;    return true;
-            case HexaghostCardPool: pool = VotingPool.Hexaghost; return true;
-            case SlimeBossCardPool: pool = VotingPool.Slimeboss; return true;
-            case SneckoCardPool:    pool = VotingPool.Snecko;    return true;
-            default:
-                pool = default;
-                return false;
-        }
+        return VotingPoolRegistry.TryGetPool(card?.Pool?.GetType(), out pool);
     }
 
     public static bool IsAncient(ArtData? category) => category?.Card?.Rarity == CardRarity.Ancient;

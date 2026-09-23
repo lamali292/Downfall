@@ -27,13 +27,13 @@ using Vector2 = Godot.Vector2;
 namespace Hexaghost.HexaghostCode.Core;
 
 // GhostflameModel.cs
-public abstract class GhostflameModel : AbstractModel, ICustomModel
+public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbstractModel
 {
-    private GhostflameModel? _canonicalInstance;
+    Creature ICustomAbstractModel.Creature => Owner.Creature;
+    Player ICustomAbstractModel.Player => Owner;
 
 
     private DynamicVarSet? _dynamicVars;
-    private Player? _owner;
     public override bool ShouldReceiveCombatHooks => true;
     public abstract AbstractIntent Intent { get; }
     protected bool IsActive => HexaghostCmd.GetCurrentFlame(Owner) == this;
@@ -88,12 +88,12 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
         get
         {
             AssertMutable();
-            return _owner!;
+            return field!;
         }
         private set
         {
             AssertMutable();
-            _owner = _owner == null || _owner == value
+            field = field == null || field == value
                 ? value
                 : throw new InvalidOperationException($"Cannot move ghostflame {Id.Entry} from one owner to another");
         }
@@ -101,11 +101,11 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel
 
     private GhostflameModel CanonicalInstance
     {
-        get => !IsMutable ? this : _canonicalInstance!;
+        get => !IsMutable ? this : field!;
         set
         {
             AssertMutable();
-            _canonicalInstance = value;
+            field = value;
         }
     }
 
