@@ -1,6 +1,4 @@
-﻿using Downfall.DownfallCode.Powers;
-
-using Gremlins.GremlinsCode.Core;
+﻿using Gremlins.GremlinsCode.Core;
 using Gremlins.GremlinsCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;

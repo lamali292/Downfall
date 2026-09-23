@@ -1,10 +1,10 @@
-﻿using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
+using SlimeBoss.SlimeBossCode.Core;
 
-namespace Downfall.DownfallCode.Powers;
+namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class EnergizedPower : DownfallPowerModel
+public class EnergizedPower : SlimeBossPowerModel
 {
     public override string CustomPackedIconPath => EnergyIconHelper.GetPath(this);
 

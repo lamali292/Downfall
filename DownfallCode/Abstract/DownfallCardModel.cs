@@ -76,11 +76,6 @@ public abstract class DownfallCardModel
         return WithVar(new RepeatVar(baseVal).WithUpgrade(upgradeVal));
     }
 
-    protected ConstructedCardModel WithTempHp(int baseValue, int upgrade = 0)
-    {
-        return WithVars(new TempHpVar(baseValue).WithUpgrade(upgrade));
-    }
-
     protected ConstructedCardModel WithHpLoss(int baseVal, int upgrade = 0)
     {
         return WithVar(new HpLossVar(baseVal).WithUpgrade(upgrade));

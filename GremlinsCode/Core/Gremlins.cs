@@ -1,8 +1,11 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 
 using Godot;
 using Gremlins.GremlinsCode.Cards.Basic;
+using Gremlins.GremlinsCode.DynamicVars;
 using Gremlins.GremlinsCode.Relics;
 using Gremlins.GremlinsCode.Vfx;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -84,7 +87,13 @@ public abstract class GremlinsCardModel(
     TargetType targetType,
     bool showInCardLibrary = true,
     bool autoAdd = true)
-    : DownfallCardModel<Gremlins>(cost, type, rarity, targetType, showInCardLibrary, autoAdd);
+    : DownfallCardModel<Gremlins>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
+{
+    protected ConstructedCardModel WithTempHp(int baseValue, int upgrade = 0)
+    {
+        return WithVars(new TempHpVar(baseValue).WithUpgrade(upgrade));
+    }
+}
 
 public class GremlinsPotionPool : DownfallPotionPool<Gremlins>;
 

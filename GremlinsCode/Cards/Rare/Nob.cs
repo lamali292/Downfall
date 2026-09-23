@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using Gremlins.GremlinsCode.Core;
 using Gremlins.GremlinsCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,7 +17,7 @@ public class Nob : GremlinsCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCmd.GainTempHp(ctx, this);
+        await GremlinsCmd.GainTempHp(ctx, this);
         await CommonActions.ApplySelf<NobPower>(ctx, this);
     }
 }

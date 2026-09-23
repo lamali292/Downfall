@@ -131,5 +131,8 @@
   "COLLECTOR-GREMLIN_AXE_POWER.smartDescription": "Whenever you play a Skill, gain [blue]{Amount}[/blue] [gold]Vigor[/gold].",
   "COLLECTOR-PLAYER_SLIPPERY_POWER.title": "Slippery",
   "COLLECTOR-PLAYER_SLIPPERY_POWER.description": "When you would lose HP, reduce the amount lost to [blue]1[/blue].",
-  "COLLECTOR-PLAYER_SLIPPERY_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you would lose HP, reduce the amount lost to [blue]1[/blue]."
+  "COLLECTOR-PLAYER_SLIPPERY_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} you would lose HP, reduce the amount lost to [blue]1[/blue].",
+  "COLLECTOR-COPY_NEXT_TURN_POWER.title": "Gaining Card",
+  "COLLECTOR-COPY_NEXT_TURN_POWER.description": "At the start of your next turn, add a saved card into your [gold]Hand[/gold].",
+  "COLLECTOR-COPY_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, add [gold]{card}[/gold] into your [gold]Hand[/gold]."
 }

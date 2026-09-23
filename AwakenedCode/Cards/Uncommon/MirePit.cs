@@ -2,7 +2,7 @@ using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
+using Awakened.AwakenedCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;

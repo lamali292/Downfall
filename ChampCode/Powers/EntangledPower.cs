@@ -1,4 +1,4 @@
-﻿using Downfall.DownfallCode.Abstract;
+using Champ.ChampCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,9 +7,9 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Downfall.DownfallCode.Powers;
+namespace Champ.ChampCode.Powers;
 
-public class EntangledPower() : DownfallPowerModel(PowerType.Debuff, PowerStackType.Single)
+public class EntangledPower() : ChampPowerModel(PowerType.Debuff, PowerStackType.Single)
 {
     public override bool ShouldPlay(CardModel card, AutoPlayType autoPlayType)
     {

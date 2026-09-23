@@ -1,13 +1,13 @@
-﻿using Downfall.DownfallCode.Abstract;
+using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Downfall.DownfallCode.Powers;
+namespace Gremlins.GremlinsCode.Powers;
 
-public class TempHpPower : DownfallPowerModel
+public class TempHpPower : GremlinsPowerModel
 {
     private decimal _absorbed;
 
