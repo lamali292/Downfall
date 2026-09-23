@@ -18,7 +18,6 @@ public class Whomp : CollectorCardModel
         WithDamage(14, 3);
         WithKindle(11, 3);
         WithUpgradeChangingCardTip<Burn, Ember>(modifyUpgradedTipCard: (e, _) => CardCmd.Upgrade(e));
-        //WithUpgradeChangingCardTip<Burn, Ember>();
         WithKeyword(CardKeyword.Exhaust);
     }
 
@@ -29,7 +28,7 @@ public class Whomp : CollectorCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CollectorCmd.Kindle(ctx, this);
         if (IsUpgraded)
-            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue, CardPilePosition.Bottom, true);
+            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, 1, CardPilePosition.Bottom, true);
         else 
             await DownfallCardCmd.GiveCard<Burn>(Owner, PileType.Hand);
     }
