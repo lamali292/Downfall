@@ -15,7 +15,7 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class BramblesparKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
-    public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public BramblesparKindling() : base(3, CardType.Status, CardRarity.Common, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);

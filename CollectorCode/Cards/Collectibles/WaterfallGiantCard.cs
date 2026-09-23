@@ -12,7 +12,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>, ISkipReplayOnSelfExhaust
 {
-    public WaterfallGiantCard() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.88f)
+    public WaterfallGiantCard() : base(3, CardType.Status, CardRarity.Rare, TargetType.Self, 0.88f)
     {
         
         WithPower<WaterfallGiantCardPower>(3, false);
