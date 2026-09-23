@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Goodbye : CollectorCardModel
 {
-    public Goodbye() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public Goodbye() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithTip<MiasmaPower>();
@@ -23,11 +23,14 @@ public class Goodbye : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Target is not { IsAlive: true }) return;
-        var powerAmount = cardPlay.Target.GetPowerAmount<MiasmaPower>();
-        if (powerAmount <= 0)
-            return;
-        //if (IsUpgraded) powerAmount *= 2;
-        await PowerCmd.Apply<MiasmaPower>(ctx, cardPlay.Target, powerAmount, Owner.Creature, this);
+        if (CombatState == null) return;
+        var enemies = CombatState.HittableEnemies;
+        foreach (var e in enemies)
+        {
+            var powerAmount = e.GetPowerAmount<MiasmaPower>();
+            if (powerAmount <= 0)
+                continue;
+            await PowerCmd.Apply<MiasmaPower>(ctx, e, powerAmount, Owner.Creature, this);
+        }
     }
 }
