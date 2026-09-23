@@ -111,7 +111,6 @@ visible = false
 scale = Vector2(-0.76, 0.76)
 
 [node name="Awakened" parent="BgContainer/Character_4" instance=ExtResource("4_6jpnq")]
-visible = false
 scale = Vector2(-0.76, 0.76)
 
 [node name="Guardian" parent="BgContainer/Character_4" instance=ExtResource("5_6jpnq")]
@@ -136,6 +135,7 @@ visible = false
 scale = Vector2(-1, 1)
 
 [node name="Automaton" parent="BgContainer/Character_4" instance=ExtResource("3_rmow8")]
+visible = false
 scale = Vector2(-1, 1)
 
 [node name="Character_1" type="Control" parent="BgContainer"]
