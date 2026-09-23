@@ -14,7 +14,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class SunbloomKindling : CollectorCardModel
 {
-    public SunbloomKindling() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public SunbloomKindling() : base(3, CardType.Status, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);

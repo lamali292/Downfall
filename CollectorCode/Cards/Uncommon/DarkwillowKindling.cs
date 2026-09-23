@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class DarkwillowKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
-    public DarkwillowKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public DarkwillowKindling() : base(3, CardType.Status, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithKeyword(CardKeyword.Exhaust);
