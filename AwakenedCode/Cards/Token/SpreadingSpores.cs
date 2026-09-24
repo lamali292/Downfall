@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,6 +17,11 @@ public class SpreadingSpores : AwakenedCardModel
         WithKeywords(CardKeyword.Ethereal);
         WithPower<ThornsPower>(2, 2);
     }
+
+    public override Texture2D? CustomFrame =>
+        ResourceLoader.Load<Texture2D>("res://Awakened/images/dimension/train_power.png");
+
+    public override Material? CreateCustomFrameMaterial => ShaderUtils.GenerateHsv(1, 1, 1);
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

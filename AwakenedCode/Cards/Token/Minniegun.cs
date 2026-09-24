@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
+using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -16,6 +17,11 @@ public class Minniegun : AwakenedCardModel
         WithRepeat(5, 1);
         WithTip<Void>();
     }
+
+    public override Texture2D? CustomFrame =>
+        ResourceLoader.Load<Texture2D>("res://Awakened/images/dimension/attack_eden.png");
+
+    public override Material? CreateCustomFrameMaterial => ShaderUtils.GenerateHsv(1, 1, 1);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
