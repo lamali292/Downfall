@@ -26,7 +26,7 @@ public class MiddenHeap : AwakenedCardModel
         await CommonActions.CardBlock(this, cardPlay);
 
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, DynamicVars.Cards.IntValue);
-        var selected = await DownfallCardCmd.MulitPileSelect(ctx, Owner, prefs,
+        var selected = await DownfallCardSelectionCmd.MulitPileSelect(ctx, Owner, prefs,
             c => c.Type is CardType.Status or CardType.Curse, PileType.Draw, PileType.Discard);
         foreach (var cardModel in selected) await CardPileCmd.Add(cardModel, PileType.Hand);
     }

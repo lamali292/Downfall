@@ -26,7 +26,7 @@ public class HighFrequency : GuardianCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
+        var card = (await DownfallCardSelectionCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
             .FirstOrDefault();
         if (card == null) return;
 
