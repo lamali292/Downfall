@@ -15,13 +15,17 @@ public class EquipShieldPower : CollectorPowerModel
     {
         WithTip(StaticHoverTip.Block);
     }
-    
-        
+
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
         if (Owner.Player == null || command.Attacker != Owner.Player?.Torchhead) return;
-        //foreach (var damageResult in command.Results.SelectMany(e => e))
-        Flash();
-        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
+        // command.Results is one entry per hit, each containing one DamageResult per target
+        // that hit reached grant Block once per hit, not once per enemy hit.
+        var hits = command.Results.Count();
+        for (var i = 0; i < hits; i++)
+        {
+            Flash();
+            await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
+        }
     }
 }

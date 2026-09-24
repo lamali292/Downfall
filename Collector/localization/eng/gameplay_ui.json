@@ -1,4 +1,5 @@
 ﻿{
+  "COLLECTIBLE_CHOICE_REWARD": "Add {IsUpgraded:cond:an [gold]Upgraded[/gold] [gold]Collectible[/gold]|a [gold]Collectible[/gold]} card to your deck.",
   "COLLECTIBLE_REWARD": "Add [gold]{Card}[/gold] to your deck.",
   "PYRE_NO_TARGET": "I have nothing\nelse to [jitter][red]Pyre[/red][/jitter]!"
 }

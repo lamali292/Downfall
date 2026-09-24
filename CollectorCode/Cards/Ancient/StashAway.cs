@@ -14,25 +14,24 @@ public class StashAway : CollectorCardModel
 {
     public StashAway() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.Self)
     {
-        WithBlock(7, 2);
+        WithBlock(11, 1);
         WithKeyword(CollectorKeyword.Pyre);
-        WithReserve(1);
+        WithPower<ReserveNextTurnPower>(1, 1, false);
+        WithPower<DrawCardsNextTurnPower>(2, false);
+        //WithCards(2);
+        //WithReserve(1);
+        WithReserveTip();
         //WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
     
-    protected override bool HasEnergyCostX => true;
+    //protected override bool HasEnergyCostX => false;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var x = ResolveEnergyXValue();
-        for (var v = 0; v < (x+1); v++)
-        {
-            await CommonActions.CardBlock(this, cardPlay);
-        }
-        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this, x + 1);
-        if (!IsUpgraded) return;
-        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, x + 1);
+        await CommonActions.CardBlock(this, cardPlay);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
+        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);
     }
 }

@@ -19,6 +19,7 @@ public class FuelTheFire : CollectorCardModel, ITranscendenceCard
     {
         WithBlock(6, 2);
         WithPower<ReserveNextTurnPower>(1, false);
+        WithPower<DrawCardsNextTurnPower>(0, 1, false);
         WithReserveTip();
         WithKeyword(CollectorKeyword.Pyre);
     }
@@ -29,7 +30,7 @@ public class FuelTheFire : CollectorCardModel, ITranscendenceCard
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
-        if (IsUpgraded) await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, 1);
+        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);
     }
 
     public CardModel GetTranscendenceTransformedCard()

@@ -18,7 +18,6 @@ public class Whomp : CollectorCardModel
         WithDamage(14, 3);
         WithKindle(11, 3);
         WithUpgradeChangingCardTip<Burn, Ember>(null, (e, _) => CardCmd.Upgrade(e));
-        //WithUpgradeChangingCardTip<Burn, Ember>();
         WithKeyword(CardKeyword.Exhaust);
     }
 

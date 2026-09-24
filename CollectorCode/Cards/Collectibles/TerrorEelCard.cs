@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Patches;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,10 +13,11 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 public class TerrorEelCard
     : Collectible<TerrorEelElite>, ISkipReplayOnSelfExhaust
 {
-    public TerrorEelCard() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public TerrorEelCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
+        WithKindle(6, 3);
         WithPower<VulnerablePower>(3, 6);
     }
     
@@ -25,6 +27,7 @@ public class TerrorEelCard
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
+            await CollectorCmd.Kindle(ctx, this);
             await CommonActions.Apply<VulnerablePower>(ctx, CombatState.HittableEnemies, this);
         }
     }

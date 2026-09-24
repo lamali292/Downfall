@@ -1,38 +1,22 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Rewards;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Rooms;
 
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class TheContract() : CollectorRelicModel(RelicRarity.Uncommon)
+public class TheContract : CollectorRelicModel
 {
-    private bool ActivatedThisCombat
+    public TheContract() : base(RelicRarity.Uncommon)
     {
-        get;
-        set
-        {
-            AssertMutable();
-            field = value;
-        }
+        WithCards(5);
     }
-
-    public override Task AfterRoomEntered(AbstractRoom room)
+    
+    public override async Task AfterObtained()
     {
-        if (room is not CombatRoom) return Task.CompletedTask;
-        ActivatedThisCombat = false;
-        return Task.CompletedTask;
+        await RewardsCmd.OfferCustom(Owner, [new CollectibleChoiceReward(DynamicVars.Cards.IntValue, true, Owner)]);
     }
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (ActivatedThisCombat || cardPlay.Card.Owner != Owner || !cardPlay.Card.VisualCardPool.IsColorless)   return;
-        await PlayerCmd.GainEnergy(cardPlay.Resources.EnergySpent, Owner);
-        Flash();
-        ActivatedThisCombat = true;
-    }
+    
 }
