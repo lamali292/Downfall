@@ -23,6 +23,7 @@ public class Gather : AwakenedCardModel, IChantable
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var selected = await CommonActions.SelectSingleCard(this, DownfallCardSelectorPrefs.ToHandSelectionPrompt, ctx,
             PileType.Discard);
         if (selected == null) return;
