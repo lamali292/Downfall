@@ -10,7 +10,7 @@ public static class JustFuckingEnchant
     /// Be very careful using this method, it does not provide ANY checks for whether the card should be enchanted so will crash if the card already has an enchantment.
     /// You should almost always use CardCmd.Enchant instead of this method.
     /// </summary>
-    public static T? Enchant<T>(CardModel card, Decimal amount) where T : EnchantmentModel
+    public static T? Enchant<T>(CardModel card, decimal amount) where T : EnchantmentModel
     {
         return EnchantButGood(ModelDb.Enchantment<T>().ToMutable(), card, amount) as T;
     }
@@ -23,10 +23,10 @@ public static class JustFuckingEnchant
     /// <param name="amount"> The amount of stacks of this enchantment.</param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public static EnchantmentModel? EnchantButGood(
+    private static EnchantmentModel? EnchantButGood(
         EnchantmentModel enchantment,
         CardModel card,
-        Decimal amount)
+        decimal amount)
     {
         enchantment.AssertMutable();
         if (card.Enchantment == null)
@@ -38,10 +38,17 @@ public static class JustFuckingEnchant
         {
             card.Enchantment.Amount += (int)amount;
         }
+        else
+        {
+            return null;//Enchantment could not be applied.
+        }
         card.FinalizeUpgradeInternal();
-        CardPile pile = card.Pile;
-        if (pile != null && pile.Type == PileType.Deck)
-            card.Owner.RunState.CurrentMapPointHistoryEntry?.GetEntry(card.Owner.NetId).CardsEnchanted.Add(new CardEnchantmentHistoryEntry(card, enchantment.Id));
+        var pile = card.Pile;
+        if (pile is { Type: PileType.Deck })
+        {
+            card.Owner.RunState.CurrentMapPointHistoryEntry?.GetEntry(card.Owner.NetId).CardsEnchanted
+                .Add(new CardEnchantmentHistoryEntry(card, enchantment.Id));
+        }
         return card.Enchantment;
     }
 }
