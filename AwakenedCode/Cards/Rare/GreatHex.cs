@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.Interfaces;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -24,6 +25,7 @@ public class GreatHex : AwakenedCardModel, IChantable
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.Apply<GreatHexPower>(ctx, this, cardPlay);
     }
 }

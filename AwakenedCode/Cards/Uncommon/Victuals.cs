@@ -23,6 +23,7 @@ public class Victuals : AwakenedCardModel, IChantable
 
     public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 }
