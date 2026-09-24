@@ -17,10 +17,15 @@ public class RisingChorusPower : AwakenedPowerModel, IOnChant
     private int ChantThisTurn => CombatManager.Instance.History.Entries.OfType<ChantEntry>()
         .Count(e => e.HappenedThisTurn(CombatState) && e.FirstChantInSeries && e.Actor == Owner);
     
-    public async Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay, bool firstTime)
+    public async Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay, bool firstTime,
+        bool isFirstChantInSeries)
     {
         if (card.Owner.Creature != Owner || card is not IChantable) return;
-        if (ChantThisTurn <= Amount && firstTime)
+        // isFirstChantInSeries is false for the extra chant we trigger below - without that check
+        // we'd recurse forever. "firstTime" (the card's own first-ever chant) must NOT gate this:
+        // it stays false for cards that chanted in an earlier turn/play, which silently disabled
+        // Rising Chorus for those cards even though ChantThisTurn correctly tracks per-turn usage.
+        if (isFirstChantInSeries && ChantThisTurn <= Amount)
         {
             await AwakenedCmd.Chant(ctx, card, cardPlay, false);
         }
