@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,6 +16,11 @@ public class Crusher : AwakenedCardModel
         WithDamage(25, 5);
         WithKeywords(CardKeyword.Retain);
     }
+
+    public override Texture2D? CustomFrame =>
+        ResourceLoader.Load<Texture2D>("res://Awakened/images/dimension/grift_attack.png");
+
+    public override Material? CreateCustomFrameMaterial => ShaderUtils.GenerateHsv(1, 1, 1);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

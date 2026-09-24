@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,6 +21,11 @@ public class SignInBlood : AwakenedCardModel
         WithVars(new HpLossVar(2));
         WithCards(3, 1);
     }
+
+    public override Texture2D? CustomFrame =>
+        ResourceLoader.Load<Texture2D>("res://Awakened/images/dimension/towertactics_skill.png");
+
+    public override Material? CreateCustomFrameMaterial => ShaderUtils.GenerateHsv(1, 1, 1);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
