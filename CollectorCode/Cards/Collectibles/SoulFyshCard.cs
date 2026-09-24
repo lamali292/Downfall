@@ -34,9 +34,8 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        var calc = cardPlay.Target;
-        
+        const ValueProp unblockableDamage = ValueProp.Unblockable | ValueProp.Move;
         await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
-            DamageProps.cardHpLoss, Owner.Creature, this, cardPlay);
+            unblockableDamage, Owner.Creature, this, cardPlay);
     }
 }
