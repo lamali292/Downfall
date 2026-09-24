@@ -20,7 +20,11 @@ internal static class CardOverlayPatches
 
     internal static void Sync(NCard ncard)
     {
-        var existing = ncard.GetNodeOrNull<Control>(NodeName);
+        // Resolve the unique-named node directly instead of via ncard.OverlayContainer:
+        // Reload() can run (e.g. from NCard.Create -> set_Model) before _Ready has
+        // populated that cached field, while %-lookups work as soon as the node exists.
+        var overlayContainer = ncard.GetNode<Node>("%OverlayContainer");
+        var existing = overlayContainer.GetNodeOrNull<Control>(NodeName);
 
         if (ncard.Model is not ICardOverlay provider)
         {
@@ -34,7 +38,7 @@ internal static class CardOverlayPatches
             existing = provider.CreateCustomOverlay();
             existing.Name = NodeName;
             existing.MouseFilter = Control.MouseFilterEnum.Ignore;
-            ncard.AddChildSafely(existing);
+            overlayContainer.AddChildSafely(existing);
         }
 
         provider.UpdateOverlay(existing);
