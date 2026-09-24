@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class DecimillipedeCard : Collectible<DecimillipedeElite>, ISkipReplayOnSelfExhaust
 {
-    public DecimillipedeCard() : base(10, CardType.Status, CardRarity.Uncommon, TargetType.Self, 0.66f)
+    public DecimillipedeCard() : base(5, CardType.Status, CardRarity.Uncommon, TargetType.Self, 0.66f)
     {
         WithKindle(4, 1);
         WithBlock(5, 2);
