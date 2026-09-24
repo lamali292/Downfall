@@ -23,7 +23,7 @@ public static class ChampMainFile
 
     public static void Initialize()
     {
-        CardExecutionRegistry.RegisterAfter(ChampCardEffectHandler.DoAfterOnPlayInternal);
+        CardExecutionHooks.RegisterAfter(ChampCardEffectHandler.DoAfterOnPlayInternal);
         CustomLocTableManager.Register("champ_stances");
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new SkillBonusDescriptionSource());

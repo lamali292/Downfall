@@ -9,7 +9,7 @@
     "COLLECTOR-EMERALD_TORCH.description": "戦闘開始時、[gold]点火[/gold][blue]{Kindle:diff()}[/blue]。\n[gold]エリート[/gold]や[gold]ボス[/gold]を倒した時、カード報酬に追加で[gold]コレクト[/gold]カード1枚が加わる。",
     "COLLECTOR-EMERALD_TORCH.flavor": "強欲の炎は決して消えない。",
     "COLLECTOR-JADE_RING.title": "翡翠の指輪",
-    "COLLECTOR-JADE_RING.description": "敵は[gold]瘴気[/gold]からダメージを受けた後、受けているデバフの種類数だけ[gold]瘴気[/gold]が増加する。",
+    "COLLECTOR-JADE_RING.description": "敵は[gold]瘴気[/gold]からダメージを受けた後、受けているデバフ1種類につき[gold]瘴気[/gold]が1増加する。",
     "COLLECTOR-JADE_RING.flavor": "翡翠は誠実の象徴。",
     "COLLECTOR-KRAMPIAN_COAL.title": "クランピアンコール",
     "COLLECTOR-KRAMPIAN_COAL.description": "状態異常を1枚[gold]火葬[/gold]するたび、[gold]幸運の燃芯[/gold]を1枚[gold]手札[/gold]に加える。\n[red]呪い[/red]を1枚[gold]火葬[/gold]するたび、[gold]幸運の燃芯+[/gold]を1枚[gold]手札[/gold]に加える。",

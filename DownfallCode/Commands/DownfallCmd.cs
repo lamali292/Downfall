@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using Downfall.DownfallCode.Powers;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -37,30 +36,6 @@ public class DownfallCmd
     {
         return card.MyGetTargets(target).Any(c => c.Side == CombatSide.Enemy);
     }
-
-    public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card)
-    {
-        return GainTempHp(ctx, card, card.DynamicVars["TempHP"].BaseValue);
-    }
-
-    public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card, decimal tempHp)
-    {
-        return PowerCmd.Apply<TempHpPower>(ctx, card.Owner.Creature, tempHp, card.Owner.Creature,
-            card);
-    }
-
-    public static Task GainTempHp(PlayerChoiceContext ctx, Creature creature, decimal tempHp)
-    {
-        return PowerCmd.Apply<TempHpPower>(ctx, creature, tempHp, creature,
-            null);
-    }
-
-
-    public static int GetTempHpAmount(Creature creature)
-    {
-        return creature.GetPowerAmount<TempHpPower>();
-    }
-
 
     public static async Task EnemyAttackPlayer(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
     {

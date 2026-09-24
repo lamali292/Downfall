@@ -67,5 +67,11 @@
   "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Whenever you enter [gold]Defensive Mode[/gold], the ally with the least [gold]Block[/gold] gains[blue] {Amount}[/blue] [gold]Block [/gold]and [blue]{ThornsPower}[/blue] [gold]Thorns[/gold] this turn. ",
   "GUARDIAN-BASTION_POWER.title": "Bastion",
   "GUARDIAN-BASTION_POWER.description": "Whenever you [gold]Brace[/gold], all allies gain [gold]Block[/gold].",
-  "GUARDIAN-BASTION_POWER.smartDescription": "Whenever you [gold]Brace[/gold], all allies gain [blue]{Amount}[/blue] [gold]Block[/gold]."
+  "GUARDIAN-BASTION_POWER.smartDescription": "Whenever you [gold]Brace[/gold], all allies gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "GUARDIAN-STUNNED_POWER.title": "Stunned",
+  "GUARDIAN-STUNNED_POWER.description": "You can't play cards, draw cards or gain Energy this turn.",
+  "GUARDIAN-STUNNED_POWER.smartDescription": "You can't play cards, draw cards or gain Energy this turn.",
+  "GUARDIAN-NEXT_TURN_STUNNED_POWER.title": "Next Turn Stunned",
+  "GUARDIAN-NEXT_TURN_STUNNED_POWER.description": "Skip your next turn.",
+  "GUARDIAN-NEXT_TURN_STUNNED_POWER.smartDescription": "Skip your next [blue]{Amount}[/blue] turn."
 }

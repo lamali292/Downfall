@@ -2,7 +2,7 @@
 
 namespace Downfall.DownfallCode.Utils;
 
-public class ModCompat
+public class ModPresenceGate
 {
     public static async Task TryExecute(string modId, Func<Task> action)
     {

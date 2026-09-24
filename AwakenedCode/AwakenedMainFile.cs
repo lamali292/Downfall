@@ -27,7 +27,7 @@ public static class AwakenedMainFile
     {
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("chants");
-        CardExecutionRegistry.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlayInternal);
+        CardExecutionHooks.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AwakenedCardModel>(DescriptionInjectionPoint.BelowMainText,
             new ChantDescriptionSource());
 
