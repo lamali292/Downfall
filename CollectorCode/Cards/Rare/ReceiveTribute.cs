@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -35,7 +36,8 @@ public class ReceiveTribute : CollectorCardModel
         var card = await CardSelectCmd.FromChooseACardScreen(ctx, list, Owner, true);
         if (card == null)
             return;
-        CardCmd.Enchant<Steady>(card, DynamicVars.Enchantment<Steady>().IntValue);
+        
+        JustFuckingEnchant.Enchant<Steady>(card, DynamicVars.Enchantment<Steady>().IntValue);
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
     
