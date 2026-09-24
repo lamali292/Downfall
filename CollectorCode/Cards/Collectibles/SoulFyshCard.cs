@@ -14,7 +14,6 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
 
     {
         WithTip(CardKeyword.Unplayable);
-        //WithHpLoss(50, 16);
         WithDamage(50, 16);
         WithKeyword(CardKeyword.Retain);
         WithKeyword(CardKeyword.Exhaust);
@@ -36,7 +35,8 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
     {
         if (cardPlay.Target == null) return;
         var calc = cardPlay.Target;
-        await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.HpLoss.BaseValue,
+        
+        await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
             DamageProps.cardHpLoss, Owner.Creature, this, cardPlay);
     }
 }
