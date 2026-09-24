@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{908a9bd9-9dbe-4be9-a1df-9d4274063e31}">
+		<property name="assetPath">
+			<value>darkleech.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.4041496598639456</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{45c91dab-3678-4bc8-a8c0-dbc4c23da560}</destination>
+		</relationship>
+	</object>
+</objects>

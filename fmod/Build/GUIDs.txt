@@ -12,7 +12,13 @@
 {bfa231d3-c7a0-4395-bb21-4afdf4149043} bus:/master/sfx_ducking_big
 {b11fbba1-55fb-4bd5-834f-8b270282275f} event:/music/downfall_menu
 {967dc07c-40a1-4ead-a074-05b054215d2f} event:/sfx/characters/automaton-automaton/automaton-automaton_select
+{a63e2af2-dc50-419c-8995-5aa1b1a39d92} event:/sfx/characters/awakened-awakened/awakened-awakened_attack
 {48552819-831a-439c-bbec-9fb3c6ea95ec} event:/sfx/characters/awakened-awakened/awakened-awakened_select
+{f17b725f-881a-4cf4-b867-97ef6f4ea5dc} event:/sfx/characters/awakened-awakened/burning_study
+{8b73d680-9b9a-46b2-a5e4-f2dd12e444d4} event:/sfx/characters/awakened-awakened/chant
+{790f5a33-dcea-45fb-967e-54a2a58e8138} event:/sfx/characters/awakened-awakened/cryostasis
+{d7e4e29f-b2f5-452a-864b-180c4494730b} event:/sfx/characters/awakened-awakened/darkleech
+{ec169dd0-b164-4b25-8f5b-09099837eebd} event:/sfx/characters/awakened-awakened/thunderbolt
 {f59162b4-57c4-458a-b36c-fbceca9a6f47} event:/sfx/characters/champ-champ/champ-champ_select
 {05f286d9-dfac-4123-9792-a9fd84752d1b} event:/sfx/characters/champ-champ/charge
 {403eeedb-b80c-42dd-b93c-c894f8583d33} event:/sfx/characters/champ-champ/mockery
