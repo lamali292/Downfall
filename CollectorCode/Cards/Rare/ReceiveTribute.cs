@@ -35,7 +35,8 @@ public class ReceiveTribute : CollectorCardModel
         var card = await CardSelectCmd.FromChooseACardScreen(ctx, list, Owner, true);
         if (card == null)
             return;
-        CardCmd.Enchant<Steady>(card, DynamicVars.Enchantment<Steady>().IntValue);
+        if (ModelDb.Enchantment<Steady>().CanEnchant(card))
+            CardCmd.Enchant<Steady>(card, DynamicVars.Enchantment<Steady>().IntValue);
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
     

@@ -14,7 +14,7 @@ public class EquipShield : CollectorCardModel
 {
     public EquipShield() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<EquipShieldPower>(4, 2, false);
+        WithPower<EquipShieldPower>(3, 1, false);
         WithKindle(7, 3);
         WithTip(StaticHoverTip.Block);
     }

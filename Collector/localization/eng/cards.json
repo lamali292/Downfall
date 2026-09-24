@@ -57,9 +57,9 @@
   "COLLECTOR-FLASH.title": "Flash",
   "COLLECTOR-PYROCLASTIC_FLOW.description": "Draw {Cards:diff()} cards.\nChoose one of the drawn cards and [gold]Transform[/gold] it into an [gold]Ember[/gold].",
   "COLLECTOR-PYROCLASTIC_FLOW.title": "Pyroclastic Flow",
-  "COLLECTOR-FUEL_THE_FIRE.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}{IfUpgraded:show: and draw a card|}.",
+  "COLLECTOR-FUEL_THE_FIRE.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}.{IfUpgraded:show:\nNext turn, draw {DrawCardsNextTurnPower:diff()} {DrawCardsNextTurnPower:plural:card|cards}.|}",
   "COLLECTOR-FUEL_THE_FIRE.title": "Fuel the Fire",
-  "COLLECTOR-GOODBYE.description": "Double the enemy's [gold]Miasma[/gold].",
+  "COLLECTOR-GOODBYE.description": "Double ALL enemies' [gold]Miasma[/gold].",
   "COLLECTOR-GOODBYE.title": "Goodbye",
   "COLLECTOR-HOARD.description": "Draw cards until you have {Cards:diff()} in your [gold]Hand[/gold].\n[gold]Retain[/gold] your [gold]Hand[/gold] this turn.",
   "COLLECTOR-HOARD.title": "Hoard",
@@ -117,7 +117,7 @@
   "COLLECTOR-SOULFORGE.title": "Soulforge",
   "COLLECTOR-SPIRIT_LEECH.description": "Deal {Damage:diff()} damage.\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}.",
   "COLLECTOR-SPIRIT_LEECH.title": "Spirit Leech",
-  "COLLECTOR-STASH_AWAY.description": "Gain {Block:diff()} [gold]Block[/gold] X+1 times.\nNext turn, gain X+1 {Reserve:reserveIcons()}{IfUpgraded:show: and draw X+1 cards|}.",
+  "COLLECTOR-STASH_AWAY.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {ReserveNextTurnPower:reserveIcons()}.\nNext turn, draw {DrawCardsNextTurnPower:diff()} {DrawCardsNextTurnPower:plural:card|cards}.",
   "COLLECTOR-STASH_AWAY.title": "Stash Away",
   "COLLECTOR-STRIKE_COLLECTOR.description": "Deal {Damage:diff()} damage.",
   "COLLECTOR-STRIKE_COLLECTOR.title": "Strike",
@@ -183,7 +183,7 @@
   "COLLECTOR-VANTOM_CARD.description": "Gain {PlayerSlipperyPower:diff()} [gold]Slippery[/gold].",
   "COLLECTOR-AEONGLASS_CARD.description": "Deal damage equal to {ExtraDamage:diff()} times the number of cards played this combat.\nAt the start of your turn, this card costs 1 less {energyPrefix:energyIcons(1)}.\n{InCombat:cond:(Deal {CalculatedDamage:diff()} damage)|}",
   "COLLECTOR-SKULKING_COLONY_CARD.description": "Gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
-  "COLLECTOR-TERROR_EEL_CARD.description": "Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
+  "COLLECTOR-TERROR_EEL_CARD.description": "Kindle {Kindle:diff()}.\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "COLLECTOR-SOUL_FYSH_CARD.description": "Enemy loses {HpLoss:diff()} HP.\nCosts 1 less {energyPrefix:energyIcons(1)} for each [gold]Unplayable[/gold] card in your [gold]Hand[/gold]. ",
   "COLLECTOR-PHANTASMAL_GARDENER_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage {Repeat:diff()} times. ",
   "COLLECTOR-LAGAVULIN_MATRIARCH_CARD.description": "At the end of your {LagavulinMatriarchCardPower:plural:turn|next {:diff()} turns}, gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
@@ -270,5 +270,5 @@
   "COLLECTOR-ROTSHROOM.title": "Rotshroom",
   "COLLECTOR-ROTSHROOM.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "COLLECTOR-SLAG_TEAM.title": "Slag Team",
-  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nAdd a [gold]Soot[/gold] into your [gold]Hand[/gold].\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], return this to your [gold]Hand[/gold]."
+  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], return this to your [gold]Hand[/gold]."
 }
