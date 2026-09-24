@@ -20,8 +20,10 @@ public class EquipShieldPower : CollectorPowerModel
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
     {
         if (Owner.Player == null || command.Attacker != Owner.Player?.Torchhead) return;
-        //foreach (var damageResult in command.Results.SelectMany(e => e))
-        Flash();
-        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
+        foreach (var damageResult in command.Results.SelectMany(e => e))
+        {
+            Flash();
+            await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
+        }
     }
 }
