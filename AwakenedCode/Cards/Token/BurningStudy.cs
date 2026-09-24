@@ -39,6 +39,7 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePla
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        SfxCmd.Play("event:/sfx/characters/awakened-awakened/burning_study");
         if (CombatState == null) return;
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
         foreach (var combatStateEnemy in CombatState.Enemies)

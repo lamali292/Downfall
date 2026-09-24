@@ -43,7 +43,7 @@ public class Thunderbolt : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaq
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardAttack(this, cardPlay)
-            .WithHitFx("vfx/vfx_attack_lightning")
+            .WithHitFx("vfx/vfx_attack_lightning", "event:/sfx/characters/awakened-awakened/thunderbolt")
             .Execute(ctx);
     }
 }
