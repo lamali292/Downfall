@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,6 +21,6 @@ public class EdibleArmor : GremlinsCardModel
     {
         var block = Owner.Creature.Block;
         await CreatureCmd.LoseBlock(ctx, Owner.Creature, block, Owner.Creature);
-        await DownfallCmd.GainTempHp(ctx, this, block);
+        await GremlinsCmd.GainTempHp(ctx, this, block);
     }
 }

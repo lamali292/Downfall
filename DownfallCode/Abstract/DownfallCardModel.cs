@@ -38,9 +38,9 @@ public abstract class DownfallCardModel
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (await CardExecutionRegistry.BeforeOnPlayInternal(this, ctx, cardPlay)) return;
+        if (await CardExecutionHooks.BeforeOnPlayInternal(this, ctx, cardPlay)) return;
         await OnPlayInternal(ctx, cardPlay);
-        await CardExecutionRegistry.AfterOnPlayInternal(this, ctx, cardPlay);
+        await CardExecutionHooks.AfterOnPlayInternal(this, ctx, cardPlay);
     }
 
     protected ConstructedCardModel WithPower<T>(int baseVal, int upgrade,
@@ -74,11 +74,6 @@ public abstract class DownfallCardModel
     protected ConstructedCardModel WithRepeat(int baseVal, int upgradeVal = 0)
     {
         return WithVar(new RepeatVar(baseVal).WithUpgrade(upgradeVal));
-    }
-
-    protected ConstructedCardModel WithTempHp(int baseValue, int upgrade = 0)
-    {
-        return WithVars(new TempHpVar(baseValue).WithUpgrade(upgrade));
     }
 
     protected ConstructedCardModel WithHpLoss(int baseVal, int upgrade = 0)

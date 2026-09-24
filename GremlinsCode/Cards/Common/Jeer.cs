@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -21,6 +20,6 @@ public class Jeer : GremlinsCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var target = cardPlay.Target;
         if (target == null || target.Powers.All(e => e.Type != PowerType.Debuff)) return;
-        await DownfallCmd.GainTempHp(ctx, this);
+        await GremlinsCmd.GainTempHp(ctx, this);
     }
 }

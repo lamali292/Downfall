@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Commands;
-using Gremlins.GremlinsCode.Core;
+﻿using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,6 +13,6 @@ public class HecklePower : GremlinsPowerModel
         CardModel? cardSource)
     {
         if (applier != Owner || power.Type != PowerType.Debuff || power.Owner == Owner || amount <= 0) return;
-        await DownfallCmd.GainTempHp(ctx, Owner, Amount);
+        await GremlinsCmd.GainTempHp(ctx, Owner, Amount);
     }
 }

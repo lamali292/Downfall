@@ -23,8 +23,8 @@ public static class CollectorMainFile
     {
         PostInitRegistry.Register(PostModelInit);
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
-        CardExecutionRegistry.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionRegistry.RegisterAfter(CollectorCardEffectHandler.DoAfterPlayInternal);
+        CardExecutionHooks.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
+        CardExecutionHooks.RegisterAfter(CollectorCardEffectHandler.DoAfterPlayInternal);
         CustomUnplayableReasonRegistry.Register(new PyreUnplayableReason());
 
         BundledSubmodLocRegistry.Register(ModId);

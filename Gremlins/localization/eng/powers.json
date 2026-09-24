@@ -4,6 +4,7 @@
   "GREMLINS-WIZ_POWER.smartDescription": "When you have at least [blue]3[/blue] [gold]Wiz,[/gold] your next Attack deals [blue]{ExtraDamage:diff()}[/blue] additional damage. ",
   "GREMLINS-TEMP_HP_POWER.title": "Temp HP",
   "GREMLINS-TEMP_HP_POWER.description": "Until end of combat, prevents damage to HP.",
+  "GREMLINS-TEMP_HP_POWER.smartDescription": "Until end of combat, prevents [blue]{Amount}[/blue] damage to HP.",
   "GREMLINS-BASHED_POWER.title": "Bashed",
   "GREMLINS-BASHED_POWER.description": "Whenever you gain [gold]Block[/gold] this turn, this enemy loses HP.",
   "GREMLINS-BASHED_POWER.smartDescription": "Whenever you gain [gold]Block[/gold] this turn, this enemy loses [blue]{Amount}[/blue] HP",

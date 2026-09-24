@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -30,6 +29,6 @@ public class ImpeccablePecs : GremlinsRelicModel
         CardModel? cardSource)
     {
         if (power.Owner != Owner.Creature || power is not StrengthPower) return;
-        await DownfallCmd.GainTempHp(ctx, Owner.Creature, amount);
+        await GremlinsCmd.GainTempHp(ctx, Owner.Creature, amount);
     }
 }

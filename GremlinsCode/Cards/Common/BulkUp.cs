@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
 using Gremlins.GremlinsCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +15,7 @@ public class BulkUp : GremlinsCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCmd.GainTempHp(ctx, this);
+        await GremlinsCmd.GainTempHp(ctx, this);
         await GremlinsCmd.SwapToType<FatGremlin>(ctx, Owner);
     }
 }

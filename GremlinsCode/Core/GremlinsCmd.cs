@@ -1,4 +1,5 @@
 ﻿using Gremlins.GremlinsCode.Events;
+using Gremlins.GremlinsCode.Powers;
 using Gremlins.GremlinsCode.Vfx;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
@@ -20,6 +21,28 @@ namespace Gremlins.GremlinsCode.Core;
 public static class GremlinsCmd
 {
     private static readonly LocString NoGremlinSwap = new("combat_messages", "NO_GREMLIN_SWAP");
+
+    public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card)
+    {
+        return GainTempHp(ctx, card, card.DynamicVars["TempHP"].BaseValue);
+    }
+
+    public static Task GainTempHp(PlayerChoiceContext ctx, CardModel card, decimal tempHp)
+    {
+        return PowerCmd.Apply<TempHpPower>(ctx, card.Owner.Creature, tempHp, card.Owner.Creature,
+            card);
+    }
+
+    public static Task GainTempHp(PlayerChoiceContext ctx, Creature creature, decimal tempHp)
+    {
+        return PowerCmd.Apply<TempHpPower>(ctx, creature, tempHp, creature,
+            null);
+    }
+
+    public static int GetTempHpAmount(Creature creature)
+    {
+        return creature.GetPowerAmount<TempHpPower>();
+    }
 
     private static async Task SwitchGremlin(PlayerChoiceContext ctx, Player player, Creature gremlin,
         GremlinSwapType gremlinSwapType)

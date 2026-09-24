@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Downfall.DownfallCode.Utils;
 
-public static class CardExecutionRegistry
+public static class CardExecutionHooks
 {
     public delegate Task AfterPlayCallback(CardModel card, PlayerChoiceContext choiceContext, CardPlay cardPlay);
 
@@ -72,12 +72,12 @@ public static class MasterPatchOnPlayWrapper
                            ?? throw new Exception("Registry Error: Could not find CardModel.OnPlay");
 
         var code = AsyncMethodCall.Create(generator, instructions, original,
-            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(CardExecutionRegistry.BeforeOnPlayInternal)),
+            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(CardExecutionHooks.BeforeOnPlayInternal)),
             OnPlayInternalMethod,
             resultName: "returnIf");
 
         code = AsyncMethodCall.Create(generator, code, original,
-            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(CardExecutionRegistry.AfterOnPlayInternal)),
+            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(CardExecutionHooks.AfterOnPlayInternal)),
             afterState: OnPlayInternalMethod);
 
         return code;

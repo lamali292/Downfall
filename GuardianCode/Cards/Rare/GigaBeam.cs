@@ -1,8 +1,8 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
-using Downfall.DownfallCode.Powers;
 using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
