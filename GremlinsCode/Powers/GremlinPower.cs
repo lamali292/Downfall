@@ -46,8 +46,9 @@ public class GremlinPower()
     }
 
 
-    protected override async Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override async Task BeforeCardPlayed( CardPlay cardPlay)
     {
+        var ctx = new BlockingPlayerChoiceContext();
         var player = cardPlay.Card.Owner;
         if (Owner != player.Creature) return;
         var gremlin = GremlinsCmd.GetCurrentGremlin(player);

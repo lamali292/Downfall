@@ -22,7 +22,7 @@ public class RoundaboutSwing : SneckoCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
 
-        var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ToTopSelectionPrompt, this))
+        var card = (await DownfallCardSelectionCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ToTopSelectionPrompt, this))
             .FirstOrDefault();
         if (card != null) await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
         await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);

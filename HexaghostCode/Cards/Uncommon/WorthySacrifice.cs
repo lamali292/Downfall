@@ -25,7 +25,7 @@ public class WorthySacrifice : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cards = (await DownfallCardCmd.SelectFromHand(ctx, CardSelectorPrefs.ExhaustSelectionPrompt, this))
+        var cards = (await DownfallCardSelectionCmd.SelectFromHand(ctx, CardSelectorPrefs.ExhaustSelectionPrompt, this))
             .ToList();
         foreach (var card in cards) await CardCmdCompatibility.Exhaust(ctx, card);
 

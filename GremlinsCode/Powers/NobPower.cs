@@ -27,8 +27,9 @@ public class NobPower()
         return player.Creature != Owner || gremlin.Monster is GremlinNob;
     }
 
-    protected override async Task AfterApplied(PlayerChoiceContext ctx, Creature? applier, CardModel? cardSource)
+    public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
+        var ctx = new BlockingPlayerChoiceContext();
         var player = Owner.Player;
         if (player == null) return;
         GremlinsCmd.AddGremlin(player, ModelDb.Monster<GremlinNob>(), 20, 20);
@@ -49,8 +50,9 @@ public class NobPower()
     }
 
 
-    protected override async Task AfterRemoved(PlayerChoiceContext ctx, Creature oldOwner)
+    public override async Task AfterRemoved(Creature oldOwner)
     {
+        var ctx = new BlockingPlayerChoiceContext();
         if (Owner.Player == null) return;
         var a = GremlinsCmd.GetCurrentGremlin(Owner.Player);
         if (a is not { Monster: GremlinNob }) return;

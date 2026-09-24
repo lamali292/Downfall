@@ -1,10 +1,12 @@
-﻿using Gremlins.GremlinsCode.Events;
+﻿using BaseLib.Extensions;
+using Gremlins.GremlinsCode.Events;
 using Gremlins.GremlinsCode.Powers;
 using Gremlins.GremlinsCode.Vfx;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -193,7 +195,7 @@ public static class GremlinsCmd
     // GremlinsCmd
     public static void AddGremlin(Player player, MonsterModel model, int hp, int maxHp)
     {
-        var combatState = CombatManager.Instance._state;
+        var combatState = CombatManager.Instance.DebugOnlyGetState();
         if (combatState == null) return;
         if (player.PlayerCombatState == null) return;
 
@@ -226,6 +228,29 @@ public static class GremlinsCmd
         await SwitchGremlin(ctx, player, target, swapType);
         player.Creature.SetMaxHpInternal(target.MaxHp);
         player.Creature.SetCurrentHpInternal(target.CurrentHp);
+    }
+    
+    
+    public static async Task Steal<T>(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
+        where T : PowerModel
+    {
+        var targets = card.MyGetTargets(cardPlay.Target);
+        await Steal<T>(ctx, targets, card);
+    }
+
+    public static Task Steal<T>(PlayerChoiceContext ctx, Creature target, CardModel card)
+        where T : PowerModel
+    {
+        return Steal<T>(ctx, [target], card);
+    }
+
+    private static async Task Steal<T>(PlayerChoiceContext ctx, IEnumerable<Creature> targets, CardModel card)
+        where T : PowerModel
+    {
+        var a = card.DynamicVars.Power<T>().BaseValue;
+        var player = card.Owner.Creature;
+        await PowerCmd.Apply<T>(ctx, targets, -a, player, card);
+        await PowerCmd.Apply<T>(ctx, player, a, player, card);
     }
 }
 

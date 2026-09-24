@@ -32,7 +32,7 @@ public class FindAndReplace : AutomatonCardModel
         // The filter+pileTypes overload builds the card list itself, which - unlike handing it a
         // pre-built list - sorts the draw pile by rarity/id instead of showing its true (secret)
         // shuffle order.
-        var selected = (await DownfallCardCmd.MulitPileSelect(ctx, Owner, prefs, null,
+        var selected = (await DownfallCardSelectionCmd.MulitPileSelect(ctx, Owner, prefs, null,
             StashPile.Stash, PileType.Draw, PileType.Discard)).FirstOrDefault();
         var sourcePile = selected?.Pile;
         if (sourcePile == null || selected == null) return;

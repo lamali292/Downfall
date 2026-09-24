@@ -23,7 +23,7 @@ public class Return : AutomatonCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var selected =
-            (await DownfallCardCmd.SelectFromCombatPile(ctx, PileType.Discard.GetPile(Owner),
+            (await DownfallCardSelectionCmd.SelectFromCombatPile(ctx, PileType.Discard.GetPile(Owner),
                 DownfallCardSelectorPrefs.ToTopSelectionPrompt, this)).FirstOrDefault();
 
         if (selected != null) await CardPileCmd.Add(selected, PileType.Draw, CardPilePosition.Top);

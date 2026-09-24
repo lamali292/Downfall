@@ -155,6 +155,10 @@
         <Compile Include="ChampCode/**/*.cs"/>
         <AdditionalFiles Include="Champ/**/*"/>
     </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Gremlins'))">
+        <Compile Include="GremlinsCode/**/*.cs"/>
+        <AdditionalFiles Include="Gremlins/**/*"/>
+    </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Guardian'))">
         <Compile Include="GuardianCode/**/*.cs"/>
         <AdditionalFiles Include="Guardian/**/*"/>

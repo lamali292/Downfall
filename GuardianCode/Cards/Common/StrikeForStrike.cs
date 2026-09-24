@@ -22,6 +22,6 @@ public class StrikeForStrike : GuardianCardModel, IGemSocketCard
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await DownfallCmd.EnemyAttackPlayer(ctx, cardPlay, this);
+        await DownfallCombatCmd.EnemyAttackPlayer(ctx, cardPlay, this);
     }
 }

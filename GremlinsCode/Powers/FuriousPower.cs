@@ -12,11 +12,12 @@ namespace Gremlins.GremlinsCode.Powers;
 
 public class FuriousPower() : GremlinsPowerModel(PowerType.Buff, PowerStackType.Single)
 {
-    protected override async Task AfterBlockGained(PlayerChoiceContext ctx, Creature creature, decimal amount,
+    public override async Task AfterBlockGained(Creature creature, decimal amount,
         ValueProp props,
         CardModel? cardSource)
     {
         if (creature != Owner || amount <= 0 || Owner.Player == null) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await CompatibilityCreatureCmd.LoseBlock(ctx, Owner, amount, Owner);
         var attack = DamageCmd.Attack(amount);
         attack.Attacker = Owner;
