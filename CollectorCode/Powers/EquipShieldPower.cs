@@ -21,7 +21,7 @@ public class EquipShieldPower : CollectorPowerModel
         if (Owner.Player == null || command.Attacker != Owner.Player?.Torchhead) return;
         // command.Results is one entry per hit, each containing one DamageResult per target
         // that hit reached grant Block once per hit, not once per enemy hit.
-        var hits = command.Results.Count();
+        var hits = command._hitCount;
         for (var i = 0; i < hits; i++)
         {
             Flash();

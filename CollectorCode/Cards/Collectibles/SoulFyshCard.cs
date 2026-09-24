@@ -14,7 +14,7 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
 
     {
         WithTip(CardKeyword.Unplayable);
-        WithHpLoss(50, 16);
+        WithDamage(50, 16);
         WithKeyword(CardKeyword.Retain);
         WithKeyword(CardKeyword.Exhaust);
     }
@@ -32,7 +32,8 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.HpLoss.BaseValue,
-            DamageProps.cardHpLoss, Owner.Creature, this, cardPlay);
+        const ValueProp unblockableDamage = ValueProp.Unblockable | ValueProp.Move;
+        await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+            unblockableDamage, Owner.Creature, this, cardPlay);
     }
 }
