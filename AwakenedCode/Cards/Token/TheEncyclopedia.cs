@@ -1,6 +1,7 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
+using Godot;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,15 +21,16 @@ public class TheEncyclopedia : AwakenedCardModel
         WithCards(4, 2);
     }
 
+    public override Texture2D? CustomFrame =>
+        ResourceLoader.Load<Texture2D>("res://Awakened/images/dimension/obelisk_skill.png");
+
+    public override Material? CreateCustomFrameMaterial => ShaderUtils.GenerateHsv(1, 1, 1);
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var allCards = ModelDb.CardPool<AwakenedCardPool>().AllCards
-            .Concat(ModelDb.CardPool<ColorlessCardPool>().AllCards);
-
-        var cards = CardFactory.GetDistinctForCombat(Owner, allCards, DynamicVars.Cards.IntValue,
+        var cards = CardFactory.GetDistinctForCombat(Owner, Owner.Character.CardPool.AllCards, DynamicVars.Cards.IntValue,
                 Owner.RunState.Rng.CombatCardGeneration)
             .Select(e => new CardCreationResult(e)).ToList();
-        ;
         var card = (await CardSelectCmd.FromSimpleGridForRewards(ctx, cards, Owner,
             new CardSelectorPrefs(DownfallCardSelectorPrefs.ToHandSelectionPrompt, 2, 2))).ToList();
 

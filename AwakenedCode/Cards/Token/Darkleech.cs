@@ -45,6 +45,7 @@ public class Darkleech : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePlaque
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        SfxCmd.Play("event:/sfx/characters/awakened-awakened/darkleech");
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
         await CommonActions.Apply<ManaburnPower>(ctx, this, cardPlay);
     }

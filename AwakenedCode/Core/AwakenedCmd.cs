@@ -86,10 +86,9 @@ public static class AwakenedCmd
         var firstTime = !chantable.HasChanted;
         if (firstTime && card is not Caw && TestMode.IsOff)
         {
-            // TODO : change voice lines
             TalkCmd.Play(new LocString("monsters", "DAMP_CULTIST.moves.INCANTATION.banter"), card.Owner.Creature,
                 VfxColor.Blue);
-            SfxCmd.Play("event:/sfx/enemy/enemy_attacks/cultists/cultists_buff_damp");
+            SfxCmd.Play("event:/sfx/characters/awakened-awakened/chant");
         }
 
         var entry = new ChantEntry(cardPlay, isFirstChantInSeries, combatState.RoundNumber, combatState.CurrentSide, CombatManager.Instance.History, combatState.Players);
