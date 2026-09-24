@@ -145,7 +145,7 @@
     "AWAKENED-PSALM.title": "詩編",
     "AWAKENED-RAVEN_STRIKE.description": "{Damage:diff()}ダメージを与える。",
     "AWAKENED-RAVEN_STRIKE.title": "レイブンストライク",
-    "AWAKENED-RAZOR_SHARP.description": "[gold]山札[/gold]に[gold]羽根撃ち[/gold]を{Cards:diff()}枚混ぜる。\n[gold]羽根撃ち[/gold]の攻撃回数が{RazorSharpPower:diff()}回増える。",
+    "AWAKENED-RAZOR_SHARP.description": "[gold]羽根撃ち[/gold]を{Cards:diff()}枚[gold]山札[/gold]に加える。\n[gold]羽根撃ち[/gold]の攻撃回数が{RazorSharpPower:diff()}回増える。",
     "AWAKENED-RAZOR_SHARP.title": "羽根の研磨",
     "AWAKENED-REALITY_RIFT.description": "[gold]山札[/gold]の一番上に[gold]虚無[/gold]を置く。\n別次元から{IfUpgraded:show:[gold]アップグレード[/gold]済みの|}3枚のカードから1枚を選んで得る。",
     "AWAKENED-REALITY_RIFT.title": "次元の裂け目",
