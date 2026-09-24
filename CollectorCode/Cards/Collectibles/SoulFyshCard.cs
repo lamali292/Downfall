@@ -33,6 +33,7 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
     {
         if (cardPlay.Target == null) return;
         const ValueProp unblockableDamage = ValueProp.Unblockable | ValueProp.Move;
+        //It's not jank it's just a prop to ignore block.
         await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
             unblockableDamage, Owner.Creature, this, cardPlay);
     }
