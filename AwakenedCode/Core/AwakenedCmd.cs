@@ -95,7 +95,7 @@ public static class AwakenedCmd
         CombatManager.Instance.History.Add(combatState, entry);
         chantable.HasChanted = true;
         await chantable.PlayChantEffect(ctx, cardPlay);
-        await AwakenedHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay, firstTime);
+        await AwakenedHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay, firstTime, isFirstChantInSeries);
     }
 
     private static bool CanConjure(Player player)

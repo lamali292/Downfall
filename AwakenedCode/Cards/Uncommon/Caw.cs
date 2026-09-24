@@ -32,7 +32,8 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
         await Task.CompletedTask;
     }
 
-    public Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay, bool firstTime)
+    public Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay, bool firstTime,
+        bool isFirstChantInSeries)
     {
         if (card is Caw && card.Owner == Owner) DynamicVars.Damage.UpgradeValueBy(card.DynamicVars["Caw"].BaseValue);
 
