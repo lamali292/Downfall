@@ -23,7 +23,7 @@ public class ProfaneStrike : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ToTopSelectionPrompt, this);
+        var card = await DownfallCardSelectionCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ToTopSelectionPrompt, this);
         await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top);
     }
 }

@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Gremlins.GremlinsCode.Powers;
 
-public class WizPower : GremlinsPowerModel, IHasSecondAmount, IModifyDamageAdditive
+public class WizPower : GremlinsPowerModel, IModifyDamageAdditive
 {
     public WizPower()
     {
@@ -23,10 +23,8 @@ public class WizPower : GremlinsPowerModel, IHasSecondAmount, IModifyDamageAddit
 
     private decimal ExtraDamage => GremlinsHook.ModifyWizExtraDamage(this, 7);
 
-    public string GetSecondAmount()
-    {
-        return Amount < 3 ? "" : $"{DynamicVars["ExtraDamage"].BaseValue}";
-    }
+
+    protected override int? SecondAmount => Amount < 3 ? null : DynamicVars["ExtraDamage"].IntValue;
 
     public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
@@ -103,8 +101,8 @@ public class WizPower : GremlinsPowerModel, IHasSecondAmount, IModifyDamageAddit
         await PowerCmd.Remove<WizPower>(Owner);
     }
 
-    protected override Task AfterRemoved(PlayerChoiceContext ctx, Creature oldOwner)
-        => GremlinsHook.AfterWizConsumed(CombatState, ctx, oldOwner);
+    public override Task AfterRemoved(Creature oldOwner)
+        => GremlinsHook.AfterWizConsumed(CombatState, new BlockingPlayerChoiceContext(), oldOwner);
 
     private class Data
     {

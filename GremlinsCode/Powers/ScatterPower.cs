@@ -19,9 +19,10 @@ public class ScatterPower : GremlinsPowerModel
         return target != Owner ? amount : 0M;
     }
 
-    protected override async Task AfterModifyingHpLostAfterOsty(PlayerChoiceContext ctx)
+    public override async Task AfterModifyingHpLostAfterOsty()
     {
         if (Owner.Player == null) return;
+        var ctx = new BlockingPlayerChoiceContext();
         await GremlinsCmd.SwapToRandom(ctx, Owner.Player);
         await PowerCmd.Decrement(this);
     }

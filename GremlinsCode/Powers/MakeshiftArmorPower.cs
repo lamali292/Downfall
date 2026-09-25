@@ -8,17 +8,14 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Gremlins.GremlinsCode.Powers;
 
-public class MakeshiftArmorPower : GremlinsPowerModel, IHasSecondAmount
+public class MakeshiftArmorPower : GremlinsPowerModel
 {
     public MakeshiftArmorPower()
     {
         WithVar("AttacksLeft", 7);
     }
 
-    public string GetSecondAmount()
-    {
-        return $"{DynamicVars["AttacksLeft"].IntValue}";
-    }
+    protected override int? SecondAmount => DynamicVars["AttacksLeft"].IntValue;
 
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)

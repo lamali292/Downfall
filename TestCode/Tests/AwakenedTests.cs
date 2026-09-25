@@ -1,5 +1,6 @@
 using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Cards.Common;
+using Awakened.AwakenedCode.Powers;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -83,5 +84,27 @@ public class AwakenedTests
         Assert.AreEqual(22, totalDamage,
             "Vigor should boost both the base attack and the chant-triggered attack from Recitation " +
             "((6 base + 5 vigor) * 2 hits = 22).");
+    }
+
+    // Regression guard: Rising Chorus gated its double-trigger on the chanted card's own
+    // "firstTime" flag (whether that specific card instance had ever chanted before), instead of
+    // on whether this was the turn's first chant activation. A card that had already chanted once
+    // - from an earlier turn, or from being drawn again with HasChanted still set on the instance -
+    // would never get doubled again, even on the first chant of a brand new turn.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task RisingChorusDoublesChantOfAnAlreadyChantedCard(TestContext ctx)
+    {
+        await PowerCmd.Apply<RisingChorusPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+
+        var featherFlare = (FeatherFlare)await ctx.AddCardToHand<FeatherFlare>();
+        featherFlare.HasChanted = true;
+
+        await ctx.PlayCard(featherFlare, ctx.Combat.HittableEnemies.First());
+
+        var drawPower = ctx.Player.Creature.Powers.OfType<DrawCardsNextTurnPower>().FirstOrDefault();
+        Assert.IsTrue(drawPower != null && drawPower.Amount == 2,
+            "Rising Chorus should double an already-chanted card's chant effect on the turn's first chant " +
+            $"(expected DrawCardsNextTurnPower amount 2, got {drawPower?.Amount.ToString() ?? "none"}).");
     }
 }

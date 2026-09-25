@@ -24,7 +24,7 @@ public class Dazzle : GremlinsCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (shouldStealStrength)
         {
-            await DownfallCmd.Steal<StrengthPower>(ctx, cardPlay, this);
+            await GremlinsCmd.Steal<StrengthPower>(ctx, cardPlay, this);
         }
     }
 }

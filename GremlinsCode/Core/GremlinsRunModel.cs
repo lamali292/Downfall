@@ -77,7 +77,7 @@ public class GremlinsRunModel() : CustomSingletonModel(HookType.Run)
 
     public override Task BeforeCombatStart()
     {
-        var combatState = CombatManager.Instance._state;
+        var combatState = CombatManager.Instance.DebugOnlyGetState();
         if (combatState == null) return Task.CompletedTask;
 
         foreach (var player in combatState.Players)
@@ -111,7 +111,7 @@ public class GremlinsRunModel() : CustomSingletonModel(HookType.Run)
 
     public override Task AfterCombatEnd(CombatRoom room)
     {
-        var combatState = CombatManager.Instance._state;
+        var combatState = CombatManager.Instance.DebugOnlyGetState();
         if (combatState == null) return base.AfterCombatEnd(room);
 
         foreach (var player in combatState.Players)

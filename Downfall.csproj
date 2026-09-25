@@ -38,9 +38,9 @@
     </PropertyGroup>
     
     <PropertyGroup>
-        <AssemblyVersion>0.1.19.0</AssemblyVersion>
-        <FileVersion>0.1.19.0</FileVersion>
-        <Version>0.1.19</Version>
+        <AssemblyVersion>0.1.20.0</AssemblyVersion>
+        <FileVersion>0.1.20.0</FileVersion>
+        <Version>0.1.20</Version>
         <BaseLibVersion>3.4.7</BaseLibVersion>
         <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
     </PropertyGroup>
@@ -154,6 +154,10 @@
     <ItemGroup Condition="$(Submods.Contains('Champ'))">
         <Compile Include="ChampCode/**/*.cs"/>
         <AdditionalFiles Include="Champ/**/*"/>
+    </ItemGroup>
+    <ItemGroup Condition="$(Submods.Contains('Gremlins'))">
+        <Compile Include="GremlinsCode/**/*.cs"/>
+        <AdditionalFiles Include="Gremlins/**/*"/>
     </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Guardian'))">
         <Compile Include="GuardianCode/**/*.cs"/>

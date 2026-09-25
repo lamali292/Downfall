@@ -1,19 +1,17 @@
-﻿using BaseLib.Extensions;
-using Godot;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace Downfall.DownfallCode.Commands;
 
+/// <summary>
+///     Generic card/creature/run predicates shared across characters. Combat side-effects
+///     (enemy retaliation, power steal) live in <see cref="DownfallCombatCmd" />; pet
+///     summoning lives in <see cref="PetSummonCmd" />.
+/// </summary>
 public class DownfallCmd
 {
     /// <summary>
@@ -37,109 +35,10 @@ public class DownfallCmd
         return card.MyGetTargets(target).Any(c => c.Side == CombatSide.Enemy);
     }
 
-    public static async Task EnemyAttackPlayer(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
-    {
-        var monster = cardPlay.Target?.Monster;
-        if (cardPlay.Target == null || monster == null) return;
-        if (!cardPlay.Target.IsAlive) return;
-        var player = card.Owner;
-        var attacker = monster.Creature;
-        await Cmd.Wait(0.5f);
-
-        var enemyDamage = card.DynamicVars.EnemyDamage;
-        var attack = DamageCmd.Attack(enemyDamage.BaseValue);
-        attack.Attacker = attacker;
-        attack._attackerAnimName = "Attack";
-        attack._sourceType = AttackCommand.SourceType.Monster;
-        await attack
-            .Targeting(player.Creature)
-            .WithValueProp(enemyDamage.Props)
-            .WithHitFx("vfx/vfx_attack_slash", "event:/sfx/characters/silent/silent_attack")
-            .Execute(ctx);
-    }
-
-
-    public static async Task Steal<T>(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
-        where T : PowerModel
-    {
-        var targets = card.MyGetTargets(cardPlay.Target);
-        await Steal<T>(ctx, targets, card);
-    }
-
-    public static Task Steal<T>(PlayerChoiceContext ctx, Creature target, CardModel card)
-        where T : PowerModel
-    {
-        return Steal<T>(ctx, [target], card);
-    }
-
-    private static async Task Steal<T>(PlayerChoiceContext ctx, IEnumerable<Creature> targets, CardModel card)
-        where T : PowerModel
-    {
-        var a = card.DynamicVars.Power<T>().BaseValue;
-        var player = card.Owner.Creature;
-        await PowerCmd.Apply<T>(ctx, targets, -a, player, card);
-        await PowerCmd.Apply<T>(ctx, player, a, player, card);
-    }
-
-
-    public static Creature? GainPet<T>(Player summoner) where T : MonsterModel
-    {
-        return summoner.Creature.CombatState?.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
-    }
-
-    public static async Task<Creature> Summon<T, T2>(
-        PlayerChoiceContext ctx,
-        Player summoner,
-        int hp,
-        AbstractModel? source) 
-        where T : MonsterModel
-        where T2 : PowerModel
-    {
-        var combatState = summoner.Creature.CombatState;
-        var existing = combatState?.Allies.FirstOrDefault(c => c.Monster is T && c.PetOwner == summoner);
-        var isReviving = existing is { IsAlive: false };
-
-        if (existing is { IsAlive: true })
-        {
-            await CreatureCmd.GainMaxHp(existing, hp);
-            return existing;
-        }
-
-        if (isReviving && existing != null)
-        {
-            summoner.PlayerCombatState?.AddPetInternal(existing);
-        }
-        else
-        {
-            existing = await PlayerCmd.AddPet<T>(summoner);
-            var node = NCombatRoom.Instance?.GetCreatureNode(existing);
-            var playerNode = NCombatRoom.Instance?.GetCreatureNode(summoner.Creature);
-
-            if (node != null && playerNode != null)
-            {
-                node.Position = playerNode.Position + new Vector2(250f, -75f);
-                node.Modulate = Colors.Transparent;
-                node.CreateTween()
-                    .TweenProperty(node, "modulate", Colors.White, 0.35)
-                    .SetDelay(0.1);
-                node.StartReviveAnim();
-            }
-
-            await PowerCmd.Apply<T2>(ctx, existing, 1M, null, null);
-            node?.TrackBlockStatus(summoner.Creature);
-            node?.ToggleIsInteractable(true);
-        }
-
-        await CreatureCmd.SetMaxHp(existing, hp);
-        await CreatureCmd.Heal(existing, hp, isReviving);
-
-        return existing;
-    }
-
     public static bool IsDebuffed(Creature? creature)
     {
         return creature?.Powers.Any(e => e.TypeForCurrentAmount == PowerType.Debuff) ?? false;
     }
-    public static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
 
+    public static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
 }

@@ -61,6 +61,8 @@
   "GREMLINS-GLITTER_GUARD.title": "Glitter Guard",
   "GREMLINS-GREMLIN_ARMS.description": "Trigger your current Gremlin's Bonus{IfUpgraded:show: twice|}, then [gold]Swap[/gold] to a living Gremlin of your choice.",
   "GREMLINS-GREMLIN_ARMS.title": "Gremlin Arms",
+  "GREMLINS-GREMLIN_CHOICE_CARD.description": "[gold]Swap[/gold] to this Gremlin.",
+  "GREMLINS-GREMLIN_CHOICE_CARD.title": "Gremlin",
   "GREMLINS-GREMLIN_DANCE.description": "Deal {Damage:diff()} damage{GremlinVariant:choose(None|MadGremlin|SneakGremlin|ShieldGremlin|FatGremlin|WizardGremlin|GremlinNob):.\nHas a bonus effect based on which Gremlin you are.| to ALL enemies|.\nDraw {Cards:diff()} cards.|.\nGain {Block:diff()} [gold]Block[/gold].|.\nEnemy loses 2 [gold]Strength[/gold] this turn.|.\nGain 2 [gold]Wiz[/gold].|.\nGain 2 [gold]Strength[/gold].}",
   "GREMLINS-GREMLIN_DANCE.title": "Gremlin Dance",
   "GREMLINS-GREMLIN_OFFENSIVE.description": "Deal {Damage:diff()} damage.\nAdd [gold]Gremlin Offensive{IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold].",

@@ -20,7 +20,7 @@ public class Rhythm : GremlinsCardModel
     {
         await GremlinsCmd.SwapToNext(ctx, Owner);
         var selected =
-            (await DownfallCardCmd.SelectFromCombatPile(ctx, PileType.Draw.GetPile(Owner), DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, e => e.Rarity == CardRarity.Basic))
+            (await DownfallCardSelectionCmd.SelectFromCombatPile(ctx, PileType.Draw.GetPile(Owner), DownfallCardSelectorPrefs.ToHandSelectionPrompt, this, e => e.Rarity == CardRarity.Basic))
             .FirstOrDefault();
         if (selected == null) return;
         selected.EnergyCost.SetThisTurn(0);

@@ -1,20 +1,18 @@
-﻿using Gremlins.GremlinsCode.Events;
+﻿using BaseLib.Extensions;
+using Gremlins.GremlinsCode.Cards.Token;
+using Gremlins.GremlinsCode.Events;
 using Gremlins.GremlinsCode.Powers;
 using Gremlins.GremlinsCode.Vfx;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
-using MegaCrit.Sts2.Core.Runs;
 
 namespace Gremlins.GremlinsCode.Core;
 
@@ -76,7 +74,6 @@ public static class GremlinsCmd
 
     private static async Task<Creature?> SelectGremlin(PlayerChoiceContext ctx, Player player)
     {
-        // TODO : make choice with gremlin cards instead
         var state = GremlinsRunModel.GetState(player);
         var bench = state.Bench.ToList();
 
@@ -88,30 +85,10 @@ public static class GremlinsCmd
                 return bench[0];
         }
 
-        var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(player);
-        await ctx.SignalPlayerChoiceBegunCompatibility(player, PlayerChoiceOptions.None);
-
-        Creature? chosen;
-        if (LocalContext.IsMe(player))
-        {
-            var overlay = NGremlinSelectOverlay.Create(bench);
-            NOverlayStack.Instance!.Push(overlay);
-            overlay.ZIndex = 10;
-            var slot = await overlay.AwaitSelection();
-            NOverlayStack.Instance.Remove(overlay);
-            chosen = bench[slot];
-            RunManager.Instance.PlayerChoiceSynchronizer.SyncLocalChoice(
-                player, choiceId, PlayerChoiceResult.FromIndex(slot));
-        }
-        else
-        {
-            var slot = (await RunManager.Instance.PlayerChoiceSynchronizer
-                .WaitForRemoteChoice(player, choiceId)).AsIndex();
-            chosen = slot < 0 ? null : bench[slot];
-        }
-
-        await ctx.SignalPlayerChoiceEnded();
-        return chosen;
+        var cards = bench.Select(g => (CardModel)GremlinChoiceCard.Create(g, player)).ToList();
+        var chosenCard = await CardSelectCmd.FromChooseACardScreen(ctx, cards, player);
+        var slot = chosenCard == null ? -1 : cards.IndexOf(chosenCard);
+        return slot < 0 ? null : bench[slot];
     }
 
     public static async Task SwapToSelected(PlayerChoiceContext ctx, Player player)
@@ -193,7 +170,7 @@ public static class GremlinsCmd
     // GremlinsCmd
     public static void AddGremlin(Player player, MonsterModel model, int hp, int maxHp)
     {
-        var combatState = CombatManager.Instance._state;
+        var combatState = CombatManager.Instance.DebugOnlyGetState();
         if (combatState == null) return;
         if (player.PlayerCombatState == null) return;
 
@@ -226,6 +203,29 @@ public static class GremlinsCmd
         await SwitchGremlin(ctx, player, target, swapType);
         player.Creature.SetMaxHpInternal(target.MaxHp);
         player.Creature.SetCurrentHpInternal(target.CurrentHp);
+    }
+    
+    
+    public static async Task Steal<T>(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
+        where T : PowerModel
+    {
+        var targets = card.MyGetTargets(cardPlay.Target);
+        await Steal<T>(ctx, targets, card);
+    }
+
+    public static Task Steal<T>(PlayerChoiceContext ctx, Creature target, CardModel card)
+        where T : PowerModel
+    {
+        return Steal<T>(ctx, [target], card);
+    }
+
+    private static async Task Steal<T>(PlayerChoiceContext ctx, IEnumerable<Creature> targets, CardModel card)
+        where T : PowerModel
+    {
+        var a = card.DynamicVars.Power<T>().BaseValue;
+        var player = card.Owner.Creature;
+        await PowerCmd.Apply<T>(ctx, targets, -a, player, card);
+        await PowerCmd.Apply<T>(ctx, player, a, player, card);
     }
 }
 

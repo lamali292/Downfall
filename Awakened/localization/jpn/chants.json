@@ -8,5 +8,5 @@
     "AWAKENED-RAVEN_STRIKE.chant": "[gold]山札[/gold]の一番上のカードをプレイする。",
     "AWAKENED-TAKE_FLIGHT.chant": "次のターン開始時に[gold]ブロック[/gold]を失わない。",
     "AWAKENED-VICTUALS.chant": "{Energy:energyIcons()}を得る。",
-    "AWAKENED-SIPHON.chant": "このターン、[gold]筋力[/gold]を{SiphonPower:diff()}奪う。"
+    "AWAKENED-SIPHON.chant": "ターン終了時まで[gold]筋力[/gold]を{SiphonPower:diff()}奪う。"
 }

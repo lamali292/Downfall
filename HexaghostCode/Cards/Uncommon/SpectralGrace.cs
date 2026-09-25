@@ -24,7 +24,7 @@ public class SpectralGrace : HexaghostCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
 
-        var cards = await DownfallCardCmd.SelectFromHand(ctx, CardSelectorPrefs.DiscardSelectionPrompt, this);
+        var cards = await DownfallCardSelectionCmd.SelectFromHand(ctx, CardSelectorPrefs.DiscardSelectionPrompt, this);
         await CardCmd.Discard(ctx, cards);
     }
 }

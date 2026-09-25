@@ -1,10 +1,7 @@
-﻿using BaseLib.Commands;
 using BaseLib.Patches.Content;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -14,20 +11,45 @@ using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Runs.History;
 using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Commands;
 
+/// <summary>
+///     Creates cards and gets them into a player's possession: giving cards to a pile, generating
+///     at a specific index, drawing from a custom pile, auto-playing off the draw pile, the
+///     reward-screen fly-in animation, and finding cards from the unlocked pool. Player-facing
+///     selection prompts live in <see cref="DownfallCardSelectionCmd" />; destroy/removal visuals
+///     live in <see cref="CardRemovalCmd" />.
+/// </summary>
 public class DownfallCardCmd
 {
+    public static async Task AnimateCardFromRewardScreen(PileType pile, CardModel card, Player player)
+    {
+        var node = NCard.Create(card);
+        if (node == null) return;
+        var previewContainer = NRun.Instance?.GlobalUi.CardPreviewContainer;
+        var trailContainer = NRun.Instance?.GlobalUi.TopBar.TrailContainer;
+        if (previewContainer == null || trailContainer == null) return;
+        previewContainer.AddChildSafely(node);
+        var tween = node.CreateTween();
+        tween.TweenProperty(node, "scale", Vector2.One, 0.25f)
+            .From(Vector2.Zero)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Cubic);
+        await node.ToSignal(tween, Tween.SignalName.Finished);
+        var fly = NCardFlyVfx.Create(node, pile, true, player.Character.TrailPath);
+        trailContainer.AddChildSafely(fly);
+        if (fly != null)
+            await fly.ToSignal(fly, Node.SignalName.TreeExited);
+    }
+
     public static async Task<T> GiveCard<T>(Player player,
         PileType pileType,
         CardPilePosition position = CardPilePosition.Bottom,
@@ -105,78 +127,10 @@ public class DownfallCardCmd
                 skipXCapture);
     }
 
-
-    /// <summary>
-    ///     Select from given cards with count manually specified.
-    /// </summary>
-    public static Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx,
-        IReadOnlyList<CardModel> cards, LocString prompt, int count, CardModel cardSource,
-        bool optional = false)
-    {
-        return CardSelectCmd.FromSimpleGrid(ctx, cards, cardSource.Owner, Prefs(prompt, count, optional));
-    }
-
-    /// <summary>
-    ///     Select from given cards with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
-    /// </summary>
-    public static Task<IEnumerable<CardModel>> SelectFromCards(PlayerChoiceContext ctx,
-        IReadOnlyList<CardModel> cards, LocString prompt, CardModel cardSource,
-        bool optional = false)
-    {
-        return SelectFromCards(ctx, cards, prompt, GetCardCount(cardSource), cardSource, optional);
-    }
-
-    public static Task<IEnumerable<CardModel>> SelectFromCombatPile(PlayerChoiceContext ctx,
-        CardPile pile, LocString prompt, int count, CardModel cardSource, Func<CardModel, bool>? filter = null,
-        bool optional = false)
-    {
-        return CardSelectCmd.FromCombatPile(ctx, pile, cardSource.Owner, Prefs(prompt, count, optional),
-            filter ?? (_ => true));
-    }
-
-    public static Task<IEnumerable<CardModel>> SelectFromCombatPile(PlayerChoiceContext ctx,
-        CardPile pile, LocString prompt, CardModel cardSource, Func<CardModel, bool>? filter = null,
-        bool optional = false)
-    {
-        return SelectFromCombatPile(ctx, pile, prompt, GetCardCount(cardSource), cardSource, filter, optional);
-    }
-
-    /// <summary>
-    ///     Select cards from hand with count manually specified.
-    /// </summary>
-    public static Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
-        int count, AbstractModel source,
-        Func<CardModel, bool>? filter = null, bool optional = false)
-    {
-        return CardSelectCmd.FromHand(ctx, source.Creature.Player!, Prefs(prompt, count, optional), filter, source);
-    }
-
-
-    /// <summary>
-    ///     Select cards from hand with count determined by <c>DynamicVars.Cards</c> or a default value of 1.
-    /// </summary>
-    public static Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
-        CardModel cardSource,
-        Func<CardModel, bool>? filter = null, bool optional = false)
-    {
-        return SelectFromHand(ctx, prompt, GetCardCount(cardSource), cardSource, filter, optional);
-    }
-
-    /// <summary>
-    ///     Select cards from hand with count determined by <c>Amount</c>.
-    /// </summary>
-    public static Task<IEnumerable<CardModel>> SelectFromHand(PlayerChoiceContext ctx, LocString prompt,
-        PowerModel powerSource,
-        Func<CardModel, bool>? filter = null, bool optional = false)
-    {
-        return SelectFromHand(ctx, prompt, powerSource.Amount, powerSource, filter, optional);
-    }
-
     public static void ForceUpgrade(CardModel card, int upgrade = 1)
     {
         ForceUpgradeHelper.ForceUpgrade(card, upgrade);
     }
-
 
     public static async Task AddGeneratedCardToCombatAtIndex(
         CardModel card, CardPile cardPile, int index, Player? creator)
@@ -206,38 +160,6 @@ public class DownfallCardCmd
             new CardPileAddResult { cardAdded = card, success = true, oldPile = null, modifyingModels = null },
             0.6f);
     }
-
-    private static int GetCardCount(CardModel cardSource)
-    {
-        return cardSource.DynamicVars.ContainsKey("Cards") ? cardSource.DynamicVars.Cards.IntValue : 1;
-    }
-
-    private static CardSelectorPrefs Prefs(LocString prompt, int count, bool optional)
-    {
-        return new CardSelectorPrefs(prompt, optional ? 0 : count, count);
-    }
-
-
-    public static async Task AnimateCardFromRewardScreen(PileType pile, CardModel card, Player player)
-    {
-        var node = NCard.Create(card);
-        if (node == null) return;
-        var previewContainer = NRun.Instance?.GlobalUi.CardPreviewContainer;
-        var trailContainer = NRun.Instance?.GlobalUi.TopBar.TrailContainer;
-        if (previewContainer == null || trailContainer == null) return;
-        previewContainer.AddChildSafely(node);
-        var tween = node.CreateTween();
-        tween.TweenProperty(node, "scale", Vector2.One, 0.25f)
-            .From(Vector2.Zero)
-            .SetEase(Tween.EaseType.Out)
-            .SetTrans(Tween.TransitionType.Cubic);
-        await node.ToSignal(tween, Tween.SignalName.Finished);
-        var fly = NCardFlyVfx.Create(node, pile, true, player.Character.TrailPath);
-        trailContainer.AddChildSafely(fly);
-        if (fly != null)
-            await fly.ToSignal(fly, Node.SignalName.TreeExited);
-    }
-
 
     public static async Task<CardPileAddResult> DrawFromCustomPile(PlayerChoiceContext ctx, Player player,
         PileType pileType)
@@ -429,4 +351,5 @@ public class DownfallCardCmd
             card.Owner.RunState.CurrentMapPointHistoryEntry?.GetEntry(card.Owner.NetId).CardsEnchanted.Add(new CardEnchantmentHistoryEntry(card, enchantment.Id));
         return card.Enchantment;
     }
+}
 }

@@ -26,7 +26,7 @@ public class Dejection : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var selected = (await DownfallCardCmd.SelectFromHand(ctx, CardSelectorPrefs.ExhaustSelectionPrompt, this))
+        var selected = (await DownfallCardSelectionCmd.SelectFromHand(ctx, CardSelectorPrefs.ExhaustSelectionPrompt, this))
             .FirstOrDefault();
         if (selected == null) return;
         await CardCmdCompatibility.Exhaust(ctx, selected);
