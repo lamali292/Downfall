@@ -30,7 +30,7 @@ public class Preprogram : GuardianCardModel, IGemSocketCard
         if (!Owner.DrawPile.Any())
             await CardPileCmd.Shuffle(ctx, Owner);
         var cards = Owner.DrawPile.Take(DynamicVars.Cards.IntValue).ToList();
-        var card = (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt,
+        var card = (await DownfallCardSelectionCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.StasisSelectionPrompt,
             1,
             this)).FirstOrDefault();
         if (card == null) return;

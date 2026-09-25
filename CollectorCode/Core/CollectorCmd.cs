@@ -100,7 +100,7 @@ public class CollectorCmd
         int hp,
         AbstractModel? source)
     {
-        var torchhead = await DownfallCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
+        var torchhead = await PetSummonCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
         RefreshTorchheadIntent(torchhead);
         RefreshTorchheadScale(torchhead);
         return torchhead;

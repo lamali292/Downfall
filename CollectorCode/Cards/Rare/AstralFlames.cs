@@ -23,7 +23,7 @@ public class AstralFlames : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
-        var card = (await DownfallCardCmd.MulitPileSelect(ctx, Owner, prefs, null, PileType.Hand, PileType.Discard, PileType.Draw)).FirstOrDefault();
+        var card = (await DownfallCardSelectionCmd.MulitPileSelect(ctx, Owner, prefs, null, PileType.Hand, PileType.Discard, PileType.Draw)).FirstOrDefault();
         var block = DynamicVars.Block.IntValue;
         if (card != null)
         {

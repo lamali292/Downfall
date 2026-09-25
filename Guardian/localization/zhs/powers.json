@@ -67,5 +67,11 @@
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "每当你进入[gold]防御模式[/gold]时，[gold]格挡[/gold]值最少的盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold][blue]{ThornsPower}[/blue]点临时[gold]荆棘[/gold]。",
     "GUARDIAN-BASTION_POWER.title": "堡垒",
     "GUARDIAN-BASTION_POWER.description": "每当你[gold]提防[/gold]时，所有盟友获得[gold]格挡[/gold]。",
-    "GUARDIAN-BASTION_POWER.smartDescription": "每当你[gold]提防[/gold]时，所有盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
+    "GUARDIAN-BASTION_POWER.smartDescription": "每当你[gold]提防[/gold]时，所有盟友获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
+    "GUARDIAN-STUNNED_POWER.title": "晕眩",
+    "GUARDIAN-STUNNED_POWER.description": "本回合你无法打出牌、抽牌或获得能量。",
+    "GUARDIAN-STUNNED_POWER.smartDescription": "本回合你无法打出牌、抽牌或获得能量。",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.title": "下回合晕眩",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.description": "跳过你的下个回合。",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.smartDescription": "跳过你的下[blue]{Amount}[/blue]个回合。"
 }

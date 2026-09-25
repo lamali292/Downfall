@@ -30,7 +30,7 @@ public class CurlUp : GuardianCardModel
             CardModel? card;
             if (IsUpgraded)
                 card =
-                    (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
+                    (await DownfallCardSelectionCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
                     .FirstOrDefault();
             else
                 card = CombatState.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand.Where(e => e != this));

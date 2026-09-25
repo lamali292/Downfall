@@ -70,5 +70,8 @@
     "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "在下个回合，获得[blue]{}[/blue]点[gold]活力[/gold]。",
     "CHAMP-CROWD_FAVORITE_POWER.title": "观众的最爱",
     "CHAMP-CROWD_FAVORITE_POWER.description": "每当其他玩家攻击一名敌人时，获得[gold]活力[/gold]。",
-    "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "每当其他玩家攻击一名敌人时，获得[blue]{Amount}[/blue]点[gold]活力[/gold]。"
+    "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "每当其他玩家攻击一名敌人时，获得[blue]{Amount}[/blue]点[gold]活力[/gold]。",
+    "CHAMP-ENTANGLED_POWER.title": "缠身",
+    "CHAMP-ENTANGLED_POWER.description": "本回合无法打出攻击牌。",
+    "CHAMP-ENTANGLED_POWER.smartDescription": "本回合无法打出攻击牌。"
 }

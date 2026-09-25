@@ -26,7 +26,7 @@ public class ByrdsEye : AwakenedCardModel
 
         var cards = spellbook.Cards;
         var selected =
-            (await DownfallCardCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.ConjureSelectionPrompt, this))
+            (await DownfallCardSelectionCmd.SelectFromCards(ctx, cards, DownfallCardSelectorPrefs.ConjureSelectionPrompt, this))
             .FirstOrDefault();
         if (selected == null) return;
         await AwakenedCmd.ConjureSelected(Owner, this, selected);

@@ -155,7 +155,7 @@ public class StashCmd
     {
         var amount = source.DynamicVars.Stash.IntValue;
         var prefs = new CardSelectorPrefs(StashSelectionPrompt, amount);
-        var cards = await DownfallCardCmd.MulitPileSelect(ctx, source.Owner, prefs, filter, pileTypes);
+        var cards = await DownfallCardSelectionCmd.MulitPileSelect(ctx, source.Owner, prefs, filter, pileTypes);
         await Stash(ctx, source.Owner, cards);
     }
     

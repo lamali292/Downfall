@@ -25,7 +25,7 @@ public class Spectre : HermitCardModel
         if (CombatState == null) return;
         CardModel? card;
         if (IsUpgraded)
-            card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.AddEtherealSelectionPrompt,
+            card = (await DownfallCardSelectionCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.AddEtherealSelectionPrompt,
                     this, c => !c.Keywords.Contains(CardKeyword.Ethereal)))
                 .FirstOrDefault();
         else

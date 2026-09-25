@@ -1,7 +1,7 @@
 {
     "AUTOMATON-BLOCK_ENCODE.encode": "{Block:diff()}[gold]ブロック[/gold]を得る。",
     "AUTOMATON-DAMAGE_ENCODE.encode": "{Damage:diff()}ダメージを与える。",
-    "AUTOMATON-DAZED_ENCODE.encode": "[gold]山札[/gold]に[gold]めまい[/gold]を{Dazed}枚加える。",
+    "AUTOMATON-DAZED_ENCODE.encode": "[gold]めまい[/gold]を{Dazed}枚[gold]山札[/gold]に加える。",
     "AUTOMATON-ENERGY_ENCODE.encode": "{Energy:energyIcons()}を得る。",
     "AUTOMATON-POISON_ENCODE.encode": "[gold]毒[/gold]{PoisonPower:diff()}を付与する。",
     "AUTOMATON-POWER_ENCODE.encode": "{IsOnCard:cond:|ターン開始時：}",

@@ -23,7 +23,7 @@ public class AshesOfCalamity : CollectorCardModel
         var statusCards = Owner.ExhaustPile.Where(e => e.Type == CardType.Status).ToList();
         if (statusCards.Count >= DynamicVars["Threshold"].IntValue)
         {
-            await DownfallCardCmd.RemoveFromCombat(statusCards);
+            await CardRemovalCmd.RemoveFromCombat(statusCards);
         }
         else
         {

@@ -27,7 +27,7 @@ public class Suspension : GuardianCardModel, IGemSocketCard
     {
         await CommonActions.CardBlock(this, cardPlay);
 
-        var card = (await DownfallCardCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
+        var card = (await DownfallCardSelectionCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.StasisSelectionPrompt, this))
             .FirstOrDefault();
         if (card == null) return;
         await GuardianCmd.PutIntoStasis(card, ctx, this);
