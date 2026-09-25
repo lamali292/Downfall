@@ -18,7 +18,7 @@ public sealed class ScorchedLocket : HermitRelicModel
 {
     public ScorchedLocket() : base(RelicRarity.Starter)
     {
-        WithCardTip<MementoCard>();
+        WithCardTip<MementoCard>((card, _) => EnchantSeething(card));
         WithTip<Seething>();
     }
 
