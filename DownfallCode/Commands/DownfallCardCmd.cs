@@ -1,7 +1,10 @@
+using BaseLib.Commands;
 using BaseLib.Patches.Content;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -15,6 +18,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Runs.History;
 using MegaCrit.Sts2.Core.TestSupport;
@@ -351,5 +355,4 @@ public class DownfallCardCmd
             card.Owner.RunState.CurrentMapPointHistoryEntry?.GetEntry(card.Owner.NetId).CardsEnchanted.Add(new CardEnchantmentHistoryEntry(card, enchantment.Id));
         return card.Enchantment;
     }
-}
 }
