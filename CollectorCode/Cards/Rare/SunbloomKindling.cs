@@ -50,9 +50,13 @@ public class SunbloomKindling : CollectorCardModel
         await CollectorCmd.Kindle(ctx, this);
         for (var v = 0; v > DynamicVars.Cards.IntValue; v++)
         {
-            var emb = new Ember();
-            DownfallCardCmd.ForceEnchant<Spiral>(emb, 1);
-            await CardPileCmd.AddGeneratedCardToCombat(emb, PileType.Hand, Owner);
+            var ember = new Ember();
+            DownfallCardCmd.ForceEnchant<Spiral>(ember, 1);
+            if (IsUpgraded)
+            {
+                CardCmd.Upgrade(ember);
+            }
+            await CardPileCmd.AddGeneratedCardToCombat(ember, PileType.Hand, Owner);
         }
     }
 }
