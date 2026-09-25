@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.CardRewardAlternatives;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -29,7 +29,7 @@ public class CardTestRunner
 		var started = DateTime.UtcNow;
 		var wasTestMode = TestMode.IsOn;
 		TestMode.IsOn = true;
-		var selectorScope = CardSelectCmd.UseSelector(new FirstCardSelector());
+		var selectorScope = CardSelectCmdCompatibility.UseSelector(new FirstCardSelector());
 
 		try
 		{

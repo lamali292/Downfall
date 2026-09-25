@@ -351,9 +351,20 @@ public partial class NGhostflames : Control
         Scale = new Vector2(scaleX, scaleY);
 
         // Ring anchor is the Spine "core" bone's live, animated global position. Only
-        // missing for the brief window before the skeleton finishes loading (async) or
-        // for off-class wheels with no such bone, where we fall back to a fixed offset.
-        var coreBoneCenter = _creatureNode.Visuals?.SpineBody?.GetGlobalBoneTransform("hexacore")?.Origin;
+        // missing for the brief window before the skeleton finishes loading (async), for
+        // off-class wheels with no such bone, or on game versions whose Spine binding
+        // predates get_global_bone_transform (public branch, as of 2026-09), where we
+        // fall back to a fixed offset. Called dynamically via BoundObject rather than
+        // MegaSprite.GetGlobalBoneTransform() because that C# wrapper method doesn't
+        // exist in the public branch's sts2.dll and would fail to compile there.
+        var spineBody = _creatureNode.Visuals?.SpineBody;
+        Vector2? coreBoneCenter = null;
+        if (spineBody != null && spineBody.BoundObject.HasMethod("get_global_bone_transform"))
+        {
+            var boneTransform = spineBody.BoundObject.Call("get_global_bone_transform", "hexacore");
+            if (boneTransform.VariantType == Variant.Type.Transform2D)
+                coreBoneCenter = boneTransform.AsTransform2D().Origin;
+        }
         var globalCenter = coreBoneCenter
             ?? GhostflameLayout.FallbackCenter(_creatureNode.GlobalPosition, scaleY);
 
