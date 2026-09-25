@@ -15,16 +15,16 @@
     "COLLECTOR-KRAMPIAN_COAL.description": "状態異常を1枚[gold]火葬[/gold]するたび、[gold]幸運の燃芯[/gold]を1枚[gold]手札[/gold]に加える。\n[red]呪い[/red]を1枚[gold]火葬[/gold]するたび、[gold]幸運の燃芯+[/gold]を1枚[gold]手札[/gold]に加える。",
     "COLLECTOR-KRAMPIAN_COAL.flavor": "「興味深い！だがなぜ特定の煙突だけなのだ？」 - ランウィッド",
     "COLLECTOR-PRISMATIC_TORCH.title": "プリズマティックトーチ",
-    "COLLECTOR-PRISMATIC_TORCH.description": "戦闘開始時、[gold]点火[/gold][blue]{Kindle:diff()}[/blue]。\n[gold]エリート[/gold]や[gold]ボス[/gold]を倒した時、カード報酬に追加で[gold]アップグレード[/gold]された[gold]コレクト[/gold]カード1枚が加わる。",
+    "COLLECTOR-PRISMATIC_TORCH.description": "戦闘開始時、[gold]点火[/gold][blue]{Kindle:diff()}[/blue]。\n[gold]エリート[/gold]や[gold]ボス[/gold]を倒した時、カード報酬に追加で[gold]アップグレード[/gold]済みの[gold]コレクト[/gold]カード1枚が加わる。",
     "COLLECTOR-PRISMATIC_TORCH.flavor": "絶えず変化する炎は、幸運の恵みを映し出す。",
     "COLLECTOR-SOUL_LIT_LAMP.title": "魂を灯すランプ",
     "COLLECTOR-SOUL_LIT_LAMP.description": "コストが{Energy:energyIcons()}以上のカードを[gold]火葬[/gold]するたび、すべての敵に[gold]ソウルバーン[/gold][blue]{SoulBurnPower:diff()}[/blue]を付与する。",
     "COLLECTOR-SOUL_LIT_LAMP.flavor": "不気味な装飾品。炎のはぜる音の代わりに、うなるような嘆きが響く。",
     "COLLECTOR-THE_CONTRACT.title": "契約書",
-    "COLLECTOR-THE_CONTRACT.description": "各戦闘で初めて無色カードをプレイした時、そのコストに等しい{energyPrefix:energyIcons(1)}を得る。",
+    "COLLECTOR-THE_CONTRACT.description": "取得時、[blue]5[/blue]枚の[gold]アップグレード[/gold]済みの[gold]コレクト[/gold]カードから[blue]1[/blue]枚を選び、[gold]デッキ[/gold]に追加する。",
     "COLLECTOR-THE_CONTRACT.flavor": "血で署名を。",
     "COLLECTOR-THIMBLE_HELM.title": "シンブルヘルム",
     "COLLECTOR-THIMBLE_HELM.description": "[gold]トーチヘッド[/gold]が生存している間、カードから得る[gold]ブロック[/gold]が[blue]{Block:diff()}[/blue]増加する。",
     "COLLECTOR-THIMBLE_HELM.flavor": "スパイア最小の英雄たちが身につけていた。",
-    "SEA_GLASS.COLLECTOR-COLLECTOR.title": "強欲グラス"
+    "SEA_GLASS.COLLECTOR-COLLECTOR.title": "グリードグラス"
 }
