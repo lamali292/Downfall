@@ -10,6 +10,7 @@ using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
@@ -39,8 +40,8 @@ public class CollectorTests
             "Reason should carry the custom Pyre-blocked flag.");
 
         var line = reason.GetPlayerDialogueLine(preventer)?.GetFormattedText();
-        Assert.AreEqual("I have nothing else to burn!", line,
-            "Should show the custom Pyre-blocked dialogue.");
+        var expected = new LocString("gameplay_ui", "PYRE_NO_TARGET").GetFormattedText();
+        Assert.AreEqual(expected, line, "Should show the custom Pyre-blocked dialogue.");
     }
 
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
