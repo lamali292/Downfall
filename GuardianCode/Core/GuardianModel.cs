@@ -149,7 +149,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         {
             await CreatureCmd.TriggerAnim(player.Creature, "TransitionOut", 0.5f);
         }
-     
+
         await GuardianHook.AfterGuardianModeChangeEarly(player.Creature.CombatState!, ctx, player, current!,
             ActiveMode[player]!);
         await GuardianHook.AfterGuardianModeChange(player.Creature.CombatState!, ctx, player, current!,
