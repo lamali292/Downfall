@@ -9,7 +9,7 @@
     "SNECKO-MYSTICAL_OCTAHEDRON.description": "取得時、[gold]オーバーフロー[/gold]カードを1枚[purple]いかさま[/purple]で[gold]エンチャント[/gold]する。",
     "SNECKO-MYSTICAL_OCTAHEDRON.flavor": "片側に重心が偏っているようだ。",
     "SNECKO-RARE_BOOSTER_BOX.title": "レアブースターボックス",
-    "SNECKO-RARE_BOOSTER_BOX.description": "取得時、[gold]他クラスのレアカード[/gold]を1枚入手する。",
+    "SNECKO-RARE_BOOSTER_BOX.description": "取得時、ランダムな[gold]他クラスのレアカード[/gold]を1枚[gold]デッキ[/gold]に加える。",
     "SNECKO-RARE_BOOSTER_BOX.flavor": "新品同様。",
     "SNECKO-RING_OF_THE_SNEK.title": "スネッコリング",
     "SNECKO-RING_OF_THE_SNEK.description": "[gold]オーバーフロー[/gold]効果を[blue]{Cards}[/blue]回発動するたび、ランダムな敵に[gold]脱力[/gold][blue]{WeakPower}[/blue]と[gold]弱体[/gold][blue]{VulnerablePower}[/blue]を付与する。",
