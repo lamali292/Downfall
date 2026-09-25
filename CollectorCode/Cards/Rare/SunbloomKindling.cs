@@ -28,7 +28,7 @@ public class SunbloomKindling : CollectorCardModel
     private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
     {
         var val = 0;
-        if (cardModel.IsUpgraded) val += 1;
+        if (cardModel.IsUpgraded) val = 1;
         WithEnchantments(ember, val);
     }
     
@@ -36,7 +36,7 @@ public class SunbloomKindling : CollectorCardModel
     {
         if (ups > 0)
         {
-            DownfallCardCmd.ForceUpgrade(ember, ups);
+            CardCmd.Upgrade(ember);
         }
         DownfallCardCmd.ForceEnchant<Spiral>(ember, 1);
     }
