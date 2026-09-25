@@ -20,13 +20,13 @@ public class Empower : CollectorCardModel
         WithCardTip<Ember>(WithPreviewModifiers);
     }
     
-    private static void WithPreviewModifiers(Ember defend, CardModel cardModel)
+    private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
     {
         var val = cardModel is { IsMutable: true, _owner: not null }
             ? cardModel.Owner.PlayerCombatState?.Energy ?? 0
             : 3;
         if (cardModel.IsUpgraded) val += 1;
-        WithModifiers(defend, val);
+        WithModifiers(ember, val);
     }
     
     private static void WithModifiers(Ember ember, int ups)

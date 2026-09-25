@@ -4,10 +4,11 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models.Enchantments;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -18,12 +19,28 @@ public class SunbloomKindling : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(5, 3);
-        WithPower<StrengthPower>(2);
+        WithKindle(6, 4);
         WithCards(2);
-        WithUpgradingCardTip<Ember>();
+        WithUpgradingCardTip<Ember>(WithPreviewModifiers);
+        WithEnchantment<Spiral>();
     }
 
+    private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
+    {
+        var val = 0;
+        if (cardModel.IsUpgraded) val += 1;
+        WithEnchantments(ember, val);
+    }
+    
+    private static void WithEnchantments(Ember ember, int ups)
+    {
+        if (ups > 0)
+        {
+            DownfallCardCmd.ForceUpgrade(ember, ups);
+        }
+        DownfallCardCmd.ForceEnchant<Spiral>(ember, 1);
+    }
+    
     protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
@@ -31,7 +48,11 @@ public class SunbloomKindling : CollectorCardModel
     {
         if (card != this) return;
         await CollectorCmd.Kindle(ctx, this);
-        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
-        await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue, CardPilePosition.Bottom, IsUpgraded);
+        for (var v = 0; v > DynamicVars.Cards.IntValue; v++)
+        {
+            var emb = new Ember();
+            DownfallCardCmd.ForceEnchant<Spiral>(emb, 1);
+            await CardPileCmd.AddGeneratedCardToCombat(emb, PileType.Hand, Owner);
+        }
     }
 }

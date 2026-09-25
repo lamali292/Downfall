@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class SkulkingColonyCard : Collectible<SkulkingColonyElite>, ISkipReplayOnSelfExhaust
 {
-    public SkulkingColonyCard() : base(5, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
+    public SkulkingColonyCard() : base(5, CardType.Status, CardRarity.Uncommon, TargetType.Self, 0.3f)
 	
     {
         WithKeyword(CardKeyword.Exhaust);

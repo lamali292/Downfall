@@ -125,7 +125,7 @@
   "COLLECTOR-SUCKER_PUNCH.title": "Clothesline",
   "COLLECTOR-SUFFERING.description": "Whenever you apply a debuff other than [gold]Miasma[/gold] to an enemy, also apply {SufferingPower:diff()} [gold]Miasma[/gold] to them.",
   "COLLECTOR-SUFFERING.title": "Suffering",
-  "COLLECTOR-SUNBLOOM_KINDLING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nGain {StrengthPower:diff()} [gold]Strength[/gold].\nAdd {Cards:diff()} {IfUpgraded:show:[gold]Ember+[/gold]|[gold]Ember[/gold]} into your [gold]Hand[/gold].",
+  "COLLECTOR-SUNBLOOM_KINDLING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nAdd {Cards:diff()} {IfUpgraded:show:[gold]Ember+[/gold]|[gold]Ember[/gold]} into your [gold]Hand[/gold].\nEnchant them with [purple]Spiral[/purple].",
   "COLLECTOR-SUNBLOOM_KINDLING.title": "Sunbloom Kindling",
   "COLLECTOR-THORN_WHIP.description": "Deal {Damage:diff()} damage to ALL enemies.\nApply [gold]Miasma[/gold] equal to unblocked damage dealt.",
   "COLLECTOR-THORN_WHIP.title": "Thorn Whip",
