@@ -1,6 +1,6 @@
 {
     "AUTOMATON-BOTTLED_CODE.title": "瓶詰めのコード",
-    "AUTOMATON-BOTTLED_CODE.description": "入手時、[gold]エンコード[/gold]を持つカード1枚に[purple]ハードコード[/purple]を[gold]エンチャント[/gold]する。",
+    "AUTOMATON-BOTTLED_CODE.description": "取得時、[gold]エンコード[/gold]を持つカード1枚に[purple]ハードコード[/purple]を[gold]エンチャント[/gold]する。",
     "AUTOMATON-BOTTLED_CODE.flavor": "まさにそれ用のコード、実はあるんだよね……",
     "AUTOMATON-BRONZE_CORE.title": "ブロンズコア",
     "AUTOMATON-BRONZE_CORE.description": "戦闘開始時、[gold]防御[/gold]と[gold]ストライク[/gold]を1枚ずつ[gold]エンコード[/gold]する。",
@@ -18,7 +18,7 @@
     "AUTOMATON-FROST_PRIMER.description": "作成するすべての関数に[purple]安定性[/purple]を[gold]エンチャント[/gold]する。",
     "AUTOMATON-FROST_PRIMER.flavor": "化合物Ar22を22オンス、保存期間は22年。マホガニー製の冷蔵庫での保管が最適。",
     "AUTOMATON-MAKESHIFT_BATTERY.title": "補助用電源",
-    "AUTOMATON-MAKESHIFT_BATTERY.description": "ターン開始時、{Energy:energyIcons()}を得て、[gold]捨て札[/gold]に[gold]粘液[/gold]を1枚加える。",
+    "AUTOMATON-MAKESHIFT_BATTERY.description": "ターン開始時、{Energy:energyIcons()}を得て、[gold]粘液[/gold]を1枚[gold]捨て札[/gold]に加える。",
     "AUTOMATON-MAKESHIFT_BATTERY.flavor": "8.9ボルトだ。",
     "AUTOMATON-MALLET.title": "マレット",
     "AUTOMATON-MALLET.description": "カードを[gold]格納[/gold]するたび、そのカードをその戦闘の間[gold]アップグレード[/gold]する。",

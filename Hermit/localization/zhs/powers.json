@@ -89,5 +89,7 @@
     "HERMIT-BRUISE_POWER.remoteDescription": "本回合{HasBigBruiser:|[orange]{ApplierName}[/orange]的}攻击对目标造成[blue]{Amount}[/blue]点额外伤害。",
     "HERMIT-LONG_SHADOWS_POWER.title": "漫长阴影",
     "HERMIT-LONG_SHADOWS_POWER.description": "每当你抽到一张[red]诅咒[/red]牌时，抽[blue]1[/blue]张牌。",
-    "HERMIT-LONG_SHADOWS_POWER.smartDescription": "每当你抽到一张[red]诅咒[/red]牌时，抽[blue]{Amount}[/blue]张牌。"
+    "HERMIT-LONG_SHADOWS_POWER.smartDescription": "每当你抽到一张[red]诅咒[/red]牌时，抽[blue]{Amount}[/blue]张牌。",
+    "HERMIT-NO_HOLDS_BARRED_POWER.description": "在下个回合，失去{energyPrefix:energyIcons(1)}。",
+    "HERMIT-NO_HOLDS_BARRED_POWER.smartDescription": "在下个回合，失去[blue]{Amount}[/blue]{energyPrefix:energyIcons(1)}。"
 }

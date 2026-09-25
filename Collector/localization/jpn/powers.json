@@ -37,7 +37,7 @@
     "COLLECTOR-SCORCHED_POWER.smartDescription": "ターン終了時、[gold]瘴気[/gold][blue]{Amount}[/blue]を得る。",
     "COLLECTOR-SHOOTING_STAR_POWER.title": "流れ星",
     "COLLECTOR-SHOOTING_STAR_POWER.description": "毎ターン最初にアタックを[gold]火葬[/gold]した時、そのコピーを1枚[gold]手札[/gold]に加える。\nそのターン、それはコストを支払わずにプレイできる。",
-    "COLLECTOR-SHOOTING_STAR_POWER.smartDescription": "毎ターン最初に[blue]{Amount}[/blue]回アタックを[gold]火葬[/gold]した時、そのコピーを1枚[gold]手札[/gold]に加える。\nそのターン、それはコストを支払わずにプレイできる。",
+    "COLLECTOR-SHOOTING_STAR_POWER.smartDescription": "毎ターン、最初の[blue]{Amount}[/blue]回アタックを[gold]火葬[/gold]した時、そのコピーを1枚[gold]手札[/gold]に加える。\nそのターン、それはコストを支払わずにプレイできる。",
     "COLLECTOR-SUFFERING_POWER.title": "苦しみ",
     "COLLECTOR-SUFFERING_POWER.description": "敵に[gold]瘴気[/gold]以外のデバフを付与するたび、追加で[gold]瘴気[/gold]を付与する。",
     "COLLECTOR-SUFFERING_POWER.smartDescription": "敵に[gold]瘴気[/gold]以外のデバフを付与するたび、追加で[gold]瘴気[/gold][blue]{Amount}[/blue]を付与する。",

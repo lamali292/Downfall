@@ -16,7 +16,7 @@
     "AUTOMATON-ITS_A_FEATURE_POWER.smartDescription": "状態異常か[red]呪い[/red]を引くたび、ターン終了時まで[gold]筋力[/gold]と[gold]敏捷[/gold][blue]{Amount}[/blue]を得る。",
     "AUTOMATON-LIBRARY_POWER.title": "ライブラリ",
     "AUTOMATON-LIBRARY_POWER.description": "ターン開始時、[gold]エンコード[/gold]を持つカードをランダムに1枚[gold]手札[/gold]に加える。\nこのターン、それはコストを支払わずにプレイできる。",
-    "AUTOMATON-LIBRARY_POWER.smartDescription": "ターン開始時、[gold]エンコード[/gold]を持つカードをランダムに[blue]{Amount}[/blue]枚[gold]手札[/gold]に加える。\nこのターン、それらはコストを支払わずにプレイできる。",
+    "AUTOMATON-LIBRARY_POWER.smartDescription": "ターン開始時、[gold]エンコード[/gold]を持つカードをランダムに[blue]{Amount}[/blue]枚[gold]手札[/gold]に加える。\nこのターン、{Amount:plural:それ|それら}はコストを支払わずにプレイできる。",
     "AUTOMATON-MAX_OUTPUT_POWER.title": "最大出力",
     "AUTOMATON-MAX_OUTPUT_POWER.description": "ターン開始時、[gold]エラー[/gold]を1枚[gold]格納[/gold]する。",
     "AUTOMATON-MAX_OUTPUT_POWER.smartDescription": "ターン開始時、[gold]エラー[/gold]を[blue]{Amount}[/blue]枚[gold]格納[/gold]する。",

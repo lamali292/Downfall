@@ -12,7 +12,7 @@
     "GUARDIAN-CRYO_CHAMBER.description": "戦闘開始時、追加の[gold]停滞[/gold]スロットを[blue]1[/blue]得る。カードが[gold]停滞[/gold]するたび、戦闘中、そのカードを[gold]アップグレード[/gold]する。",
     "GUARDIAN-CRYO_CHAMBER.flavor": "物事は、形にしてみると、思っていた以上に良く見えるものだ。",
     "GUARDIAN-GUARDIAN_GEAR.title": "ガーディアンギア",
-    "GUARDIAN-GUARDIAN_GEAR.description": "戦闘開始時、[gold]ギアアップ[/gold]を[gold]手札[/gold]に加える。\n[gold]防御態勢[/gold]に入るたび、{energyPrefix:energyIcons(1)}を得てカードを[blue]2[/blue]枚引く。",
+    "GUARDIAN-GUARDIAN_GEAR.description": "戦闘開始時、[gold]ギアアップ[/gold]を1枚[gold]手札[/gold]に加える。\n[gold]防御態勢[/gold]に入るたび、{energyPrefix:energyIcons(1)}を得てカードを[blue]2[/blue]枚引く。",
     "GUARDIAN-GUARDIAN_GEAR.flavor": "交換は3,000フロアごと。",
     "GUARDIAN-OBSIDIAN_SCALES.title": "オブシディアンスケイル",
     "GUARDIAN-OBSIDIAN_SCALES.description": "戦闘開始時、[gold]トゲ[/gold][blue]3[/blue]を得る。デバフを受けるたび、[gold]トゲ[/gold][blue]1[/blue]を得る。",
@@ -27,10 +27,10 @@
     "GUARDIAN-QUANTUM_CHAMBER.description": "毎ターン、初めてカードを[gold]停滞[/gold]させた時、それを[gold]加速[/gold]する。",
     "GUARDIAN-QUANTUM_CHAMBER.flavor": "鶏を得るには、卵を孵すのだ。叩き割るのではなく。",
     "GUARDIAN-SACK_OF_GEMS.title": "ジェム入り袋",
-    "GUARDIAN-SACK_OF_GEMS.description": "入手時、ランダムな[gold]ジェム[/gold]を最大[blue]5[/blue]個まで選んで[gold]デッキ[/gold]に加えてもよい。",
+    "GUARDIAN-SACK_OF_GEMS.description": "取得時、ランダムな[gold]ジェム[/gold]を最大[blue]5[/blue]個まで選んで[gold]デッキ[/gold]に加えてもよい。",
     "GUARDIAN-SACK_OF_GEMS.flavor": "おおっ……ピカピカだ！",
     "GUARDIAN-WANDER_BOTS.title": "ワンダーボット",
     "GUARDIAN-WANDER_BOTS.description": "戦闘開始時、[gold]停滞[/gold]スロットを[blue]1[/blue]つ失う。ターン開始時、{Energy:energyIcons()}を得る。",
     "GUARDIAN-WANDER_BOTS.flavor": "このドローンは素晴らしい廃品を見つけてくるが、維持には処理能力を要する。",
-    "SEA_GLASS.GUARDIAN-GUARDIAN.title": "トゲのグラス"
+    "SEA_GLASS.GUARDIAN-GUARDIAN.title": "ソーングラス"
 }
