@@ -21,6 +21,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Runs.History;
 using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Commands;
@@ -385,5 +386,47 @@ public class DownfallCardCmd
         tween.TweenCallback(Callable.From(cardNode.QueueFreeSafely));
     }
     
+    /// <summary>
+    /// Be very careful using this method, it does not provide ANY checks for whether the card should be enchanted so will crash if the card already has an enchantment.
+    /// You should almost always use CardCmd.Enchant instead of this method.
+    /// Valid use cases include enchanting status cards and curse cards which are normally excluded from but function normally with enchantments.
+    /// </summary>
+    public static T? ForceEnchant<T>(CardModel card, Decimal amount) where T : EnchantmentModel
+    {
+        return ForceEnchant(ModelDb.Enchantment<T>().ToMutable(), card, amount) as T;
+    }
     
+    /// <summary>
+    /// Forcefully applies an enchantment to a card without checking if it is supposed to.
+    /// </summary>
+    /// <param name="enchantment"> An enchantment you must check is valid BEFORE calling this method.</param>
+    /// <param name="card"> A card that normally wouldn't be allowed to get an enchantment (I.E Curses).</param>
+    /// <param name="amount"> The amount of stacks of this enchantment.</param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    public static EnchantmentModel? ForceEnchant(
+        EnchantmentModel enchantment,
+        CardModel card,
+        Decimal amount)
+    {
+        enchantment.AssertMutable();
+        if (card.Enchantment == null)
+        {
+            card.EnchantInternal(enchantment, amount);
+            enchantment.ModifyCard();
+        }
+        else if (card.Enchantment.GetType() == enchantment.GetType())
+        {
+            card.Enchantment.Amount += (int)amount;
+        }
+        else
+        {
+            return null;
+        }
+        card.FinalizeUpgradeInternal();
+        CardPile pile = card.Pile;
+        if (pile != null && pile.Type == PileType.Deck)
+            card.Owner.RunState.CurrentMapPointHistoryEntry?.GetEntry(card.Owner.NetId).CardsEnchanted.Add(new CardEnchantmentHistoryEntry(card, enchantment.Id));
+        return card.Enchantment;
+    }
 }

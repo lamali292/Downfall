@@ -36,15 +36,24 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
         bool causedByEthereal)
     {
         if (card != this) return;
-        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        }
     }
     
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
-        var instance = NCombatRoom.Instance;
-        instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
-        SfxCmd.Play("event:/sfx/characters/attack_fire");
-        HasSingleTurnRetain = true;
-        await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            var instance = NCombatRoom.Instance;
+            instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
+            SfxCmd.Play("event:/sfx/characters/attack_fire");
+            HasSingleTurnRetain = true;
+            await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue,
+                DamageProps.cardUnpowered, this, null);
+        }
     }
 }
