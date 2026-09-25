@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Relics;
 
@@ -18,11 +19,15 @@ public sealed class ScorchedLocket : HermitRelicModel
 {
     public ScorchedLocket() : base(RelicRarity.Starter)
     {
-        WithCardTip<MementoCard>();
+        WithCardTip<MementoCard>(WithPreviewModifiers);
         WithTip<Seething>();
     }
-
-
+    
+    private static void WithPreviewModifiers(MementoCard mementoCard, RelicModel relicModel)
+    {
+        CardCmd.Enchant<Seething>(mementoCard, 1);
+    }
+    
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {
