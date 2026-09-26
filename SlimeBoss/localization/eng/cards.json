@@ -1,5 +1,5 @@
 {
-  "SLIMEBOSS-COMBO_TACKLE.description": "Deal {Damage:diff()} damage.\nThe next card you play {IfUpgraded:show:|this turn }costs 1 less {energyPrefix:energyIcons(1)}",
+  "SLIMEBOSS-COMBO_TACKLE.description": "Deal {Damage:diff()} damage.\nThe next card you play {IfUpgraded:show:|this turn }costs 1 less {energyPrefix:energyIcons(1)}.",
   "SLIMEBOSS-COMBO_TACKLE.title": "Combo Tackle",
   "SLIMEBOSS-CONSULT_PLAYBOOK.description": "If the first card you play each turn contains \"Tackle\", gain {energyPrefix:energyIcons(1)} and draw 1 card.",
   "SLIMEBOSS-CONSULT_PLAYBOOK.title": "Consult Playbook",

@@ -14,13 +14,18 @@ public class ComboTackle : SlimeBossCardModel
     {
         WithTags(SlimeBossTag.Tackle);
         WithDamage(10, 2);
-        WithPower<ComboTackleDiscountPower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        // TODO - remove "this turn" on upgrade
-        await CommonActions.ApplySelf<ComboTackleDiscountPower>(ctx, this);
+        if (IsUpgraded)
+        {
+            await CommonActions.ApplySelf<ComboTacklePlusPower>(ctx, this, 1);
+        }
+        else
+        {
+            await CommonActions.ApplySelf<ComboTacklePower>(ctx, this, 1);
+        }
     }
 }

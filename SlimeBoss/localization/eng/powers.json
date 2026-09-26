@@ -1,7 +1,4 @@
 {
-  "SLIMEBOSS-COMBO_TACKLE_DISCOUNT_POWER.title": "Combo",
-  "SLIMEBOSS-COMBO_TACKLE_DISCOUNT_POWER.description": "The next card you play this turn costs less.",
-  "SLIMEBOSS-COMBO_TACKLE_DISCOUNT_POWER.smartDescription": "The next card you play this turn costs [blue]{Amount}[/blue] less.",
   "SLIMEBOSS-OOZE_BATH_POWER.title": "Ooze Bath",
   "SLIMEBOSS-OOZE_BATH_POWER.description": "While Weakened, this enemy loses HP at the start of their turn and whenever a Status is played.",
   "SLIMEBOSS-OOZE_BATH_POWER.smartDescription": "While Weakened, this enemy loses [blue]{Amount}[/blue] HP at the start of their turn and whenever a Status is played.",
@@ -77,5 +74,11 @@
   "SLIMEBOSS-GROWTH_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} times you draw a Status card, draw [blue]1[/blue] card.",
   "SLIMEBOSS-THE_PLAYBOOK_POWER.title": "The Playbook",
   "SLIMEBOSS-THE_PLAYBOOK_POWER.description": "Attacks cost 1 less {energyPrefix:energyIcons(1)}.\nWhenever you play an Attack, take damage.",
-  "SLIMEBOSS-THE_PLAYBOOK_POWER.smartDescription": "Attacks cost [blue]{Energy}[/blue] less {energyPrefix:energyIcons(1)}.\nWhenever you play an Attack, take [blue]{Amount}[/blue] damage."
+  "SLIMEBOSS-THE_PLAYBOOK_POWER.smartDescription": "Attacks cost [blue]{Energy}[/blue] less {energyPrefix:energyIcons(1)}.\nWhenever you play an Attack, take [blue]{Amount}[/blue] damage.",
+  "SLIMEBOSS-COMBO_TACKLE_POWER.title": "Combo Tackle",
+  "SLIMEBOSS-COMBO_TACKLE_POWER.description": "The next card you play this turn costs [blue]1[/blue] less {energyPrefix:energyIcons(1)}.",
+  "SLIMEBOSS-COMBO_TACKLE_POWER.smartDescription": "The next {Amount:plural:card|[blue]{}[/blue] cards} you play this turn {Amount:plural:costs|cost} [blue]1[/blue] less {energyPrefix:energyIcons(1)}.",
+  "SLIMEBOSS-COMBO_TACKLE_PLUS_POWER.title": "Combo Tackle",
+  "SLIMEBOSS-COMBO_TACKLE_PLUS_POWER.description": "The next card you play costs [blue]1[/blue] less {energyPrefix:energyIcons(1)}.",
+  "SLIMEBOSS-COMBO_TACKLE_PLUS_POWER.smartDescription": "The next {Amount:plural:card|[blue]{}[/blue] cards} you play {Amount:plural:costs|cost} [blue]1[/blue] less {energyPrefix:energyIcons(1)}."
 }
