@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -33,7 +34,7 @@ public class LeechingSlime : SlimeModel
 
     
     // "Grants Block instead of dealing damage."
-    public override async Task Command(PlayerChoiceContext ctx)
+    public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);

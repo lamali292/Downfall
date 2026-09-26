@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -26,7 +27,7 @@ public class MassiveSlime : SlimeModel
         skeleton.SetSlotsToSetupPose();
     }
 
-    public override async Task Command(PlayerChoiceContext ctx)
+    public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         if (_skipTurns > 0)
         {
@@ -34,10 +35,9 @@ public class MassiveSlime : SlimeModel
             return;
         }
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromSlime(this)
-            .TargetingAllOpponents(CombatState)
-            .Execute(ctx);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
+        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingAllOpponents(CombatState);
+        await attack.Execute(ctx);
         _skipTurns = DynamicVars["Sleep"].IntValue;
     }
 }

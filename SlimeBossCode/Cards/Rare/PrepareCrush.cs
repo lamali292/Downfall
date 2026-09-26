@@ -17,8 +17,8 @@ public class PrepareCrush : SlimeBossCardModel
         WithTip<StrengthPower>();
         WithKeyword(CardKeyword.Exhaust);
         WithEnergy(3, 1);
-        WithPower<StrengthNextTurnPower>(3, 2, false);
         WithPower<EnergyNextTurnPower>(3, 1, false);
+        WithPower<StrengthNextTurnPower>(3, 2, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

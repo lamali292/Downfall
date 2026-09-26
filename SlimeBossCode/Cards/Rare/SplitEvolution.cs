@@ -9,7 +9,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class SplitEvolution : SlimeBossCardModel
 {
-    public SplitEvolution() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public SplitEvolution() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithSlimeTip<EvolutionSlime>();

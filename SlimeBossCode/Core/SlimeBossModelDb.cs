@@ -12,13 +12,7 @@ public static class SlimeBossModelDb
         ModelDb.AllAbstractModelSubtypes
             .Where(t => t.IsSubclassOf(typeof(SlimeModel)))
             .Select(t => (SlimeModel)ModelDb.Get(t));
-
-
-    public static IEnumerable<SlimeModel> AllSpecialistSlimes =>
-        AllSlimes.Where(t => t.SlimeType == SlimeType.Specialist);
-
-    public static IEnumerable<SlimeModel> AllNormalSlimes => AllSlimes.Where(t => t.SlimeType == SlimeType.Normal);
-
+    
     private static Dictionary<Type, CardModel> SlimeCardByType =>
         _slimeCardByType ??= ModelDb.AllCards
             .Where(c => c.GetType().BaseType is { IsGenericType: true } baseType &&

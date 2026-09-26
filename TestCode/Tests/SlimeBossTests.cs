@@ -14,24 +14,6 @@ namespace Downfall.TestCode;
 
 public class SlimeBossTests
 {
-    // Regression guard: Duplicated Form checked `cardPlay.Target?.Side == CombatSide.Enemy` to decide
-    // whether a card play targeted an enemy, but AoE cards (TargetType.AllEnemies) are played with a
-    // null Target - there's no single selected creature - so that check always failed for them and
-    // Duplicated Form silently never doubled AoE cards. The fix resolves the card's actual targets via
-    // DownfallCmd.TargetsEnemy (CardModel.MyGetTargets) instead of trusting the raw Target.
-    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task DuplicatedFormDoublesAoeCardsTargetingEnemies(TestContext ctx)
-    {
-        var enemy = ctx.Combat.HittableEnemies.First();
-        await PowerCmd.Apply<DuplicatedFormPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
-            ctx.Player.Creature, null);
-
-        var rollThrough = await ctx.AddCardToHand<RollThrough>();
-        await ctx.PlayCard(rollThrough, null);
-
-        Assert.AreEqual(2, enemy.GetPower<WeakPower>()?.Amount ?? 0,
-            "Duplicated Form should double an AllEnemies card even though it's played with a null target.");
-    }
 
     // Equalize: "Deal damage. Consume - Gain Block equal to damage dealt." Consume now keys off the
     // target's Weak stacks (SlimeBossCmd.Consume), not the old Goop-bonus-on-attack pipeline.

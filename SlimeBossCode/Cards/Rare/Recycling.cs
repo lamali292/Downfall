@@ -13,6 +13,7 @@ public class Recycling : SlimeBossCardModel
     {
         WithKeyword(CardKeyword.Innate);
         WithPower<RecyclingPower>(5, 3, false);
+        WithEnergyTip();
     }
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

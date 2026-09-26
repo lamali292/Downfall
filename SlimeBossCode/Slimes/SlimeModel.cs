@@ -80,7 +80,12 @@ public abstract class SlimeModel : CustomMonsterModel
         return new MonsterMoveStateMachine([initialState], initialState);
     }
 
-    public abstract Task Command(PlayerChoiceContext ctx);
+    /// <summary>
+    /// Runs this slime's attack/effect. <paramref name="forcedTarget"/> overrides the slime's normal
+    /// targeting (random/all opponents, "last attacked enemy", etc.) with a specific enemy - used by
+    /// effects like "Command ALL Slimes to attack the targeted enemy" (e.g. Slime Brawl).
+    /// </summary>
+    public abstract Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null);
 
 
     protected virtual void UpdatePreviewValues()

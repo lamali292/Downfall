@@ -5,7 +5,6 @@ using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-// "The next N times you play a Status, gain 1 [E]." Same one-shot-charge shape as vanilla FreeSkillPower.
 public class RecyclingPower : SlimeBossPowerModel
 {
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)

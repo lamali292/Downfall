@@ -25,7 +25,7 @@ public static class SlimeBossCmd
     {
         return player.Slimes.Select(e => e.Monster).OfType<SlimeModel>();
     }
-    
+
     private static SlimeModel? GetFirstSlime(Player player)
     {
         return GetSlimes(player).LastOrDefault();
@@ -34,7 +34,7 @@ public static class SlimeBossCmd
     /// <summary>Potency granted instead of duplicating an already-summoned slime type.</summary>
     private const int DuplicateSplitPotency = 2;
 
-    
+
     /// <summary>
     /// "Consume - if the enemy has Weak, remove a stack of Weak and perform an additional effect." Always
     /// attempted explicitly by the card itself (like Schlurp) rather than gated behind an attack landing -
@@ -59,30 +59,31 @@ public static class SlimeBossCmd
             if (target.CombatState != null)
                 await SlimeBossHook.AfterConsumeEffect(target.CombatState, ctx, target, card.Owner.Creature);
         }
+
         return consumed.Any();
     }
-    
 
 
-    private static async Task RunCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
+    private static async Task RunCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source,
+        Creature? forcedTarget = null)
     {
-        await slime.Command(ctx);
+        await slime.Command(ctx, forcedTarget);
         if (player.Creature.CombatState == null) return;
         await SlimeBossHook.AfterCommand(player.Creature.CombatState, ctx, player, slime, source);
     }
 
     private static async Task CommandInternal(PlayerChoiceContext ctx, Player player,
-        CardModel? source, CommandType commandType = CommandType.First)
+        CardModel? source, CommandType commandType = CommandType.First, Creature? forcedTarget = null)
     {
         switch (commandType)
         {
             case CommandType.First:
                 var slime = GetFirstSlime(player);
                 if (slime == null) return;
-                await RunCommand(ctx, player, slime, source);
+                await RunCommand(ctx, player, slime, source, forcedTarget);
                 break;
             case CommandType.All:
-                await GetSlimes(player).Reverse().ForEachAsync(s => RunCommand(ctx, player, s, source));
+                await GetSlimes(player).Reverse().ForEachAsync(s => RunCommand(ctx, player, s, source, forcedTarget));
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(commandType), commandType, null);
@@ -90,18 +91,18 @@ public static class SlimeBossCmd
     }
 
     public static async Task Command(PlayerChoiceContext ctx, Player player, int amount,
-        CardModel? cardSource = null, CommandType commandType = CommandType.First)
+        CardModel? cardSource = null, CommandType commandType = CommandType.First, Creature? forcedTarget = null)
     {
-        for (var i = 0; i < amount; i++) await CommandInternal(ctx, player, cardSource, commandType);
+        for (var i = 0; i < amount; i++) await CommandInternal(ctx, player, cardSource, commandType, forcedTarget);
     }
-    
+
 
     /// <summary>
     /// Commands a specific slime type (e.g. "Command Bruiser Slime"). If the player has not split into that
     /// slime yet, they Split into it first before it acts.
     /// </summary>
     public static async Task Command<T>(PlayerChoiceContext ctx, Player player, int amount,
-        CardModel? cardSource = null) where T : SlimeModel
+        CardModel? cardSource = null, Creature? forcedTarget = null) where T : SlimeModel
     {
         for (var i = 0; i < amount; i++)
         {
@@ -112,7 +113,7 @@ public static class SlimeBossCmd
                 slime = GetSlimes(player).OfType<T>().FirstOrDefault();
             }
 
-            if (slime != null) await RunCommand(ctx, player, slime, cardSource);
+            if (slime != null) await RunCommand(ctx, player, slime, cardSource, forcedTarget);
         }
     }
 
@@ -121,13 +122,13 @@ public static class SlimeBossCmd
     {
         return Command<T>(ctx, card.Owner, card.DynamicVars["Command"].IntValue, card);
     }
-    
+
     public static Task CommandAll(PlayerChoiceContext ctx, Player player, int amount = 1,
-        CardModel? cardSource = null)
+        CardModel? cardSource = null, Creature? forcedTarget = null)
     {
-        return Command(ctx, player, amount, cardSource, CommandType.All);
+        return Command(ctx, player, amount, cardSource, CommandType.All, forcedTarget);
     }
-    
+
 
     public static Task<Creature?> Split<T>(PlayerChoiceContext ctx, Player player) where T : SlimeModel
     {
@@ -146,6 +147,7 @@ public static class SlimeBossCmd
         {
             return await SpawnSlime(ctx, player, slimeModel);
         }
+
         await PowerCmd.Apply<PotencyPower>(ctx, existing, DuplicateSplitPotency, player.Creature, null);
         return existing;
     }
@@ -167,21 +169,7 @@ public static class SlimeBossCmd
         return slime;
     }
 
-
-    public static async Task SplitSpecialist(PlayerChoiceContext ctx, Player player)
-    {
-        var combatState = player.Creature.CombatState;
-        if (combatState == null) return;
-        var slimeCards = SlimeBossModelDb.AllSpecialistSlimes
-            .TakeRandom(3, player.RunState.Rng.CombatCardGeneration)
-            .Select(SlimeBossModelDb.GetCardForSlime).Select(e => combatState.CreateCard(e, player)).ToList();
-        var card = await CardSelectCmd.FromChooseACardScreen(ctx, slimeCards, player);
-        if (card is not ISlimeCard slimeCard) return;
-        var slime = slimeCard.SlimeModel;
-        await Split(ctx, player, slime);
-    }
-    
-     public static async Task<Creature?> AddSlime(Player player, SlimeModel slimeModel)
+    private static async Task<Creature?> AddSlime(Player player, SlimeModel slimeModel)
     {
         var pet = player.Creature.CombatState?.CreateCreature(slimeModel.ToMutable(), player.Creature.Side, null);
         if (pet == null) return null;
@@ -190,7 +178,6 @@ public static class SlimeBossCmd
         return pet;
     }
 
-    
 
     private static void RearrangeSlimeOrbRow(Player player)
     {
@@ -239,14 +226,11 @@ public static class SlimeBossCmd
                 ? parent.ToLocal(targetGlobalPos)
                 : targetGlobalPos;
 
-            var currentPos = slimeNode.Position;
-
             if (!slimeNode.HasMeta("layout_tween"))
             {
                 // first layout: snap instantly, no tween
                 slimeNode.Position = targetLocalPos;
                 slimeNode.UpdateBounds(slimeNode.Visuals);
-                currentPos = targetLocalPos;
             }
 
             if (!slimeNode.HasMeta("layout_tween"))

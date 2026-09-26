@@ -7,8 +7,6 @@ using SlimeBoss.SlimeBossCode.Events;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-// CSV row 37 reused the name "Gluttony" for a second, unrelated card - renamed to avoid a naming collision
-// with the free-Status-cards "Gluttony" power (CSV row 31). See project memory for the full note.
 public class GluttonyPower : SlimeBossPowerModel, IAfterConsumeEffect
 {
     public async Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker)

@@ -1,4 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
@@ -16,7 +17,7 @@ public class ScrapSlime : SlimeModel
     }
 
     
-    public override Task Command(PlayerChoiceContext ctx)
+    public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         throw new Exception();
     }
