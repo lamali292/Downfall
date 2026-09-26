@@ -46,12 +46,11 @@ public class MuscleSlime : SlimeModel
         attack = target != null ? attack.Targeting(target) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);
     }
-
-    // "Gains 1 Potency this turn whenever you play an Attack" - reactive passive, not part of Command().
+    
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != PetOwner || cardPlay.Card.Type != CardType.Attack) return;
-        await PowerCmd.Apply<MuscleSlimePotencyPower>(ctx, PetOwner, 1, PetOwner, null);
+        await PowerCmd.Apply<MuscleSlimePotencyPower>(ctx, Creature, 1, PetOwner, null);
     }
 }
 

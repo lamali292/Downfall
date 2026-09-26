@@ -24,19 +24,14 @@ public class RoyalSlime : SlimeModel
         skeleton.SetSlotsToSetupPose();
     }
 
-    // Royal Slime does nothing on the normal start-of-turn Command; its attack happens at end of turn instead.
-    public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
+    public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        return Task.CompletedTask;
+        if (PetOwner.Player == null) return;
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .WithHitCount(PetOwner.Player.SlimeCount)
+            .FromSlime(this);
+        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
+        await attack.Execute(ctx);
     }
-
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
-        IEnumerable<Creature> participants)
-    {
-        if (PetOwner.Player == null || !participants.Contains(PetOwner)) return;
-        var hits = PetOwner.Player.SlimeCount;
-        for (var i = 0; i < hits; i++)
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)
-                .TargetingRandomOpponents(CombatState).Execute(ctx);
-    }
+    
 }

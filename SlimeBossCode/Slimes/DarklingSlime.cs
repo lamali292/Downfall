@@ -31,12 +31,12 @@ public class DarklingSlime : SlimeModel, IAfterCommand
         attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         return attack.Execute(ctx);
     }
-
-    // "Deals 3 damage to a random enemy... whenever another Slime is Commanded."
+    
     public async Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
     {
         if (player.Creature != PetOwner || slime == this || slime is DarklingSlime) return;
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromSlime(this)
             .TargetingRandomOpponents(CombatState).Execute(ctx);
     }
 }

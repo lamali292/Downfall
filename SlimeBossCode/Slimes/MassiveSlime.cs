@@ -32,10 +32,9 @@ public class MassiveSlime : SlimeModel
             _skipTurns--;
             return;
         }
-
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
-        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingAllOpponents(CombatState);
-        await attack.Execute(ctx);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromSlime(this)
+            .TargetingAllOpponents(CombatState).Execute(ctx);
         _skipTurns = DynamicVars["Sleep"].IntValue;
     }
 }
