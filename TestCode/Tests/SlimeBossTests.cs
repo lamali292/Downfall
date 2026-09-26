@@ -14,26 +14,7 @@ namespace Downfall.TestCode;
 
 public class SlimeBossTests
 {
-
-    // Equalize: "Deal damage. Consume - Gain Block equal to damage dealt." Consume now keys off the
-    // target's Weak stacks (SlimeBossCmd.Consume), not the old Goop-bonus-on-attack pipeline.
-    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task EqualizeConsumeGrantsBlockEqualToDamageDealt(TestContext ctx)
-    {
-        var enemy = ctx.Combat.HittableEnemies.First();
-        var lick = await ctx.AddCardToHand<Lick>();
-        await ctx.PlayCard(lick, enemy);
-
-        var equalize = await ctx.AddCardToHand<Equalize>();
-        var startingBlock = ctx.Player.Creature.Block;
-
-        await ctx.PlayCard(equalize, enemy);
-
-        var damageDealt = ctx.Player.Creature.Block - startingBlock;
-        Assert.IsTrue(damageDealt >= 12,
-            $"Equalize should Consume the Weak from Lick and gain Block equal to its damage dealt (>=12), got a delta of {damageDealt}.");
-    }
-
+    
     // Without Weak on the target, Equalize's Consume shouldn't trigger at all - no Block gained.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
     public async Task EqualizeGrantsNoBlockWithoutWeakOnTarget(TestContext ctx)

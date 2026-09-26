@@ -6,11 +6,10 @@ using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-// "EVERYONE draws 1 additional card at the start of their turn."
 public class GroupTacticsPower : SlimeBossPowerModel
 {
-    public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    public override decimal ModifyHandDraw(Player player, decimal count)
     {
-        return CardPileCmd.Draw(ctx, Amount, player);
+        return count + Amount;
     }
 }

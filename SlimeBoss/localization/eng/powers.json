@@ -27,8 +27,8 @@
   "SLIMEBOSS-MINION_MASTER_POWER.description": "Whenever you play a Strike or Defend, [gold]Command[/gold] [gold]Bruiser Slime[/gold]. ",
   "SLIMEBOSS-MINION_MASTER_POWER.smartDescription": "Whenever you play a Strike or Defend, [gold]Command[/gold] [gold]Bruiser Slime[/gold]{Amount:plural:|[blue]{}[/blue] times}. ",
   "SLIMEBOSS-RALLY_THE_TROOPS_POWER.title": "Rally the Troops",
-  "SLIMEBOSS-RALLY_THE_TROOPS_POWER.description": "The next card played this turn triggers a [gold]Command[/gold].",
-  "SLIMEBOSS-RALLY_THE_TROOPS_POWER.smartDescription": "The next {Amount:plural:card|[blue]{}[/blue] cards} played this turn {Amount:plural:triggers|trigger} a [gold]Command[/gold].",
+  "SLIMEBOSS-RALLY_THE_TROOPS_POWER.description": "Whenever you play a card this turn, gain [gold]Potency[/gold] this turn.",
+  "SLIMEBOSS-RALLY_THE_TROOPS_POWER.smartDescription": "Whenever you play a card this turn, gain [blue]{Amount}[/blue] [gold]Potency[/gold] this turn.",
   "SLIMEBOSS-RECKLESSNESS_POWER.title": "Recklessness",
   "SLIMEBOSS-RECKLESSNESS_POWER.description": "\"Tackle\" cards deal additional damage to you.",
   "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "\"Tackle\" cards deal [blue]{Amount}[/blue] additional damage to you.",
@@ -52,8 +52,8 @@
   "SLIMEBOSS-CONSULT_PLAYBOOK_POWER.description": "If the first card you play each turn contains \"Tackle\", gain {energyPrefix:energyIcons(1)} and draw a card.",
   "SLIMEBOSS-CONSULT_PLAYBOOK_POWER.smartDescription": "If the first card you play each turn contains \"Tackle\", gain {Amount:energyIcons()} and draw {Amount:plural:a card|[blue]{}[/blue] cards}.",
   "SLIMEBOSS-CRIPPLE_POWER.title": "Cripple",
-  "SLIMEBOSS-CRIPPLE_POWER.description": "Whenever ANY player deals attack damage to this Weakened enemy, that player gains Block.",
-  "SLIMEBOSS-CRIPPLE_POWER.smartDescription": "Whenever ANY player deals attack damage to this Weakened enemy, that player gains [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "SLIMEBOSS-CRIPPLE_POWER.description": "Whenever ANY player deals attack damage to this enemy, if they are [gold]Weak[/gold], that player gains [gold]Block[/gold].",
+  "SLIMEBOSS-CRIPPLE_POWER.smartDescription": "Whenever ANY player deals attack damage to this enemy, if they are [gold]Weak[/gold], that player gains [blue]{Amount}[/blue] [gold]Block[/gold].",
   "SLIMEBOSS-GROUP_TACTICS_POWER.title": "Group Tactics",
   "SLIMEBOSS-GROUP_TACTICS_POWER.description": "EVERYONE draws an additional card at the start of their turn.",
   "SLIMEBOSS-GROUP_TACTICS_POWER.smartDescription": "EVERYONE draws [blue]{Amount}[/blue] additional {Amount:plural:card|cards} at the start of their turn.",
@@ -74,5 +74,8 @@
   "SLIMEBOSS-GLUTTONY_POWER.smartDescription": "Whenever you [gold]Consume[/gold], draw [blue]{Amount}[/blue] {Amount:plural:card|cards} next turn.",
   "SLIMEBOSS-GROWTH_POWER.title": "Growth",
   "SLIMEBOSS-GROWTH_POWER.description": "The next time you draw a Status card, draw [blue]1[/blue] card.",
-  "SLIMEBOSS-GROWTH_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} times you draw a Status card, draw [blue]1[/blue] card."
+  "SLIMEBOSS-GROWTH_POWER.smartDescription": "The next {Amount:plural:time|[blue]{}[/blue] times} times you draw a Status card, draw [blue]1[/blue] card.",
+  "SLIMEBOSS-THE_PLAYBOOK_POWER.title": "The Playbook",
+  "SLIMEBOSS-THE_PLAYBOOK_POWER.description": "Attacks cost 1 less {energyPrefix:energyIcons(1)}.\nWhenever you play an Attack, take damage.",
+  "SLIMEBOSS-THE_PLAYBOOK_POWER.smartDescription": "Attacks cost [blue]{Energy}[/blue] less {energyPrefix:energyIcons(1)}.\nWhenever you play an Attack, take [blue]{Amount}[/blue] damage."
 }

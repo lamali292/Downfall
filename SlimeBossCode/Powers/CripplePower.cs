@@ -15,8 +15,11 @@ public class CripplePower : SlimeBossPowerModel
     {
         var attacker = command.Attacker;
         if (attacker?.Player == null) return;
-        if (command.Results.SelectMany(r => r).All(e => e.Receiver != Owner)) return;
-        if (!Owner.GetPowerInstances<WeakPower>().Any(w => w.Amount > 0)) return;
-        await CreatureCmd.GainBlock(attacker, Amount, BlockProps.nonCardUnpowered, null);
+        if (!Owner.HasPower<WeakPower>()) return;
+        var hitCount = command.Results.SelectMany(r => r).Count(e => e.Receiver == Owner && e.TotalDamage > 0);
+        for (var i = 0; i < hitCount; i++)
+        {
+            await CreatureCmd.GainBlock(attacker, Amount, BlockProps.nonCardUnpowered, null);
+        }
     }
 }
