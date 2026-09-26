@@ -19,7 +19,6 @@ public class JustDesserts : SlimeBossCardModel
         WithDamage(8, 4);
         WithCalculatedVar("Cards", 0, Calc);
         WithKeyword(CardKeyword.Exhaust);
-        WithTip(SlimeBossTip.Consume);
     }
 
     private static decimal Calc(CardModel card, Creature? _)

@@ -18,9 +18,7 @@ public class Encroaching : SlimeBossCardModel
         WithTip<WeakPower>();
 
     }
-
-    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
-
+    
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<EncroachingPower>(ctx, this);
