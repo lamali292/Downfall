@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 ]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_q4a16"]
-[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/greed.tscn" id="2_q4a16"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_s.tscn" id="2_q4a16"]
 
 [node name="GreedSlime" type="Node2D"]
 script = ExtResource("1_q4a16")

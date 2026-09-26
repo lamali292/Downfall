@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 ]
+
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.atlas" id="1_a171e"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.skel" id="2_bvd0e"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_86nel"]
+atlas_res = ExtResource("1_a171e")
+skeleton_file_res = ExtResource("2_bvd0e")
+
+[node name="SlimeM" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_86nel")
+preview_skin = "cultist"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

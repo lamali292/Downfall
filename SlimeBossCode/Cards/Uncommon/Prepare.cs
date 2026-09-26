@@ -11,7 +11,7 @@ public class Prepare : SlimeBossCardModel
 {
     public Prepare() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(8, 4);
+        WithBlock(10, 4);
         WithEnergy(1);
         WithPower<EnergyNextTurnPower>(1, false);
         WithPower<DrawCardsNextTurnPower>(1, false);

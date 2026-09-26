@@ -1,14 +1,50 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=5 format=3 ]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_j1qox"]
-[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slowing.tscn" id="2_vpw3y"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.tscn" id="2_hm1rd"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/stopwatch.png" id="3_03lu2"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/antennae.png" id="4_xjlrw"]
 
 [node name="SlowingSlime" type="Node2D"]
 script = ExtResource("1_j1qox")
 
-[node name="Visuals" parent="." instance=ExtResource("2_vpw3y")]
+[node name="Visuals" parent="." instance=ExtResource("2_hm1rd")]
+preview_skin = "slowing"
 preview_animation = "idle_loop"
 unique_name_in_owner = true
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="Visuals"]
+slot_name = "stopwatch"
+show_behind_parent = true
+position = Vector2(-49.153366, -21.175236)
+rotation = -3.1415925
+scale = Vector2(1.5983874, 1.5983874)
+
+[node name="TextureRect" type="TextureRect" parent="Visuals/SpineSlotNode"]
+offset_left = 47.56002
+offset_top = 57.699997
+offset_right = 191.56003
+offset_bottom = 201.7
+rotation = -3.1243982
+scale = Vector2(0.7173225, 0.7173225)
+texture = ExtResource("3_03lu2")
+
+[node name="SpineSlotNode2" type="SpineSlotNode" parent="Visuals"]
+slot_name = "antennae"
+show_behind_parent = true
+position = Vector2(16.004347, -55.614407)
+rotation = -3.1415925
+scale = Vector2(1.5983874, 1.5983874)
+
+[node name="TextureRect" type="TextureRect" parent="Visuals/SpineSlotNode2"]
+offset_left = 59.690006
+offset_top = 37.72
+offset_right = 203.69
+offset_bottom = 181.72
+rotation = -3.187093
+scale = Vector2(0.85431904, 0.85431904)
+texture = ExtResource("4_xjlrw")
+metadata/_edit_use_anchors_ = true
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

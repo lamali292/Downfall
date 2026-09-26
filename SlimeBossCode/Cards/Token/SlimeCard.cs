@@ -42,51 +42,49 @@ public interface ISlimeCard
 
 #pragma warning disable
 
-// Normal Slimes
-public class SlimeCardLeeching : SlimeCard<LeechingSlime>;
-
-public class SlimeCardMire : SlimeCard<MireSlime>;
+// Uncommon Slimes
 
 public class SlimeCardBruiser : SlimeCard<BruiserSlime>;
-
+public class SlimeCardMuscle : SlimeCard<MuscleSlime>;
+public class SlimeCardTaunting : SlimeCard<TauntingSlime>;
+public class SlimeCardPsychic : SlimeCard<PsychicSlime>;
+public class SlimeCardLeeching : SlimeCard<LeechingSlime>;
+public class SlimeCardSpike : SlimeCard<SpikeSlime>;
+public class SlimeCardCultist : SlimeCard<CultistSlime>;
 public class SlimeCardGuerilla : SlimeCard<GuerillaSlime>;
 
-public class SlimeCardMuscle : SlimeCard<MuscleSlime>;
-
-public class SlimeCardTaunting : SlimeCard<TauntingSlime>;
-
-// Specialist Slimes
-public class SlimeCardAncient : SlimeCard<AncientSlime>;
-
-public class SlimeCardBronze : SlimeCard<BronzeSlime>;
-
-public class SlimeCardCultist : SlimeCard<CultistSlime>;
-
-public class SlimeCardGhostflame : SlimeCard<GhostflameSlime>;
-
-public class SlimeCardInsulting : SlimeCard<InsultingSlime>;
-
-public class SlimeCardSpiky : SlimeCard<SpikySlime>;
-
-public class SlimeCardTime : SlimeCard<TimeSlime>;
-
-public class SlimeCardTorchhead : SlimeCard<TorchheadSlime>;
-
-public class SlimeCardPsychic : SlimeCard<PsychicSlime>;
-
+// rare Slimes
 public class SlimeCardMassive : SlimeCard<MassiveSlime>;
-
 public class SlimeCardEvolution : SlimeCard<EvolutionSlime>;
-
 public class SlimeCardRoyal : SlimeCard<RoyalSlime>;
-
 public class SlimeCardDarkling : SlimeCard<DarklingSlime>;
 
+
 // Unused Slimes
+[Obsolete]
+public class SlimeCardGhostflame : SlimeCard<GhostflameSlime>;
+
+[Obsolete]
+public class SlimeCardAncient : SlimeCard<AncientSlime>;
+
+[Obsolete]
+public class SlimeCardBronze : SlimeCard<BronzeSlime>;
+
+[Obsolete]
+public class SlimeCardTime : SlimeCard<TimeSlime>;
+
+[Obsolete]
+public class SlimeCardInsulting : SlimeCard<InsultingSlime>;
+
+[Obsolete]
+public class SlimeCardTorchhead : SlimeCard<TorchheadSlime>;
+
 [Obsolete]
 public class SlimeCardGreed() : SlimeCard<GreedSlime>(false, false);
 
 [Obsolete]
 public class SlimeCardScrap() : SlimeCard<ScrapSlime>(false, false);
 
+[Obsolete]
+public class SlimeCardMire : SlimeCard<MireSlime>;
 #pragma warning restore
