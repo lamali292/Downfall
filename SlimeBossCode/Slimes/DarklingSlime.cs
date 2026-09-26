@@ -11,8 +11,6 @@ using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
-// "Shares a Potency stat" needs no special code - Potency is already owner-scoped (PotencyPower boosts every
-// slime the owner controls equally), so multiple Darklings already share it automatically.
 public class DarklingSlime : SlimeModel, IAfterCommand
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

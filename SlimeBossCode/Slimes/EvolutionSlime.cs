@@ -10,9 +10,6 @@ using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
-// "Evolves whenever it attacks, up to 4 times" - each Command() counts as an attack for leveling purposes,
-// even though levels 1-4's actual payoff fires at end of turn (AfterSideTurnEnd), not on Command itself.
-// Levels are cumulative (Lvl5 includes Lvl1-4's effects).
 public class EvolutionSlime : SlimeModel
 {
     private const int MaxLevel = 5;
