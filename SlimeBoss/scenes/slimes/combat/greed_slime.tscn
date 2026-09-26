@@ -1,29 +1,15 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_q4a16"]
-[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_s.tscn" id="2_q4a16"]
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.atlas" id="1_q4a16"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/slimeM/skeleton.skel" id="2_skryc"]
 
-[node name="GreedSlime" type="Node2D"]
-script = ExtResource("1_q4a16")
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_86nel"]
+atlas_res = ExtResource("1_q4a16")
+skeleton_file_res = ExtResource("2_skryc")
 
-[node name="Visuals" parent="." instance=ExtResource("2_q4a16")]
-preview_animation = "idle_loop"
-unique_name_in_owner = true
-
-[node name="Bounds" type="Control" parent="."]
-unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
-offset_left = -48.0
-offset_top = -91.0
-offset_right = 52.163933
-offset_bottom = 3.0
-mouse_filter = 2
-
-[node name="CenterPos" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -46)
-
-[node name="IntentPos" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(2, -31)
+[node name="SlimeM" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_86nel")
+preview_skin = "cultist"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

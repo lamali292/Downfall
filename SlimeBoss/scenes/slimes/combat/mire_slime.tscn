@@ -8,6 +8,7 @@ script = ExtResource("1_86n8s")
 
 [node name="Visuals" parent="." instance=ExtResource("2_86n8s")]
 preview_skin = "sliming"
+preview_animation = "idle_loop"
 unique_name_in_owner = true
 
 [node name="Bounds" type="Control" parent="."]
