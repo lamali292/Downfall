@@ -1,6 +1,8 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Powers;
 
@@ -13,6 +15,8 @@ public class Cripple : SlimeBossCardModel
     {
         WithDamage(5, 2);
         WithPower<CripplePower>(1, 1, false);
+        WithTip<WeakPower>();
+        WithTip(StaticHoverTip.Block);
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

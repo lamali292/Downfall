@@ -12,7 +12,7 @@ using SlimeBoss.SlimeBossCode.CustomEnums;
 namespace SlimeBoss.SlimeBossCode.Cards.Basic;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class DiveTackle : SlimeBossCardModel, ITranscendenceCard
+public class DiveTackle : SlimeBossCardModel
 {
     public DiveTackle() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
@@ -22,11 +22,7 @@ public class DiveTackle : SlimeBossCardModel, ITranscendenceCard
     }
 
     protected override Artist Artist => Artist.Get<HalfGoblinHankins>();
-
-    public CardModel GetTranscendenceTransformedCard()
-    {
-        return ModelDb.Card<AncientDarv>();
-    }
+    
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

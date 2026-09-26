@@ -14,6 +14,7 @@ public class RallyTheTroops : SlimeBossCardModel
     {
         WithDamage(12, 6);
         WithPower<RallyTheTroopsPower>(1, false);
+        WithTip<PotencyPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
