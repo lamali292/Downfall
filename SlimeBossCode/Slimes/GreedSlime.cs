@@ -7,9 +7,7 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 [Obsolete]
 public class GreedSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.None;
-    
-    
+  
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
         skeleton.SetSkin(skeleton.GetData().FindSkin("greed"));

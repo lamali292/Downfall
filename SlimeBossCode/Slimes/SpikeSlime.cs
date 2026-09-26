@@ -15,8 +15,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class SpikeSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.Specialist;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new SlimeSecondaryVar(4)

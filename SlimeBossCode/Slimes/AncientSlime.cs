@@ -19,9 +19,6 @@ public class AncientSlime : SlimeModel
         new DamageVar(3, DamageProps.nonCardUnpowered),
         new CardsVar(1)
     ];
-
-    public override SlimeType SlimeType => SlimeType.Specialist;
-
     public override IEnumerable<IHoverTip> ExtraTips =>
     [
         HoverTipFactory.FromPower<PotencyPower>()

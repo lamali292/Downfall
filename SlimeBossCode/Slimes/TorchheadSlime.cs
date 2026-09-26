@@ -13,8 +13,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 [Obsolete]
 public class TorchheadSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.Specialist;
-
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, DamageProps.nonCardUnpowered)];
 
     public override IEnumerable<IHoverTip> ExtraTips =>

@@ -13,8 +13,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class PsychicSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.Specialist;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(3, DamageProps.nonCardUnpowered)

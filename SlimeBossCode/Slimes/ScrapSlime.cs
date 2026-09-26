@@ -7,9 +7,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 [Obsolete]
 public class ScrapSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.None;
-    
-    
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
         skeleton.SetSkin(skeleton.GetData().FindSkin("scrap"));

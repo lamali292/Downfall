@@ -12,8 +12,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class BruiserSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.Normal;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(3, DamageProps.nonCardUnpowered)

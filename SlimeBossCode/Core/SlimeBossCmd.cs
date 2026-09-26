@@ -23,7 +23,7 @@ public static class SlimeBossCmd
 {
     public static IEnumerable<SlimeModel> GetSlimes(Player player)
     {
-        return player.Slimes.Select(e => e.Monster).OfType<SlimeModel>();
+        return player.SlimeCreatures.Select(e => e.Monster).OfType<SlimeModel>();
     }
 
     private static SlimeModel? GetFirstSlime(Player player)

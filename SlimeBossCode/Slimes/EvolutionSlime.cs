@@ -17,9 +17,7 @@ public class EvolutionSlime : SlimeModel
 {
     private const int MaxLevel = 5;
     private int _level = 1;
-
-    public override SlimeType SlimeType => SlimeType.Specialist;
-
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(1, DamageProps.nonCardUnpowered),

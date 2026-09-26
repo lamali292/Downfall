@@ -16,9 +16,7 @@ public class CultistSlime : SlimeModel
     [
         new DamageVar(4, DamageProps.nonCardUnpowered)
     ];
-
-    public override SlimeType SlimeType => SlimeType.Specialist;
-
+    
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
         skeleton.SetSkin(skeleton.GetData().FindSkin("cultist"));

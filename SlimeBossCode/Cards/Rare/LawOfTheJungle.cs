@@ -24,7 +24,7 @@ public class LawOfTheJungle : SlimeBossCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var stealAmount = DynamicVars.Power<PotencyPower>().IntValue;
-        foreach (var slime in Owner.Slimes)
+        foreach (var slime in Owner.SlimeCreatures)
         {
             var potency = Math.Min(slime.GetPowerAmount<PotencyPower>(), stealAmount);
             await PowerCmd.Apply<PotencyPower>(ctx, slime, -potency, Owner.Creature, this);

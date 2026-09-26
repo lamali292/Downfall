@@ -15,8 +15,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 // slime the owner controls equally), so multiple Darklings already share it automatically.
 public class DarklingSlime : SlimeModel, IAfterCommand
 {
-    public override SlimeType SlimeType => SlimeType.None;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(3, DamageProps.nonCardUnpowered)

@@ -15,8 +15,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 [Obsolete]
 public class GhostflameSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.Specialist;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(4, DamageProps.nonCardUnpowered),

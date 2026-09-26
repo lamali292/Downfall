@@ -18,8 +18,6 @@ public class BronzeSlime : SlimeModel
         new DamageVar(10, DamageProps.nonCardUnpowered),
         new("Sleep", 2)
     ];
-
-    public override SlimeType SlimeType => SlimeType.Specialist;
     
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {

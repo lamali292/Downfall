@@ -16,7 +16,7 @@ public class LeadByExamplePower : SlimeBossPowerModel, IAfterCommand
     public async Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
     {
         if (player.Creature != Owner || slime is not BruiserSlime) return;
-        var slimes = player.Slimes.Where(s => s.Monster != slime);
+        var slimes = player.SlimeCreatures.Where(s => s.Monster != slime);
         await PowerCmd.Apply<LeadByExamplePotencyPower>(ctx, slimes, Amount, Owner, source);
     }
 }

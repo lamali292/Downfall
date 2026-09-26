@@ -15,8 +15,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class MuscleSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.Normal;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(6, DamageProps.nonCardUnpowered)

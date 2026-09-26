@@ -13,8 +13,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class LeechingSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.Normal;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new SlimeSecondaryVar(4)

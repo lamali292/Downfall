@@ -15,8 +15,6 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 [Obsolete]
 public class MireSlime : SlimeModel
 {
-    public override SlimeType SlimeType => SlimeType.Normal;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(2, DamageProps.nonCardUnpowered),

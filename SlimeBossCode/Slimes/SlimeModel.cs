@@ -23,8 +23,7 @@ public abstract class SlimeModel : CustomMonsterModel
     private DynamicVarSet? _dynamicVars;
     public override int MinInitialHp => Really.bigNumber;
     public override int MaxInitialHp => Really.bigNumber;
-    public abstract SlimeType SlimeType { get; }
-
+    
     public override string CustomVisualPath =>
         $"combat/{Id.Entry.RemovePrefix().ToLowerInvariant()}.tscn".SlimeScenePath();
 
@@ -116,13 +115,4 @@ public abstract class SlimeModel : CustomMonsterModel
                     break;
             }
     }
-}
-
-[Flags]
-public enum SlimeType
-{
-    None = 0,
-    Normal = 1,
-    Specialist = 2,
-    Any = Normal | Specialist
 }

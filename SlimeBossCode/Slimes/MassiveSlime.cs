@@ -11,9 +11,7 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 public class MassiveSlime : SlimeModel
 {
     private int _skipTurns;
-
-    public override SlimeType SlimeType => SlimeType.Specialist;
-
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(20, DamageProps.nonCardUnpowered),
