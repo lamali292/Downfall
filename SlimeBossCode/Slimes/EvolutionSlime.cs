@@ -46,8 +46,6 @@ public class EvolutionSlime : SlimeModel
         await attack.Execute(ctx);
 
         if (_level < 4) return;
-        // Simplification: "half damage dealt" is approximated as half of the per-target damage value
-        // (not the summed total across all enemies at level 3+) to avoid depending on attack result internals.
         await CreatureCmd.GainBlock(PetOwner, damage / 2, BlockProps.nonCardUnpowered, null);
     }
 }

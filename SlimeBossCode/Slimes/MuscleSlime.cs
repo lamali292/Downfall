@@ -36,7 +36,7 @@ public class MuscleSlime : SlimeModel
             .Where(e => e.Actor == PetOwner && e.HappenedThisTurn(CombatState))
             .SelectMany(e => e.DamageResults)
             .Select(e => e.Receiver)
-            .LastOrDefault(e => e.IsAlive);
+            .LastOrDefault(e => e.IsHittable);
     }
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)

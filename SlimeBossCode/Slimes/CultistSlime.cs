@@ -29,12 +29,10 @@ public class CultistSlime : SlimeModel
         attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);
     }
-
-    // "Increased by 1 for every Power or Slime played this combat" - reactive passive, not part of Command().
+    
     public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != PetOwner) return Task.CompletedTask;
-        if (cardPlay.Card.Type != CardType.Power && cardPlay.Card is not ISlimeCard) return Task.CompletedTask;
+        if (cardPlay.Card.Owner.Creature != PetOwner || cardPlay.Card.Type != CardType.Power) return Task.CompletedTask;
 
         DynamicVars.Damage.BaseValue += 1;
         return Task.CompletedTask;

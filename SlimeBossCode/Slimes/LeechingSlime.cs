@@ -1,9 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
@@ -15,27 +16,31 @@ public class LeechingSlime : SlimeModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new SlimeSecondaryVar(4)
+        new DamageVar(3, DamageProps.nonCardUnpowered),
+        new SlimeSecondaryVar(1)
     ];
 
     public override IEnumerable<IHoverTip> ExtraTips =>
     [
-        HoverTipFactory.Static(StaticHoverTip.Block)
+        HoverTipFactory.FromPower<WeakPower>()
     ];
-    
 
+    // NOTE: no scene/skin exists for this slime yet - reusing InsultingSlime's "champ" skin as a placeholder.
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("shield"));
+        skeleton.SetSkin(skeleton.GetData().FindSkin("champ"));
         skeleton.SetSlotsToSetupPose();
     }
 
-    
-    // "Grants Block instead of dealing damage."
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
+        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
+        var cmd = await attack.Execute(ctx);
+        
+        var target = cmd.Results.SelectMany(e => e).Select(e => e.Receiver);
         var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
-        await CreatureCmd.GainBlock(PetOwner, modified, BlockProps.nonCardUnpowered, null);
+        await PowerCmd.Apply<WeakPower>(ctx, target, modified, Creature, null);
     }
 }

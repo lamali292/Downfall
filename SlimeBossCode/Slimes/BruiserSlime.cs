@@ -22,23 +22,20 @@ public class BruiserSlime : SlimeModel
         skeleton.SetSkin(skeleton.GetData().FindSkin("attack"));
         skeleton.SetSlotsToSetupPose();
     }
-
-    // "Deals damage to the highest HP enemy."
+    
     private Creature? GetHighestHpOpponent()
     {
-        return CombatState.GetOpponentsOf(Creature).Where(e => e.IsAlive).MaxBy(e => e.CurrentHp);
+        return CombatState.GetOpponentsOf(Creature).Where(e => e.IsHittable).MaxBy(e => e.CurrentHp);
     }
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
-        // "Mafioso - Bruiser Slime hits ALL enemies."
         var target = forcedTarget ?? GetHighestHpOpponent();
-        attack = forcedTarget == null && PetOwner.HasPower<MafiosoPower>()
+        if (target == null) return;
+        attack = PetOwner.HasPower<MafiosoPower>()
             ? attack.TargetingAllOpponents(CombatState)
-            : target != null
-                ? attack.Targeting(target)
-                : attack.TargetingRandomOpponents(CombatState);
+            : attack.Targeting(target);
         await attack.Execute(ctx);
     }
 }

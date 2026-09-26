@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
@@ -36,7 +35,7 @@ public class PsychicSlime : SlimeModel
     public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
     {
         if (card.Owner.Creature != PetOwner) return;
-        if (card is not ISlimeCard && card.Type != CardType.Power) return;
+        if (card.Type != CardType.Power) return;
         await CardPileCmd.Draw(ctx, 1, card.Owner);
     }
 }

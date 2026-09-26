@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -31,9 +32,6 @@ public class SpikeSlime : SlimeModel
         skeleton.SetSlotsToSetupPose();
     }
     
-
-
-    // "Does not attack at the end of your turn. Instead, attacks enemies whenever you are attacked."
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var original = DynamicVars.Slime.IntValue;

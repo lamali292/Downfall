@@ -25,8 +25,6 @@ public class GuerillaSlime : SlimeModel
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
-        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingAllOpponents(CombatState);
-        await attack.Execute(ctx);
+        DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingAllOpponents(CombatState).Execute(ctx);
     }
 }

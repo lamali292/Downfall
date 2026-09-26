@@ -5,6 +5,6 @@ namespace SlimeBoss.SlimeBossCode.CustomEnums;
 
 public static class SlimeBossTag
 {
-    [CustomEnum] public static CardTag Lick;
+    [CustomEnum] public static CardTag Slime;
     [CustomEnum] public static CardTag Tackle;
 }

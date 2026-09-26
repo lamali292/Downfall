@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -14,6 +15,7 @@ public class SplitSpike : SlimeBossCardModel
     {
         WithSlimeTip<SpikeSlime>();
         WithPower<PotencyPower>(0, 2, true);
+        WithTags(SlimeBossTag.Slime);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
