@@ -13,7 +13,7 @@ using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
-public class SpikySlime : SlimeModel
+public class SpikeSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.Specialist;
 
@@ -40,11 +40,11 @@ public class SpikySlime : SlimeModel
     {
         var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
-        return PowerCmd.Apply<SpikySlimePower>(ctx, PetOwner, modified, Creature, null);
+        return PowerCmd.Apply<SpikeSlimePower>(ctx, PetOwner, modified, Creature, null);
     }
 }
 
-public class SpikySlimePower : CustomTemporaryPowerModelWrapper<SpikySlime, ThornsPower>
+public class SpikeSlimePower : CustomTemporaryPowerModelWrapper<SpikeSlime, ThornsPower>
 {
     protected override bool UntilEndOfOtherSideTurn => true;
 }

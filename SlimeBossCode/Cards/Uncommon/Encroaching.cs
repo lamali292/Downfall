@@ -13,10 +13,8 @@ public class Encroaching : SlimeBossCardModel
 {
     public Encroaching() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<EncroachingPower>(1, false);
-        WithCostUpgradeBy(-1);
+        WithPower<EncroachingPower>(1, 1, false);
         WithTip<WeakPower>();
-
     }
     
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,14 +1,31 @@
-[gd_scene load_steps=3 format=3 ]
+[gd_scene load_steps=4 format=3 ]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_q3lam"]
-[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/champ.tscn" id="2_i1xgs"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_m.tscn" id="2_3t8rt"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/crown.png" id="3_hxgsp"]
 
 [node name="ChampSlime" type="Node2D"]
 script = ExtResource("1_q3lam")
 
-[node name="Visuals" parent="." instance=ExtResource("2_i1xgs")]
+[node name="Visuals" parent="." instance=ExtResource("2_3t8rt")]
+preview_skin = "champ"
 preview_animation = "idle_loop"
 unique_name_in_owner = true
+
+[node name="SpineSlotNode" type="SpineSlotNode" parent="Visuals"]
+slot_name = "crown"
+show_behind_parent = true
+position = Vector2(-13.349034, -71.56559)
+rotation = -3.1415925
+
+[node name="CrownImg" type="TextureRect" parent="Visuals/SpineSlotNode"]
+offset_left = 32.820007
+offset_top = 50.36
+offset_right = 176.82
+offset_bottom = 194.36
+rotation = -3.0798693
+scale = Vector2(1.1562281, 1.1562281)
+texture = ExtResource("3_hxgsp")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

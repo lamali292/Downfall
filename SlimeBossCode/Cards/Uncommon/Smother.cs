@@ -13,7 +13,7 @@ public class Smother : SlimeBossCardModel
 {
     public Smother() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithBlock(5, 1);
+        WithBlock(7, 1);
         WithPower<WeakPower>(1, 1);
         WithTip<Slimed>();
     }

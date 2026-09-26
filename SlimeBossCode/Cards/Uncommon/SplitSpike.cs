@@ -12,13 +12,13 @@ public class SplitSpike : SlimeBossCardModel
 {
     public SplitSpike() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithSlimeTip<SpikySlime>();
+        WithSlimeTip<SpikeSlime>();
         WithPower<PotencyPower>(0, 2, true);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var slime = await SlimeBossCmd.Split<SpikySlime>(ctx, Owner);
+        var slime = await SlimeBossCmd.Split<SpikeSlime>(ctx, Owner);
         if (slime == null) return;
         await CommonActions.Apply<PotencyPower>(ctx, slime, this);
     }

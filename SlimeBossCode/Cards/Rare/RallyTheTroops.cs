@@ -12,8 +12,8 @@ public class RallyTheTroops : SlimeBossCardModel
 {
     public RallyTheTroops() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(12, 6);
-        WithPower<RallyTheTroopsPower>(1, false);
+        WithDamage(9);
+        WithPower<RallyTheTroopsPower>(1, 1, false);
         WithTip<PotencyPower>();
     }
 

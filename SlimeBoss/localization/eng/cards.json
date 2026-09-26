@@ -147,7 +147,7 @@
   "SLIMEBOSS-FEAR_TACTICS.title": "Fear Tactics",
   "SLIMEBOSS-FEAR_TACTICS.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].",
   "SLIMEBOSS-ENCROACHING.title": "Encroaching",
-  "SLIMEBOSS-ENCROACHING.description": "Effects that apply [gold]Weak[/gold] apply {EncroachingPower:diff()} more.",
+  "SLIMEBOSS-ENCROACHING.description": "The first time you apply [gold]Weak[/gold] each turn, apply {EncroachingPower:diff()} additional [gold]Weak[/gold].",
   "SLIMEBOSS-GROWTH.title": "Growth",
   "SLIMEBOSS-GROWTH.description": "Gain {Block:diff()} [gold]Block[/gold].\nThe next {GrowthPower:plural:time|{:diff()} times} you draw a Status card, draw 1 card.",
   "SLIMEBOSS-ROLLBACK.title": "Rollback",

@@ -16,8 +16,7 @@ public class BruiserSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(3, DamageProps.nonCardUnpowered),
-        new RepeatVar(2)
+        new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
@@ -34,8 +33,7 @@ public class BruiserSlime : SlimeModel
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)
-            .WithHitCount(DynamicVars.Repeat.IntValue);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
         // "Mafioso - Bruiser Slime hits ALL enemies."
         var target = forcedTarget ?? GetHighestHpOpponent();
         attack = forcedTarget == null && PetOwner.HasPower<MafiosoPower>()

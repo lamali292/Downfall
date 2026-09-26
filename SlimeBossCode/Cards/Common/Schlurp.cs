@@ -17,7 +17,7 @@ public class Schlurp : SlimeBossCardModel, IHasConsumeEffect
 
     public Schlurp() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithBlock(5, 2);
+        WithBlock(6, 2);
         WithTip(SlimeBossTip.Consume);
     }
 
