@@ -64,12 +64,12 @@ public class SlimeBoss : DownfallCharacterModel
 public class SlimeBossRelicPool : DownfallRelicPool<SlimeBoss>;
 
 public abstract class SlimeBossRelicModel(RelicRarity rarity, bool autoAdd = true)
-    : DownfallRelicModel<SlimeBoss>(rarity, autoAdd)
+	: DownfallRelicModel<SlimeBoss>(rarity, autoAdd)
 {
-    protected ConstructedRelicModel WithSlimeTip<T>() where T : SlimeModel
-    {
-        return WithTips(_ => [SlimeBossModelDb.Slime<T>().SlimeTip]);
-    }
+	protected ConstructedRelicModel WithSlimeTip<T>() where T : SlimeModel
+	{
+		return WithTips(_ => [SlimeBossModelDb.Slime<T>().SlimeTip]);
+	}
 
 }
 
