@@ -32,15 +32,6 @@ public class AshesOfCalamity : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var statusCards = Owner.ExhaustPile.Where(e => e.Type == CardType.Status).ToList();
-        if (statusCards.Count >= DynamicVars["Increase"].IntValue)
-        {
-            await CardRemovalCmd.RemoveFromCombat(statusCards);
-        }
-        else
-        {
-            await CardCmdCompatibility.Exhaust(ctx, this);
-        }
     }
     
    

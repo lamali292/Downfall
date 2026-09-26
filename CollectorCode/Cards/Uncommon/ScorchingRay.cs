@@ -4,6 +4,7 @@ using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -27,4 +28,11 @@ public class ScorchingRay : CollectorCardModel
             await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         }
     }
+    
+    protected override void AddExtraArgsToDescription(LocString description)
+    {
+        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
+        base.AddExtraArgsToDescription(description);
+    }
+    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 }
