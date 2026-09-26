@@ -19,7 +19,7 @@
     "AWAKENED-MANABOMB.description": "倒した敵に蓄積していた[gold]マナバーン[/gold]をランダムな敵に付与し、その効果を即座に発動させる。",
     "AWAKENED-MANABOMB.flavor": "3……2……",
     "AWAKENED-PAPER_CROW.title": "紙のカラス",
-    "AWAKENED-PAPER_CROW.description": "敵が[gold]マナバーン[/gold]から受けるダメージが[blue]25%[/blue]増加する。",
+    "AWAKENED-PAPER_CROW.description": "敵が[gold]マナバーン[/gold]により失うHPが[blue]25%[/blue]増加する。",
     "AWAKENED-PAPER_CROW.flavor": "疑念と呪いの裁定者、千度折られしもの……",
     "AWAKENED-RIPPED_DOLL.title": "裂けた人形",
     "AWAKENED-RIPPED_DOLL.description": "最初の[blue]2[/blue]ターンの開始時、[gold]喚起[/gold]する。",

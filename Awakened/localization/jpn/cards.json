@@ -109,7 +109,7 @@
     "AWAKENED-MAGICIANISM.title": "マジシャニズム",
     "AWAKENED-MANASTORM.description": "すべての敵に{Damage:diff()}ダメージを与える。\n2回[gold]喚起[/gold]する。",
     "AWAKENED-MANASTORM.title": "マナストーム",
-    "AWAKENED-MANA_SHIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]喚起[/gold]する。\n[gold]手札[/gold]のランダムな呪文1枚のコストを1{Energy:energyIcons()}減少させる。",
+    "AWAKENED-MANA_SHIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]喚起[/gold]する。\n[gold]手札[/gold]のランダムな呪文1枚のコストを1{energyPrefix:energyIcons(1)}減少させる。",
     "AWAKENED-MANA_SHIELD.title": "マナシールド",
     "AWAKENED-MANTIS.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]羽根撃ち[/gold]を1枚[gold]手札[/gold]に加える。",
     "AWAKENED-MANTIS.title": "カマキリ",
