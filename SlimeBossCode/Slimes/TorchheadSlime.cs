@@ -10,6 +10,7 @@ using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
+[Obsolete]
 public class TorchheadSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.Specialist;

@@ -11,6 +11,7 @@ using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
+[Obsolete]
 public class AncientSlime : SlimeModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

@@ -12,6 +12,7 @@ using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
+[Obsolete]
 public class GhostflameSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.Specialist;

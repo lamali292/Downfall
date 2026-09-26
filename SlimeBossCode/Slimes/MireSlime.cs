@@ -12,6 +12,7 @@ using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
+[Obsolete]
 public class MireSlime : SlimeModel
 {
     public override SlimeType SlimeType => SlimeType.Normal;

@@ -8,6 +8,7 @@ using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
+[Obsolete]
 public class BronzeSlime : SlimeModel
 {
     private int _skipTurns;

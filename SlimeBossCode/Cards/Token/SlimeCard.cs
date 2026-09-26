@@ -62,22 +62,25 @@ public class SlimeCardDarkling : SlimeCard<DarklingSlime>;
 
 // Unused Slimes
 [Obsolete]
-public class SlimeCardGhostflame : SlimeCard<GhostflameSlime>;
+public class SlimeCardMire() : SlimeCard<MireSlime>(false, false);
 
 [Obsolete]
-public class SlimeCardAncient : SlimeCard<AncientSlime>;
+public class SlimeCardGhostflame() : SlimeCard<GhostflameSlime>(false, false);
 
 [Obsolete]
-public class SlimeCardBronze : SlimeCard<BronzeSlime>;
+public class SlimeCardAncient() : SlimeCard<AncientSlime>(false, false);
 
 [Obsolete]
-public class SlimeCardTime : SlimeCard<TimeSlime>;
+public class SlimeCardBronze() : SlimeCard<BronzeSlime>(false, false);
 
 [Obsolete]
-public class SlimeCardInsulting : SlimeCard<InsultingSlime>;
+public class SlimeCardTime() : SlimeCard<TimeSlime>(false, false);
 
 [Obsolete]
-public class SlimeCardTorchhead : SlimeCard<TorchheadSlime>;
+public class SlimeCardInsulting() : SlimeCard<InsultingSlime>(false, false);
+
+[Obsolete]
+public class SlimeCardTorchhead() : SlimeCard<TorchheadSlime>(false, false);
 
 [Obsolete]
 public class SlimeCardGreed() : SlimeCard<GreedSlime>(false, false);
@@ -85,6 +88,5 @@ public class SlimeCardGreed() : SlimeCard<GreedSlime>(false, false);
 [Obsolete]
 public class SlimeCardScrap() : SlimeCard<ScrapSlime>(false, false);
 
-[Obsolete]
-public class SlimeCardMire : SlimeCard<MireSlime>;
+
 #pragma warning restore
