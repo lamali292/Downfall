@@ -33,7 +33,7 @@ public class EvolutionSlime : SlimeModel
         skeleton.SetSlotsToSetupPose();
     }
 
-    public override async Task Command(PlayerChoiceContext ctx)
+    public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         if (_level < MaxLevel) _level++;
         if (_level >= MaxLevel)

@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -35,7 +36,7 @@ public class SpikySlime : SlimeModel
 
 
     // "Does not attack at the end of your turn. Instead, attacks enemies whenever you are attacked."
-    public override Task Command(PlayerChoiceContext ctx)
+    public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);

@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -28,10 +29,11 @@ public class DarklingSlime : SlimeModel, IAfterCommand
         skeleton.SetSlotsToSetupPose();
     }
 
-    public override Task Command(PlayerChoiceContext ctx)
+    public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        return DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)
-            .TargetingRandomOpponents(CombatState).Execute(ctx);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
+        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
+        return attack.Execute(ctx);
     }
 
     // "Deals 3 damage to a random enemy... whenever another Slime is Commanded."

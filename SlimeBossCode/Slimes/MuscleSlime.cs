@@ -41,11 +41,11 @@ public class MuscleSlime : SlimeModel
             .LastOrDefault(e => e.IsAlive);
     }
 
-    public override async Task Command(PlayerChoiceContext ctx)
+    public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
-        var lastAttacked = GetLastAttackedEnemy();
-        attack = lastAttacked != null ? attack.Targeting(lastAttacked) : attack.TargetingRandomOpponents(CombatState);
+        var target = forcedTarget ?? GetLastAttackedEnemy();
+        attack = target != null ? attack.Targeting(target) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);
     }
 

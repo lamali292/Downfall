@@ -27,7 +27,7 @@ public class RoyalSlime : SlimeModel
     }
 
     // Royal Slime does nothing on the normal start-of-turn Command; its attack happens at end of turn instead.
-    public override Task Command(PlayerChoiceContext ctx)
+    public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         return Task.CompletedTask;
     }

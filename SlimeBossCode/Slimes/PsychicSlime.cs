@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -26,10 +27,11 @@ public class PsychicSlime : SlimeModel
         skeleton.SetSlotsToSetupPose();
     }
 
-    public override async Task Command(PlayerChoiceContext ctx)
+    public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState)
-            .Execute(ctx);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
+        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
+        await attack.Execute(ctx);
     }
 
     // "Draws a card whenever you draw another Slime or Power card."

@@ -1,6 +1,7 @@
 ﻿using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -32,10 +33,11 @@ public class GhostflameSlime : SlimeModel
 
 
 
-    public override async Task Command(PlayerChoiceContext ctx)
+    public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var cmd = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)
-            .TargetingRandomOpponents(CombatState).Execute(ctx);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
+        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
+        var cmd = await attack.Execute(ctx);
         var target = cmd.Results.SelectMany(e => e).Select(e => e.Receiver);
         var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);

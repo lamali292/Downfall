@@ -3,10 +3,10 @@ using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Interfaces;
-using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
@@ -29,6 +29,6 @@ public class ButcherTackle : SlimeBossCardModel, IHasConsumeEffect
 
     public Task ConsumeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, Creature target)
     {
-        return CommonActions.ApplySelf<ButcherTackleDoubleDamagePower>(ctx, this, 1);
+        return CommonActions.ApplySelf<ShadowStepPower>(ctx, this, 1);
     }
 }
