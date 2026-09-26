@@ -1,7 +1,5 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,9 +13,9 @@ public class AshesOfCalamity : CollectorCardModel
 {
     public AshesOfCalamity() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithKeyword(CardKeyword.Ethereal);
         WithCalculatedBlock(9, 3, CalcBlock, BlockProps.card, 3, 0);
         WithVar("Increase", 3, 1);
-        WithTip(CardKeyword.Ethereal);
     }
     
     private static decimal CalcBlock(CardModel card, Creature? creature)
