@@ -1,37 +1,24 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using SlimeBoss.SlimeBossCode.Cards.Uncommon;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.Events;
+using SlimeBoss.SlimeBossCode.Extensions;
+using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class LeadByExamplePower : SlimeBossPowerModel, IHasSecondAmount
+public class LeadByExamplePower : SlimeBossPowerModel, IAfterCommand
 {
-    private int CardPlayCount => CombatManager.Instance.History.CardPlaysFinished
-        .Count(e =>
-            e.Actor == Owner
-            && e.HappenedThisTurn(CombatState)
-            && e.CardPlay.Target is { IsEnemy: true });
-    
-
-    protected override int? SecondAmount => CardPlayCount;
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public async Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Target is not { IsEnemy: true } ||
-            CardPlayCount > Amount) return;
-        await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, false);
-        InvokeDisplayAmountChanged();
-    }
-
-    public override Task AfterSideTurnStart(CombatSide side,
-        IReadOnlyList<Creature> participants,
-        ICombatState combatState)
-    {
-        if (!participants.Contains(Owner)) return Task.CompletedTask;
-        this.InvokeSilentDisplayAmountChanged();
-        return Task.CompletedTask;
+        if (player.Creature != Owner || slime is not BruiserSlime) return;
+        var slimes = player.Slimes.Where(s => s.Monster != slime);
+        await PowerCmd.Apply<LeadByExamplePotencyPower>(ctx, slimes, Amount, Owner, source);
     }
 }
+
+public class LeadByExamplePotencyPower : CustomTemporaryPowerModelWrapper<LeadByExample, PotencyPower>;

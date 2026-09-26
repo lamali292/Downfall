@@ -1,8 +1,13 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -11,15 +16,21 @@ public class JustDesserts : SlimeBossCardModel
 {
     public JustDesserts() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithSlurp(2);
-        WithDamage(5, 3);
+        WithDamage(8, 4);
+        WithCalculatedVar("Cards", 0, Calc);
+        WithKeyword(CardKeyword.Exhaust);
+        WithTip(SlimeBossTip.Consume);
     }
 
-    protected override Artist Artist => Artist.Get<Opal>();
-
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    private static decimal Calc(CardModel card, Creature? _)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.Slurp(this);
+        return card.Owner.Hand.Count(e => e.Type == CardType.Status);
+    }
+
+    public async Task ConsumeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
+        var a = ((CalculatedVar)DynamicVars["Cards"]).Calculate(cardPlay.Target);
+        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, a);
     }
 }

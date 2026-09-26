@@ -1,26 +1,16 @@
-﻿using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.CustomEnums;
-using SlimeBoss.SlimeBossCode.Events;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class GoopArmorPower : SlimeBossPowerModel, IAfterConsumeEffect
+public class GoopArmorPower : SlimeBossPowerModel
 {
-    public GoopArmorPower()
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        WithTip(StaticHoverTip.Block);
-        WithTip(SlimeBossTip.Consume);
-    }
-
-    public Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker, decimal amount)
-    {
-        return attacker != Owner
-            ? Task.CompletedTask
-            : CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
+        if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Type != CardType.Status) return;
+        await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
     }
 }

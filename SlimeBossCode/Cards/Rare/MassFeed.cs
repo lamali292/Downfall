@@ -32,9 +32,7 @@ public class MassFeed : SlimeBossCardModel
         var fatalEligible = CombatState.HittableEnemies
             .Where(e => e.Powers.All(p => p.ShouldOwnerDeathTriggerFatal()))
             .ToHashSet();
-        var attackCommand = await CommonActions.CardAttack(this, cardPlay)
-            .WithHitFx("vfx/vfx_bite", tmpSfx: "blunt_attack.mp3")
-            .Execute(ctx);
+        var attackCommand = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
 
         var anyFatalKill = attackCommand.Results
             .SelectMany(r => r)

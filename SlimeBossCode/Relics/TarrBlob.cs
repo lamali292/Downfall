@@ -9,22 +9,10 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Obsolete]
 [Pool(typeof(SlimeBossRelicPool))]
-public class TarrBlob : SlimeBossRelicModel
+public class TarrBlob() : SlimeBossRelicModel(RelicRarity.Ancient, false)
 {
-    public TarrBlob() : base(RelicRarity.Ancient, false)
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        WithEnergy(1);
-        WithVar("Decrease", 1);
-    }
-
-    public override decimal ModifyMaxEnergy(Player player, decimal amount)
-    {
-        return player == Owner ? amount + DynamicVars.Energy.BaseValue : amount;
-    }
-
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
-    {
-        if (Owner.PlayerCombatState is not { TurnNumber: 1 } || player != Owner) return;
-        await SlimeBossCmd.DecreaseSlots(ctx, player, DynamicVars["Decrease"].IntValue);
+        throw new NotImplementedException();
     }
 }

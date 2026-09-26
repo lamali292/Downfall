@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
@@ -12,9 +11,8 @@ public class Recycling : SlimeBossCardModel
 {
     public Recycling() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        WithTip(SlimeBossTip.Slurp);
-        WithPower<RecyclingPower>(1, false);
+        WithKeyword(CardKeyword.Innate);
+        WithPower<RecyclingPower>(5, 3, false);
     }
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

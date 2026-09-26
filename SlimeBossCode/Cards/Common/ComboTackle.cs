@@ -1,11 +1,9 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Commands;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -14,22 +12,15 @@ public class ComboTackle : SlimeBossCardModel
 {
     public ComboTackle() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(12, 7);
-        WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
+        WithDamage(10, 2);
+        WithPower<ComboTackleDiscountPower>(1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await MyCommonActions.SelfDamage(ctx, this);
-
-        var cards = Pool.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
-            .Where(e => e.Tags.Contains(SlimeBossTag.Tackle));
-        var card = CardFactory.GetDistinctForCombat(Owner, cards, 1, Owner.RunState.Rng.CombatCardGeneration)
-            .FirstOrDefault();
-        if (card == null) return;
-        card.SetToFreeThisTurn();
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
+        // TODO - remove "this turn" on upgrade
+        await CommonActions.ApplySelf<ComboTackleDiscountPower>(ctx, this);
     }
 }

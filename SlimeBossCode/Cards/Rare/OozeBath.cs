@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Powers;
 
@@ -12,8 +13,9 @@ public class OozeBath : SlimeBossCardModel
 {
     public OozeBath() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithPower<OozeBathPower>(6, 3, false);
+        WithPower<OozeBathPower>(8, 2, false);
         WithKeywords(CardKeyword.Exhaust);
+        WithTip<WeakPower>();
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

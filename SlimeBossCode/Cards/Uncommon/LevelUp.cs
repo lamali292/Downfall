@@ -12,7 +12,7 @@ public class LevelUp : SlimeBossCardModel
 {
     public LevelUp() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<PotencyPower>(2, 1);
+        WithPower<PotencyPower>(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

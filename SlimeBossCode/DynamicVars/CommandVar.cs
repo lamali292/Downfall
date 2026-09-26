@@ -20,10 +20,6 @@ public class CommandVar : DynamicVar
         Creature? target,
         bool runGlobalHooks)
     {
-        var originalDamage1 = IntValue;
-        if (runGlobalHooks && card.CombatState != null)
-            originalDamage1 =
-                SlimeBossHook.ModifyConsumeCount(card.CombatState, card.Owner, originalDamage1, card, out _);
-        PreviewValue = originalDamage1;
+        PreviewValue = IntValue;
     }
 }

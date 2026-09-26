@@ -51,6 +51,10 @@ public class SlimeCardBruiser : SlimeCard<BruiserSlime>;
 
 public class SlimeCardGuerilla : SlimeCard<GuerillaSlime>;
 
+public class SlimeCardMuscle : SlimeCard<MuscleSlime>;
+
+public class SlimeCardTaunting : SlimeCard<TauntingSlime>;
+
 // Specialist Slimes
 public class SlimeCardAncient : SlimeCard<AncientSlime>;
 
@@ -68,12 +72,19 @@ public class SlimeCardTime : SlimeCard<TimeSlime>;
 
 public class SlimeCardTorchhead : SlimeCard<TorchheadSlime>;
 
+public class SlimeCardPsychic : SlimeCard<PsychicSlime>;
+
+public class SlimeCardMassive : SlimeCard<MassiveSlime>;
+
+public class SlimeCardEvolution : SlimeCard<EvolutionSlime>;
+
+public class SlimeCardRoyal : SlimeCard<RoyalSlime>;
+
+public class SlimeCardDarkling : SlimeCard<DarklingSlime>;
+
 // Unused Slimes
 [Obsolete]
 public class SlimeCardGreed() : SlimeCard<GreedSlime>(false, false);
-
-[Obsolete]
-public class SlimeCardDarkling() : SlimeCard<DarklingSlime>(false, false);
 
 [Obsolete]
 public class SlimeCardScrap() : SlimeCard<ScrapSlime>(false, false);

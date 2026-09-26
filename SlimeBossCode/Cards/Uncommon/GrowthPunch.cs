@@ -20,16 +20,17 @@ public class GrowthPunch : SlimeBossCardModel, IHasConsumeEffect
         WithTip(SlimeBossTip.Consume);
     }
 
-    public Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
-    {
-        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
-        DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
-        return Task.CompletedTask;
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await SlimeBossCmd.Consume(ctx, this, cardPlay);
+    }
+
+    public Task ConsumeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, Creature target)
+    {
+        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+        DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+        return Task.CompletedTask;
     }
 }

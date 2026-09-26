@@ -10,10 +10,10 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class RallyTheTroops : SlimeBossCardModel
 {
-    public RallyTheTroops() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public RallyTheTroops() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(7, 2);
-        WithPower<RallyTheTroopsPower>(2, 1, false);
+        WithDamage(12, 6);
+        WithPower<RallyTheTroopsPower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

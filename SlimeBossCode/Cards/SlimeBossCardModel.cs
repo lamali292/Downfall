@@ -2,7 +2,9 @@
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.DynamicVars;
+using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards;
 
@@ -15,14 +17,13 @@ public abstract class SlimeBossCardModel(
     bool autoAdd = true)
     : DownfallCardModel<Core.SlimeBoss>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
-    public ConstructedCardModel WithSlurp(decimal baseVal,
-        decimal upgradedVal = 0)
+   
+    protected ConstructedCardModel WithSlimeTip<T>() where T : SlimeModel
     {
-        WithVar(new SlurpVar(baseVal).WithUpgrade(upgradedVal));
-        return this;
+       return WithTips(_ => [SlimeBossModelDb.Slime<T>().SlimeTip]);
     }
 
-    public ConstructedCardModel WithCommand(decimal baseVal,
+    protected ConstructedCardModel WithCommand(decimal baseVal,
         decimal upgradedVal = 0)
     {
         WithVar(new CommandVar(baseVal).WithUpgrade(upgradedVal));

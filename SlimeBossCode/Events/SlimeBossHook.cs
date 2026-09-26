@@ -12,25 +12,11 @@ namespace SlimeBoss.SlimeBossCode.Events;
 public static class SlimeBossHook
 {
     public static Task AfterConsumeEffect(ICombatState cs, PlayerChoiceContext ctx, Creature creature,
-        Creature attacker, int amount)
+        Creature attacker)
     {
         return MyHookUtils.Dispatch<IAfterConsumeEffect>(cs,
-            e => e.AfterConsumeEffect(ctx, creature, attacker, amount), MyHookUtils.HookScope.CombatRaw);
+            e => e.AfterConsumeEffect(ctx, creature, attacker), MyHookUtils.HookScope.CombatRaw);
     }
-
-    public static int ModifyGoopConsume(ICombatState cs, int originalAmount,
-        out IEnumerable<IModifyGoopConsume> modifiers, Creature creature, Creature? applier)
-    {
-        return HookUtils.Modify(cs, originalAmount, (e, a) => e.ModifyGoopConsume(a, creature, applier),
-            out modifiers);
-    }
-
-    public static Task AfterModifyingGoopConsume(ICombatState cs, IEnumerable<IModifyGoopConsume> modifiers,
-        Creature creature, Creature? applier)
-    {
-        return HookUtils.AfterModifying(cs, modifiers, e => e.AfterModifyingGoopConsume(creature, applier));
-    }
-
 
     public static int ModifySecondarySlimeEffects(ICombatState cs, int originalAmount,
         out IEnumerable<IModifySecondarySlimeEffects> modifiers, SlimeModel slime)
@@ -39,22 +25,15 @@ public static class SlimeBossHook
             out modifiers);
     }
 
-    public static Task AfterSplit(ICombatState cs, Player player, SlimeModel slime)
+    public static Task AfterSplit(ICombatState cs, PlayerChoiceContext ctx, Player player, SlimeModel slime)
     {
-        return HookUtils.Dispatch<IAfterSplit>(cs,
-            e => e.AfterSplit(player, slime));
+        return HookUtils.Dispatch<IAfterSplit>(cs, ctx, 
+            e => e.AfterSplit(ctx, player, slime));
     }
 
-    public static int ModifyConsumeCount(ICombatState cs, Player player, int amount, CardModel? cardSource,
-        out IEnumerable<IModifyConsumeCount> modifiers)
+    public static Task AfterCommand(ICombatState cs, PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
     {
-        return HookUtils.Modify(cs, amount, (e, a) => e.ModifyConsumeCount(player, a, cardSource),
-            out modifiers);
-    }
-
-    public static Task AfterModifyingConsumeCount(ICombatState cs, IEnumerable<IModifyConsumeCount> modifiers,
-        Player player, CardModel? cardSource)
-    {
-        return HookUtils.AfterModifying(cs, modifiers, e => e.AfterModifyingConsumeCount(player, cardSource));
+        return HookUtils.Dispatch<IAfterCommand>(cs, ctx, 
+            e => e.AfterCommand(ctx, player, slime, source));
     }
 }

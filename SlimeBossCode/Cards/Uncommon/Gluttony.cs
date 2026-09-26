@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Powers;
@@ -14,9 +13,7 @@ public class Gluttony : SlimeBossCardModel
 {
     public Gluttony() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<GluttonyPower>(1, false);
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
-        WithTip<Lick>();
+        WithPower<GluttonyPower>(1, 1, false);
         WithTip(SlimeBossTip.Consume);
     }
 

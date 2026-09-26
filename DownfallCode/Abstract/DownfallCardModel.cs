@@ -49,13 +49,18 @@ public abstract class DownfallCardModel
     {
         _constructedDynamicVars.Add(new PowerVar<T>(baseVal).WithUpgrade(upgrade));
         if (showTooltip)
-            WithTips(e => [HoverTipFactory.FromPower<T>(e.DynamicVars.Power<T>().IntValue)]);
+            WithTips(e =>
+            {
+                var power = e.DynamicVars.Power<T>().IntValue;
+                if (power == 0) return [];
+                return [HoverTipFactory.FromPower<T>(power)];
+            });
         return this;
     }
 
-    protected ConstructedCardModel WithEnchantment<T>(int amount = 1, bool showTooltip = true) where T : EnchantmentModel
+    protected ConstructedCardModel WithEnchantment<T>(int amount = 1, int upgradeVal = 0, bool showTooltip = true) where T : EnchantmentModel
     {
-        _constructedDynamicVars.Add(new EnchantmentVar<T>(amount));
+        _constructedDynamicVars.Add(new EnchantmentVar<T>(amount).WithUpgrade(upgradeVal));
         return showTooltip ? WithTips(e => HoverTipFactory.FromEnchantment<T>(e.DynamicVars.Enchantment<T>().IntValue)) : this;
     }
 

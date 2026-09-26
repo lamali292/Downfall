@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -11,11 +12,13 @@ public class SpreadingSlime : SlimeBossCardModel
 {
     public SpreadingSlime() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<SlimyTonguePower>(2, 1, false);
+        WithPower<SpreadingSlimePower>(1, 1, false);
     }
 
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
+
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<SlimyTonguePower>(ctx, this);
+        return CommonActions.ApplySelf<SpreadingSlimePower>(ctx, this);
     }
 }
