@@ -3,7 +3,7 @@
     "SLIMEBOSS-CHOMP.title": "むしゃり",
     "SLIMEBOSS-COMBO_TACKLE.description": "{Damage:diff()}ダメージを与える。\n{SelfDamage:inverseDiff()}ダメージを受ける。\nランダムなタックルを1枚[gold]手札[/gold]に加える。\nこのターン、それはコストを支払わずにプレイできる。",
     "SLIMEBOSS-COMBO_TACKLE.title": "コンボタックル",
-    "SLIMEBOSS-CONSULT_PLAYBOOK.description": "ランダムな「タックル」カードを{Cards:diff()}枚得る。\nこの戦闘中、それらのコストが{Energy:diff()}{energyPrefix:energyIcons(1)}減少する。",
+    "SLIMEBOSS-CONSULT_PLAYBOOK.description": "ランダムな「タックル」カードを{Cards:diff()}枚手札に加える。\nこの戦闘中、それらのコストが{Energy:diff()}{energyPrefix:energyIcons(1)}減少する。",
     "SLIMEBOSS-CONSULT_PLAYBOOK.title": "プレイブック",
     "SLIMEBOSS-CORROSIVE_SPIT.description": "[gold]汚泥[/gold]{GoopPower:diff()}を付与する。",
     "SLIMEBOSS-CORROSIVE_SPIT.title": "腐食性の唾",

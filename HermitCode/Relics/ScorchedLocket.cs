@@ -19,13 +19,8 @@ public sealed class ScorchedLocket : HermitRelicModel
 {
     public ScorchedLocket() : base(RelicRarity.Starter)
     {
-        WithCardTip<MementoCard>(WithPreviewModifiers);
+        WithCardTip<MementoCard>((card, _) => EnchantSeething(card));
         WithTip<Seething>();
-    }
-    
-    private static void WithPreviewModifiers(MementoCard mementoCard, RelicModel relicModel)
-    {
-        CardCmd.Enchant<Seething>(mementoCard, 1);
     }
     
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
