@@ -27,7 +27,7 @@
   "SLIMEBOSS-SCRAP_SLIME.description": "",
   "SLIMEBOSS-GREED_SLIME.description": "",
   "SLIMEBOSS-PSYCHIC_SLIME.name": "Psychic Slime",
-  "SLIMEBOSS-PSYCHIC_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage to a random enemy.\nWhenever you draw a Power card, draw another card.",
+  "SLIMEBOSS-PSYCHIC_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage.\nWhenever you draw a Power card, draw another card.",
   "SLIMEBOSS-MASSIVE_SLIME.name": "Massive Slime",
   "SLIMEBOSS-MASSIVE_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage to ALL enemies.\nAfter attacking, goes to sleep for [blue]{Sleep:diff()}[/blue] {Sleep:plural:turn|turns}.",
   "SLIMEBOSS-ROYAL_SLIME.name": "Royal Slime",

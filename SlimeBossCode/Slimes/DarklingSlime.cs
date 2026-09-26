@@ -18,6 +18,8 @@ public class DarklingSlime : SlimeModel, IAfterCommand
         new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
+    // todo : change so this slime only visually stacks
+    
     // NOTE: no scene/skin exists for this slime yet - reusing Insulting's "champ" skin as a placeholder.
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
