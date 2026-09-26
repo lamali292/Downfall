@@ -6,13 +6,11 @@ using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
+[Obsolete]
 public class OverexertPower : SlimeBossPowerModel
 {
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    public override Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player.Creature != Owner) return;
-        await PowerCmd.Decrement(this);
-        if (Amount > 0) return;
-        await SlimeBossCmd.AbsorbAll(ctx, player);
+        throw new NotImplementedException();
     }
 }

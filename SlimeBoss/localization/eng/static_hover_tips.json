@@ -1,8 +1,8 @@
 ﻿{
   "SLIMEBOSS-SLURP.title": "Slurp",
-  "SLIMEBOSS-SLURP.description": "Add random a \"Lick\" from your [gold]Exhaust Pile[/gold] into your [gold]Hand[/gold].",
+  "SLIMEBOSS-SLURP.description": "Add a random \"Lick\" card from your [gold]Exhaust Pile[/gold] into your [gold]Hand[/gold].",
   "SLIMEBOSS-COMMAND.title": "Command",
-  "SLIMEBOSS-COMMAND.description": "Your leading Slime attacks.",
+  "SLIMEBOSS-COMMAND.description": "Your most recently Split Slime acts. If a specific Slime is named, you Split into it first if you haven't already.",
   "SLIMEBOSS-CONSUME.title": "Consume",
-  "SLIMEBOSS-CONSUME.description": "Bonus effect which activates when an Attack is used on an enemy who has [gold]Goop[/gold]."
+  "SLIMEBOSS-CONSUME.description": "Bonus effect. If the target has [gold]Weak[/gold], remove a stack and trigger the effect."
 }

@@ -24,7 +24,7 @@
   "SLIMEBOSS-SLIMED_TAIL.description": "Whenever you [gold]Split[/gold], gain [blue]{Block}[/blue] [gold]Block[/gold].",
   "SLIMEBOSS-SLIMED_TAIL.flavor": "A fake tail to trick enemies during combat, completely covered in slime.",
   "SLIMEBOSS-SLIMY_SKULL.title": "Slimy Skull",
-  "SLIMEBOSS-SLIMY_SKULL.description": "Whenever you apply [gold]Goop[/gold], apply an additional [blue]{GoopIncrease}[/blue] [gold]Goop[/gold].",
+  "SLIMEBOSS-SLIMY_SKULL.description": "Whenever you apply [gold]Weak[/gold], apply an additional [blue]{WeakIncrease}[/blue] [gold]Weak[/gold].",
   "SLIMEBOSS-SLIMY_SKULL.flavor": "A Snecko skull in absolutely awful condition. Unclean and slimy, dirt and grime stick to it like glue.",
   "SLIMEBOSS-STONE_OF_NOMAKK.title": "Stone of Nomakk",
   "SLIMEBOSS-STONE_OF_NOMAKK.description": "At the start of each combat, gain [blue]{PotencyPower}[/blue] [gold]Potency[/gold].",

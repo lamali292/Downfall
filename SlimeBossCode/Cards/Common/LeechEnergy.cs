@@ -24,14 +24,15 @@ public class LeechEnergy : SlimeBossCardModel, IHasConsumeEffect
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public async Task ConsumeEffect(PlayerChoiceContext ctx, Creature creature, AttackCommand command, int amount)
-    {
-        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-        await CommonActions.Draw(this, ctx);
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await SlimeBossCmd.Consume(ctx, this, cardPlay);
+    }
+
+    public async Task ConsumeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, Creature target)
+    {
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+        await CommonActions.Draw(this, ctx);
     }
 }

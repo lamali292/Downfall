@@ -4,24 +4,23 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class GoopSpray : SlimeBossCardModel
 {
-    public GoopSpray() : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
+    public GoopSpray() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<GoopPower>(5, 3);
         WithPower<WeakPower>(1);
+        WithCards(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<GoopPower>(ctx, this, cardPlay);
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await CommonActions.Draw(this, ctx);
     }
 }

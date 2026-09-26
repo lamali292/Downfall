@@ -2,8 +2,8 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Relics;
 
@@ -12,14 +12,14 @@ public class SlimySkull : SlimeBossRelicModel
 {
     public SlimySkull() : base(RelicRarity.Common)
     {
-        WithVar("GoopIncrease", 1);
-        WithTip<GoopPower>();
+        WithVar("WeakIncrease", 1);
+        WithTip<WeakPower>();
     }
 
     public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount,
         Creature? target,
         CardModel? cardSource)
     {
-        return giver == Owner.Creature && power is GoopPower ? DynamicVars["GoopIncrease"].BaseValue : 0;
+        return giver == Owner.Creature && power is WeakPower ? DynamicVars["WeakIncrease"].BaseValue : 0;
     }
 }

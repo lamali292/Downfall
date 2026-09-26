@@ -12,8 +12,7 @@ public class Recklessness : SlimeBossCardModel
 {
     public Recklessness() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<FlameTacklePower>(7, 4, false);
-        WithPower<RecklessnessPower>(1, false);
+        WithPower<FlameTacklePower>(4, 2, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -21,6 +20,5 @@ public class Recklessness : SlimeBossCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FlameTacklePower>(ctx, this);
-        await CommonActions.ApplySelf<RecklessnessPower>(ctx, this);
     }
 }

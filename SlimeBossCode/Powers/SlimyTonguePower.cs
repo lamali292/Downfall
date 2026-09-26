@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
@@ -10,6 +11,6 @@ public class SlimyTonguePower : SlimeBossPowerModel
         Creature? target,
         CardModel? cardSource)
     {
-        return power is GoopPower && giver == Owner ? Amount : 0;
+        return power is WeakPower && giver == Owner ? Amount : 0;
     }
 }

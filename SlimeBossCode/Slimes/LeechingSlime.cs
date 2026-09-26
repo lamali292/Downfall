@@ -16,8 +16,7 @@ public class LeechingSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(1, DamageProps.nonCardUnpowered),
-        new SlimeSecondaryVar(3)
+        new SlimeSecondaryVar(4)
     ];
 
     public override IEnumerable<IHoverTip> ExtraTips =>
@@ -33,11 +32,9 @@ public class LeechingSlime : SlimeModel
     }
 
     
+    // "Grants Block instead of dealing damage."
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState)
-            .Execute(ctx);
-
         var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
         await CreatureCmd.GainBlock(PetOwner, modified, BlockProps.nonCardUnpowered, null);

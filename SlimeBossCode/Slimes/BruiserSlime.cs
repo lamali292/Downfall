@@ -1,9 +1,11 @@
 ﻿using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Extensions;
+using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
@@ -26,7 +28,12 @@ public class BruiserSlime : SlimeModel
     
     public override async Task Command(PlayerChoiceContext ctx)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).WithHitCount(DynamicVars.Repeat.IntValue)
-            .TargetingRandomOpponents(CombatState).Execute(ctx);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this)
+            .WithHitCount(DynamicVars.Repeat.IntValue);
+        // "Mafioso - Bruiser Slime hits ALL enemies."
+        attack = PetOwner.GetPowerInstances<MafiosoPower>().Any()
+            ? attack.TargetingAllOpponents(CombatState)
+            : attack.TargetingRandomOpponents(CombatState);
+        await attack.Execute(ctx);
     }
 }

@@ -29,8 +29,7 @@ public class HeartOfGoo : SlimeBossRelicModel, IAfterConsumeEffect
     public override bool ShowCounter => CombatManager.Instance.IsInProgress;
 
 
-    public async Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker,
-        decimal goopAmount)
+    public async Task AfterConsumeEffect(PlayerChoiceContext ctx, Creature creature, Creature attacker)
     {
         if (attacker != Owner.Creature && UsesLeft.BaseValue > 0) return;
         var heal = Math.Min(DynamicVars.Heal.BaseValue, UsesLeft.BaseValue);

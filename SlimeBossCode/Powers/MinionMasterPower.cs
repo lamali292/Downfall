@@ -1,20 +1,25 @@
-﻿using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Events;
+using SlimeBoss.SlimeBossCode.CustomEnums;
+using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class MinionMasterPower : SlimeBossPowerModel, IModifyConsumeCount
+public class MinionMasterPower : SlimeBossPowerModel
 {
-    public int ModifyConsumeCount(Player player, int amount, CardModel? cardSource)
+    public MinionMasterPower()
     {
-        return player.Creature != Owner || cardSource == null ? amount : amount + Amount;
+        WithSlimeTip<BruiserSlime>();
+        WithTip(SlimeBossTip.Command);
     }
-
-    public Task AfterModifyingConsumeCount(Player player, CardModel? cardSource)
+    
+    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        Flash();
-        return Task.CompletedTask;
+        var card = cardPlay.Card;
+        if (card.Owner.Creature != Owner ||
+            !(card.Tags.Contains(CardTag.Strike) || card.Tags.Contains(CardTag.Defend)))
+            return Task.CompletedTask;
+        return SlimeBossCmd.Command<BruiserSlime>(ctx, card.Owner, Amount);
     }
 }

@@ -21,14 +21,18 @@ public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescrip
         description.Add("Amount2", Amount2);
     }
 
+    // Potency can be applied either to a player (boosts every Slime that player owns) or directly to a
+    // Slime's own Creature (boosts just that Slime). Both stack. Never crosses to another player's Slimes.
+    private bool AppliesTo(SlimeModel slime) => slime.Creature == Owner || slime.PetOwner == Owner;
+
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
-        return dealer?.Monster is SlimeModel slime && slime.PetOwner == Owner ? Amount : 0;
+        return dealer?.Monster is SlimeModel slime && AppliesTo(slime) ? Amount : 0;
     }
 
     public int ModifySecondarySlimeEffects(int amount, SlimeModel slime)
     {
-        return slime.PetOwner == Owner ? amount + Amount2 : amount;
+        return AppliesTo(slime) ? amount + Amount2 : amount;
     }
 }

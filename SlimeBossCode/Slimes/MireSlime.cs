@@ -3,11 +3,11 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
-using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
@@ -23,7 +23,7 @@ public class MireSlime : SlimeModel
 
     public override IEnumerable<IHoverTip> ExtraTips =>
     [
-        HoverTipFactory.FromPower<GoopPower>()
+        HoverTipFactory.FromPower<WeakPower>()
     ];
     
 
@@ -41,6 +41,6 @@ public class MireSlime : SlimeModel
         var target = cmd.Results.SelectMany(e => e).Select(e => e.Receiver);
         var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
-        await PowerCmd.Apply<GoopPower>(ctx, target, modified, PetOwner, null);
+        await PowerCmd.Apply<WeakPower>(ctx, target, modified, PetOwner, null);
     }
 }

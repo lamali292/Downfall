@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Slimes;
@@ -17,7 +18,7 @@ public class SlimedTail : SlimeBossRelicModel, IAfterSplit
     }
 
 
-    public Task AfterSplit(Player player, SlimeModel slime)
+    public Task AfterSplit(PlayerChoiceContext ctx, Player player, SlimeModel slime)
     {
         return player == Owner ? MyCommonActions.Block(this) : Task.CompletedTask;
     }

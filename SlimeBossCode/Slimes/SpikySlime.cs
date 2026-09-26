@@ -18,7 +18,6 @@ public class SpikySlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, DamageProps.nonCardUnpowered),
         new SlimeSecondaryVar(4)
     ];
 
@@ -35,13 +34,12 @@ public class SpikySlime : SlimeModel
     
 
 
-    public override async Task Command(PlayerChoiceContext ctx)
+    // "Does not attack at the end of your turn. Instead, attacks enemies whenever you are attacked."
+    public override Task Command(PlayerChoiceContext ctx)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this).TargetingRandomOpponents(CombatState)
-            .Execute(ctx);
         var original = DynamicVars.Slime.IntValue;
         var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
-        await PowerCmd.Apply<SpikySlimePower>(ctx, PetOwner, modified, Creature, null);
+        return PowerCmd.Apply<SpikySlimePower>(ctx, PetOwner, modified, Creature, null);
     }
 }
 

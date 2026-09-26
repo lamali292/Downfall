@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Cards.Basic;
 using SlimeBoss.SlimeBossCode.Relics;
+using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Core;
 
@@ -41,9 +42,9 @@ public class SlimeBoss : DownfallCharacterModel
 		ModelDb.Card<DefendSlimeBoss>(),
 		ModelDb.Card<DefendSlimeBoss>(),
 		ModelDb.Card<DefendSlimeBoss>(),
-		ModelDb.Card<CorrosiveSpit>(),
-		ModelDb.Card<Split>(),
-		ModelDb.Card<Tackle>()
+		ModelDb.Card<Shakedown>(),
+		ModelDb.Card<DiveTackle>(),
+		ModelDb.Card<DiveTackle>()
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>
@@ -67,7 +68,13 @@ public abstract class SlimeBossRelicModel(RelicRarity rarity, bool autoAdd = tru
 
 public abstract class SlimeBossPowerModel(
 	PowerType powerType = PowerType.Buff,
-	PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<SlimeBoss>(powerType, powerStackType);
+	PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<SlimeBoss>(powerType, powerStackType)
+{
+	protected ConstructedPowerModel WithSlimeTip<T>() where T : SlimeModel
+	{
+		return WithTips(_ => [SlimeBossModelDb.Slime<T>().SlimeTip]);
+	}
+}
 
 public class SlimeBossPotionPool : DownfallPotionPool<SlimeBoss>;
 
