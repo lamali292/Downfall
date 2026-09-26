@@ -317,7 +317,7 @@ public class DownfallCardCmd
     /// You should almost always use CardCmd.Enchant instead of this method.
     /// Valid use cases include enchanting status cards and curse cards which are normally excluded from but function normally with enchantments.
     /// </summary>
-    public static T? ForceEnchant<T>(CardModel card, Decimal amount) where T : EnchantmentModel
+    public static T? ForceEnchant<T>(CardModel card, decimal amount) where T : EnchantmentModel
     {
         return ForceEnchant(ModelDb.Enchantment<T>().ToMutable(), card, amount) as T;
     }
@@ -330,10 +330,10 @@ public class DownfallCardCmd
     /// <param name="amount"> The amount of stacks of this enchantment.</param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public static EnchantmentModel? ForceEnchant(
+    private static EnchantmentModel? ForceEnchant(
         EnchantmentModel enchantment,
         CardModel card,
-        Decimal amount)
+        decimal amount)
     {
         enchantment.AssertMutable();
         if (card.Enchantment == null)
@@ -350,8 +350,8 @@ public class DownfallCardCmd
             return null;
         }
         card.FinalizeUpgradeInternal();
-        CardPile pile = card.Pile;
-        if (pile != null && pile.Type == PileType.Deck)
+        var pile = card.Pile;
+        if (pile is {Type: PileType.Deck})
             card.Owner.RunState.CurrentMapPointHistoryEntry?.GetEntry(card.Owner.NetId).CardsEnchanted.Add(new CardEnchantmentHistoryEntry(card, enchantment.Id));
         return card.Enchantment;
     }
