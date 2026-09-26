@@ -61,7 +61,7 @@
   "SLIMEBOSS-PILE_ON.title": "Pile On!",
   "SLIMEBOSS-PREPARE.description": "Gain {Block:diff()} [gold]Block[/gold].\nNext turn, gain {Energy:energyIcons()} and draw {DrawCardsNextTurnPower:diff()} cards.",
   "SLIMEBOSS-PREPARE.title": "Prepare",
-  "SLIMEBOSS-PREPARE_CRUSH.description": "Next turn, add [gold]Slime Crush!!!{IfUpgraded:plus()}[/gold] into your Hand, gain {Energy:energyIcons()} and {StrengthNextTurnPower:diff()} Strength.",
+  "SLIMEBOSS-PREPARE_CRUSH.description": "Next turn, add [gold]Slime Crush!!!{IfUpgraded:plus()}[/gold] into your Hand, gain {Energy:energyIcons()} and {StrengthNextTurnPower:diff()} [gold]Strength[/gold].",
   "SLIMEBOSS-PREPARE_CRUSH.title": "Prepare: Crush",
   "SLIMEBOSS-PRESS_THE_ATTACK.description": "Deal {Damage:diff()} damage.\n[gold]Command[/gold] [gold]Bruiser Slime[/gold].",
   "SLIMEBOSS-PRESS_THE_ATTACK.title": "Press the Attack",

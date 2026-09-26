@@ -3,6 +3,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Ancient;
@@ -15,6 +16,7 @@ public class FullOnAssault : SlimeBossCardModel
         WithCostUpgradeBy(-1);
         WithPower<FullOnAssaultPotencyPower>(2, false);
         WithTip<PotencyPower>();
+        WithTip(SlimeBossTip.Command);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -17,8 +17,6 @@ public class NewPlan : SlimeBossCardModel
         WithBlock(8, 3);
     }
 
-    protected override Artist Artist => Artist.Get<Opal>();
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
