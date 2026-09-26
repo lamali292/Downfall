@@ -18,8 +18,8 @@ public class YouAreMine : CollectorCardModel
     public YouAreMine() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithPower<WeakPower>(3, 2);
-        WithPower<FrailPower>(2, 3);
-        WithPower<VulnerablePower>(2, 3);
+        WithPower<FrailPower>(3, 2);
+        WithPower<VulnerablePower>(3, 2);
         WithPower<MiasmaPower>(3, 2);
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
     }
