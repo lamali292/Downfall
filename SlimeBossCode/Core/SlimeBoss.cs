@@ -49,7 +49,7 @@ public class SlimeBoss : DownfallCharacterModel
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>
 	[
-		ModelDb.Relic<HeartOfGoo>()
+		ModelDb.Relic<MagnificentBowlerHat>()
 	];
 
 	public override float AttackAnimDelay => 0.15f;
@@ -64,7 +64,14 @@ public class SlimeBoss : DownfallCharacterModel
 public class SlimeBossRelicPool : DownfallRelicPool<SlimeBoss>;
 
 public abstract class SlimeBossRelicModel(RelicRarity rarity, bool autoAdd = true)
-	: DownfallRelicModel<SlimeBoss>(rarity, autoAdd);
+    : DownfallRelicModel<SlimeBoss>(rarity, autoAdd)
+{
+    protected ConstructedRelicModel WithSlimeTip<T>() where T : SlimeModel
+    {
+        return WithTips(_ => [SlimeBossModelDb.Slime<T>().SlimeTip]);
+    }
+
+}
 
 public abstract class SlimeBossPowerModel(
 	PowerType powerType = PowerType.Buff,
