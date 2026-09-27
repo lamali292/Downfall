@@ -1,4 +1,3 @@
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -22,12 +21,7 @@ public class EvolutionSlime : SlimeModel
         new DamageVar("Damage2", 4,  DamageProps.nonCardUnpowered)
     ];
 
-    // NOTE: no scene/skin exists for this slime yet - reusing Insulting's "champ" skin as a placeholder.
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("champ"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "poison";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

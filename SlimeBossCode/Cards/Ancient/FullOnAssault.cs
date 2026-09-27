@@ -22,7 +22,7 @@ public class FullOnAssault : SlimeBossCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FullOnAssaultPotencyPower>(ctx, this);
-        await SlimeBossCmd.CommandAll(ctx, Owner, 1, this);
+        await SlimeBossCmd.CommandAll(ctx, Owner, this);
     }
 }
 

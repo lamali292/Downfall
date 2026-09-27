@@ -29,9 +29,9 @@ public class OneTwoCombo : SlimeBossCardModel, IAfterSplit, IAfterCommand
         return ReturnToHand(player);
     }
 
-    public Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
+    public Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source, bool isAutomatic)
     {
-        return ReturnToHand(player);
+        return isAutomatic ? Task.CompletedTask : ReturnToHand(player);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

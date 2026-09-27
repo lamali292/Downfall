@@ -61,6 +61,8 @@ public class SlimeCardDarkling : SlimeCard<DarklingSlime>;
 
 
 // Unused Slimes
+
+/*
 [Obsolete]
 public class SlimeCardMire() : SlimeCard<MireSlime>(false, false);
 
@@ -87,6 +89,6 @@ public class SlimeCardGreed() : SlimeCard<GreedSlime>(false, false);
 
 [Obsolete]
 public class SlimeCardScrap() : SlimeCard<ScrapSlime>(false, false);
-
+*/
 
 #pragma warning restore

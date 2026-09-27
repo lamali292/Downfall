@@ -22,7 +22,7 @@ public class SlimedTail : SlimeBossRelicModel, IAfterCommand
     }
 
 
-    public Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
+    public Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source, bool isAutomatic)
     {
         return player == Owner && slime is BruiserSlime ? MyCommonActions.Block(this) : Task.CompletedTask;
     }

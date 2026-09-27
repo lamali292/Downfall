@@ -1,5 +1,4 @@
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -25,12 +24,7 @@ public class LeechingSlime : SlimeModel
         HoverTipFactory.FromPower<WeakPower>()
     ];
 
-    // NOTE: no scene/skin exists for this slime yet - reusing InsultingSlime's "champ" skin as a placeholder.
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("champ"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "shield";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

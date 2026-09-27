@@ -1,5 +1,4 @@
 using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,12 +19,7 @@ public class MuscleSlime : SlimeModel
         new DamageVar(6, DamageProps.nonCardUnpowered)
     ];
 
-    // NOTE: no scene/skin exists for this slime yet - reusing BruiserSlime's "attack" skin as a placeholder.
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("attack"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "poison";
 
     // "Targets whichever enemy was attacked last during your turn" - looks up the most recent
     // CreatureAttackedEntry made by the owner this turn and re-targets its last hit's receiver.

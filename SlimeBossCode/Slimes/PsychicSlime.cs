@@ -1,4 +1,3 @@
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,12 +16,7 @@ public class PsychicSlime : SlimeModel
         new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
-    // NOTE: no scene/skin exists for this slime yet - reusing InsultingSlime's "champ" skin as a placeholder.
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("champ"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "poison";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

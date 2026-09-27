@@ -18,6 +18,6 @@ public class LegionFormPower : SlimeBossPowerModel
     {
         if ( player.Creature != Owner) return;
         Flash();
-        await SlimeBossCmd.CommandAll(ctx, player, Amount);
+        for (var i = 0; i < Amount; i++) await SlimeBossCmd.CommandAll(ctx, player);
     }
 }

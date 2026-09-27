@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Compatibility;
+using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -24,14 +25,59 @@ public abstract class SlimeModel : CustomMonsterModel
     public override int MinInitialHp => Really.bigNumber;
     public override int MaxInitialHp => Really.bigNumber;
     
-    public override string CustomVisualPath =>
-        $"combat/{Id.Entry.RemovePrefix().ToLowerInvariant()}.tscn".SlimeScenePath();
+    public override string CustomVisualPath
+    {
+        get
+        {
+            var path = $"combat/{Id.Entry.RemovePrefix().ToLowerInvariant()}.tscn".SlimeScenePath();
+            return ResourceLoader.Exists(path) ? path : "combat/guerilla_slime.tscn".SlimeScenePath();
+        }
+    }
+
+    /// <summary>
+    /// Name of the Spine skin this slime wants on its skeleton, or null to leave whatever skin the
+    /// scene already has active. Override this instead of SetupSkins for the common case.
+    /// </summary>
+    protected virtual string? SkinName => null;
+
+    /// <summary>
+    /// Applies SkinName if it names a skin that actually exists on this skeleton - which can miss
+    /// when CustomVisualPath had to fall back to guerilla_slime.tscn because this slime has no
+    /// scene/skin of its own yet. Leaves the scene's current skin alone otherwise, rather than
+    /// clearing it. Override this instead of SkinName if a slime needs more than a skin swap.
+    /// </summary>
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
+    {
+        if (SkinName != null)
+        {
+            var skin = skeleton.GetData().FindSkin(SkinName);
+            if (skin != null) skeleton.SetSkin(skin);
+        }
+
+        skeleton.SetSlotsToSetupPose();
+    }
 
     public override bool HasDeathSfx => false;
     public Creature PetOwner => Creature.PetOwner?.Creature ?? throw new ArgumentNullException(nameof(PetOwner));
     protected virtual LocString Description => L10NMonsterLookup(Id.Entry + ".description");
 
+    public int SlimeAmount
+    {
+        get;
+        set
+        {
+            var old = field;
+            field = value;
+            SlimeAmountChanged(old, value);
+        }
+    } = 1;
 
+    protected virtual void SlimeAmountChanged(int oldValue, int newValue)
+    {
+        SlimeBossMainFile.Logger.Info($"Slimecount: {oldValue} -> {newValue}");
+    }
+
+    public virtual SlimeType SlimeType => SlimeType.Single;
     public sealed override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle_loop", hitName: "hurt", attackName: "attack");
@@ -115,4 +161,10 @@ public abstract class SlimeModel : CustomMonsterModel
                     break;
             }
     }
+}
+
+public enum SlimeType
+{
+    Single,
+    Counter
 }

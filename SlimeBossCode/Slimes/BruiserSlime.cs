@@ -1,5 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -16,11 +15,7 @@ public class BruiserSlime : SlimeModel
         new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("attack"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "attack";
     
     private Creature? GetHighestHpOpponent()
     {

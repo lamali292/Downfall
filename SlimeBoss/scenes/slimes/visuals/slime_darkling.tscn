@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 ]
+
+[ext_resource type="SpineAtlasResource" path="res://SlimeBoss/scenes/slimes/spine/darkling/skeleton.atlas" id="1_kyjba"]
+[ext_resource type="SpineSkeletonFileResource" path="res://SlimeBoss/scenes/slimes/spine/darkling/skeleton.skel" id="2_tjebs"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_ukac8"]
+atlas_res = ExtResource("1_kyjba")
+skeleton_file_res = ExtResource("2_tjebs")
+
+[node name="SlimeDarkling" type="SpineSprite"]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_ukac8")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0

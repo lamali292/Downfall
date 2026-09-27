@@ -13,7 +13,7 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 
 public class LeadByExamplePower : SlimeBossPowerModel, IAfterCommand
 {
-    public async Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
+    public async Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source, bool isAutomatic)
     {
         if (player.Creature != Owner || slime is not BruiserSlime) return;
         var slimes = player.SlimeCreatures.Where(s => s.Monster != slime);

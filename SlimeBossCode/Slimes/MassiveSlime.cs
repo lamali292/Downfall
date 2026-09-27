@@ -1,4 +1,3 @@
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,12 +17,7 @@ public class MassiveSlime : SlimeModel
         new("Sleep", 1)
     ];
 
-    // NOTE: no scene/skin exists for this slime yet - reusing Bronze's "bronze" skin as a placeholder.
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("bronze"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "poison";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

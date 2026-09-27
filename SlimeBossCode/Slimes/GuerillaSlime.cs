@@ -1,5 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -16,11 +15,7 @@ public class GuerillaSlime : SlimeModel
     ];
 
     
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("poison"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "poison";
 
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)

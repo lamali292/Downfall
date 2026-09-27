@@ -1,5 +1,4 @@
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,13 +18,8 @@ public class DarklingSlime : SlimeModel, IAfterCommand
     ];
 
     // todo : change so this slime only visually stacks
-    
-    // NOTE: no scene/skin exists for this slime yet - reusing Insulting's "champ" skin as a placeholder.
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("champ"));
-        skeleton.SetSlotsToSetupPose();
-    }
+
+    public override SlimeType SlimeType => SlimeType.Counter;
 
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
@@ -34,11 +28,11 @@ public class DarklingSlime : SlimeModel, IAfterCommand
         return attack.Execute(ctx);
     }
     
-    public async Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
+    public async Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source, bool isAutomatic)
     {
-        if (player.Creature != PetOwner || slime == this || slime is DarklingSlime) return;
+        if (player.Creature != PetOwner || slime == this || slime is DarklingSlime || isAutomatic) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromSlime(this)
-            .TargetingRandomOpponents(CombatState).Execute(ctx);
+            .TargetingRandomOpponents(CombatState).WithHitCount(SlimeAmount).Execute(ctx);
     }
 }

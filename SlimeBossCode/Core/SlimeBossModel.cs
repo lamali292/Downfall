@@ -15,7 +15,7 @@ public class SlimeBossModel() : CustomSingletonModel(HookType.Combat)
     {
         foreach (var player in participants.Where(e => e.IsPlayer).Select(e => e.Player).OfType<Player>())
         {
-            await SlimeBossCmd.CommandAll(ctx, player);
+            await SlimeBossCmd.AutomaticCommandAll(ctx, player);
         }
     }
     

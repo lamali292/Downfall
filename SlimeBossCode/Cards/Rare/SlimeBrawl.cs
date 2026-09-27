@@ -18,6 +18,6 @@ public class SlimeBrawl : SlimeBossCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
-        await SlimeBossCmd.CommandAll(ctx, Owner, 1, this, cardPlay.Target);
+        await SlimeBossCmd.CommandAll(ctx, Owner, this, cardPlay.Target);
     }
 }

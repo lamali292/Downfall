@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -26,11 +25,7 @@ public class SpikeSlime : SlimeModel
         HoverTipFactory.FromPower<ThornsPower>()
     ];
     
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("protector"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "poison";
     
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

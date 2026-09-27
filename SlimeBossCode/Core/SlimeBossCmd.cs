@@ -26,11 +26,6 @@ public static class SlimeBossCmd
         return player.SlimeCreatures.Select(e => e.Monster).OfType<SlimeModel>();
     }
 
-    private static SlimeModel? GetFirstSlime(Player player)
-    {
-        return GetSlimes(player).LastOrDefault();
-    }
-
     /// <summary>Potency granted instead of duplicating an already-summoned slime type.</summary>
     private const int DuplicateSplitPotency = 2;
 
@@ -47,55 +42,35 @@ public static class SlimeBossCmd
         // actually-clicked target from CardPlay - MyGetTargets handles both uniformly (see the
         // DuplicatedFormDoublesAoeCardsTargetingEnemies regression test for the AoE-side version of this).
         var targets = card.MyGetTargets(cardPlay.Target);
-        List<Creature> consumed = [];
+        var consumed = 0;
         foreach (var target in targets)
         {
             var weak = target.GetPower<WeakPower>();
             if (weak is not { Amount: > 0 }) continue;
-
-            await PowerCmd.ModifyAmount(ctx, weak, -1, null, card);
-            consumed.Add(target);
+            await PowerCmd.ModifyAmount(ctx, weak, -1, card.Owner.Creature, card);
+            consumed++;
             if (card is IHasConsumeEffect effect) await effect.ConsumeEffect(ctx, cardPlay, target);
             if (target.CombatState != null)
                 await SlimeBossHook.AfterConsumeEffect(target.CombatState, ctx, target, card.Owner.Creature);
         }
 
-        return consumed.Any();
+        return consumed > 0;
     }
 
 
     private static async Task RunCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source,
-        Creature? forcedTarget = null)
+        Creature? forcedTarget, bool isAutomatic)
     {
         await slime.Command(ctx, forcedTarget);
         if (player.Creature.CombatState == null) return;
-        await SlimeBossHook.AfterCommand(player.Creature.CombatState, ctx, player, slime, source);
+        await SlimeBossHook.AfterCommand(player.Creature.CombatState, ctx, player, slime, source, isAutomatic);
     }
 
-    private static async Task CommandInternal(PlayerChoiceContext ctx, Player player,
-        CardModel? source, CommandType commandType = CommandType.First, Creature? forcedTarget = null)
+    private static Task RunCommands(PlayerChoiceContext ctx, Player player, IEnumerable<SlimeModel> slimes,
+        CardModel? cardSource, Creature? forcedTarget, bool isAutomatic)
     {
-        switch (commandType)
-        {
-            case CommandType.First:
-                var slime = GetFirstSlime(player);
-                if (slime == null) return;
-                await RunCommand(ctx, player, slime, source, forcedTarget);
-                break;
-            case CommandType.All:
-                await GetSlimes(player).Reverse().ForEachAsync(s => RunCommand(ctx, player, s, source, forcedTarget));
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(commandType), commandType, null);
-        }
+        return slimes.ToList().ForEachAsync(s => RunCommand(ctx, player, s, cardSource, forcedTarget, isAutomatic));
     }
-
-    public static async Task Command(PlayerChoiceContext ctx, Player player, int amount,
-        CardModel? cardSource = null, CommandType commandType = CommandType.First, Creature? forcedTarget = null)
-    {
-        for (var i = 0; i < amount; i++) await CommandInternal(ctx, player, cardSource, commandType, forcedTarget);
-    }
-
 
     /// <summary>
     /// Commands a specific slime type (e.g. "Command Bruiser Slime"). If the player has not split into that
@@ -113,7 +88,8 @@ public static class SlimeBossCmd
                 slime = GetSlimes(player).OfType<T>().FirstOrDefault();
             }
 
-            if (slime != null) await RunCommand(ctx, player, slime, cardSource, forcedTarget);
+            if (slime != null)
+                await RunCommands(ctx, player, [slime], cardSource, forcedTarget, isAutomatic: false);
         }
     }
 
@@ -123,13 +99,18 @@ public static class SlimeBossCmd
         return Command<T>(ctx, card.Owner, card.DynamicVars["Command"].IntValue, card);
     }
 
-    public static Task CommandAll(PlayerChoiceContext ctx, Player player, int amount = 1,
-        CardModel? cardSource = null, Creature? forcedTarget = null)
+    public static Task CommandAll(PlayerChoiceContext ctx, Player player, CardModel? cardSource = null,
+        Creature? forcedTarget = null)
     {
-        return Command(ctx, player, amount, cardSource, CommandType.All, forcedTarget);
+        return RunCommands(ctx, player, GetSlimes(player).Reverse(), cardSource, forcedTarget, isAutomatic: false);
     }
-
-
+    public static Task AutomaticCommandAll(PlayerChoiceContext ctx, Player player)
+    {
+        return RunCommands(ctx, player, GetSlimes(player).Reverse(), cardSource: null, forcedTarget: null,
+            isAutomatic: true);
+    }
+    
+    
     public static Task<Creature?> Split<T>(PlayerChoiceContext ctx, Player player) where T : SlimeModel
     {
         return Split(ctx, player, SlimeBossModelDb.Slime<T>());
@@ -140,27 +121,31 @@ public static class SlimeBossCmd
     /// of spawning a duplicate. Used by any "Split into X" effect, including runtime-chosen slime
     /// types (e.g. Unison, Split Specialist) that don't have a compile-time type parameter.
     /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static async Task<Creature?> Split(PlayerChoiceContext ctx, Player player, SlimeModel slimeModel)
     {
-        var existing = player.Creature.Pets.FirstOrDefault(e => e.Monster?.GetType() == slimeModel.GetType());
+        var existing = player.GetSlime(slimeModel);
         if (existing == null)
         {
             return await SpawnSlime(ctx, player, slimeModel);
         }
+        if (existing.Monster is not SlimeModel slime) return existing;
+        switch (slime.SlimeType)
+        {
+            case SlimeType.Single:
+                await PowerCmd.Apply<PotencyPower>(ctx, existing, DuplicateSplitPotency, player.Creature, null);
+                break;
+            case SlimeType.Counter:
+                slime.SlimeAmount++;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
 
-        await PowerCmd.Apply<PotencyPower>(ctx, existing, DuplicateSplitPotency, player.Creature, null);
         return existing;
     }
 
-    /// <summary>
-    /// Splits into a slime of type T even if one already exists (bypasses the duplicate-grants-Potency rule).
-    /// Used by cards that intentionally spawn multiple of the same slime at once (e.g. Darkling Duo).
-    /// </summary>
-    public static Task SplitForced<T>(PlayerChoiceContext ctx, Player player) where T : SlimeModel
-    {
-        return SpawnSlime(ctx, player, SlimeBossModelDb.Slime<T>());
-    }
-
+ 
     private static async Task<Creature?> SpawnSlime(PlayerChoiceContext ctx, Player player, SlimeModel slimeModel)
     {
         var slime = await AddSlime(player, slimeModel);
@@ -264,10 +249,4 @@ public static class SlimeBossCmd
         var point = uu * p0 + 2f * u * t * p1 + tt * p2;
         return point;
     }
-}
-
-public enum CommandType
-{
-    First,
-    All
 }

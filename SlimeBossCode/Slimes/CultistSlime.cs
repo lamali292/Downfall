@@ -1,4 +1,3 @@
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,11 +16,7 @@ public class CultistSlime : SlimeModel
         new DamageVar(4, DamageProps.nonCardUnpowered)
     ];
     
-    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
-    {
-        skeleton.SetSkin(skeleton.GetData().FindSkin("cultist"));
-        skeleton.SetSlotsToSetupPose();
-    }
+    protected override string? SkinName => "cultist";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

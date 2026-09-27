@@ -20,6 +20,6 @@ public class DarklingDuo : SlimeBossCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var count = DynamicVars["Count"].IntValue;
-        for (var i = 0; i < count; i++) await SlimeBossCmd.SplitForced<DarklingSlime>(ctx, Owner);
+        for (var i = 0; i < count; i++) await SlimeBossCmd.Split<DarklingSlime>(ctx, Owner);
     }
 }

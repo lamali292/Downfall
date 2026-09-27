@@ -31,9 +31,10 @@ public static class SlimeBossHook
             e => e.AfterSplit(ctx, player, slime));
     }
 
-    public static Task AfterCommand(ICombatState cs, PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source)
+    public static Task AfterCommand(ICombatState cs, PlayerChoiceContext ctx, Player player, SlimeModel slime,
+        CardModel? source, bool isAutomatic)
     {
-        return HookUtils.Dispatch<IAfterCommand>(cs, ctx, 
-            e => e.AfterCommand(ctx, player, slime, source));
+        return HookUtils.Dispatch<IAfterCommand>(cs, ctx,
+            e => e.AfterCommand(ctx, player, slime, source, isAutomatic));
     }
 }
