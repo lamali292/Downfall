@@ -17,7 +17,7 @@
     "SNECKO-SERPENTS_NEST_POWER.title": "蛇の巣窟",
     "SNECKO-SERPENTS_NEST_POWER.description": "パワーをプレイするたび、すべての敵にダメージを与える。",
     "SNECKO-SERPENTS_NEST_POWER.smartDescription": "パワーをプレイするたび、すべての敵に[blue]{Amount}[/blue]ダメージを与える。",
-    "SNECKO-TRASH_CAN_POWER.title": "ゴミ箱",
+    "SNECKO-TRASH_CAN_POWER.title": "廃棄処分",
     "SNECKO-TRASH_CAN_POWER.description": "ターン終了時、カードを1枚[gold]廃棄[/gold]してもよい。",
     "SNECKO-TRASH_CAN_POWER.smartDescription": "ターン終了時、カードを[blue]{Amount}[/blue]枚まで[gold]廃棄[/gold]してもよい。",
     "SNECKO-TSUNAMI_POWER.title": "ツナミ",
