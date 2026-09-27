@@ -9,11 +9,22 @@ public static class MegaSpriteExtensions
 {
     /// <summary>
     ///     Cross-version global bone transform. On builds whose Spine binding lacks
-    ///     'get_global_bone_transform', returns null instead of throwing.
+    ///     'get_global_bone_transform', or when the named bone doesn't exist on this skeleton
+    ///     at all (e.g. off-class rigs without a character-specific bone), returns null instead
+    ///     of throwing or silently returning a wrong transform.
     /// </summary>
+    /// <remarks>
+    ///     'get_global_bone_transform' does NOT return Nil for a missing bone - it returns a
+    ///     valid-looking Transform2D anyway (observed sitting at the skeleton root), so a missing
+    ///     bone can't be detected from its result. Bone existence has to be checked separately via
+    ///     Spine's 'find_bone' (<see cref="MegaSkeleton.FindBone" />), which does null-check correctly.
+    /// </remarks>
     public static Transform2D? GetGlobalBoneTransformCompat(this MegaSprite sprite, string boneName)
     {
         if (sprite is null)
+            return null;
+
+        if (sprite.GetSkeleton()?.FindBone(boneName) == null)
             return null;
 
         // The native SpineSprite object underneath the binding.
