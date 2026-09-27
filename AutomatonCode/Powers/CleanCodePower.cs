@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
-using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Automaton.AutomatonCode.Powers;
@@ -11,10 +12,13 @@ public class CleanCodePower : AutomatonPowerModel
     {
         WithTip(AutomatonTip.Stash);
     }
-
-    public override async Task BeforeFlush(PlayerChoiceContext ctx, Player player)
+    
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
     {
-        if (Owner != player.Creature) return;
+        if (!participants.Contains(Owner)) return;
+        var player = Owner.Player;
+        if (player == null) return;
         Flash();
         await StashCmd.StashUpTo(ctx, player, Amount, this);
     }

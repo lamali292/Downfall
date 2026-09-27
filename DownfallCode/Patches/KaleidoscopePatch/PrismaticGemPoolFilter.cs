@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Downfall.DownfallCode.Compatibility;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Runs;
@@ -22,6 +23,6 @@ static class PrismaticGemPoolFilter
         ).ToList();
 
         if (kept.Count == 0) return;                             
-        __result = __result.WithCardPools(kept);
+        __result = __result.WithCardPoolsCompat(kept);
     }
 }

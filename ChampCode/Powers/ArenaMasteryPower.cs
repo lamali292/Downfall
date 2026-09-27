@@ -37,13 +37,6 @@ public class ArenaMasteryPower : ChampPowerModel
             return;
 
         var data = GetInternalData<Data>();
-        if (!data.SkippedFirst)
-        {
-            data.SkippedFirst = true;
-            return;
-        }
-
-        
         data.StrikesPlayed++;
 
         var triggers = data.StrikesPlayed / Threshold - data.TriggerCount;
@@ -61,6 +54,5 @@ public class ArenaMasteryPower : ChampPowerModel
     {
         public int StrikesPlayed;
         public int TriggerCount;
-        public bool SkippedFirst;
     }
 }

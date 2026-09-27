@@ -1,9 +1,12 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace Downfall.DownfallCode.Compatibility;
 
@@ -41,4 +44,22 @@ public static class GameVersion
     /// <summary>Version-safe replacement for `AttackCommand.CardPlay = cardPlay` (no-op if the property doesn't exist).</summary>
     public static void SetCardPlayCompat(this AttackCommand command, CardPlay? cardPlay) =>
         AttackCommandCardPlayProp?.SetValue(command, cardPlay);
+
+    // CardCreationOptions.WithCardPools gained a second `cardPoolFilter` parameter on some builds
+    // (e.g. current live/main game branch) while older builds (e.g. beta) still only have the
+    // single-arg overload. The exact overload is baked into the call site at compile time, so a
+    // build compiled against one branch throws MissingMethodException on the other - resolve the
+    // overload at runtime instead.
+    private static readonly MethodInfo? WithCardPoolsMethod =
+        AccessTools.Method(typeof(CardCreationOptions), nameof(CardCreationOptions.WithCardPools));
+
+    /// <summary>Version-safe replacement for `CardCreationOptions.WithCardPools(pools)`.</summary>
+    public static CardCreationOptions WithCardPoolsCompat(this CardCreationOptions options, IEnumerable<CardPoolModel> pools)
+    {
+        if (WithCardPoolsMethod == null) return options;
+        var args = WithCardPoolsMethod.GetParameters().Length == 1
+            ? new object?[] { pools }
+            : new object?[] { pools, options.CardPoolFilter };
+        return (CardCreationOptions)WithCardPoolsMethod.Invoke(options, args)!;
+    }
 }

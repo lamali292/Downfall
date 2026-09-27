@@ -1,5 +1,7 @@
 using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Cards.Common;
+using Awakened.AwakenedCode.Cards.Uncommon;
+using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Commands;
@@ -106,5 +108,28 @@ public class AwakenedTests
         Assert.IsTrue(drawPower != null && drawPower.Amount == 2,
             "Rising Chorus should double an already-chanted card's chant effect on the turn's first chant " +
             $"(expected DrawCardsNextTurnPower amount 2, got {drawPower?.Amount.ToString() ?? "none"}).");
+    }
+
+    // Regression guard: reported for offclass Byrd's Eye - it read spellbook.Cards without
+    // refilling first, so once the spellbook was fully emptied (e.g. every base spell already
+    // conjured away) there was nothing to select and the card did nothing on play. Fixed by
+    // refreshing the spellbook when empty, same fallback AwakenedCmd.ConjureSpell already uses.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task ByrdsEyeRefillsEmptySpellbookBeforeConjuring(TestContext ctx)
+    {
+        AwakenedCmd.InitSpellbook(ctx.Player);
+        var spellbook = AwakenedCmd.GetSpellbook(ctx.Player);
+        foreach (var card in spellbook.Cards.ToList())
+            spellbook.RemoveInternal(card);
+        Assert.AreEqual(0, spellbook.Cards.Count, "Sanity check: spellbook should be empty before playing Byrd's Eye.");
+
+        var byrdsEye = await ctx.AddCardToHand<ByrdsEye>();
+        var handCountBefore = ctx.Player.Hand.Count;
+
+        await ctx.PlayCard(byrdsEye);
+
+        Assert.AreEqual(handCountBefore, ctx.Player.Hand.Count,
+            "Byrd's Eye should conjure a spell into hand even when the spellbook started empty " +
+            "(hand count should stay the same: -1 for playing Byrd's Eye, +1 for the conjured spell).");
     }
 }
