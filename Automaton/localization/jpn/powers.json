@@ -62,7 +62,7 @@
     "AUTOMATON-BURN_OUT_POWER.title": "バーンアウト",
     "AUTOMATON-BURN_OUT_POWER.description": "状態異常か[red]呪い[/red]を[gold]格納[/gold]するたび、それを[gold]廃棄[/gold]してすべての敵にダメージを与える。",
     "AUTOMATON-BURN_OUT_POWER.smartDescription": "状態異常か[red]呪い[/red]を[gold]格納[/gold]するたび、それを[gold]廃棄[/gold]してすべての敵に[blue]{Amount}[/blue]ダメージを与える。",
-    "AUTOMATON-RECYCLE_BIN_POWER.title": "リサイクルボックス",
+    "AUTOMATON-RECYCLE_BIN_POWER.title": "ごみ箱",
     "AUTOMATON-RECYCLE_BIN_POWER.description": "ターン終了時、[gold]手札[/gold]の状態異常か[red]呪い[/red]1枚につき[gold]ブロック[/gold]を得る。",
     "AUTOMATON-RECYCLE_BIN_POWER.smartDescription": "ターン終了時、[gold]手札[/gold]の状態異常か呪い1枚につき[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "AUTOMATON-RECREATE_POWER.title": "再作成",

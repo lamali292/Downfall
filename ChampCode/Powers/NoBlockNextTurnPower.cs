@@ -21,6 +21,6 @@ public class NoBlockNextTurnPower : ChampPowerModel
     {
         if (player.Creature != Owner) return;
         await PowerCmd.Apply<NoBlockPower>(ctx, Owner, Amount, Applier, null);
-        await PowerCmd.Decrement(this);
+        await PowerCmd.Remove(this);
     }
 }

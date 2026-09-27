@@ -29,6 +29,6 @@ public class ViperSkull : SneckoRelicModel
         if (!participants.Contains(Owner.Creature) || Owner.PlayerCombatState == null || Owner.PlayerCombatState.TurnNumber > 1)
             return;
         Flash();
-        await PowerCmd.Apply<VulnerablePower>(choiceContext, combatState.HittableEnemies, DynamicVars.Power<VenomPower>().BaseValue, Owner.Creature,null);
+        await PowerCmd.Apply<VenomPower>(choiceContext, combatState.HittableEnemies, DynamicVars.Power<VenomPower>().BaseValue, Owner.Creature,null);
     }
 }
