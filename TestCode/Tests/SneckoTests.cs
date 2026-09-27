@@ -123,4 +123,36 @@ public class SneckoTests
             $"RunActEntry should skip a player who already has a full SneckoChoice set (e.g. after a " +
             $"save/reload), got {count} SneckoChoice relics.");
     }
+
+    // "Super Snecko" mode: owning Prismatic Snecko should make GetSneckoCharacterModels/GetSneckoCards
+    // return every character's pool at once, not just the ones individually picked via SneckoChoice.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task PrismaticSneckoGrantsEveryCharactersCardPool(TestContext ctx)
+    {
+        await RelicCmd.Obtain(ModelDb.Relic<PrismaticSnecko>().ToMutable(), ctx.Player);
+
+        var chars = SneckoModel.GetSneckoCharacterModels(ctx.Player).ToList();
+        var expected = ModelDb.AllCharacters.Where(c => c != ctx.Player.Character).ToList();
+
+        Assert.AreEqual(expected.Count, chars.Count,
+            $"Prismatic Snecko should grant every other character's pool, got {chars.Count} of {expected.Count}.");
+        Assert.IsTrue(expected.All(chars.Contains), "Prismatic Snecko's pool should include every other character.");
+    }
+
+    // Reload-safety mirror of RunActEntrySkipsPlayerWhoAlreadyHasFullSneckoChoiceSetFromBeforeAReload,
+    // but for a player who reached "done" via Prismatic Snecko instead of 3 individual SneckoChoice
+    // picks - IsDoneSelecting (ISneckoPoolSupplier.ActEntryWeight) must recognize both as complete.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task RunActEntrySkipsPlayerWhoAlreadyHasPrismaticSnecko(TestContext ctx)
+    {
+        await RelicCmd.Obtain(ModelDb.Relic<PrismaticSnecko>().ToMutable(), ctx.Player);
+
+        SneckoPoolSelection.RunActEntry(ctx.Player.RunState);
+        await Task.Delay(200);
+
+        Assert.AreEqual(1, ctx.Player.Relics.OfType<PrismaticSnecko>().Count(),
+            "RunActEntry should not grant a second Prismatic Snecko.");
+        Assert.AreEqual(0, ctx.Player.Relics.OfType<SneckoChoice>().Count(),
+            "RunActEntry should not also run the normal picker for a player who already has Prismatic Snecko.");
+    }
 }
