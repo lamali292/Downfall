@@ -96,7 +96,7 @@
     "AUTOMATON-TERMINATOR.functionPrefix": "悲しい",
     "AUTOMATON-FUNCTION.functionParentheses": "()",
     "AUTOMATON-PERFECTION.functionName": "完璧()",
-    "AUTOMATON-INFINITE_LOOP_COMPILE.compile": "ダメージが{CompileLoopCount:diff()}増加した{OnCard:cond:このカード|[gold]無限ループ[/gold]}のコピーを1枚得る。",
+    "AUTOMATON-INFINITE_LOOP_COMPILE.compile": "ダメージが{CompileLoopCount:diff()}増加した{OnCard:cond:このカード|[gold]無限ループ[/gold]}のコピーを1枚[gold]手札[/gold]に加える。",
     "AUTOMATON-STRENGTH_COMPILE.compile": "[gold]筋力[/gold]{CompileStrength:diff()}を得る。",
     "AUTOMATON-THORNS_COMPILE.compile": "[gold]トゲ[/gold]{CompileThorns:diff()}を得る。",
     "AUTOMATON-DAZED_TO_DRAW_COMPILE.compile": "[gold]めまい[/gold]を{CompileDazed:diff()}枚[gold]山札[/gold]に加える。",

@@ -67,5 +67,11 @@
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Lorsque vous entrez en [gold]Mode Défensif[/gold], l'allié avec le moins [gold]d'Armure[/gold] gagne [blue]{Amount}[/blue] [gold]d'Armure[/gold] et [blue]{ThornsPower}[/blue] [gold]d'Épines[/gold] pour ce tour. ",
     "GUARDIAN-BASTION_POWER.title": "Bastion",
     "GUARDIAN-BASTION_POWER.description": "Lorsque vous vous [gold]Renforcez[/gold], tous les alliés gagnent de [gold]l'Armure[/gold].",
-    "GUARDIAN-BASTION_POWER.smartDescription": "Lorsque vous vous [gold]Renforcez[/gold], tous les alliés gagnent [blue]{Amount}[/blue] [gold]d'Armure[/gold]."
+    "GUARDIAN-BASTION_POWER.smartDescription": "Lorsque vous vous [gold]Renforcez[/gold], tous les alliés gagnent [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
+    "GUARDIAN-STUNNED_POWER.title": "Étourdi",
+    "GUARDIAN-STUNNED_POWER.description": "Vous ne pouvez pas jouer de cartes, piocher des cartes ou gagner de l'Énergie ce tour.",
+    "GUARDIAN-STUNNED_POWER.smartDescription": "Vous ne pouvez pas jouer de cartes, piocher des cartes ou gagner de l'Énergie ce tour.",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.title": "Étourdi au Prochain Tour",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.description": "Passez votre prochain tour.",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.smartDescription": "Passez vos [blue]{Amount}[/blue] prochains tours."
 }
