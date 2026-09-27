@@ -1,12 +1,15 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 using Snecko.SneckoCode.Cards.Common;
 using Snecko.SneckoCode.Cards.Uncommon;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Relics;
 
 namespace Downfall.TestCode;
 
@@ -67,5 +70,57 @@ public class SneckoTests
 
         Assert.IsTrue(ctx.Player.Creature.Block > blockBefore,
             "Pillar of Creation should trigger off the card Serpent Idol puts into hand.");
+    }
+
+    // Reported bug: SneckoModel.AfterRoomEntered (act 1 floor 1 pool-character selection) can fire
+    // twice if another mod re-triggers the same room-entered hook, which used to reserve a second
+    // batch of choice ids and run the whole 3-round selection again, granting 6 SneckoChoice relics
+    // instead of 3. NChooseACardSelectionScreen.ShowScreen returns null under TestMode.IsOn, which
+    // GetLocalChoice treats as "pick index 0" - so this runs deterministically without a real screen.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task RunActEntryOnlyRunsOnceEvenIfCalledTwice(TestContext ctx)
+    {
+        var runState = ctx.Player.RunState;
+
+        SneckoPoolSelection.RunActEntry(runState);
+        SneckoPoolSelection.RunActEntry(runState);
+
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        while (ctx.Player.Relics.OfType<SneckoChoice>().Count() < 3 && sw.Elapsed < TimeSpan.FromSeconds(5))
+            await Task.Yield();
+        // Give a second run, if one were wrongly kicked off, a chance to add its extra relics too.
+        await Task.Delay(200);
+
+        var count = ctx.Player.Relics.OfType<SneckoChoice>().Count();
+        Assert.AreEqual(3, count,
+            $"RunActEntry should only run once even when called twice for the same run, got {count} SneckoChoice relics.");
+    }
+
+    // Regression guard for save-quit-and-reload specifically: reloading deserializes a brand new
+    // IRunState (a fresh key for the in-memory HasRunActEntry gate), but the player's SneckoChoice
+    // relics from before the save are still there. This test starts a player with all 3 already
+    // obtained - as if just reloaded post-selection - and its own [CardTest] combat setup naturally
+    // gives it a never-before-seen IRunState, so the in-memory gate alone would NOT catch a re-run
+    // here; only the per-player relic-count filter does.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task RunActEntrySkipsPlayerWhoAlreadyHasFullSneckoChoiceSetFromBeforeAReload(TestContext ctx)
+    {
+        for (var i = 0; i < 3; i++)
+        {
+            var relic = (SneckoChoice)ModelDb.Relic<SneckoChoice>().ToMutable();
+            relic.InitCharacter(ModelDb.Get<Ironclad>());
+            await RelicCmd.Obtain(relic, ctx.Player);
+        }
+
+        Assert.AreEqual(3, ctx.Player.Relics.OfType<SneckoChoice>().Count(),
+            "Sanity check: player should start this test with exactly 3 SneckoChoice relics.");
+
+        SneckoPoolSelection.RunActEntry(ctx.Player.RunState);
+        await Task.Delay(200);
+
+        var count = ctx.Player.Relics.OfType<SneckoChoice>().Count();
+        Assert.AreEqual(3, count,
+            $"RunActEntry should skip a player who already has a full SneckoChoice set (e.g. after a " +
+            $"save/reload), got {count} SneckoChoice relics.");
     }
 }
