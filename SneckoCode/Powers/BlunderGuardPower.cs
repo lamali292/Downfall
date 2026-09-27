@@ -24,7 +24,7 @@ public class BlunderGuardPower : SneckoPowerModel
     
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Resources.EnergySpent < DynamicVars.Energy.BaseValue ||
+        if (cardPlay.Card.EnergyCost.GetResolved() < DynamicVars.Energy.BaseValue ||
             cardPlay.Card.Owner.Creature != Owner) return;
         Flash();
         await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
