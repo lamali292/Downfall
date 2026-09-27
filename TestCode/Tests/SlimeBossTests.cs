@@ -1,12 +1,14 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Cards.Common;
 using SlimeBoss.SlimeBossCode.Cards.Rare;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Cards.Uncommon;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -61,5 +63,27 @@ public class SlimeBossTests
 
         var amount = ctx.Player.Creature.GetPower<PotencyPower>()?.Amount ?? 0;
         Assert.AreEqual(2, amount, $"Overexert should draw and play LevelUp twice, got Potency={amount}.");
+    }
+
+    // Regression guard: Spreading Slime was previously implemented as "first Status card each turn is
+    // free" (a copy-paste mixup with the CSV's other row 31 "Gluttony" card) instead of its actual effect
+    // - granting Bruiser Slime Potency whenever a Status is played. Bruiser Slime already exists at this
+    // point - MagnificentBowlerHat (SlimeBoss's starter relic) splits into it on turn 1's BeforeHandDraw.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task SpreadingSlimeGrantsBruiserSlimePotencyWhenStatusIsPlayed(TestContext ctx)
+    {
+        var bruiser = ctx.Player.GetSlime<BruiserSlime>();
+        Assert.IsTrue(bruiser != null, "Sanity check: Bruiser Slime should already exist via MagnificentBowlerHat.");
+        var potencyBefore = bruiser!.GetPower<PotencyPower>()?.Amount ?? 0;
+
+        var spreadingSlime = await ctx.AddCardToHand<SpreadingSlime>();
+        await ctx.PlayCard(spreadingSlime);
+
+        var slimed = await ctx.AddCardToHand<Slimed>();
+        await ctx.PlayCard(slimed);
+
+        var amount = bruiser.GetPower<PotencyPower>()?.Amount ?? 0;
+        Assert.AreEqual(potencyBefore + 1, amount,
+            $"Spreading Slime should grant Bruiser Slime 1 Potency when a Status is played, got {amount}.");
     }
 }

@@ -191,7 +191,7 @@
   "SLIMEBOSS-UNISON.description": "Chose another player.\nThen choose a Slime that you have Split into.\nThey Split into that Slime.",
   "SLIMEBOSS-SPREAD_THE_FEAR.title": "Spread the Fear",
   "SLIMEBOSS-SPREAD_THE_FEAR.description": "Whenever ANY player gains [gold]Block[/gold] this turn, apply {SpreadTheFearPower:diff()} [gold]Weak[/gold] to ALL enemies.",
-  "SLIMEBOSS-SPREADING_SLIME.description": "The first {SpreadingSlimePower:plural:Status card|{:diff()} Status cards} you play each turn {SpreadingSlimePower:plural:is|are} free to play.",
+  "SLIMEBOSS-SPREADING_SLIME.description": "Whenever you play a Status, [gold]Bruiser Slime[/gold] gains {SpreadingSlimePower:diff()} [gold]Potency[/gold].",
   "SLIMEBOSS-SPREADING_SLIME.title": "Spreading Slime",
   "SLIMEBOSS-GLUTTONY.title": "Gluttony",
   "SLIMEBOSS-GLUTTONY.description": "Whenever you [gold]Consume[/gold], draw {GluttonyPower:diff()} {GluttonyPower:plural:card|cards} next turn.",

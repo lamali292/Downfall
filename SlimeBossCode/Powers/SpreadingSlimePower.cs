@@ -1,58 +1,26 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.Extensions;
+using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-/// <summary>
-/// The first Amount Status cards played each turn are free. Mirrors vanilla FreeSkillPower's shape
-/// (TryModifyEnergyCostInCombat + BeforeCardPlayed) but resets a per-turn counter instead of consuming a stack.
-/// </summary>
+/// <summary>Whenever the owner plays a Status card, Bruiser Slime gains Potency (no effect while it doesn't exist).</summary>
 public class SpreadingSlimePower : SlimeBossPowerModel
 {
-    private int RemainingThisTurn
+    public SpreadingSlimePower()
     {
-        get;
-        set
-        {
-            if (field == value) return;
-            field = value;
-            InvokeDisplayAmountChanged();
-        }
+        WithTip<PotencyPower>();
+        WithSlimeTip<BruiserSlime>();
     }
 
-    public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
+    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        modifiedCost = originalCost;
-        if (card.Owner.Creature != Owner || card.Type != CardType.Status || RemainingThisTurn <= 0) 
-            return false;
-            
-        modifiedCost = 0;
-        return true;
-    }
-
-    public override int DisplayAmount => RemainingThisTurn;
-
-    public override Task BeforeCardPlayed(CardPlay cardPlay)
-    {
-        if (cardPlay.Card.Owner.Creature == Owner && cardPlay.Card.Type == CardType.Status && RemainingThisTurn > 0)
-        {
-            RemainingThisTurn--;
-        }
-        return Task.CompletedTask;
-    }
-
-    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
-    {
-        if (participants.Contains(Owner))
-        {
-            RemainingThisTurn = Amount;
-        }
-        return Task.CompletedTask;
+        var card = cardPlay.Card;
+        if (card.Owner.Creature != Owner || card.Type != CardType.Status) return Task.CompletedTask;
+        var slime = card.Owner.GetSlime<BruiserSlime>();
+        return slime == null ? Task.CompletedTask : PowerCmd.Apply<PotencyPower>(ctx, slime, Amount, Owner, null);
     }
 }
