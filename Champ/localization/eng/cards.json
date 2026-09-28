@@ -115,7 +115,7 @@
   "CHAMP-MASTERFUL_SLASH.title": "Masterful Slash",
   "CHAMP-MOMENT_OF_TRUTH.description": "Draw {Cards:diff()} {Cards:plural:card|cards}.",
   "CHAMP-MOMENT_OF_TRUTH.title": "Moment of Truth",
-  "CHAMP-MURDER_STRIKE.description": "Deal {Damage:diff()} damage.\nWhen you use a Skill, this deals {Increase:diff()} more damage this combat.",
+  "CHAMP-MURDER_STRIKE.description": "Deal {Damage:diff()} damage.\nDeals {Increase:diff()} additional damage for each Skill played while this is in your [gold]Hand[/gold].",
   "CHAMP-MURDER_STRIKE.title": "Murder Strike",
   "CHAMP-PARRY.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {CounterPower:diff()} [gold]Counter[/gold].\nIf [gold]Counter[/gold] is used this turn, the [gold]Riposte[/gold] gains [gold]Replay[/gold] 1.",
   "CHAMP-PARRY.title": "Second Intention",
