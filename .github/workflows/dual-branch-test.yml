@@ -186,26 +186,65 @@ jobs:
       # its own after the suite finishes (observed once - see issue 05's "game not close"
       # note) rather than leaving the job (and the self-hosted runner) stuck indefinitely.
       # `-k 10 90` sends TERM at 90s and, if that doesn't work, SIGKILL 10s later.
-      # `--preserve-status` keeps the game's own exit code on a normal finish so a real test
-      # failure still fails the step; a timeout kill instead reports timeout's own 124.
+      #
+      # The game's own exit code is intentionally NOT the pass/fail signal (`|| true` below) -
+      # confirmed by reproducing manually on the VPS (see issue 05 "UnmanagedCallersOnly"
+      # comment): every run so far reaches "All tests passed!", writes a complete, valid
+      # TestRunResult JSON, and only THEN crashes (SIGABRT, exit 134) inside
+      # SceneTree.Quit()'s Steam Cloud save-flush - a Steamworks.NET native-callback interop
+      # issue specific to this container's host-bridged Steam client, unrelated to test
+      # correctness. `build/test.ps1` already gets this right locally: it never inspects the
+      # game's exit code either, only whether the JSON file exists. "Evaluate results" below
+      # mirrors that same JSON-is-truth logic for CI.
       # HOME must point at the bind-mounted gamer profile (see docker-compose.yml) - job steps
       # run as root, whose own $HOME (/root) has no ~/.steam symlink farm, so SteamAPI_Init
       # can't find steamclient.so and silently reports "Steam is running: False" without this.
       - name: Run tests - public
         run: |
           HOME=/home/gamer DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/public-results.json \
-            timeout --preserve-status -k 10 90 /steam/public/SlayTheSpire2 --headless --audio-driver Dummy
+            timeout --preserve-status -k 10 90 /steam/public/SlayTheSpire2 --headless --audio-driver Dummy || true
 
       - name: Run tests - public-beta
         run: |
           HOME=/home/gamer DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/beta-results.json \
-            timeout --preserve-status -k 10 90 /steam/beta/SlayTheSpire2 --headless --audio-driver Dummy
+            timeout --preserve-status -k 10 90 /steam/beta/SlayTheSpire2 --headless --audio-driver Dummy || true
 
       - name: Show results
         if: always()
         run: |
           echo "=== public ==="; cat /tmp/public-results.json 2>/dev/null || echo "(missing)"
           echo "=== public-beta ==="; cat /tmp/beta-results.json 2>/dev/null || echo "(missing)"
+
+      # The real pass/fail gate. A missing JSON means the game never got far enough to write
+      # results (a genuine failure, same as test.ps1's "No result file was written" throw); a
+      # present JSON with a non-empty Failed array means real test failures. The post-test
+      # SIGABRT above is deliberately not consulted here.
+      - name: Evaluate results
+        if: always()
+        run: |
+          python3 - <<'PYEOF'
+          import json, sys
+
+          ok = True
+          for branch, path in [("public", "/tmp/public-results.json"), ("public-beta", "/tmp/beta-results.json")]:
+              try:
+                  with open(path) as f:
+                      result = json.load(f)
+              except FileNotFoundError:
+                  print(f"::error::{branch}: no result file written - game likely crashed before finishing")
+                  ok = False
+                  continue
+              failed = result.get("Failed", [])
+              if failed:
+                  print(f"::error::{branch}: {len(failed)} test(s) failed")
+                  for f in failed:
+                      print(f"  FAIL  {f.get('Name')}: {f.get('Message')}")
+                  ok = False
+              else:
+                  print(f"{branch}: {len(result.get('Passed', []))} passed, 0 failed")
+
+          sys.exit(0 if ok else 1)
+          PYEOF
 
       # Belt-and-suspenders on top of the `timeout` calls above: pid:host (see docker-compose.yml)
       # means a leaked SlayTheSpire2 process is visible - and killable - from here, host-wide,

@@ -53,7 +53,7 @@ public static class TestMainFile
         _autoRunStarted = true;
         // Let the current call stack (still inside NGame.GameStartup) unwind before we start
         // creating combat state and card nodes.
-        Callable.From(() => TaskHelper.RunSafely(AutoRunAsync())).CallDeferred();
+        Callable.From(() => { TaskHelper.RunSafely(AutoRunAsync()); }).CallDeferred();
     }
 
     private static async Task AutoRunAsync()
