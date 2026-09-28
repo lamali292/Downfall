@@ -20,11 +20,7 @@ public class AshesOfCalamity : CollectorCardModel
     
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
-        var pileA = card.Owner.Hand.Count(c => c.Type == CardType.Status);
-        var pileB = card.Owner.DrawPile.Count(c => c.Type == CardType.Status);
-        var pileC = card.Owner.DiscardPile.Count(c => c.Type == CardType.Status);
-        var pileD = card.Owner.ExhaustPile.Count(c => c.Type == CardType.Status);
-        return (pileA + pileB + pileC + pileD);
+        return card.Owner.PlayerCombatState?.AllCards.Count(c => c.Type == CardType.Status) ?? 0;
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
