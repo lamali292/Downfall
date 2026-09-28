@@ -1,0 +1,64 @@
+name: Prototype - Steam client on GitHub-hosted runner
+# Throwaway investigation, not part of real CI. Issue 06 follow-up question: does the Steam
+# client (needed for SteamAPI_Init(), not just steamcmd - see docs/adr/0001-ci-headless-test-runner.md)
+# need the elaborate self-hosted setup (pid:host/network:host/host-side-gamer-user bridging in
+# CiRunner/docker-compose.yml), or was that actually working around Docker's own nested-user-namespace
+# confinement specifically - something a GitHub-hosted runner, being a real VM and not a container,
+# might not hit at all?
+#
+# This step deliberately touches NO Steam credentials - it only asks whether bubblewrap (what the
+# Steam client's own sandbox needs) can initialize here, isolating the sandboxing question from the
+# separate, harder-to-answer Steam Guard/anti-fraud-on-a-rotating-IP question a real login would raise.
+# Delete this workflow once the investigation concludes either way.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check / relax unprivileged user namespace restriction
+        run: |
+          echo "before:"; sysctl kernel.apparmor_restrict_unprivileged_userns || true
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+          echo "after:"; sysctl kernel.apparmor_restrict_unprivileged_userns || true
+
+      - name: Test bare bubblewrap user namespace (no Steam yet)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq bubblewrap
+          bwrap --unshare-user --uid 0 --gid 0 -- echo "bwrap userns OK"
+
+      - name: Install Steam client + deps
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb ca-certificates curl dbus-x11
+          echo steam steam/question select "I AGREE" | sudo debconf-set-selections
+          curl --retry 5 --retry-delay 5 -fsSL -o /tmp/steam.deb "http://media.steampowered.com/client/installer/steam.deb"
+          sudo apt-get install -y -qq /tmp/steam.deb
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq steam-libs-amd64 steam-libs-i386 xdg-desktop-portal xdg-desktop-portal-gtk
+
+      # No -login here on purpose - just watching whether the client's own sandbox/runtime
+      # bootstraps far enough to reach a login prompt (steamwebhelper up, no bwrap/newuidmap
+      # permission errors) instead of dying at the same "setting up uid map: Permission denied"
+      # wall that Docker hit.
+      - name: Launch Xvfb + Steam client (no login attempted)
+        run: |
+          Xvfb :2 -screen 0 1024x768x16 &
+          sleep 2
+          DISPLAY=:2 timeout 60 steam -silent || true
+          sleep 3
+          echo "--- processes ---"
+          ps aux | grep -i steam || true
+
+      - name: Show client logs
+        if: always()
+        run: |
+          echo "=== bootstrap_log.txt ==="
+          cat "$HOME/.steam/steam/logs/bootstrap_log.txt" 2>/dev/null || echo "(missing)"
+          echo "=== content_log.txt ==="
+          cat "$HOME/.steam/steam/logs/content_log.txt" 2>/dev/null || echo "(missing)"
+          echo "=== all logs, tail 40 each ==="
+          find "$HOME/.steam" -iname "*.log" 2>/dev/null -print -exec tail -n 40 {} \; || true

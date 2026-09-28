@@ -129,20 +129,17 @@ jobs:
             --generate-notes \
             --notes-file banner.md
 
-      - name: Generate Steam TOTP
-        if: vars.STEAM_WORKSHOP_ID != '' && env.STEAM == 'true'
-        id: steam-totp
-        uses: CyberAndrii/steam-totp@v1
-        with:
-          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
-
+      # Cached SteamCMD session instead of live password+TOTP - same config.vdf pattern
+      # dual-branch-test.yml uses (see issue 05's "Auth pivot" comment). Needs STEAM_CONFIG_VDF
+      # added to the "release" environment's secrets (currently only in "steam-ci") - a
+      # human-only step, since neither this workflow nor an agent session can read the existing
+      # steam-ci secret's plaintext to copy it forward.
       - name: Upload to Steam Workshop
         if: vars.STEAM_WORKSHOP_ID != '' && env.STEAM == 'true'
         uses: m00nl1ght-dev/steam-workshop-deploy@v4
         with:
           username: ${{ secrets.STEAM_USERNAME }}
-          password: ${{ secrets.STEAM_PASSWORD }}
-          totp: ${{ steps.steam-totp.outputs.code }}
+          configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
           appId: 2868840
           publishedFileId: ${{ vars.STEAM_WORKSHOP_ID }}
           path: output/mods/Downfall
