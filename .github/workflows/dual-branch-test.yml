@@ -2,12 +2,18 @@ name: Dual-branch headless test
 # Ticket 05: builds Downfall with the Test submod included (publish.yml's default Submods
 # excludes it - see Downfall.csproj), syncs both Steam branches via SteamCMD on the self-hosted
 # runner, and runs the full [CardTest] suite headlessly against each, public and public-beta
-# concurrently (see "Run tests" step below). Ticket 06: wired onto the same push/PR trigger as
-# publish.yml, with either branch's failure failing the whole run - see "Evaluate results".
+# concurrently (see "Run tests" step below). Ticket 06: either branch's failure fails the whole
+# run - see "Evaluate results".
+#
+# PR-only, not push-to-main like publish.yml: this job runs on the self-hosted Hetzner runner
+# (shared with the voting-server stack), and pull_request runs the workflow file as it exists on
+# the PR branch - so a PR is the point where a human reviews the diff (including any workflow-file
+# changes) before this ever touches real infrastructure. Direct pushes to main skip review
+# entirely, which would be a real code-execution/secret-exposure gap on a public repo. Still no
+# environment protection rule on steam-ci though (checked: none configured) - a required-reviewer
+# gate there would close this properly regardless of trigger; worth adding before this repo takes
+# outside contributions.
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
