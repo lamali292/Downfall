@@ -74,6 +74,26 @@ jobs:
           key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
           restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
 
+      # ---- Packed mod output cache: skip repacking entirely when only C# changed ----
+      # Whitelist, not a blacklist: hash the full content of every directory that can feed the
+      # .pck — ImageGen/ (atlas tool + its source images) and each character's asset folder
+      # (Downfall/, Automaton/, Awakened/, ... — i.e. PackFolders' $(Submods) list, deliberately
+      # NOT the matching *Code/ folder, which is pure C#) — rather than picking out subpatterns
+      # like */images/** that silently miss anything not under images/localization/scenes/audio
+      # (e.g. Downfall/scripts/, mod_image.png, per-character non-standard files). No
+      # restore-keys: an exact match is required, since a stale pck for different assets would
+      # be silently wrong. A hit means every one of those directories is byte-identical to some
+      # prior successful run, so that run's .pck is still correct: the atlas build and Godot
+      # import steps below can be skipped, and `dotnet build` (see CLAUDE.md's build-vs-publish
+      # guidance) is enough to refresh the DLL without touching the restored .pck (GodotPublish
+      # only runs after `dotnet publish`, never after `build`).
+      - name: Cache packed mod output
+        id: cache-pck
+        uses: actions/cache@v4
+        with:
+          path: output/mods
+          key: pck-${{ env.MEGADOT_VERSION }}-default-${{ hashFiles('ImageGen/**', 'Downfall/**', 'Automaton/**', 'Awakened/**', 'Champ/**', 'Guardian/**', 'Hermit/**', 'Hexaghost/**', 'SlimeBoss/**', 'Snecko/**') }}
+
       - name: Download MegaDot
         if: steps.cache-engine.outputs.cache-hit != 'true'
         run: curl -L -o megadot.zip "https://megadot.megacrit.com/${MEGADOT_VERSION}/megadot-${MEGADOT_VERSION}-linux-x86_64-editor-csharp.zip"
@@ -94,23 +114,39 @@ jobs:
       # Generate the texture atlases BEFORE Godot imports them.
       # No --repack: that flag forces a full rebuild by wiping the cache
       # (`if (Force) groupCache = new JsonObject()`), defeating the cache above.
+      # Skipped entirely on a code-only push — see "Cache packed mod output" above.
       - name: Build image atlases
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         run: dotnet run --project ImageGen -c Release
 
       # First cold import often exits non-zero while bootstrapping .godot/ — run twice.
       # With a warm import cache this step only re-imports changed assets.
+      # Skipped entirely on a code-only push — see "Cache packed mod output" above.
       - name: Import Godot resources
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           "$GODOT_PATH" --headless --audio-driver Dummy --import || true
           "$GODOT_PATH" --headless --audio-driver Dummy --import
 
+      # Assets/localization changed (or the pck cache was empty/evicted): run the full
+      # pipeline, which also repacks the .pck.
       - name: Publish
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
           dotnet publish Downfall.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/output/mods/" \
             /p:SkipGodotImport=true
+
+      # Code-only push: the restored .pck from the cache hit above is still correct, so a
+      # plain build (no Godot involved) is enough to refresh the DLL in place next to it.
+      - name: Build (code-only, reusing cached .pck)
+        if: steps.cache-pck.outputs.cache-hit == 'true'
+        run: |
+          mkdir -p "${{ github.workspace }}/output/mods"
+          dotnet build Downfall.csproj -c Release \
+            /p:ModsPath="${{ github.workspace }}/output/mods/"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

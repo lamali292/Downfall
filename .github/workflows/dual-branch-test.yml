@@ -90,6 +90,20 @@ jobs:
           key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
           restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
 
+      # ---- Packed mod output cache: skip repacking entirely when only C# changed ----
+      # See publish.yml's "Cache packed mod output" step for the full whitelist rationale (hash
+      # each *Code/-less asset folder's full content, not subpatterns). Keyed with "all-submods"
+      # (distinct from publish.yml's "default") and including Collector/ (part of $ALL_SUBMODS
+      # here, excluded from publish.yml's default Submods) because this job packs different
+      # folders into the .pck than publish.yml even for identical asset content. Test isn't
+      # listed: it has no asset folder of its own (TestCode/ only), so it can't affect the hash.
+      - name: Cache packed mod output
+        id: cache-pck
+        uses: actions/cache@v4
+        with:
+          path: mod-output/mods
+          key: pck-${{ env.MEGADOT_VERSION }}-all-submods-${{ hashFiles('ImageGen/**', 'Downfall/**', 'Automaton/**', 'Awakened/**', 'Champ/**', 'Guardian/**', 'Hermit/**', 'Hexaghost/**', 'SlimeBoss/**', 'Snecko/**', 'Collector/**') }}
+
       - name: Download MegaDot
         if: steps.cache-engine.outputs.cache-hit != 'true'
         run: curl -L -o megadot.zip "https://megadot.megacrit.com/${MEGADOT_VERSION}/megadot-${MEGADOT_VERSION}-linux-x86_64-editor-csharp.zip"
@@ -107,21 +121,37 @@ jobs:
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
           unzip -oq spine-godot.zip -d "${{ github.workspace }}"
 
+      # Skipped entirely on a code-only push — see "Cache packed mod output" above.
       - name: Build image atlases
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         run: dotnet run --project ImageGen -c Release
 
+      # Skipped entirely on a code-only push — see "Cache packed mod output" above.
       - name: Import Godot resources
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           "$GODOT_PATH" --headless --audio-driver Dummy --import || true
           "$GODOT_PATH" --headless --audio-driver Dummy --import
 
+      # Assets/localization changed (or the pck cache was empty/evicted): run the full
+      # pipeline, which also repacks the .pck.
       - name: Publish mod (Test submod included)
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           mkdir -p "${{ github.workspace }}/mod-output/mods"
           dotnet publish Downfall.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/mod-output/mods/" \
             /p:SkipGodotImport=true
+
+      # Code-only push: the restored .pck from the cache hit above is still correct, so a
+      # plain build (no Godot involved) is enough to refresh the DLL in place next to it.
+      - name: Build mod (code-only, reusing cached .pck)
+        if: steps.cache-pck.outputs.cache-hit == 'true'
+        run: |
+          mkdir -p "${{ github.workspace }}/mod-output/mods"
+          dotnet build Downfall.csproj -c Release \
+            /p:ModsPath="${{ github.workspace }}/mod-output/mods/"
 
       - name: Restore cached Steam session
         run: |
