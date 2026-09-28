@@ -152,21 +152,35 @@ jobs:
             chmod +x "$d/SlayTheSpire2"
           done
 
+      # A full local run takes ~30s; `timeout` guards against the game binary not exiting on
+      # its own after the suite finishes (observed once - see issue 05's "game not close"
+      # note) rather than leaving the job (and the self-hosted runner) stuck indefinitely.
+      # `-k 10 90` sends TERM at 90s and, if that doesn't work, SIGKILL 10s later.
+      # `--preserve-status` keeps the game's own exit code on a normal finish so a real test
+      # failure still fails the step; a timeout kill instead reports timeout's own 124.
       - name: Run tests - public
         run: |
           DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/public-results.json \
-            /steam/public/SlayTheSpire2 --headless --audio-driver Dummy
+            timeout --preserve-status -k 10 90 /steam/public/SlayTheSpire2 --headless --audio-driver Dummy
 
       - name: Run tests - public-beta
         run: |
           DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/beta-results.json \
-            /steam/beta/SlayTheSpire2 --headless --audio-driver Dummy
+            timeout --preserve-status -k 10 90 /steam/beta/SlayTheSpire2 --headless --audio-driver Dummy
 
       - name: Show results
         if: always()
         run: |
           echo "=== public ==="; cat /tmp/public-results.json 2>/dev/null || echo "(missing)"
           echo "=== public-beta ==="; cat /tmp/beta-results.json 2>/dev/null || echo "(missing)"
+
+      # Belt-and-suspenders on top of the `timeout` calls above: pid:host (see docker-compose.yml)
+      # means a leaked SlayTheSpire2 process is visible - and killable - from here, host-wide,
+      # not just within this job's own process tree, so a child `timeout` didn't reap can't
+      # linger past this run.
+      - name: Kill any stray game processes
+        if: always()
+        run: pkill -9 -f 'SlayTheSpire2' || true
 
       - uses: actions/upload-artifact@v4
         if: always()
