@@ -17,6 +17,10 @@ env:
 jobs:
   test:
     runs-on: [self-hosted, downfall-vps]
+    # STEAM_USERNAME/STEAM_PASSWORD/STEAM_SHARED_SECRET live on the "release" GitHub
+    # Environment (see release.yml), not as plain repo secrets - without this, they're
+    # simply absent from the job context (not empty - genuinely not passed at all).
+    environment: release
     steps:
       - uses: actions/checkout@v4
 
