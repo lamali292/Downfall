@@ -36,9 +36,15 @@ jobs:
           </Project>
           EOF
 
+      # Targets net9.0, but LangVersion 14 needs .NET 10's Roslyn - GitHub-hosted runners
+      # (see publish.yml) already ship a newer SDK alongside whatever setup-dotnet adds, so
+      # the muxer picks it automatically; this self-hosted image has nothing preinstalled,
+      # so both must be requested explicitly.
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: |
+            9.0.x
+            10.0.x
 
       - name: Cache engine downloads
         id: cache-engine
