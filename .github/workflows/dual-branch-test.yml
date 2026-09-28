@@ -23,6 +23,19 @@ jobs:
       - name: Clean stale build artifacts
         run: rm -rf .godot obj bin mod-output
 
+      # Submods must be set via local.props (XML), not a `/p:` CLI switch: MSBuild's
+      # command-line parser splits `/p:Name=A;B;C` on the bare semicolons, misreading each
+      # segment as a separate switch instead of one semicolon-separated property value.
+      - name: Configure Submods (include Test)
+        run: |
+          cat > local.props <<'EOF'
+          <Project>
+              <PropertyGroup>
+                  <Submods>${{ env.ALL_SUBMODS }}</Submods>
+              </PropertyGroup>
+          </Project>
+          EOF
+
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
@@ -97,7 +110,6 @@ jobs:
           dotnet publish Downfall.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/mod-output/mods/" \
-            /p:Submods="${{ env.ALL_SUBMODS }}" \
             /p:SkipGodotImport=true
 
       - name: Steam TOTP
