@@ -4,6 +4,7 @@ public enum VotingPool
 {
     Awakened,
     Automaton,
+    Collector,
     Champ,
     Guardian,
     Hermit,

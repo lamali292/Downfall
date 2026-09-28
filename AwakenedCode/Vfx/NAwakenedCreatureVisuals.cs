@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Awakened.AwakenedCode.Vfx;
 
-[GlobalClass]
 public partial class NAwakenedCreatureVisuals : NCreatureVisuals
 {
     private Node2D? _eyeFlare;

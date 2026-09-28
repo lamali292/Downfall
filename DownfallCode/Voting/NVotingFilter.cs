@@ -12,6 +12,8 @@ public partial class NVotingFilter : Control
 
     public enum SortMode { Top, New, Hot }
 
+    private const string PoolToggleScenePath = "res://scenes/screens/card_library/library_pool_toggle.tscn";
+
     private NSearchBar _searchBar = null!;
     private readonly Dictionary<NCardPoolFilter, VotingPool> _pools = new();
 
@@ -26,14 +28,7 @@ public partial class NVotingFilter : Control
         _searchBar.Connect(NSearchBar.SignalName.QuerySubmitted,
             Callable.From<string>(_ => EmitChanged()));
 
-        RegisterPool("%AutomatonPool", VotingPool.Automaton);
-        RegisterPool("%AwakenedPool",  VotingPool.Awakened);
-        RegisterPool("%ChampPool",     VotingPool.Champ);
-        RegisterPool("%GuardianPool",  VotingPool.Guardian);
-        RegisterPool("%HermitPool",    VotingPool.Hermit);
-        RegisterPool("%HexaghostPool", VotingPool.Hexaghost);
-        RegisterPool("%SlimebossPool", VotingPool.Slimeboss);
-        RegisterPool("%SneckoPool",    VotingPool.Snecko);
+        BuildPoolFilters();
 
         RegisterSorter("%HotSorter",  VotingUi.Loc("DOWNFALL-VOTING.sort_hot"), SortMode.Hot);
         RegisterSorter("%LikeSorter", VotingUi.Loc("DOWNFALL-VOTING.sort_top"), SortMode.Top);
@@ -41,13 +36,42 @@ public partial class NVotingFilter : Control
         _sorters[_activeSort].IsActive = true;
     }
 
-    private void RegisterPool(string path, VotingPool pool)
+    /// <summary>
+    /// One toggle button per pool that registered with <see cref="VotingPoolRegistry"/>,
+    /// instantiated from the base game's own pool-toggle scene instead of relying on the
+    /// filter's own .tscn to list every character by name - a submod that isn't in the
+    /// build simply never registers, and a new one needs no scene edits here.
+    /// </summary>
+    private void BuildPoolFilters()
     {
-        var filter = GetNode<NCardPoolFilter>(path);
-        _pools[filter] = pool;
-        filter.IsSelected = false;
-        filter.Connect(NCardPoolFilter.SignalName.Toggled,
-            Callable.From<NCardPoolFilter>(_ => EmitChanged()));
+        var container = GetNode<GridContainer>("%PoolFilters");
+        var toggleScene = GD.Load<PackedScene>(PoolToggleScenePath);
+
+        foreach (var pool in VotingPoolRegistry.RegisteredPools)
+        {
+            var iconPath = VotingPoolRegistry.IconPath(pool);
+            var icon = iconPath != null && ResourceLoader.Exists(iconPath)
+                ? GD.Load<Texture2D>(iconPath)
+                : null;
+
+            if (icon == null)
+                continue;
+
+            var filter = toggleScene.Instantiate<NCardPoolFilter>();
+            filter.Name = $"{pool}Pool";
+            container.AddChild(filter);
+
+            foreach (var rect in filter.FindChildren("*", nameof(TextureRect), true, false)
+                                        .OfType<TextureRect>())
+            {
+                rect.Texture = icon;
+            }
+
+            _pools[filter] = pool;
+            filter.IsSelected = false;
+            filter.Connect(NCardPoolFilter.SignalName.Toggled,
+                Callable.From<NCardPoolFilter>(_ => EmitChanged()));
+        }
     }
 
     /// <summary>

@@ -14,18 +14,6 @@ public partial class NVoteCard : PanelContainer
 
     internal static readonly Dictionary<string, Texture2D> TextureCache = new();
 
-    private static readonly Dictionary<VotingPool, string> IconPaths = new()
-    {
-        [VotingPool.Automaton] = "res://Automaton/images/character/character_icon.png",
-        [VotingPool.Awakened]  = "res://Awakened/images/character/character_icon.png",
-        [VotingPool.Champ]     = "res://Champ/images/character/character_icon.png",
-        [VotingPool.Guardian]  = "res://Guardian/images/character/character_icon.png",
-        [VotingPool.Hermit]    = "res://Hermit/images/character/character_icon.png",
-        [VotingPool.Hexaghost] = "res://Hexaghost/images/character/character_icon.png",
-        [VotingPool.Slimeboss] = "res://SlimeBoss/images/character/character_icon.png",
-        [VotingPool.Snecko]    = "res://Snecko/images/character/character_icon.png",
-    };
-
     private static readonly Dictionary<VotingPool, Texture2D> IconCache = new();
 
     internal static Texture2D? GetCharacterIcon(VotingPool pool)
@@ -33,8 +21,8 @@ public partial class NVoteCard : PanelContainer
         if (IconCache.TryGetValue(pool, out var cached))
             return cached;
 
-        var path = IconPaths[pool];
-        var tex = ResourceLoader.Exists(path) ? GD.Load<Texture2D>(path) : null;
+        var path = VotingPoolRegistry.IconPath(pool);
+        var tex = path != null && ResourceLoader.Exists(path) ? GD.Load<Texture2D>(path) : null;
         if (tex != null)
             IconCache[pool] = tex;
 

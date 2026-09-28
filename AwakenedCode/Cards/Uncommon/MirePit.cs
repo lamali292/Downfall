@@ -25,7 +25,7 @@ public class MirePit : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        foreach (var combatStateEnemy in CombatState.Enemies)
+        foreach (var combatStateEnemy in CombatState.HittableEnemies)
             await CommonActions.Apply<MirePitPower>(ctx, combatStateEnemy, this);
 
         await CommonActions.ApplySelf<DrainedPower>(ctx, this);

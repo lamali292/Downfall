@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Nodes;
 
-[GlobalClass]
 public partial class NCustomCardHolder : NCardHolder, IPoolable
 {
     private CardModel? _baseCard;

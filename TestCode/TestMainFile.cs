@@ -1,4 +1,5 @@
 using Downfall.DownfallCode.Voting;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
@@ -30,6 +31,11 @@ public static class TestMainFile
 
     public static void Initialize()
     {
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(BootTimingPatch))
+            .Add(typeof(ScreenShakeTestModePatch))
+            .PatchAll();
+
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Unit Test",
@@ -38,18 +44,19 @@ public static class TestMainFile
             CreateSubmenu = null,
             OnPress = _ => TaskHelper.RunSafely(RunTests(System.Environment.GetEnvironmentVariable(EnvFilter)))
         });
-
-        if (System.Environment.GetEnvironmentVariable(EnvRunTests) == "1")
-            MainMenuButtonRegistry.MainMenuReady += AutoRun;
     }
 
-    private static void AutoRun()
+    /// Fired via BootTimingPatch right after OneTimeInitialization.ExecuteEssential - well before
+    /// the main menu itself is ready. Only starts the automated DOWNFALL_RUN_TESTS=1 run; the
+    /// interactive "Unit Test" button is unaffected (it needs the real menu to click anyway).
+    internal static void OnEssentialReady()
     {
+        if (System.Environment.GetEnvironmentVariable(EnvRunTests) != "1") return;
         if (_autoRunStarted) return;
         _autoRunStarted = true;
-        MainMenuButtonRegistry.MainMenuReady -= AutoRun;
-        // Let the menu finish its first frame before we tear the scene tree around.
-        Callable.From(() => TaskHelper.RunSafely(AutoRunAsync())).CallDeferred();
+        // Let the current call stack (still inside NGame.GameStartup) unwind before we start
+        // creating combat state and card nodes.
+        Callable.From(() => { TaskHelper.RunSafely(AutoRunAsync()); }).CallDeferred();
     }
 
     private static async Task AutoRunAsync()

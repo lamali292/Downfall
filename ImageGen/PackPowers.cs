@@ -107,7 +107,7 @@ public class PackPowers(string scriptDir, bool force)
 
             atlas.Mutate(ctx => ctx.DrawImage(small, new Point(ax, ay), 1f));
             Utils.WriteTres(Path.Join(outTres, $"{tresName}.tres"),
-                atlasResPath, ax, ay, small.Width, small.Height, $"{charId}_{stem}_atlas");
+                atlasResPath, ax, ay, small.Width, small.Height, $"{charId}_{tresName}_atlas");
 
             if (Utils.SaveImageIfChanged(big, Path.Join(outPowers, $"{tresName}.png")))
                 Console.WriteLine($"  updated big: {tresName}");
@@ -121,7 +121,7 @@ public class PackPowers(string scriptDir, bool force)
 
             spriteAtlas.Mutate(ctx => ctx.DrawImage(sprite, new Point(sx, sy), 1f));
             Utils.WriteTres(Path.Join(outTresSprite, $"{tresName}.tres"),
-                spriteResPath, sx, sy, sprite.Width, sprite.Height, $"{charId}_{stem}_sprite");
+                spriteResPath, sx, sy, sprite.Width, sprite.Height, $"{charId}_{tresName}_sprite");
         }
 
         Utils.SaveImageIfChanged(atlas, Path.Join(outAtlases, "power_atlas.png"));

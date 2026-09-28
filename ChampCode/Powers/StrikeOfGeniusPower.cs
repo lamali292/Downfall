@@ -22,9 +22,21 @@ public class StrikeOfGeniusPower : ChampPowerModel
         if (player.Creature != Owner) return;
         var pool = player.Character.CardPool
             .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-            .Where(e => e.Tags.Contains(CardTag.Strike) && e.Type == CardType.Attack);
+            .Where(e => e.Tags.Contains(CardTag.Strike) && e.Type == CardType.Attack)
+            .ToList();
         var cards = CardFactory.GetDistinctForCombat(player, pool, Amount,
             player.RunState.Rng.CombatCardGeneration).ToList();
+        
+        var missing = Amount - cards.Count;
+        if (missing > 0)
+        {
+            // fallback to basic strikes
+            var basicStrike = pool.FirstOrDefault(c => c.Rarity == CardRarity.Basic && c.Tags.Contains(CardTag.Strike));
+            if (basicStrike != null)
+                cards.AddRange(Enumerable.Range(0, missing)
+                    .Select(_ => player.Creature.CombatState!.CreateCard(basicStrike, player)));
+        }
+        
         foreach (var c in cards)
         {
             c.SetToFreeThisTurn();

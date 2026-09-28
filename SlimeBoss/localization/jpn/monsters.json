@@ -20,7 +20,7 @@
     "SLIMEBOSS-BRUISER_SLIME.description": "ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを2回与える。",
     "SLIMEBOSS-LEECHING_SLIME.description": "敵1体に[blue]{Damage:diff()}[/blue]ダメージを与え、スライムボスに[blue]{Slime:diff()}[/blue][gold]ブロック[/gold]を与える。",
     "SLIMEBOSS-MIRE_SLIME.description": "敵1体に[blue]{Damage:diff()}[/blue]ダメージを与え、[gold]汚泥[/gold][blue]{Slime:diff()}[/blue]を付与する。",
-    "SLIMEBOSS-SPIKY_SLIME.description": "敵1体に[blue]{Damage:diff()}[/blue]ダメージを与え、スライムボスに1ターンの間[gold]トゲ[/gold][blue]{Slime:diff()}[/blue]を与える。",
+    "SLIMEBOSS-SPIKY_SLIME.description": "敵1体に[blue]{Damage:diff()}[/blue]ダメージを与え、スライムボスにターン終了時まで[gold]トゲ[/gold][blue]{Slime:diff()}[/blue]を与える。",
     "SLIMEBOSS-GHOSTFLAME_SLIME.description": "敵1体に[blue]{Damage:diff()}[/blue]ダメージを与え、[gold]ソウルバーン[/gold][blue]{Slime:diff()}[/blue]を付与する。",
     "SLIMEBOSS-BRONZE_SLIME.description": "すべての敵に[blue]{Damage:diff()}[/blue]ダメージを与え、その後[blue]{Sleep:diff()}[/blue]ターン眠る。",
     "SLIMEBOSS-INSULTING_SLIME.description": "敵1体に[blue]{Damage:diff()}[/blue]ダメージを与え、[gold]弱体[/gold][blue]{Slime:diff()}[/blue]を付与する。",

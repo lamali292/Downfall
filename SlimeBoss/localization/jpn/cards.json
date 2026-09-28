@@ -17,7 +17,7 @@
     "SLIMEBOSS-DOUSE_IN_SLIME.title": "スライム浴",
     "SLIMEBOSS-DUPLICATED_FORM.description": "{IfUpgraded:show:ターン開始時、{energyPrefix:energyIcons(1)}を得る。\n|}毎ターン、最初にプレイする敵を対象にするカードをもう一度プレイする。",
     "SLIMEBOSS-DUPLICATED_FORM.title": "分裂化",
-    "SLIMEBOSS-EQUALIZE.description": "{Damage:diff()}ダメージを与える。\nHPを{Heal:diff()}回復する。\n[gold]泥食い[/gold]：同じ効果を繰り返す。",
+    "SLIMEBOSS-EQUALIZE.description": "{Damage:diff()}ダメージを与える。\nHPを{Heal:diff()}回復する。\n[gold]泥食い[/gold]：同じ効果をもう一度繰り返す。",
     "SLIMEBOSS-EQUALIZE.title": "イコライズ",
     "SLIMEBOSS-FLAME_TACKLE.description": "{Damage:diff()}ダメージを与える。\n{SelfDamage:inverseDiff()}ダメージを受ける。\nこの戦闘中、「タックル」カードが追加で{FlameTacklePower:diff()}ダメージを与える。",
     "SLIMEBOSS-FLAME_TACKLE.title": "フレイムタックル",

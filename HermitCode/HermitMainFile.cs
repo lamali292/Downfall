@@ -28,7 +28,7 @@ public static class HermitMainFile
         CardExecutionHooks.RegisterAfter(HermitCardEffectHandler.DoAfterOnPlayInternal);
 
         BundledSubmodLocRegistry.Register(ModId);
-        VotingPoolRegistry.Register<HermitCardPool>(VotingPool.Hermit);
+        VotingPoolRegistry.Register<HermitCardPool>(VotingPool.Hermit, ModId);
 
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(DeadOnPatch))

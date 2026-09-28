@@ -2,7 +2,6 @@ using Godot;
 
 namespace Awakened.AwakenedCode.Vfx;
 
-[GlobalClass]
 [Tool] // lets this run inside the editor, not just at runtime
 public partial class WingFlare : Node2D
 {

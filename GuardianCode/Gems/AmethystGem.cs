@@ -27,7 +27,7 @@ public class AmethystGem : GemModel
         IEnumerable<Player> targetPlayers)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem.BaseValue, Card);
-        await PowerCmd.Apply<AmethystGemPower>(ctx, CombatState.Enemies, effect, Player.Creature,
+        await PowerCmd.Apply<AmethystGemPower>(ctx, CombatState.HittableEnemies, effect, Player.Creature,
             cardPlay?.Card ?? Card);
     }
 }

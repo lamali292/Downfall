@@ -54,15 +54,15 @@ public class SneckoChoice : CustomRelicModel, ISneckoPoolSupplier
                                                        $"{IconName}_outline.tres".TresRelicImagePath<Core.Snecko>();
 
     protected override string BigIconPath =>
-        Character?.IconTexturePath ?? "{IconName}.png".BigRelicImagePath<Core.Snecko>();
+        Character?.IconTexturePath ?? $"{IconName}.png".BigRelicImagePath<Core.Snecko>();
 
 
     private CharacterModel? Character =>
         CharacterId == null ? null : ModelDb.GetByIdOrNull<CharacterModel>(CharacterId);
 
-    public CharacterModel? AddSneckoChar()
+    public IEnumerable<CharacterModel> AddSneckoChars()
     {
-        return Character;
+        return Character == null ? [] : [Character];
     }
 
 

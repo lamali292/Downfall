@@ -10,7 +10,9 @@ using System.Runtime.CompilerServices;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Nodes.Multiplayer;
+using MegaCrit.Sts2.Core.Rooms;
 
 [HarmonyPatch(typeof(NMultiplayerPlayerState))]
 public static class NMultiplayerPlayerStatePatch
@@ -22,6 +24,8 @@ public static class NMultiplayerPlayerStatePatch
         public required Control Container;
         public required MegaLabel Label;
         public Action<PlayerCombatState, int>? Handler;
+        public Action<CombatState>? CombatSetUpHandler;
+        public Action<CombatRoom>? CombatEndedHandler;
     }
 
     [HarmonyPatch("_Ready")]
@@ -59,6 +63,15 @@ public static class NMultiplayerPlayerStatePatch
             reserveResource.Changed += state.Handler;
         }
 
+        // player.PlayerCombatState is never nulled between combats (only replaced wholesale by the
+        // next ResetCombatState()), so its last Reserve value - and thus our icon - would otherwise
+        // keep showing after combat ends, unlike the vanilla energy/star/card containers this is
+        // modeled on, which explicitly hide themselves on CombatEnded (NMultiplayerPlayerState.OnCombatEnded).
+        state.CombatSetUpHandler = _ => RefreshMyValue(__instance, state, player.PlayerCombatState?.Reserve ?? 0);
+        state.CombatEndedHandler = _ => state.Container.Visible = false;
+        CombatManager.Instance.CombatSetUp += state.CombatSetUpHandler;
+        CombatManager.Instance.CombatEnded += state.CombatEndedHandler;
+
         RefreshMyValue(__instance, state, player.PlayerCombatState?.Reserve ?? 0);
     }
 
@@ -76,12 +89,21 @@ public static class NMultiplayerPlayerStatePatch
     [HarmonyPrefix]
     static void ExitTree_Prefix(NMultiplayerPlayerState __instance)
     {
-        if (State.TryGetValue(__instance, out var state) && state.Handler != null)
+        if (State.TryGetValue(__instance, out var state))
         {
-            var reserveResource = CardResourceRegistry.Get<CollectorEnergy>();
-            if (reserveResource != null)
-                reserveResource.Changed -= state.Handler;
+            if (state.Handler != null)
+            {
+                var reserveResource = CardResourceRegistry.Get<CollectorEnergy>();
+                if (reserveResource != null)
+                    reserveResource.Changed -= state.Handler;
+            }
+
+            if (state.CombatSetUpHandler != null)
+                CombatManager.Instance.CombatSetUp -= state.CombatSetUpHandler;
+            if (state.CombatEndedHandler != null)
+                CombatManager.Instance.CombatEnded -= state.CombatEndedHandler;
         }
+
         State.Remove(__instance);
     }
 

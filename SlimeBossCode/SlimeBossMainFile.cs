@@ -20,7 +20,7 @@ public static class SlimeBossMainFile
     public static void Initialize()
     {
         BundledSubmodLocRegistry.Register(ModId);
-        VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss);
+        VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss, ModId);
         HivePowerExemptRegistry.Register<SlimeModel>();
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(SlimeDeathPatches))

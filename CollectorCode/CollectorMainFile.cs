@@ -3,6 +3,7 @@ using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
+using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -33,7 +34,7 @@ public static class CollectorMainFile
         FormBoneRegistry.RegisterSerpentForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterReaperForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterEchoForm<Core.Collector>("robeback");
-
+        VotingPoolRegistry.Register<CollectorCardPool>(VotingPool.Collector, ModId);
         HarmonyLib.Harmony.DEBUG = true;
         
         ModPatcher.Create(ModId, Logger)

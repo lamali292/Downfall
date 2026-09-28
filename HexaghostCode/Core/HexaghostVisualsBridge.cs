@@ -38,7 +38,7 @@ public static class HexaghostVisualsBridge
         if (GodotObject.IsInstanceValid(existing))
         {
             HexaghostMainFile.Logger.Info(
-                $"[Ghostflames] Setup: freeing previous display #{existing!.GetInstanceId()} for player");
+                $"[Ghostflames] Setup: freeing previous display #{existing.GetInstanceId()} for player");
             existing.QueueFree();
         }
 

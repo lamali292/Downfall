@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Random;
 
 namespace Gremlins.GremlinsCode.Vfx;
 
-[GlobalClass]
 public partial class NGremlinsMerchantCharacter : NMerchantCharacter
 {
     private NSpineCreatureVisuals _angry = null!;

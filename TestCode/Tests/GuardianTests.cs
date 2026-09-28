@@ -19,21 +19,13 @@ namespace Downfall.TestCode;
 
 public class GuardianTests
 {
-    /// Empties a player's hand so Curl Up's random-stasis-target selection is deterministic.
-    private static async Task ClearHand(TestContext ctx, Player? player = null)
-    {
-        player ??= ctx.Player;
-        var hand = PileType.Hand.GetPile(player).Cards.ToList();
-        if (hand.Count > 0) await CardPileCmd.Add(hand, PileType.Discard);
-    }
-
     [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
     public async Task RerouteWithCryoChamberUpgradesRoutedCard(TestContext ctx)
     {
         await RelicCmd.Obtain<CryoChamber>(ctx.Player);
         GuardianCmd.AddMaxStasisSlots(ctx.Player);
 
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var reroute = await ctx.AddCardToHand<Reroute>();
         var strike = await ctx.AddCardToHand<StrikeGuardian>();
         var enemy = ctx.Combat.HittableEnemies.First();
@@ -54,7 +46,7 @@ public class GuardianTests
         // succeeded independently and overflowed the pile to 2/1.
         GuardianCombatModel.StasisSlots[ctx.Player] = 1;
 
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var reroute = await ctx.AddCardToHand<Reroute>();
         var curlUp = await ctx.AddCardToHand<CurlUp>();
         var strike = await ctx.AddCardToHand<StrikeGuardian>();
@@ -84,7 +76,7 @@ public class GuardianTests
         // there's no actual contention.
         GuardianCombatModel.StasisSlots[ctx.Player] = 2;
 
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var reroute = await ctx.AddCardToHand<Reroute>();
         var curlUp = await ctx.AddCardToHand<CurlUp>();
         var strike = await ctx.AddCardToHand<StrikeGuardian>();
@@ -110,7 +102,7 @@ public class GuardianTests
         var max = GuardianCmd.GetMaxStasisSlots(ctx.Player);
         Assert.AreEqual(3, max, "Sanity check: Guardian's starting max Stasis slots is 3.");
 
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var filler1 = await ctx.AddCardToHand<DefendGuardian>();
         var filler2 = await ctx.AddCardToHand<DefendGuardian>();
         await GuardianCmd.PutIntoStasis(filler1, new BlockingPlayerChoiceContext(), filler1);
@@ -144,8 +136,8 @@ public class GuardianTests
         GuardianCombatModel.StasisSlots[ctx.Player] = 1;
         GuardianCombatModel.StasisSlots[teammate] = 1;
 
-        await ClearHand(ctx);
-        await ClearHand(ctx, teammate);
+        await ctx.ClearHand();
+        await ctx.ClearHand(teammate);
 
         var reroute = await ctx.AddCardToHand<Reroute>();
         var curlUp = await ctx.AddCardToHand<CurlUp>();
@@ -189,7 +181,7 @@ public class GuardianTests
         // If Temporal then removes it from Hand silently, Hand never fires CardRemoved, leaving a
         // stale on-screen card node behind (the "phantom Orbwalk stuck in hand position #2" the
         // player saw). Simulate that ordering directly against Temporal's own hook.
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var orbwalk = await ctx.AddCardToHand<Orbwalk>();
         CardCmd.Enchant<Temporal>(orbwalk, 1);
 

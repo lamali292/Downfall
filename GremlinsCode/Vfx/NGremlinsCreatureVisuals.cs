@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Gremlins.GremlinsCode.Vfx;
 
-[GlobalClass]
 public partial class NGremlinsCreatureVisuals : NCreatureVisuals
 {
     private Creature? _activeGremlin;

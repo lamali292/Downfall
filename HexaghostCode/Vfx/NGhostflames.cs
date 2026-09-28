@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using Hexaghost.HexaghostCode.Core;
@@ -69,7 +70,8 @@ internal static class GhostflameLayout
         return Vector2.Up * 130f * scaleY + Vector2.Left * 33f * scaleX;
     }
 
-    /// Fallback ring centre when the Spine "core" bone can't be found.
+    /// Last-resort ring centre when neither the Spine "core" bone nor the creature's
+    /// IntentPosition marker are available.
     public static Vector2 FallbackCenter(Vector2 creatureGlobal, float scaleY)
     {
         return creatureGlobal + Vector2.Up * 170f * scaleY;
@@ -350,21 +352,13 @@ public partial class NGhostflames : Control
         var scaleY = GhostflameLayout.ExtraScale(ct.Scale.Y, containerScale.Y, _creatureNode._tempScale);
         Scale = new Vector2(scaleX, scaleY);
 
-        // Ring anchor is the Spine "core" bone's live, animated global position. Only
+        // Ring anchor is the Spine "hexacore" bone's live, animated global position. Only
         // missing for the brief window before the skeleton finishes loading (async), for
         // off-class wheels with no such bone, or on game versions whose Spine binding
         // predates get_global_bone_transform (public branch, as of 2026-09), where we
-        // fall back to a fixed offset. Called dynamically via BoundObject rather than
-        // MegaSprite.GetGlobalBoneTransform() because that C# wrapper method doesn't
-        // exist in the public branch's sts2.dll and would fail to compile there.
-        var spineBody = _creatureNode.Visuals?.SpineBody;
-        Vector2? coreBoneCenter = null;
-        if (spineBody != null && spineBody.BoundObject.HasMethod("get_global_bone_transform"))
-        {
-            var boneTransform = spineBody.BoundObject.Call("get_global_bone_transform", "hexacore");
-            if (boneTransform.VariantType == Variant.Type.Transform2D)
-                coreBoneCenter = boneTransform.AsTransform2D().Origin;
-        }
+        // fall back to a fixed offset.
+        var spineBody = _creatureNode.Visuals.SpineBody;
+        var coreBoneCenter = spineBody?.GetGlobalBoneTransformCompat("hexacore")?.Origin;
         var globalCenter = coreBoneCenter
             ?? GhostflameLayout.FallbackCenter(_creatureNode.GlobalPosition, scaleY);
 
@@ -386,13 +380,9 @@ public partial class NGhostflames : Control
             }
 
             var anchor = _hitboxAnchors[i];
-            if (anchor != null && IsInstanceValid(anchor))
-            {
-                anchor.GlobalPosition = fire.GlobalPosition;
-                // Counter-rotate: the anchor rides this Control (which spins to bring the
-                // active flame to the top), so this keeps the hitbox/reticle flat.
-                anchor.Rotation = -Rotation;
-            }
+            if (anchor == null || !IsInstanceValid(anchor)) continue;
+            anchor.GlobalPosition = fire.GlobalPosition;
+            anchor.Rotation = -Rotation;
         }
     }
 

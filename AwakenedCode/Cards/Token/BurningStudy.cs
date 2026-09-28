@@ -42,7 +42,7 @@ public class BurningStudy : AwakenedCardModel, ISpell, IOnAwaken, ICustomTypePla
         SfxCmd.Play("event:/sfx/characters/awakened-awakened/burning_study");
         if (CombatState == null) return;
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
-        foreach (var combatStateEnemy in CombatState.Enemies)
+        foreach (var combatStateEnemy in CombatState.HittableEnemies)
             await CommonActions.Apply<WeakPower>(ctx, combatStateEnemy, this);
     }
 }

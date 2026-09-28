@@ -13,7 +13,6 @@ using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 
 namespace Guardian.GuardianCode.Vfx;
 
-[GlobalClass]
 public partial class NGuardianDisplay : Control
 {
     private const float SequencedCardScale = 1f;

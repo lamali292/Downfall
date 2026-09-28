@@ -12,6 +12,8 @@
     "AWAKENED-ARCHMAGUS_POWER.description": "Le premier Sort que vous jouez à chaque tour est joué deux fois.",
     "AWAKENED-ARCHMAGUS_POWER.smartDescription": "{Amount:plural:Le premier Sort|Les {} premiers Sorts} que vous jouez à chaque tour {Amount:plural:est joué|sont joués} deux fois.",
     "AWAKENED-AWAKENING_POWER.title": "Éveil",
+    "AWAKENED-AWAKENING_POWER.description": "À la fin du combat ou lorsque vous devriez mourir, soignez-vous et retirez cet effet.",
+    "AWAKENED-AWAKENING_POWER.smartDescription": "À la fin du combat ou lorsque vous devriez mourir, soignez-vous de [blue]{Amount}[/blue] PV et retirez cet effet.",
     "AWAKENED-BLOODIED_PREENING_POWER.title": "Toilettage Sanglant",
     "AWAKENED-BLOODIED_PREENING_POWER.description": "Au début de votre tour, obtenez un [gold]Jab de plumes[/gold].",
     "AWAKENED-BLOODIED_PREENING_POWER.smartDescription": "Au début de votre tour, obtenez {Amount:plural:un [gold]Jab de Plumes[/gold]|[blue]{Amount}[/blue]} [gold]Jabs de Plumes[/gold].",
@@ -76,6 +78,8 @@
     "AWAKENED-RISING_CHORUS_POWER.description": "Le premier effet [gold]Chant[/gold] que vous jouez à chaque tour se déclenche deux fois.",
     "AWAKENED-RISING_CHORUS_POWER.smartDescription": "{Amount:plural:Le premier effet|Les [blue]{Amount}[/blue] premiers effets} [gold]Chant[/gold] que vous jouez à chaque tour {Amount:plural:se déclenche|se déclenchent} deux fois.",
     "AWAKENED-SCHEME_POWER.title": "Stratagème",
+    "AWAKENED-SCHEME_POWER.description": "La prochaine carte que vous jouez ce tour-ci coûtant {energyPrefix:energyIcons(1)} ou moins est jouée deux fois. ",
+    "AWAKENED-SCHEME_POWER.smartDescription": "{Amount:plural:La prochaine carte|Les [blue]{}[/blue] prochaines cartes} que vous jouez ce tour-ci coûtant {energyPrefix:energyIcons(1)} ou moins {Amount:plural:est jouée|sont jouées} deux fois. ",
     "AWAKENED-SONG_OF_SORROW_POWER.title": "Chant de Douleur",
     "AWAKENED-SONG_OF_SORROW_POWER.description": "Lorsque vous créez un [gold]Néant[/gold], TOUS les ennemis perdent des PV.",
     "AWAKENED-SONG_OF_SORROW_POWER.smartDescription": "Lorsque vous créez un [gold]Néant[/gold], TOUS les ennemis perdent [blue]{Amount}[/blue] PV.",
@@ -98,5 +102,8 @@
     "AWAKENED-SPLIT_WIDE_POWER.remoteDescription": "Chaque fois que [orange]{ApplierName}[/orange] attaque cet ennemi, il gagne [blue]{Amount}[/blue] de [gold]Force[/gold] pour un tour.",
     "AWAKENED-SACRAMENTAL_WINE_POWER.title": "Vin de Messe",
     "AWAKENED-SACRAMENTAL_WINE_POWER.description": "Lorsque vous jouez un Pouvoir, gagnez de [gold]l'Armure[/gold].",
-    "AWAKENED-SACRAMENTAL_WINE_POWER.smartDescription": "Lorsque vous jouez un Pouvoir, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold]."
+    "AWAKENED-SACRAMENTAL_WINE_POWER.smartDescription": "Lorsque vous jouez un Pouvoir, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
+    "AWAKENED-DRAINED_POWER.title": "Drainé",
+    "AWAKENED-DRAINED_POWER.description": "Gagnez {energyPrefix:energyIcons(1)} en moins au prochain tour.",
+    "AWAKENED-DRAINED_POWER.smartDescription": "Gagnez [blue]{Amount}[/blue] {energyPrefix:energyIcons(1)} en moins au prochain tour."
 }

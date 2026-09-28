@@ -21,10 +21,10 @@ public class Challenge : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (cardPlay.Target == null || cardPlay.Target.GetPowerAmount<StrengthPower>() <= 0) return;
-        await CommonActions.CardBlock(this, cardPlay);
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var repeats = cardPlay.Target != null && cardPlay.Target.GetPowerAmount<StrengthPower>() > 0 ? 2 : 1;
+    
+        await CommonActions.CardAttack(this, cardPlay, repeats)
+            .BeforeDamage(async () => await CommonActions.CardBlock(this, cardPlay))
+            .Execute(ctx);
     }
 }

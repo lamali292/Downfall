@@ -12,7 +12,7 @@ public class FuturePlansPower : GuardianPowerModel
     public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {
-        if (side != Owner.Side) return;
+        if (!participants.Contains(Owner)) return;
         var player = Owner.Player;
         if (player == null) return;
         if (GuardianCmd.CanPutIntoStasis(player, silent: true))

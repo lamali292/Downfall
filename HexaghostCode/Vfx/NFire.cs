@@ -2,7 +2,6 @@ using Godot;
 
 namespace Hexaghost.HexaghostCode.Vfx;
 
-[GlobalClass]
 public partial class NFire : Node2D
 {
     public enum FireSize

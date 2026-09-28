@@ -23,6 +23,30 @@ public class DownfallCodeTests
     }
 
     [CardTest]
+    public async Task ClearHandEmptiesTheLocalPlayersHand(TestContext ctx)
+    {
+        await ctx.AddCardToHand<StrikeIronclad>();
+        await ctx.AddCardToHand<DefendIronclad>();
+        Assert.IsTrue(PileType.Hand.GetPile(ctx.Player).Cards.Count > 0, "Sanity: hand should not already be empty.");
+
+        await ctx.ClearHand();
+
+        Assert.AreEqual(0, PileType.Hand.GetPile(ctx.Player).Cards.Count, "ClearHand should empty the local player's hand.");
+    }
+
+    [CardTest(playerCount: 2)]
+    public async Task ClearHandEmptiesAnExplicitPlayersHand(TestContext ctx)
+    {
+        var teammate = ctx.Players[1];
+        await ctx.AddCardToHand<StrikeIronclad>(teammate);
+        Assert.IsTrue(PileType.Hand.GetPile(teammate).Cards.Count > 0, "Sanity: teammate's hand should not already be empty.");
+
+        await ctx.ClearHand(teammate);
+
+        Assert.AreEqual(0, PileType.Hand.GetPile(teammate).Cards.Count, "ClearHand should empty the given player's hand.");
+    }
+
+    [CardTest]
     public async Task TempKeywordUtilGrantsAKeywordThatIsVisibleOnTheCard(TestContext ctx)
     {
         var card = await ctx.AddCardToHand<StrikeIronclad>();

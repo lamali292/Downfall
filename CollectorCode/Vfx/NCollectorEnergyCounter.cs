@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
 namespace Collector.CollectorCode.Vfx;
 
-[GlobalClass]
 public partial class NCollectorEnergyCounter : Control, IAnimatedCounter
 {
     private Tween? _fadeTween;

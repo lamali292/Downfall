@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Gremlins.GremlinsCode.Vfx;
 
-[GlobalClass]
 public partial class NSpineCreatureVisuals : NCreatureVisuals
 {
     private Vector2 _basePosition;

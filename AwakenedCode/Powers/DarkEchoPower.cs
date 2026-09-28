@@ -1,4 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Vfx;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -42,11 +43,8 @@ public class DarkEchoPower : AwakenedPowerModel
                 var vfx2 = NShockWaveVfx.Create(spawnPos, new Color(0.3f, 0.2f, 0.4f));
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(vfx2);
             }
-
             await Cmd.Wait(0.5f);
-            var enemies = CombatState.Enemies.ToList();
-            foreach (var enemy in enemies.Where(e => e.IsAlive))
-                await CreatureCmd.Damage(ctx, enemy, damageAmount, DamageProps.nonCardUnpowered, Owner);
+            await CreatureCmd.Damage(ctx, CombatState.HittableEnemies, damageAmount, DamageProps.nonCardUnpowered, Owner);
         }
     }
 
