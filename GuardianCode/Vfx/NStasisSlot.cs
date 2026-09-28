@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Guardian.GuardianCode.Vfx;
 
-[GlobalClass]
 public partial class NStasisSlot : Control
 {
     private float _baseY;

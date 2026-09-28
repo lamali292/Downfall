@@ -22,7 +22,6 @@ using MegaCrit.Sts2.Core.Nodes.Screens.ScreenContext;
 
 namespace Downfall.DownfallCode.Nodes;
 
-[GlobalClass]
 public partial class NGemUpgradeSelectScreen :
     Control,
     IOverlayScreen,
