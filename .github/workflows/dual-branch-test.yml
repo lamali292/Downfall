@@ -51,8 +51,27 @@ jobs:
             9.0.x
             10.0.x
 
+      # ---- Packed mod output cache: skip repacking entirely when only C# changed ----
+      # See publish.yml's "Cache packed mod output" step for the full whitelist rationale (hash
+      # each *Code/-less asset folder's full content, not subpatterns). Keyed with "all-submods"
+      # (distinct from publish.yml's "default") and including Collector/ (part of $ALL_SUBMODS
+      # here, excluded from publish.yml's default Submods) because this job packs different
+      # folders into the .pck than publish.yml even for identical asset content. Test isn't
+      # listed: it has no asset folder of its own (TestCode/ only), so it can't affect the hash.
+      # Declared first so its cache-hit is known before the engine/atlas/Godot-import caches
+      # below even attempt to restore — none of those are needed on a code-only push.
+      - name: Cache packed mod output
+        id: cache-pck
+        uses: actions/cache@v4
+        with:
+          path: mod-output/mods
+          key: pck-${{ env.MEGADOT_VERSION }}-all-submods-${{ hashFiles('ImageGen/**', 'Downfall/**', 'Automaton/**', 'Awakened/**', 'Champ/**', 'Guardian/**', 'Hermit/**', 'Hexaghost/**', 'SlimeBoss/**', 'Snecko/**', 'Collector/**') }}
+
+      # Skipped entirely on a pck cache hit — the engine is only needed to run the atlas/import
+      # steps below, which themselves are skipped in that case.
       - name: Cache engine downloads
         id: cache-engine
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -60,6 +79,8 @@ jobs:
             spine-godot.zip
           key: engine-${{ env.MEGADOT_VERSION }}-${{ env.SPINE_VERSION }}
 
+      # Always restored, even on a pck cache hit: the code-only `dotnet build` path below
+      # still needs restored NuGet packages.
       - name: Cache NuGet packages
         uses: actions/cache@v4
         with:
@@ -67,7 +88,9 @@ jobs:
           key: nuget-${{ hashFiles('**/*.csproj', '**/*.props') }}
           restore-keys: nuget-
 
+      # Skipped entirely on a pck cache hit — see "Cache packed mod output" above.
       - name: Cache image atlas outputs
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -83,38 +106,30 @@ jobs:
           key: atlases-${{ hashFiles('ImageGen/images/**/*.png') }}
           restore-keys: atlases-
 
+      # Skipped entirely on a pck cache hit — see "Cache packed mod output" above.
       - name: Cache Godot import results
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
           path: .godot/imported
           key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
           restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
 
-      # ---- Packed mod output cache: skip repacking entirely when only C# changed ----
-      # See publish.yml's "Cache packed mod output" step for the full whitelist rationale (hash
-      # each *Code/-less asset folder's full content, not subpatterns). Keyed with "all-submods"
-      # (distinct from publish.yml's "default") and including Collector/ (part of $ALL_SUBMODS
-      # here, excluded from publish.yml's default Submods) because this job packs different
-      # folders into the .pck than publish.yml even for identical asset content. Test isn't
-      # listed: it has no asset folder of its own (TestCode/ only), so it can't affect the hash.
-      - name: Cache packed mod output
-        id: cache-pck
-        uses: actions/cache@v4
-        with:
-          path: mod-output/mods
-          key: pck-${{ env.MEGADOT_VERSION }}-all-submods-${{ hashFiles('ImageGen/**', 'Downfall/**', 'Automaton/**', 'Awakened/**', 'Champ/**', 'Guardian/**', 'Hermit/**', 'Hexaghost/**', 'SlimeBoss/**', 'Snecko/**', 'Collector/**') }}
-
+      # cache-engine is itself skipped on a pck cache hit (see above), leaving its
+      # cache-hit output empty/falsy — so these must also check cache-pck directly,
+      # or a pck hit would fall through into re-downloading the engine for nothing.
       - name: Download MegaDot
-        if: steps.cache-engine.outputs.cache-hit != 'true'
+        if: steps.cache-pck.outputs.cache-hit != 'true' && steps.cache-engine.outputs.cache-hit != 'true'
         run: curl -L -o megadot.zip "https://megadot.megacrit.com/${MEGADOT_VERSION}/megadot-${MEGADOT_VERSION}-linux-x86_64-editor-csharp.zip"
 
       - name: Download spine-godot extension
-        if: steps.cache-engine.outputs.cache-hit != 'true'
+        if: steps.cache-pck.outputs.cache-hit != 'true' && steps.cache-engine.outputs.cache-hit != 'true'
         run: |
           curl -fL --retry 3 -o spine-godot.zip \
             "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-${SPINE_VERSION}.zip"
 
       - name: Install engine
+        if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           unzip -q megadot.zip -d megadot
           chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
