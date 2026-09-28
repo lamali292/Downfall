@@ -20,20 +20,13 @@ namespace Downfall.TestCode;
 
 public class HermitTests
 {
-    /// Empties the hand so the next card added is guaranteed to be the center card.
-    private static async Task ClearHand(TestContext ctx)
-    {
-        var hand = PileType.Hand.GetPile(ctx.Player).Cards.ToList();
-        if (hand.Count > 0) await CardPileCmd.Add(hand, PileType.Discard);
-    }
-
     private static int DeadOnEntries(CardModel card) =>
         CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e => e.CardPlay.Card == card);
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
     public async Task DeadOnCardPlayedFromCenterTriggers(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var dive = await ctx.AddCardToHand<Dive>();
         Assert.IsTrue(HermitCmd.IsDeadOnInCurrentHandState(dive), "Dive alone in hand should be Dead On.");
         await ctx.PlayCard(dive);
@@ -45,7 +38,7 @@ public class HermitTests
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
     public async Task CheatDeadOnTriggersSelectedCardsDeadOn(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var dive = await ctx.AddCardToTopOfDraw<Dive>();
         var cheat = await ctx.AddCardToHand<Cheat>();
 
@@ -68,7 +61,7 @@ public class HermitTests
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
     public async Task CheatNotDeadOnDoesNotTriggerSelectedCardsDeadOn(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var dive = await ctx.AddCardToTopOfDraw<Dive>();
         // 3 cards, Cheat last → index 2, center is index 1 → not Dead On.
         await ctx.AddCardToHand<Dive>();
@@ -95,7 +88,7 @@ public class HermitTests
     public async Task RubberBulletDeadOnMovesToTeammateWithIncreasedDamage(TestContext ctx)
     {
         var teammate = ctx.Players[1];
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var bullet = await ctx.AddCardToHand<RubberBullet>();
         var baseDamage = bullet.DynamicVars.Damage.BaseValue;
         var increase = bullet.DynamicVars["Increase"].BaseValue;
@@ -130,7 +123,7 @@ public class HermitTests
     public async Task RubberBulletDeadOnWithSnipeIncreasesDamageTwice(TestContext ctx)
     {
         var teammate = ctx.Players[1];
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         await PowerCmd.Apply<SnipePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
         var bullet = await ctx.AddCardToHand<RubberBullet>();
         var baseDamage = bullet.DynamicVars.Damage.BaseValue;
@@ -162,7 +155,7 @@ public class HermitTests
     public async Task RubberBulletDeadOnStaysInOwnHandWithCombo(TestContext ctx)
     {
         var teammate = ctx.Players[1];
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         await PowerCmd.Apply<ComboPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
         var bullet = await ctx.AddCardToHand<RubberBullet>();
         var baseDamage = bullet.DynamicVars.Damage.BaseValue;
@@ -185,7 +178,7 @@ public class HermitTests
         // A teammate's card play between Cheat's snapshot and its after-play handler must not
         // disturb Cheat's Dead On state (the old process-wide statics broke here in multiplayer).
         var teammate = ctx.Players[1];
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var dive = await ctx.AddCardToTopOfDraw<Dive>();
         var cheat = await ctx.AddCardToHand<Cheat>();
         var teammateStrike = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>(teammate);

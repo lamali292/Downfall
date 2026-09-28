@@ -18,19 +18,13 @@ namespace Downfall.TestCode;
 
 public class CollectorTests
 {
-    private static async Task ClearHand(TestContext ctx)
-    {
-        var hand = PileType.Hand.GetPile(ctx.Player).Cards.ToList();
-        if (hand.Count > 0) await CardPileCmd.Add(hand, PileType.Discard);
-    }
-
     // Regression guard for the custom "can't play" thought bubble: a Pyre card alone in hand (nothing to
     // exhaust for it) should be specifically blocked with our PyreNoTarget reason/dialogue, not the generic
     // "combat_messages.UNPLAYABLE" text.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task PyreCardAloneInHandShowsCustomDialogue(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var roast = await ctx.AddCardToHand<Roast>();
 
         var canPlay = roast.CanPlay(out var reason, out var preventer);
@@ -47,7 +41,7 @@ public class CollectorTests
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task PyreCardWithOtherHandCardIsPlayable(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var roast = await ctx.AddCardToHand<Roast>();
         await ctx.AddCardToHand<FuelTheFire>();
 
@@ -59,7 +53,7 @@ public class CollectorTests
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task PyreCardBlockedByEnergyKeepsDefaultDialogue(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var fuelTheFire = await ctx.AddCardToHand<FuelTheFire>();
         ctx.Player.PlayerCombatState!.Energy = 0;
 
