@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +14,7 @@ public class InflictAgony : CollectorCardModel
 {
     public InflictAgony() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(19);
+        WithTorchheadDamage(17, 2);
         WithVar("Power", 1, 1);
         WithTip<WeakPower>();
         WithTip<VulnerablePower>();
@@ -24,7 +25,7 @@ public class InflictAgony : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         var amount = DynamicVars["Power"].IntValue;
         if (!cardPlay.Target!.HasPower<WeakPower>())
         {

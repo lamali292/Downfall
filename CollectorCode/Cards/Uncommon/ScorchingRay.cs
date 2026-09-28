@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,9 +10,9 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class ScorchingRay : CollectorCardModel
 {
-    public ScorchingRay() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
+    public ScorchingRay() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithDamage(9, 3);
+        WithTorchheadDamage(10, 4);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -21,6 +22,9 @@ public class ScorchingRay : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = ResolveEnergyXValue();
-        await CommonActions.CardAttack(this, cardPlay, amount).Execute(ctx);
+        for (var v = 0; v < amount; v++)
+        {
+            await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        }
     }
 }
