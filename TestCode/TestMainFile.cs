@@ -31,7 +31,10 @@ public static class TestMainFile
 
     public static void Initialize()
     {
-        ModPatcher.Create(ModId, Logger).Add(typeof(BootTimingPatch)).PatchAll();
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(BootTimingPatch))
+            .Add(typeof(ScreenShakeTestModePatch))
+            .PatchAll();
 
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
