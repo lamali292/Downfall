@@ -17,10 +17,11 @@ env:
 jobs:
   test:
     runs-on: [self-hosted, downfall-vps]
-    # STEAM_USERNAME/STEAM_PASSWORD/STEAM_SHARED_SECRET live on the "release" GitHub
-    # Environment (see release.yml), not as plain repo secrets - without this, they're
-    # simply absent from the job context (not empty - genuinely not passed at all).
-    environment: release
+    # Own environment, separate from "release" (which gates the real Steam Workshop
+    # upload behind a v*-tag-only branch policy - this job runs on pushes/dispatch, so it
+    # can't use that one). STEAM_CI_USERNAME/STEAM_CONFIG_VDF here come from a one-time
+    # interactive steamcmd login (see CiRunner/DEPLOY.md) - no live 2FA needed per run.
+    environment: steam-ci
     steps:
       - uses: actions/checkout@v4
 
@@ -122,24 +123,23 @@ jobs:
             /p:ModsPath="${{ github.workspace }}/mod-output/mods/" \
             /p:SkipGodotImport=true
 
-      - name: Steam TOTP
-        id: steam-totp
-        uses: CyberAndrii/steam-totp@v1
-        with:
-          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+      - name: Restore cached Steam session
+        run: |
+          mkdir -p "$HOME/Steam/config"
+          printf '%s' "${{ secrets.STEAM_CONFIG_VDF }}" > "$HOME/Steam/config/config.vdf"
 
       - name: Sync public branch
         run: |
           mkdir -p /steam/public
           /steamcmd/steamcmd.sh +force_install_dir /steam/public \
-            +login "${{ secrets.STEAM_USERNAME }}" "${{ secrets.STEAM_PASSWORD }}" "${{ steps.steam-totp.outputs.code }}" \
+            +login "${{ secrets.STEAM_CI_USERNAME }}" \
             +app_update "${{ env.STEAM_APP_ID }}" validate +quit
 
       - name: Sync public-beta branch
         run: |
           mkdir -p /steam/beta
           /steamcmd/steamcmd.sh +force_install_dir /steam/beta \
-            +login "${{ secrets.STEAM_USERNAME }}" "${{ secrets.STEAM_PASSWORD }}" "${{ steps.steam-totp.outputs.code }}" \
+            +login "${{ secrets.STEAM_CI_USERNAME }}" \
             +app_update "${{ env.STEAM_APP_ID }}" -beta public-beta validate +quit
 
       - name: Install mod into both branch installs
