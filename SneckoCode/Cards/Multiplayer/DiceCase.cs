@@ -16,6 +16,7 @@ public class DiceCase : SneckoCardModel
     public DiceCase() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.AnyAlly)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithPower<DiceCasePower>(1, false);
         WithTip<SoulRoll>();
     }

@@ -31,16 +31,17 @@ public class SunbloomKindling : CollectorCardModel
         if (cardModel.IsUpgraded) val = 1;
         WithEnchantments(ember, val);
     }
-    
+
     private static void WithEnchantments(Ember ember, int ups)
     {
         if (ups > 0)
         {
             CardCmd.Upgrade(ember);
         }
+
         DownfallCardCmd.ForceEnchant<Spiral>(ember, 1);
     }
-    
+
     protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
@@ -48,15 +49,20 @@ public class SunbloomKindling : CollectorCardModel
     {
         if (card != this) return;
         await CollectorCmd.Kindle(ctx, this);
-        for (var v = 0; v > DynamicVars.Cards.IntValue; v++)
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
         {
-            var ember = new Ember();
-            DownfallCardCmd.ForceEnchant<Spiral>(ember, 1);
-            if (IsUpgraded)
+            for (var v = 0; v > DynamicVars.Cards.IntValue; v++)
             {
-                CardCmd.Upgrade(ember);
+                var ember = new Ember();
+                DownfallCardCmd.ForceEnchant<Spiral>(ember, 1);
+                if (IsUpgraded)
+                {
+                    CardCmd.Upgrade(ember);
+                }
+
+                await CardPileCmd.AddGeneratedCardToCombat(ember, PileType.Hand, Owner);
             }
-            await CardPileCmd.AddGeneratedCardToCombat(ember, PileType.Hand, Owner);
         }
     }
 }
