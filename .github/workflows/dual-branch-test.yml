@@ -1,0 +1,155 @@
+name: Dual-branch headless test (manual)
+# Ticket 05: builds Downfall with the Test submod included (publish.yml's default Submods
+# excludes it - see Downfall.csproj), syncs both Steam branches via SteamCMD on the self-hosted
+# runner, and runs the full [CardTest] suite headlessly against each. Manual-only for now;
+# ticket 06 wires this into the real push/PR-triggered, parallel, both-blocking CI workflow.
+on:
+  workflow_dispatch:
+concurrency:
+  group: dual-branch-test
+  cancel-in-progress: false
+env:
+  MEGADOT_VERSION: 4.5.1-m.14
+  SPINE_VERSION: 4.2-4.5.1-stable
+  STEAM_APP_ID: 2868840
+  ALL_SUBMODS: Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko;Collector;Test
+
+jobs:
+  test:
+    runs-on: [self-hosted, downfall-vps]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clean stale build artifacts
+        run: rm -rf .godot obj bin mod-output
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Cache engine downloads
+        id: cache-engine
+        uses: actions/cache@v4
+        with:
+          path: |
+            megadot.zip
+            spine-godot.zip
+          key: engine-${{ env.MEGADOT_VERSION }}-${{ env.SPINE_VERSION }}
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ hashFiles('**/*.csproj', '**/*.props') }}
+          restore-keys: nuget-
+
+      - name: Cache image atlas outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            ImageGen/.cards_cache.json
+            ImageGen/.powers_cache.json
+            ImageGen/.relics_cache.json
+            ImageGen/.potions_cache.json
+            ImageGen/.enchantments_cache.json
+            */images/atlases
+            */images/powers
+            */images/relics
+            */images/enchantments
+          key: atlases-${{ hashFiles('ImageGen/images/**/*.png') }}
+          restore-keys: atlases-
+
+      - name: Cache Godot import results
+        uses: actions/cache@v4
+        with:
+          path: .godot/imported
+          key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
+          restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
+
+      - name: Download MegaDot
+        if: steps.cache-engine.outputs.cache-hit != 'true'
+        run: curl -L -o megadot.zip "https://megadot.megacrit.com/${MEGADOT_VERSION}/megadot-${MEGADOT_VERSION}-linux-x86_64-editor-csharp.zip"
+
+      - name: Download spine-godot extension
+        if: steps.cache-engine.outputs.cache-hit != 'true'
+        run: |
+          curl -fL --retry 3 -o spine-godot.zip \
+            "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-${SPINE_VERSION}.zip"
+
+      - name: Install engine
+        run: |
+          unzip -q megadot.zip -d megadot
+          chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
+          echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+          unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+
+      - name: Build image atlases
+        run: dotnet run --project ImageGen -c Release
+
+      - name: Import Godot resources
+        run: |
+          "$GODOT_PATH" --headless --audio-driver Dummy --import || true
+          "$GODOT_PATH" --headless --audio-driver Dummy --import
+
+      - name: Publish mod (Test submod included)
+        run: |
+          mkdir -p "${{ github.workspace }}/mod-output/mods"
+          dotnet publish Downfall.csproj -c Release \
+            /p:GodotPath="$GODOT_PATH" \
+            /p:ModsPath="${{ github.workspace }}/mod-output/mods/" \
+            /p:Submods="${{ env.ALL_SUBMODS }}" \
+            /p:SkipGodotImport=true
+
+      - name: Steam TOTP
+        id: steam-totp
+        uses: CyberAndrii/steam-totp@v1
+        with:
+          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
+      - name: Sync public branch
+        run: |
+          mkdir -p /steam/public
+          /steamcmd/steamcmd.sh +force_install_dir /steam/public \
+            +login "${{ secrets.STEAM_USERNAME }}" "${{ secrets.STEAM_PASSWORD }}" "${{ steps.steam-totp.outputs.code }}" \
+            +app_update "${{ env.STEAM_APP_ID }}" validate +quit
+
+      - name: Sync public-beta branch
+        run: |
+          mkdir -p /steam/beta
+          /steamcmd/steamcmd.sh +force_install_dir /steam/beta \
+            +login "${{ secrets.STEAM_USERNAME }}" "${{ secrets.STEAM_PASSWORD }}" "${{ steps.steam-totp.outputs.code }}" \
+            +app_update "${{ env.STEAM_APP_ID }}" -beta public-beta validate +quit
+
+      - name: Install mod into both branch installs
+        run: |
+          for d in /steam/public /steam/beta; do
+            rm -rf "$d/mods/Downfall" "$d/mods/BaseLib"
+            mkdir -p "$d/mods"
+            cp -r mod-output/mods/Downfall "$d/mods/Downfall"
+            cp -r mod-output/mods/BaseLib "$d/mods/BaseLib"
+            chmod +x "$d/SlayTheSpire2"
+          done
+
+      - name: Run tests - public
+        run: |
+          DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/public-results.json \
+            /steam/public/SlayTheSpire2 --headless --audio-driver Dummy
+
+      - name: Run tests - public-beta
+        run: |
+          DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/beta-results.json \
+            /steam/beta/SlayTheSpire2 --headless --audio-driver Dummy
+
+      - name: Show results
+        if: always()
+        run: |
+          echo "=== public ==="; cat /tmp/public-results.json 2>/dev/null || echo "(missing)"
+          echo "=== public-beta ==="; cat /tmp/beta-results.json 2>/dev/null || echo "(missing)"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dual-branch-test-results
+          path: |
+            /tmp/public-results.json
+            /tmp/beta-results.json
