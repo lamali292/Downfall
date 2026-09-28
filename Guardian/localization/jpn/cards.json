@@ -50,7 +50,7 @@
     "GUARDIAN-HARDEN.description": "[gold]金属化[/gold]{MetallicizePower:diff()}を得る。",
     "GUARDIAN-HARDEN.title": "硬化",
     "GUARDIAN-INCINERATE.description": "{Damage:diff()}ダメージを与える。\n{IfUpgraded:show:[gold]2[/gold]回|}[gold]加速[/gold]する。",
-    "GUARDIAN-INCINERATE.title": "焼却",
+    "GUARDIAN-INCINERATE.title": "焼き払う",
     "GUARDIAN-LASER_TURRET.description": "{Damage:diff()}ダメージを与える。\nこのカードを[gold]停滞[/gold]させる。\n4ターン[gold]停滞[/gold]する。\n[gold]ティック[/gold]：ランダムな敵に{Damage:diff()}ダメージを与える。",
     "GUARDIAN-LASER_TURRET.title": "レーザータレット",
     "GUARDIAN-MULTI_BEAM.description": "すべての敵に{Damage:diff()}ダメージをX回与える。\nこのカードを停滞させると、3ターン[gold]停滞[/gold]する。\n[gold]ティック[/gold]：この戦闘中、このカードのダメージが{Increase:diff()}増加する。",
