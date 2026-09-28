@@ -12,7 +12,7 @@ public class DaggerstormPower : AwakenedPowerModel
     public override async Task AfterCardGeneratedForCombat(CardModel card, Player? player)
     {
         if (player?.Creature != Owner) return;
-        var enemy = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.Enemies);
+        var enemy = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (enemy == null) return;
         await CompatibilityCreatureCmd.Damage(new BlockingPlayerChoiceContext(), enemy, Amount,
             DamageProps.nonCardUnpowered, Owner, null, null);

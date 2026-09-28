@@ -45,5 +45,12 @@ public class TestContext
     {
         await CardCmd.AutoPlay(new BlockingPlayerChoiceContext(), card, target);
     }
-    
+
+    /// Empties a player's hand (defaulting to the local player) to the discard pile.
+    public async Task ClearHand(Player? player = null)
+    {
+        player ??= Player;
+        var hand = PileType.Hand.GetPile(player).Cards.ToList();
+        if (hand.Count > 0) await CardPileCmd.Add(hand, PileType.Discard);
+    }
 }

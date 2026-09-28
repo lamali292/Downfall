@@ -52,5 +52,14 @@
     "SLIMEBOSS-RECKLESSNESS_POWER.smartDescription": "Les cartes \"Tacle\" vous infligent [blue]{Amount}[/blue] dégâts supplémentaires.",
     "SLIMEBOSS-GOOP_POWER.remoteDescription": "La prochaine attaque de [orange]{ApplierName}[/orange] inflige [blue]{Amount}[/blue] dégâts supplémentaires et déclenche les effets [gold]Consumez[/gold].",
     "SLIMEBOSS-OOZE_BATH_POWER.remoteDescription": "Gagne [blue]{Amount}[/blue] de [gold]Goop[/gold] de [orange]{ApplierName}[/orange] au début de son tour.",
-    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.remoteDescription": "{Amount:plural:La prochaine|Les [blue]{}[/blue] prochaines} fois que [orange]{ApplierName}[/orange] attaque cet ennemi, le [gold]Goop[/gold] ne sera pas retiré."
+    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.remoteDescription": "{Amount:plural:La prochaine|Les [blue]{}[/blue] prochaines} fois que [orange]{ApplierName}[/orange] attaque cet ennemi, le [gold]Goop[/gold] ne sera pas retiré.",
+    "SLIMEBOSS-ENERGIZED_POWER.title": "Énergisé",
+    "SLIMEBOSS-ENERGIZED_POWER.description": "Au début de votre prochain tour, gagnez {energyPrefix:energyIcons(1)}.",
+    "SLIMEBOSS-ENERGIZED_POWER.smartDescription": "Au début de votre prochain tour, gagnez {Amount:energyIcons()}.",
+    "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.title": "Force au Prochain Tour",
+    "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.description": "Au prochain tour, gagnez de la [gold]Force[/gold].",
+    "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.smartDescription": "Au prochain tour, {Amount:cond:>0?gagnez [blue]{Amount}[/blue]|perdez [blue]{NAmount}[/blue]} de [gold]Force[/gold].",
+    "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.title": "Slime Crush au Prochain Tour",
+    "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.description": "Au début de votre prochain tour, ajoutez [gold]SLIME CRUSH !!![/gold] dans votre [gold]Main[/gold].",
+    "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.smartDescription": "Au début de votre prochain tour, ajoutez [gold]SLIME CRUSH !!![/gold] dans votre [gold]Main[/gold]."
 }

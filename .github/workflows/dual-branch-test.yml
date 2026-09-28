@@ -1,0 +1,323 @@
+name: Dual-branch headless test
+# Ticket 05: builds Downfall with the Test submod included (publish.yml's default Submods
+# excludes it - see Downfall.csproj), syncs both Steam branches via SteamCMD on the self-hosted
+# runner, and runs the full [CardTest] suite headlessly against each, public and public-beta
+# concurrently (see "Run tests" step below). Ticket 06: either branch's failure fails the whole
+# run - see "Evaluate results".
+#
+# PR-only, not push-to-main like publish.yml: this job runs on the self-hosted Hetzner runner
+# (shared with the voting-server stack), and pull_request runs the workflow file as it exists on
+# the PR branch - so a PR is the point where a human reviews the diff (including any workflow-file
+# changes) before this ever touches real infrastructure. Direct pushes to main skip review
+# entirely, which would be a real code-execution/secret-exposure gap on a public repo. Still no
+# environment protection rule on steam-ci though (checked: none configured) - a required-reviewer
+# gate there would close this properly regardless of trigger; worth adding before this repo takes
+# outside contributions.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+# Fixed group (not per-ref, unlike publish.yml): both branches share one SteamCMD install
+# directory pair and one Steam client session on the runner host, so two runs overlapping would
+# corrupt each other's install/state. cancel-in-progress stays false - killing a run mid-test
+# leaves orphan game processes and a half-written install; queuing behind it is safer than
+# cancelling it.
+concurrency:
+  group: dual-branch-test
+  cancel-in-progress: false
+env:
+  MEGADOT_VERSION: 4.5.1-m.14
+  SPINE_VERSION: 4.2-4.5.1-stable
+  STEAM_APP_ID: 2868840
+  ALL_SUBMODS: Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko;Collector;Test
+
+jobs:
+  test:
+    runs-on: [self-hosted, downfall-vps]
+    # Own environment, separate from "release" (which gates the real Steam Workshop
+    # upload behind a v*-tag-only branch policy - this job runs on pushes/dispatch, so it
+    # can't use that one). STEAM_CI_USERNAME/STEAM_CONFIG_VDF here come from a one-time
+    # interactive steamcmd login (see CiRunner/DEPLOY.md) - no live 2FA needed per run.
+    environment: steam-ci
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clean stale build artifacts
+        run: rm -rf .godot obj bin mod-output
+
+      # Submods must be set via local.props (XML), not a `/p:` CLI switch: MSBuild's
+      # command-line parser splits `/p:Name=A;B;C` on the bare semicolons, misreading each
+      # segment as a separate switch instead of one semicolon-separated property value.
+      - name: Configure Submods (include Test)
+        run: |
+          cat > local.props <<'EOF'
+          <Project>
+              <PropertyGroup>
+                  <Submods>${{ env.ALL_SUBMODS }}</Submods>
+              </PropertyGroup>
+          </Project>
+          EOF
+
+      # Targets net9.0, but LangVersion 14 needs .NET 10's Roslyn - GitHub-hosted runners
+      # (see publish.yml) already ship a newer SDK alongside whatever setup-dotnet adds, so
+      # the muxer picks it automatically; this self-hosted image has nothing preinstalled,
+      # so both must be requested explicitly.
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            9.0.x
+            10.0.x
+
+      # ---- Packed mod output cache: skip repacking entirely when only C# changed ----
+      # See publish.yml's "Cache packed mod output" step for the full whitelist rationale (hash
+      # each *Code/-less asset folder's full content, not subpatterns). Keyed with "all-submods"
+      # (distinct from publish.yml's "default") and including Collector/ (part of $ALL_SUBMODS
+      # here, excluded from publish.yml's default Submods) because this job packs different
+      # folders into the .pck than publish.yml even for identical asset content. Test isn't
+      # listed: it has no asset folder of its own (TestCode/ only), so it can't affect the hash.
+      # Declared first so its cache-hit is known before the engine/atlas/Godot-import caches
+      # below even attempt to restore — none of those are needed on a code-only push.
+      - name: Cache packed mod output
+        id: cache-pck
+        uses: actions/cache@v4
+        with:
+          path: mod-output/mods
+          key: pck-${{ env.MEGADOT_VERSION }}-all-submods-${{ hashFiles('ImageGen/**', 'Downfall/**', 'Automaton/**', 'Awakened/**', 'Champ/**', 'Guardian/**', 'Hermit/**', 'Hexaghost/**', 'SlimeBoss/**', 'Snecko/**', 'Collector/**') }}
+
+      # Skipped entirely on a pck cache hit — the engine is only needed to run the atlas/import
+      # steps below, which themselves are skipped in that case.
+      - name: Cache engine downloads
+        id: cache-engine
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            megadot.zip
+            spine-godot.zip
+          key: engine-${{ env.MEGADOT_VERSION }}-${{ env.SPINE_VERSION }}
+
+      # Always restored, even on a pck cache hit: the code-only `dotnet build` path below
+      # still needs restored NuGet packages.
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ hashFiles('**/*.csproj', '**/*.props') }}
+          restore-keys: nuget-
+
+      # Skipped entirely on a pck cache hit — see "Cache packed mod output" above.
+      - name: Cache image atlas outputs
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ImageGen/.cards_cache.json
+            ImageGen/.powers_cache.json
+            ImageGen/.relics_cache.json
+            ImageGen/.potions_cache.json
+            ImageGen/.enchantments_cache.json
+            */images/atlases
+            */images/powers
+            */images/relics
+            */images/enchantments
+          key: atlases-${{ hashFiles('ImageGen/images/**/*.png') }}
+          restore-keys: atlases-
+
+      # Skipped entirely on a pck cache hit — see "Cache packed mod output" above.
+      - name: Cache Godot import results
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: .godot/imported
+          key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
+          restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
+
+      # cache-engine is itself skipped on a pck cache hit (see above), leaving its
+      # cache-hit output empty/falsy — so these must also check cache-pck directly,
+      # or a pck hit would fall through into re-downloading the engine for nothing.
+      - name: Download MegaDot
+        if: steps.cache-pck.outputs.cache-hit != 'true' && steps.cache-engine.outputs.cache-hit != 'true'
+        run: curl -L -o megadot.zip "https://megadot.megacrit.com/${MEGADOT_VERSION}/megadot-${MEGADOT_VERSION}-linux-x86_64-editor-csharp.zip"
+
+      - name: Download spine-godot extension
+        if: steps.cache-pck.outputs.cache-hit != 'true' && steps.cache-engine.outputs.cache-hit != 'true'
+        run: |
+          curl -fL --retry 3 -o spine-godot.zip \
+            "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-${SPINE_VERSION}.zip"
+
+      - name: Install engine
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        run: |
+          unzip -q megadot.zip -d megadot
+          chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
+          echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+          unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+
+      # Skipped entirely on a code-only push — see "Cache packed mod output" above.
+      - name: Build image atlases
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        run: dotnet run --project ImageGen -c Release
+
+      # Skipped entirely on a code-only push — see "Cache packed mod output" above.
+      - name: Import Godot resources
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        run: |
+          "$GODOT_PATH" --headless --audio-driver Dummy --import || true
+          "$GODOT_PATH" --headless --audio-driver Dummy --import
+
+      # Assets/localization changed (or the pck cache was empty/evicted): run the full
+      # pipeline, which also repacks the .pck.
+      - name: Publish mod (Test submod included)
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p "${{ github.workspace }}/mod-output/mods"
+          dotnet publish Downfall.csproj -c Release \
+            /p:GodotPath="$GODOT_PATH" \
+            /p:ModsPath="${{ github.workspace }}/mod-output/mods/" \
+            /p:SkipGodotImport=true
+
+      # Code-only push: the restored .pck from the cache hit above is still correct, so a
+      # plain build (no Godot involved) is enough to refresh the DLL in place next to it.
+      - name: Build mod (code-only, reusing cached .pck)
+        if: steps.cache-pck.outputs.cache-hit == 'true'
+        run: |
+          mkdir -p "${{ github.workspace }}/mod-output/mods"
+          dotnet build Downfall.csproj -c Release \
+            /p:ModsPath="${{ github.workspace }}/mod-output/mods/"
+
+      - name: Restore cached Steam session
+        run: |
+          mkdir -p "$HOME/Steam/config"
+          printf '%s' "${{ secrets.STEAM_CONFIG_VDF }}" > "$HOME/Steam/config/config.vdf"
+
+      - name: Sync public branch
+        run: |
+          mkdir -p /steam/public
+          /steamcmd/steamcmd.sh +force_install_dir /steam/public \
+            +login "${{ secrets.STEAM_CI_USERNAME }}" \
+            +app_update "${{ env.STEAM_APP_ID }}" validate +quit
+
+      - name: Sync public-beta branch
+        run: |
+          mkdir -p /steam/beta
+          /steamcmd/steamcmd.sh +force_install_dir /steam/beta \
+            +login "${{ secrets.STEAM_CI_USERNAME }}" \
+            +app_update "${{ env.STEAM_APP_ID }}" -beta public-beta validate +quit
+
+      - name: Install mod into both branch installs
+        run: |
+          for d in /steam/public /steam/beta; do
+            rm -rf "$d/mods/Downfall" "$d/mods/BaseLib"
+            mkdir -p "$d/mods"
+            cp -r mod-output/mods/Downfall "$d/mods/Downfall"
+            cp -r mod-output/mods/BaseLib "$d/mods/BaseLib"
+            chmod +x "$d/SlayTheSpire2"
+          done
+
+      # The exported binary isn't launched *through* Steam, so SteamAPI_Init() needs this file
+      # to find its own app ID (see NGame.InitializePlatform's k_ESteamAPIInitResult_FailedGeneric
+      # "No appID found" path) - it's not part of the Steam depot for either branch, so
+      # `+app_update` never creates or preserves it. Written every run (not just once) since it's
+      # a single static line and a re-synced or fresh install directory would otherwise silently
+      # drop back into this failure mode.
+      - name: Write steam_appid.txt for both installs
+        run: |
+          for d in /steam/public /steam/beta; do
+            printf '%s' "${{ env.STEAM_APP_ID }}" > "$d/steam_appid.txt"
+          done
+
+      # A full local run takes ~30s; `timeout` guards against the game binary not exiting on
+      # its own after the suite finishes (observed once - see issue 05's "game not close"
+      # note) rather than leaving the job (and the self-hosted runner) stuck indefinitely.
+      # `-k 10 90` sends TERM at 90s and, if that doesn't work, SIGKILL 10s later.
+      #
+      # The game's own exit code is intentionally NOT the pass/fail signal (`|| true` below) -
+      # confirmed by reproducing manually on the VPS (see issue 05 "UnmanagedCallersOnly"
+      # comment): every run so far reaches "All tests passed!", writes a complete, valid
+      # TestRunResult JSON, and only THEN crashes (SIGABRT, exit 134) inside
+      # SceneTree.Quit()'s Steam Cloud save-flush - a Steamworks.NET native-callback interop
+      # issue specific to this container's host-bridged Steam client, unrelated to test
+      # correctness. `build/test.ps1` already gets this right locally: it never inspects the
+      # game's exit code either, only whether the JSON file exists. "Evaluate results" below
+      # mirrors that same JSON-is-truth logic for CI.
+      # HOME must point at the bind-mounted gamer profile (see docker-compose.yml) - job steps
+      # run as root, whose own $HOME (/root) has no ~/.steam symlink farm, so SteamAPI_Init
+      # can't find steamclient.so and silently reports "Steam is running: False" without this.
+      # Both installs are independent processes (separate directories, separate result files),
+      # so they're launched as background jobs and waited on together instead of one after the
+      # other - real wall-clock parallelism within this single job, without needing a second
+      # runner (there's only one self-hosted runner registered - see CiRunner/docker-compose.yml
+      # - so two separate GitHub Actions *jobs* targeting it would just queue behind each other,
+      # not actually run at once). Each branch's stdout goes to its own log file so concurrent
+      # output never interleaves - "Show results" below prints them back out per branch.
+      - name: Run tests - public + public-beta (parallel)
+        run: |
+          HOME=/home/gamer DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/public-results.json \
+            timeout --preserve-status -k 10 90 /steam/public/SlayTheSpire2 --headless --audio-driver Dummy \
+            > /tmp/public-run.log 2>&1 &
+          public_pid=$!
+
+          HOME=/home/gamer DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/beta-results.json \
+            timeout --preserve-status -k 10 90 /steam/beta/SlayTheSpire2 --headless --audio-driver Dummy \
+            > /tmp/beta-run.log 2>&1 &
+          beta_pid=$!
+
+          wait "$public_pid" || true
+          wait "$beta_pid" || true
+
+      - name: Show results
+        if: always()
+        run: |
+          echo "=== public log ==="; cat /tmp/public-run.log 2>/dev/null || echo "(missing)"
+          echo "=== public-beta log ==="; cat /tmp/beta-run.log 2>/dev/null || echo "(missing)"
+          echo "=== public results ==="; cat /tmp/public-results.json 2>/dev/null || echo "(missing)"
+          echo "=== public-beta results ==="; cat /tmp/beta-results.json 2>/dev/null || echo "(missing)"
+
+      # The real pass/fail gate. A missing JSON means the game never got far enough to write
+      # results (a genuine failure, same as test.ps1's "No result file was written" throw); a
+      # present JSON with a non-empty Failed array means real test failures. The post-test
+      # SIGABRT above is deliberately not consulted here.
+      - name: Evaluate results
+        if: always()
+        run: |
+          python3 - <<'PYEOF'
+          import json, sys
+
+          ok = True
+          for branch, path in [("public", "/tmp/public-results.json"), ("public-beta", "/tmp/beta-results.json")]:
+              try:
+                  with open(path) as f:
+                      result = json.load(f)
+              except FileNotFoundError:
+                  print(f"::error::{branch}: no result file written - game likely crashed before finishing")
+                  ok = False
+                  continue
+              failed = result.get("Failed", [])
+              if failed:
+                  print(f"::error::{branch}: {len(failed)} test(s) failed")
+                  for f in failed:
+                      print(f"  FAIL  {f.get('Name')}: {f.get('Message')}")
+                  ok = False
+              else:
+                  print(f"{branch}: {len(result.get('Passed', []))} passed, 0 failed")
+
+          sys.exit(0 if ok else 1)
+          PYEOF
+
+      # Belt-and-suspenders on top of the `timeout` calls above: pid:host (see docker-compose.yml)
+      # means a leaked SlayTheSpire2 process is visible - and killable - from here, host-wide,
+      # not just within this job's own process tree, so a child `timeout` didn't reap can't
+      # linger past this run.
+      - name: Kill any stray game processes
+        if: always()
+        run: pkill -9 -f 'SlayTheSpire2' || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dual-branch-test-results
+          path: |
+            /tmp/public-results.json
+            /tmp/beta-results.json
+            /tmp/public-run.log
+            /tmp/beta-run.log

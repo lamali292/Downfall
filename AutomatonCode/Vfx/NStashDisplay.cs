@@ -14,7 +14,6 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Vfx;
 
-[GlobalClass]
 public partial class NStashDisplay : NSlotRevealDisplay
 {
     private const float StashDisplayScale = 0.28f;

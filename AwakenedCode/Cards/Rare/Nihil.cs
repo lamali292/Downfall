@@ -27,7 +27,7 @@ public class Nihil : AwakenedCardModel, IChantable
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         if (CombatState == null) return;
-        foreach (var combatStateEnemy in CombatState.Enemies)
+        foreach (var combatStateEnemy in CombatState.HittableEnemies)
         {
             var a = combatStateEnemy.GetInstancedPowerAmountSum<ManaburnPower>();
             if (a <= 0) continue;

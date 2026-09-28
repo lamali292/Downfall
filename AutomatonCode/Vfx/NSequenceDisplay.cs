@@ -18,7 +18,6 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Automaton.AutomatonCode.Vfx;
 
-[GlobalClass]
 public partial class NSequenceDisplay : NSlotRevealDisplay
 {
     private const float SequencedCardScale = 0.28f;

@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
 namespace Hexaghost.HexaghostCode.Vfx;
 
-[GlobalClass]
 public partial class NHexaghostVisuals : Node2D
 {
 	private const float InnerBase = 0.6f;

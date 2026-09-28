@@ -11,7 +11,6 @@ using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Collector.CollectorCode.Vfx;
 
-[GlobalClass]
 public partial class DoomCurseEffect : Node2D
 {
     private const float StakeDuration = 0.6f;

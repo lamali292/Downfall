@@ -70,5 +70,8 @@
     "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Au prochain tour, gagnez [blue]{}[/blue] de [gold]Vigueur[/gold].",
     "CHAMP-CROWD_FAVORITE_POWER.title": "Chouchou du Public",
     "CHAMP-CROWD_FAVORITE_POWER.description": "Lorsqu'un autre joueur attaque un ennemi, gagnez de la [gold]Vigueur[/gold].",
-    "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "Lorsqu'un autre joueur attaque un ennemi, gagnez [blue]{Amount}[/blue] de [gold]Vigueur[/gold]."
+    "CHAMP-CROWD_FAVORITE_POWER.smartDescription": "Lorsqu'un autre joueur attaque un ennemi, gagnez [blue]{Amount}[/blue] de [gold]Vigueur[/gold].",
+    "CHAMP-ENTANGLED_POWER.title": "Enchevêtré",
+    "CHAMP-ENTANGLED_POWER.description": "Vous ne pouvez pas joué d'Attaques ce tour.",
+    "CHAMP-ENTANGLED_POWER.smartDescription": "Vous ne pouvez pas joué d'Attaques ce tour."
 }

@@ -16,7 +16,7 @@ public class SongOfSorrowPower : AwakenedPowerModel
             return;
         var ctx = new BlockingPlayerChoiceContext();
         Flash();
-        var currentEnemies = CombatState.Enemies.ToList();
+        var currentEnemies = CombatState.HittableEnemies.ToList();
         foreach (var enemy in currentEnemies)
             if (enemy is { IsHittable: true, IsAlive: true })
                 await CreatureCmd.Damage(ctx,

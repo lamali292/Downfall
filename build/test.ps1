@@ -45,8 +45,8 @@ $env:DOWNFALL_RUN_TESTS   = "1"
 $env:DOWNFALL_TEST_FILTER = $Filter
 $env:DOWNFALL_TEST_OUTPUT = $outFile
 try {
-    Write-Host "=== Launching game (filter: '$Filter') ===" -ForegroundColor Cyan
-    $proc = Start-Process -FilePath $exe -WorkingDirectory (Split-Path $exe) -PassThru
+    Write-Host "=== Launching game headlessly (filter: '$Filter') ===" -ForegroundColor Cyan
+    $proc = Start-Process -FilePath $exe -ArgumentList "--headless", "--audio-driver", "Dummy" -WorkingDirectory (Split-Path $exe) -PassThru
     if (-not $proc.WaitForExit($TimeoutMinutes * 60 * 1000)) {
         $proc.Kill()
         throw "Timed out after $TimeoutMinutes minutes; killed the game."

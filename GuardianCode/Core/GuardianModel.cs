@@ -51,10 +51,12 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
 
     public override Task BeforeCombatStart()
     {
-        StasisSlots.Clear();
-        ActiveMode.Clear();
+        // StasisSlots/ActiveMode/PendingStasisRedirect are PlayerField<T> - keyed by
+        // Player.PlayerCombatState, which is a brand-new object every combat, so a fresh combat can
+        // never see a previous combat's values for them even without clearing (and PlayerField now
+        // also self-clears on CombatEnded - see PlayerField.cs). StasisCounter is a raw
+        // SpireField<CardModel, int> instead, so it still needs its own explicit reset here.
         StasisCounter._table.Clear();
-        PendingStasisRedirect.Clear();
 
         foreach (var player in RunManager.Instance.State?.Players ?? [])
         {
@@ -67,12 +69,8 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
 
     public override Task AfterCombatEnd(CombatRoom room)
     {
-        StasisSlots.Clear();
-        ActiveMode.Clear();
         StasisCounter._table.Clear();
-        PendingStasisRedirect.Clear();
         return Task.CompletedTask;
-
     }
 
 

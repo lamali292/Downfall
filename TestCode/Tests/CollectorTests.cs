@@ -18,19 +18,13 @@ namespace Downfall.TestCode;
 
 public class CollectorTests
 {
-    private static async Task ClearHand(TestContext ctx)
-    {
-        var hand = PileType.Hand.GetPile(ctx.Player).Cards.ToList();
-        if (hand.Count > 0) await CardPileCmd.Add(hand, PileType.Discard);
-    }
-
     // Regression guard for the custom "can't play" thought bubble: a Pyre card alone in hand (nothing to
     // exhaust for it) should be specifically blocked with our PyreNoTarget reason/dialogue, not the generic
     // "combat_messages.UNPLAYABLE" text.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task PyreCardAloneInHandShowsCustomDialogue(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var roast = await ctx.AddCardToHand<Roast>();
 
         var canPlay = roast.CanPlay(out var reason, out var preventer);
@@ -47,7 +41,7 @@ public class CollectorTests
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task PyreCardWithOtherHandCardIsPlayable(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var roast = await ctx.AddCardToHand<Roast>();
         await ctx.AddCardToHand<FuelTheFire>();
 
@@ -59,7 +53,7 @@ public class CollectorTests
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task PyreCardBlockedByEnergyKeepsDefaultDialogue(TestContext ctx)
     {
-        await ClearHand(ctx);
+        await ctx.ClearHand();
         var fuelTheFire = await ctx.AddCardToHand<FuelTheFire>();
         ctx.Player.PlayerCombatState!.Energy = 0;
 
@@ -121,6 +115,30 @@ public class CollectorTests
         Assert.AreEqual(1, energySpent, "BidingBlast costs 1.");
         Assert.AreEqual(0, ctx.Player.PlayerCombatState.Energy, "Energy was already empty.");
         Assert.AreEqual(4, ctx.Player.PlayerCombatState.Reserve, "Only the 1-cost deficit should be covered by Reserve.");
+    }
+
+    // Regression guard: CollectorEnergy.ShouldPlay used to re-check Energy+Reserve affordability on top of
+    // CheckResources, which also gates CardCmd.AutoPlay - the base game's "play this card for free" path
+    // (used by echo/replay/duplicate effects, and TestContext.PlayCard). AutoPlay never spends resources, so
+    // gating it on affordability silently ate free plays of cards the player couldn't otherwise afford, and
+    // surfaced the CollectorEnergy singleton as an unrecognized "preventer" to the base game's
+    // UnplayableReason.GetPlayerDialogueLine switch, which only knows Card/Relic/Power/Enchantment/Affliction
+    // models and logs an ERROR for anything else.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task AutoPlayIsNotBlockedByInsufficientEnergyOrReserve(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var startHp = enemy.CurrentHp;
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Common.SuckerPunch>(); // costs 2
+        ctx.Player.PlayerCombatState!.Energy = 0;
+        await CollectorCmd.GainReserve(ctx.Player, 1); // Energy(0) + Reserve(1) < cost(2), and Reserve > 0
+
+        await ctx.PlayCard(card, enemy);
+
+        // AutoPlay moves the card out of Hand into a result pile whether it actually played or was blocked
+        // (MoveToResultPileWithoutPlaying), so check its actual effect (damage dealt) rather than its pile.
+        Assert.IsTrue(enemy.CurrentHp < startHp,
+            "AutoPlay should still play (and deal damage from) a card the player can't afford, since it's a free play.");
     }
 
     // Regression guard for ReturnToHandAfterTurnEndPatch: the game hardcodes moving a HasTurnEndInHandEffect
