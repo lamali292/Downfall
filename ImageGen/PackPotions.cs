@@ -99,9 +99,9 @@ public class PackPotions(string scriptDir, bool force)
             outlineAtlas.Mutate(ctx => ctx.DrawImage(outline, new Point(ox, oy), 1f));
 
             Utils.WriteTres(Path.Join(outTres, $"{tresName}.tres"),
-                atlasResPath, ax, ay, small.Width, small.Height, $"{charId}_{stem}_atlas");
+                atlasResPath, ax, ay, small.Width, small.Height, $"{charId}_{tresName}_atlas");
             Utils.WriteTres(Path.Join(outTres, $"{tresName}_outline.tres"),
-                outlineResPath, ox, oy, outline.Width, outline.Height, $"{charId}_{stem}_outline");
+                outlineResPath, ox, oy, outline.Width, outline.Height, $"{charId}_{tresName}_outline");
         }
 
         Utils.SaveImageIfChanged(atlas, Path.Join(outAtlases, "potion_atlas.png"));
