@@ -1,10 +1,21 @@
-name: Dual-branch headless test (manual)
+name: Dual-branch headless test
 # Ticket 05: builds Downfall with the Test submod included (publish.yml's default Submods
 # excludes it - see Downfall.csproj), syncs both Steam branches via SteamCMD on the self-hosted
-# runner, and runs the full [CardTest] suite headlessly against each. Manual-only for now;
-# ticket 06 wires this into the real push/PR-triggered, parallel, both-blocking CI workflow.
+# runner, and runs the full [CardTest] suite headlessly against each, public and public-beta
+# concurrently (see "Run tests" step below). Ticket 06: wired onto the same push/PR trigger as
+# publish.yml, with either branch's failure failing the whole run - see "Evaluate results".
 on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
+# Fixed group (not per-ref, unlike publish.yml): both branches share one SteamCMD install
+# directory pair and one Steam client session on the runner host, so two runs overlapping would
+# corrupt each other's install/state. cancel-in-progress stays false - killing a run mid-test
+# leaves orphan game processes and a half-written install; queuing behind it is safer than
+# cancelling it.
 concurrency:
   group: dual-branch-test
   cancel-in-progress: false
@@ -226,21 +237,35 @@ jobs:
       # HOME must point at the bind-mounted gamer profile (see docker-compose.yml) - job steps
       # run as root, whose own $HOME (/root) has no ~/.steam symlink farm, so SteamAPI_Init
       # can't find steamclient.so and silently reports "Steam is running: False" without this.
-      - name: Run tests - public
+      # Both installs are independent processes (separate directories, separate result files),
+      # so they're launched as background jobs and waited on together instead of one after the
+      # other - real wall-clock parallelism within this single job, without needing a second
+      # runner (there's only one self-hosted runner registered - see CiRunner/docker-compose.yml
+      # - so two separate GitHub Actions *jobs* targeting it would just queue behind each other,
+      # not actually run at once). Each branch's stdout goes to its own log file so concurrent
+      # output never interleaves - "Show results" below prints them back out per branch.
+      - name: Run tests - public + public-beta (parallel)
         run: |
           HOME=/home/gamer DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/public-results.json \
-            timeout --preserve-status -k 10 90 /steam/public/SlayTheSpire2 --headless --audio-driver Dummy || true
+            timeout --preserve-status -k 10 90 /steam/public/SlayTheSpire2 --headless --audio-driver Dummy \
+            > /tmp/public-run.log 2>&1 &
+          public_pid=$!
 
-      - name: Run tests - public-beta
-        run: |
           HOME=/home/gamer DOWNFALL_RUN_TESTS=1 DOWNFALL_TEST_OUTPUT=/tmp/beta-results.json \
-            timeout --preserve-status -k 10 90 /steam/beta/SlayTheSpire2 --headless --audio-driver Dummy || true
+            timeout --preserve-status -k 10 90 /steam/beta/SlayTheSpire2 --headless --audio-driver Dummy \
+            > /tmp/beta-run.log 2>&1 &
+          beta_pid=$!
+
+          wait "$public_pid" || true
+          wait "$beta_pid" || true
 
       - name: Show results
         if: always()
         run: |
-          echo "=== public ==="; cat /tmp/public-results.json 2>/dev/null || echo "(missing)"
-          echo "=== public-beta ==="; cat /tmp/beta-results.json 2>/dev/null || echo "(missing)"
+          echo "=== public log ==="; cat /tmp/public-run.log 2>/dev/null || echo "(missing)"
+          echo "=== public-beta log ==="; cat /tmp/beta-run.log 2>/dev/null || echo "(missing)"
+          echo "=== public results ==="; cat /tmp/public-results.json 2>/dev/null || echo "(missing)"
+          echo "=== public-beta results ==="; cat /tmp/beta-results.json 2>/dev/null || echo "(missing)"
 
       # The real pass/fail gate. A missing JSON means the game never got far enough to write
       # results (a genuine failure, same as test.ps1's "No result file was written" throw); a
@@ -288,3 +313,5 @@ jobs:
           path: |
             /tmp/public-results.json
             /tmp/beta-results.json
+            /tmp/public-run.log
+            /tmp/beta-run.log
