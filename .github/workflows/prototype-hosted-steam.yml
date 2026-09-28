@@ -68,7 +68,11 @@ jobs:
           pgrep -f Xvfb >/dev/null || (Xvfb :2 -screen 0 1024x768x16 & sleep 2)
           DISPLAY=:2 steam -login "${{ secrets.STEAM_CI_USERNAME }}" -silent > /tmp/steam-login.log 2>&1 &
           steam_pid=$!
-          for i in $(seq 1 24); do
+          # First real launch of a session (steam.sh wrapper does its own update-check + bwrap/
+          # pressure-vessel container setup before invoking the actual client binary) took ~1m45s
+          # just to reach "Starting login" in the previous prototype run - budget for that plus
+          # actual login/network time, not just the login itself.
+          for i in $(seq 1 60); do
             sleep 5
             if grep -qE "Received logon success response|SetLoginState: Success|Start offline" "$HOME/.steam/steam/logs/steamui_login.txt" 2>/dev/null; then
               break
