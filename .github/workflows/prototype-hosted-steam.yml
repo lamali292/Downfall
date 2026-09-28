@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq bubblewrap
-          bwrap --unshare-user --uid 0 --gid 0 -- echo "bwrap userns OK"
+          bwrap --unshare-user --uid 0 --gid 0 --ro-bind / / -- echo "bwrap userns OK"
 
       - name: Install Steam client + deps
         run: |
