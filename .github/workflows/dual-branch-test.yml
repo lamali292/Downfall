@@ -182,6 +182,18 @@ jobs:
             chmod +x "$d/SlayTheSpire2"
           done
 
+      # The exported binary isn't launched *through* Steam, so SteamAPI_Init() needs this file
+      # to find its own app ID (see NGame.InitializePlatform's k_ESteamAPIInitResult_FailedGeneric
+      # "No appID found" path) - it's not part of the Steam depot for either branch, so
+      # `+app_update` never creates or preserves it. Written every run (not just once) since it's
+      # a single static line and a re-synced or fresh install directory would otherwise silently
+      # drop back into this failure mode.
+      - name: Write steam_appid.txt for both installs
+        run: |
+          for d in /steam/public /steam/beta; do
+            printf '%s' "${{ env.STEAM_APP_ID }}" > "$d/steam_appid.txt"
+          done
+
       # A full local run takes ~30s; `timeout` guards against the game binary not exiting on
       # its own after the suite finishes (observed once - see issue 05's "game not close"
       # note) rather than leaving the job (and the self-hosted runner) stuck indefinitely.
