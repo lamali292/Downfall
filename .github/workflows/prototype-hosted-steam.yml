@@ -16,6 +16,9 @@ on:
 jobs:
   probe:
     runs-on: ubuntu-24.04
+    # Needed to reach STEAM_CI_USERNAME/STEAM_CONFIG_VDF for the login attempt below - same
+    # cached-session secrets dual-branch-test.yml already uses, no new credentials introduced.
+    environment: steam-ci
     steps:
       - name: Check / relax unprivileged user namespace restriction
         run: |
@@ -40,25 +43,48 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq steam-libs-amd64 steam-libs-i386 xdg-desktop-portal xdg-desktop-portal-gtk
 
-      # No -login here on purpose - just watching whether the client's own sandbox/runtime
-      # bootstraps far enough to reach a login prompt (steamwebhelper up, no bwrap/newuidmap
-      # permission errors) instead of dying at the same "setting up uid map: Permission denied"
-      # wall that Docker hit.
-      - name: Launch Xvfb + Steam client (no login attempted)
+      # First run only self-updates (~500MB) and never reaches a login prompt - let that finish
+      # on its own before attempting login, instead of racing it with a short timeout.
+      - name: First launch - let the client self-update, no login yet
         run: |
           Xvfb :2 -screen 0 1024x768x16 &
           sleep 2
-          DISPLAY=:2 timeout 60 steam -silent || true
+          DISPLAY=:2 timeout 120 steam -silent || true
+          pkill -9 -f 'steam' || true
+          sleep 2
+
+      # Same config.vdf secret dual-branch-test.yml restores for steamcmd, but at the GUI
+      # client's own config path (~/.local/share/Steam/config/config.vdf - confirmed from the
+      # first run's bootstrap log: "Setting up Steam content in /home/runner/.local/share/Steam").
+      # No password given - the whole point is finding out whether the cached session token in
+      # config.vdf is enough on its own, same as it already is for steamcmd's +login.
+      - name: Restore cached Steam session for the client
+        run: |
+          mkdir -p "$HOME/.local/share/Steam/config"
+          printf '%s' "${{ secrets.STEAM_CONFIG_VDF }}" > "$HOME/.local/share/Steam/config/config.vdf"
+
+      - name: Second launch - attempt cached-session login
+        run: |
+          pgrep -f Xvfb >/dev/null || (Xvfb :2 -screen 0 1024x768x16 & sleep 2)
+          DISPLAY=:2 steam -login "${{ secrets.STEAM_CI_USERNAME }}" -silent > /tmp/steam-login.log 2>&1 &
+          steam_pid=$!
+          for i in $(seq 1 24); do
+            sleep 5
+            if grep -qE "Received logon success response|SetLoginState: Success|Start offline" "$HOME/.steam/steam/logs/steamui_login.txt" 2>/dev/null; then
+              break
+            fi
+          done
           sleep 3
           echo "--- processes ---"
           ps aux | grep -i steam || true
+          pkill -9 -f 'steam' || true
 
-      - name: Show client logs
+      - name: Show login result
         if: always()
         run: |
-          echo "=== bootstrap_log.txt ==="
-          cat "$HOME/.steam/steam/logs/bootstrap_log.txt" 2>/dev/null || echo "(missing)"
-          echo "=== content_log.txt ==="
-          cat "$HOME/.steam/steam/logs/content_log.txt" 2>/dev/null || echo "(missing)"
-          echo "=== all logs, tail 40 each ==="
-          find "$HOME/.steam" -iname "*.log" 2>/dev/null -print -exec tail -n 40 {} \; || true
+          echo "=== steamui_login.txt ==="
+          cat "$HOME/.steam/steam/logs/steamui_login.txt" 2>/dev/null || echo "(missing)"
+          echo "=== connection_log.txt (tail 60) ==="
+          tail -n 60 "$HOME/.steam/steam/logs/connection_log.txt" 2>/dev/null || echo "(missing)"
+          echo "=== stdout/stderr from launch ==="
+          cat /tmp/steam-login.log 2>/dev/null || echo "(missing)"
