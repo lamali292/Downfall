@@ -1,0 +1,17 @@
+name: Hello Runner
+# Manual-only health check for the self-hosted CI runner (see CiRunner/DEPLOY.md and
+# docs/adr/0001-ci-headless-test-runner.md). Not part of the real test-suite workflow (that's
+# ticket 06) - this just proves the runner is registered and can execute a job at all.
+on:
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: [self-hosted, downfall-vps]
+    steps:
+      - name: Say hello
+        run: echo "Hello from the downfall-vps self-hosted runner!"
+      - name: Show environment
+        run: |
+          uname -a
+          docker --version
