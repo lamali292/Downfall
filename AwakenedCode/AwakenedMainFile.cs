@@ -32,7 +32,7 @@ public static class AwakenedMainFile
             new ChantDescriptionSource());
 
         BundledSubmodLocRegistry.Register(ModId);
-        VotingPoolRegistry.Register<AwakenedCardPool>(VotingPool.Awakened);
+        VotingPoolRegistry.Register<AwakenedCardPool>(VotingPool.Awakened, ModId);
         CombatUiHooks.Register(AwakenedModel.SetupAwakenedCombatUi);
 
         ModPatcher.Create(ModId, Logger)
