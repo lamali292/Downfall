@@ -10,10 +10,13 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class DazingPulse : AutomatonCardModel, IEncodable, ICompilable
+public class DazingPulse : AutomatonCardModel
 {
     public DazingPulse() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithEncode<BlockEncode>();
+        WithEncode<DamageEncode>();
+        WithCompile<DazedToDrawCompile>();
         WithBlock(7, 2);
         WithDamage(7, 2);
         WithCards(2);
@@ -22,6 +25,4 @@ public class DazingPulse : AutomatonCardModel, IEncodable, ICompilable
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<Compilable> Compilations => [new DazedToDrawCompile()];
-    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode()];
 }

@@ -1,3 +1,4 @@
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Interfaces;
 using Downfall.DownfallCode.Localization;
 using MegaCrit.Sts2.Core.Localization;
@@ -9,7 +10,7 @@ public class CompileDescriptionSource : IExtraDescriptionSource
 {
     public IEnumerable<string> GetLines(CardModel card)
     {
-        if (card is not ICompilable compilable) yield break;
+        if (!card.Keywords.Contains(AutomatonKeyword.Compile) || card is not ICompilable compilable) yield break;
         var text = compilable.CompileString(card);
         var title = new LocString("card_keywords", "AUTOMATON-COMPILE.title").GetFormattedText();
         var suffix = $"[gold]{title}[/gold]";

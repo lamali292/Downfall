@@ -10,13 +10,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Separator : AutomatonCardModel, IEncodable
+public class Separator : AutomatonCardModel
 {
     public Separator() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
+        WithEncode<DamageEncode>();
+        WithEncode<MiddleDamageEncode>();
         WithDamage(6, 2);
         WithVars(new DamageVar("ExtraDamage", 6, DamageProps.card).WithUpgrade(2));
     }
 
-    public IEnumerable<Encodable> Encodings => [new DamageEncode(), new MiddleDamageEncode()];
 }

@@ -10,16 +10,16 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Spike : AutomatonCardModel, IEncodable, ICompilable
+public class Spike : AutomatonCardModel
 {
     public Spike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithEncode<DamageEncode>();
+        WithCompile<ThornsCompile>();
         WithPower<ThornsPower>(3, 2);
         WithDamage(7, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<Compilable> Compilations => [new ThornsCompile()];
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

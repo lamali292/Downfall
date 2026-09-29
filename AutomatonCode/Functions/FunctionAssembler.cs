@@ -41,12 +41,12 @@ public static class FunctionAssembler
             var position = index == 1 ? FunctionPosition.Start
                 : index == max ? FunctionPosition.End
                 : FunctionPosition.Middle;
-            if (sourceCard is IEncodable encodable)
+            if (AutomatonCmd.IsEncodable(sourceCard) && sourceCard is IEncodable encodable)
             {
                 foreach (var encoding in encodable.Encodings) encoding.ApplyEncode(function, sourceCard, position);
             }
 
-            if (sourceCard is ICompilable compilable)
+            if (sourceCard.Keywords.Contains(AutomatonKeyword.Compile) && sourceCard is ICompilable compilable)
                 foreach (var compilation in compilable.Compilations)
                     compilation.ApplyCompile(function, sourceCard);
 
@@ -80,7 +80,7 @@ public static class FunctionAssembler
         // What the source cards' effects change about the Function itself (Retain, a fixed cost, ...).
         var order = CardLevelCompileOrder;
         foreach (var sourceCard in sourceCards)
-            if (sourceCard is IEncodable encodable)
+            if (AutomatonCmd.IsEncodable(sourceCard) && sourceCard is IEncodable encodable)
                 foreach (var encoding in encodable.Encodings)
                     if (encoding.GetFunctionNote(sourceCard) != null)
                         contributions.Add(new FunctionContribution
@@ -108,7 +108,7 @@ public static class FunctionAssembler
             {
                 // Not merged: each source card lists its own line.
                 foreach (var sourceCard in sourceCards)
-                    if (sourceCard is ICompilable ic && ic.Compilations.Any(c => c.GetType() == compilable.GetType()))
+                    if (sourceCard.Keywords.Contains(AutomatonKeyword.Compile) && sourceCard is ICompilable ic && ic.Compilations.Any(c => c.GetType() == compilable.GetType()))
                         contributions.Add(new FunctionContribution
                         {
                             Keyword = AutomatonKeyword.Compile,

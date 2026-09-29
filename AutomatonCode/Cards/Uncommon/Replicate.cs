@@ -9,15 +9,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Replicate : AutomatonCardModel,
-    IEncodable
+public class Replicate : AutomatonCardModel
 {
     public Replicate() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithEncode<DamageEncode>();
         WithDamage(6, 2);
     }
 
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

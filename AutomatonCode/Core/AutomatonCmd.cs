@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Functions;
@@ -56,6 +57,10 @@ public static class AutomatonCmd
         // vanishes instead of lingering in the Encode pile / compiling into a Function.
         if (card.IsDupe) return null;
 
+        // Being put into the Encode pile makes a card an Encode card. Cards that are not Encode cards by
+        // default (starter Strike and Defend) become one here, whichever effect placed them.
+        if (!IsEncodable(card)) card.AddKeyword(AutomatonKeyword.Encode);
+
         var player = card.Owner;
         if (LocalContext.IsMe(player))
             Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();
@@ -92,7 +97,7 @@ public static class AutomatonCmd
         
         //NSequenceDisplay.Refresh(player);
         foreach (var cardModel in snapshot)
-            if (cardModel is ICompilable compilable)
+            if (cardModel.Keywords.Contains(AutomatonKeyword.Compile) && cardModel is ICompilable compilable)
                 foreach (var compilation in compilable.Compilations)
                     await compilation.OnCompile(cardModel, ctx);
 
@@ -107,8 +112,9 @@ public static class AutomatonCmd
     }
 
 
+    /// <summary>An Encode card: it can be put into a Function and is encoded when played. Detected by keyword.</summary>
     public static bool IsEncodable(CardModel card)
     {
-        return card is IEncodable { CanPlayerEncode: true };
+        return card.Keywords.Contains(AutomatonKeyword.Encode);
     }
 }

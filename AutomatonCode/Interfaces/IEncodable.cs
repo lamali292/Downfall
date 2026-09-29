@@ -9,8 +9,6 @@ public interface IEncodable
 {
     IEnumerable<Encodable> Encodings { get; }
 
-    bool CanPlayerEncode => true;
-
     string EncodeString(CardModel card)
     {
         return string.Join("\n", Encodings.Select(e => e.GetDescription(card).GetFormattedText()));

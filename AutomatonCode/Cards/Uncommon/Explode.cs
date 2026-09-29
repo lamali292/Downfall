@@ -11,10 +11,12 @@ using MegaCrit.Sts2.Core.Models.Cards;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Explode : AutomatonCardModel, IEncodable, ICompilable
+public class Explode : AutomatonCardModel
 {
     public Explode() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
+        WithEncode<SoulburnEncode>();
+        WithCompile<BurnToDrawCompile>();
         WithCards(1);
         WithPower<SoulBurnPower>(15, 5);
         WithTip<Burn>();
@@ -22,6 +24,4 @@ public class Explode : AutomatonCardModel, IEncodable, ICompilable
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<Compilable> Compilations => [new BurnToDrawCompile()];
-    public IEnumerable<Encodable> Encodings => [new SoulburnEncode()];
 }

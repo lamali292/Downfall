@@ -9,14 +9,13 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Automaton.AutomatonCode.Cards.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class Invalidate : AutomatonCardModel,
-    IEncodable
+public class Invalidate : AutomatonCardModel
 {
     public Invalidate() : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithEncode<VulnerableEncode>();
         WithPower<VulnerablePower>(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-    public IEnumerable<Encodable> Encodings => [new VulnerableEncode()];
 }

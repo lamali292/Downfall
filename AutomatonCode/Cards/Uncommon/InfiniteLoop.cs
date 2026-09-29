@@ -9,17 +9,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class InfiniteLoop : AutomatonCardModel,
-    IEncodable, ICompilable
+public class InfiniteLoop : AutomatonCardModel
 {
     public InfiniteLoop() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithEncode<DamageEncode>();
+        WithCompile<InfiniteLoopCompile>();
         WithDamage(6);
         WithVar("Increase", 2, 2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<Compilable> Compilations => [new InfiniteLoopCompile()];
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 }

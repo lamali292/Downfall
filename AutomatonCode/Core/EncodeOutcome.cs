@@ -13,7 +13,7 @@ public enum EncodeKind
     /// <summary>The card is not encoded; it goes wherever the game would normally send it.</summary>
     None,
 
-    /// <summary>The card is player-encodable (<see cref="AutomatonCmd.IsEncodable" />): its Encodings replace its normal effect.</summary>
+    /// <summary>The card has the Encode keyword (<see cref="AutomatonCmd.IsEncodable" />): its Encodings run when it is played.</summary>
     OnPlay,
 
     /// <summary>Another listener (<see cref="IForceEncodesCard" />, e.g. Platinum Core) encodes the card; it plays normally first.</summary>

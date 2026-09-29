@@ -8,15 +8,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
 [Pool(typeof(AutomatonCardPool))]
-public class NullPointer : AutomatonCardModel,
-    IEncodable
+public class NullPointer : AutomatonCardModel
 {
     public NullPointer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithEncode<BlockEncode>();
+        WithEncode<DamageEncode>();
+        WithEncode<FunctionCostEncode>();
         WithDamage(10, 3);
         WithBlock(10, 3);
         WithEnergy(3);
     }
 
-    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode(), new FunctionCostEncode()];
 }

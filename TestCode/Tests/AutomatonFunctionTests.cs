@@ -1,4 +1,6 @@
-﻿using Automaton.AutomatonCode.Cards.Common;
+﻿using Automaton.AutomatonCode.Cards;
+using Automaton.AutomatonCode.Cards.Basic;
+using Automaton.AutomatonCode.Cards.Common;
 using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Cards.Uncommon;
@@ -362,5 +364,53 @@ public class AutomatonFunctionTests
 
         var none = await Compile(ctx, Make<Deprecate>(ctx), Make<Deprecate>(ctx), Make<Fragment>(ctx));
         Assert.AreEqual(0, none.GetLines(AutomatonKeyword.Compile).Count(), "Plain value effects add no Compile line.");
+    }
+
+    // The Encode / Compile keyword and the registered effects never drift apart: every Automaton card has
+    // the Encode keyword exactly when it registered Encode effects (starter Strike and Defend register
+    // them but get the keyword only when something encodes them), and Compile likewise.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public Task KeywordsMatchRegisteredEffectsOnEveryCard(TestContext ctx)
+    {
+        foreach (var card in ModelDb.AllCards.OfType<AutomatonCardModel>())
+        {
+            var latent = card is StrikeAutomaton or DefendAutomaton;
+            Assert.AreEqual(card.Encodings.Any() && !latent, card.Keywords.Contains(AutomatonKeyword.Encode),
+                $"{card.GetType().Name}: Encode keyword must match its registered Encode effects.");
+            Assert.AreEqual(card.Compilations.Any(), card.Keywords.Contains(AutomatonKeyword.Compile),
+                $"{card.GetType().Name}: Compile keyword must match its registered Compile effects.");
+        }
+
+        return Task.CompletedTask;
+    }
+
+    // Strike and Defend are not Encode cards. Whatever encodes them (the starter relic placing them, or
+    // Platinum Core when they are played) makes them one by putting them into the Encode pile; the shared
+    // canonical card is never touched, so nothing leaks into the next combat or test run.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task StrikeAndDefendBecomeEncodeCardsOnlyWhenEncoded(TestContext ctx)
+    {
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>()); // flush BronzeCore's opening batch
+        Assert.IsTrue(!ModelDb.Card<StrikeAutomaton>().Keywords.Contains(AutomatonKeyword.Encode),
+            "The canonical Strike must never gain the keyword.");
+
+        var plain = await ctx.AddCardToHand<StrikeAutomaton>();
+        await ctx.PlayCard(plain, ctx.Combat.HittableEnemies.First());
+        Assert.IsTrue(!plain.Keywords.Contains(AutomatonKeyword.Encode) && !ctx.Player.EncodePile.Contains(plain),
+            "Without Platinum Core a played Strike is just a Strike: no keyword, not encoded.");
+
+        await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
+        var forced = await ctx.AddCardToHand<StrikeAutomaton>();
+        await ctx.PlayCard(forced, ctx.Combat.HittableEnemies.First());
+        Assert.IsTrue(ctx.Player.EncodePile.Contains(forced), "Platinum Core encodes the played Strike.");
+        Assert.IsTrue(forced.Keywords.Contains(AutomatonKeyword.Encode),
+            "A Strike in the Encode pile has the Encode keyword.");
+
+        var placed = Make<DefendAutomaton>(ctx);
+        await AutomatonCmd.EncodeCard(placed, new BlockingPlayerChoiceContext());
+        Assert.IsTrue(placed.Keywords.Contains(AutomatonKeyword.Encode),
+            "A Defend placed directly into the Encode pile (starter relic path) has the Encode keyword.");
+        Assert.IsTrue(!ModelDb.Card<DefendAutomaton>().Keywords.Contains(AutomatonKeyword.Encode),
+            "The canonical Defend must never gain the keyword.");
     }
 }
