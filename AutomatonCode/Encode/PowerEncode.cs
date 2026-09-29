@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class PowerEncode : Encodable
+public class PowerEncode : ValueEncode
 {
     public override string Id => "POWER_ENCODE";
     public override int Order => 0;

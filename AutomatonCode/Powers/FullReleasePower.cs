@@ -25,14 +25,14 @@ public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescri
     public override PowerStackType StackType => PowerStackType.Single;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.All.Select(e => e.FunctionDynamicVar);
+    protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.Valued.Select(e => e.FunctionDynamicVar);
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
+        Encodable.Valued.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
 
     public void AddDumbVariablesToPowerDescription(LocString description)
     {
-        var lines = (from encodable in Encodable.All
+        var lines = (from encodable in Encodable.Valued
             where !encodable.EndsSequence
             where encodable.DynamicVar(this).BaseValue > 0
             select encodable.GetDescription(this).GetFormattedText()).ToList();
@@ -50,7 +50,7 @@ public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescri
         if (Owner.Player != player || Owner.CombatState == null) return;
 
         var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(Owner.CombatState.HittableEnemies);
-        foreach (var encodable in Encodable.All.Where(e => !e.EndsSequence))
+        foreach (var encodable in Encodable.Valued.Where(e => !e.EndsSequence))
             if (encodable.DynamicVar(this).BaseValue > 0)
                 await encodable.OnPlay(this, ctx, target, null);
         Flash();

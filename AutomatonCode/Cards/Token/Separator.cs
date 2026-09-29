@@ -18,11 +18,5 @@ public class Separator : AutomatonCardModel, IEncodable
         WithVars(new DamageVar("ExtraDamage", 6, DamageProps.card).WithUpgrade(2));
     }
 
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
-
-    public void ApplyEncode(FunctionCard function, FunctionPosition position)
-    {
-        if (position == FunctionPosition.Middle)
-            function.DynamicVars.Damage.BaseValue += DynamicVars["ExtraDamage"].BaseValue;
-    }
+    public IEnumerable<Encodable> Encodings => [new DamageEncode(), new MiddleDamageEncode()];
 }

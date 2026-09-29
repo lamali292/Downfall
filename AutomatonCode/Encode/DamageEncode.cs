@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class DamageEncode : Encodable
+public class DamageEncode : ValueEncode
 {
     public override string Id => "DAMAGE_ENCODE";
     public override int Order => 2;

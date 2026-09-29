@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class PoisonEncode : Encodable
+public class PoisonEncode : ValueEncode
 {
     public override string Id => "POISON_ENCODE";
     public override int Order => 6;

@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class BlockEncode : Encodable
+public class BlockEncode : ValueEncode
 {
     public override string Id => "BLOCK_ENCODE";
     public override int Order => 1;

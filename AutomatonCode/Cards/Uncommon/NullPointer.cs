@@ -18,10 +18,5 @@ public class NullPointer : AutomatonCardModel,
         WithEnergy(3);
     }
 
-    public void ApplyEncode(FunctionCard function, FunctionPosition position)
-    {
-        function.EnergyCost.SetCustomBaseCost(DynamicVars.Energy.IntValue);
-    }
-
-    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode()];
+    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new DamageEncode(), new FunctionCostEncode()];
 }

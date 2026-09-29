@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class VulnerableEncode : Encodable
+public class VulnerableEncode : ValueEncode
 {
     public override string Id => "VULNERABLE_ENCODE";
     public override int Order => 5;

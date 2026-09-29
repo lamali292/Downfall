@@ -21,7 +21,7 @@ public static class FunctionAssembler
 
     /// <summary>Every var a Function can carry: one per Encode effect and one per Compile effect.</summary>
     public static IEnumerable<DynamicVar> CanonicalVars =>
-        Encodable.All.Select(e => e.FunctionDynamicVar)
+        Encodable.Valued.Select(e => e.FunctionDynamicVar)
             .Concat(Compilable.All.SelectMany(c => c.FunctionDynamicVars));
 
     public static void Assemble(FunctionCard function, IReadOnlyList<CardModel> sourceCards)
@@ -43,8 +43,7 @@ public static class FunctionAssembler
                 : FunctionPosition.Middle;
             if (sourceCard is IEncodable encodable)
             {
-                encodable.ApplyEncode(function, position);
-                foreach (var encoding in encodable.Encodings) encoding.ApplyEncode(function, sourceCard);
+                foreach (var encoding in encodable.Encodings) encoding.ApplyEncode(function, sourceCard, position);
             }
 
             if (sourceCard is ICompilable compilable)
@@ -61,7 +60,7 @@ public static class FunctionAssembler
     {
         var contributions = new List<FunctionContribution>();
 
-        foreach (var encodable in Encodable.All)
+        foreach (var encodable in Encodable.Valued)
             contributions.Add(new FunctionContribution
             {
                 Keyword = AutomatonKeyword.Encode,
@@ -78,16 +77,18 @@ public static class FunctionAssembler
                 Line = fn => encodable.GetDescription(fn).GetFormattedText()
             });
 
-        // Card-level changes to the Function itself (Frontload's Retain, Null Pointer's cost, ...).
+        // What the source cards' effects change about the Function itself (Retain, a fixed cost, ...).
         var order = CardLevelCompileOrder;
         foreach (var sourceCard in sourceCards)
             if (sourceCard is IEncodable encodable)
-                contributions.Add(new FunctionContribution
-                {
-                    Keyword = AutomatonKeyword.Compile,
-                    Order = order++,
-                    Line = _ => encodable.CompileDescription(sourceCard)?.GetFormattedText()
-                });
+                foreach (var encoding in encodable.Encodings)
+                    if (encoding.GetFunctionNote(sourceCard) != null)
+                        contributions.Add(new FunctionContribution
+                        {
+                            Keyword = AutomatonKeyword.Compile,
+                            Order = order++,
+                            Line = _ => encoding.GetFunctionNote(sourceCard)?.GetFormattedText()
+                        });
 
         order = CompileOrder;
         foreach (var compilable in Compilable.All)

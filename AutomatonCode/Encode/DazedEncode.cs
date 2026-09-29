@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class DazedEncode : Encodable
+public class DazedEncode : ValueEncode
 {
     public override string Id => "DAZED_ENCODE";
     public override int Order => 9;

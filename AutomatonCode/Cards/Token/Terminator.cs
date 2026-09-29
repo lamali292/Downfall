@@ -16,10 +16,5 @@ public class Terminator : AutomatonCardModel, IEncodable
         WithTip(StaticHoverTip.ReplayStatic);
     }
 
-    public void ApplyEncode(FunctionCard function, FunctionPosition position)
-    {
-        if (position == FunctionPosition.End) function.BaseReplayCount += 1;
-    }
-
-    public IEnumerable<Encodable> Encodings => [];
+    public IEnumerable<Encodable> Encodings => [new ReplayAtEndEncode()];
 }

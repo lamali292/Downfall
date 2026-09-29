@@ -281,8 +281,8 @@ public class AutomatonFunctionTests
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
     public Task EncodeEffectsAreSortedByUniqueOrder(TestContext ctx)
     {
-        var orders = Encodable.All.Select(e => e.Order).ToList();
-        Assert.IsTrue(orders.SequenceEqual(orders.OrderBy(o => o)), "Encodable.All must be sorted by Order.");
+        var orders = Encodable.Valued.Select(e => e.Order).ToList();
+        Assert.IsTrue(orders.SequenceEqual(orders.OrderBy(o => o)), "Encodable.Valued must be sorted by Order.");
         Assert.AreEqual(orders.Count, orders.Distinct().Count(), "Encode effect Orders must be unique.");
         return Task.CompletedTask;
     }
@@ -291,9 +291,12 @@ public class AutomatonFunctionTests
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
     public Task EveryEffectHasItsLocEntry(TestContext ctx)
     {
-        foreach (var e in Encodable.All)
+        foreach (var e in Encodable.Valued)
             Assert.IsTrue(new LocString("encode", e.GetType().GetPrefix() + e.Id + ".encode").Exists(),
                 $"{e.GetType().Name}: missing encode.json entry for Id '{e.Id}'.");
+        foreach (var e in new Encodable[] { new PowerEncode(), new RetainEncode(), new FunctionCostEncode() })
+            Assert.IsTrue(new LocString("encode", e.GetType().GetPrefix() + e.Id + ".compile").Exists(),
+                $"{e.GetType().Name}: missing encode.json '.compile' note for Id '{e.Id}'.");
         foreach (var c in Compilable.All)
             Assert.IsTrue(new LocString("encode", c.GetType().GetPrefix() + c.Id + ".compile").Exists(),
                 $"{c.GetType().Name}: missing encode.json entry for Id '{c.Id}'.");
@@ -343,5 +346,21 @@ public class AutomatonFunctionTests
         await ctx.PlayCard(clone, enemy);
         Assert.AreEqual(hpBefore - clone.DynamicVars.Damage.BaseValue, (decimal)enemy.CurrentHp,
             "The clone deals its own (changed) damage when played.");
+    }
+
+    // What an effect changes about the Function itself (Retain, a fixed cost, Power) is listed in the
+    // Function's Compile lines, one per effect, in card order.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task FunctionNotesAreListedAsCompileLines(TestContext ctx)
+    {
+        var withNotes = await Compile(ctx, Make<Frontload>(ctx), Make<NullPointer>(ctx), Make<Deprecate>(ctx));
+        Assert.AreEqual(2, withNotes.GetLines(AutomatonKeyword.Compile).Count(),
+            "Frontload (Retain) and Null Pointer (cost) each add one Compile line.");
+
+        var power = await Compile(ctx, Make<FullRelease>(ctx), Make<Deprecate>(ctx), Make<Deprecate>(ctx));
+        Assert.AreEqual(1, power.GetLines(AutomatonKeyword.Compile).Count(), "Full Release adds one Compile line.");
+
+        var none = await Compile(ctx, Make<Deprecate>(ctx), Make<Deprecate>(ctx), Make<Fragment>(ctx));
+        Assert.AreEqual(0, none.GetLines(AutomatonKeyword.Compile).Count(), "Plain value effects add no Compile line.");
     }
 }

@@ -21,10 +21,5 @@ public class Frontload : AutomatonCardModel, IEncodable
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
-
-    public void ApplyEncode(FunctionCard function, FunctionPosition position)
-    {
-        function.AddKeyword(CardKeyword.Retain);
-    }
+    public IEnumerable<Encodable> Encodings => [new BlockEncode(), new RetainEncode()];
 }

@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class SoulburnEncode : Encodable
+public class SoulburnEncode : ValueEncode
 {
     public override string Id => "SOULBURN_ENCODE";
     public override int Order => 7;

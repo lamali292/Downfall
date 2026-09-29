@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class EnergyEncode : Encodable
+public class EnergyEncode : ValueEncode
 {
     public override string Id => "ENERGY_ENCODE";
     public override int Order => 8;

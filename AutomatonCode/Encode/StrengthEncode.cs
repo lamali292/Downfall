@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class StrengthEncode : Encodable
+public class StrengthEncode : ValueEncode
 {
     public override string Id => "STRENGTH_ENCODE";
     public override int Order => 3;

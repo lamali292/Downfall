@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class WeakEncode : Encodable
+public class WeakEncode : ValueEncode
 {
     public override string Id => "WEAK_ENCODE";
     public override int Order => 4;
