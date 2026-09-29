@@ -42,6 +42,7 @@ public static class CollectorMainFile
             .Add(typeof(NDamageNumVfxOverkillPatch))
             .Add(typeof(NMultiplayerPlayerStatePatch))
             .Add(typeof(OnPlayWrapperPlayCountPatch))
+            .Add(typeof(SuppressMultiplayerBlockScalingPatch))
             .PatchAll();
     }
     
