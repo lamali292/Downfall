@@ -13,9 +13,11 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class PrismaticTorch : CollectorRelicModel
 {
+    private bool active;
     public PrismaticTorch() : base(RelicRarity.Starter)
     {
         WithKindle(7);
+        active = true;
     }
 
     public override async Task BeforeHandDraw(
@@ -27,29 +29,21 @@ public class PrismaticTorch : CollectorRelicModel
         await CollectorCmd.Kindle(ctx, this);
         Flash();
     }
-    /*
     
-    public override Task AfterCombatEnd(CombatRoom room)
-    {
-        if (room.RoomType is not (RoomType.Elite or RoomType.Boss)) return Task.CompletedTask;
-        var existsCard = ModelDb.CardPool<CollectibleCardPool>().AllCards.Any(c => c is ICollectible col && col.GetEncounterModel().Id == room.Encounter.Id);
-        if (!existsCard) return Task.CompletedTask;
-        foreach (var player in room.CombatState.Players.Where(p => p.Character is Core.Collector))
-        {
-            room.AddExtraReward(player, new CollectibleReward(room.Encounter.Id, player, true));
-        }
-        return Task.CompletedTask;
-    }*/
-
     public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions)
     {
-        return Owner == player && CollectorCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions,  card =>  CardCmd.Upgrade(card));
+        if (!active) return false;
+        if (Owner == player)
+        {
+            var findFirst = CollectorCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions,  card =>  CardCmd.Upgrade(card));
+            if (findFirst)
+            {
+                active = false;
+                Flash();   
+            }
+            return findFirst;
+        }
+        return false;
     }
     
-    /*
-    public override Task AfterModifyingCardRewardOptions()
-    {
-        Flash();
-        return Task.CompletedTask;
-    }*/
 }
