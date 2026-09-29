@@ -48,31 +48,13 @@ public class SunbloomKindling : CollectorCardModel
         bool causedByEthereal)
     {
         if (card != this) return;
-
-        await CollectorCmd.Kindle(ctx, this);
         var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            for (var v = 0; v > DynamicVars.Cards.IntValue; v++)
-            {
-                var ember = new Ember();
-                DownfallCardCmd.ForceEnchant<Spiral>(ember, 1);
-                if (IsUpgraded)
-                {
-                    CardCmd.Upgrade(ember);
-                }
-
-                await CardPileCmd.AddGeneratedCardToCombat(ember, PileType.Hand, Owner);
-            }
-
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
+        for (var v = 0; v < playCount; ++v)
         {
             await CollectorCmd.Kindle(ctx, this);
-            await CommonActions.ApplySelf<StrengthPower>(ctx, this);
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
-                CardPilePosition.Bottom, IsUpgraded);
-
+                CardPilePosition.Bottom, IsUpgraded,
+                action: ember => DownfallCardCmd.ForceEnchant<Spiral>(ember, 1));
         }
     }
 }
