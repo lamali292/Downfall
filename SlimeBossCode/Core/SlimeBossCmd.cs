@@ -1,16 +1,15 @@
-﻿using Godot;
+﻿using BaseLib.Utils;
+using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Interfaces;
@@ -159,94 +158,60 @@ public static class SlimeBossCmd
         var pet = player.Creature.CombatState?.CreateCreature(slimeModel.ToMutable(), player.Creature.Side, null);
         if (pet == null) return null;
         await PlayerCmd.AddPet(pet, player);
-        Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
+        Callable.From(() => PlaceNewSlime(player, pet)).CallDeferred();
         return pet;
     }
 
 
-    private static void RearrangeSlimeOrbRow(Player player)
+    /// <summary>Slimes fill a column of this height top to bottom before starting the next column.</summary>
+    private const int GridHeight = 3;
+
+    private static Vector2 GridOrigin => new(250f, -100f);
+    private static Vector2 GridCellSize => new(150f, 100f);
+
+    /// <summary>Grid slot each living slime occupies. A slot stays fixed until its slime leaves.</summary>
+    private static readonly SpireField<Creature, int> SlimeSlots = new(() => UnassignedSlot);
+
+    private const int UnassignedSlot = -1;
+
+    private static int AssignSlot(Creature slime, List<Creature> allSlimes)
+    {
+        var existing = SlimeSlots.Get(slime);
+        if (existing != UnassignedSlot) return existing;
+
+        var taken = allSlimes.Select(e => SlimeSlots.Get(e)).ToHashSet();
+        var slot = 0;
+        while (taken.Contains(slot)) slot++;
+        SlimeSlots.Set(slime, slot);
+        return slot;
+    }
+
+    private static Vector2 SlotOffset(int slot)
+    {
+        var column = slot / GridHeight;
+        var row = slot % GridHeight;
+        return GridOrigin + new Vector2(column * GridCellSize.X, row * GridCellSize.Y);
+    }
+
+    /// <summary>Places a newly split slime in the lowest free grid slot. Existing slimes are never moved.</summary>
+    private static void PlaceNewSlime(Player player, Creature pet)
     {
         var playerNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        if (playerNode == null) return;
+        var slimeNode = NCombatRoom.Instance?.GetCreatureNode(pet);
+        if (playerNode == null || slimeNode == null) return;
 
         var slimes = player.Creature.Pets.Where(e => e.Monster is SlimeModel).ToList();
-        var totalSlimes = slimes.Count;
-        if (totalSlimes == 0) return;
+        var relativeOffset = SlotOffset(AssignSlot(pet, slimes));
+        if (player.Creature.Side == CombatSide.Enemy) relativeOffset.X = -relativeOffset.X;
 
-        const float maxSpacing = 300f;
-
-        var startPoint = new Vector2(300f, -50f);
-        var endPoint = new Vector2(-150f, 200f);
-        var apexPoint = new Vector2(400f, 150f);
-
-        var chordLength = startPoint.DistanceTo(apexPoint) + apexPoint.DistanceTo(endPoint);
-        var tDeltaPerSpacing = maxSpacing / chordLength;
-        var totalRequestedTSpan = (totalSlimes - 1) * tDeltaPerSpacing;
-
-        const float tStart = 0.0f;
-        var tEnd = totalRequestedTSpan;
-        if (totalRequestedTSpan > 1.0f && totalSlimes > 1) tEnd = 1.0f;
-
-        for (var i = 0; i < totalSlimes; i++)
-        {
-            var activePet = slimes[i];
-            var slimeNode = NCombatRoom.Instance?.GetCreatureNode(activePet);
-            slimeNode?.ToggleIsInteractable(true);
-            if (slimeNode == null) continue;
-            HideHealthBar(slimeNode);
-            var layoutIndex = totalSlimes - 1 - i;
-
-            var t = totalSlimes == 1 ? 0.0f : Mathf.Lerp(tStart, tEnd, (float)layoutIndex / (totalSlimes - 1));
-            t = Mathf.Clamp(t, 0.0f, 1.0f);
-
-            var relativeOffset = CalculateQuadraticBezier(startPoint, apexPoint, endPoint, t);
-
-            if (player.Creature.Side == CombatSide.Enemy) relativeOffset.X = -relativeOffset.X;
-
-            var targetGlobalPos = playerNode.GlobalPosition + relativeOffset;
-
-            // convert the global target into the slime node's parent-local space,
-            // since Node2D.Position is relative to the parent
-            var targetLocalPos = slimeNode.GetParent() is Node2D parent
-                ? parent.ToLocal(targetGlobalPos)
-                : targetGlobalPos;
-
-            if (!slimeNode.HasMeta("layout_tween"))
-            {
-                // first layout: snap instantly, no tween
-                slimeNode.Position = targetLocalPos;
-                slimeNode.UpdateBounds(slimeNode.Visuals);
-            }
-
-            if (!slimeNode.HasMeta("layout_tween"))
-            {
-                slimeNode.GlobalPosition = targetGlobalPos;
-                slimeNode.UpdateBounds(slimeNode.Visuals);
-            }
-
-            var layoutTween = slimeNode.CreateTween();
-            slimeNode.SetMeta("layout_tween", layoutTween);
-            layoutTween.TweenProperty(slimeNode, "global_position", targetGlobalPos, 0.35f)
-                .From(slimeNode.GlobalPosition)
-                .SetEase(Tween.EaseType.Out)
-                .SetTrans(Tween.TransitionType.Cubic);
-
-            layoutTween.Parallel().TweenCallback(Callable.From(() => slimeNode.UpdateBounds(slimeNode.Visuals)));
-        }
+        slimeNode.ToggleIsInteractable(true);
+        HideHealthBar(slimeNode);
+        slimeNode.GlobalPosition = playerNode.GlobalPosition + relativeOffset;
+        slimeNode.UpdateBounds(slimeNode.Visuals);
     }
 
     private static void HideHealthBar(NCreature slimeNode)
     {
         slimeNode._stateDisplay._healthBar.Visible = false;
-    }
-
-    private static Vector2 CalculateQuadraticBezier(Vector2 p0, Vector2 p1, Vector2 p2, float t)
-    {
-        var u = 1f - t;
-        var tt = t * t;
-        var uu = u * u;
-
-        var point = uu * p0 + 2f * u * t * p1 + tt * p2;
-        return point;
     }
 }

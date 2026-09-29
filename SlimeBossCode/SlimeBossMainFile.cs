@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Localization;
+﻿using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
@@ -25,6 +25,7 @@ public static class SlimeBossMainFile
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(SlimeDeathPatches))
             .Add(typeof(SlimeHoverTipPatch))
+            .Add(typeof(SlimePetPositionPatch))
             .PatchAll();
 
         FormBoneRegistry.RegisterVoidForm<Core.SlimeBoss>("hat");
