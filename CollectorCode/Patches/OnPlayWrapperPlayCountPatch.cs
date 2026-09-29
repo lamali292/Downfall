@@ -13,7 +13,7 @@ public static class OnPlayWrapperPlayCountPatch
 {
     private static readonly MethodInfo GeneratePlayCountMethod = AccessTools.Method(
         typeof(CardModel),
-        nameof(CardModel.GeneratePlayCount),
+        "GeneratePlayCount",
         [typeof(ICombatState), typeof(Creature)]);
 
     private static readonly MethodInfo ReplacementMethod = AccessTools.Method(

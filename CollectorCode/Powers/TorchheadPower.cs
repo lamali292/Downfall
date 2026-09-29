@@ -27,7 +27,7 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
     public void AddDumbVariablesToPowerDescription(LocString description)
     {
         DynamicVars.TorchheadDamage.UpdatePowerPreview(this, CardPreviewMode.None, null, IsMutable);
-        var shouldTargetAll = _owner?.PetOwner != null && CollectorHook.ShouldTorchheadTargetAll(_owner.PetOwner, out _);
+        var shouldTargetAll = IsMutable && Owner.PetOwner != null && CollectorHook.ShouldTorchheadTargetAll(Owner.PetOwner, out _);
         description.Add("TorchheadTargetsAll", shouldTargetAll);
     }
     

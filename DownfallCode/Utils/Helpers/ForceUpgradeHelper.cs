@@ -12,10 +12,10 @@ public static class ForceUpgradeHelper
         var box = ForceUpgraded.GetOrCreateValue(card);
         for (var i = 0; i < times; i++)
         {
-            box.Value = card._currentUpgradeLevel + 1;
+            box.Value = card.CurrentUpgradeLevel + 1;
             card.UpgradeInternal();
             card.FinalizeUpgradeInternal();
-            box.Value = card._currentUpgradeLevel;
+            box.Value = card.CurrentUpgradeLevel;
         }
     }
 }

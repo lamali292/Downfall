@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
@@ -26,11 +27,14 @@ public class VoidArmor : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        //await CommonActions.Apply<StrengthPower>(ctx,cardPlay.Target, this, 1);
-        var a = await CommonActions.CardBlock(this, cardPlay);
+        var block = await CommonActions.CardBlock(this, cardPlay);
         if (CombatState == null) return;
         foreach (var creature in CombatState.HittableEnemies)
-            await CreatureCmd.GainBlock(creature, a, BlockProps.cardUnpowered, cardPlay);
+        {
+            var target = creature;
+            await MultiplayerBlockScaling.Suppress(() =>
+                CreatureCmd.GainBlock(target, block, BlockProps.card, null));
+        }
         await CommonActions.Apply<BlurPower>(ctx, this, cardPlay);
     }
 

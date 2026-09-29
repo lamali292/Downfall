@@ -76,7 +76,11 @@ public class AllCardsTest
             var target = card.TargetType == TargetType.AnyEnemy
                 ? ctx.Combat.HittableEnemies.FirstOrDefault()
                 : null;
-            if (target != null) { target.MaxHp = 9999; target.CurrentHp = 9999; }
+            if (target != null)
+            {
+                await CreatureCmd.SetMaxHp(target, 9999);
+                await CreatureCmd.SetCurrentHp(target, 9999);
+            }
 
             await ctx.PlayCard(card, target);
 

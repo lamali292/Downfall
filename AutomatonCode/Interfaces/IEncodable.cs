@@ -10,6 +10,9 @@ public interface IEncodable
 
     string EncodeString(CardModel card)
     {
-        return string.Join("\n", Encodings.Select(e => e.GetDescription(card).GetFormattedText()));
+        return string.Join("\n", Encodings.
+            Select(e => e.GetDescription(card))
+            .OfType<LocString>()
+            .Select(e => e.GetFormattedText()));
     }
 }

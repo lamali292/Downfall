@@ -36,7 +36,7 @@ public class FindAndReplace : AutomatonCardModel
             StashPile.Stash, PileType.Draw, PileType.Discard)).FirstOrDefault();
         var sourcePile = selected?.Pile;
         if (sourcePile == null || selected == null) return;
-        var index = sourcePile._cards.IndexOf(selected);
+        var index = sourcePile.Cards.ToList().IndexOf(selected);
         await CardPileCmd.Add(selected, PileType.Hand);
         var error = CombatState.CreateCard<Error>(Owner);
         await DownfallCardCmd.AddGeneratedCardToCombatAtIndex(error, sourcePile, index, Owner);

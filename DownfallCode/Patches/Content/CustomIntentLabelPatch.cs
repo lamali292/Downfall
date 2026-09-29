@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 
 namespace Downfall.DownfallCode.Patches;
 
-[HarmonyPatch(typeof(NIntent), nameof(NIntent.UpdateVisuals))]
+[HarmonyPatch(typeof(NIntent), "UpdateVisuals")]
 internal static class CustomIntentLabelPatch
 {
     private static void Postfix(NIntent __instance)

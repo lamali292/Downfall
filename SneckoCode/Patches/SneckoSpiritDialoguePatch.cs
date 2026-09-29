@@ -13,7 +13,7 @@ namespace Snecko.SneckoCode.Patches;
 
 public static class SneckoSpiritDialoguePatch
 {
-	[HarmonyPatch(typeof(NEventRoom), nameof(NEventRoom.RefreshEventState))]
+	[HarmonyPatch(typeof(NEventRoom), "RefreshEventState")]
 	[HarmonyPrefix]
 	private static bool RefreshPrefix(NEventRoom __instance, EventModel eventModel)
 	{

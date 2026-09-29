@@ -16,8 +16,8 @@ public class DefensiveFinisherVar(decimal baseAmount) : DynamicVar("DefensiveFin
     public decimal Calculate()
     {
         if (!CombatManager.Instance.IsInProgress || !Stance.IsMutable)
-            return _baseValue;
-        var result = ChampHook.ModifyDefensiveFinisherBonus(Stance.CombatState, Stance, (int)_baseValue);
+            return BaseValue;
+        var result = ChampHook.ModifyDefensiveFinisherBonus(Stance.CombatState, Stance, (int)BaseValue);
         PreviewValue = result;
         return result;
     }
