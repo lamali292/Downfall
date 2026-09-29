@@ -22,8 +22,8 @@ public class StrengthCompile : Compilable
         return [HoverTipFactory.FromPower<StrengthPower>()];
     }
 
-    protected override decimal GetSourceValue(CardModel card)
+    protected override DynamicVar GetSourceDynamicVar(CardModel card)
     {
-        return card.DynamicVars.Power<StrengthPower>().BaseValue;
+        return card.DynamicVars.Power<StrengthPower>();
     }
 }

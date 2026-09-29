@@ -38,10 +38,4 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
         if (pyred is not Ember || pyred.Owner != Owner || card.Owner != Owner) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
-
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
-        base.AddExtraArgsToDescription(description);
-    }
 }

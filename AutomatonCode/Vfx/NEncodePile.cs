@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Piles;
 using Godot;
@@ -25,8 +26,11 @@ public partial class NEncodePile : NCreatureFollowingCardPile
         => !LocalContext.IsMe(player) || player.Character is not Core.Automaton;
 
     protected override HoverTip BuildHoverTip()
-        => new(new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.title"),
-            new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description"));
+    {
+        var description = new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description");
+        description.Add("Max", _localPlayer == null ? 3 : AutomatonCmd.GetMax(_localPlayer));
+        return new(new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.title"), description);
+    }
 
     protected override void OnFocus()
     {
