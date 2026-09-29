@@ -28,7 +28,7 @@ public class HermitTests
     {
         await ctx.ClearHand();
         var dive = await ctx.AddCardToHand<Dive>();
-        Assert.IsTrue(HermitCmd.IsDeadOnInCurrentHandState(dive), "Dive alone in hand should be Dead On.");
+        Assert.IsTrue(HermitCmd.IsDeadOn(dive), "Dive alone in hand should be Dead On.");
         await ctx.PlayCard(dive);
         AutoSlayLog.Info($"[HermitTests] (plain) deadOnEntries(dive)={DeadOnEntries(dive)} plated={ctx.Player.Creature.GetPowerAmount<PlatedArmorPower>()}");
         Assert.AreEqual(1, DeadOnEntries(dive), "Dive's Dead On should have triggered.");
@@ -42,8 +42,8 @@ public class HermitTests
         var dive = await ctx.AddCardToTopOfDraw<Dive>();
         var cheat = await ctx.AddCardToHand<Cheat>();
 
-        AutoSlayLog.Info($"[HermitTests] Cheat in hand dead on: {HermitCmd.IsDeadOnInCurrentHandState(cheat)}");
-        Assert.IsTrue(HermitCmd.IsDeadOnInCurrentHandState(cheat), "Cheat alone in hand should be Dead On.");
+        AutoSlayLog.Info($"[HermitTests] Cheat in hand dead on: {HermitCmd.IsDeadOn(cheat)}");
+        Assert.IsTrue(HermitCmd.IsDeadOn(cheat), "Cheat alone in hand should be Dead On.");
 
         await ctx.PlayCard(cheat);
 
@@ -67,7 +67,7 @@ public class HermitTests
         await ctx.AddCardToHand<Dive>();
         await ctx.AddCardToHand<Dive>();
         var cheat = await ctx.AddCardToHand<Cheat>();
-        Assert.IsTrue(!HermitCmd.IsDeadOnInCurrentHandState(cheat), "Cheat at the edge of hand should not be Dead On.");
+        Assert.IsTrue(!HermitCmd.IsDeadOn(cheat), "Cheat at the edge of hand should not be Dead On.");
 
         await ctx.PlayCard(cheat);
 
@@ -213,7 +213,7 @@ public class HermitTests
         var filler1 = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
         await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
         await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
-        Assert.IsTrue(!HermitCmd.IsDeadOnInCurrentHandState(dive), "Dive should not be hand-center Dead On here.");
+        Assert.IsTrue(!HermitCmd.IsDeadOn(dive), "Dive should not be hand-center Dead On here.");
 
         // 1st card played this turn.
         await ctx.PlayCard(filler1, enemy);
@@ -240,7 +240,7 @@ public class HermitTests
         var filler2 = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
         await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
         await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
-        Assert.IsTrue(!HermitCmd.IsDeadOnInCurrentHandState(dive), "Dive should not be hand-center Dead On here.");
+        Assert.IsTrue(!HermitCmd.IsDeadOn(dive), "Dive should not be hand-center Dead On here.");
 
         await ctx.PlayCard(filler1, enemy);
         await ctx.PlayCard(filler2, enemy);
@@ -252,6 +252,57 @@ public class HermitTests
         AutoSlayLog.Info($"[HermitTests] spyglass replay (3rd card, +1 replay): deadOnEntries={DeadOnEntries(dive)}");
         Assert.AreEqual(1, DeadOnEntries(dive),
             "Dead On should trigger exactly once even though the 3rd card is replayed.");
+    }
+
+    // ---- Dead On single query: in hand, Play pile (after-play handler), replay ----
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task DeadOnQueryInHandCenterVersusEdge(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var a = await ctx.AddCardToHand<Dive>();
+        var b = await ctx.AddCardToHand<Dive>();
+        var c = await ctx.AddCardToHand<Dive>();
+        Assert.IsTrue(!HermitCmd.IsDeadOn(a), "Left edge is not Dead On.");
+        Assert.IsTrue(HermitCmd.IsDeadOn(b), "Center of an odd hand is Dead On.");
+        Assert.IsTrue(!HermitCmd.IsDeadOn(c), "Right edge is not Dead On.");
+        var d = await ctx.AddCardToHand<Dive>();
+        var hand = ctx.Player.Hand.ToList();
+        Assert.AreEqual(2, hand.Count(HermitCmd.IsDeadOn), "Even hand has two Dead On cards.");
+        Assert.IsTrue(HermitCmd.HasActiveDeadOnEffect(hand[1]) && HermitCmd.HasActiveDeadOnEffect(hand[2]),
+            "Middle two Dives have an active Dead On effect.");
+        Assert.IsTrue(!HermitCmd.HasActiveDeadOnEffect(hand[0]), "Edge Dive has no active Dead On effect.");
+    }
+
+    // The card is in the Play pile when the after-play handler asks: the answer must come from the
+    // pre-play hand snapshot, and must not carry over to a later play of the same card instance.
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task DeadOnSnapshotDoesNotLeakIntoNextPlay(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var dive = await ctx.AddCardToHand<Dive>();
+        await ctx.PlayCard(dive);
+        Assert.AreEqual(1, DeadOnEntries(dive), "Centered Dive triggers from the Play pile.");
+
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<Dive>();
+        await ctx.AddCardToHand<Dive>();
+        await ctx.AddCardToHand<Dive>();
+        await CardPileCmd.Add(dive, PileType.Hand);
+        Assert.IsTrue(!HermitCmd.IsDeadOn(dive), "Dive re-added at the edge is not Dead On.");
+        await ctx.PlayCard(dive);
+        Assert.AreEqual(1, DeadOnEntries(dive), "Edge replay of the same instance must not trigger Dead On.");
+    }
+
+    // A hand-center card that is replayed: both replay instances are Dead On (snapshot is per card).
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task DeadOnCenterCardTriggersOnEveryReplayInstance(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var dive = await ctx.AddCardToHand<Dive>();
+        dive.BaseReplayCount = 1;
+        await ctx.PlayCard(dive);
+        Assert.AreEqual(2, DeadOnEntries(dive), "Both instances of a centered, replayed Dive are Dead On.");
     }
 
     // ---- Red Scarf ----
