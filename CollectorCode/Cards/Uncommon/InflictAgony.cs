@@ -41,11 +41,5 @@ public class InflictAgony : CollectorCardModel
             await CommonActions.Apply<MiasmaPower>(ctx, cardPlay.Target, this, amount);
         }
     }
-    
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
-        base.AddExtraArgsToDescription(description);
-    }
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 }

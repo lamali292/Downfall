@@ -204,6 +204,21 @@ public class CollectorTests
             $"With EquipAxe, Torchhead should target all enemies, got '{allTargetsDescription}'.");
     }
 
+    // Regression guard: CollectorCardModel injects "TorchheadTargetsAll" for every Collector card, so a
+    // Torchhead-attack card's text flips to "to ALL enemies" once EquipAxe is active without per-card overrides.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadCardDescriptionReflectsTargetingMode(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Common.AshenStrike>();
+        Assert.IsTrue(!card.GetDescriptionForPile(PileType.Hand).Contains("ALL enemies"),
+            "Without EquipAxe, the card description should not say ALL enemies.");
+
+        await PowerCmd.Apply<EquipAxePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        Assert.IsTrue(card.GetDescriptionForPile(PileType.Hand).Contains("ALL enemies"),
+            "With EquipAxe, the card description should say ALL enemies.");
+    }
+
     // Regression guard: InevitableDemisePower's IModifyCollectorMiasmaIncrement only ever gets
     // consulted from inside MiasmaPower's own end-of-turn trigger, which never runs without an
     // existing Miasma instance - so the debuff used to do nothing at all against an enemy with no
