@@ -185,7 +185,7 @@
   "HEXAGHOST-VOLCANO_VISAGE.title": "Volcano Visage",
   "HEXAGHOST-WHISPER_FROM_BEYOND.description": "Deal {Damage:diff()} damage.\nWhenever a card is [gold]Exhausted[/gold] this turn, apply {WhisperFromBeyondPower:diff()} [gold]Soulburn[/gold] to the enemy.",
   "HEXAGHOST-WHISPER_FROM_BEYOND.title": "Whisper from Beyond",
-  "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Wildfire",
+  "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Soulfire",
   "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Whenever you apply a debuff to an enemy that doesn't already have it, gain {WildfirePower:diff()} [gold]Block[/gold].",
   "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Exhaust[/gold] {Cards:diff()} cards.\nAdd a random {IfUpgraded:show:[gold]Upgraded[/gold] |}card of the opposite type into your [gold]Hand[/gold] for each Attack or Skill [gold]Exhausted[/gold].",
   "HEXAGHOST-WORTHY_SACRIFICE.title": "Worthy Sacrifice",
