@@ -2,6 +2,7 @@ using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Core;
@@ -59,7 +60,7 @@ public partial class NSequenceDisplay : NSlotRevealDisplay
         if (_trackedPlayer == null) return null;
         if (ModelDb.Card<FunctionCard>().ToMutable() is not FunctionCard model) return null;
 
-        if (slotCards.Count > 0) model.SetSourceCards(slotCards);
+        if (slotCards.Count > 0) FunctionAssembler.Assemble(model, slotCards);
         model.Owner = _trackedPlayer;
         return AutomatonHook.ModifyCompiledFunction(_trackedPlayer.Creature.CombatState!, model,
             _trackedPlayer, out _);

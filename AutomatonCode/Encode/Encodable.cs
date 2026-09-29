@@ -37,6 +37,15 @@ public abstract class Encodable
     /// <summary>Fixed play order: effects fire in ascending order, independent of source-card order.</summary>
     public abstract int Order { get; }
 
+    /// <summary>Playing the Function stops after this effect resolves (Full Release defers everything else to its Power).</summary>
+    public virtual bool EndsSequence => false;
+
+    /// <summary>The Function targets Self whatever the other effects want.</summary>
+    public virtual bool ForcesSelfTarget => false;
+
+    /// <summary>Whether a Function carrying this effect counts as gaining Block.</summary>
+    public virtual bool GainsBlock => false;
+
     private LocString Description => new("encode", GetType().GetPrefix() + Id + ".encode");
 
     /// <summary>

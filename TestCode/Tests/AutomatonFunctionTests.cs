@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Cards.Uncommon;
 using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Powers;
@@ -269,11 +270,11 @@ public class AutomatonFunctionTests
     {
         var function = await Compile(ctx, Make<Boost>(ctx), Make<OilSpill>(ctx), Make<Fragment>(ctx));
 
-        Assert.AreEqual(3, function.GetEncodeLines().Count(), "Block, Damage and Poison should each get a line.");
-        Assert.AreEqual(2, function.GetCompileLines().Count(),
+        Assert.AreEqual(3, function.GetLines(AutomatonKeyword.Encode).Count(), "Block, Damage and Poison should each get a line.");
+        Assert.AreEqual(2, function.GetLines(AutomatonKeyword.Compile).Count(),
             "Compile Strength and Compile Error-to-Stash should each get a line.");
-        Assert.IsTrue(function.GetEncodeLines().All(l => !string.IsNullOrWhiteSpace(l)), "No empty encode lines.");
-        Assert.IsTrue(function.GetCompileLines().All(l => !string.IsNullOrWhiteSpace(l)), "No empty compile lines.");
+        Assert.IsTrue(function.GetLines(AutomatonKeyword.Encode).All(l => !string.IsNullOrWhiteSpace(l)), "No empty encode lines.");
+        Assert.IsTrue(function.GetLines(AutomatonKeyword.Compile).All(l => !string.IsNullOrWhiteSpace(l)), "No empty compile lines.");
     }
 
     // Encode effects play in ascending Order, and Order is unique so the order is never ambiguous.
@@ -315,5 +316,32 @@ public class AutomatonFunctionTests
                 .SetEquals(Compilable.All.Select(c => c.GetType())),
             "Reflection scan of Compilable subclasses must match Compilable.All.");
         return Task.CompletedTask;
+    }
+
+    // A cloned Function (e.g. by Merge Conflict) has its own cloned vars; its type, target, text and play
+    // behavior must come from those, not from the original.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ClonedFunctionKeepsItsBehavior(TestContext ctx)
+    {
+        // No Boost here: its compile Strength would add to the damage the clone deals.
+        var function = await Compile(ctx, Make<Deprecate>(ctx), Make<OilSpill>(ctx), Make<Fragment>(ctx));
+        var clone = (FunctionCard)function.CreateClone();
+
+        Assert.IsTrue(clone.DynamicVars != function.DynamicVars, "Setup: a clone should own its vars.");
+        Assert.IsTrue(clone.Type == function.Type && clone.TargetType == function.TargetType,
+            "A clone keeps the original's type and target.");
+        Assert.AreEqual(function.GetLines(AutomatonKeyword.Encode).Count(), clone.GetLines(AutomatonKeyword.Encode).Count(),
+            "A clone lists the same encode lines.");
+
+        clone.DynamicVars.Damage.BaseValue += 10;
+        Assert.IsTrue(function.DynamicVars.Damage.BaseValue != clone.DynamicVars.Damage.BaseValue,
+            "Setup: changing the clone's var must not change the original's.");
+
+        await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, ctx.Player);
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var hpBefore = (decimal)enemy.CurrentHp;
+        await ctx.PlayCard(clone, enemy);
+        Assert.AreEqual(hpBefore - clone.DynamicVars.Damage.BaseValue, (decimal)enemy.CurrentHp,
+            "The clone deals its own (changed) damage when played.");
     }
 }

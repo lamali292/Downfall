@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Relics;
@@ -96,7 +97,7 @@ public static class AutomatonCmd
                     await compilation.OnCompile(cardModel, ctx);
 
         var functionCard = combatState.CreateCard<FunctionCard>(player);
-        functionCard.SetSourceCards(snapshot);
+        FunctionAssembler.Assemble(functionCard, snapshot);
         functionCard = AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
         await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
         await Cmd.CustomScaledWait(0.1f, 0.3f);

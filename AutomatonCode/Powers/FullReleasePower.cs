@@ -33,7 +33,7 @@ public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescri
     public void AddDumbVariablesToPowerDescription(LocString description)
     {
         var lines = (from encodable in Encodable.All
-            where encodable is not PowerEncode
+            where !encodable.EndsSequence
             where encodable.DynamicVar(this).BaseValue > 0
             select encodable.GetDescription(this).GetFormattedText()).ToList();
         description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
@@ -50,7 +50,7 @@ public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescri
         if (Owner.Player != player || Owner.CombatState == null) return;
 
         var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(Owner.CombatState.HittableEnemies);
-        foreach (var encodable in Encodable.All.Where(e => e is not PowerEncode))
+        foreach (var encodable in Encodable.All.Where(e => !e.EndsSequence))
             if (encodable.DynamicVar(this).BaseValue > 0)
                 await encodable.OnPlay(this, ctx, target, null);
         Flash();

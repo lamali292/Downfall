@@ -12,6 +12,7 @@ public class BlockEncode : Encodable
 {
     public override string Id => "BLOCK_ENCODE";
     public override int Order => 1;
+    public override bool GainsBlock => true;
 
     public override TargetType Target => TargetType.Self;
     public override CardType Type => CardType.Skill;

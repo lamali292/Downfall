@@ -14,6 +14,8 @@ public class PowerEncode : Encodable
 {
     public override string Id => "POWER_ENCODE";
     public override int Order => 0;
+    public override bool EndsSequence => true;
+    public override bool ForcesSelfTarget => true;
 
     public override TargetType Target => TargetType.Self;
     public override CardType Type => CardType.Power;
