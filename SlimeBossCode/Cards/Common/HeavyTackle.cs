@@ -11,10 +11,11 @@ namespace SlimeBoss.SlimeBossCode.Cards.Common;
 [Pool(typeof(SlimeBossCardPool))]
 public class HeavyTackle : SlimeBossCardModel
 {
-    public HeavyTackle() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public HeavyTackle() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithKeyword(CardKeyword.Retain);
         WithTags(SlimeBossTag.Tackle);
-        WithDamage(11, 3);
+        WithDamage(18, 4);
         WithTip<Slimed>();
     }
 
