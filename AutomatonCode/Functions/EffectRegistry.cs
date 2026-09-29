@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Encode;
 

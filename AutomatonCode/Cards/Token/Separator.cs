@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Encode;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;

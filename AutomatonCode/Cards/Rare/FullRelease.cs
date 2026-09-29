@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
-using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
