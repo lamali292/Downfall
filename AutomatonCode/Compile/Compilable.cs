@@ -35,10 +35,19 @@ public abstract class Compilable
         fn.DynamicVars[FunctionDynamicVar.Name].BaseValue += GetSourceValue(source);
     }
 
-    protected abstract decimal GetSourceValue(CardModel card);
+    /// <summary>
+    ///     The plain scalar merged into the Function. Defaults to <see cref="GetSourceDynamicVar" />'s
+    ///     BaseValue; only Compilables with no backing var (e.g. Error To Stash's fixed 1) override it.
+    /// </summary>
+    protected virtual decimal GetSourceValue(CardModel card)
+    {
+        return GetSourceDynamicVar(card)?.BaseValue
+               ?? throw new InvalidOperationException(
+                   $"{GetType().Name} must override GetSourceDynamicVar or GetSourceValue.");
+    }
 
     /// <summary>
-    ///     The real, card-owned DynamicVar backing <see cref="GetSourceValue" />, when one exists
+    ///     The primary hook: the real, card-owned DynamicVar the compile value comes from, when one exists
     ///     (e.g. a card's own Strength power var, upgradeable via <c>WithPower(base, upgrade)</c>).
     ///     <see cref="GetDescription" /> copies its "just upgraded" state onto the throwaway compile
     ///     var so the Library's Normal/UG toggle colors the number the same way it already does for

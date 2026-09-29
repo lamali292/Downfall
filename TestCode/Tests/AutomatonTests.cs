@@ -257,6 +257,38 @@ public class AutomatonTests
             "Compile's Strength value should be colored green when viewing the card's upgraded (UG) version.");
     }
 
+    // Guard for Compilable's scalar derivation: Strength/Thorns take their merged value from the
+    // source card's DynamicVar (default GetSourceValue), Error To Stash overrides with a fixed 1.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task CompileValuesMergeOntoFunction(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        Assert.AreEqual(3, AutomatonCmd.GetMax(ctx.Player), "Setup: test assumes an Encode pile of 3.");
+
+        // BronzeCore may have left cards in the Encode pile; flush them so the next three form one Function.
+        while (ctx.Player.EncodePile.Count > 0)
+            await AutomatonCmd.EncodeCard<OilSpill>(ctx.Player, choiceCtx);
+
+        await AutomatonCmd.EncodeCard<Boost>(ctx.Player, choiceCtx);
+        await AutomatonCmd.EncodeCard<Spike>(ctx.Player, choiceCtx);
+        await AutomatonCmd.EncodeCard<OilSpill>(ctx.Player, choiceCtx);
+
+        var function = ctx.Player.Hand.OfType<FunctionCard>()
+            .FirstOrDefault(f => f.SourceCards.Any(c => c is Spike));
+        Assert.IsTrue(function != null, "Boost + Spike + Oil Spill should have compiled into a Function in hand.");
+
+        var boost = await ctx.AddCardToHand<Boost>();
+        var spike = await ctx.AddCardToHand<Spike>();
+        Assert.AreEqual(boost.DynamicVars.Power<StrengthPower>().BaseValue,
+            function!.DynamicVars["CompileStrength"].BaseValue,
+            "Compile Strength should equal the source card's Strength var.");
+        Assert.AreEqual(spike.DynamicVars.Power<ThornsPower>().BaseValue,
+            function.DynamicVars["CompileThorns"].BaseValue,
+            "Compile Thorns should equal the source card's Thorns var.");
+        Assert.AreEqual(1m, function.DynamicVars["CompileErrors"].BaseValue,
+            "Error To Stash should contribute its fixed 1.");
+    }
+
     // Regression guard: the game runs Enchantment.OnPlay (Momentum's damage increment) after
     // CardModel.OnPlay, but Encode used to compile the Function inside the card's OnPlay wrapper. A
     // Momentum-enchanted card played as the last Encode slot therefore compiled with its stale,

@@ -15,11 +15,6 @@ public abstract class CardToPileCompile<T>(PileType pileType, string varName) : 
         return DownfallCardCmd.GiveCards<T>(card.Owner, pileType, card.DynamicVars.Cards.BaseValue);
     }
 
-    protected override decimal GetSourceValue(CardModel card)
-    {
-        return GetSourceDynamicVar(card).BaseValue;
-    }
-
     protected override DynamicVar GetSourceDynamicVar(CardModel card)
     {
         return card.DynamicVars.Cards;
