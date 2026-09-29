@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Encode;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,19 +9,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Automaton.AutomatonCode.Cards.Token;
 
 [Pool(typeof(TokenCardPool))]
-public class Constructor : AutomatonCardModel, IEncodable
+public class Constructor : AutomatonCardModel
 {
     public Constructor() : base(1, CardType.Skill, CardRarity.Token, TargetType.Self)
     {
+        WithEncode<BlockEncode>();
+        WithEncode<StartBlockEncode>();
         WithBlock(5, 2);
         WithVars(new BlockVar("ExtraBlock", 5, BlockProps.card).WithUpgrade(2));
     }
 
-    public IEnumerable<Encodable> Encodings => [new BlockEncode()];
-
-    public void ApplyEncode(FunctionCard function, FunctionPosition position)
-    {
-        if (position == FunctionPosition.Start)
-            function.DynamicVars.Block.BaseValue += DynamicVars["ExtraBlock"].BaseValue;
-    }
 }

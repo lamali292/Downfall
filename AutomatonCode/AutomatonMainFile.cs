@@ -1,9 +1,11 @@
-using Automaton.AutomatonCode.Cards;
+﻿using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Localization;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Commands;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -25,20 +27,27 @@ public static class AutomatonMainFile
 
     public static void Initialize()
     {
+        // Before ModelDb.Init: the Function card takes its vars from this registry.
+        EffectRegistry.RegisterAssembly(typeof(AutomatonMainFile).Assembly);
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("encode");
         CardExecutionHooks.RegisterBefore(AutomatonCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionHooks.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
             new CompileDescriptionSource());
         BundledSubmodLocRegistry.Register(ModId);
-        VotingPoolRegistry.Register<AutomatonCardPool>(VotingPool.Automaton);
+        VotingPoolRegistry.Register<AutomatonCardPool>(VotingPool.Automaton, ModId);
         FormBoneRegistry.RegisterVoidForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
+        RegisterEncodeLocationFilter();
+    }
+
+    private static void RegisterEncodeLocationFilter()
+    {
+        CardPlayLocationCompat.RegisterInitialLocationFilter(EncodeOutcome.HideFromDiscard);
     }
 
     private static void PostModelInit()

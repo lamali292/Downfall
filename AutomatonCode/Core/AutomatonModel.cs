@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Events;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -28,5 +29,16 @@ public class AutomatonCombatModel() : CustomSingletonModel(HookType.Combat)
     {
         var modified = AutomatonHook.ModifyStashDraw(combatState, 1, player, out _);
         await StashCmd.DrawFromStash(ctx, player, modified);
+    }
+
+    /// <summary>
+    ///     Encodes the played card here rather than inside its OnPlay wrapper: the game runs
+    ///     <c>Enchantment.OnPlay</c> after <c>CardModel.OnPlay</c>, so state such as Momentum's extra
+    ///     damage is only final by now. Encoding earlier would snapshot the stale value into the Encode
+    ///     pile preview and, for the last card, into the compiled Function.
+    /// </summary>
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await EncodeOutcome.CommitAfterPlay(cardPlay.Card, ctx);
     }
 }

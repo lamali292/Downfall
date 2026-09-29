@@ -170,7 +170,7 @@
     "SNECKO-SHAPESHIFT.title": "変身",
     "SNECKO-SHAPESHIFT.description": "[gold]手札[/gold]すべてを、同じレアリティのランダムな{IfUpgraded:show:[gold]アップグレード[/gold]済みの|}[gold]他クラス[/gold]カードに[gold]変化[/gold]させる。",
     "SNECKO-SSSHARING.title": "シェアリング",
-    "SNECKO-SSSHARING.description": "すべてのプレイヤーは、ランダムな[gold]他クラス[/gold]カードを{Cards:diff()}枚[gold]手札[/gold]に加える。\nこのターン、{Cards:plural:それは|それらは}コストを支払わずにプレイできる。",
+    "SNECKO-SSSHARING.description": "すべてのプレイヤーは、ランダムな[gold]他クラス[/gold]カードを{Cards:diff()}枚[gold]手札[/gold]に加える。\nこのターン、それはコストを支払わずにプレイできる。",
     "SNECKO-MIMICRY.title": "擬態",
     "SNECKO-MIMICRY.description": "[gold]他クラス[/gold]カードをプレイするたび、ターン終了時まで[gold]筋力[/gold]{MimicryPower:diff()}を得る。",
     "SNECKO-WHIPLASH.title": "むち打ち",

@@ -35,10 +35,4 @@ public class Blightning : CollectorCardModel
         await CommonActions.Draw(this, ctx);
 
     }
-    
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
-        base.AddExtraArgsToDescription(description);
-    }
 }

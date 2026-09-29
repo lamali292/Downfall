@@ -105,15 +105,6 @@ public class CollectorEnergy : CardResource
         return card is IUsesCollectorEnergyOnly;
     }
 
-    public override bool ShouldPlay(CardModel card, AutoPlayType autoPlayType)
-    {
-        if (card.Owner.PlayerCombatState == null) return true;
-        var reserve = Get(card.Owner);
-        if (reserve <= 0) return true;
-        var cost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
-        return card.Owner.PlayerCombatState.Energy + reserve >= cost;
-    }
-    
     public bool WasSpentOn(CardModel card) => _lastSpent[card] > 0;
     public int AmountSpentOn(CardModel card) => _lastSpent[card];
 }

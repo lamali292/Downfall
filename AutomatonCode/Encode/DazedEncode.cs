@@ -9,8 +9,11 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class DazedEncode : Encodable
+public class DazedEncode : ValueEncode
 {
+    public override string Id => "DAZED_ENCODE";
+    public override int Order => 9;
+
     public override TargetType Target => TargetType.Self;
     public override CardType Type => CardType.Skill;
     public override DynamicVar FunctionDynamicVar => new("Dazed", 0);
@@ -27,10 +30,5 @@ public class DazedEncode : Encodable
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
     {
         return [HoverTipFactory.FromCard<Dazed>()];
-    }
-
-    public override DynamicVar DynamicVar(AbstractModel model)
-    {
-        return model.DynamicVars["Dazed"];
     }
 }

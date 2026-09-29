@@ -2,5 +2,5 @@
     "COLON": ": ",
     "DOWNFALL-ECHO.title": "反響",
     "DOWNFALL-ECHO.description": "[gold]エセリアル[/gold]と[gold]廃棄[/gold]が付与された複製カード。\n反響をさらに反響することはできない。",
-    "DOWNFALL-ECHO.card_title": "反響:{card}"
+    "DOWNFALL-ECHO.card_title": "反響：{card}"
 }

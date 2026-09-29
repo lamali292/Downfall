@@ -2,7 +2,6 @@ using Godot;
 
 namespace Downfall.DownfallCode.Vfx;
 
-[GlobalClass]
 public partial class NStatusPart : Control
 {
     private Tween? _foregroundTween;

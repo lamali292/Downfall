@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Automaton.AutomatonCode.Vfx;
 
-[GlobalClass]
 public partial class NAutomatonSlot : Control
 {
     private float _baseY;

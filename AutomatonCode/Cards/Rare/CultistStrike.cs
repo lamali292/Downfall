@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Encode;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,14 +9,14 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 namespace Automaton.AutomatonCode.Cards.Rare;
 
 [Pool(typeof(AutomatonCardPool))]
-public class CultistStrike : AutomatonCardModel,
-    IEncodable
+public class CultistStrike : AutomatonCardModel
 {
     private int _currentDamage = 6;
     private int _increasedDamage;
 
     public CultistStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithEncode<DamageEncode>();
         WithDamage(CurrentDamage);
         WithVar("Increase", 1, 1);
     }
@@ -47,7 +46,6 @@ public class CultistStrike : AutomatonCardModel,
         }
     }
 
-    public IEnumerable<Encodable> Encodings => [new DamageEncode()];
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

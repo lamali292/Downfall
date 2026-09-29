@@ -10,6 +10,8 @@ namespace Automaton.AutomatonCode.Compile;
 
 public class ThornsCompile : Compilable
 {
+    public override string Id => "THORNS_COMPILE";
+    public override int Order => 1;
     public override DynamicVar FunctionDynamicVar => new("CompileThorns", 0);
 
     public override Task OnCompile(CardModel card, PlayerChoiceContext ctx)
@@ -22,8 +24,8 @@ public class ThornsCompile : Compilable
         return [HoverTipFactory.FromPower<ThornsPower>()];
     }
 
-    protected override decimal GetSourceValue(CardModel card)
+    protected override DynamicVar SourceVar(CardModel card)
     {
-        return card.DynamicVars.Power<ThornsPower>().BaseValue;
+        return card.DynamicVars.Power<ThornsPower>();
     }
 }

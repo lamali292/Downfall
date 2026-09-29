@@ -1,5 +1,8 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
+using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Piles;
 using Godot;
 using MegaCrit.Sts2.Core.Context;
@@ -24,9 +27,15 @@ public partial class NEncodePile : NCreatureFollowingCardPile
     protected override bool StartHidden(Player player)
         => !LocalContext.IsMe(player) || player.Character is not Core.Automaton;
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.FromKeyword(AutomatonKeyword.Encode)];
+
     protected override HoverTip BuildHoverTip()
-        => new(new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.title"),
-            new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description"));
+    {
+        var description = new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description");
+        description.Add("Max", _localPlayer == null ? 3 : AutomatonCmd.GetMax(_localPlayer));
+        return new(new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.title"), description);
+    }
 
     protected override void OnFocus()
     {
@@ -72,7 +81,7 @@ public partial class NEncodePile : NCreatureFollowingCardPile
         if (ModelDb.Card<FunctionCard>().ToMutable() is not FunctionCard model) return null;
         if (slotCards.Count <= 0) return null;
         var player = slotCards[0].Owner;
-        model.SetSourceCards(slotCards);
+        FunctionAssembler.Assemble(model, slotCards);
         model.Owner = player;
         return AutomatonHook.ModifyCompiledFunction(player.Creature.CombatState!, model,
             player, out _);

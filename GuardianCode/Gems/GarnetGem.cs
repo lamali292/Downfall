@@ -24,6 +24,6 @@ public class GarnetGem : GemModel
         IEnumerable<Player> targetPlayers)
     {
         var effect = GuardianHook.ModifyGemEffect(CombatState, this, DynamicVars.Gem.BaseValue, Card);
-        await PowerCmd.Apply<VulnerablePower>(ctx, CombatState.Enemies, effect, Player.Creature, Card);
+        await PowerCmd.Apply<VulnerablePower>(ctx, CombatState.HittableEnemies, effect, Player.Creature, Card);
     }
 }

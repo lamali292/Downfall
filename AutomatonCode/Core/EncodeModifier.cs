@@ -48,7 +48,7 @@ public abstract class EncodeModifier : DownfallCardModifier
         if (Owner is FunctionCard)
             return text;
 
-        var title = new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText();
+        var title = new LocString("card_keywords", "AUTOMATON-ENCODE.title").GetFormattedText();
         var period = new LocString("card_keywords", "PERIOD").GetFormattedText();
         var suffix = $"[gold]{title}[/gold]{period}";
 

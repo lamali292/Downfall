@@ -1,8 +1,10 @@
 using Downfall.DownfallCode.Voting;
+using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Saves;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Downfall.TestCode;
@@ -30,6 +32,12 @@ public static class TestMainFile
 
     public static void Initialize()
     {
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(BootTimingPatch))
+            .Add(typeof(ScreenShakeTestModePatch))
+            .Add(typeof(FtueTestModePatch))
+            .PatchAll();
+
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Unit Test",
@@ -38,18 +46,19 @@ public static class TestMainFile
             CreateSubmenu = null,
             OnPress = _ => TaskHelper.RunSafely(RunTests(System.Environment.GetEnvironmentVariable(EnvFilter)))
         });
-
-        if (System.Environment.GetEnvironmentVariable(EnvRunTests) == "1")
-            MainMenuButtonRegistry.MainMenuReady += AutoRun;
     }
 
-    private static void AutoRun()
+    /// Fired via BootTimingPatch right after OneTimeInitialization.ExecuteEssential - well before
+    /// the main menu itself is ready. Only starts the automated DOWNFALL_RUN_TESTS=1 run; the
+    /// interactive "Unit Test" button is unaffected (it needs the real menu to click anyway).
+    internal static void OnEssentialReady()
     {
+        if (System.Environment.GetEnvironmentVariable(EnvRunTests) != "1") return;
         if (_autoRunStarted) return;
         _autoRunStarted = true;
-        MainMenuButtonRegistry.MainMenuReady -= AutoRun;
-        // Let the menu finish its first frame before we tear the scene tree around.
-        Callable.From(() => TaskHelper.RunSafely(AutoRunAsync())).CallDeferred();
+        // Let the current call stack (still inside NGame.GameStartup) unwind before we start
+        // creating combat state and card nodes.
+        Callable.From(() => { TaskHelper.RunSafely(AutoRunAsync()); }).CallDeferred();
     }
 
     private static async Task AutoRunAsync()
@@ -57,6 +66,7 @@ public static class TestMainFile
         var exitCode = 1;
         try
         {
+            await WaitForSaveManagerReady();
             var result = await RunTests(System.Environment.GetEnvironmentVariable(EnvFilter));
             var output = System.Environment.GetEnvironmentVariable(EnvOutput);
             if (string.IsNullOrEmpty(output))
@@ -74,6 +84,21 @@ public static class TestMainFile
             var tree = (SceneTree)Engine.GetMainLoop();
             tree.Quit(exitCode);
         }
+    }
+
+    /// NGame.GameStartup only finishes SaveManager.Instance.InitPrefsData() a few steps after
+    /// OneTimeInitialization.ExecuteEssential() returns (a profile-id/cloud-sync stretch in
+    /// between, which can yield to the engine's frame loop). BootTimingPatch fires right on
+    /// ExecuteEssential, so without this wait, some card effects that read
+    /// SaveManager.Instance.PrefsSave (e.g. TalkCmd.Play's FastMode check) would intermittently
+    /// NullReferenceException depending on whether our deferred test run got scheduled before or
+    /// after GameStartup's continuation reached InitPrefsData - see PrefsSaveManager.IsLoaded's
+    /// doc comment: Prefs is null until LoadPrefs runs, despite the non-nullable annotation.
+    private static async Task WaitForSaveManagerReady()
+    {
+        var tree = (SceneTree)Engine.GetMainLoop();
+        for (var i = 0; i < 300 && !SaveManager.Instance._prefsSaveManager.IsLoaded; i++)
+            await tree.ToSignal(tree, SceneTree.SignalName.ProcessFrame);
     }
 
     private static Task<TestRunResult> RunTests(string? filter)

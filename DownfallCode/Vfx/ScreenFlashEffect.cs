@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Helpers;
 
 namespace Downfall.DownfallCode.Vfx;
 
-[GlobalClass]
 public partial class ScreenFlashEffect : CanvasLayer
 {
     private const float FadeInDuration = 0.12f;

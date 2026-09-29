@@ -1,4 +1,4 @@
-﻿using Automaton.AutomatonCode.Encode;
+﻿using Automaton.AutomatonCode.Functions;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Patches.Localization;
@@ -25,15 +25,15 @@ public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescri
     public override PowerStackType StackType => PowerStackType.Single;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => Encodable.All.Select(e => e.FunctionDynamicVar);
+    protected override IEnumerable<DynamicVar> CanonicalVars => EffectRegistry.ValueEncodes.Select(e => e.FunctionDynamicVar);
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
+        EffectRegistry.ValueEncodes.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : []);
 
     public void AddDumbVariablesToPowerDescription(LocString description)
     {
-        var lines = (from encodable in Encodable.All
-            where encodable is not PowerEncode
+        var lines = (from encodable in EffectRegistry.ValueEncodes
+            where !encodable.EndsSequence
             where encodable.DynamicVar(this).BaseValue > 0
             select encodable.GetDescription(this).GetFormattedText()).ToList();
         description.Add("effects", string.Join("\n", lines.Where(l => !string.IsNullOrWhiteSpace(l))));
@@ -50,7 +50,7 @@ public class FullReleasePower : CustomPowerModel, IAddDumbVariablesToPowerDescri
         if (Owner.Player != player || Owner.CombatState == null) return;
 
         var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(Owner.CombatState.HittableEnemies);
-        foreach (var encodable in Encodable.All.Where(e => e is not PowerEncode))
+        foreach (var encodable in EffectRegistry.ValueEncodes.Where(e => !e.EndsSequence))
             if (encodable.DynamicVar(this).BaseValue > 0)
                 await encodable.OnPlay(this, ctx, target, null);
         Flash();

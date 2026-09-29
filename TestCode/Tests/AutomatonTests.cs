@@ -1,13 +1,23 @@
+using Automaton.AutomatonCode.Cards.Basic;
 using Automaton.AutomatonCode.Cards.Common;
 using Automaton.AutomatonCode.Cards.Rare;
+using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Cards.Uncommon;
+using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
+using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Powers;
+using Automaton.AutomatonCode.Relics;
 using BaseLib.Extensions;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models.Enchantments;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.TestCode;
 
@@ -79,5 +89,276 @@ public class AutomatonTests
         Assert.IsTrue(granted != null, "Playing the Function should grant a Full Release Power instance.");
         Assert.AreEqual(rawBlock, granted!.DynamicVars.Block.BaseValue,
             "Class Default must not scale the Block deferred through Full Release Power - only Block from a Function card actually being played.");
+    }
+
+    // Regression guard: vanilla Rebound only redirects/consumes a charge on a card that's about to
+    // be Discarded (it already leaves Exhaust cards alone since those resolve to PileType.Exhaust
+    // before Rebound ever looks at them). Encode isn't a vanilla pile concept, so an Encodable card
+    // used to still resolve to Discard at that point - Rebound "helpfully" redirected it to the draw
+    // pile and burned a charge, even though AutomatonCombatModel.AfterCardPlayed was
+    // about to forcibly move the card into the Encode pile a moment later anyway.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ReboundDoesNotConsumeChargeOnEncodedCard(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<ReboundPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        var card = await ctx.AddCardToHand<Boost>();
+        await ctx.PlayCard(card);
+
+        var remaining = ctx.Player.Creature.GetInstancedPowerAmountSum<ReboundPower>();
+        Assert.AreEqual(1, remaining,
+            "Rebound should not consume a charge when the played card is about to be Encoded instead of Discarded.");
+    }
+
+    // Companion to ReboundDoesNotConsumeChargeOnEncodedCard: makes sure the Encode-specific carve-out
+    // didn't disable Rebound outright. A card that never self-encodes (StrikeAutomaton is only
+    // player-Encodable when force-encoded, e.g. by Platinum Core) should still redirect to the draw
+    // pile and consume a charge like vanilla intends.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ReboundStillConsumesChargeOnNormalCard(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<ReboundPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        var target = ctx.Combat.HittableEnemies.First();
+        var card = await ctx.AddCardToHand<StrikeAutomaton>();
+        await ctx.PlayCard(card, target);
+
+        var remaining = ctx.Player.Creature.GetInstancedPowerAmountSum<ReboundPower>();
+        Assert.AreEqual(0, remaining,
+            "Rebound should still consume its charge and redirect a normal (non-Encoded) card to the draw pile.");
+    }
+
+    // Regression guard: vanilla dupes (History Course, Feral, ...) always cease to exist after
+    // playing instead of going anywhere - CardModel.GetResultLocationForCardPlay hardcodes
+    // PileType.None for IsDupe cards specifically so they never linger in any pile. Encode used to
+    // ignore that and stash the dupe into the Encode pile anyway (and even compile it into a
+    // Function once the pile filled up), keeping a copy alive that vanilla intends to disappear.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task DupedEncodableCardDoesNotEndUpInEncodePile(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+
+        // BronzeCore auto-encodes a Defend + Strike on turn 1 (AutomatonCode/Relics/BronzeCore.cs);
+        // play a filler card first so that unrelated batch is already resolved.
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+        var beforeCount = ctx.Player.EncodePile.Count;
+
+        var card = await ctx.AddCardToHand<Boost>();
+        var dupe = card.CreateDupeCompat();
+        await CardCmd.AutoPlay(choiceCtx, dupe, null);
+
+        Assert.AreEqual(beforeCount, ctx.Player.EncodePile.Count,
+            "A dupe of an Encodable card should not end up in the Encode pile - it should cease to exist like any other dupe.");
+    }
+
+    // Characterization (encode outcome must be one decision): a basic Strike force-encoded by
+    // Platinum Core is reported as "not Discard" to vanilla Rebound, lands in the Encode pile
+    // exactly once, and Rebound keeps its charge.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ForceEncodedStrikeIsEncodedOnceAndKeepsRebound(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>()); // flush BronzeCore's opening batch
+        await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
+        await PowerCmd.Apply<ReboundPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        var beforeCount = ctx.Player.EncodePile.Count;
+
+        var strike = await ctx.AddCardToHand<StrikeAutomaton>();
+        await ctx.PlayCard(strike, ctx.Combat.HittableEnemies.First());
+
+        Assert.AreEqual(beforeCount + 1, ctx.Player.EncodePile.Count, "A force-encoded Strike should be encoded exactly once.");
+        Assert.IsTrue(ctx.Player.EncodePile.Contains(strike), "The Strike itself should be in the Encode pile.");
+        Assert.AreEqual(1, ctx.Player.Creature.GetInstancedPowerAmountSum<ReboundPower>(),
+            "Rebound must not spend a charge on a card that is about to be force-encoded.");
+    }
+
+    // Characterization: a dupe of a force-encoded card ceases to exist like any dupe, does not
+    // enter the Encode pile, and Rebound is not consulted for it.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ForceEncodedDupeDoesNotEndUpInEncodePile(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+        await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
+        var beforeCount = ctx.Player.EncodePile.Count;
+
+        var dupe = (await ctx.AddCardToHand<StrikeAutomaton>()).CreateDupeCompat();
+        await CardCmd.AutoPlay(choiceCtx, dupe, ctx.Combat.HittableEnemies.First());
+
+        Assert.AreEqual(beforeCount, ctx.Player.EncodePile.Count,
+            "A dupe of a force-encoded card should not end up in the Encode pile.");
+    }
+
+    // Characterization: a self-encodable card that Platinum Core does not claim is encoded once,
+    // and a Rebound charge is kept, with Platinum Core present.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task EncodableCardIsEncodedOnceWithPlatinumCore(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+        await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
+        await PowerCmd.Apply<ReboundPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        var beforeCount = ctx.Player.EncodePile.Count;
+
+        var card = await ctx.AddCardToHand<Boost>();
+        await ctx.PlayCard(card);
+
+        Assert.AreEqual(beforeCount + 1, ctx.Player.EncodePile.Count, "Boost should be encoded exactly once.");
+        Assert.AreEqual(1, ctx.Player.Creature.GetInstancedPowerAmountSum<ReboundPower>(), "Rebound charge should be kept.");
+    }
+
+    // Regression guard: Bronze Orb redirects a played card's result location straight to
+    // StashPile.Stash itself, bypassing StashCmd.Run (the "one and only stash flow" every other
+    // stash entry point goes through). It used to insert at CardPilePosition.Top (front/foreground,
+    // in front of whatever's already stashed) instead of Bottom (back/background, queued after
+    // what's already there) like every other stash source.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task BronzeOrbStashesToTheBackOfThePile(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await ctx.ClearHand();
+        await PowerCmd.Apply<BronzeOrbPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        var filler = await ctx.AddCardToHand<Error>();
+        await StashCmd.Stash(choiceCtx, filler);
+        Assert.AreEqual(1, ctx.Player.StashPile.Count, "Setup: filler should be alone in the stash.");
+
+        var target = ctx.Combat.HittableEnemies.First();
+        var card = await ctx.AddCardToHand<Fortify>();
+        await ctx.PlayCard(card, target);
+
+        var stash = ctx.Player.StashPile;
+        Assert.AreEqual(2, stash.Count, "Bronze Orb should have stashed the played card alongside the filler.");
+        Assert.IsTrue(stash[0] == filler,
+            "The filler stashed before Bronze Orb fired should stay at the front of the pile.");
+        Assert.IsTrue(stash[1] == card,
+            "Bronze Orb should stash to the back of the pile (CardPilePosition.Bottom), not the front.");
+    }
+
+    // Regression guard: Compilable.GetDescription used to copy only a plain scalar
+    // into a fresh throwaway FunctionDynamicVar, discarding the source var's upgrade/highlight state
+    // (DynamicVar.WasJustUpgraded). {CompileStrength:diff()} in encode.json colors the number based
+    // on that state, so toggling a card's Normal/UG preview in the Library never changed the
+    // "Compile" line's color even though the on-card text (which reuses the card's real DynamicVars
+    // directly) colored correctly.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task CompileStrengthColorsWhenCardIsUpgraded(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Boost>();
+
+        var beforeUpgrade = new StrengthCompile().GetDescription(card, false).GetFormattedText();
+        Assert.IsTrue(!beforeUpgrade.Contains("[green]"),
+            "A non-upgraded card's Compile line should not be colored.");
+
+        card.UpgradeInternal();
+        var afterUpgrade = new StrengthCompile().GetDescription(card, false).GetFormattedText();
+        Assert.IsTrue(afterUpgrade.Contains("[green]"),
+            "Compile's Strength value should be colored green when viewing the card's upgraded (UG) version.");
+    }
+
+    // Guard for Compilable's scalar derivation: Strength/Thorns take their merged value from the
+    // source card's DynamicVar (Compilable.SourceVar), Error To Stash supplies a fixed 1.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task CompileValuesMergeOntoFunction(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        Assert.AreEqual(3, AutomatonCmd.GetMax(ctx.Player), "Setup: test assumes an Encode pile of 3.");
+
+        // BronzeCore may have left cards in the Encode pile; flush them so the next three form one Function.
+        while (ctx.Player.EncodePile.Count > 0)
+            await AutomatonCmd.EncodeCard<OilSpill>(ctx.Player, choiceCtx);
+
+        await AutomatonCmd.EncodeCard<Boost>(ctx.Player, choiceCtx);
+        await AutomatonCmd.EncodeCard<Spike>(ctx.Player, choiceCtx);
+        await AutomatonCmd.EncodeCard<OilSpill>(ctx.Player, choiceCtx);
+
+        var function = ctx.Player.Hand.OfType<FunctionCard>()
+            .FirstOrDefault(f => f.SourceCards.Any(c => c is Spike));
+        Assert.IsTrue(function != null, "Boost + Spike + Oil Spill should have compiled into a Function in hand.");
+
+        var boost = await ctx.AddCardToHand<Boost>();
+        var spike = await ctx.AddCardToHand<Spike>();
+        Assert.AreEqual(boost.DynamicVars.Power<StrengthPower>().BaseValue,
+            function!.DynamicVars["CompileStrength"].BaseValue,
+            "Compile Strength should equal the source card's Strength var.");
+        Assert.AreEqual(spike.DynamicVars.Power<ThornsPower>().BaseValue,
+            function.DynamicVars["CompileThorns"].BaseValue,
+            "Compile Thorns should equal the source card's Thorns var.");
+        Assert.AreEqual(1m, function.DynamicVars["CompileErrors"].BaseValue,
+            "Error To Stash should contribute its fixed 1.");
+    }
+
+    // Regression guard: the game runs Enchantment.OnPlay (Momentum's damage increment) after
+    // CardModel.OnPlay, but Encode used to compile the Function inside the card's OnPlay wrapper. A
+    // Momentum-enchanted card played as the last Encode slot therefore compiled with its stale,
+    // pre-increment damage, and mid-sequence the Encode pile preview lagged one card behind.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task MomentumBonusIsIncludedWhenEncodedCardCompilesLast(TestContext ctx)
+    {
+        // BronzeCore auto-encodes a Defend + Strike on turn 1; flush that batch first.
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+
+        var target = ctx.Combat.HittableEnemies.First();
+        var oilSpill = await ctx.AddCardToHand<OilSpill>();
+        CardCmd.Enchant<Momentum>(oilSpill, 3);
+        var baseDamage = oilSpill.DynamicVars.Damage.BaseValue;
+        await ctx.PlayCard(oilSpill, target);
+
+        var function = ctx.Player.Hand.OfType<FunctionCard>().FirstOrDefault(f => f.SourceCards.Contains(oilSpill));
+        Assert.IsTrue(function != null, "Boost x2 + Oil Spill should have compiled into a Function in hand.");
+        Assert.AreEqual(baseDamage + 3, function!.DynamicVars.Damage.BaseValue,
+            "Momentum's extra damage from the play that completed the Function must be part of the compiled Function.");
+    }
+
+    // Regression guard: AUTOMATON-ENCODE_PILE.description ("Encode Orb") used to hardcode the pile's
+    // max size as a literal "3" in the loc text instead of a {Max} placeholder, so it never reflected
+    // Electromagnetic Coil raising AutomatonCmd.GetMax to 4. This exercises the same LocString +
+    // AutomatonCmd.GetMax substitution NEncodePile.BuildHoverTip now uses (the Godot node itself
+    // isn't reachable from a headless CardTest - see TestCode/CLAUDE.md).
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task EncodeOrbTooltipReflectsElectromagneticCoil(TestContext ctx)
+    {
+        var withoutCoil = new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description");
+        withoutCoil.Add("Max", AutomatonCmd.GetMax(ctx.Player));
+        Assert.IsTrue(withoutCoil.GetFormattedText().Contains("3"),
+            "Without Electromagnetic Coil, the Encode Orb tooltip should still say 3.");
+
+        await RelicCmd.Obtain<ElectromagneticCoil>(ctx.Player);
+
+        var withCoil = new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description");
+        withCoil.Add("Max", AutomatonCmd.GetMax(ctx.Player));
+        var text = withCoil.GetFormattedText();
+        Assert.IsTrue(text.Contains("4"),
+            "With Electromagnetic Coil, the Encode Orb tooltip should say 4, not the hardcoded 3.");
+        Assert.IsTrue(!text.Contains("3"),
+            "With Electromagnetic Coil, the Encode Orb tooltip should no longer mention 3.");
+    }
+
+    // Encode and Compile are real CardKeywords: an encodable card carries Encode, a card with a compile
+    // effect carries Compile, and Strike/Defend (only encodable when a relic forces it) carry neither.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task EncodeAndCompileAreCardKeywords(TestContext ctx)
+    {
+        var boost = await ctx.AddCardToHand<Boost>();
+        Assert.IsTrue(boost.Keywords.Contains(AutomatonKeyword.Encode), "Boost is encodable, so it has Encode.");
+        Assert.IsTrue(boost.Keywords.Contains(AutomatonKeyword.Compile), "Boost has a compile effect, so it has Compile.");
+
+        var frontload = await ctx.AddCardToHand<Frontload>();
+        Assert.IsTrue(frontload.Keywords.Contains(AutomatonKeyword.Encode), "Frontload is encodable.");
+        Assert.IsTrue(frontload.Keywords.Contains(AutomatonKeyword.Compile), "Frontload's Retain is a compile effect.");
+
+        var strike = await ctx.AddCardToHand<StrikeAutomaton>();
+        Assert.IsTrue(!strike.Keywords.Contains(AutomatonKeyword.Encode),
+            "Strike is not encodable on play, so it must not have Encode.");
+
+        Assert.AreEqual("Encode", new LocString("card_keywords", "AUTOMATON-ENCODE.title").GetFormattedText(),
+            "Encode keyword title loc.");
+        Assert.AreEqual("Compile", new LocString("card_keywords", "AUTOMATON-COMPILE.title").GetFormattedText(),
+            "Compile keyword title loc.");
     }
 }

@@ -18,7 +18,7 @@ public class Branch : AutomatonCardModel
         WithKeywords(CardKeyword.Exhaust);
         WithBlock(6, 2);
         WithDamage(7, 2);
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

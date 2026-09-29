@@ -1,6 +1,8 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Interfaces;
 using Automaton.AutomatonCode.Piles;
 using Automaton.AutomatonCode.Relics;
@@ -48,6 +50,17 @@ public static class AutomatonCmd
         CardModel card,
         PlayerChoiceContext ctx)
     {
+        // A dupe (History Course, Feral, ...) always ceases to exist after playing instead of
+        // going anywhere - see CardModel.GetResultLocationForCardPlay. The dupe still applies its
+        // Encoding effects via AutomatonCardEffectHandler.DoBeforeOnPlayInternal like any other
+        // Encodable play; only the resulting pile placement is skipped so the transient copy
+        // vanishes instead of lingering in the Encode pile / compiling into a Function.
+        if (card.IsDupe) return null;
+
+        // Being put into the Encode pile makes a card an Encode card. Cards that are not Encode cards by
+        // default (starter Strike and Defend) become one here, whichever effect placed them.
+        if (!IsEncodable(card)) card.AddKeyword(AutomatonKeyword.Encode);
+
         var player = card.Owner;
         if (LocalContext.IsMe(player))
             Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();
@@ -84,12 +97,12 @@ public static class AutomatonCmd
         
         //NSequenceDisplay.Refresh(player);
         foreach (var cardModel in snapshot)
-            if (cardModel is ICompilable compilable)
+            if (cardModel.Keywords.Contains(AutomatonKeyword.Compile) && cardModel is ICompilable compilable)
                 foreach (var compilation in compilable.Compilations)
                     await compilation.OnCompile(cardModel, ctx);
 
         var functionCard = combatState.CreateCard<FunctionCard>(player);
-        functionCard.SetSourceCards(snapshot);
+        FunctionAssembler.Assemble(functionCard, snapshot);
         functionCard = AutomatonHook.ModifyCompiledFunction(combatState, functionCard, player, out var modifiers);
         await AutomatonHook.AfterModifyCompiledFunction(combatState, modifiers, player, functionCard);
         await Cmd.CustomScaledWait(0.1f, 0.3f);
@@ -99,28 +112,9 @@ public static class AutomatonCmd
     }
 
 
+    /// <summary>An Encode card: it can be put into a Function and is encoded when played. Detected by keyword.</summary>
     public static bool IsEncodable(CardModel card)
     {
-        return card is IEncodable { CanPlayerEncode: true };
-    }
-
-    /// <summary>
-    ///     True if playing this card will end up in the Encode pile, either normally
-    ///     (<see cref="IsEncodable"/>) or because some other listener force-encodes it (see
-    ///     <see cref="IForceEncodesCard"/>, e.g. Platinum Core on basic Strikes/Defends). Effects
-    ///     that redirect/consume "non-Encode" card plays (Bronze Orb, Summon Orb) should check this
-    ///     instead of <see cref="IsEncodable"/> so they don't fight over the same card play.
-    /// </summary>
-    public static bool WillAutoEncode(CardModel card)
-    {
-        return IsEncodable(card) ||
-               AutomatonHook.WillForceEncode(card.Owner.Creature.CombatState, card);
-    }
-
-    public static async Task EncodeEffect(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (card is not IEncodable encodable) return;
-        foreach (var encodableEncoding in encodable.Encodings)
-            await encodableEncoding.OnPlay(card, ctx, cardPlay.Target, cardPlay);
+        return card.Keywords.Contains(AutomatonKeyword.Encode);
     }
 }

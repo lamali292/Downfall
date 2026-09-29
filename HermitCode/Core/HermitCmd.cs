@@ -12,12 +12,30 @@ namespace Hermit.HermitCode.Core;
 
 public static class HermitCmd
 {
-    public static bool IsDeadOnInCurrentHandState(CardModel card)
+    /// <summary>
+    ///     The one Dead On question: is this card Dead On right now, for the play it is part of?
+    ///     <para>
+    ///         <c>IShouldTriggerDeadOn</c> sources are always re-asked live (their answer can change
+    ///         between replay instances of the same card). Hand-position Dead On is read live while
+    ///         the card is in hand, and from <see cref="DeadOnPatch" />'s pre-play snapshot once it
+    ///         sits in the Play pile (hand position is gone by then but never changes during a play).
+    ///     </para>
+    /// </summary>
+    public static bool IsDeadOn(CardModel card)
     {
-        if (card.CombatState == null) return false;
-        if (HermitHook.ShouldTriggerDeadOn(card.CombatState, card))
+        if (card.CombatState != null && HermitHook.ShouldTriggerDeadOn(card.CombatState, card))
             return true;
+        return card.Pile?.Type switch
+        {
+            PileType.Hand => IsDeadOnByHandPosition(card),
+            PileType.Play => DeadOnPatch.WasPlayedDeadOn(card),
+            _ => false
+        };
+    }
 
+    // Pure hand-position check, no hooks. Only DeadOnPatch (for its snapshot) and IsDeadOn use it.
+    internal static bool IsDeadOnByHandPosition(CardModel card)
+    {
         var handCards = PileType.Hand.GetPile(card.Owner).Cards.ToList();
         var cardIndex = handCards.IndexOf(card);
         if (cardIndex == -1)
@@ -27,18 +45,6 @@ public static class HermitCmd
         if (handSize % 2 == 0)
             return cardIndex == handSize / 2 - 1 || cardIndex == handSize / 2;
         return cardIndex == handSize / 2;
-    }
-
-    public static bool IsInDeadOnState(CardModel card)
-    {
-        return (card.Pile?.Type == PileType.Hand && IsDeadOnInCurrentHandState(card)) ||
-               (card.Pile?.Type == PileType.Play && WasThisPlayedDeadOn(card));
-    }
-
-
-    private static bool WasThisPlayedDeadOn(CardModel card)
-    {
-        return DeadOnPatch.WasPlayedDeadOn(card);
     }
 
     public static bool IsAdjacentToCurse(CardModel card)
@@ -66,7 +72,7 @@ public static class HermitCmd
 
     public static bool HasActiveDeadOnEffect(CardModel card)
     {
-        return IsInDeadOnState(card) && HasDeadOn(card);
+        return IsDeadOn(card) && HasDeadOn(card);
     }
 
     public static bool HasDeadOn(CardModel card)

@@ -1,6 +1,8 @@
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
+using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Piles;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
@@ -110,9 +112,9 @@ public partial class NFunctionDisplay : Control
         Visible = false;
 
         GetNode<MegaLabel>("%EncodeTitle").SetTextAutoSize(
-            new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText());
+            new LocString("card_keywords", "AUTOMATON-ENCODE.title").GetFormattedText());
         GetNode<MegaLabel>("%CompileTitle").SetTextAutoSize(
-            new LocString("static_hover_tips", "AUTOMATON-COMPILE.title").GetFormattedText());
+            new LocString("card_keywords", "AUTOMATON-COMPILE.title").GetFormattedText());
 
         if (_player != null)
         {
@@ -198,8 +200,8 @@ public partial class NFunctionDisplay : Control
         _title?.SetTextAutoSize(fn.Title);
         RefreshPips(cards.Count, AutomatonCmd.GetMax(_player));
 
-        _encodeText.Text = JoinLines(fn.GetEncodeLines());
-        var compile = JoinLines(fn.GetCompileLines());
+        _encodeText.Text = JoinLines(fn.GetLines(AutomatonKeyword.Encode));
+        var compile = JoinLines(fn.GetLines(AutomatonKeyword.Compile));
         _compileText.Text = compile;
         if (_compilePanel != null) _compilePanel.Visible = compile.Length > 0;
         if (_encodePanel != null) _encodePanel.Visible = _encodeText.Text.Length > 0;
@@ -241,7 +243,7 @@ public partial class NFunctionDisplay : Control
     private static FunctionCard? CreatePreviewModel(Player player, IReadOnlyList<CardModel> sourceCards)
     {
         if (ModelDb.Card<FunctionCard>().ToMutable() is not FunctionCard model) return null;
-        model.SetSourceCards(sourceCards);
+        FunctionAssembler.Assemble(model, sourceCards);
         model.Owner = player;
         return AutomatonHook.ModifyCompiledFunction(player.Creature.CombatState!, model, player, out _);
     }

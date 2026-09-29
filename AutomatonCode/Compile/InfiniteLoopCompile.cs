@@ -8,6 +8,8 @@ namespace Automaton.AutomatonCode.Compile;
 
 public class InfiniteLoopCompile : Compilable
 {
+    public override string Id => "INFINITE_LOOP_COMPILE";
+    public override int Order => 5;
     public override DynamicVar FunctionDynamicVar => new("CompileLoopCount", 0);
     public override bool MergesOnFunction => false;
 
@@ -21,5 +23,5 @@ public class InfiniteLoopCompile : Compilable
         await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, card.Owner);
     }
 
-    protected override decimal GetSourceValue(CardModel card) => card.DynamicVars["Increase"].BaseValue;
+    protected override DynamicVar SourceVar(CardModel card) => card.DynamicVars["Increase"];
 }

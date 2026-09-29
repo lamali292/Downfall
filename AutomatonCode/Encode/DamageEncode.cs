@@ -10,11 +10,23 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class DamageEncode : Encodable
+public class DamageEncode : ValueEncode
 {
+    public override string Id => "DAMAGE_ENCODE";
+    public override int Order => 2;
+
     public override TargetType Target => TargetType.AnyEnemy;
     public override CardType Type => CardType.Attack;
     public override DynamicVar FunctionDynamicVar => new DamageVar(0, DamageProps.card);
+
+    protected override decimal EnchantedBase(CardModel sourceCard)
+    {
+        var v = (DamageVar)DynamicVar(sourceCard);
+        var e = sourceCard.Enchantment;
+        if (e == null) return v.BaseValue;
+        var val = v.BaseValue + e.EnchantDamageAdditive(v.BaseValue, v.Props);
+        return val * e.EnchantDamageMultiplicative(val, v.Props);
+    }
 
     public override Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay)
     {
@@ -27,10 +39,5 @@ public class DamageEncode : Encodable
         return CompatibilityCreatureCmd.Damage(ctx, target, model.DynamicVars.Damage.BaseValue,
             DamageProps.nonCardUnpowered,
             model.Creature, null, null);
-    }
-
-    public override DynamicVar DynamicVar(AbstractModel model)
-    {
-        return model.DynamicVars.Damage;
     }
 }

@@ -19,15 +19,15 @@ public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction, IForce
     {
         WithTip<StrikeAutomaton>();
         WithTip<DefendAutomaton>();
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    // The encode itself is performed by EncodeOutcome.CommitAfterPlay (via IForceEncodesCard);
+    // the relic only shows that it was the one responsible.
+    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var card = cardPlay.Card;
-        if (!ForceEncodes(card)) return;
-        await AutomatonCmd.EncodeCard(card, ctx);
-        Flash();
+        if (ForceEncodes(cardPlay.Card)) Flash();
+        return Task.CompletedTask;
     }
 
     public bool ForceEncodes(CardModel card)

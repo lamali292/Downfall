@@ -15,7 +15,7 @@ public class ForLoop : AutomatonCardModel
     public ForLoop() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
     public override bool CanBeGeneratedInCombat => false;
     protected override Artist Artist => Artist.Get<Opal>();

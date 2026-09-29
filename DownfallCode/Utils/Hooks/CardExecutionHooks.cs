@@ -56,31 +56,3 @@ public static class CardExecutionHooks
             await cb(card, choiceContext, cardPlay);
     }
 }
-
-/*
-
-[HarmonyPatch(typeof(CardModel), "OnPlayWrapper", MethodType.Async)]
-public static class MasterPatchOnPlayWrapper
-{
-    [HarmonyTranspiler]
-    private static IEnumerable<CodeInstruction> Transpiler(
-        IEnumerable<CodeInstruction> instructions,
-        ILGenerator generator,
-        MethodBase original)
-    {
-        var OnPlayInternalMethod = AccessTools.Method(typeof(CardModel), "OnPlay")
-                           ?? throw new Exception("Registry Error: Could not find CardModel.OnPlay");
-
-        var code = AsyncMethodCall.Create(generator, instructions, original,
-            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(CardExecutionHooks.BeforeOnPlayInternal)),
-            OnPlayInternalMethod,
-            resultName: "returnIf");
-
-        code = AsyncMethodCall.Create(generator, code, original,
-            AccessTools.Method(typeof(MasterPatchOnPlayWrapper), nameof(CardExecutionHooks.AfterOnPlayInternal)),
-            afterState: OnPlayInternalMethod);
-
-        return code;
-    }
-}
-*/
