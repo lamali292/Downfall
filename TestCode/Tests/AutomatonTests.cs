@@ -1,13 +1,21 @@
+using Automaton.AutomatonCode.Cards.Basic;
 using Automaton.AutomatonCode.Cards.Common;
 using Automaton.AutomatonCode.Cards.Rare;
+using Automaton.AutomatonCode.Cards.Status;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Cards.Uncommon;
+using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Powers;
+using Automaton.AutomatonCode.Relics;
 using BaseLib.Extensions;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.TestCode;
 
@@ -79,5 +87,140 @@ public class AutomatonTests
         Assert.IsTrue(granted != null, "Playing the Function should grant a Full Release Power instance.");
         Assert.AreEqual(rawBlock, granted!.DynamicVars.Block.BaseValue,
             "Class Default must not scale the Block deferred through Full Release Power - only Block from a Function card actually being played.");
+    }
+
+    // Regression guard: vanilla Rebound only redirects/consumes a charge on a card that's about to
+    // be Discarded (it already leaves Exhaust cards alone since those resolve to PileType.Exhaust
+    // before Rebound ever looks at them). Encode isn't a vanilla pile concept, so an Encodable card
+    // used to still resolve to Discard at that point - Rebound "helpfully" redirected it to the draw
+    // pile and burned a charge, even though AutomatonCardEffectHandler.DoAfterOnPlayInternal was
+    // about to forcibly move the card into the Encode pile a moment later anyway.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ReboundDoesNotConsumeChargeOnEncodedCard(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<ReboundPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        var card = await ctx.AddCardToHand<Boost>();
+        await ctx.PlayCard(card);
+
+        var remaining = ctx.Player.Creature.GetInstancedPowerAmountSum<ReboundPower>();
+        Assert.AreEqual(1, remaining,
+            "Rebound should not consume a charge when the played card is about to be Encoded instead of Discarded.");
+    }
+
+    // Companion to ReboundDoesNotConsumeChargeOnEncodedCard: makes sure the Encode-specific carve-out
+    // didn't disable Rebound outright. A card that never self-encodes (StrikeAutomaton is only
+    // player-Encodable when force-encoded, e.g. by Platinum Core) should still redirect to the draw
+    // pile and consume a charge like vanilla intends.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ReboundStillConsumesChargeOnNormalCard(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<ReboundPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        var target = ctx.Combat.HittableEnemies.First();
+        var card = await ctx.AddCardToHand<StrikeAutomaton>();
+        await ctx.PlayCard(card, target);
+
+        var remaining = ctx.Player.Creature.GetInstancedPowerAmountSum<ReboundPower>();
+        Assert.AreEqual(0, remaining,
+            "Rebound should still consume its charge and redirect a normal (non-Encoded) card to the draw pile.");
+    }
+
+    // Regression guard: vanilla dupes (History Course, Feral, ...) always cease to exist after
+    // playing instead of going anywhere - CardModel.GetResultLocationForCardPlay hardcodes
+    // PileType.None for IsDupe cards specifically so they never linger in any pile. Encode used to
+    // ignore that and stash the dupe into the Encode pile anyway (and even compile it into a
+    // Function once the pile filled up), keeping a copy alive that vanilla intends to disappear.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task DupedEncodableCardDoesNotEndUpInEncodePile(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+
+        // BronzeCore auto-encodes a Defend + Strike on turn 1 (AutomatonCode/Relics/BronzeCore.cs);
+        // play a filler card first so that unrelated batch is already resolved.
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+        var beforeCount = ctx.Player.EncodePile.Count;
+
+        var card = await ctx.AddCardToHand<Boost>();
+        var dupe = card.CreateDupeCompat();
+        await CardCmd.AutoPlay(choiceCtx, dupe, null);
+
+        Assert.AreEqual(beforeCount, ctx.Player.EncodePile.Count,
+            "A dupe of an Encodable card should not end up in the Encode pile - it should cease to exist like any other dupe.");
+    }
+
+    // Regression guard: Bronze Orb redirects a played card's result location straight to
+    // StashPile.Stash itself, bypassing StashCmd.Run (the "one and only stash flow" every other
+    // stash entry point goes through). It used to insert at CardPilePosition.Top (front/foreground,
+    // in front of whatever's already stashed) instead of Bottom (back/background, queued after
+    // what's already there) like every other stash source.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task BronzeOrbStashesToTheBackOfThePile(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await ctx.ClearHand();
+        await PowerCmd.Apply<BronzeOrbPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        var filler = await ctx.AddCardToHand<Error>();
+        await StashCmd.Stash(choiceCtx, filler);
+        Assert.AreEqual(1, ctx.Player.StashPile.Count, "Setup: filler should be alone in the stash.");
+
+        var target = ctx.Combat.HittableEnemies.First();
+        var card = await ctx.AddCardToHand<Fortify>();
+        await ctx.PlayCard(card, target);
+
+        var stash = ctx.Player.StashPile;
+        Assert.AreEqual(2, stash.Count, "Bronze Orb should have stashed the played card alongside the filler.");
+        Assert.IsTrue(stash[0] == filler,
+            "The filler stashed before Bronze Orb fired should stay at the front of the pile.");
+        Assert.IsTrue(stash[1] == card,
+            "Bronze Orb should stash to the back of the pile (CardPilePosition.Bottom), not the front.");
+    }
+
+    // Regression guard: Compilable.GetDescription used to copy only GetSourceValue's plain scalar
+    // into a fresh throwaway FunctionDynamicVar, discarding the source var's upgrade/highlight state
+    // (DynamicVar.WasJustUpgraded). {CompileStrength:diff()} in encode.json colors the number based
+    // on that state, so toggling a card's Normal/UG preview in the Library never changed the
+    // "Compile" line's color even though the on-card text (which reuses the card's real DynamicVars
+    // directly) colored correctly.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task CompileStrengthColorsWhenCardIsUpgraded(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Boost>();
+
+        var beforeUpgrade = new StrengthCompile().GetDescription(card, false).GetFormattedText();
+        Assert.IsTrue(!beforeUpgrade.Contains("[green]"),
+            "A non-upgraded card's Compile line should not be colored.");
+
+        card.UpgradeInternal();
+        var afterUpgrade = new StrengthCompile().GetDescription(card, false).GetFormattedText();
+        Assert.IsTrue(afterUpgrade.Contains("[green]"),
+            "Compile's Strength value should be colored green when viewing the card's upgraded (UG) version.");
+    }
+
+    // Regression guard: AUTOMATON-ENCODE_PILE.description ("Encode Orb") used to hardcode the pile's
+    // max size as a literal "3" in the loc text instead of a {Max} placeholder, so it never reflected
+    // Electromagnetic Coil raising AutomatonCmd.GetMax to 4. This exercises the same LocString +
+    // AutomatonCmd.GetMax substitution NEncodePile.BuildHoverTip now uses (the Godot node itself
+    // isn't reachable from a headless CardTest - see TestCode/CLAUDE.md).
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task EncodeOrbTooltipReflectsElectromagneticCoil(TestContext ctx)
+    {
+        var withoutCoil = new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description");
+        withoutCoil.Add("Max", AutomatonCmd.GetMax(ctx.Player));
+        Assert.IsTrue(withoutCoil.GetFormattedText().Contains("3"),
+            "Without Electromagnetic Coil, the Encode Orb tooltip should still say 3.");
+
+        await RelicCmd.Obtain<ElectromagneticCoil>(ctx.Player);
+
+        var withCoil = new LocString("static_hover_tips", "AUTOMATON-ENCODE_PILE.description");
+        withCoil.Add("Max", AutomatonCmd.GetMax(ctx.Player));
+        var text = withCoil.GetFormattedText();
+        Assert.IsTrue(text.Contains("4"),
+            "With Electromagnetic Coil, the Encode Orb tooltip should say 4, not the hardcoded 3.");
+        Assert.IsTrue(!text.Contains("3"),
+            "With Electromagnetic Coil, the Encode Orb tooltip should no longer mention 3.");
     }
 }

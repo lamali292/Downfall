@@ -24,6 +24,11 @@ public class StrengthCompile : Compilable
 
     protected override decimal GetSourceValue(CardModel card)
     {
-        return card.DynamicVars.Power<StrengthPower>().BaseValue;
+        return GetSourceDynamicVar(card).BaseValue;
+    }
+
+    protected override DynamicVar GetSourceDynamicVar(CardModel card)
+    {
+        return card.DynamicVars.Power<StrengthPower>();
     }
 }

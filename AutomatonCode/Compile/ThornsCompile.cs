@@ -24,6 +24,11 @@ public class ThornsCompile : Compilable
 
     protected override decimal GetSourceValue(CardModel card)
     {
-        return card.DynamicVars.Power<ThornsPower>().BaseValue;
+        return GetSourceDynamicVar(card).BaseValue;
+    }
+
+    protected override DynamicVar GetSourceDynamicVar(CardModel card)
+    {
+        return card.DynamicVars.Power<ThornsPower>();
     }
 }

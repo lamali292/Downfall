@@ -36,8 +36,19 @@ public abstract class Compilable
     }
 
     protected abstract decimal GetSourceValue(CardModel card);
-    
-    
+
+    /// <summary>
+    ///     The real, card-owned DynamicVar backing <see cref="GetSourceValue" />, when one exists
+    ///     (e.g. a card's own Strength power var, upgradeable via <c>WithPower(base, upgrade)</c>).
+    ///     <see cref="GetDescription" /> copies its "just upgraded" state onto the throwaway compile
+    ///     var so the Library's Normal/UG toggle colors the number the same way it already does for
+    ///     Encode text and on-card text - a fresh <see cref="FunctionDynamicVar" /> with only
+    ///     <see cref="GetSourceValue" />'s plain scalar copied in never carries that state, so
+    ///     {CompileX:diff()} never highlights regardless of which version is being previewed.
+    ///     Null (the default) when the value never changes with upgrade, e.g. Error To Stash's fixed 1.
+    /// </summary>
+    protected virtual DynamicVar? GetSourceDynamicVar(CardModel card) => null;
+
     public virtual LocString GetDescription(CardModel card, bool onCard)
     {
         var description = Description;
@@ -49,7 +60,10 @@ public abstract class Compilable
         else
         {
             dynVar = FunctionDynamicVar;
-            dynVar.BaseValue = GetSourceValue(card);
+            var source = GetSourceDynamicVar(card);
+            dynVar.BaseValue = source?.BaseValue ?? GetSourceValue(card);
+            if (source is { WasJustUpgraded: true })
+                dynVar.UpgradeValueBy(0);
         }
         description.Add("OnCard", onCard);
         description.Add(dynVar);

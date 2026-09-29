@@ -48,6 +48,13 @@ public static class AutomatonCmd
         CardModel card,
         PlayerChoiceContext ctx)
     {
+        // A dupe (History Course, Feral, ...) always ceases to exist after playing instead of
+        // going anywhere - see CardModel.GetResultLocationForCardPlay. The dupe still applies its
+        // Encoding effects via AutomatonCardEffectHandler.DoBeforeOnPlayInternal like any other
+        // Encodable play; only the resulting pile placement is skipped so the transient copy
+        // vanishes instead of lingering in the Encode pile / compiling into a Function.
+        if (card.IsDupe) return null;
+
         var player = card.Owner;
         if (LocalContext.IsMe(player))
             Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();

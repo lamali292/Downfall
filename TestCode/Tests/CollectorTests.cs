@@ -203,4 +203,29 @@ public class CollectorTests
         Assert.IsTrue(allTargetsDescription.Contains("ALL enemies"),
             $"With EquipAxe, Torchhead should target all enemies, got '{allTargetsDescription}'.");
     }
+
+    // Regression guard: InevitableDemisePower's IModifyCollectorMiasmaIncrement only ever gets
+    // consulted from inside MiasmaPower's own end-of-turn trigger, which never runs without an
+    // existing Miasma instance - so the debuff used to do nothing at all against an enemy with no
+    // Miasma yet. It should grant a single stack directly instead.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task InevitableDemiseGrantsMiasmaWhenTargetHasNone(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await PowerCmd.Apply<InevitableDemisePower>(new BlockingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
+        Assert.IsTrue(!enemy.HasPower<MiasmaPower>(), "Setup: enemy should start without Miasma.");
+
+        // Cmd.Wait is a no-op under TestMode, so it never yields back to the engine's frame loop
+        // that drives the enemy-turn state machine - poll on the turn counter (a real Task.Delay
+        // does yield) until AfterSideTurnEnd has actually had a chance to run.
+        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
+        PlayerCmd.EndTurn(ctx.Player, false);
+        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
+            await Task.Delay(100);
+
+        Assert.IsTrue(enemy.HasPower<MiasmaPower>(),
+            "InevitableDemise should grant Miasma when the enemy has none, instead of doing nothing.");
+        Assert.AreEqual(1, enemy.GetInstancedPowerAmountSum<MiasmaPower>(),
+            "Should grant exactly 1 Miasma as a fallback.");
+    }
 }

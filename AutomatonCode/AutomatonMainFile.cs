@@ -1,9 +1,11 @@
 using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Localization;
+using Automaton.AutomatonCode.Patches;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Commands;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -39,6 +41,16 @@ public static class AutomatonMainFile
         FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
+        HarmonyPatches();
+    }
+
+    private static void HarmonyPatches()
+    {
+        var patcher = ModPatcher.Create(ModId, Logger);
+        patcher.Add(GameVersion.HasCardLocation
+            ? typeof(EncodeCardResultLocationNewPatch)
+            : typeof(EncodeCardResultLocationOldPatch));
+        patcher.PatchAll();
     }
 
     private static void PostModelInit()
