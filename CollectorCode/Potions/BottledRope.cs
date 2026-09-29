@@ -17,8 +17,8 @@ public class BottledRope : CollectorPotionModel
     public BottledRope() : base(PotionRarity.Common, PotionUsage.CombatOnly, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(1);
-        WithPower<VulnerablePower>(2);
-        WithPower<MiasmaPower>(3);
+        WithPower<VulnerablePower>(1);
+        WithPower<MiasmaPower>(4);
     }
     
     protected override Artist Artist => Artist.Get<Fulgur>();
