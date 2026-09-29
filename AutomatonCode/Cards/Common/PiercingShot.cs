@@ -33,7 +33,7 @@ public class PiercingShot : AutomatonCardModel
         foreach (var card in cards) CardCmd.Upgrade(card);
         if (cards.Count != 0)
         {
-            NStashDisplay.GetDisplay(Owner)?.Refresh(true);
+            // NStashDisplay.GetDisplay(Owner)?.Refresh(true);
             NStashPile.RefreshFor(Owner);
         }
     }

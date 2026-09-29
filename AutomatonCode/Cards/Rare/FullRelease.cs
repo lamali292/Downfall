@@ -14,7 +14,7 @@ public class FullRelease : AutomatonCardModel
     {
         WithEncode<PowerEncode>();
         WithCostUpgradeBy(-1);
-        WithPower<FullReleasePower>(1);
+        WithPower<FullReleasePower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
