@@ -350,7 +350,7 @@ public class AutomatonTests
 
         var frontload = await ctx.AddCardToHand<Frontload>();
         Assert.IsTrue(frontload.Keywords.Contains(AutomatonKeyword.Encode), "Frontload is encodable.");
-        Assert.IsTrue(!frontload.Keywords.Contains(AutomatonKeyword.Compile), "Frontload has no compile effect.");
+        Assert.IsTrue(frontload.Keywords.Contains(AutomatonKeyword.Compile), "Frontload's Retain is a compile effect.");
 
         var strike = await ctx.AddCardToHand<StrikeAutomaton>();
         Assert.IsTrue(!strike.Keywords.Contains(AutomatonKeyword.Encode),

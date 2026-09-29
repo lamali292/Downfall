@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Encode;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,7 +13,7 @@ public class NullPointer : AutomatonCardModel
     {
         WithEncode<BlockEncode>();
         WithEncode<DamageEncode>();
-        WithEncode<FunctionCostEncode>();
+        WithCompile<FunctionCostCompile>();
         WithDamage(10, 3);
         WithBlock(10, 3);
         WithEnergy(3);

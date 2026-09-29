@@ -221,6 +221,23 @@ public class AutomatonFunctionTests
             "Null Pointer should set the Function's cost to its Energy value.");
     }
 
+    // Retain and a fixed cost are Compile effects: the source card carries the Compile keyword and shows
+    // its own Compile line before any Function exists; the Function is only edited when it is assembled.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public Task FunctionModifiersAreCompileEffects(TestContext ctx)
+    {
+        foreach (var card in new AutomatonCardModel[] { Make<Frontload>(ctx), Make<NullPointer>(ctx) })
+        {
+            Assert.IsTrue(card.Keywords.Contains(AutomatonKeyword.Compile),
+                $"{card.GetType().Name} must carry the Compile keyword.");
+            Assert.IsTrue(card.Compilations.All(c => c is FunctionModifierCompile), "Only modifier effects registered.");
+            Assert.IsTrue(!string.IsNullOrWhiteSpace(((Automaton.AutomatonCode.Interfaces.ICompilable)card).CompileString(card)),
+                $"{card.GetType().Name} must describe its Compile effect on the card.");
+        }
+
+        return Task.CompletedTask;
+    }
+
     // Compile effects: OnCompile fires exactly once when the Function is created (not on play), and
     // the merged value equals the source card's own var.
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
@@ -302,7 +319,7 @@ public class AutomatonFunctionTests
         foreach (var e in EffectRegistry.ValueEncodes)
             Assert.IsTrue(new LocString("encode", e.GetType().GetPrefix() + e.Id + ".encode").Exists(),
                 $"{e.GetType().Name}: missing encode.json entry for Id '{e.Id}'.");
-        foreach (var e in new Encodable[] { new PowerEncode(), new RetainEncode(), new FunctionCostEncode() })
+        foreach (var e in new Encodable[] { new PowerEncode() })
             Assert.IsTrue(new LocString("encode", e.GetType().GetPrefix() + e.Id + ".compile").Exists(),
                 $"{e.GetType().Name}: missing encode.json '.compile' note for Id '{e.Id}'.");
         foreach (var c in EffectRegistry.Compilables)
