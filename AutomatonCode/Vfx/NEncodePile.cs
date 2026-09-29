@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
 using Automaton.AutomatonCode.Piles;
 using Godot;
@@ -24,6 +25,9 @@ public partial class NEncodePile : NCreatureFollowingCardPile
 
     protected override bool StartHidden(Player player)
         => !LocalContext.IsMe(player) || player.Character is not Core.Automaton;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [HoverTipFactory.FromKeyword(AutomatonKeyword.Encode)];
 
     protected override HoverTip BuildHoverTip()
     {

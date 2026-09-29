@@ -13,7 +13,7 @@ public class Assembly : AutomatonCardModel
     public Assembly() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCards(4, 2);
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
         WithKeywords(CardKeyword.Exhaust);
     }
 

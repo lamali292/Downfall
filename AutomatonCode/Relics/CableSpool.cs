@@ -19,7 +19,7 @@ public class CableSpool : AutomatonRelicModel
     public CableSpool() : base(RelicRarity.Uncommon)
     {
         WithCards(2);
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
 
 

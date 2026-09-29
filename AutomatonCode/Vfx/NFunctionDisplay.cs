@@ -110,9 +110,9 @@ public partial class NFunctionDisplay : Control
         Visible = false;
 
         GetNode<MegaLabel>("%EncodeTitle").SetTextAutoSize(
-            new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText());
+            new LocString("card_keywords", "AUTOMATON-ENCODE.title").GetFormattedText());
         GetNode<MegaLabel>("%CompileTitle").SetTextAutoSize(
-            new LocString("static_hover_tips", "AUTOMATON-COMPILE.title").GetFormattedText());
+            new LocString("card_keywords", "AUTOMATON-COMPILE.title").GetFormattedText());
 
         if (_player != null)
         {

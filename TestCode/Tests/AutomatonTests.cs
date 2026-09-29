@@ -6,6 +6,7 @@ using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Cards.Uncommon;
 using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Powers;
 using Automaton.AutomatonCode.Relics;
@@ -336,5 +337,28 @@ public class AutomatonTests
             "With Electromagnetic Coil, the Encode Orb tooltip should say 4, not the hardcoded 3.");
         Assert.IsTrue(!text.Contains("3"),
             "With Electromagnetic Coil, the Encode Orb tooltip should no longer mention 3.");
+    }
+
+    // Encode and Compile are real CardKeywords: an encodable card carries Encode, a card with a compile
+    // effect carries Compile, and Strike/Defend (only encodable when a relic forces it) carry neither.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task EncodeAndCompileAreCardKeywords(TestContext ctx)
+    {
+        var boost = await ctx.AddCardToHand<Boost>();
+        Assert.IsTrue(boost.Keywords.Contains(AutomatonKeyword.Encode), "Boost is encodable, so it has Encode.");
+        Assert.IsTrue(boost.Keywords.Contains(AutomatonKeyword.Compile), "Boost has a compile effect, so it has Compile.");
+
+        var frontload = await ctx.AddCardToHand<Frontload>();
+        Assert.IsTrue(frontload.Keywords.Contains(AutomatonKeyword.Encode), "Frontload is encodable.");
+        Assert.IsTrue(!frontload.Keywords.Contains(AutomatonKeyword.Compile), "Frontload has no compile effect.");
+
+        var strike = await ctx.AddCardToHand<StrikeAutomaton>();
+        Assert.IsTrue(!strike.Keywords.Contains(AutomatonKeyword.Encode),
+            "Strike is not encodable on play, so it must not have Encode.");
+
+        Assert.AreEqual("Encode", new LocString("card_keywords", "AUTOMATON-ENCODE.title").GetFormattedText(),
+            "Encode keyword title loc.");
+        Assert.AreEqual("Compile", new LocString("card_keywords", "AUTOMATON-COMPILE.title").GetFormattedText(),
+            "Compile keyword title loc.");
     }
 }

@@ -21,9 +21,9 @@ public abstract class
     ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
         if (AutomatonCmd.IsEncodable(this))
-            WithTip(AutomatonTip.Encode);
+            WithKeyword(AutomatonKeyword.Encode);
         if (this is ICompilable)
-            WithTip(AutomatonTip.Compile);
+            WithKeyword(AutomatonKeyword.Compile);
     }
 
 

@@ -11,7 +11,7 @@ public class CompileDescriptionSource : IExtraDescriptionSource
     {
         if (card is not ICompilable compilable) yield break;
         var text = compilable.CompileString(card);
-        var title = new LocString("static_hover_tips", "AUTOMATON-COMPILE.title").GetFormattedText();
+        var title = new LocString("card_keywords", "AUTOMATON-COMPILE.title").GetFormattedText();
         var suffix = $"[gold]{title}[/gold]";
         var compile = new LocString("encode", "AUTOMATON-COMPILE.format");
         compile.Add("compile", suffix);
