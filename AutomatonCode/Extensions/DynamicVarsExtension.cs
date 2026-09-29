@@ -8,6 +8,6 @@ public static class DynamicVarsExtension
     extension(DynamicVarSet vars)
     {
         public StashVar Stash
-            => (StashVar)vars._vars["Stash"];
+            => (StashVar)vars["Stash"];
     }
 }

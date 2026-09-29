@@ -11,7 +11,7 @@ public static class SlimeBossModelDb
     public static IEnumerable<SlimeModel> AllSlimes =>
         ModelDb.AllAbstractModelSubtypes
             .Where(t => t.IsSubclassOf(typeof(SlimeModel)))
-            .Select(t => (SlimeModel)ModelDb.Get(t));
+            .Select(t => (SlimeModel)ModelDb.GetById<AbstractModel>(ModelDb.GetId(t)));
 
 
     public static IEnumerable<SlimeModel> AllSpecialistSlimes =>
@@ -27,7 +27,7 @@ public static class SlimeBossModelDb
 
     public static T Slime<T>() where T : SlimeModel
     {
-        return ModelDb.Get<T>();
+        return ModelDb.GetById<T>(ModelDb.GetId<T>());
     }
 
     public static CardModel GetCardForSlime(SlimeModel slime)

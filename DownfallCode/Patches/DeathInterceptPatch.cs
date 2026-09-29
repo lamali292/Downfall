@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace Downfall.DownfallCode.Patches;
 
-[HarmonyPatch(typeof(CreatureCmd), nameof(CreatureCmd.KillWithoutCheckingWinCondition))]
+[HarmonyPatch(typeof(CreatureCmd), "KillWithoutCheckingWinCondition")]
 internal static class DeathInterceptPatch
 {
     [HarmonyPrefix]

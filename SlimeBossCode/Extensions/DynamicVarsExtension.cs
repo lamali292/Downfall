@@ -7,6 +7,6 @@ public static class DynamicVarsExtension
 {
     extension(DynamicVarSet vars)
     {
-        public SlimeSecondaryVar Slime => (SlimeSecondaryVar)vars._vars["Slime"];
+        public SlimeSecondaryVar Slime => (SlimeSecondaryVar)vars["Slime"];
     }
 }

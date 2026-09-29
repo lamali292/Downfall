@@ -85,7 +85,7 @@ public abstract class SlimeModel : CustomMonsterModel
 
     protected virtual void UpdatePreviewValues()
     {
-        if (IsCanonical || _creature == null) return;
+        if (IsCanonical) return;
         if (Creature is not { IsAlive: true }) return;
 
         foreach (var dynamicVar in DynamicVars.Values)

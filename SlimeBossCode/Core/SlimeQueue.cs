@@ -75,7 +75,6 @@ public static class SlimeQueue
             slimes.RemoveAt(0);
             if (!oldest.IsAlive) continue;
             await CreatureCmd.Kill(oldest);
-            player.PlayerCombatState?._pets.Remove(oldest);
             player.Creature.CombatState?.RemoveCreature(oldest);
             evicted++;
         }
@@ -97,7 +96,6 @@ public static class SlimeQueue
         if (!leading.IsAlive) return false;
 
         await CreatureCmd.Kill(leading);
-        player.PlayerCombatState?._pets.Remove(leading);
 
         Callable.From(() => RearrangeSlimeOrbRow(player)).CallDeferred();
         return true;
@@ -112,7 +110,6 @@ public static class SlimeQueue
         foreach (var slime in slimes.Where(slime => slime.IsAlive))
         {
             await CreatureCmd.Kill(slime);
-            player.PlayerCombatState?._pets.Remove(slime);
             amount++;
         }
 
