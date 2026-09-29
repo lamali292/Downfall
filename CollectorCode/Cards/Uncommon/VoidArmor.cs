@@ -1,3 +1,4 @@
+using System.Reflection;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Artists;
@@ -7,6 +8,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -29,7 +31,36 @@ public class VoidArmor : CollectorCardModel
         var a = await CommonActions.CardBlock(this, cardPlay);
         if (CombatState == null) return;
         foreach (var creature in CombatState.HittableEnemies)
-            await CreatureCmd.GainBlock(creature, a, BlockProps.cardUnpowered, cardPlay);
+        {
+            var add = 0M;
+            var mult = 1M;
+            var eB = (0M + a);
+            
+            foreach (var p in creature._powers)
+            {
+                var T = p.GetType();
+                var baseModifierInfo = typeof(AbstractModel).GetMethod("ModifyBlockAdditive")!;
+                var childModifierInfo = T.GetMethod("ModifyBlockAdditive");
+
+                if (baseModifierInfo != childModifierInfo && childModifierInfo != null)
+                {
+                    add += p.ModifyBlockAdditive(creature, 1M, BlockProps.card, null, null);
+                }
+                
+                var baseModifierInfoMultiply = typeof(AbstractModel).GetMethod("ModifyBlockMultiplicative")!;
+                MethodInfo? childModifierInfoMultiply  = T.GetMethod("ModifyBlockMultiplicative");
+                
+                if (baseModifierInfoMultiply != childModifierInfoMultiply && childModifierInfoMultiply != null)
+                {
+                    mult *= p.ModifyBlockMultiplicative(creature, 1M, BlockProps.card, null, null);
+                }
+            }
+            
+            eB += add;
+            eB *= mult;
+            
+            await CreatureCmd.GainBlock(creature, eB, BlockProps.cardUnpowered, cardPlay);
+        }
         await CommonActions.Apply<BlurPower>(ctx, this, cardPlay);
     }
 
