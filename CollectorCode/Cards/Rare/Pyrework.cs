@@ -4,7 +4,6 @@ using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 
 namespace Collector.CollectorCode.Cards.Rare;
 

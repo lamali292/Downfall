@@ -1,5 +1,4 @@
 using System.Runtime.CompilerServices;
-using Downfall.DownfallCode;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Nodes.Combat;
