@@ -191,6 +191,69 @@ public class HermitTests
         Assert.AreEqual(1, DeadOnEntries(cheat), "Cheat's own Dead On should be recorded.");
     }
 
+    // ---- Spyglass + Replay ----
+    // Discord report (Collector Beta): Spyglass's Dead On count advances once per
+    // *replay instance*, not once per physical card played. That desyncs from
+    // DeadOnPatch's snapshot, which is taken once before the whole (possibly replayed)
+    // play - so the "is this card Dead On" answer got frozen at the wrong moment.
+
+    // Dive is added first and never played until last, and enough filler cards stay in
+    // hand alongside it, so it always sits away from hand-center - only Spyglass's
+    // dynamic per-turn count (not hand-position Dead On) is exercised by these tests.
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task SpyglassReplayTriggersDeadOnOnceWhenThresholdReachedMidReplay(TestContext ctx)
+    {
+        await RelicCmd.Obtain<Spyglass>(ctx.Player);
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+
+        var dive = await ctx.AddCardToHand<Dive>();
+        dive.BaseReplayCount = 1;
+        var filler1 = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        Assert.IsTrue(!HermitCmd.IsDeadOnInCurrentHandState(dive), "Dive should not be hand-center Dead On here.");
+
+        // 1st card played this turn.
+        await ctx.PlayCard(filler1, enemy);
+
+        // 2nd physical card, replayed once (playCount 2): Spyglass's 3rd-play
+        // threshold is only reached mid-way through this card's own replay.
+        await ctx.PlayCard(dive);
+
+        AutoSlayLog.Info($"[HermitTests] spyglass replay (2nd card, +1 replay): deadOnEntries={DeadOnEntries(dive)}");
+        Assert.AreEqual(1, DeadOnEntries(dive),
+            "Dead On should trigger exactly once, on the replay instance that reaches the 3rd play.");
+    }
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task SpyglassReplayTriggersDeadOnOnlyOnceWhenCardIsThirdPlay(TestContext ctx)
+    {
+        await RelicCmd.Obtain<Spyglass>(ctx.Player);
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+
+        var dive = await ctx.AddCardToHand<Dive>();
+        dive.BaseReplayCount = 1;
+        var filler1 = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        var filler2 = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        Assert.IsTrue(!HermitCmd.IsDeadOnInCurrentHandState(dive), "Dive should not be hand-center Dead On here.");
+
+        await ctx.PlayCard(filler1, enemy);
+        await ctx.PlayCard(filler2, enemy);
+
+        // 3rd physical card, replayed once: only the FIRST instance should be Dead On,
+        // not both copies of the replay.
+        await ctx.PlayCard(dive);
+
+        AutoSlayLog.Info($"[HermitTests] spyglass replay (3rd card, +1 replay): deadOnEntries={DeadOnEntries(dive)}");
+        Assert.AreEqual(1, DeadOnEntries(dive),
+            "Dead On should trigger exactly once even though the 3rd card is replayed.");
+    }
+
     // ---- Red Scarf ----
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
