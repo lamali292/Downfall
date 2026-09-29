@@ -52,7 +52,6 @@ public class DownfallPatchManager
             .Add(typeof(DeathInterceptPatch))
             .Add(typeof(CustomPowerIconPatch))
             .Add(typeof(CardOverlayPatches))
-            .Add(typeof(AncientSeaGlassConsolePatch))
             .Add(typeof(CreatureNavigationLinkPatch))
             .Add(typeof(FindExistingInstanceForStackingPatch))
             .Add(typeof(IgnoreDexterityPatch))
@@ -65,9 +64,7 @@ public class DownfallPatchManager
             .Add(typeof(CustomSubmenuPatch))
             .Add(typeof(UnsettlingLampRegisterAllCardDebuffs))
             .Add(typeof(PersonalHivePowerExemptPatch))
-            .Add(typeof(ScrollBoxesCustomBundlePatch))
-            .Add(typeof(CardCanPlayCustomReasonPatch))
-            .Add(typeof(UnplayableReasonDialogueLinePatch));
+            .Add(typeof(ScrollBoxesCustomBundlePatch));
 
         patcher.Add(typeof(KaleidoscopePoolFilter))
             .Add(typeof(RunConfigSyncHook))
