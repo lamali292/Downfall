@@ -6,6 +6,7 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Intents;
+using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -203,4 +204,84 @@ public class CollectorTests
         Assert.IsTrue(allTargetsDescription.Contains("ALL enemies"),
             $"With EquipAxe, Torchhead should target all enemies, got '{allTargetsDescription}'.");
     }
-}
+
+    // Regression guard: CollectorCardModel injects "TorchheadTargetsAll" for every Collector card, so a
+    // Torchhead-attack card's text flips to "to ALL enemies" once EquipAxe is active without per-card overrides.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadCardDescriptionReflectsTargetingMode(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Common.AshenStrike>();
+        Assert.IsTrue(!card.GetDescriptionForPile(PileType.Hand).Contains("ALL enemies"),
+            "Without EquipAxe, the card description should not say ALL enemies.");
+
+        await PowerCmd.Apply<EquipAxePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        Assert.IsTrue(card.GetDescriptionForPile(PileType.Hand).Contains("ALL enemies"),
+            "With EquipAxe, the card description should say ALL enemies.");
+    }
+
+    // Regression guard: InevitableDemisePower's IModifyCollectorMiasmaIncrement only ever gets
+    // consulted from inside MiasmaPower's own end-of-turn trigger, which never runs without an
+    // existing Miasma instance - so the debuff used to do nothing at all against an enemy with no
+    // Miasma yet. It should grant a single stack directly instead.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task InevitableDemiseGrantsMiasmaWhenTargetHasNone(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await PowerCmd.Apply<InevitableDemisePower>(new BlockingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
+        Assert.IsTrue(!enemy.HasPower<MiasmaPower>(), "Setup: enemy should start without Miasma.");
+
+        // Cmd.Wait is a no-op under TestMode, so it never yields back to the engine's frame loop
+        // that drives the enemy-turn state machine - poll on the turn counter (a real Task.Delay
+        // does yield) until AfterSideTurnEnd has actually had a chance to run.
+        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
+        PlayerCmd.EndTurn(ctx.Player, false);
+        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
+            await Task.Delay(100);
+
+        Assert.IsTrue(enemy.HasPower<MiasmaPower>(),
+            "InevitableDemise should grant Miasma when the enemy has none, instead of doing nothing.");
+        Assert.AreEqual(1, enemy.GetInstancedPowerAmountSum<MiasmaPower>(),
+            "Should grant exactly 1 Miasma as a fallback.");
+    }
+
+    // Regression guard for Pyre state on replayed plays: DoBeforeOnPlayInternal stores the pyred card(s) on the
+    // card instance (IUsesPyredCards.PyredCards) and DoAfterPlayInternal clears them, so every replay
+    // (OnPlayWrapper's playCount loop) must pyre its own card and end with no leftover state.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task ReplayedPyreCardPyresOncePerPlayAndLeavesNoState(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var startHp = enemy.CurrentHp;
+        var lash = await ctx.AddCardToHand<FlameLash>();
+        var strikeA = await ctx.AddCardToHand<StrikeIronclad>();
+        var strikeB = await ctx.AddCardToHand<StrikeIronclad>();
+        await PowerCmd.Apply<DuplicationPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        await ctx.PlayCard(lash, enemy);
+
+        Assert.AreEqual(PileType.Exhaust, strikeA.Pile?.Type, "First play should pyre the first hand card.");
+        Assert.AreEqual(PileType.Exhaust, strikeB.Pile?.Type, "The replay should pyre its own (second) hand card.");
+        Assert.AreEqual(16, startHp - enemy.CurrentHp, "Both plays should deal FlameLash damage (8 x 2).");
+        Assert.IsTrue(!((IUsesPyredCards)lash).PyredCards.Any(), "PyredCards should be empty after the play finished.");
+    }
+
+    // A replay whose Pyre can't be paid (no other hand card left) must be cancelled, and must not reuse the
+    // previous play's pyred card.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task ReplayedPyreCardIsCancelledWhenNothingLeftToPyre(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var startHp = enemy.CurrentHp;
+        var lash = await ctx.AddCardToHand<FlameLash>();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        await PowerCmd.Apply<DuplicationPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        await ctx.PlayCard(lash, enemy);
+
+        Assert.AreEqual(PileType.Exhaust, strike.Pile?.Type, "The only other card should be pyred by the first play.");
+        Assert.AreEqual(8, startHp - enemy.CurrentHp, "Only the first play should resolve; the replay has nothing to pyre.");
+        Assert.IsTrue(!((IUsesPyredCards)lash).PyredCards.Any(), "PyredCards should not keep the first play's card.");
+    }}

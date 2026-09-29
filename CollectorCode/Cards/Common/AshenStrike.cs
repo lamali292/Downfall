@@ -33,10 +33,4 @@ public class AshenStrike : CollectorCardModel
         else 
             await DownfallCardCmd.GiveCard<Burn>(Owner, PileType.Hand);
     }
-    
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
-        base.AddExtraArgsToDescription(description);
-    }
 }

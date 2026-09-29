@@ -81,12 +81,8 @@ public class DownfallPatchManager
             ? typeof(NCardUpdatePortraitPatch)
             : typeof(NCardReloadPortraitPatch));
 
-        if (GameVersion.HasCardLocation)
-            patcher.Add(typeof(ModifyCardPlayResultLocationNewPatch))
-                .Add(typeof(AfterModifyingLocationNewPatch));
-        else
-            patcher.Add(typeof(ModifyCardPlayResultLocationOldPatch))
-                .Add(typeof(AfterModifyingLocationOldPatch));
+        foreach (var patch in CardPlayLocationCompat.PatchTypes)
+            patcher.Add(patch);
 
         // Todo : only for 0.110.1
         // /*

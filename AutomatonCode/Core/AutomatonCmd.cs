@@ -48,6 +48,13 @@ public static class AutomatonCmd
         CardModel card,
         PlayerChoiceContext ctx)
     {
+        // A dupe (History Course, Feral, ...) always ceases to exist after playing instead of
+        // going anywhere - see CardModel.GetResultLocationForCardPlay. The dupe still applies its
+        // Encoding effects via AutomatonCardEffectHandler.DoBeforeOnPlayInternal like any other
+        // Encodable play; only the resulting pile placement is skipped so the transient copy
+        // vanishes instead of lingering in the Encode pile / compiling into a Function.
+        if (card.IsDupe) return null;
+
         var player = card.Owner;
         if (LocalContext.IsMe(player))
             Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();
@@ -102,25 +109,5 @@ public static class AutomatonCmd
     public static bool IsEncodable(CardModel card)
     {
         return card is IEncodable { CanPlayerEncode: true };
-    }
-
-    /// <summary>
-    ///     True if playing this card will end up in the Encode pile, either normally
-    ///     (<see cref="IsEncodable"/>) or because some other listener force-encodes it (see
-    ///     <see cref="IForceEncodesCard"/>, e.g. Platinum Core on basic Strikes/Defends). Effects
-    ///     that redirect/consume "non-Encode" card plays (Bronze Orb, Summon Orb) should check this
-    ///     instead of <see cref="IsEncodable"/> so they don't fight over the same card play.
-    /// </summary>
-    public static bool WillAutoEncode(CardModel card)
-    {
-        return IsEncodable(card) ||
-               AutomatonHook.WillForceEncode(card.Owner.Creature.CombatState, card);
-    }
-
-    public static async Task EncodeEffect(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (card is not IEncodable encodable) return;
-        foreach (var encodableEncoding in encodable.Encodings)
-            await encodableEncoding.OnPlay(card, ctx, cardPlay.Target, cardPlay);
     }
 }

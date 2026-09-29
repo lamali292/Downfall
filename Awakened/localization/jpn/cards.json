@@ -7,7 +7,7 @@
     "AWAKENED-APHOTIC_FOUNT.title": "暗黒の泉",
     "AWAKENED-ARCANE_NESTING.description": "このカードが[gold]手札[/gold]にある間、パワーをプレイするたび、{Block:diff()}[gold]ブロック[/gold]を得る。",
     "AWAKENED-ARCANE_NESTING.title": "アルケインネスト",
-    "AWAKENED-ARCHMAGUS.description": "毎ターン、最初にプレイする呪文はもう1回プレイされる。",
+    "AWAKENED-ARCHMAGUS.description": "毎ターン、最初にプレイする呪文をもう一度プレイする。",
     "AWAKENED-ARCHMAGUS.title": "アークメイジ",
     "AWAKENED-ARTIFICE.description": "[gold]マナバーン[/gold]{ManaburnPower:diff()}を付与する。",
     "AWAKENED-ARTIFICE.title": "策略",

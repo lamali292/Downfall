@@ -43,7 +43,7 @@ public class CursedSkull : HermitCardModel
 
 public class DeadOnReplay : DownfallCardModifier
 {
-    private bool IsDeadOn => Owner != null && HermitCmd.IsInDeadOnState(Owner);
+    private bool IsDeadOn => Owner != null && HermitCmd.IsDeadOn(Owner);
     private int ModVal => Value * (Owner?.Owner.Creature.HasPower<SnipePower>() ?? false ? 2 : 1);
     public override bool ShouldGlowGold => IsDeadOn;
     public int Value { get; set; } = 1;

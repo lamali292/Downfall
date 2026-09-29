@@ -28,11 +28,5 @@ public class ScorchingRay : CollectorCardModel
             await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         }
     }
-    
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
-        base.AddExtraArgsToDescription(description);
-    }
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 }

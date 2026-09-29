@@ -23,5 +23,5 @@ public abstract class HermitCardModel
     }
 
     protected override bool ShouldGlowGoldInternal =>
-        this is IHasDeadOnEffect && HermitCmd.IsDeadOnInCurrentHandState(this);
+        this is IHasDeadOnEffect && HermitCmd.IsDeadOn(this);
 }

@@ -51,7 +51,7 @@
     "SLIMEBOSS-LEECHING_STRIKE.title": "リーチングストライク",
     "SLIMEBOSS-LEECH_ENERGY.description": "{Damage:diff()}ダメージを与える。\n[gold]泥食い[/gold]：{Energy:energyIcons()}を得て、カードを{Cards:diff()}枚引く。",
     "SLIMEBOSS-LEECH_ENERGY.title": "リーチエナジー",
-    "SLIMEBOSS-LEECH_LIFE.description": "{Damage:diff()}ダメージを与える。\nブロックされなかったダメージに等しいHPを回復する。",
+    "SLIMEBOSS-LEECH_LIFE.description": "{Damage:diff()}ダメージを与える。\nブロックされずに与えたダメージに等しいHPを回復する。",
     "SLIMEBOSS-LEECH_LIFE.title": "リーチライフ",
     "SLIMEBOSS-LEVEL_UP.description": "[gold]潜在[/gold]{PotencyPower:diff()}を得る。",
     "SLIMEBOSS-LEVEL_UP.title": "レベルアップ！",

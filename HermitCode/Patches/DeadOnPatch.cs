@@ -44,9 +44,9 @@ internal static class DeadOnPatch
         if ((int)StateField.GetValue(__instance)! != -1) return;
         var card = (CardModel)ThisField.GetValue(__instance)!;
         // Hand-position only: IShouldTriggerDeadOn sources are re-checked live per replay
-        // instance instead (see HermitCmd.IsInDeadOnState), since their answer can change
+        // instance instead (see HermitCmd.IsDeadOn), since their answer can change
         // across a single card's own replay instances while a stale snapshot here cannot.
-        WasDeadOn[card] = HermitCmd.IsDeadOnByHandPositionOnly(card);
+        WasDeadOn[card] = HermitCmd.IsDeadOnByHandPosition(card);
         WasAdjacentToCurse[card] = HermitCmd.IsAdjacentToCurseInCurrentHandState(card);
     }
 }

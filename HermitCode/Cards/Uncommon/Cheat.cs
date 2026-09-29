@@ -27,7 +27,7 @@ public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
     {
         // Snapshot taken by DeadOnPatch when this card started playing; per-card, so the
         // auto-played card below can't clobber it.
-        var isDeadOn = HermitCmd.IsInDeadOnState(this);
+        var isDeadOn = HermitCmd.IsDeadOn(this);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         var drawPile = PileType.Draw.GetPile(Owner);

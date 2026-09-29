@@ -7,6 +7,7 @@ using Collector.CollectorCode.Events;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards;
@@ -33,6 +34,16 @@ public abstract class CollectorCardModel
     
     protected bool ShouldTorcheadTargetAll => _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
     
+    /// <summary>
+    /// Every Collector card exposes "TorchheadTargetsAll" to its description so Torchhead-attack cards can
+    /// switch wording between "lowest-HP enemy" and "ALL enemies". Cards that never reference the arg are unaffected.
+    /// </summary>
+    protected override void AddExtraArgsToDescription(LocString description)
+    {
+        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
+        base.AddExtraArgsToDescription(description);
+    }
+
     protected override bool IsPlayable => !IsBlockedByMissingPyreTarget;
 
     /// <summary>True when this card has Pyre/Megapyre and there's no other hand card to exhaust for it.</summary>

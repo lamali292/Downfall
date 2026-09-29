@@ -26,11 +26,5 @@ public class SpiritLeech : CollectorCardModel
         await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
     }
-    
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
-        base.AddExtraArgsToDescription(description);
-    }
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 }

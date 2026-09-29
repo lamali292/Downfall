@@ -23,10 +23,4 @@ public class Pyrework : CollectorCardModel
     {
         await CommonActions.ApplySelf<PyreworkPower>(ctx, this);
     }
-    
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
-        base.AddExtraArgsToDescription(description);
-    }
 }

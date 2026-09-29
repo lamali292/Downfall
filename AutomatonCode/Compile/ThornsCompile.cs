@@ -22,8 +22,8 @@ public class ThornsCompile : Compilable
         return [HoverTipFactory.FromPower<ThornsPower>()];
     }
 
-    protected override decimal GetSourceValue(CardModel card)
+    protected override DynamicVar GetSourceDynamicVar(CardModel card)
     {
-        return card.DynamicVars.Power<ThornsPower>().BaseValue;
+        return card.DynamicVars.Power<ThornsPower>();
     }
 }

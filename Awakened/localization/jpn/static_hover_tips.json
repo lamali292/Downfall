@@ -4,7 +4,7 @@
     "AWAKENED-CONJURE.title": "喚起",
     "AWAKENED-CONJURE.description": "呪文書の次のカードを[gold]手札[/gold]に加える。",
     "AWAKENED-CHANT.title": "詠唱",
-    "AWAKENED-CHANT.description": "最後にプレイしたカードタイプが[gold]パワー[/gold]だった場合、詠唱を持つカードは戦闘終了まで追加効果を得る。",
+    "AWAKENED-CHANT.description": "最後にプレイしたカードが[gold]パワー[/gold]だった場合、詠唱を持つカードは戦闘終了まで追加効果を得る。",
     "AWAKENED-CHANTED.title": "詠唱済み",
     "AWAKENED-CHANTED.description": "このカードは追加効果を得ている。",
     "AWAKENED-DRAINED.title": "ドレイン",

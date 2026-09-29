@@ -21,5 +21,5 @@ public class InfiniteLoopCompile : Compilable
         await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, card.Owner);
     }
 
-    protected override decimal GetSourceValue(CardModel card) => card.DynamicVars["Increase"].BaseValue;
+    protected override DynamicVar GetSourceDynamicVar(CardModel card) => card.DynamicVars["Increase"];
 }
