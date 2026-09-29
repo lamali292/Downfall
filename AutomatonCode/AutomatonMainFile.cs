@@ -1,7 +1,6 @@
-using Automaton.AutomatonCode.Cards;
+﻿using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Localization;
-using Automaton.AutomatonCode.Patches;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Commands;
 using BaseLib.Utils;
@@ -40,16 +39,12 @@ public static class AutomatonMainFile
         FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
-        HarmonyPatches();
+        RegisterEncodeLocationFilter();
     }
 
-    private static void HarmonyPatches()
+    private static void RegisterEncodeLocationFilter()
     {
-        var patcher = ModPatcher.Create(ModId, Logger);
-        patcher.Add(GameVersion.HasCardLocation
-            ? typeof(EncodeCardResultLocationNewPatch)
-            : typeof(EncodeCardResultLocationOldPatch));
-        patcher.PatchAll();
+        CardPlayLocationCompat.RegisterInitialLocationFilter(EncodeOutcome.HideFromDiscard);
     }
 
     private static void PostModelInit()

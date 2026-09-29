@@ -152,6 +152,62 @@ public class AutomatonTests
             "A dupe of an Encodable card should not end up in the Encode pile - it should cease to exist like any other dupe.");
     }
 
+    // Characterization (encode outcome must be one decision): a basic Strike force-encoded by
+    // Platinum Core is reported as "not Discard" to vanilla Rebound, lands in the Encode pile
+    // exactly once, and Rebound keeps its charge.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ForceEncodedStrikeIsEncodedOnceAndKeepsRebound(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>()); // flush BronzeCore's opening batch
+        await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
+        await PowerCmd.Apply<ReboundPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        var beforeCount = ctx.Player.EncodePile.Count;
+
+        var strike = await ctx.AddCardToHand<StrikeAutomaton>();
+        await ctx.PlayCard(strike, ctx.Combat.HittableEnemies.First());
+
+        Assert.AreEqual(beforeCount + 1, ctx.Player.EncodePile.Count, "A force-encoded Strike should be encoded exactly once.");
+        Assert.IsTrue(ctx.Player.EncodePile.Contains(strike), "The Strike itself should be in the Encode pile.");
+        Assert.AreEqual(1, ctx.Player.Creature.GetInstancedPowerAmountSum<ReboundPower>(),
+            "Rebound must not spend a charge on a card that is about to be force-encoded.");
+    }
+
+    // Characterization: a dupe of a force-encoded card ceases to exist like any dupe, does not
+    // enter the Encode pile, and Rebound is not consulted for it.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task ForceEncodedDupeDoesNotEndUpInEncodePile(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+        await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
+        var beforeCount = ctx.Player.EncodePile.Count;
+
+        var dupe = (await ctx.AddCardToHand<StrikeAutomaton>()).CreateDupeCompat();
+        await CardCmd.AutoPlay(choiceCtx, dupe, ctx.Combat.HittableEnemies.First());
+
+        Assert.AreEqual(beforeCount, ctx.Player.EncodePile.Count,
+            "A dupe of a force-encoded card should not end up in the Encode pile.");
+    }
+
+    // Characterization: a self-encodable card that Platinum Core does not claim is encoded once,
+    // and a Rebound charge is kept, with Platinum Core present.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task EncodableCardIsEncodedOnceWithPlatinumCore(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+        await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
+        await PowerCmd.Apply<ReboundPower>(choiceCtx, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        var beforeCount = ctx.Player.EncodePile.Count;
+
+        var card = await ctx.AddCardToHand<Boost>();
+        await ctx.PlayCard(card);
+
+        Assert.AreEqual(beforeCount + 1, ctx.Player.EncodePile.Count, "Boost should be encoded exactly once.");
+        Assert.AreEqual(1, ctx.Player.Creature.GetInstancedPowerAmountSum<ReboundPower>(), "Rebound charge should be kept.");
+    }
+
     // Regression guard: Bronze Orb redirects a played card's result location straight to
     // StashPile.Stash itself, bypassing StashCmd.Run (the "one and only stash flow" every other
     // stash entry point goes through). It used to insert at CardPilePosition.Top (front/foreground,

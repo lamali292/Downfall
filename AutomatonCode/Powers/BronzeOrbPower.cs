@@ -45,7 +45,7 @@ public class BronzeOrbPower : AutomatonPowerModel, IModifyCardPlayResultLocation
         return player.Creature == Owner &&
                card.Type is CardType.Attack or CardType.Skill &&
                !card.Keywords.Contains(CardKeyword.Exhaust) &&
-               !AutomatonCmd.WillAutoEncode(card);
+               !EncodeOutcome.WillEncode(card);
     }
 
 

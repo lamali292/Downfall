@@ -100,7 +100,7 @@ public class HermitTests
         AutoSlayLog.Info($"[HermitTests] rubber bullet: moved={moved != null} dmg={moved?.DynamicVars.Damage.BaseValue} " +
                          $"ownerHand={stayed != null} deadOnEntries={DeadOnEntries(bullet)}");
 
-        if (GameVersion.HasCardLocation)
+        if (CardPlayLocationCompat.SupportsCrossPlayerRedirect)
         {
             // New engine: the Dead On redirect carries a Player, so the card actually moves.
             Assert.IsTrue(moved != null, "Rubber Bullet should be in the teammate's hand.");
@@ -136,7 +136,7 @@ public class HermitTests
                          $"dmg=[{string.Join(",", copies.Select(c => c.DynamicVars.Damage.BaseValue))}] " +
                          $"snipeLeft={ctx.Player.Creature.HasPower<SnipePower>()}");
         Assert.AreEqual(1, copies.Count, "Exactly one Rubber Bullet should exist after a double Dead On.");
-        if (GameVersion.HasCardLocation)
+        if (CardPlayLocationCompat.SupportsCrossPlayerRedirect)
             Assert.IsTrue(copies[0].Owner == teammate, "The single copy should be in the teammate's hand.");
         else
             // Old engine: Hook.ModifyCardPlayResultPileTypeAndPosition has no Player, so the

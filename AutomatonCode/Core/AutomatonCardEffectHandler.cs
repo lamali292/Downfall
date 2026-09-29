@@ -8,8 +8,7 @@ public static class AutomatonCardEffectHandler
 {
     public static async Task<bool> DoBeforeOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (AutomatonCmd.IsEncodable(card))
-            await AutomatonCmd.EncodeEffect(card, ctx, cardPlay);
+        await EncodeOutcome.RunPlayEffect(card, ctx, cardPlay);
         return true;
     }
 }

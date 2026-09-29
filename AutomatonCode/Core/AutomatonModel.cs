@@ -39,7 +39,6 @@ public class AutomatonCombatModel() : CustomSingletonModel(HookType.Combat)
     /// </summary>
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (AutomatonCmd.IsEncodable(cardPlay.Card))
-            await AutomatonCmd.EncodeCard(cardPlay.Card, ctx);
+        await EncodeOutcome.CommitAfterPlay(cardPlay.Card, ctx);
     }
 }

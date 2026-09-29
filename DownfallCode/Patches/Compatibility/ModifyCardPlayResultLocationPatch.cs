@@ -15,7 +15,7 @@ namespace Downfall.DownfallCode.Patches;
 /// <summary>
 ///     New game version only. Compiled against the OLD assembly, so CardLocation must never
 ///     appear in typed code — accessed via reflection/Traverse only.
-///     Must only be added when CardLocation exists at runtime (see DownfallPatchManager).
+///     Must only be added when CardLocation exists at runtime (see <see cref="CardPlayLocationCompat.PatchTypes" />).
 /// </summary>
 [HarmonyPatch]
 public static class ModifyCardPlayResultLocationNewPatch
@@ -62,7 +62,7 @@ public static class ModifyCardPlayResultLocationNewPatch
 ///     after the vanilla <c>Hook.ModifyCardPlayResultPileTypeAndPosition</c> loop.
 ///     The old engine has no Player in card locations, so the compat struct carries
 ///     <c>Player = null</c> and any player redirection returned by listeners is dropped.
-///     Must only be added when <c>CardLocation</c> does NOT exist (see DownfallPatchManager).
+///     Must only be added when <c>CardLocation</c> does NOT exist (see <see cref="CardPlayLocationCompat.PatchTypes" />).
 /// </summary>
 [HarmonyPatch]
 public static class ModifyCardPlayResultLocationOldPatch
@@ -91,6 +91,58 @@ public static class ModifyCardPlayResultLocationOldPatch
         var added = compatModifiers.OfType<AbstractModel>().ToList();
         if (added.Count > 0)
             modifiers = modifiers.Concat(added).ToList();
+    }
+}
+
+/// <summary>
+///     New game only: applies <see cref="CardPlayLocationCompat.RegisterInitialLocationFilter" /> filters to
+///     the location <c>CardModel.GetResultLocationForCardPlay</c> reports, before vanilla listeners see it.
+///     Accessed via reflection since CardLocation must not appear in typed code.
+/// </summary>
+[HarmonyPatch]
+internal static class CardPlayInitialLocationNewPatch
+{
+    private static readonly Type CardLocationType =
+        AccessTools.TypeByName("MegaCrit.Sts2.Core.Entities.Cards.CardLocation")!;
+
+    private static MethodBase TargetMethod()
+    {
+        return AccessTools.Method(typeof(CardModel), "GetResultLocationForCardPlay");
+    }
+
+    private static void Postfix(CardModel __instance, ref object __result)
+    {
+        var tr = Traverse.Create(__result);
+        var before = new CardLocationCompatiblity(
+            tr.Field("player").GetValue<Player>(),
+            tr.Field("pileType").GetValue<PileType>(),
+            tr.Field("position").GetValue<CardPilePosition>());
+        var after = CardPlayLocationCompat.ApplyInitialFilters(__instance, before);
+        if (after == before) return;
+        __result = Activator.CreateInstance(CardLocationType, after.Player, after.PileType, after.Position)!;
+    }
+}
+
+/// <summary>
+///     Old game only: same as <see cref="CardPlayInitialLocationNewPatch" />, but the old engine has no
+///     CardModel-side hook point, so this patches the input of the vanilla per-listener loop
+///     (<c>Hook.ModifyCardPlayResultPileTypeAndPosition</c>) instead. Positional argument: only the first
+///     four parameter names are confirmed (pileType is index 4, position index 5).
+/// </summary>
+[HarmonyPatch]
+internal static class CardPlayInitialLocationOldPatch
+{
+    private static MethodBase TargetMethod()
+    {
+        return AccessTools.Method(typeof(Hook), "ModifyCardPlayResultPileTypeAndPosition");
+    }
+
+    private static void Prefix(CardModel card, ref PileType __4, ref CardPilePosition __5)
+    {
+        var after = CardPlayLocationCompat.ApplyInitialFilters(card,
+            new CardLocationCompatiblity(card.Owner, __4, __5));
+        __4 = after.PileType;
+        __5 = after.Position;
     }
 }
 
