@@ -26,7 +26,6 @@ public class VoidArmor : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        //await CommonActions.Apply<StrengthPower>(ctx,cardPlay.Target, this, 1);
         var a = await CommonActions.CardBlock(this, cardPlay);
         if (CombatState == null) return;
         foreach (var creature in CombatState.HittableEnemies)
