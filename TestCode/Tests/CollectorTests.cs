@@ -6,6 +6,7 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Intents;
+using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -243,4 +244,44 @@ public class CollectorTests
         Assert.AreEqual(1, enemy.GetInstancedPowerAmountSum<MiasmaPower>(),
             "Should grant exactly 1 Miasma as a fallback.");
     }
-}
+
+    // Regression guard for Pyre state on replayed plays: DoBeforeOnPlayInternal stores the pyred card(s) on the
+    // card instance (IUsesPyredCards.PyredCards) and DoAfterPlayInternal clears them, so every replay
+    // (OnPlayWrapper's playCount loop) must pyre its own card and end with no leftover state.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task ReplayedPyreCardPyresOncePerPlayAndLeavesNoState(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var startHp = enemy.CurrentHp;
+        var lash = await ctx.AddCardToHand<FlameLash>();
+        var strikeA = await ctx.AddCardToHand<StrikeIronclad>();
+        var strikeB = await ctx.AddCardToHand<StrikeIronclad>();
+        await PowerCmd.Apply<DuplicationPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        await ctx.PlayCard(lash, enemy);
+
+        Assert.AreEqual(PileType.Exhaust, strikeA.Pile?.Type, "First play should pyre the first hand card.");
+        Assert.AreEqual(PileType.Exhaust, strikeB.Pile?.Type, "The replay should pyre its own (second) hand card.");
+        Assert.AreEqual(16, startHp - enemy.CurrentHp, "Both plays should deal FlameLash damage (8 x 2).");
+        Assert.IsTrue(!((IUsesPyredCards)lash).PyredCards.Any(), "PyredCards should be empty after the play finished.");
+    }
+
+    // A replay whose Pyre can't be paid (no other hand card left) must be cancelled, and must not reuse the
+    // previous play's pyred card.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task ReplayedPyreCardIsCancelledWhenNothingLeftToPyre(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var startHp = enemy.CurrentHp;
+        var lash = await ctx.AddCardToHand<FlameLash>();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        await PowerCmd.Apply<DuplicationPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        await ctx.PlayCard(lash, enemy);
+
+        Assert.AreEqual(PileType.Exhaust, strike.Pile?.Type, "The only other card should be pyred by the first play.");
+        Assert.AreEqual(8, startHp - enemy.CurrentHp, "Only the first play should resolve; the replay has nothing to pyre.");
+        Assert.IsTrue(!((IUsesPyredCards)lash).PyredCards.Any(), "PyredCards should not keep the first play's card.");
+    }}
