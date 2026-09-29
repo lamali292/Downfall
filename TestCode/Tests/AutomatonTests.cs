@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models.Enchantments;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.TestCode;
@@ -93,7 +94,7 @@ public class AutomatonTests
     // be Discarded (it already leaves Exhaust cards alone since those resolve to PileType.Exhaust
     // before Rebound ever looks at them). Encode isn't a vanilla pile concept, so an Encodable card
     // used to still resolve to Discard at that point - Rebound "helpfully" redirected it to the draw
-    // pile and burned a charge, even though AutomatonCardEffectHandler.DoAfterOnPlayInternal was
+    // pile and burned a charge, even though AutomatonCombatModel.AfterCardPlayed was
     // about to forcibly move the card into the Encode pile a moment later anyway.
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
     public async Task ReboundDoesNotConsumeChargeOnEncodedCard(TestContext ctx)
@@ -198,6 +199,31 @@ public class AutomatonTests
         var afterUpgrade = new StrengthCompile().GetDescription(card, false).GetFormattedText();
         Assert.IsTrue(afterUpgrade.Contains("[green]"),
             "Compile's Strength value should be colored green when viewing the card's upgraded (UG) version.");
+    }
+
+    // Regression guard: the game runs Enchantment.OnPlay (Momentum's damage increment) after
+    // CardModel.OnPlay, but Encode used to compile the Function inside the card's OnPlay wrapper. A
+    // Momentum-enchanted card played as the last Encode slot therefore compiled with its stale,
+    // pre-increment damage, and mid-sequence the Encode pile preview lagged one card behind.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task MomentumBonusIsIncludedWhenEncodedCardCompilesLast(TestContext ctx)
+    {
+        // BronzeCore auto-encodes a Defend + Strike on turn 1; flush that batch first.
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+        await ctx.PlayCard(await ctx.AddCardToHand<Boost>());
+
+        var target = ctx.Combat.HittableEnemies.First();
+        var oilSpill = await ctx.AddCardToHand<OilSpill>();
+        CardCmd.Enchant<Momentum>(oilSpill, 3);
+        var baseDamage = oilSpill.DynamicVars.Damage.BaseValue;
+        await ctx.PlayCard(oilSpill, target);
+
+        var function = ctx.Player.Hand.OfType<FunctionCard>().FirstOrDefault(f => f.SourceCards.Contains(oilSpill));
+        Assert.IsTrue(function != null, "Boost x2 + Oil Spill should have compiled into a Function in hand.");
+        Assert.AreEqual(baseDamage + 3, function!.DynamicVars.Damage.BaseValue,
+            "Momentum's extra damage from the play that completed the Function must be part of the compiled Function.");
     }
 
     // Regression guard: AUTOMATON-ENCODE_PILE.description ("Encode Orb") used to hardcode the pile's

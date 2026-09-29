@@ -14,7 +14,7 @@ namespace Automaton.AutomatonCode.Patches;
 ///     something other than Discard (Exhaust cards already resolve to <see cref="PileType.Exhaust" />
 ///     here), they redirect it and consume a charge. Encode isn't a vanilla pile concept, so an
 ///     Encodable card still resolves to Discard at this point even though
-///     <see cref="AutomatonCardEffectHandler.DoAfterOnPlayInternal" /> is about to forcibly move it
+///     <see cref="AutomatonCombatModel.AfterCardPlayed" /> is about to forcibly move it
 ///     into the Encode pile a moment later - Rebound "successfully" redirects a card that was never
 ///     actually going to be discarded, and wastes a charge for nothing.
 ///     Fix: report the location as <see cref="PileType.None" /> for cards that will be encoded, the

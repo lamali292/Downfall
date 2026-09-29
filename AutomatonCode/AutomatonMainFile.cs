@@ -30,7 +30,6 @@ public static class AutomatonMainFile
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("encode");
         CardExecutionHooks.RegisterBefore(AutomatonCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionHooks.RegisterAfter(AutomatonCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
