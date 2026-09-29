@@ -17,7 +17,7 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
 {
     public SlagTeam() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithTorchheadDamage(7, 4);
+        WithTorchheadDamage(7, 3);
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
