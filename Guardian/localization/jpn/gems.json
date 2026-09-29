@@ -16,7 +16,7 @@
     "GUARDIAN-DIAMOND_GEM.title": "ダイヤモンド",
     "GUARDIAN-RUTILE_GEM.title": "ルチル",
     "GUARDIAN-AQUAMARINE_GEM.description": "[gold]水晶の護り[/gold]を{Gem:diff()}枚[gold]手札[/gold]に加える。",
-    "GUARDIAN-AMBER_GEM.description": "{Gem:plural:|{Gem:diff()}回}[gold]加速[/gold]する。",
+    "GUARDIAN-AMBER_GEM.description": "{Gem:diff()}回[gold]加速[/gold]する。",
     "GUARDIAN-AMETHYST_GEM.description": "ターン終了時まですべての敵は[gold]筋力[/gold]{Gem:diff()}を失う。",
     "GUARDIAN-BISMUTH_GEM.description": "[gold]停滞[/gold]スロットを{Gem:diff()}得る。[gold]負担[/gold]。",
     "GUARDIAN-CITRINE_GEM.description": "{Gem:energyIcons()}を得る。",
