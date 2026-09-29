@@ -21,8 +21,8 @@ public static class FunctionAssembler
 
     /// <summary>Every var a Function can carry: one per Encode effect and one per Compile effect.</summary>
     public static IEnumerable<DynamicVar> CanonicalVars =>
-        Encodable.Valued.Select(e => e.FunctionDynamicVar)
-            .Concat(Compilable.All.SelectMany(c => c.FunctionDynamicVars));
+        EffectRegistry.ValueEncodes.Select(e => e.FunctionDynamicVar)
+            .Concat(EffectRegistry.Compilables.SelectMany(c => c.FunctionDynamicVars));
 
     public static void Assemble(FunctionCard function, IReadOnlyList<CardModel> sourceCards)
     {
@@ -60,7 +60,7 @@ public static class FunctionAssembler
     {
         var contributions = new List<FunctionContribution>();
 
-        foreach (var encodable in Encodable.Valued)
+        foreach (var encodable in EffectRegistry.ValueEncodes)
             contributions.Add(new FunctionContribution
             {
                 Keyword = AutomatonKeyword.Encode,
@@ -90,9 +90,9 @@ public static class FunctionAssembler
                             Line = _ => encoding.GetFunctionNote(sourceCard)?.GetFormattedText()
                         });
 
-        order = CompileOrder;
-        foreach (var compilable in Compilable.All)
+        foreach (var compilable in EffectRegistry.Compilables)
         {
+            order = CompileOrder + compilable.Order;
             if (compilable.MergesOnFunction)
             {
                 contributions.Add(new FunctionContribution
@@ -116,8 +116,6 @@ public static class FunctionAssembler
                             Line = _ => compilable.GetDescription(sourceCard, false).GetFormattedText()
                         });
             }
-
-            order++;
         }
 
         return contributions.OrderBy(c => c.Order).ToList();

@@ -11,6 +11,7 @@ namespace Automaton.AutomatonCode.Compile;
 public class StrengthCompile : Compilable
 {
     public override string Id => "STRENGTH_COMPILE";
+    public override int Order => 0;
     public override DynamicVar FunctionDynamicVar => new("CompileStrength", 0);
 
     public override Task OnCompile(CardModel card, PlayerChoiceContext ctx)

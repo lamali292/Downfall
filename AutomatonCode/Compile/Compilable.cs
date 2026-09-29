@@ -11,18 +11,11 @@ namespace Automaton.AutomatonCode.Compile;
 
 public abstract class Compilable
 {
-    public static readonly IEnumerable<Compilable> All =
-    [
-        new StrengthCompile(),
-        new ThornsCompile(),
-        new DazedToDrawCompile(),
-        new BurnToDrawCompile(),
-        new ErrorToStashCompile(),
-        new InfiniteLoopCompile()
-    ];
-
     /// <summary>Loc key part in <c>encode.json</c>: <c>&lt;MOD PREFIX&gt;&lt;Id&gt;.compile</c>. Explicit so renaming the class cannot break loc.</summary>
     public abstract string Id { get; }
+
+    /// <summary>Position in the Function's Compile list (ascending).</summary>
+    public abstract int Order { get; }
 
     protected LocString Description => new("encode", GetType().GetPrefix() + Id + ".compile");
 

@@ -9,6 +9,7 @@ namespace Automaton.AutomatonCode.Compile;
 public class ErrorToStashCompile : Compilable
 {
     public override string Id => "ERROR_TO_STASH_COMPILE";
+    public override int Order => 4;
     public override DynamicVar FunctionDynamicVar => new("CompileErrors", 0);
 
     public override Task OnCompile(CardModel card, PlayerChoiceContext ctx)

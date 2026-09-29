@@ -9,6 +9,7 @@ using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Extensions;
+using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Powers;
 using Automaton.AutomatonCode.Relics;
 using BaseLib.Extensions;
@@ -279,13 +280,18 @@ public class AutomatonFunctionTests
         Assert.IsTrue(function.GetLines(AutomatonKeyword.Compile).All(l => !string.IsNullOrWhiteSpace(l)), "No empty compile lines.");
     }
 
-    // Encode effects play in ascending Order, and Order is unique so the order is never ambiguous.
+    // Encode effects play in ascending Order and Compile effects are listed in ascending Order; Order is
+    // unique so neither is ever ambiguous.
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
-    public Task EncodeEffectsAreSortedByUniqueOrder(TestContext ctx)
+    public Task EffectsAreSortedByUniqueOrder(TestContext ctx)
     {
-        var orders = Encodable.Valued.Select(e => e.Order).ToList();
-        Assert.IsTrue(orders.SequenceEqual(orders.OrderBy(o => o)), "Encodable.Valued must be sorted by Order.");
+        var orders = EffectRegistry.ValueEncodes.Select(e => e.Order).ToList();
+        Assert.IsTrue(orders.SequenceEqual(orders.OrderBy(o => o)), "ValueEncodes must be sorted by Order.");
         Assert.AreEqual(orders.Count, orders.Distinct().Count(), "Encode effect Orders must be unique.");
+
+        var compileOrders = EffectRegistry.Compilables.Select(c => c.Order).ToList();
+        Assert.IsTrue(compileOrders.SequenceEqual(compileOrders.OrderBy(o => o)), "Compilables must be sorted by Order.");
+        Assert.AreEqual(compileOrders.Count, compileOrders.Distinct().Count(), "Compile effect Orders must be unique.");
         return Task.CompletedTask;
     }
 
@@ -293,34 +299,72 @@ public class AutomatonFunctionTests
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
     public Task EveryEffectHasItsLocEntry(TestContext ctx)
     {
-        foreach (var e in Encodable.Valued)
+        foreach (var e in EffectRegistry.ValueEncodes)
             Assert.IsTrue(new LocString("encode", e.GetType().GetPrefix() + e.Id + ".encode").Exists(),
                 $"{e.GetType().Name}: missing encode.json entry for Id '{e.Id}'.");
         foreach (var e in new Encodable[] { new PowerEncode(), new RetainEncode(), new FunctionCostEncode() })
             Assert.IsTrue(new LocString("encode", e.GetType().GetPrefix() + e.Id + ".compile").Exists(),
                 $"{e.GetType().Name}: missing encode.json '.compile' note for Id '{e.Id}'.");
-        foreach (var c in Compilable.All)
+        foreach (var c in EffectRegistry.Compilables)
             Assert.IsTrue(new LocString("encode", c.GetType().GetPrefix() + c.Id + ".compile").Exists(),
                 $"{c.GetType().Name}: missing encode.json entry for Id '{c.Id}'.");
         return Task.CompletedTask;
     }
 
-    // Registry feasibility (issue 03 / spec open item 2): scanning the assembly for concrete
-    // Encodable/Compilable subclasses finds exactly the effects the static All lists hold, so the lists
-    // can later be replaced by a reflection-filled registry without changing which vars the Function owns.
+    // The registry, filled by the Automaton's mod initializer, holds exactly the public concrete effect
+    // classes of this assembly - so adding an effect needs only the class, its loc entry and WithEncode /
+    // WithCompile on a card, never a list edit.
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
-    public Task ReflectionScanFindsEveryEffect(TestContext ctx)
+    public Task RegistryHoldsEveryPublicEffect(TestContext ctx)
     {
-        var types = typeof(Encodable).Assembly.GetTypes().Where(t => t is { IsAbstract: false, IsGenericTypeDefinition: false });
+        var types = typeof(Encodable).Assembly.GetTypes()
+            .Where(t => t is { IsPublic: true, IsAbstract: false, IsGenericTypeDefinition: false } &&
+                        t.GetConstructor(Type.EmptyTypes) != null);
         Assert.IsTrue(
             types.Where(t => t.IsSubclassOf(typeof(Encodable))).ToHashSet()
-                .SetEquals(Encodable.All.Select(e => e.GetType())),
-            "Reflection scan of Encodable subclasses must match Encodable.All.");
+                .SetEquals(EffectRegistry.Encodables.Select(e => e.GetType())),
+            "Registry Encode effects must match the public Encodable classes.");
         Assert.IsTrue(
             types.Where(t => t.IsSubclassOf(typeof(Compilable))).ToHashSet()
-                .SetEquals(Compilable.All.Select(c => c.GetType())),
-            "Reflection scan of Compilable subclasses must match Compilable.All.");
+                .SetEquals(EffectRegistry.Compilables.Select(c => c.GetType())),
+            "Registry Compile effects must match the public Compilable classes.");
         return Task.CompletedTask;
+    }
+
+    // The registry is frozen once read (the Function card has taken its vars from it), so a late
+    // registration fails loudly instead of being silently missing from the Function; re-registering
+    // something already known, or scanning the assembly again, is harmless.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public Task RegistryIsFrozenAndIdempotent(TestContext ctx)
+    {
+        var encodeCount = EffectRegistry.Encodables.Count;
+        var compileCount = EffectRegistry.Compilables.Count;
+
+        EffectRegistry.Register(new BlockEncode());
+        EffectRegistry.Register(new StrengthCompile());
+        EffectRegistry.RegisterAssembly(typeof(Encodable).Assembly);
+        Assert.AreEqual(encodeCount, EffectRegistry.Encodables.Count, "Known Encode effects must not be added twice.");
+        Assert.AreEqual(compileCount, EffectRegistry.Compilables.Count, "Known Compile effects must not be added twice.");
+
+        var threw = false;
+        try
+        {
+            EffectRegistry.Register(new LateTestEncode());
+        }
+        catch (InvalidOperationException)
+        {
+            threw = true;
+        }
+
+        Assert.IsTrue(threw, "Registering a new effect after the registry was read must throw.");
+        Assert.AreEqual(encodeCount, EffectRegistry.Encodables.Count, "A rejected registration must not change the registry.");
+        return Task.CompletedTask;
+    }
+
+    /// Private on purpose: the assembly scan only takes public classes, so this never enters the registry.
+    private sealed class LateTestEncode : Encodable
+    {
+        public override string Id => "LATE_TEST_ENCODE";
     }
 
     // A cloned Function (e.g. by Merge Conflict) has its own cloned vars; its type, target, text and play

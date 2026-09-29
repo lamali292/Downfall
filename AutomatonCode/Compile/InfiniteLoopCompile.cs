@@ -9,6 +9,7 @@ namespace Automaton.AutomatonCode.Compile;
 public class InfiniteLoopCompile : Compilable
 {
     public override string Id => "INFINITE_LOOP_COMPILE";
+    public override int Order => 5;
     public override DynamicVar FunctionDynamicVar => new("CompileLoopCount", 0);
     public override bool MergesOnFunction => false;
 

@@ -16,30 +16,6 @@ namespace Automaton.AutomatonCode.Encode;
 /// </summary>
 public abstract class Encodable
 {
-    /// <summary>Every encode effect.</summary>
-    public static readonly IReadOnlyList<Encodable> All = new Encodable[]
-    {
-        new PowerEncode(),
-        new BlockEncode(),
-        new DamageEncode(),
-        new StrengthEncode(),
-        new WeakEncode(),
-        new VulnerableEncode(),
-        new PoisonEncode(),
-        new SoulburnEncode(),
-        new EnergyEncode(),
-        new DazedEncode(),
-        new RetainEncode(),
-        new FunctionCostEncode(),
-        new StartBlockEncode(),
-        new MiddleDamageEncode(),
-        new ReplayAtEndEncode()
-    };
-
-    /// <summary>The effects that carry a value, in play order (<see cref="ValueEncode.Order" />).</summary>
-    public static readonly IReadOnlyList<ValueEncode> Valued =
-        All.OfType<ValueEncode>().OrderBy(e => e.Order).ToList();
-
     /// <summary>Loc key part in <c>encode.json</c>: <c>&lt;MOD PREFIX&gt;&lt;Id&gt;.encode</c> / <c>.compile</c>. Explicit so renaming the class cannot break loc.</summary>
     public abstract string Id { get; }
 
