@@ -13,8 +13,9 @@ namespace Automaton.AutomatonCode.Encode;
 
 public abstract class Encodable
 {
-    public static readonly IEnumerable<Encodable> All =
-    [
+    /// <summary>Every encode effect, in play order (<see cref="Order" />).</summary>
+    public static readonly IEnumerable<Encodable> All = new Encodable[]
+    {
         new PowerEncode(),
         new BlockEncode(),
         new DamageEncode(),
@@ -25,16 +26,35 @@ public abstract class Encodable
         new SoulburnEncode(),
         new EnergyEncode(),
         new DazedEncode()
-    ];
+    }.OrderBy(e => e.Order).ToList();
 
     public abstract TargetType Target { get; }
     public abstract CardType Type { get; }
 
-    private string Id => StringHelper.Slugify(GetType().Name);
+    /// <summary>Loc key part in <c>encode.json</c>: <c>&lt;MOD PREFIX&gt;&lt;Id&gt;.encode</c>. Explicit so renaming the class cannot break loc.</summary>
+    public abstract string Id { get; }
+
+    /// <summary>Fixed play order: effects fire in ascending order, independent of source-card order.</summary>
+    public abstract int Order { get; }
+
     private LocString Description => new("encode", GetType().GetPrefix() + Id + ".encode");
+
+    /// <summary>
+    ///     The single definition of this effect's var. A fresh instance is the Function's var; a card or
+    ///     power that carries this effect owns a var with the same name, which <see cref="DynamicVar" /> finds.
+    /// </summary>
     public abstract DynamicVar FunctionDynamicVar { get; }
+
     public abstract Task OnPlay(AbstractModel model, PlayerChoiceContext ctx, Creature? target, CardPlay? cardPlay);
-    public abstract DynamicVar DynamicVar(AbstractModel card);
+
+    private string? _varName;
+    private string VarName => _varName ??= FunctionDynamicVar.Name;
+
+    /// <summary>The var this effect reads on <paramref name="model" /> (a source card, a Function or a power).</summary>
+    public DynamicVar DynamicVar(AbstractModel model)
+    {
+        return model.DynamicVars[VarName];
+    }
 
     public virtual IEnumerable<IHoverTip> HoverTips(AbstractModel card)
     {
@@ -53,28 +73,15 @@ public abstract class Encodable
 
     public void ApplyEncode(FunctionCard functionCard, CardModel sourceCard)
     {
-        DynamicVar(functionCard).BaseValue += EnchantedBase(DynamicVar(sourceCard), sourceCard);
+        DynamicVar(functionCard).BaseValue += EnchantedBase(sourceCard);
     }
 
-
-    private static decimal EnchantedBase(DynamicVar v, CardModel card)
+    /// <summary>
+    ///     The source card's value merged into the Function. Effects whose var enchantments can modify
+    ///     (Block, Damage) override this to fold the enchantment in; everything else uses the plain base value.
+    /// </summary>
+    protected virtual decimal EnchantedBase(CardModel sourceCard)
     {
-        var e = card.Enchantment;
-        if (e == null) return v.BaseValue;
-        switch (v)
-        {
-            case DamageVar d:
-            {
-                var val = d.BaseValue + e.EnchantDamageAdditive(d.BaseValue, d.Props);
-                return val * e.EnchantDamageMultiplicative(val, d.Props);
-            }
-            case BlockVar b:
-            {
-                var val = b.BaseValue + e.EnchantBlockAdditive(b.BaseValue);
-                return val * e.EnchantBlockMultiplicative(val);
-            }
-            default:
-                return v.BaseValue;
-        }
+        return DynamicVar(sourceCard).BaseValue;
     }
 }

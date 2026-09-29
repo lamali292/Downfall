@@ -11,6 +11,9 @@ namespace Automaton.AutomatonCode.Encode;
 
 public class PoisonEncode : Encodable
 {
+    public override string Id => "POISON_ENCODE";
+    public override int Order => 6;
+
     public override TargetType Target => TargetType.AnyEnemy;
     public override CardType Type => CardType.Skill;
     public override DynamicVar FunctionDynamicVar => new PowerVar<PoisonPower>(0);
@@ -25,10 +28,5 @@ public class PoisonEncode : Encodable
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
     {
         return [HoverTipFactory.FromPower<PoisonPower>()];
-    }
-
-    public override DynamicVar DynamicVar(AbstractModel model)
-    {
-        return model.DynamicVars.Poison;
     }
 }

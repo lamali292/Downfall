@@ -2,7 +2,9 @@
 using Automaton.AutomatonCode.Cards.Rare;
 using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Cards.Uncommon;
+using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Powers;
 using Automaton.AutomatonCode.Relics;
@@ -272,5 +274,46 @@ public class AutomatonFunctionTests
             "Compile Strength and Compile Error-to-Stash should each get a line.");
         Assert.IsTrue(function.GetEncodeLines().All(l => !string.IsNullOrWhiteSpace(l)), "No empty encode lines.");
         Assert.IsTrue(function.GetCompileLines().All(l => !string.IsNullOrWhiteSpace(l)), "No empty compile lines.");
+    }
+
+    // Encode effects play in ascending Order, and Order is unique so the order is never ambiguous.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public Task EncodeEffectsAreSortedByUniqueOrder(TestContext ctx)
+    {
+        var orders = Encodable.All.Select(e => e.Order).ToList();
+        Assert.IsTrue(orders.SequenceEqual(orders.OrderBy(o => o)), "Encodable.All must be sorted by Order.");
+        Assert.AreEqual(orders.Count, orders.Distinct().Count(), "Encode effect Orders must be unique.");
+        return Task.CompletedTask;
+    }
+
+    // Every effect's explicit Id still resolves to its entry in encode.json (loc must not depend on class names).
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public Task EveryEffectHasItsLocEntry(TestContext ctx)
+    {
+        foreach (var e in Encodable.All)
+            Assert.IsTrue(new LocString("encode", e.GetType().GetPrefix() + e.Id + ".encode").Exists(),
+                $"{e.GetType().Name}: missing encode.json entry for Id '{e.Id}'.");
+        foreach (var c in Compilable.All)
+            Assert.IsTrue(new LocString("encode", c.GetType().GetPrefix() + c.Id + ".compile").Exists(),
+                $"{c.GetType().Name}: missing encode.json entry for Id '{c.Id}'.");
+        return Task.CompletedTask;
+    }
+
+    // Registry feasibility (issue 03 / spec open item 2): scanning the assembly for concrete
+    // Encodable/Compilable subclasses finds exactly the effects the static All lists hold, so the lists
+    // can later be replaced by a reflection-filled registry without changing which vars the Function owns.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public Task ReflectionScanFindsEveryEffect(TestContext ctx)
+    {
+        var types = typeof(Encodable).Assembly.GetTypes().Where(t => t is { IsAbstract: false, IsGenericTypeDefinition: false });
+        Assert.IsTrue(
+            types.Where(t => t.IsSubclassOf(typeof(Encodable))).ToHashSet()
+                .SetEquals(Encodable.All.Select(e => e.GetType())),
+            "Reflection scan of Encodable subclasses must match Encodable.All.");
+        Assert.IsTrue(
+            types.Where(t => t.IsSubclassOf(typeof(Compilable))).ToHashSet()
+                .SetEquals(Compilable.All.Select(c => c.GetType())),
+            "Reflection scan of Compilable subclasses must match Compilable.All.");
+        return Task.CompletedTask;
     }
 }

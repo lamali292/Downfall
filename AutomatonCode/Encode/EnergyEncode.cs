@@ -10,6 +10,9 @@ namespace Automaton.AutomatonCode.Encode;
 
 public class EnergyEncode : Encodable
 {
+    public override string Id => "ENERGY_ENCODE";
+    public override int Order => 8;
+
     public override TargetType Target => TargetType.Self;
     public override CardType Type => CardType.Skill;
     public override DynamicVar FunctionDynamicVar => new EnergyVar(0);
@@ -37,10 +40,5 @@ public class EnergyEncode : Encodable
             PotionModel potion => HoverTipFactory.ForEnergy(potion),
             _ => throw new Exception("Unknown model")
         };
-    }
-
-    public override DynamicVar DynamicVar(AbstractModel model)
-    {
-        return model.DynamicVars.Energy;
     }
 }

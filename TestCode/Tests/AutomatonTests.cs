@@ -237,7 +237,7 @@ public class AutomatonTests
             "Bronze Orb should stash to the back of the pile (CardPilePosition.Bottom), not the front.");
     }
 
-    // Regression guard: Compilable.GetDescription used to copy only GetSourceValue's plain scalar
+    // Regression guard: Compilable.GetDescription used to copy only a plain scalar
     // into a fresh throwaway FunctionDynamicVar, discarding the source var's upgrade/highlight state
     // (DynamicVar.WasJustUpgraded). {CompileStrength:diff()} in encode.json colors the number based
     // on that state, so toggling a card's Normal/UG preview in the Library never changed the
@@ -259,7 +259,7 @@ public class AutomatonTests
     }
 
     // Guard for Compilable's scalar derivation: Strength/Thorns take their merged value from the
-    // source card's DynamicVar (default GetSourceValue), Error To Stash overrides with a fixed 1.
+    // source card's DynamicVar (Compilable.SourceVar), Error To Stash supplies a fixed 1.
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
     public async Task CompileValuesMergeOntoFunction(TestContext ctx)
     {

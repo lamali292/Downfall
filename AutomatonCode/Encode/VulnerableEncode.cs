@@ -11,6 +11,9 @@ namespace Automaton.AutomatonCode.Encode;
 
 public class VulnerableEncode : Encodable
 {
+    public override string Id => "VULNERABLE_ENCODE";
+    public override int Order => 5;
+
     public override TargetType Target => TargetType.AnyEnemy;
     public override CardType Type => CardType.Skill;
     public override DynamicVar FunctionDynamicVar => new PowerVar<VulnerablePower>(0);
@@ -25,10 +28,5 @@ public class VulnerableEncode : Encodable
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
     {
         return [HoverTipFactory.FromPower<VulnerablePower>()];
-    }
-
-    public override DynamicVar DynamicVar(AbstractModel model)
-    {
-        return model.DynamicVars.Vulnerable;
     }
 }

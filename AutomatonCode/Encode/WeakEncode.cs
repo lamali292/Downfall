@@ -11,6 +11,9 @@ namespace Automaton.AutomatonCode.Encode;
 
 public class WeakEncode : Encodable
 {
+    public override string Id => "WEAK_ENCODE";
+    public override int Order => 4;
+
     public override TargetType Target => TargetType.AnyEnemy;
     public override CardType Type => CardType.Skill;
     public override DynamicVar FunctionDynamicVar => new PowerVar<WeakPower>(0);
@@ -25,10 +28,5 @@ public class WeakEncode : Encodable
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
     {
         return [HoverTipFactory.FromPower<WeakPower>()];
-    }
-
-    public override DynamicVar DynamicVar(AbstractModel model)
-    {
-        return model.DynamicVars.Weak;
     }
 }
