@@ -90,4 +90,31 @@ public class ChampTests
         Assert.AreEqual(energyBefore + 1, ctx.Player.PlayerCombatState!.Energy,
             "Dancing Master should only trigger for the first Finisher each turn.");
     }
+
+    // Crowned makes the card free via its base cost, so it also shows as free outside combat (deck view),
+    // and does not flag the cost as upgraded.
+    [CardTest(typeof(Champ.ChampCode.Core.Champ))]
+    public async Task CrownedMakesCardFreeAndNotUpgraded(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Challenge>();
+        Assert.IsTrue(card.EnergyCost.Canonical > 0, "Sanity check: Challenge should cost energy.");
+
+        CardCmd.Enchant<Crowned>(card, 1);
+
+        Assert.AreEqual(0, card.EnergyCost.GetWithModifiers(CostModifiers.None), "Crowned card should be free.");
+        Assert.IsTrue(!card.EnergyCost.WasJustUpgraded, "Crowned should not flag the cost as upgraded.");
+    }
+
+    // Cards borrowed from other pools can have a star cost; Crowned should zero it too.
+    [CardTest(typeof(Champ.ChampCode.Core.Champ))]
+    public async Task CrownedAlsoZeroesStarCost(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<MegaCrit.Sts2.Core.Models.Cards.AstralPulse>();
+        Assert.IsTrue(card.BaseStarCost > 0, "Sanity check: Astral Pulse should have a star cost.");
+
+        CardCmd.Enchant<Crowned>(card, 1);
+
+        Assert.AreEqual(0, card.BaseStarCost, "Crowned should make the star cost free.");
+        Assert.AreEqual(0, card.EnergyCost.GetWithModifiers(CostModifiers.None), "Energy cost should be free too.");
+    }
 }

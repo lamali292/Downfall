@@ -8,13 +8,12 @@ public class Crowned : DownfallEnchantmentModel<Core.Champ>
 {
     public override bool CanEnchant(CardModel card)
     {
-        return base.CanEnchant(card) && !card.EnergyCost.CostsX;
-        ;
+        return base.CanEnchant(card) && !card.EnergyCost.CostsX && !card.HasStarCostX;
     }
-
+    
     protected override void OnEnchant()
     {
-        Card.EnergyCost.UpgradeBy(-Card.EnergyCost.GetWithModifiers(CostModifiers.None));
-        Card.EnergyCost.FinalizeUpgrade();
+        Card.EnergyCost.SetCustomBaseCost(0);
+        if (Card.BaseStarCost > 0) Card.BaseStarCost = 0;
     }
 }
