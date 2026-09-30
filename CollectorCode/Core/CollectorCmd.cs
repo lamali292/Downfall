@@ -27,16 +27,6 @@ public class CollectorCmd
     
     
 
-    public static Task GainReserve(AbstractModel card)
-    {
-        return GainReserve(card.Player, card.DynamicVars.Reserve.IntValue);
-    }
-    
-    public static Task GainReserve(Player player, int amount)
-    {
-        player.PlayerCombatState?.Reserve += amount;
-        return Task.CompletedTask;
-    }
     
     public static bool TryAddCollectiblesReward(RelicModel relic, Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions, Action<CardModel>? action = null)
     {

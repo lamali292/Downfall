@@ -41,7 +41,7 @@ public class CollectorTests
     {
         var card = await ctx.AddCardToHand<Whirlwind>();
         ctx.Player.PlayerCombatState!.Energy = 2;
-        await CollectorCmd.GainReserve(ctx.Player, 3);
+        await ReserveCmd.GainReserve(ctx.Player, 3);
 
         var (energySpent, _) = await card.SpendResources();
 
@@ -72,7 +72,7 @@ public class CollectorTests
     {
         var card = await ctx.AddCardToHand<BidingBlast>();
         ctx.Player.PlayerCombatState!.Energy = 0;
-        await CollectorCmd.GainReserve(ctx.Player, 5);
+        await ReserveCmd.GainReserve(ctx.Player, 5);
 
         var (energySpent, _) = await card.SpendResources();
 
@@ -95,7 +95,7 @@ public class CollectorTests
         var startHp = enemy.CurrentHp;
         var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Common.SuckerPunch>(); // costs 2
         ctx.Player.PlayerCombatState!.Energy = 0;
-        await CollectorCmd.GainReserve(ctx.Player, 1); // Energy(0) + Reserve(1) < cost(2), and Reserve > 0
+        await ReserveCmd.GainReserve(ctx.Player, 1); // Energy(0) + Reserve(1) < cost(2), and Reserve > 0
 
         await ctx.PlayCard(card, enemy);
 
