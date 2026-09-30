@@ -1,8 +1,8 @@
 ﻿using BaseLib.Abstracts;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
-using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Events;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
@@ -38,7 +38,7 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
         || (this is IDefensiveComboCard && Owner.ShouldDefensiveComboTrigger);
 
     protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance.HasFinisher ||
-                                          Enchantment is Signature;
+                                          CombatState is { } cs && ChampHook.AllowFinisherWithoutStance(cs, this);
 
     public virtual async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

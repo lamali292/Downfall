@@ -1,11 +1,13 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Cards;
 using Champ.ChampCode.Cards.Basic;
-using Champ.ChampCode.Enchantments;
+using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.History;
 using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -76,15 +78,21 @@ public class ChampCmd
     {
         var player = cardPlay.Card.Owner;
         var m = player.ChampStance;
-        if (!m.HasFinisher) return;
+        var combatState = player.Creature.CombatState!;
+        if (!m.HasFinisher && !ChampHook.AllowFinisherWithoutStance(combatState, cardPlay.Card)) return;
 
         for (var i = 0; i < repeat; i++)
         {
-            await m.Finisher(ctx, affectsAllPlayers);
-            await ChampHook.OnFinisher(player.Creature.CombatState!, ctx, cardPlay);
+            // A Finisher played without a stance (see IAllowFinisherWithoutStance): no stance effect, but it still counts as a Finisher.
+            if (m.HasFinisher) await m.Finisher(ctx, affectsAllPlayers);
+            await ChampHook.OnFinisher(combatState, ctx, cardPlay);
+            // Recorded after the hooks so listeners can ask "is this the first Finisher this turn?" via FinisherEntry.
+            CombatManager.Instance.History.Add(combatState,
+                new FinisherEntry(cardPlay, player.Creature, combatState.RoundNumber, player.Creature.Side,
+                    CombatManager.Instance.History, combatState.Players));
         }
 
-        if (skipClear || cardPlay.Card.Enchantment is Signature) return;
+        if (skipClear || ChampHook.KeepStanceAfterFinisher(combatState, cardPlay.Card)) return;
         await ClearStance(ctx, player);
         if (m is ChampUltimateStance)
             await EnterStance<ChampUltimateStance>(ctx, player);

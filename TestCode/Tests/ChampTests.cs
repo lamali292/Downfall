@@ -1,4 +1,6 @@
+﻿using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Cards.Uncommon;
+using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -61,5 +63,31 @@ public class ChampTests
             "the character has is Basic Strike.");
         Assert.IsTrue(generated.All(c => c.Rarity == CardRarity.Basic && c.Tags.Contains(CardTag.Strike)),
             "The fallback cards should be Basic Strike.");
+    }
+
+    // Regression guard: a Finisher played without a stance via the Signature enchantment never
+    // triggered Dancing Master because PlayFinisher bailed out when the stance had no Finisher.
+    // Only the first Finisher each turn should trigger it.
+    [CardTest(typeof(Champ.ChampCode.Core.Champ))]
+    public async Task DancingMasterTriggersOnceOnSignatureFinisherWithoutStance(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await Champ.ChampCode.Core.ChampCmd.ClearStance(new BlockingPlayerChoiceContext(), ctx.Player);
+        await PowerCmd.Apply<DancingMasterPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+
+        var first = await ctx.AddCardToHand<Execute>();
+        var second = await ctx.AddCardToHand<Execute>();
+        CardCmd.Enchant<Signature>(first, 1);
+        CardCmd.Enchant<Signature>(second, 1);
+
+        var energyBefore = ctx.Player.PlayerCombatState!.Energy;
+        await ctx.PlayCard(first, enemy);
+        Assert.AreEqual(energyBefore + 1, ctx.Player.PlayerCombatState!.Energy,
+            "Dancing Master should trigger on a stanceless Signature Finisher.");
+
+        await ctx.PlayCard(second, enemy);
+        Assert.AreEqual(energyBefore + 1, ctx.Player.PlayerCombatState!.Energy,
+            "Dancing Master should only trigger for the first Finisher each turn.");
     }
 }
