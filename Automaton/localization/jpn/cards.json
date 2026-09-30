@@ -81,7 +81,7 @@
     "AUTOMATON-LIBRARY.title": "ライブラリ",
     "AUTOMATON-MAX_OUTPUT.description": "カードを{Cards:diff()}枚引く。\nターン開始時、[gold]エラー[/gold]を1枚[gold]格納[/gold]する。",
     "AUTOMATON-MAX_OUTPUT.title": "最大出力",
-    "AUTOMATON-MERGE_CONFLICT.description": "{Damage:diff()}ダメージを与える。\n次に関数を作成する時、そのコピーを1枚手札に加える。",
+    "AUTOMATON-MERGE_CONFLICT.description": "{Damage:diff()}ダメージを与える。\n次にカードを関数に統合する時、その関数のコピーを1枚[gold]手札[/gold]に加える。",
     "AUTOMATON-MERGE_CONFLICT.title": "競合をマージ",
     "AUTOMATON-MINOR_BEAM.title": "マイナービーム",
     "AUTOMATON-MUTATOR.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]手札[/gold]の状態異常を1枚選び、このカードのコピーに[gold]変化[/gold]させる。",

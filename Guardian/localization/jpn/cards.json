@@ -125,7 +125,7 @@
     "GUARDIAN-TIME_CAPACITOR.title": "タイムキャパシタ―",
     "GUARDIAN-TIME_SIFTER.description": "ターン開始時、[gold]加速[/gold]する。",
     "GUARDIAN-TIME_SIFTER.title": "タイムシフター",
-    "GUARDIAN-TWIN_SLAM.description": "{Damage:diff()}ダメージを与える。\n[gold]{IfUpgraded:show:セカンドスラム+|セカンドスラム}[/gold]を1枚手札に加える。",
+    "GUARDIAN-TWIN_SLAM.description": "{Damage:diff()}ダメージを与える。\n[gold]{IfUpgraded:show:セカンドスラム+|セカンドスラム}[/gold]を1枚[gold]手札[/gold]に加える。",
     "GUARDIAN-TWIN_SLAM.title": "ツインスラム",
     "GUARDIAN-VENT_STEAM.description": "すべての敵に[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。",
     "GUARDIAN-VENT_STEAM.title": "蒸気解放",

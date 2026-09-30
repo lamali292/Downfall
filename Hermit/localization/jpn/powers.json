@@ -62,7 +62,7 @@
     "HERMIT-SMOKING_BARREL_POWER.description": "[gold]命中[/gold]効果を発動するたび、[gold]活力[/gold][blue]1[/blue]を得る。",
     "HERMIT-SMOKING_BARREL_POWER.smartDescription": "[gold]命中[/gold]効果を発動するたび、[gold]活力[/gold][blue]{Amount}[/blue]を得る。",
     "HERMIT-SMOKING_BARREL_POWER.title": "煙る銃口",
-    "HERMIT-MAGAZINE_POWER.title": "弾倉",
+    "HERMIT-MAGAZINE_POWER.title": "マガジン",
     "HERMIT-MAGAZINE_POWER.description": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン、最初にプレイする[gold]基本[/gold][gold]ストライク[/gold]が追加ダメージを与える。",
     "HERMIT-MAGAZINE_POWER.smartDescription": "[gold]基本[/gold][gold]ストライク[/gold]と[gold]防御[/gold]が[gold]保留[/gold]を得る。\n毎ターン、最初にプレイする[gold]基本[/gold][gold]ストライク[/gold]が追加で[blue]{Amount}[/blue]ダメージを与える。",
     "HERMIT-HIGH_NOON_DEFEND_POWER.title": "真昼の決闘+",
