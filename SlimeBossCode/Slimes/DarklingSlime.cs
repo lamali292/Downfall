@@ -17,13 +17,11 @@ public class DarklingSlime : SlimeModel, IAfterCommand
         new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
-    // todo : change so this slime only visually stacks
-
     public override SlimeType SlimeType => SlimeType.Counter;
 
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(SlimeAmount).FromSlime(this);
         attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         return attack.Execute(ctx);
     }

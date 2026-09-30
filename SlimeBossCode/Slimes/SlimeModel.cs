@@ -13,9 +13,11 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
+using SlimeBoss.SlimeBossCode.Vfx;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
@@ -75,6 +77,8 @@ public abstract class SlimeModel : CustomMonsterModel
     protected virtual void SlimeAmountChanged(int oldValue, int newValue)
     {
         SlimeBossMainFile.Logger.Info($"Slimecount: {oldValue} -> {newValue}");
+        if (NCombatRoom.Instance?.GetCreatureNode(Creature)?.Visuals is NMultiSlimeVisuals visuals)
+            visuals.SetSlimeCount(newValue);
     }
 
     public virtual SlimeType SlimeType => SlimeType.Single;

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_q3lam"]
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NMultiSlimeVisuals.cs" id="1_q3lam"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_darkling.tscn" id="2_ipaxr"]
 
 [node name="DarklingSlime" type="Node2D"]
