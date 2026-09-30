@@ -36,15 +36,8 @@ public static class HermitCmd
     // Pure hand-position check, no hooks. Only DeadOnPatch (for its snapshot) and IsDeadOn use it.
     internal static bool IsDeadOnByHandPosition(CardModel card)
     {
-        var handCards = PileType.Hand.GetPile(card.Owner).Cards.ToList();
-        var cardIndex = handCards.IndexOf(card);
-        if (cardIndex == -1)
-            return false;
-
-        var handSize = handCards.Count;
-        if (handSize % 2 == 0)
-            return cardIndex == handSize / 2 - 1 || cardIndex == handSize / 2;
-        return cardIndex == handSize / 2;
+        var hand = PileType.Hand.GetPile(card.Owner).Cards.ToList();
+        return HandGeometry.IsCenter(hand, card);
     }
 
     public static bool IsAdjacentToCurse(CardModel card)
@@ -62,12 +55,7 @@ public static class HermitCmd
     public static bool IsAdjacentToCurseInCurrentHandState(CardModel cardModel)
     {
         var hand = PileType.Hand.GetPile(cardModel.Owner).Cards.ToList();
-        var idx = hand.IndexOf(cardModel);
-        if (idx == -1) return false;
-
-        var leftIsCurse = idx > 0 && hand[idx - 1].Type == CardType.Curse;
-        var rightIsCurse = idx < hand.Count - 1 && hand[idx + 1].Type == CardType.Curse;
-        return leftIsCurse || rightIsCurse;
+        return HandGeometry.IsAdjacentToMatch(hand, cardModel, c => c.Type == CardType.Curse);
     }
 
     public static bool HasActiveDeadOnEffect(CardModel card)
