@@ -97,7 +97,7 @@ public static class TestMainFile
     private static async Task WaitForSaveManagerReady()
     {
         var tree = (SceneTree)Engine.GetMainLoop();
-        for (var i = 0; i < 300 && !SaveManager.Instance._prefsSaveManager.IsLoaded; i++)
+        for (var i = 0; i < 300 && !SaveManager.Instance.IsPrefsLoaded; i++)
             await tree.ToSignal(tree, SceneTree.SignalName.ProcessFrame);
     }
 

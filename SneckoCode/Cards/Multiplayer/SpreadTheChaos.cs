@@ -20,7 +20,7 @@ public class SpreadTheChaos : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = cardPlay.Target?.Player?
-            .Hand.OrderByDescending(e => e.EnergyCost.GetResolved())
+            .Hand.Where(e => !e.EnergyCost.CostsX).OrderByDescending(e => e.EnergyCost.GetAmountToSpend())
             .Take(DynamicVars["Muddle"].IntValue);
         if (cards == null) return;
         await SneckoCmd.Muddle(ctx, cards, this);

@@ -15,7 +15,7 @@ public class Library : AutomatonCardModel
     public Library() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<LibraryPower>(1, false);
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
         WithEnergyTip();
         WithCostUpgradeBy(-1);
     }

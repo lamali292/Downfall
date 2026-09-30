@@ -15,7 +15,7 @@ public abstract class CardToPileCompile<T>(PileType pileType, string varName) : 
         return DownfallCardCmd.GiveCards<T>(card.Owner, pileType, card.DynamicVars.Cards.BaseValue);
     }
 
-    protected override DynamicVar GetSourceDynamicVar(CardModel card)
+    protected override DynamicVar SourceVar(CardModel card)
     {
         return card.DynamicVars.Cards;
     }

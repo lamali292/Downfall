@@ -41,7 +41,7 @@ public class CharacterCard : ConstructedCardModel,
     {
         if (CharacterModel == null) return oldLocString;
 
-        var desc = ModelDb.Relic<SneckoChoice>().Description;
+        var desc = ModelDb.Relic<SneckoChoice>().DynamicDescription;
         desc.Add("borrowed", CharacterModel?.Title.GetFormattedText() ?? "???");
         return desc;
     }

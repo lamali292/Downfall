@@ -103,7 +103,7 @@ internal static class HandChangedPatches
     }
 }
 
-[HarmonyPatch(typeof(NPlayerHand), nameof(NPlayerHand.RefreshLayout))]
+[HarmonyPatch(typeof(NPlayerHand), "RefreshLayout")]
 internal static class HandRefreshLayoutPatch
 {
     private static void Postfix()
@@ -112,7 +112,7 @@ internal static class HandRefreshLayoutPatch
     }
 }
 
-[HarmonyPatch(typeof(NCardTransformShineVfx), nameof(NCardTransformShineVfx.UpdateCard))]
+[HarmonyPatch(typeof(NCardTransformShineVfx), "UpdateCard")]
 internal static class TransformShineUpdateCardPatch
 {
     private static void Postfix(CardModel endCard)

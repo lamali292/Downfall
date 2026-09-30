@@ -15,7 +15,7 @@ public class BottledCode : AutomatonRelicModel
     public BottledCode() : base(RelicRarity.Rare)
     {
         WithTip<Hardcoded>();
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
 
     public override bool HasUponPickupEffect => true;

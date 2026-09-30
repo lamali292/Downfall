@@ -48,13 +48,13 @@ public class SneckoChoice : CustomRelicModel, ISneckoPoolSupplier
 
 
     public override string PackedIconPath =>
-        Character?.IconTexturePath ?? $"{IconName}.tres".TresRelicImagePath<Core.Snecko>();
+        Character?.IconTexture.ResourcePath ?? $"{IconName}.tres".TresRelicImagePath<Core.Snecko>();
 
-    protected override string PackedIconOutlinePath => Character?.IconOutlineTexturePath ??
+    protected override string PackedIconOutlinePath => Character?.IconOutlineTexture.ResourcePath ??
                                                        $"{IconName}_outline.tres".TresRelicImagePath<Core.Snecko>();
 
     protected override string BigIconPath =>
-        Character?.IconTexturePath ?? $"{IconName}.png".BigRelicImagePath<Core.Snecko>();
+        Character?.IconTexture.ResourcePath ?? $"{IconName}.png".BigRelicImagePath<Core.Snecko>();
 
 
     private CharacterModel? Character =>

@@ -143,14 +143,9 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     private HoverTip ToHoverTip(string description)
     {
-        return new HoverTip
+        return new HoverTip(Title, description, Icon)
         {
-            CanonicalModel = null,
-            ShouldOverrideTextOverflow = false,
             Id = Id.ToString(),
-            Title = Title.GetFormattedText(),
-            Description = description,
-            Icon = Icon,
             IsSmart = true
         };
     }

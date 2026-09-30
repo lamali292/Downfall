@@ -12,18 +12,18 @@ public static class GuardianModelDb
 
             return field = ModelDb.AllAbstractModelSubtypes
                 .Where(t => t.IsSubclassOf(typeof(GemModel)))
-                .Select(t => (GemModel)ModelDb.Get(t))
+                .Select(t => ModelDb.GetById<GemModel>(ModelDb.GetId(t)))
                 .ToList();
         }
     }
 
     public static T GuardianMode<T>() where T : GuardianModeModel
     {
-        return ModelDb.Get<T>();
+        return ModelDb.GetById<T>(ModelDb.GetId<T>());
     }
 
     public static T Gem<T>() where T : GemModel
     {
-        return ModelDb.Get<T>();
+        return ModelDb.GetById<T>(ModelDb.GetId<T>());
     }
 }

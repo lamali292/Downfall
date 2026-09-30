@@ -16,8 +16,8 @@ public class BerserkerFinisherVar(decimal baseAmount) : DynamicVar("BerserkerFin
     public decimal Calculate()
     {
         if (!CombatManager.Instance.IsInProgress || !Stance.IsMutable)
-            return _baseValue;
-        var result = ChampHook.ModifyBerserkerFinisherBonus(Stance.CombatState, Stance, (int)_baseValue);
+            return BaseValue;
+        var result = ChampHook.ModifyBerserkerFinisherBonus(Stance.CombatState, Stance, (int)BaseValue);
         PreviewValue = result;
         return result;
     }

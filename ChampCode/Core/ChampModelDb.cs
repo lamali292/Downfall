@@ -6,6 +6,6 @@ public class ChampModelDb
 {
     public static T ChampStance<T>() where T : ChampStanceModel
     {
-        return ModelDb.Get<T>();
+        return ModelDb.GetById<T>(ModelDb.GetId<T>());
     }
 }

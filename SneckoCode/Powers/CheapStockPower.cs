@@ -17,7 +17,7 @@ public class CheapStockPower : SneckoPowerModel
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || Owner.Player == null) return;
-        var cards = Owner.Player.Hand.OrderByDescending(e => e.EnergyCost.GetResolved())
+        var cards = Owner.Player.Hand.Where(e => !e.EnergyCost.CostsX).OrderByDescending(e => e.EnergyCost.GetAmountToSpend())
             .Take(Amount);
         var ctx = new BlockingPlayerChoiceContext();
         await SneckoCmd.Muddle(ctx, cards, this);

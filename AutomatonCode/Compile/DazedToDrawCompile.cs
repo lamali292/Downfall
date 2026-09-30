@@ -3,4 +3,8 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Automaton.AutomatonCode.Compile;
 
-public class DazedToDrawCompile() : CardToPileCompile<Dazed>(PileType.Draw, "CompileDazed");
+public class DazedToDrawCompile() : CardToPileCompile<Dazed>(PileType.Draw, "CompileDazed")
+{
+    public override string Id => "DAZED_TO_DRAW_COMPILE";
+    public override int Order => 2;
+}

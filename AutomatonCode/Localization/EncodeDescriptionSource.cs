@@ -12,7 +12,7 @@ public class EncodeDescriptionSource : IExtraDescriptionSource
     {
         if (!AutomatonCmd.IsEncodable(card) || card is not IEncodable encodable) yield break;
         var text = encodable.EncodeString(card);
-        var title = new LocString("static_hover_tips", "AUTOMATON-ENCODE.title").GetFormattedText();
+        var title = new LocString("card_keywords", "AUTOMATON-ENCODE.title").GetFormattedText();
         var period = new LocString("card_keywords", "PERIOD").GetFormattedText();
         var suffix = $"[gold]{title}[/gold]{period}";
         yield return string.IsNullOrEmpty(text) ? suffix : $"{text}\n{suffix}";

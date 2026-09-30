@@ -6,6 +6,7 @@ using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Cards.Uncommon;
 using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Powers;
 using Automaton.AutomatonCode.Relics;
@@ -236,7 +237,7 @@ public class AutomatonTests
             "Bronze Orb should stash to the back of the pile (CardPilePosition.Bottom), not the front.");
     }
 
-    // Regression guard: Compilable.GetDescription used to copy only GetSourceValue's plain scalar
+    // Regression guard: Compilable.GetDescription used to copy only a plain scalar
     // into a fresh throwaway FunctionDynamicVar, discarding the source var's upgrade/highlight state
     // (DynamicVar.WasJustUpgraded). {CompileStrength:diff()} in encode.json colors the number based
     // on that state, so toggling a card's Normal/UG preview in the Library never changed the
@@ -258,7 +259,7 @@ public class AutomatonTests
     }
 
     // Guard for Compilable's scalar derivation: Strength/Thorns take their merged value from the
-    // source card's DynamicVar (default GetSourceValue), Error To Stash overrides with a fixed 1.
+    // source card's DynamicVar (Compilable.SourceVar), Error To Stash supplies a fixed 1.
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
     public async Task CompileValuesMergeOntoFunction(TestContext ctx)
     {
@@ -336,5 +337,28 @@ public class AutomatonTests
             "With Electromagnetic Coil, the Encode Orb tooltip should say 4, not the hardcoded 3.");
         Assert.IsTrue(!text.Contains("3"),
             "With Electromagnetic Coil, the Encode Orb tooltip should no longer mention 3.");
+    }
+
+    // Encode and Compile are real CardKeywords: an encodable card carries Encode, a card with a compile
+    // effect carries Compile, and Strike/Defend (only encodable when a relic forces it) carry neither.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task EncodeAndCompileAreCardKeywords(TestContext ctx)
+    {
+        var boost = await ctx.AddCardToHand<Boost>();
+        Assert.IsTrue(boost.Keywords.Contains(AutomatonKeyword.Encode), "Boost is encodable, so it has Encode.");
+        Assert.IsTrue(boost.Keywords.Contains(AutomatonKeyword.Compile), "Boost has a compile effect, so it has Compile.");
+
+        var frontload = await ctx.AddCardToHand<Frontload>();
+        Assert.IsTrue(frontload.Keywords.Contains(AutomatonKeyword.Encode), "Frontload is encodable.");
+        Assert.IsTrue(frontload.Keywords.Contains(AutomatonKeyword.Compile), "Frontload's Retain is a compile effect.");
+
+        var strike = await ctx.AddCardToHand<StrikeAutomaton>();
+        Assert.IsTrue(!strike.Keywords.Contains(AutomatonKeyword.Encode),
+            "Strike is not encodable on play, so it must not have Encode.");
+
+        Assert.AreEqual("Encode", new LocString("card_keywords", "AUTOMATON-ENCODE.title").GetFormattedText(),
+            "Encode keyword title loc.");
+        Assert.AreEqual("Compile", new LocString("card_keywords", "AUTOMATON-COMPILE.title").GetFormattedText(),
+            "Compile keyword title loc.");
     }
 }

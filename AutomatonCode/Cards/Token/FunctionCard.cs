@@ -1,9 +1,6 @@
 ﻿// Downfall/Code/Cards/Automaton/FunctionCard.cs
 
-using Automaton.AutomatonCode.Compile;
-using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.Encode;
-using Automaton.AutomatonCode.Interfaces;
+using Automaton.AutomatonCode.Functions;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Interfaces;
@@ -28,20 +25,21 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
     private string _dynamicTitle = string.Empty;
 
     private IReadOnlyList<CardModel> _sourceCards = [];
+    private IReadOnlyList<FunctionContribution> _contributions = [];
     public IReadOnlyList<CardModel> SourceCards => _sourceCards;
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-        Encodable.All.Select(e => e.FunctionDynamicVar)
-            .Concat(Compilable.All.SelectMany(c => c.FunctionDynamicVars));
+
+    /// The contributions that currently apply: those whose var is above 0, or that always apply.
+    private IEnumerable<FunctionContribution> Active => _contributions.Where(c => c.IsActive(this));
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => FunctionAssembler.CanonicalVars;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        Encodable.All.SelectMany(e => e.DynamicVar(this).BaseValue > 0 ? e.HoverTips(this) : [])
-            .Concat(Compilable.All.SelectMany(c =>
-                DynamicVars[c.FunctionDynamicVar.Name].BaseValue > 0 ? c.HoverTips(this) : []));
+        Active.SelectMany(c => c.HoverTips?.Invoke(this) ?? []);
 
     public override int MaxUpgradeLevel => 0;
     public override bool CanBeGeneratedInCombat => false;
     public override bool CanBeGeneratedByModifiers => false;
-    public override bool GainsBlock => DynamicVars.Block.BaseValue > 0;
+    public override bool GainsBlock => Active.Any(c => c.GainsBlock);
 
     public override TargetType TargetType => CalcTarget();
     public override CardType Type => CalcType();
@@ -56,144 +54,63 @@ public sealed class FunctionCard() : CustomCardModel(1, CardType.Skill,
 
     protected override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        foreach (var encodable in Encodable.All)
-            if (encodable.DynamicVar(this).BaseValue > 0)
-            {
-                await encodable.OnPlay(this, ctx, cardPlay.Target, cardPlay);
-                if (encodable is PowerEncode)
-                    break;
-            }
+        foreach (var contribution in Active.Where(c => c.Play != null))
+        {
+            await contribution.Play!(this, ctx, cardPlay.Target, cardPlay);
+            if (contribution.EndsSequence)
+                break;
+        }
     }
 
     private CardType CalcType()
     {
-        var targetTypes = Encodable.All.Where(e => e.DynamicVar(this).BaseValue > 0).Select(e => e.Type).Distinct()
-            .ToList();
-        if (targetTypes.Contains(CardType.Power)) return CardType.Power;
-        if (targetTypes.Contains(CardType.Attack)) return CardType.Attack;
-        if (targetTypes.Contains(CardType.Skill)) return CardType.Skill;
+        var types = Active.Select(c => c.Type).OfType<CardType>().ToList();
+        if (types.Contains(CardType.Power)) return CardType.Power;
+        if (types.Contains(CardType.Attack)) return CardType.Attack;
+        if (types.Contains(CardType.Skill)) return CardType.Skill;
         return CardType.None;
     }
 
     private TargetType CalcTarget()
     {
-        var encoded = Encodable.All.Where(e => e.DynamicVar(this).BaseValue > 0).ToList();
-        if (encoded.Any(e => e is PowerEncode)) return TargetType.Self;
+        var active = Active.ToList();
+        if (active.Any(c => c.ForcesSelfTarget)) return TargetType.Self;
 
-        var targetTypes = encoded.Select(e => e.Target).Distinct()
-            .ToList();
-        if (targetTypes.Contains(TargetType.AnyEnemy)) return TargetType.AnyEnemy;
-        if (targetTypes.Contains(TargetType.AllEnemies)) return TargetType.AllEnemies;
-        if (targetTypes.Contains(TargetType.Self)) return TargetType.Self;
+        var targets = active.Select(c => c.Target).OfType<TargetType>().ToList();
+        if (targets.Contains(TargetType.AnyEnemy)) return TargetType.AnyEnemy;
+        if (targets.Contains(TargetType.AllEnemies)) return TargetType.AllEnemies;
+        if (targets.Contains(TargetType.Self)) return TargetType.Self;
         return TargetType.None;
     }
 
-    public void SetSourceCards(IReadOnlyList<CardModel> sourceCards)
+    /// <summary>Called by <see cref="FunctionAssembler" /> once the source cards' values are merged into this Function's vars.</summary>
+    internal void SetAssembly(IReadOnlyList<CardModel> sourceCards, IReadOnlyList<FunctionContribution> contributions,
+        string title)
     {
         _sourceCards = sourceCards.ToList();
-        foreach (var canonicalVar in CanonicalVars) canonicalVar.BaseValue = 0;
-
-        if (sourceCards.Count <= 0) return;
-        _dynamicTitle = GetDynamicTitle(_sourceCards);
-
-        var max = AutomatonCmd.GetMax(_sourceCards[0].Owner);
-
-        var i = 1;
-        foreach (var sourceCard in _sourceCards)
-        {
-            var pos = i == 1 ? FunctionPosition.Start : i == max ? FunctionPosition.End : FunctionPosition.Middle;
-            if (sourceCard is IEncodable encodable)
-            {
-                encodable.ApplyEncode(this, pos);
-                foreach (var encodableEncoding in encodable.Encodings) encodableEncoding.ApplyEncode(this, sourceCard);
-            }
-
-            if (sourceCard is ICompilable compilable)
-                foreach (var compilation in compilable.Compilations)
-                    compilation.ApplyCompile(this, sourceCard);
-
-            i++;
-        }
+        _contributions = contributions;
+        _dynamicTitle = title;
     }
-
 
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        // Compile effects are not part of the Function's text; they are listed in NFunctionDisplay.
-        description.Add("effects", string.Join("\n", GetEncodeLines()));
+        // Only the contributions flagged for card text; the rest are listed in NFunctionDisplay.
+        description.Add("effects", string.Join("\n", Lines(c => c.ShownOnCard)));
     }
 
-    /// <summary>Formatted description of every encode effect this Function has, one line each.</summary>
-    public IEnumerable<string> GetEncodeLines()
+    /// <summary>Formatted text of every applying contribution that belongs to <paramref name="keyword" />, one line each.</summary>
+    public IEnumerable<string> GetLines(CardKeyword keyword)
     {
-        return (from encodable in Encodable.All
-                where encodable.DynamicVar(this).BaseValue > 0
-                select encodable.GetDescription(this).GetFormattedText())
-            .Where(l => !string.IsNullOrWhiteSpace(l));
+        return Lines(c => c.Keyword == keyword);
     }
 
-    /// <summary>Formatted description of every compile effect this Function triggers, one line each.</summary>
-    public IEnumerable<string> GetCompileLines()
+    private IEnumerable<string> Lines(Func<FunctionContribution, bool> filter)
     {
-        // Card-level changes to the Function itself (Frontload's Retain, Null Pointer's cost, ...).
-        foreach (var sourceCard in _sourceCards)
-            if (sourceCard is IEncodable encodable && encodable.CompileDescription(sourceCard) is { } loc)
-                yield return loc.GetFormattedText();
-
-        foreach (var compilable in Compilable.All)
-        {
-            if (compilable.MergesOnFunction)
-            {
-                if (DynamicVars[compilable.FunctionDynamicVar.Name].BaseValue > 0)
-                    yield return compilable.GetDescription(this, false).GetFormattedText();
-            }
-            else
-            {
-                foreach (var sourceCard in _sourceCards)
-                    if (sourceCard is ICompilable ic && ic.Compilations.Any(c => c.GetType() == compilable.GetType()))
-                        yield return compilable.GetDescription(sourceCard, false).GetFormattedText();
-            }
-        }
+        return Active.Where(filter)
+            .Select(c => c.Line?.Invoke(this))
+            .Where(l => !string.IsNullOrWhiteSpace(l))
+            .Select(l => l!);
     }
-
-
-    private string GetDynamicTitle(IReadOnlyList<CardModel> sourceCards)
-    {
-        if (sourceCards.Count == 0)
-            return new LocString("cards", Id.Entry + ".title").GetFormattedText();
-
-        if (sourceCards is [Constructor, Separator, Terminator] or [Constructor, Separator, Separator, Terminator])
-        {
-            var perfection = new LocString("encode", "AUTOMATON-PERFECTION.functionName").GetFormattedText();
-            return perfection;
-        }
-
-        var prefix = Encode(0, ".functionPrefix", card => card.Title.ToLowerInvariant());
-        var name = Encode(1, ".functionName", card => card.Title);
-        var end3 = Encode(2, ".functionEnd", card => card.Title[0].ToString());
-        var end4 = Encode(3, ".functionEnd", card => card.Title[0].ToString());
-        var parenthesesLoc = new LocString("encode", "AUTOMATON-FUNCTION.functionParentheses");
-        var parentheses = parenthesesLoc.Exists() ? parenthesesLoc.GetFormattedText() : "()";
-
-        var functionName = new LocString("encode", "AUTOMATON-FUNCTION.title");
-
-        functionName.Add("prefix", prefix);
-        functionName.Add("name", name);
-        functionName.Add("end3", end3);
-        functionName.Add("end4", end4);
-        functionName.Add("parentheses", parentheses);
-        return functionName.GetFormattedText();
-
-        string Encode(int index, string suffix, Func<CardModel, string>? fallback = null)
-        {
-            if (sourceCards.Count <= index)
-                return "";
-
-            var loc = new LocString("encode", sourceCards[index].Id.Entry + suffix);
-            return loc.Exists() ? loc.GetFormattedText() : fallback?.Invoke(sourceCards[index]) ?? "";
-        }
-    }
-
 
     private ImageTexture? GetTexture()
     {

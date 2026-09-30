@@ -27,7 +27,7 @@ public static class TranscendenceHooks
     }
 }
 
-[HarmonyPatch(typeof(ArchaicTooth), nameof(ArchaicTooth.GetTranscendenceTransformedCard))]
+[HarmonyPatch(typeof(ArchaicTooth), "GetTranscendenceTransformedCard")]
 internal static class TranscendenceTransformationPatch
 {
     [HarmonyPostfix]
