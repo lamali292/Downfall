@@ -7,7 +7,7 @@ public static class DynamicVarSetExtension
 {
     private static T? GhostflameVarOrNull<T>(DynamicVarSet vard, string key) where T : GhostflameVar
     {
-        return vard._vars.TryGetValue(key, out var v) ? v as T : null;
+        return vard.TryGetValue(key, out var v) ? v as T : null;
     }
 
     extension(DynamicVarSet vars)

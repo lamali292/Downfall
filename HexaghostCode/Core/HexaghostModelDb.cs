@@ -4,24 +4,21 @@ namespace Hexaghost.HexaghostCode.Core;
 
 public static class HexaghostModelDb
 {
-    private static IEnumerable<GhostflameModel>? _allGhostflames;
-
-
     public static IEnumerable<GhostflameModel> AllGhostflames
     {
         get
         {
-            if (_allGhostflames != null) return _allGhostflames;
+            if (field != null) return field;
 
-            return _allGhostflames = ModelDb.AllAbstractModelSubtypes
+            return field = ModelDb.AllAbstractModelSubtypes
                 .Where(t => t.IsSubclassOf(typeof(GhostflameModel)))
-                .Select(t => (GhostflameModel)ModelDb.Get(t))
+                .Select(t => ModelDb.GetById<GhostflameModel>(ModelDb.GetId(t)))
                 .ToList();
         }
     }
 
     public static T Ghostflame<T>() where T : GhostflameModel
     {
-        return ModelDb.Get<T>();
+        return ModelDb.GetById<T>(ModelDb.GetId<T>());
     }
 }

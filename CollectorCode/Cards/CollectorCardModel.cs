@@ -47,7 +47,7 @@ public abstract class CollectorCardModel
     protected override bool IsPlayable => !IsBlockedByMissingPyreTarget;
 
     /// <summary>True when this card has Pyre/Megapyre and there's no other hand card to exhaust for it.</summary>
-    public bool IsBlockedByMissingPyreTarget => HasPyre && !Owner.Hand.Any(e => e != this);
+    private bool IsBlockedByMissingPyreTarget => HasPyre && Owner.Hand.All(e => e == this);
 
     private bool HasPyre => Keywords.Contains(CollectorKeyword.Pyre) || Keywords.Contains(CollectorKeyword.Megapyre);
     

@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Powers;
 public class PlayerSlipperyPower : CollectorPowerModel
 {
     public override string CustomPackedIconPath => ModelDb.Power<SlipperyPower>().PackedIconPath;
-    public override string CustomBigIconPath => ModelDb.Power<SlipperyPower>().BigIconPath;
+    public override string CustomBigIconPath => ModelDb.Power<SlipperyPower>().ResolvedBigIconPath;
     
     public override decimal ModifyHpLostBeforeOsty(Creature target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)

@@ -12,7 +12,7 @@ internal static class CardOverlayPatches
     private const string NodeName = "_card_overlay_";
 
     [HarmonyPostfix]
-    [HarmonyPatch(nameof(NCard.Reload))]
+    [HarmonyPatch("Reload")]
     private static void ReloadPostfix(NCard __instance)
     {
         Sync(__instance);

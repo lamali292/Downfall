@@ -32,7 +32,7 @@ public abstract class SlimeCard<T>
         return description;
     }
 
-    public SlimeModel SlimeModel => ModelDb.Get<T>();
+    public SlimeModel SlimeModel => ModelDb.GetById<T>(ModelDb.GetId<T>());
 }
 
 public interface ISlimeCard

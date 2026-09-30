@@ -1,5 +1,6 @@
 ﻿using Automaton.AutomatonCode.Cards;
 using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Localization;
 using Automaton.AutomatonCode.Piles;
 using BaseLib.Commands;
@@ -26,6 +27,8 @@ public static class AutomatonMainFile
 
     public static void Initialize()
     {
+        // Before ModelDb.Init: the Function card takes its vars from this registry.
+        EffectRegistry.RegisterAssembly(typeof(AutomatonMainFile).Assembly);
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("encode");
         CardExecutionHooks.RegisterBefore(AutomatonCardEffectHandler.DoBeforeOnPlayInternal);

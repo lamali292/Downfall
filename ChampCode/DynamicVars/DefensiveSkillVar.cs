@@ -17,8 +17,8 @@ public class DefensiveSkillVar(decimal baseAmount) : DynamicVar("DefensiveSkill"
     public decimal Calculate()
     {
         if (!CombatManager.Instance.IsInProgress || !Stance.IsMutable)
-            return _baseValue;
-        var result = ChampHook.ModifySkillBonus<CounterPower>(Stance.CombatState, Stance, (int)_baseValue);
+            return BaseValue;
+        var result = ChampHook.ModifySkillBonus<CounterPower>(Stance.CombatState, Stance, (int)BaseValue);
         PreviewValue = result;
         return result;
     }

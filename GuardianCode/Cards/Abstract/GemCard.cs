@@ -80,10 +80,11 @@ public abstract class GemCard<T> : GuardianCardModel, IGemCard, IGemSocketCard, 
 {
     protected GemCard() : base(0, CardType.Skill, CardRarity.None, TargetType.Self)
     {
-        _titleLocString = GuardianModelDb.Gem<T>().Title;
         WithKeyword(GuardianKeyword.Gem);
         CardModifier.AddModifier(this, GuardianModelDb.Gem<T>().ToMutable());
     }
+    
+    public override string Title => GuardianModelDb.Gem<T>().Title.GetFormattedText();
 
     public override bool CanBeGeneratedInCombat => false;
 

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 using Snecko.SneckoCode.Cards.Common;
+using Snecko.SneckoCode.Cards.Rare;
 using Snecko.SneckoCode.Cards.Uncommon;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Relics;
@@ -108,7 +109,7 @@ public class SneckoTests
         for (var i = 0; i < 3; i++)
         {
             var relic = (SneckoChoice)ModelDb.Relic<SneckoChoice>().ToMutable();
-            relic.InitCharacter(ModelDb.Get<Ironclad>());
+            relic.InitCharacter(ModelDb.Character<Ironclad>());
             await RelicCmd.Obtain(relic, ctx.Player);
         }
 
@@ -154,5 +155,83 @@ public class SneckoTests
             "RunActEntry should not grant a second Prismatic Snecko.");
         Assert.AreEqual(0, ctx.Player.Relics.OfType<SneckoChoice>().Count(),
             "RunActEntry should not also run the normal picker for a player who already has Prismatic Snecko.");
+    }
+
+    private static async Task PlayShapeshift(TestContext ctx, bool upgraded = false)
+    {
+        var shapeshift = await ctx.AddCardToHand<Shapeshift>();
+        if (upgraded) CardCmd.Upgrade(shapeshift);
+        await ctx.PlayCard(shapeshift);
+    }
+
+    // Basic cards keep working: they turn into another character's Basic card.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task ShapeshiftTransformsBasicCards(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        var defend = await ctx.AddCardToHand<DefendIronclad>();
+        await PlayShapeshift(ctx);
+
+        var hand = ctx.Player.Hand.ToList();
+        Assert.IsTrue(!hand.Contains(strike) && !hand.Contains(defend), "Basic cards should have been transformed.");
+        Assert.AreEqual(2, hand.Count, $"Hand should still hold two cards, got {hand.Count}.");
+        Assert.IsTrue(hand.All(c => c.Rarity == CardRarity.Basic), "Basic cards should stay Basic.");
+        Assert.IsTrue(hand.All(c => c.Id != strike.Id && c.Id != defend.Id), "No card should transform into its own kind.");
+    }
+
+    // Common/Uncommon/Rare cards keep their rarity and never turn into themselves.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task ShapeshiftKeepsRarityOfCommonUncommonAndRare(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var originals = new[]
+        {
+            await ctx.AddCardToHand<Anger>(),
+            await ctx.AddCardToHand<Accuracy>(),
+            await ctx.AddCardToHand<Adrenaline>()
+        };
+        var rarities = originals.Select(c => c.Rarity).ToList();
+        await PlayShapeshift(ctx);
+
+        var hand = ctx.Player.Hand.ToList();
+        Assert.AreEqual(3, hand.Count, $"Hand should still hold three cards, got {hand.Count}.");
+        Assert.IsTrue(originals.All(o => !hand.Contains(o)), "Every card should have been transformed.");
+        Assert.IsTrue(originals.All(o => hand.All(c => c.Id != o.Id)), "No card should transform into its own kind.");
+        Assert.IsTrue(rarities.OrderBy(r => r).SequenceEqual(hand.Select(c => c.Rarity).OrderBy(r => r)),
+            "Rarities should be preserved across the transformation.");
+    }
+
+    // Ancient cards are replaced by another Ancient card; an Event card (no same-rarity candidates in the borrowed
+    // pools) is left alone. Neither may break the bulk transformation.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task ShapeshiftHandlesAncientAndEventCards(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var ancient = await ctx.AddCardToHand<Apotheosis>();
+        var eventCard = await ctx.AddCardToHand<Clash>();
+        Assert.IsTrue(ancient.IsTransformable, "Test setup: the Ancient card in hand should be transformable.");
+        await PlayShapeshift(ctx);
+
+        var hand = ctx.Player.Hand.ToList();
+        Assert.AreEqual(2, hand.Count, $"Hand should still hold two cards, got {hand.Count}.");
+        Assert.IsTrue(!hand.Contains(ancient), "The Ancient card should be replaced.");
+        Assert.IsTrue(hand.Any(c => c.Rarity == CardRarity.Ancient && c.Id != ancient.Id),
+            "An Ancient card should turn into another Ancient card.");
+        Assert.IsTrue(hand.Contains(eventCard) || hand.Any(c => c.Rarity == CardRarity.Event),
+            "The Event card should stay Event (replaced by an Event card or left alone).");
+    }
+
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task ShapeshiftPlusUpgradesTheReplacements(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<Anger>();
+        await ctx.AddCardToHand<Accuracy>();
+        await PlayShapeshift(ctx, upgraded: true);
+
+        var hand = ctx.Player.Hand.ToList();
+        Assert.AreEqual(2, hand.Count, $"Hand should still hold two cards, got {hand.Count}.");
+        Assert.IsTrue(hand.All(c => c.IsUpgraded || !c.IsUpgradable), "Shapeshift+ should upgrade the replacements.");
     }
 }

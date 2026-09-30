@@ -19,7 +19,7 @@ public class DevTools : AutomatonCardModel
     public DevTools() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
         WithCostUpgradeBy(-1);
         WithCalculatedVar("Dev", 0, Calc);
         WithKeyword(CardKeyword.Retain);

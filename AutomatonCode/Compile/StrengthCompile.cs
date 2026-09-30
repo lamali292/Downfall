@@ -10,6 +10,8 @@ namespace Automaton.AutomatonCode.Compile;
 
 public class StrengthCompile : Compilable
 {
+    public override string Id => "STRENGTH_COMPILE";
+    public override int Order => 0;
     public override DynamicVar FunctionDynamicVar => new("CompileStrength", 0);
 
     public override Task OnCompile(CardModel card, PlayerChoiceContext ctx)
@@ -22,7 +24,7 @@ public class StrengthCompile : Compilable
         return [HoverTipFactory.FromPower<StrengthPower>()];
     }
 
-    protected override DynamicVar GetSourceDynamicVar(CardModel card)
+    protected override DynamicVar SourceVar(CardModel card)
     {
         return card.DynamicVars.Power<StrengthPower>();
     }

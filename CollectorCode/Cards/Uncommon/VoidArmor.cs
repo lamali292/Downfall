@@ -1,6 +1,7 @@
 using System.Reflection;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
@@ -28,38 +29,13 @@ public class VoidArmor : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var a = await CommonActions.CardBlock(this, cardPlay);
+        var block = await CommonActions.CardBlock(this, cardPlay);
         if (CombatState == null) return;
         foreach (var creature in CombatState.HittableEnemies)
         {
-            var add = 0M;
-            var mult = 1M;
-            var eB = (0M + a);
-            
-            foreach (var p in creature._powers)
-            {
-                var T = p.GetType();
-                var baseModifierInfo = typeof(AbstractModel).GetMethod("ModifyBlockAdditive")!;
-                var childModifierInfo = T.GetMethod("ModifyBlockAdditive");
-
-                if (baseModifierInfo != childModifierInfo && childModifierInfo != null)
-                {
-                    add += p.ModifyBlockAdditive(creature, 1M, BlockProps.card, null, null);
-                }
-                
-                var baseModifierInfoMultiply = typeof(AbstractModel).GetMethod("ModifyBlockMultiplicative")!;
-                MethodInfo? childModifierInfoMultiply  = T.GetMethod("ModifyBlockMultiplicative");
-                
-                if (baseModifierInfoMultiply != childModifierInfoMultiply && childModifierInfoMultiply != null)
-                {
-                    mult *= p.ModifyBlockMultiplicative(creature, 1M, BlockProps.card, null, null);
-                }
-            }
-            
-            eB += add;
-            eB *= mult;
-            
-            await CreatureCmd.GainBlock(creature, eB, BlockProps.cardUnpowered, cardPlay);
+            var target = creature;
+            await MultiplayerBlockScaling.Suppress(() =>
+                CreatureCmd.GainBlock(target, block, BlockProps.card, null));
         }
         await CommonActions.Apply<BlurPower>(ctx, this, cardPlay);
     }

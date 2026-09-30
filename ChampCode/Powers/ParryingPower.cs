@@ -1,12 +1,14 @@
 ﻿using Champ.ChampCode.Cards.Common;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
+using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Powers;
 
@@ -15,13 +17,17 @@ public class ParryingPower : ChampPowerModel, IModifyCounterStrike
     public ParryingPower()
     {
         WithTip<CounterPower>();
-        WithCardTip<RiposteStrike>((e, p) =>
-        {
-            if (p._owner == null) return;
-            e.DynamicVars.Damage.BaseValue = p.Owner.GetPowerAmount<CounterPower>();
-        });
+        WithTip(new PowerTooltipSource(GetPowerTooltip));
         WithTip(StaticHoverTip.ReplayStatic);
     }
+    
+    private static CardHoverTip GetPowerTooltip(PowerModel arg)
+    {
+        var card = ModelDb.Card<RiposteStrike>().ToMutable();
+        card.DynamicVars.Damage.BaseValue = arg.IsMutable ? arg.Owner.GetPowerAmount<CounterPower>() : 0;
+        return new CardHoverTip(card);
+    }
+
 
     public bool ModifyCounterStrike(Player player, RiposteStrike card)
     {

@@ -17,25 +17,18 @@ public class Shapeshift : SneckoCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        // todo : we generate offclass ancient/rares here. do we want that?
         var rng = Owner.RunState.Rng.CombatCardGeneration;
-        var allOffclass = SneckoModel.GetSneckoCards(Owner).ToList();
-        var byRarity = allOffclass
-            .GroupBy(c => c.Rarity)
-            .ToDictionary(g => g.Key, g => g.ToList());
+        var transformations = Owner.Hand
+            .Where(c => c.IsTransformable)
+            .Select(c => (Card: c, Replacement: SneckoModel.CreateTransformationReplacement(Owner, c, rng)))
+            .Where(e => e.Replacement != null)
+            .Select(e => new CardTransformation(e.Card, e.Replacement!))
+            .ToList();
 
-        var cards = Owner.Hand.ToList();
-        foreach (var card in cards)
-        {
-            if (!byRarity.TryGetValue(card.Rarity, out var choices) || choices.Count == 0) continue;
-            var pick = choices.Where(c => c.Id != card.Id).ToList(); // exclude the same card
-            if (pick.Count == 0) continue;
-            var template = rng.NextItem(pick);
-            if (template == null) continue;
-            var replacement = CombatState?.CreateCard(template, Owner);
-            if (replacement == null) continue;
-
-            await CardCmd.Transform(card, replacement);
-            if (IsUpgraded) CardCmd.Upgrade(replacement);
-        }
+        var results = await CardCmd.Transform(transformations, rng);
+        if (!IsUpgraded) return;
+        foreach (var result in results.Where(r => r.success))
+            CardCmd.Upgrade(result.cardAdded);
     }
 }

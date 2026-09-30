@@ -5,7 +5,7 @@ using SmartFormat.Utilities;
 
 namespace Downfall.DownfallCode.Patches;
 
-[HarmonyPatch(typeof(LocManager), nameof(LocManager.LoadLocFormatters))]
+[HarmonyPatch(typeof(LocManager), "LoadLocFormatters")]
 public static class PluralRulesPatch
 {
 	[HarmonyPostfix]

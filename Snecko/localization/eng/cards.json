@@ -53,7 +53,7 @@
   "SNECKO-GLITTERING_GAMBIT.title": "Glittering Gambit",
   "SNECKO-INERT_BLADE.description": "Deal {Damage:diff()} damage.\nIf this costs...\n1+: Draw {Cards:diff()} cards.\n2+: Gain {Block:diff()} [gold]Block[/gold].\n3+: Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "SNECKO-INERT_BLADE.title": "Inert Blade",
-  "SNECKO-IRON_FANG.description": "Deal {Damage:diff()} damage and apply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.",
+  "SNECKO-IRON_FANG.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].",
   "SNECKO-IRON_FANG.title": "Iron Fang",
   "SNECKO-JACKPOT.description": "Gain {Energy:energyIcons()}.",
   "SNECKO-JACKPOT.title": "Snekpot",

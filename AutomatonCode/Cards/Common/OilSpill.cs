@@ -3,7 +3,6 @@ using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Encode;
-using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,10 +11,13 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Automaton.AutomatonCode.Cards.Common;
 
 [Pool(typeof(AutomatonCardPool))]
-public class OilSpill : AutomatonCardModel, IEncodable, ICompilable
+public class OilSpill : AutomatonCardModel
 {
     public OilSpill() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithEncode<DamageEncode>();
+        WithEncode<PoisonEncode>();
+        WithCompile<ErrorToStashCompile>();
         WithDamage(4, 1);
         WithPower<PoisonPower>(4, 1);
         WithTip(AutomatonTip.Stash);
@@ -24,6 +26,4 @@ public class OilSpill : AutomatonCardModel, IEncodable, ICompilable
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<Compilable> Compilations => [new ErrorToStashCompile()];
-    public IEnumerable<Encodable> Encodings => [new DamageEncode(), new PoisonEncode()];
 }

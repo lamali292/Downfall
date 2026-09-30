@@ -18,7 +18,7 @@ public class BronzeCore : AutomatonRelicModel
     {
         WithTip<StrikeAutomaton>();
         WithTip<DefendAutomaton>();
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
 
     public override RelicModel GetUpgradeReplacement()

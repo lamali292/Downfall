@@ -76,11 +76,11 @@ public class SlimeBossTests
     public async Task EqualizeStillHealsTwiceWhenFirstHitEndsCombat(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
-        enemy.MaxHp = 10;
-        enemy.CurrentHp = 10;
+        await CreatureCmd.SetMaxHp(enemy, 10);
+        await CreatureCmd.SetCurrentHp(enemy, 10);
 
         var owner = ctx.Player.Creature;
-        owner.CurrentHp = Math.Max(1, owner.MaxHp - 20); // leave room to observe the doubled Heal
+        await CreatureCmd.SetCurrentHp(owner, Math.Max(1, owner.MaxHp - 20)); // leave room to observe the doubled Heal
 
         var lick = await ctx.AddCardToHand<Lick>();
         await ctx.PlayCard(lick, enemy);

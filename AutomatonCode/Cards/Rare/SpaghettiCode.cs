@@ -15,7 +15,7 @@ public class SpaghettiCode : AutomatonCardModel
     public SpaghettiCode() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeywords(CardKeyword.Exhaust);
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

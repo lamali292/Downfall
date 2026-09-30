@@ -21,7 +21,7 @@ internal static class CustomPortraitApplier
 ///     Stable branch: the portrait is assigned inline inside Reload(),
 ///     and Reload is the only place it's written. Patching Reload covers everything.
 /// </summary>
-[HarmonyPatch(typeof(NCard), nameof(NCard.Reload))]
+[HarmonyPatch(typeof(NCard), "Reload")]
 internal static class NCardReloadPortraitPatch
 {
     [HarmonyPostfix]

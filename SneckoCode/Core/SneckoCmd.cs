@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -107,16 +108,11 @@ public static class SneckoCmd
 
     public static async Task GetGift(Player player, Gift gift, int amount = 3)
     {
-        var sneckoCards = SneckoModel.GetRewardSneckoCards(player);
-        var cards = sneckoCards.Where(gift.Matches)
-            .TakeRandom(amount, player.RunState.Rng.CombatCardGeneration)
-            .Select(e => e.ToMutable())
-            .ToList();
-        foreach (var cardChoice in cards)
-        {
-            player.RunState.AddCard(cardChoice, player);
-            if (gift.IsUpgraded) cardChoice.UpgradeInternal();
-        }
+        var options = SneckoModel.GetRewardOptions(player, gift.Matches);
+        var cards = CardFactory.CreateForReward(player, amount, options).Select(e => e.Card).ToList();
+        if (gift.IsUpgraded)
+            foreach (var card in cards)
+                card.UpgradeInternal();
 
         // Gift is documented as "get a card reward", so offer it through the actual reward system:
         // this gets Silver Crucible/DingyRug/etc. modification (RewardsSet.Populate() calls into
@@ -124,8 +120,7 @@ public static class SneckoCmd
         // the engine's own tested implementation), free TestMode support, and - crucially - the
         // reward-set stack, so spamming multiple Gift-granting purchases queues extra reward screens
         // instead of racing to show several at once.
-        var rerollOptions = CardCreationOptions.ForNonCombatWithDefaultOdds(Array.Empty<CardPoolModel>());
-        var cardReward = new CardReward(cards, CardCreationSource.Other, player, rerollOptions);
+        var cardReward = new CardReward(cards, CardCreationSource.Other, player, options);
         await RewardsCmd.OfferCustom(player, [cardReward]);
 
         if (cardReward.SuccessfullySelected && gift.Gold is > 0) await PlayerCmd.GainGold(gift.Gold.Value, player);

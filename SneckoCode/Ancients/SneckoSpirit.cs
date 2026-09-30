@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ancients;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Relics;
@@ -70,13 +71,19 @@ public class SneckoSpirit() : CustomAncientModel(false)
         ((SneckoChoice)relic).InitCharacter(c);
 
         var title = relic.Title;
-        var desc = relic.Description;
+        var desc = relic.DynamicDescription;
         desc.Add("borrowed", c.Title);
-        var opt = new EventOption(this, () => OnPicked(c, page), title, desc, OptionKey($"PAGE_{page}", relic.Id.Entry),
+        var opt = new EventOption(this, () => OnPicked(c, page), title, desc, MyOptionKey($"PAGE_{page}", relic.Id.Entry),
                 relic.HoverTipsExcludingRelic)
             .WithRelic(relic);
         return opt;
     }
+    
+    private string MyOptionKey(string pageName, string optionName)
+    {
+        return $"{StringHelper.Slugify(GetType().Name)}.pages.{pageName}.options.{optionName}";
+    }
+
 
     private async Task OnPicked(CharacterModel c, int page)
     {

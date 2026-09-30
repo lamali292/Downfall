@@ -7,12 +7,12 @@ public static class DynamicVarsExtension
 {
     extension(DynamicVarSet vars)
     {
-        public BraceVar Brace => (BraceVar)vars._vars["Brace"];
+        public BraceVar Brace => (BraceVar)vars["Brace"];
 
-        public AccelerateVar Accelerate => (AccelerateVar)vars._vars["Accelerate"];
+        public AccelerateVar Accelerate => (AccelerateVar)vars["Accelerate"];
 
-        public PolishVar Polish => (PolishVar)vars._vars["Polish"];
+        public PolishVar Polish => (PolishVar)vars["Polish"];
 
-        public GemVar Gem => (GemVar)vars._vars["Gem"];
+        public GemVar Gem => (GemVar)vars["Gem"];
     }
 }

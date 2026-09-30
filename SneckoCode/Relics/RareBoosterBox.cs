@@ -13,11 +13,8 @@ public class RareBoosterBox() : SneckoRelicModel(RelicRarity.Shop)
 
     public override async Task AfterObtained()
     {
-        var a = Owner.RunState.Rng.CombatCardSelection
-            .NextItem(SneckoModel.GetRewardSneckoCards(Owner).Where(c => c.Rarity == CardRarity.Rare));
-        if (a == null) return;
-        var card = a.ToMutable();
-        Owner.RunState.AddCard(card, Owner);
+        var card = SneckoModel.CreateRewardSneckoCards(Owner, 1, c => c.Rarity == CardRarity.Rare).FirstOrDefault();
+        if (card == null) return;
         var result = await CardPileCmd.Add(card, PileType.Deck);
         CardCmd.PreviewCardPileAdd(result, 0.1f);
     }

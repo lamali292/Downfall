@@ -115,7 +115,7 @@ public class CardTestRunner
 		AutoSlayLog.Info($"Running: {testName}");
 		
 		var characterType = attr.CharacterType ?? typeof(Ironclad);
-		var characterModel = (CharacterModel)ModelDb.Get(characterType);
+		var characterModel = ModelDb.GetById<CharacterModel>(ModelDb.GetId(characterType));
 
 		var instance = Activator.CreateInstance(method.DeclaringType!);
 		var cases = (IEnumerable<CardTestCase>)method.Invoke(instance, [characterModel])!;
@@ -164,7 +164,7 @@ public class CardTestRunner
 			CombatManager.Instance.Reset(true);
 
 		var characterType = attr.CharacterType ?? typeof(Ironclad);
-		var characterModel = (CharacterModel)ModelDb.Get(characterType);
+		var characterModel = (CharacterModel)ModelDb.GetById<AbstractModel>(ModelDb.GetId(characterType));
 
 		// Net ids 1..N; the singleplayer net service reports id 1, so player 1 is "us" and the rest are
 		// treated as remote teammates. Card selection is short-circuited by FirstCardSelector, so
@@ -186,7 +186,7 @@ public class CardTestRunner
 		var player = players[0];
 
 		var encounter = attr.EncounterType != null
-			? ((EncounterModel)ModelDb.Get(attr.EncounterType)).ToMutable()
+			? ((EncounterModel)ModelDb.GetById<AbstractModel>(ModelDb.GetId(attr.EncounterType))).ToMutable()
 			: ModelDb.AllEncounters.First().ToMutable();
 		encounter.DebugRandomizeRng();
 

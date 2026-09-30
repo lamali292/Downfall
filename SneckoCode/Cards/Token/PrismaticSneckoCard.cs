@@ -35,7 +35,7 @@ public class PrismaticSneckoCard : ConstructedCardModel,
 
     public LocString ModifyDescription(LocString oldLocString)
     {
-        return ModelDb.Relic<PrismaticSnecko>().Description;
+        return ModelDb.Relic<PrismaticSnecko>().DynamicDescription;
     }
 
     public static PrismaticSneckoCard Create()

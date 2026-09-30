@@ -130,13 +130,9 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
 
     private HoverTip ToHoverTip(string description)
     {
-        return new HoverTip
+        return new HoverTip(Title, description)
         {
-            CanonicalModel = null,
-            ShouldOverrideTextOverflow = false,
             Id = Id.ToString(),
-            Title = Title.GetFormattedText(),
-            Description = description,
             IsSmart = true
         };
     }

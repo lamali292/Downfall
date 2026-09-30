@@ -10,8 +10,11 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Encode;
 
-public class SoulburnEncode : Encodable
+public class SoulburnEncode : ValueEncode
 {
+    public override string Id => "SOULBURN_ENCODE";
+    public override int Order => 7;
+
     public override TargetType Target => TargetType.AllEnemies;
     public override CardType Type => CardType.Skill;
 
@@ -29,10 +32,5 @@ public class SoulburnEncode : Encodable
     public override IEnumerable<IHoverTip> HoverTips(AbstractModel model)
     {
         return [HoverTipFactory.FromPower<SoulBurnPower>()];
-    }
-
-    public override DynamicVar DynamicVar(AbstractModel model)
-    {
-        return model.DynamicVars.Power<SoulBurnPower>();
     }
 }

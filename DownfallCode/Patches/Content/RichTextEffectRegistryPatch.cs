@@ -4,7 +4,7 @@ using MegaCrit.Sts2.addons.mega_text;
 
 namespace Downfall.DownfallCode.Patches;
 
-[HarmonyPatch(typeof(MegaRichTextLabel), nameof(MegaRichTextLabel.InstallEffectsIfNeeded))]
+[HarmonyPatch(typeof(MegaRichTextLabel), "InstallEffectsIfNeeded")]
 public static class RichTextEffectRegistryPatch
 {
     [HarmonyPostfix]

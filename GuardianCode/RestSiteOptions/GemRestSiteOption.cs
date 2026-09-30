@@ -4,10 +4,11 @@ using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Runs;
@@ -27,7 +28,7 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
 
     public override bool IsEnabled => Owner.DeckPile.Any(c => c is IGemCard) &&
                                       Owner.DeckPile.Any(c => c is IGemSocketCard { FreeSlots: > 0 });
-
+    
     public override async Task<bool> OnSelect()
     {
         if (!IsEnabled) return false;
@@ -39,7 +40,7 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
 
         List<CardModel> cardModel;
         var choiceId = RunManager.Instance.PlayerChoiceSynchronizer.ReserveChoiceId(Owner);
-        if (CardSelectCmd.ShouldSelectLocalCard(Owner))
+        if (LocalContext.IsMe(Owner) && RunManager.Instance.NetService.Type != NetGameType.Replay)
         {
             var gems = Owner.DeckPile.Where(c => c is IGemCard).ToList();
             var gemHolder = Owner.DeckPile.Where(c => c is IGemSocketCard { FreeSlots: > 0 }).ToList();
@@ -55,8 +56,7 @@ public class GemRestSiteOption(Player owner) : CustomRestSiteOption(owner)
             cardModel = (await RunManager.Instance.PlayerChoiceSynchronizer.WaitForRemoteChoice(Owner, choiceId))
                 .AsDeckCards().ToList();
         }
-
-        CardSelectCmd.LogChoice(Owner, cardModel);
+        
         if (cardModel.Count != 2) return false;
         _gem = cardModel.First();
         _gemHolder = cardModel.Last();

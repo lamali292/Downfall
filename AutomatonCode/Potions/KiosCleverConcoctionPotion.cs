@@ -16,7 +16,7 @@ public class KiosCleverConcoctionPotion : AutomatonPotionModel
 {
     public KiosCleverConcoctionPotion() : base(PotionRarity.Rare, PotionUsage.CombatOnly, TargetType.AnyPlayer)
     {
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
 
     protected override Artist Artist => Artist.Get<Chimedragon>();

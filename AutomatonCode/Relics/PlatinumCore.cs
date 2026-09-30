@@ -19,7 +19,7 @@ public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction, IForce
     {
         WithTip<StrikeAutomaton>();
         WithTip<DefendAutomaton>();
-        WithTip(AutomatonTip.Encode);
+        WithTip(AutomatonKeyword.Encode);
     }
 
     // The encode itself is performed by EncodeOutcome.CommitAfterPlay (via IForceEncodesCard);

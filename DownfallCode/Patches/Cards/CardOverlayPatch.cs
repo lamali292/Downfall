@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Downfall.DownfallCode.Patches;
 
-[HarmonyPatch(typeof(NCard), nameof(NCard.ReloadOverlay))]
+[HarmonyPatch(typeof(NCard), "ReloadOverlay")]
 public static class CardOverlayPatch
 {
     [HarmonyPostfix]

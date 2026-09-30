@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 namespace Downfall.DownfallCode.Patches;
 
 // modifier to plaques. something like "Skill | Gem" to mark guardian gems or "Power | Slime" to mark slime powers
-[HarmonyPatch(typeof(NCard), nameof(NCard.UpdateTypePlaque))]
+[HarmonyPatch(typeof(NCard), "UpdateTypePlaque")]
 public static class NCardUpdateTypePlaquePatch
 {
     private static LocString PlaqueLocString => new("gameplay_ui", "DOWNFALL-PLAQUE");

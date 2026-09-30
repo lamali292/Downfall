@@ -23,7 +23,7 @@ public class SoulLitLamp : CollectorRelicModel, IAfterCardPyred
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (pyred._energyCost != null && pyred.EnergyCost.GetResolved() >= DynamicVars.Energy.BaseValue)
+        if (pyred.EnergyCost.GetAmountToSpend() >= DynamicVars.Energy.BaseValue)
         {
             await PowerCmd.Apply<SoulBurnPower>(ctx,
                 card.CombatState!.HittableEnemies,

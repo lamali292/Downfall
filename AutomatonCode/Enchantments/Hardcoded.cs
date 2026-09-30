@@ -12,7 +12,7 @@ public class Hardcoded : AutomatonEnchantmentModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.Static(AutomatonTip.Encode)
+        HoverTipFactory.FromKeyword(AutomatonKeyword.Encode)
     ];
 
 

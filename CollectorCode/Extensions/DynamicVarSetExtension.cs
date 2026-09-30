@@ -7,8 +7,8 @@ public static class DynamicVarSetExtension
 {
     extension(DynamicVarSet vars)
     {
-        public KindleVar Kindle  => (KindleVar) vars._vars["Kindle"];
-        public ReserveVar Reserve  => (ReserveVar) vars._vars["Reserve"];
-        public TorchheadDamageVar TorchheadDamage =>  (TorchheadDamageVar) vars._vars["TorchheadDamage"];
+        public KindleVar Kindle  => (KindleVar) vars["Kindle"];
+        public ReserveVar Reserve  => (ReserveVar) vars["Reserve"];
+        public TorchheadDamageVar TorchheadDamage =>  (TorchheadDamageVar) vars["TorchheadDamage"];
     }
 }
