@@ -38,7 +38,7 @@ public class SlimeBoss : DownfallCharacterModel
 		ModelDb.Card<StrikeSlimeBoss>(),
 		ModelDb.Card<StrikeSlimeBoss>(),
 		ModelDb.Card<StrikeSlimeBoss>(),
-        ModelDb.Card<StrikeSlimeBoss>(),
+		ModelDb.Card<StrikeSlimeBoss>(),
 		ModelDb.Card<DefendSlimeBoss>(),
 		ModelDb.Card<DefendSlimeBoss>(),
 		ModelDb.Card<DefendSlimeBoss>(),

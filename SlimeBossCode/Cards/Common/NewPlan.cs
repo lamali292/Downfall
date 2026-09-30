@@ -21,7 +21,7 @@ public class NewPlan : SlimeBossCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToTopSelectionPrompt, 1);
-        var cards = await CardSelectCmd.FromCombatPile(ctx, PileType.Hand.GetPile(Owner), Owner, prefs);
+        var cards = await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this);
         await CardPileCmd.Add(cards, PileType.Draw, CardPilePosition.Top);
     }
 }
