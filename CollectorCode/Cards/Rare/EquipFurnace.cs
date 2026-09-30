@@ -26,7 +26,7 @@ public class EquipFurnace : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await CollectorCmd.Kindle(ctx, this);
+        await TorchheadCmd.Kindle(ctx, this);
         await CommonActions.ApplySelf<EquipFurnacePower>(ctx, this);
     }
 }

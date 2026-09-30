@@ -25,7 +25,7 @@ public class ScorchingRay : CollectorCardModel
         var amount = ResolveEnergyXValue();
         for (var v = 0; v < amount; v++)
         {
-            await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+            await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         }
     }
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;

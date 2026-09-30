@@ -38,6 +38,6 @@ public class IllTakeThat : CollectorCardModel
         }
 
         //await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
     }
 }

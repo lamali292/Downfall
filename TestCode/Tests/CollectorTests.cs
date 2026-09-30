@@ -125,12 +125,12 @@ public class CollectorTests
 
     // Regression guard: Torchhead auto-attacks from TorchheadPower.AfterSideTurnEnd instead of acting
     // through the normal monster move state machine, so its NextMove is never rolled by the enemy turn
-    // loop unless CollectorCmd.RefreshTorchheadIntent does it manually - without that call, the intent
+    // loop unless TorchheadCmd.RefreshTorchheadIntent does it manually - without that call, the intent
     // icon stays blank. Also checks the displayed value is post-power (Weak), not just the base amount.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task TorchheadIntentShowsCurrentAndPowerModifiedDamage(TestContext ctx)
     {
-        var torchhead = await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
 
         var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
         Assert.IsTrue(intent != null,
@@ -152,7 +152,7 @@ public class CollectorTests
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task TorchheadIntentDescriptionReflectsTargetingMode(TestContext ctx)
     {
-        var torchhead = await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
         var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
         Assert.IsTrue(intent != null, "Torchhead's move state should carry a TorchheadAttackIntent.");
 
