@@ -43,7 +43,7 @@ public class PrismaticTorch : CollectorRelicModel
 
     public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions)
     {
-        return Owner == player && CollectorCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions,  card =>  CardCmd.Upgrade(card));
+        return Owner == player && CollectorRewardsCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions,  card =>  CardCmd.Upgrade(card));
     }
     
     /*

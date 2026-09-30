@@ -21,7 +21,7 @@ using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Core;
 
-public class CollectorCmd
+public static class CollectorRewardsCmd
 {
     
     
