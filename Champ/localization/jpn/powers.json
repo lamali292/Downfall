@@ -48,7 +48,7 @@
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.description": "次のターン、カードから[gold]ブロック[/gold]を得ることができない。",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの間、カードから[gold]ブロック[/gold]を得ることができない。",
     "CHAMP-PARRYING_POWER.title": "次なる一手",
-    "CHAMP-PARRYING_POWER.description": "このターン中に[gold]カウンター[/gold]が消費された場合、[gold]リポスト[/gold]は[gold]リプレイ[/gold][blue]1[/blue]を得る。 ",
+    "CHAMP-PARRYING_POWER.description": "このターン中に[gold]カウンター[/gold]が消費された場合、作成された[gold]リポスト[/gold]は[gold]リプレイ[/gold][blue]1[/blue]を得る。 ",
     "CHAMP-PARRYING_POWER.smartDescription": "このターン中に[gold]カウンター[/gold]が消費された場合、[gold]リポスト[/gold]は[gold]リプレイ[/gold][blue]{Amount}[/blue]を得る。",
     "CHAMP-PROTECTIVE_AURA_POWER.title": "プロテクトオーラ",
     "CHAMP-PROTECTIVE_AURA_POWER.description": "[gold]守護のフィニッシャー[/gold]から得られる[gold]ブロック[/gold]が増加する。",

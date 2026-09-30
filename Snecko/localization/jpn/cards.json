@@ -79,7 +79,7 @@
     "SNECKO-MINT_CONDITION.title": "良好品質",
     "SNECKO-MUD_SHIELD.description": "カードを[gold]泥まみれ[/gold]にするたび、{MudShieldPower:diff()}[gold]ブロック[/gold]を得る。",
     "SNECKO-MUD_SHIELD.title": "マッドシールド",
-    "SNECKO-NOPE.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nカードを1枚[gold]廃棄[/gold]する。\nそれが色を持っていた場合、同じクラスのランダムなカードを1枚手札に加える。",
+    "SNECKO-NOPE.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nカードを1枚[gold]廃棄[/gold]する。\nそれが色を持っていた場合、同じクラスのランダムなカードを1枚[gold]手札[/gold]に加える。",
     "SNECKO-NOPE.title": "これじゃない",
     "SNECKO-OTHERWORLDLY_SLASH.description": "{Damage:diff()}ダメージを与える。\nこのターンに[gold]他クラス[/gold]カードをプレイしていた場合、再び{Damage:diff()}ダメージを与える。{InCombat:cond:|\n[gold]ギフト[/gold]：コモン。}",
     "SNECKO-OTHERWORLDLY_SLASH.title": "異次元スラッシュ",
