@@ -45,7 +45,6 @@ public abstract class CardResource : CustomSingletonModel
     {
         var clamped = Math.Max(0, amount);
         _current[player] = clamped;
-        GD.Print($"[CollectorEnergy] Set fired: player={player.GetHashCode()} value={clamped}");
         Changed?.Invoke(player, clamped);
     }
 
