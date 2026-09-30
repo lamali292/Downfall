@@ -48,11 +48,11 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
 
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i){
-        var instance = NCombatRoom.Instance;
-        instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
-        SfxCmd.Play("event:/sfx/characters/attack_fire");
-        GiveSingleTurnRetain();
-        await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
+            var instance = NCombatRoom.Instance;
+            instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
+            SfxCmd.Play("event:/sfx/characters/attack_fire");
+            GiveSingleTurnRetain();
+            await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
 		}
     }
 }
