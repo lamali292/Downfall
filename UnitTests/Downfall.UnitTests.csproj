@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <!--
+        Plain-.NET unit test seam (fast, no game). References ONLY pure source files by link -
+        never sts2.dll, Godot, Harmony or BaseLib. Pure decision logic is tested here; anything
+        touching combat state, piles, UI or patches stays a [CardTest] in TestCode/.
+        To cover a new pure module: add a <Compile Include="..." Link="..."/> below (the file must
+        compile with no game usings) and a test class next to it.
+        Run: dotnet test UnitTests/Downfall.UnitTests.csproj
+    -->
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>14</LangVersion>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*"/>
+        <PackageReference Include="xunit" Version="2.*"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.*"/>
+    </ItemGroup>
+    <ItemGroup>
+        <!-- Pure modules under test -->
+        <Compile Include="../DownfallCode/Extensions/LinqExtensions.cs" Link="Pure/LinqExtensions.cs"/>
+    </ItemGroup>
+</Project>
