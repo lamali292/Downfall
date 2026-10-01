@@ -6,16 +6,105 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
+using Snecko.SneckoCode.Cards.Basic;
 using Snecko.SneckoCode.Cards.Common;
 using Snecko.SneckoCode.Cards.Rare;
 using Snecko.SneckoCode.Cards.Uncommon;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Powers;
 using Snecko.SneckoCode.Relics;
 
 namespace Downfall.TestCode;
 
 public class SneckoTests
 {
+    // Cost-module consistency: X-energy and X-star cards have no numeric cost, so every Muddle path
+    // must skip them the same way. Muddle selection prompts auto-pick the first eligible card, so the
+    // X card goes first in hand: if it were eligible it would be the one muddled.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task MuddleSelectionSkipsXStarCard(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var stardust = await ctx.AddCardToHand<Stardust>();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        var snekBite = await ctx.AddCardToHand<SnekBite>();
+
+        await ctx.PlayCard(snekBite, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(!stardust.EnergyCost.HasLocalModifiers, "Muddle must not target an X-star card.");
+        Assert.IsTrue(strike.EnergyCost.HasLocalModifiers, "Muddle should have targeted the numeric card instead.");
+    }
+
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task MuddleSelectionSkipsXEnergyCard(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        var snekBite = await ctx.AddCardToHand<SnekBite>();
+
+        await ctx.PlayCard(snekBite, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(!whirlwind.EnergyCost.HasLocalModifiers, "Muddle must not target an X-energy card.");
+        Assert.IsTrue(strike.EnergyCost.HasLocalModifiers, "Muddle should have targeted the numeric card instead.");
+    }
+
+    // Reroll used to take Max() over an empty sequence (throws) when the hand held only X cards.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task RerollWithOnlyXCardsInHandDoesNothing(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+        var stardust = await ctx.AddCardToHand<Stardust>();
+        var reroll = await ctx.AddCardToHand<Reroll>();
+
+        await ctx.PlayCard(reroll);
+
+        Assert.IsTrue(!whirlwind.EnergyCost.HasLocalModifiers, "Reroll must not muddle an X-energy card.");
+        Assert.IsTrue(!stardust.EnergyCost.HasLocalModifiers, "Reroll must not muddle an X-star card.");
+    }
+
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task CheapStockSkipsXCards(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var stardust = await ctx.AddCardToHand<Stardust>();
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        var power = await PowerCmd.Apply<CheapStockPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 3,
+            ctx.Player.Creature, null);
+
+        await power!.AfterSideTurnStart(ctx.Player.Creature.Side, ctx.Combat.Creatures, ctx.Combat);
+
+        Assert.IsTrue(!stardust.EnergyCost.HasLocalModifiers, "Cheap Stock must not muddle an X-star card.");
+        Assert.IsTrue(!whirlwind.EnergyCost.HasLocalModifiers, "Cheap Stock must not muddle an X-energy card.");
+        Assert.IsTrue(strike.EnergyCost.HasLocalModifiers, "Cheap Stock should muddle the numeric card.");
+    }
+
+    // Shed gives block per card that ends up free. An X card's base cost is stored as 0 but it is not free.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task ShedDoesNotCountXCardsAsFree(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<Whirlwind>();
+        var shed = await ctx.AddCardToHand<Shed>();
+        var blockBefore = ctx.Player.Creature.Block;
+
+        await ctx.PlayCard(shed);
+
+        Assert.AreEqual(blockBefore, ctx.Player.Creature.Block, "An X card must not count as zero-cost for Shed.");
+    }
+
+    // Gift's cost filter reads the printed cost, so a temporary discount doesn't change what matches.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task GiftMinCostUsesPrintedCost(TestContext ctx)
+    {
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        strike.EnergyCost.SetThisTurn(0);
+
+        Assert.IsTrue(new Gift { MinCost = 1 }.Matches(strike), "Gift MinCost should use the printed cost, not the discounted one.");
+    }
+
     // Gift's own tooltip says it "gets a card reward", so reward-modifying relics like Silver
     // Crucible must see Gift's candidates the same way they'd see a normal card reward screen.
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]

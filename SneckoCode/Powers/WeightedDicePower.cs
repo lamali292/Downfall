@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Entities.Creatures;
+﻿using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using Snecko.SneckoCode.Core;
@@ -9,7 +10,7 @@ public class WeightedDicePower() : SneckoPowerModel(PowerType.Buff, PowerStackTy
 {
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        if (card.Owner.Creature != Owner || card.EnergyCost.CostsX ||
+        if (card.Owner.Creature != Owner || !card.HasNumericCost ||
             card.EnergyCost.GetResolved() <= card.EnergyCost.GetWithModifiers(default)) return playCount;
 
         return playCount + 1;
