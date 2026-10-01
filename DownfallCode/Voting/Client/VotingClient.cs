@@ -77,7 +77,6 @@ public sealed class VotingClient(VotingTransport transport, VotingSession sessio
         {
             Body = Json(body),
             Authed = true,
-            RetryOnUnauthorized = true,
         });
 
         return ToResult(response);
@@ -91,7 +90,12 @@ public sealed class VotingClient(VotingTransport transport, VotingSession sessio
         if (!session.IsSignedIn)
             return new VotingError(VotingErrorCode.NotSignedIn);
 
-        var response = await transport.SendAsync(new VotingRequest(HttpVerb.Get, "/my/profile") { Authed = true });
+        var response = await transport.SendAsync(new VotingRequest(HttpVerb.Get, "/my/profile")
+        {
+            Authed = true,
+            // A stale token must not pop an interactive browser login from a read.
+            RetryOnUnauthorized = false,
+        });
         return Parse(response, VotingParser.ParseProfile);
     }
 

@@ -24,9 +24,11 @@ public sealed record VotingRequest(HttpVerb Method, string Path)
 
     /// <summary>
     /// On a 401, have the session re-authenticate and resend the request
-    /// once. Only meaningful together with <see cref="Authed"/>.
+    /// once. Only meaningful together with <see cref="Authed"/>. On by
+    /// default; a call that must never start an interactive login (the
+    /// profile read) opts out.
     /// </summary>
-    public bool RetryOnUnauthorized { get; init; }
+    public bool RetryOnUnauthorized { get; init; } = true;
 }
 
 /// <summary>
