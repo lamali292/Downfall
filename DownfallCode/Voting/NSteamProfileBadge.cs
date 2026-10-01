@@ -10,7 +10,7 @@ namespace Downfall.DownfallCode.Voting;
 /// (see <see cref="SteamAvatar"/>), not just whichever Steam account
 /// happens to be running the game locally. Hidden entirely until there's a
 /// real signed-in session to show, and refreshes reactively via
-/// <see cref="VotingServices.Session.SignedIn"/> for popups (like the upload flow) that
+/// <see cref="VotingSession.SignedIn"/> for popups (like the upload flow) that
 /// sign in lazily well after this badge's own <c>_Ready()</c>. Its own
 /// scene since it's reused across the upload popup and My Submissions popup.
 /// </summary>
@@ -43,8 +43,8 @@ public partial class NSteamProfileBadge : HBoxContainer
         if (!VotingServices.Session.IsSignedIn)
             return;
 
-        var steamIdText = await VotingApi.Instance.GetMySteamId();
-        if (!IsInstanceValid(this) || steamIdText == null || !ulong.TryParse(steamIdText, out var raw))
+        var profile = await VotingServices.Client.GetMyProfileAsync();
+        if (!IsInstanceValid(this) || profile.Value?.SteamId is not { } steamIdText || !ulong.TryParse(steamIdText, out var raw))
             return;
 
         var steamId = new CSteamID(raw);

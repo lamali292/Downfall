@@ -23,6 +23,16 @@ public static class VotingServices
     public static VotingSession Session { get; } =
         new(Transport, new GodotSessionStore(), new GodotUrlLauncher());
 
+    public static VotingClient Client { get; } = new(Transport, Session, () => UserIdentity.Id);
+
+    /// <summary>For fire-and-forget calls (votes, reports): the result has no UI, so just log a failure.</summary>
+    public static async Task LogFailure(Task<VotingResult> call, string what)
+    {
+        var result = await call;
+        if (!result.IsOk)
+            GD.PrintErr($"{what} failed: {result.Error}");
+    }
+
     private sealed class GodotUrlLauncher : IExternalLauncher
     {
         public void Open(string url) => OS.ShellOpen(url);

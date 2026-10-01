@@ -169,9 +169,9 @@ public partial class NVoteCard : PanelContainer
         Refresh();
         UpdateVoteHighlight();
 
-        _ = _liked
-            ? VotingApi.Instance.CastVote(_submissionId)
-            : VotingApi.Instance.ClearVote(_submissionId);
+        _ = VotingServices.LogFailure(_liked
+            ? VotingServices.Client.CastVoteAsync(_submissionId)
+            : VotingServices.Client.ClearVoteAsync(_submissionId), _liked ? "CastVote" : "ClearVote");
     }
 
     private void UpdateVoteHighlight()
@@ -191,7 +191,7 @@ public partial class NVoteCard : PanelContainer
         var add = draft.Where(r => !_myFlags.Contains(r)).ToList();
         var remove = _myFlags.Where(r => !draft.Contains(r)).ToList();
 
-        _ = VotingApi.Instance.ToggleFlags(_submissionId, add, remove);
+        _ = VotingServices.LogFailure(VotingServices.Client.SetFlagsAsync(_submissionId, add, remove), "SetFlags");
 
         _myFlags.Clear();
 

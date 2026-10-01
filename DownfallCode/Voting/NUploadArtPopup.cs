@@ -122,7 +122,7 @@ public partial class NUploadArtPopup : Control
 
     private async Task LoadSavedCreditName()
     {
-        var saved = await VotingApi.Instance.GetMyCreditName();
+        var saved = (await VotingServices.Client.GetMyProfileAsync()).Value?.CreditName;
         if (IsInstanceValid(this) && !string.IsNullOrEmpty(saved))
             _creditNameEdit.Text = saved;
     }
@@ -204,19 +204,30 @@ public partial class NUploadArtPopup : Control
         _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_uploading");
 
         var creditName = _creditNameEdit.Text.Trim();
-        var (renamed, renameError) = await VotingApi.Instance.SetMyCreditName(string.IsNullOrEmpty(creditName) ? "Anonymous" : creditName);
-        if (!renamed && renameError != null)
+        var rename = await VotingServices.Client.SetCreditNameAsync(string.IsNullOrEmpty(creditName) ? "Anonymous" : creditName);
+        if (!rename.IsOk)
         {
             // Rename didn't take (e.g. rate-limited) - upload still proceeds
             // under whichever credit name the account already had saved.
-            DownfallMainFile.Logger.Info($"[VotingApi] credit-name update skipped: {renameError}");
+            DownfallMainFile.Logger.Info($"[VotingApi] credit-name update skipped: {rename.Error}");
         }
 
-        var (uploaded, error) = await VotingApi.Instance.UploadSubmission(category.ModelId, _selectedPath);
-
-        if (!uploaded)
+        using var file = Godot.FileAccess.Open(_selectedPath, Godot.FileAccess.ModeFlags.Read);
+        if (file == null)
         {
-            _status.Text = error;
+            _status.Text = VotingUi.Loc("DOWNFALL-VOTING.error_file_read",
+                ("error", Godot.FileAccess.GetOpenError().ToString()));
+            _submitButton.Disabled = false;
+            return;
+        }
+
+        var upload = await VotingServices.Client.UploadAsync(
+            category.ModelId.Category, category.ModelId.Entry,
+            file.GetBuffer((long)file.GetLength()), _selectedPath.GetExtension());
+
+        if (!upload.IsOk)
+        {
+            _status.Text = VotingText.For(upload.Error!.Value, "DOWNFALL-VOTING.error_upload_generic");
             _submitButton.Disabled = false;
             return;
         }

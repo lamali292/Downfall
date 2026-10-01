@@ -76,14 +76,14 @@ public partial class NMySubmissionsPopup : Control
         _saveCreditNameButton.Disabled = true;
         _creditNameStatus.Text = "";
 
-        var (ok, error) = await VotingApi.Instance.SetMyCreditName(creditName);
+        var result = await VotingServices.Client.SetCreditNameAsync(creditName);
         if (!IsInstanceValid(this))
             return;
 
         _saveCreditNameButton.Disabled = false;
-        _creditNameStatus.Text = ok
+        _creditNameStatus.Text = result.IsOk
             ? VotingUi.Loc("DOWNFALL-VOTING.status_credit_name_saved")
-            : error ?? VotingUi.Loc("DOWNFALL-VOTING.error_credit_name_save_failed");
+            : VotingText.For(result.Error!.Value, "DOWNFALL-VOTING.error_credit_name_save_failed");
     }
 
     private async Task Load()
@@ -101,7 +101,7 @@ public partial class NMySubmissionsPopup : Control
             }
         }
 
-        var saved = await VotingApi.Instance.GetMyCreditName();
+        var saved = (await VotingServices.Client.GetMyProfileAsync()).Value?.CreditName;
         if (!IsInstanceValid(this))
             return;
         if (!string.IsNullOrEmpty(saved))
@@ -113,7 +113,8 @@ public partial class NMySubmissionsPopup : Control
     private async Task Refresh()
     {
         _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_loading");
-        var submissions = await VotingApi.Instance.GetMySubmissions();
+        var submissions = (await VotingServices.Client.GetMySubmissionsAsync()).Value?
+            .Select(VotingMapping.ToMySubmission).ToList();
         if (!IsInstanceValid(this))
             return;
 
@@ -195,7 +196,7 @@ public partial class NMySubmissionsPopup : Control
     private async Task Withdraw(MySubmission sub, Button withdrawButton)
     {
         withdrawButton.Disabled = true;
-        var ok = await VotingApi.Instance.DeleteMySubmission(sub.Id);
+        var ok = (await VotingServices.Client.DeleteMySubmissionAsync(sub.Id)).IsOk;
         if (!IsInstanceValid(this))
             return;
         if (!ok)

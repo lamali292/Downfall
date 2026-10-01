@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
@@ -236,7 +236,8 @@ public partial class NArtVotingScreen : NSubmenu
             _ => "hot",
         };
 
-        var result = await VotingApi.Instance.GetSubmissionsFeed(cache.Pools, sort, cache.NextOffset.Value, PageSize);
+        var result = await VotingServices.Client.GetFeedAsync(
+            cache.Pools.Select(p => p.ToString()).ToList(), sort, cache.NextOffset.Value, PageSize);
 
         cache.Loading = false;
 
@@ -246,14 +247,15 @@ public partial class NArtVotingScreen : NSubmenu
         if (!IsInstanceValid(this) || _activeKey != key)
             return;
 
-        if (result == null)
+        if (!result.IsOk)
         {
+            GD.PrintErr($"GetFeed failed: {result.Error}");
             cache.NextOffset = null;
             return;
         }
 
-        var (items, nextOffset) = result.Value;
-        cache.NextOffset = nextOffset;
+        var items = result.Value!.Items.Select(VotingMapping.ToArtEntry).ToList();
+        cache.NextOffset = result.Value.NextOffset;
         cache.Items.AddRange(items);
 
         foreach (var entry in items)
