@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 ]
 
-[ext_resource type="Script" path="res://DownfallCode/Voting/NArtVotingScreen.cs" id="1_cd3my"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/Ui/NArtVotingScreen.cs" id="1_cd3my"]
 [ext_resource type="PackedScene" path="res://scenes/ui/back_button.tscn" id="1_d2wa3"]
 [ext_resource type="Script" path="res://src/Core/Nodes/CommonUi/NSearchBar.cs" id="2_0g211"]
 [ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="2_cd3my"]
-[ext_resource type="Script" path="res://DownfallCode/Voting/NVotingFilter.cs" id="2_tjnpw"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/Ui/NVotingFilter.cs" id="2_tjnpw"]
 [ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NMegaLineEdit.cs" id="4_tjnpw"]
 [ext_resource type="Script" path="res://src/Core/Nodes/Screens/CardLibrary/NClearSearchButton.cs" id="5_obalg"]
 [ext_resource type="Texture2D" path="res://images/atlases/compressed.sprites/back_button_x.tres" id="6_0rl3y"]
