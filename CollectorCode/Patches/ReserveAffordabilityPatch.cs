@@ -22,7 +22,7 @@ internal static class ReserveAffordabilityPatch
         if (reserveModel == null) return false;
         var owner = card.Owner;
         var energy = owner.PlayerCombatState?.Energy ?? 0;
-        return ReservePaymentRules.CanAfford(energy, reserveModel.Get(owner), card.ModifiedCost, reserveOnly);
+        return ReservePaymentRules.CanAfford(energy, reserveModel.Get(owner), card.EnergyCost.Modified, reserveOnly);
     }
 
     /// <summary>Reserve-only cards ignore Energy entirely, so the vanilla check is replaced.</summary>

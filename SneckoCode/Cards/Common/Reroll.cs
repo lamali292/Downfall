@@ -20,10 +20,10 @@ public class Reroll : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var candidates = Owner.Hand.Where(e => e.HasNumericCost).ToList();
+        var candidates = Owner.Hand.Where(e => !e.EnergyCost.CostsX).ToList();
         if (candidates.Count == 0) return;
-        var maxCost = candidates.Max(e => e.EffectiveCost);
-        var highestCostCards = candidates.Where(e => e.EffectiveCost == maxCost).ToList();
+        var maxCost = candidates.Max(e => e.EnergyCost.GetAmountToSpend());
+        var highestCostCards = candidates.Where(e => e.EnergyCost.GetAmountToSpend() == maxCost).ToList();
         var card = RunState!.Rng.CombatCardSelection.NextItem(highestCostCards);
         if (card == null) return;
         await SneckoCmd.Muddle(ctx, card, this);

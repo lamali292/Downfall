@@ -20,7 +20,7 @@ public class RapidStrikes : ChampCardModel
     {
         await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
         Owner.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand
-                .Where(c => c.Tags.Contains(CardTag.Strike) && c.HasNumericCost && c.EffectiveCost > 0)
+                .Where(c => c.Tags.Contains(CardTag.Strike) && !c.EnergyCost.CostsX && c.EnergyCost.GetAmountToSpend() > 0)
             )?
             .EnergyCost
             .SetThisTurn(0);

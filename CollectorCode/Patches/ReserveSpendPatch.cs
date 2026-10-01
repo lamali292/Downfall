@@ -25,11 +25,11 @@ internal static class ReserveSpendPatch
         if (reserveModel == null || combatState == null) return true;
 
         var reserveOnly = __instance is IUsesCollectorEnergyOnly;
-        var costsX = __instance.IsXEnergy;
+        var costsX = __instance.EnergyCost.CostsX;
         var payment = ReservePaymentRules.Pay(combatState.Energy, reserveModel.Get(combatState),
-            costsX ? 0 : __instance.EffectiveCost, costsX, reserveOnly);
+            costsX ? 0 : __instance.EnergyCost.GetAmountToSpend(), costsX, reserveOnly);
 
-        if (payment.ConvertedToEnergy && payment.ReserveSpent > 0)
+        if (payment is { ConvertedToEnergy: true, ReserveSpent: > 0 })
             combatState.GainEnergy(payment.ReserveSpent);
         if (payment.ReserveSpent > 0)
             combatState.Reserve -= payment.ReserveSpent;

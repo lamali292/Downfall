@@ -20,7 +20,7 @@ public class StasisEnginePower : GuardianPowerModel, IHasSecondAmount
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (_triggers >= 3 || cardPlay.Card.Owner != Owner.Player ||
-            !cardPlay.Card.IsFreeNow) return;
+            !cardPlay.Card.EnergyCost.Is0Cost) return;
         _triggers++;
         InvokeDisplayAmountChanged();
         if (_triggers >= 3)

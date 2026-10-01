@@ -77,7 +77,7 @@ public static class SneckoCmd
 
     private static bool CanMuddle(CardModel card)
     {
-        return !card.Keywords.Contains(CardKeyword.Unplayable) && card.HasNumericCost;
+        return !card.Keywords.Contains(CardKeyword.Unplayable) && !card.EnergyCost.CostsX;
     }
 
     public static bool OverflowActive(CardModel card)
@@ -144,6 +144,6 @@ public readonly struct Gift
         if (Type.HasValue && card.Type != Type.Value) return false;
         if (IsDebuff && !SneckoCmd.IsDebuff(card)) return false;
         if (IsStrike && !card.Tags.Contains(CardTag.Strike)) return false;
-        return !MinCost.HasValue || card.PrintedCost >= MinCost.Value;
+        return !MinCost.HasValue || card.EnergyCost.Canonical >= MinCost.Value;
     }
 }

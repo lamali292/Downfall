@@ -122,9 +122,7 @@ public static class GuardianCmd
     {
         if (card is ICustomTickDuration custom)
             return custom.TickDuration;
-        if (card.IsXEnergy)
-            return card.Owner.PlayerCombatState!.Energy + 1;
-        return card.EnergyCost.GetResolved() + 1;
+        return card.EnergyCost.GetAmountToSpend() + 1;
     }
 
     private static async Task ReturnFromStasis(CardModel card, Player player, PlayerChoiceContext ctx)

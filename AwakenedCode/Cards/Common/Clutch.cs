@@ -29,7 +29,7 @@ public class Clutch : AwakenedCardModel
     // IsFreeNow reads the unclamped modified cost rather than the amount to spend: the latter clamps negative
     // costs to 0, which would make unplayable cards like Ascender's Bane (cost -2) look free.
     private IEnumerable<CardModel> ZeroCostCandidates =>
-        Owner.DrawPile.Where(c => c.IsFreeNow);
+        Owner.DrawPile.Where(c => c.EnergyCost.Is0Cost);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

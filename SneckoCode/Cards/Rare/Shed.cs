@@ -19,7 +19,7 @@ public class Shed : SneckoCardModel
     {
         var cards = Owner.Hand;
         await SneckoCmd.Muddle(ctx, cards, this);
-        var nowNull = cards.Count(e => e.IsFreeNow);
+        var nowNull = cards.Count(e => e.EnergyCost.Is0Cost);
         for (var i = 0; i < nowNull; i++) await CommonActions.CardBlock(this, cardPlay);
     }
 }

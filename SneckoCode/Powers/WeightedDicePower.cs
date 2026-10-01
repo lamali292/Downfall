@@ -10,7 +10,7 @@ public class WeightedDicePower() : SneckoPowerModel(PowerType.Buff, PowerStackTy
 {
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        if (card.Owner.Creature != Owner || !card.HasNumericCost ||
+        if (card.Owner.Creature != Owner || card.EnergyCost.CostsX ||
             card.EnergyCost.GetResolved() <= card.EnergyCost.GetWithModifiers(default)) return playCount;
 
         return playCount + 1;

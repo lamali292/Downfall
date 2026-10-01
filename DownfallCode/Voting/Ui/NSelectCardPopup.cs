@@ -190,11 +190,11 @@ public partial class NSelectCardPopup : Control
         foreach (var tickbox in _rarityFilters.Keys)
             tickbox.Connect(NTickbox.SignalName.Toggled, Callable.From<NTickbox>(_ => UpdateFilter()));
 
-        _costFilters.Add(_zeroFilter, c => c is { IsXEnergy: false, PrintedCost: <= 0 });
-        _costFilters.Add(_oneFilter, c => c.PrintedCost == 1);
-        _costFilters.Add(_twoFilter, c => c.PrintedCost == 2);
-        _costFilters.Add(_threePlusFilter, c => c.PrintedCost >= 3);
-        _costFilters.Add(_xFilter, c => c.IsXEnergy);
+        _costFilters.Add(_zeroFilter, c => c is { EnergyCost: { CostsX: false, Canonical: <= 0 } });
+        _costFilters.Add(_oneFilter, c => c.EnergyCost.Canonical == 1);
+        _costFilters.Add(_twoFilter, c => c.EnergyCost.Canonical == 2);
+        _costFilters.Add(_threePlusFilter, c => c.EnergyCost.Canonical >= 3);
+        _costFilters.Add(_xFilter, c => c.EnergyCost.CostsX);
         foreach (var tickbox in _costFilters.Keys)
             tickbox.Connect(NClickableControl.SignalName.Released, Callable.From<NCardCostTickbox>(_ => UpdateFilter()));
 

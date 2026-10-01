@@ -12,7 +12,7 @@ public class MulliganPower : SneckoPowerModel
     private static bool CostMoreThanNormal(CardPlay? play)
     {
         if (play?.Card == null) return false;
-        if (!play.Card.HasNumericCost) return false;
+        if (!play.Card.EnergyCost.CostsX) return false;
         return play.Resources.EnergyValue > play.Card.EnergyCost.GetWithModifiers(default);
     }
 

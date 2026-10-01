@@ -19,7 +19,7 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
     
     private static bool IsCardWeWant(CardModel card)
     {
-        return card.PrintedCost >= 0 
+        return card.EnergyCost.Canonical >= 0 
                && card is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true } 
                &&  !card.Keywords.Contains(CardKeyword.Unplayable)
                &&  !card.Keywords.Contains(BaseLibKeywords.Purge) 
