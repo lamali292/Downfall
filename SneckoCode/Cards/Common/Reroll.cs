@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -19,8 +20,10 @@ public class Reroll : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        var maxCost = Owner.Hand.Max(e => e.EnergyCost.GetResolved());
-        var highestCostCards = Owner.Hand.Where(e => e.EnergyCost.GetResolved() == maxCost).ToList();
+        var candidates = Owner.Hand.Where(e => !e.EnergyCost.CostsX).ToList();
+        if (candidates.Count == 0) return;
+        var maxCost = candidates.Max(e => e.EnergyCost.GetAmountToSpend());
+        var highestCostCards = candidates.Where(e => e.EnergyCost.GetAmountToSpend() == maxCost).ToList();
         var card = RunState!.Rng.CombatCardSelection.NextItem(highestCostCards);
         if (card == null) return;
         await SneckoCmd.Muddle(ctx, card, this);

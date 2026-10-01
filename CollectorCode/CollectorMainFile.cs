@@ -1,4 +1,4 @@
-using Collector.CollectorCode.Core;
+﻿using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
@@ -24,8 +24,6 @@ public static class CollectorMainFile
     {
         PostInitRegistry.Register(PostModelInit);
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
-        CardExecutionHooks.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionHooks.RegisterAfter(CollectorCardEffectHandler.DoAfterPlayInternal);
 
         BundledSubmodLocRegistry.Register(ModId);
         
@@ -41,6 +39,9 @@ public static class CollectorMainFile
             .Add(typeof(NDamageNumVfxOverkillPatch))
             .Add(typeof(NMultiplayerPlayerStatePatch))
             .Add(typeof(OnPlayWrapperPlayCountPatch))
+            .Add(typeof(ReserveSpendPatch))
+            .Add(typeof(ReserveAffordabilityPatch))
+            .Add(typeof(ReserveCounterPatch))
             .Add(typeof(SuppressMultiplayerBlockScalingPatch))
             .PatchAll();
     }

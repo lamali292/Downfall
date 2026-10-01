@@ -1,6 +1,5 @@
 ﻿using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Extensions;
-using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 
@@ -52,7 +51,7 @@ public static class NMultiplayerPlayerStatePatch
         var state = new MyStatState { Container = myContainer, Label = label };
         State.Add(__instance, state);
 
-        var reserveResource = CardResourceRegistry.Get<CollectorEnergy>();
+        var reserveResource = CollectorEnergy.Instance;
         if (reserveResource != null)
         {
             state.Handler = (combatState, value) =>
@@ -93,7 +92,7 @@ public static class NMultiplayerPlayerStatePatch
         {
             if (state.Handler != null)
             {
-                var reserveResource = CardResourceRegistry.Get<CollectorEnergy>();
+                var reserveResource = CollectorEnergy.Instance;
                 if (reserveResource != null)
                     reserveResource.Changed -= state.Handler;
             }

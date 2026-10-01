@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -6,16 +6,118 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
+using Snecko.SneckoCode.Cards.Basic;
 using Snecko.SneckoCode.Cards.Common;
 using Snecko.SneckoCode.Cards.Rare;
 using Snecko.SneckoCode.Cards.Uncommon;
 using Snecko.SneckoCode.Core;
+using Snecko.SneckoCode.Powers;
 using Snecko.SneckoCode.Relics;
 
 namespace Downfall.TestCode;
 
 public class SneckoTests
 {
+    // Cost-module consistency: X-energy cards have no numeric cost, so every Muddle path
+    // must skip them the same way. Muddle selection prompts auto-pick the first eligible card, so the
+    // X card goes first in hand: if it were eligible it would be the one muddled.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task MuddleSelectionSkipsXEnergyCard(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        var snekBite = await ctx.AddCardToHand<SnekBite>();
+
+        await ctx.PlayCard(snekBite, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(!whirlwind.EnergyCost.HasLocalModifiers, "Muddle must not target an X-energy card.");
+        Assert.IsTrue(strike.EnergyCost.HasLocalModifiers, "Muddle should have targeted the numeric card instead.");
+    }
+
+    // Reroll used to take Max() over an empty sequence (throws) when the hand held only X cards.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task RerollWithOnlyXCardsInHandDoesNothing(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+        var reroll = await ctx.AddCardToHand<Reroll>();
+
+        await ctx.PlayCard(reroll);
+
+        Assert.IsTrue(!whirlwind.EnergyCost.HasLocalModifiers, "Reroll must not muddle an X-energy card.");
+    }
+
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task CheapStockSkipsXCards(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        var power = await PowerCmd.Apply<CheapStockPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 3,
+            ctx.Player.Creature, null);
+
+        await power!.AfterSideTurnStart(ctx.Player.Creature.Side, ctx.Combat.Creatures, ctx.Combat);
+
+        Assert.IsTrue(!whirlwind.EnergyCost.HasLocalModifiers, "Cheap Stock must not muddle an X-energy card.");
+        Assert.IsTrue(strike.EnergyCost.HasLocalModifiers, "Cheap Stock should muddle the numeric card.");
+    }
+
+    // Mulligan refunds energy next turn when a numeric-cost card was paid for above its printed cost
+    // (e.g. after being muddled up). X cards have no printed cost to exceed, so they never count.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task MulliganRefundsEnergyForCardPlayedAbovePrintedCost(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await PowerCmd.Apply<MulliganPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        strike.EnergyCost.SetThisTurn(strike.EnergyCost.Canonical + 1);
+
+        await ctx.PlayCard(strike, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(ctx.Player.Creature.HasPower<EnergyNextTurnPower>(),
+            "Mulligan should grant next-turn energy for a card paid above its printed cost.");
+    }
+
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task MulliganIgnoresXCards(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await PowerCmd.Apply<MulliganPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+
+        await ctx.PlayCard(whirlwind, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(!ctx.Player.Creature.HasPower<EnergyNextTurnPower>(),
+            "Mulligan must not trigger on an X card.");
+    }
+
+    // Shed gives block per card that ends up free. An X card's base cost is stored as 0 but it is not free.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task ShedDoesNotCountXCardsAsFree(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<Whirlwind>();
+        var shed = await ctx.AddCardToHand<Shed>();
+        var blockBefore = ctx.Player.Creature.Block;
+
+        await ctx.PlayCard(shed);
+
+        Assert.AreEqual(blockBefore, ctx.Player.Creature.Block, "An X card must not count as zero-cost for Shed.");
+    }
+
+    // Gift's cost filter reads the printed cost, so a temporary discount doesn't change what matches.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task GiftMinCostUsesPrintedCost(TestContext ctx)
+    {
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        strike.EnergyCost.SetThisTurn(0);
+
+        Assert.IsTrue(new Gift { MinCost = 1 }.Matches(strike), "Gift MinCost should use the printed cost, not the discounted one.");
+    }
+
     // Gift's own tooltip says it "gets a card reward", so reward-modifying relics like Silver
     // Crucible must see Gift's candidates the same way they'd see a normal card reward screen.
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
@@ -220,6 +322,27 @@ public class SneckoTests
             "An Ancient card should turn into another Ancient card.");
         Assert.IsTrue(hand.Contains(eventCard) || hand.Any(c => c.Rarity == CardRarity.Event),
             "The Event card should stay Event (replaced by an Event card or left alone).");
+    }
+
+    // Overflow is decided from the hand at play start and the decision belongs to that one play: a second
+    // play of the same kind with a small hand must not inherit the first play's "active" decision.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task OverflowFiresOnlyForThePlayThatStartedWithAFullHand(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var fullHandWhip = await ctx.AddCardToHand<TailWhip>();
+        for (var i = 0; i < 5; i++) await ctx.AddCardToHand<StrikeIronclad>();
+
+        await ctx.PlayCard(fullHandWhip, enemy);
+        var weakAfterFullHand = enemy.GetInstancedPowerAmountSum<WeakPower>();
+        Assert.IsTrue(weakAfterFullHand > 0, "Overflow should apply Weak when the play starts with 5 other cards in hand.");
+
+        await ctx.ClearHand();
+        var smallHandWhip = await ctx.AddCardToHand<TailWhip>();
+        await ctx.PlayCard(smallHandWhip, enemy);
+        Assert.AreEqual(weakAfterFullHand, enemy.GetInstancedPowerAmountSum<WeakPower>(),
+            "A later play with a small hand must not fire Overflow again.");
     }
 
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]

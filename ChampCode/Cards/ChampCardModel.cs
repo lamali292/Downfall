@@ -1,12 +1,13 @@
 ﻿using BaseLib.Abstracts;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
-using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Extensions;
+using Champ.ChampCode.Events;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,6 +15,8 @@ namespace Champ.ChampCode.Cards;
 
 public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherCard
 {
+    protected override ICardPlayPhases PlayPhases => ChampCardPlayPhases.Instance;
+
     protected ChampCardModel(
         int cost,
         CardType type,
@@ -31,21 +34,15 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
 
 
     protected override bool ShouldGlowRedInternal =>
-        Tags.Contains(ChampTag.Finisher) && Owner.ChampStance.HasFinisher;
+        ChampCmd.FinisherCanAct(this);
 
     protected override bool ShouldGlowGoldInternal =>
         (this is IBerserkerComboCard && Owner.ShouldBerserkerComboTrigger)
         || (this is IDefensiveComboCard && Owner.ShouldDefensiveComboTrigger);
 
-    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance.HasFinisher ||
-                                          Enchantment is Signature;
+    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || ChampCmd.FinisherCanAct(this);
 
-    public virtual async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await ChampCmd.PlayFinisher(ctx, cardPlay);
-    }
-
-    public virtual bool AffectsAllPlayers => false;
+    public virtual FinisherDescriptor Finisher => FinisherDescriptor.Default;
 
 
     public ConstructedCardModel WithDefensiveTip()

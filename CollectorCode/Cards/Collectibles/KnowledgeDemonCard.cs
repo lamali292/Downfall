@@ -1,4 +1,5 @@
-﻿using BaseLib.Cards;
+﻿using Downfall.DownfallCode.Extensions;
+using BaseLib.Cards;
 using Collector.CollectorCode.Cards.Token;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

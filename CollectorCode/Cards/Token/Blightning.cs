@@ -28,8 +28,8 @@ public class Blightning : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        await CollectorCmd.Kindle(ctx, this);
-        await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        await TorchheadCmd.Kindle(ctx, this);
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         //await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Draw(this, ctx);

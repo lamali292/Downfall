@@ -29,7 +29,7 @@ public class EmeraldTorch : CollectorRelicModel
         ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
-        await CollectorCmd.Kindle(ctx, this);
+        await TorchheadCmd.Kindle(ctx, this);
         Flash();
     }
     
@@ -49,7 +49,7 @@ public class EmeraldTorch : CollectorRelicModel
     
     public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions)
     {
-        return Owner == player && CollectorCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions);
+        return Owner == player && CollectorRewardsCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions);
     }
 
     /*

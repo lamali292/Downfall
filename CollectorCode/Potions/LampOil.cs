@@ -21,6 +21,6 @@ public class LampOil : CollectorPotionModel
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
         if (target?.Player == null) return;
-        await CollectorCmd.Kindle(ctx, target.Player, this);
+        await TorchheadCmd.Kindle(ctx, target.Player, this);
     }
 }

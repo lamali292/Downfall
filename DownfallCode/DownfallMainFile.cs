@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using BaseLib.Config;
 using BaseLib.Patches.Features;
 using BaseLib.Patches.Saves;
@@ -68,8 +68,6 @@ public static class DownfallMainFile
             CreateSubmenu = NArtVotingScreen.Create,
             OnPress = stack =>
             {
-                if (VotingApi.Instance == null)
-                    stack?.GetTree().Root.AddChild(new VotingApi());
                 stack?.PushSubmenuType<NArtVotingScreen>();
             }
         });

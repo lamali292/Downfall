@@ -28,23 +28,22 @@ public static class HermitCmd
         return card.Pile?.Type switch
         {
             PileType.Hand => IsDeadOnByHandPosition(card),
-            PileType.Play => DeadOnPatch.WasPlayedDeadOn(card),
+            PileType.Play => DeadOnPatch.StatusOf(card).IsCenter,
             _ => false
         };
     }
 
-    // Pure hand-position check, no hooks. Only DeadOnPatch (for its snapshot) and IsDeadOn use it.
-    internal static bool IsDeadOnByHandPosition(CardModel card)
+    // Pure hand-position check, no hooks.
+    private static bool IsDeadOnByHandPosition(CardModel card)
     {
-        var handCards = PileType.Hand.GetPile(card.Owner).Cards.ToList();
-        var cardIndex = handCards.IndexOf(card);
-        if (cardIndex == -1)
-            return false;
+        var hand = PileType.Hand.GetPile(card.Owner).Cards.ToList();
+        return HandGeometry.IsCenter(hand, card);
+    }
 
-        var handSize = handCards.Count;
-        if (handSize % 2 == 0)
-            return cardIndex == handSize / 2 - 1 || cardIndex == handSize / 2;
-        return cardIndex == handSize / 2;
+    /// <summary>Reads the card's current hand position. Called once, by <see cref="DeadOnPatch" />, at play start.</summary>
+    internal static PlayStartHandStatus CaptureHandStatus(CardModel card)
+    {
+        return new PlayStartHandStatus(IsDeadOnByHandPosition(card), IsAdjacentToCurseInCurrentHandState(card));
     }
 
     public static bool IsAdjacentToCurse(CardModel card)
@@ -55,19 +54,14 @@ public static class HermitCmd
 
     private static bool WasThisPlayedAdjacentToCurse(CardModel card)
     {
-        return DeadOnPatch.WasPlayedAdjacentToCurse(card);
+        return DeadOnPatch.StatusOf(card).IsAdjacentToCurse;
     }
 
 
     public static bool IsAdjacentToCurseInCurrentHandState(CardModel cardModel)
     {
         var hand = PileType.Hand.GetPile(cardModel.Owner).Cards.ToList();
-        var idx = hand.IndexOf(cardModel);
-        if (idx == -1) return false;
-
-        var leftIsCurse = idx > 0 && hand[idx - 1].Type == CardType.Curse;
-        var rightIsCurse = idx < hand.Count - 1 && hand[idx + 1].Type == CardType.Curse;
-        return leftIsCurse || rightIsCurse;
+        return HandGeometry.IsAdjacentToMatch(hand, cardModel, c => c.Type == CardType.Curse);
     }
 
     public static bool HasActiveDeadOnEffect(CardModel card)
@@ -87,9 +81,7 @@ public static class HermitCmd
         var combatState = card.CombatState!;
 
         var modify = HermitHook.ModifyDeadOnCount(combatState, 1, card, out var modifiers);
-        var hasEffect = card is IHasDeadOnEffect;
-        var hasReplayModifier = CardModifier.Modifiers(card).OfType<DeadOnReplay>().Any();
-        if (!hasEffect && !hasReplayModifier) return;
+        if (!HasDeadOn(card)) return;
         if (card is IHasDeadOnEffect cardModel)
             for (var i = 0; i < modify; i++)
                 await cardModel.DeadOnEffect(ctx, cardPlay);

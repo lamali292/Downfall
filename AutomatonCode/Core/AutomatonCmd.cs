@@ -52,7 +52,7 @@ public static class AutomatonCmd
     {
         // A dupe (History Course, Feral, ...) always ceases to exist after playing instead of
         // going anywhere - see CardModel.GetResultLocationForCardPlay. The dupe still applies its
-        // Encoding effects via AutomatonCardEffectHandler.DoBeforeOnPlayInternal like any other
+        // Encoding effects via AutomatonCardPlayPhases.BeforePlay like any other
         // Encodable play; only the resulting pile placement is skipped so the transient copy
         // vanishes instead of lingering in the Encode pile / compiling into a Function.
         if (card.IsDupe) return null;

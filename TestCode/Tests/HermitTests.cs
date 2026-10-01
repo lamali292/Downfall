@@ -305,6 +305,40 @@ public class HermitTests
         Assert.AreEqual(2, DeadOnEntries(dive), "Both instances of a centered, replayed Dive are Dead On.");
     }
 
+    // Vantage's Dead On effect draws, so the hand changes while the play is still running. The card
+    // leaves the hand at play start; its status must come from that moment, for every replay instance.
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task DeadOnReplayedPlayIsNotAlteredByHandChangeMidPlay(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        var vantage = await ctx.AddCardToHand<Vantage>();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        vantage.BaseReplayCount = 1;
+        Assert.IsTrue(HermitCmd.IsDeadOn(vantage), "Vantage in the middle of three cards is Dead On.");
+
+        await ctx.PlayCard(vantage);
+
+        Assert.IsTrue(ctx.Player.Hand.Count() > 2, "Vantage's Dead On effect should have drawn cards mid-play.");
+        Assert.AreEqual(2, DeadOnEntries(vantage),
+            "Both replay instances are Dead On even though the first one changed the hand.");
+    }
+
+    // ---- Curse adjacency ----
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task CurseAdjacencyQueryInHand(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var left = await ctx.AddCardToHand<Dive>();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Curse.ImpendingDoom>();
+        var right = await ctx.AddCardToHand<Dive>();
+        var far = await ctx.AddCardToHand<Dive>();
+        Assert.IsTrue(HermitCmd.IsAdjacentToCurse(left), "Left neighbour of a curse is adjacent.");
+        Assert.IsTrue(HermitCmd.IsAdjacentToCurse(right), "Right neighbour of a curse is adjacent.");
+        Assert.IsTrue(!HermitCmd.IsAdjacentToCurse(far), "Two away from the curse is not adjacent.");
+    }
+
     // ---- Red Scarf ----
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]

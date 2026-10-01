@@ -1,4 +1,4 @@
-using Collector.CollectorCode.Cards.Basic;
+﻿using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Cards.Common;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Cards.Uncommon;
@@ -19,6 +19,18 @@ namespace Downfall.TestCode;
 
 public class CollectorTests
 {
+    // Reserve conversion is for X-energy cards only; an X-star card pays its (numeric) energy cost normally.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task XStarCardDoesNotConvertReserve(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Stardust>();
+        ctx.Player.PlayerCombatState!.Energy = 2;
+        await ReserveCmd.GainReserve(ctx.Player, 3);
+
+        await card.SpendResources();
+
+        Assert.AreEqual(3, ctx.Player.PlayerCombatState.Reserve, "An X-star card must leave Reserve untouched.");
+    }
 
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task PyreCardWithOtherHandCardIsPlayable(TestContext ctx)
@@ -41,7 +53,7 @@ public class CollectorTests
     {
         var card = await ctx.AddCardToHand<Whirlwind>();
         ctx.Player.PlayerCombatState!.Energy = 2;
-        await CollectorCmd.GainReserve(ctx.Player, 3);
+        await ReserveCmd.GainReserve(ctx.Player, 3);
 
         var (energySpent, _) = await card.SpendResources();
 
@@ -72,7 +84,7 @@ public class CollectorTests
     {
         var card = await ctx.AddCardToHand<BidingBlast>();
         ctx.Player.PlayerCombatState!.Energy = 0;
-        await CollectorCmd.GainReserve(ctx.Player, 5);
+        await ReserveCmd.GainReserve(ctx.Player, 5);
 
         var (energySpent, _) = await card.SpendResources();
 
@@ -95,7 +107,7 @@ public class CollectorTests
         var startHp = enemy.CurrentHp;
         var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Common.SuckerPunch>(); // costs 2
         ctx.Player.PlayerCombatState!.Energy = 0;
-        await CollectorCmd.GainReserve(ctx.Player, 1); // Energy(0) + Reserve(1) < cost(2), and Reserve > 0
+        await ReserveCmd.GainReserve(ctx.Player, 1); // Energy(0) + Reserve(1) < cost(2), and Reserve > 0
 
         await ctx.PlayCard(card, enemy);
 
@@ -125,12 +137,12 @@ public class CollectorTests
 
     // Regression guard: Torchhead auto-attacks from TorchheadPower.AfterSideTurnEnd instead of acting
     // through the normal monster move state machine, so its NextMove is never rolled by the enemy turn
-    // loop unless CollectorCmd.RefreshTorchheadIntent does it manually - without that call, the intent
+    // loop unless TorchheadCmd.RefreshTorchheadIntent does it manually - without that call, the intent
     // icon stays blank. Also checks the displayed value is post-power (Weak), not just the base amount.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task TorchheadIntentShowsCurrentAndPowerModifiedDamage(TestContext ctx)
     {
-        var torchhead = await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
 
         var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
         Assert.IsTrue(intent != null,
@@ -152,7 +164,7 @@ public class CollectorTests
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task TorchheadIntentDescriptionReflectsTargetingMode(TestContext ctx)
     {
-        var torchhead = await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
         var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
         Assert.IsTrue(intent != null, "Torchhead's move state should carry a TorchheadAttackIntent.");
 
@@ -208,8 +220,8 @@ public class CollectorTests
             "Should grant exactly 1 Miasma as a fallback.");
     }
 
-    // Regression guard for Pyre state on replayed plays: DoBeforeOnPlayInternal stores the pyred card(s) on the
-    // card instance (IUsesPyredCards.PyredCards) and DoAfterPlayInternal clears them, so every replay
+    // Regression guard for Pyre state on replayed plays: CollectorCardPlayPhases.BeforePlay stores the pyred card(s) on the
+    // card instance (IUsesPyredCards.PyredCards) and AfterPlay clears them, so every replay
     // (OnPlayWrapper's playCount loop) must pyre its own card and end with no leftover state.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task ReplayedPyreCardPyresOncePerPlayAndLeavesNoState(TestContext ctx)
@@ -247,4 +259,46 @@ public class CollectorTests
         Assert.AreEqual(PileType.Exhaust, strike.Pile?.Type, "The only other card should be pyred by the first play.");
         Assert.AreEqual(8, startHp - enemy.CurrentHp, "Only the first play should resolve; the replay has nothing to pyre.");
         Assert.IsTrue(!((IUsesPyredCards)lash).PyredCards.Any(), "PyredCards should not keep the first play's card.");
-    }}
+    }
+
+    // Reserve-only cards (IUsesCollectorEnergyOnly) are paid entirely from Reserve and never touch Energy.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task ReserveOnlyCardSpendsOnlyReserve(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Rare.FingerOfDeath>(); // costs 4
+        ctx.Player.PlayerCombatState!.Energy = 3;
+        await ReserveCmd.GainReserve(ctx.Player, 6);
+
+        var (energySpent, _) = await card.SpendResources();
+
+        Assert.AreEqual(0, energySpent, "A Reserve-only card should not spend Energy.");
+        Assert.AreEqual(3, ctx.Player.PlayerCombatState.Energy, "Energy should be untouched.");
+        Assert.AreEqual(2, ctx.Player.PlayerCombatState.Reserve, "The full 4 cost should come out of Reserve.");
+    }
+
+    // Affordability: Reserve-only cards ignore Energy; ordinary cards can be paid by Energy + Reserve combined.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task ReserveOnlyCardPlayabilityIgnoresEnergy(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Rare.FingerOfDeath>(); // costs 4
+        ctx.Player.PlayerCombatState!.Energy = 10;
+        await ReserveCmd.GainReserve(ctx.Player, 3);
+        Assert.IsTrue(!card.CanPlay(), "Reserve 3 < cost 4, so a Reserve-only card is unplayable however much Energy there is.");
+
+        await ReserveCmd.GainReserve(ctx.Player, 1);
+        Assert.IsTrue(card.CanPlay(), "Reserve 4 >= cost 4, so the card should be playable.");
+    }
+
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task OrdinaryCardPlayabilityCombinesEnergyAndReserve(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Common.SuckerPunch>(); // costs 2
+        ctx.Player.PlayerCombatState!.Energy = 1;
+        Assert.IsTrue(!card.CanPlay(), "Energy 1 + Reserve 0 < cost 2.");
+
+        await ReserveCmd.GainReserve(ctx.Player, 1);
+        Assert.IsTrue(card.CanPlay(), "Energy 1 + Reserve 1 covers cost 2.");
+    }
+}

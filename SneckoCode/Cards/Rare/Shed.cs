@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -18,7 +19,7 @@ public class Shed : SneckoCardModel
     {
         var cards = Owner.Hand;
         await SneckoCmd.Muddle(ctx, cards, this);
-        var nowNull = cards.Count(e => e.EnergyCost.GetResolved() == 0);
+        var nowNull = cards.Count(e => e.EnergyCost.Is0Cost);
         for (var i = 0; i < nowNull; i++) await CommonActions.CardBlock(this, cardPlay);
     }
 }
