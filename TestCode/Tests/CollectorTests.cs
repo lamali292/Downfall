@@ -247,4 +247,46 @@ public class CollectorTests
         Assert.AreEqual(PileType.Exhaust, strike.Pile?.Type, "The only other card should be pyred by the first play.");
         Assert.AreEqual(8, startHp - enemy.CurrentHp, "Only the first play should resolve; the replay has nothing to pyre.");
         Assert.IsTrue(!((IUsesPyredCards)lash).PyredCards.Any(), "PyredCards should not keep the first play's card.");
-    }}
+    }
+
+    // Reserve-only cards (IUsesCollectorEnergyOnly) are paid entirely from Reserve and never touch Energy.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task ReserveOnlyCardSpendsOnlyReserve(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Rare.FingerOfDeath>(); // costs 4
+        ctx.Player.PlayerCombatState!.Energy = 3;
+        await ReserveCmd.GainReserve(ctx.Player, 6);
+
+        var (energySpent, _) = await card.SpendResources();
+
+        Assert.AreEqual(0, energySpent, "A Reserve-only card should not spend Energy.");
+        Assert.AreEqual(3, ctx.Player.PlayerCombatState.Energy, "Energy should be untouched.");
+        Assert.AreEqual(2, ctx.Player.PlayerCombatState.Reserve, "The full 4 cost should come out of Reserve.");
+    }
+
+    // Affordability: Reserve-only cards ignore Energy; ordinary cards can be paid by Energy + Reserve combined.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task ReserveOnlyCardPlayabilityIgnoresEnergy(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Rare.FingerOfDeath>(); // costs 4
+        ctx.Player.PlayerCombatState!.Energy = 10;
+        await ReserveCmd.GainReserve(ctx.Player, 3);
+        Assert.IsTrue(!card.CanPlay(), "Reserve 3 < cost 4, so a Reserve-only card is unplayable however much Energy there is.");
+
+        await ReserveCmd.GainReserve(ctx.Player, 1);
+        Assert.IsTrue(card.CanPlay(), "Reserve 4 >= cost 4, so the card should be playable.");
+    }
+
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task OrdinaryCardPlayabilityCombinesEnergyAndReserve(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Common.SuckerPunch>(); // costs 2
+        ctx.Player.PlayerCombatState!.Energy = 1;
+        Assert.IsTrue(!card.CanPlay(), "Energy 1 + Reserve 0 < cost 2.");
+
+        await ReserveCmd.GainReserve(ctx.Player, 1);
+        Assert.IsTrue(card.CanPlay(), "Energy 1 + Reserve 1 covers cost 2.");
+    }
+}
