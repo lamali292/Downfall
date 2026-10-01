@@ -34,6 +34,6 @@ public sealed class ChampCardPlayPhases : ICardPlayPhases
             await defensiveCombo.DefensiveComboEffect(ctx, cardPlay);
 
         if (card.Tags.Contains(ChampTag.Finisher) && card is IFinisherCard finisherCard)
-            await finisherCard.FinisherEffect(ctx, cardPlay);
+            await ChampCmd.PlayFinisher(ctx, cardPlay, finisherCard.Finisher);
     }
 }
