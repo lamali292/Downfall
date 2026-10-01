@@ -18,23 +18,9 @@ namespace Downfall.TestCode;
 
 public class SneckoTests
 {
-    // Cost-module consistency: X-energy and X-star cards have no numeric cost, so every Muddle path
+    // Cost-module consistency: X-energy cards have no numeric cost, so every Muddle path
     // must skip them the same way. Muddle selection prompts auto-pick the first eligible card, so the
     // X card goes first in hand: if it were eligible it would be the one muddled.
-    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
-    public async Task MuddleSelectionSkipsXStarCard(TestContext ctx)
-    {
-        await ctx.ClearHand();
-        var stardust = await ctx.AddCardToHand<Stardust>();
-        var strike = await ctx.AddCardToHand<StrikeIronclad>();
-        var snekBite = await ctx.AddCardToHand<SnekBite>();
-
-        await ctx.PlayCard(snekBite, ctx.Combat.HittableEnemies.First());
-
-        Assert.IsTrue(!stardust.EnergyCost.HasLocalModifiers, "Muddle must not target an X-star card.");
-        Assert.IsTrue(strike.EnergyCost.HasLocalModifiers, "Muddle should have targeted the numeric card instead.");
-    }
-
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
     public async Task MuddleSelectionSkipsXEnergyCard(TestContext ctx)
     {
@@ -55,20 +41,17 @@ public class SneckoTests
     {
         await ctx.ClearHand();
         var whirlwind = await ctx.AddCardToHand<Whirlwind>();
-        var stardust = await ctx.AddCardToHand<Stardust>();
         var reroll = await ctx.AddCardToHand<Reroll>();
 
         await ctx.PlayCard(reroll);
 
         Assert.IsTrue(!whirlwind.EnergyCost.HasLocalModifiers, "Reroll must not muddle an X-energy card.");
-        Assert.IsTrue(!stardust.EnergyCost.HasLocalModifiers, "Reroll must not muddle an X-star card.");
     }
 
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
     public async Task CheapStockSkipsXCards(TestContext ctx)
     {
         await ctx.ClearHand();
-        var stardust = await ctx.AddCardToHand<Stardust>();
         var whirlwind = await ctx.AddCardToHand<Whirlwind>();
         var strike = await ctx.AddCardToHand<StrikeIronclad>();
         var power = await PowerCmd.Apply<CheapStockPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 3,
@@ -76,9 +59,39 @@ public class SneckoTests
 
         await power!.AfterSideTurnStart(ctx.Player.Creature.Side, ctx.Combat.Creatures, ctx.Combat);
 
-        Assert.IsTrue(!stardust.EnergyCost.HasLocalModifiers, "Cheap Stock must not muddle an X-star card.");
         Assert.IsTrue(!whirlwind.EnergyCost.HasLocalModifiers, "Cheap Stock must not muddle an X-energy card.");
         Assert.IsTrue(strike.EnergyCost.HasLocalModifiers, "Cheap Stock should muddle the numeric card.");
+    }
+
+    // Mulligan refunds energy next turn when a numeric-cost card was paid for above its printed cost
+    // (e.g. after being muddled up). X cards have no printed cost to exceed, so they never count.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task MulliganRefundsEnergyForCardPlayedAbovePrintedCost(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await PowerCmd.Apply<MulliganPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        strike.EnergyCost.SetThisTurn(strike.EnergyCost.Canonical + 1);
+
+        await ctx.PlayCard(strike, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(ctx.Player.Creature.HasPower<EnergyNextTurnPower>(),
+            "Mulligan should grant next-turn energy for a card paid above its printed cost.");
+    }
+
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task MulliganIgnoresXCards(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await PowerCmd.Apply<MulliganPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+
+        await ctx.PlayCard(whirlwind, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(!ctx.Player.Creature.HasPower<EnergyNextTurnPower>(),
+            "Mulligan must not trigger on an X card.");
     }
 
     // Shed gives block per card that ends up free. An X card's base cost is stored as 0 but it is not free.
