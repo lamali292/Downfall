@@ -1,4 +1,5 @@
-﻿using BaseLib.Cards;
+﻿using Downfall.DownfallCode.Extensions;
+using BaseLib.Cards;
 using Collector.CollectorCode.Cards.Token;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,7 +19,7 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
     
     private static bool IsCardWeWant(CardModel card)
     {
-        return card.EnergyCost.Canonical >= 0 
+        return card.PrintedCost >= 0 
                && card is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true } 
                &&  !card.Keywords.Contains(CardKeyword.Unplayable)
                &&  !card.Keywords.Contains(BaseLibKeywords.Purge) 

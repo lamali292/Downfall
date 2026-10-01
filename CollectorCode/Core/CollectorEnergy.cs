@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Extensions;
+using BaseLib.Utils;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Vfx;
@@ -29,7 +30,7 @@ public class CollectorEnergy : CardResource
     {
         var player = card.Owner;
 
-        if (card.EnergyCost.CostsX)
+        if (card.IsXEnergy)
         {
             // X-cost cards spend all Energy AND all Reserve. Merge Reserve into Energy before
             // the base CardModel.SpendResources() (which still runs after this prefix, since
@@ -45,7 +46,7 @@ public class CollectorEnergy : CardResource
             return (0, 0);
         }
 
-        var cost = card.EnergyCost.GetAmountToSpend();
+        var cost = card.EffectiveCost;
 
         if (UsesResourceExclusively(card))
         {
@@ -79,7 +80,7 @@ public class CollectorEnergy : CardResource
     public override (bool hasResources, UnplayableReason reason) CheckResources(CardModel card)
     {
         var player = card.Owner;
-        var cost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        var cost = card.ModifiedCost;
 
         if (UsesResourceExclusively(card))
             return Get(player) >= cost ? (true, UnplayableReason.None) : (false, UnplayableReason.EnergyCostTooHigh);
