@@ -1,15 +1,19 @@
 ﻿using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
+using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Core;
 
-public static class ChampCardEffectHandler
+/// <summary>Champ's play phases: skill bonus, stance entry, combos and Finisher, in that order after the play.</summary>
+public sealed class ChampCardPlayPhases : ICardPlayPhases
 {
-    public static async Task DoAfterOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
+    public static readonly ChampCardPlayPhases Instance = new();
+
+    public async Task AfterPlay(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var owner = card.Owner;
         var stance = owner.ChampStance;
