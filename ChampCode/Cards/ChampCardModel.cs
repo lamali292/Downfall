@@ -7,6 +7,7 @@ using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -14,6 +15,8 @@ namespace Champ.ChampCode.Cards;
 
 public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherCard
 {
+    protected override ICardPlayPhases PlayPhases => ChampCardPlayPhases.Instance;
+
     protected ChampCardModel(
         int cost,
         CardType type,

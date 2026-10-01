@@ -1,5 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils;
+using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
@@ -14,6 +16,8 @@ public abstract class HexaghostCardModel(
     bool autoAdd = true)
     : DownfallCardModel<Core.Hexaghost>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
+    protected override ICardPlayPhases PlayPhases => HexaghostCardPlayPhases.Instance;
+
     public ConstructedCardModel WithAfterlife()
     {
         WithKeywords(CardKeyword.Ethereal, HexaghostKeyword.Afterlife);

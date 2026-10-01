@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -309,6 +309,27 @@ public class SneckoTests
             "An Ancient card should turn into another Ancient card.");
         Assert.IsTrue(hand.Contains(eventCard) || hand.Any(c => c.Rarity == CardRarity.Event),
             "The Event card should stay Event (replaced by an Event card or left alone).");
+    }
+
+    // Overflow is decided from the hand at play start and the decision belongs to that one play: a second
+    // play of the same kind with a small hand must not inherit the first play's "active" decision.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task OverflowFiresOnlyForThePlayThatStartedWithAFullHand(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var fullHandWhip = await ctx.AddCardToHand<TailWhip>();
+        for (var i = 0; i < 5; i++) await ctx.AddCardToHand<StrikeIronclad>();
+
+        await ctx.PlayCard(fullHandWhip, enemy);
+        var weakAfterFullHand = enemy.GetInstancedPowerAmountSum<WeakPower>();
+        Assert.IsTrue(weakAfterFullHand > 0, "Overflow should apply Weak when the play starts with 5 other cards in hand.");
+
+        await ctx.ClearHand();
+        var smallHandWhip = await ctx.AddCardToHand<TailWhip>();
+        await ctx.PlayCard(smallHandWhip, enemy);
+        Assert.AreEqual(weakAfterFullHand, enemy.GetInstancedPowerAmountSum<WeakPower>(),
+            "A later play with a small hand must not fire Overflow again.");
     }
 
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]

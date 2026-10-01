@@ -3,6 +3,7 @@ using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils;
 using Awakened.AwakenedCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -13,6 +14,8 @@ namespace Awakened.AwakenedCode.Cards;
 
 public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
 {
+    protected override ICardPlayPhases PlayPhases => AwakenedCardPlayPhases.Instance;
+
     protected AwakenedCardModel(
         int cost,
         CardType type,

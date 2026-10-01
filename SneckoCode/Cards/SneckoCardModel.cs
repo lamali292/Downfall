@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
@@ -18,6 +19,8 @@ public abstract class SneckoCardModel(
     bool autoAdd = true)
     : DownfallCardModel<Core.Snecko>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
+    protected override ICardPlayPhases PlayPhases => SneckoCardPlayPhases.Instance;
+
     protected override bool ShouldGlowGoldInternal =>
         Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(this);
 
