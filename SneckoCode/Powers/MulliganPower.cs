@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using Downfall.DownfallCode.Extensions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -11,7 +12,7 @@ public class MulliganPower : SneckoPowerModel
     private static bool CostMoreThanNormal(CardPlay? play)
     {
         if (play?.Card == null) return false;
-        if (play.Card.EnergyCost.CostsX) return false;
+        if (!play.Card.HasNumericCost) return false;
         return play.Resources.EnergyValue > play.Card.EnergyCost.GetWithModifiers(default);
     }
 

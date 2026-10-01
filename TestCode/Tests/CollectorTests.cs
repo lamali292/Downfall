@@ -19,6 +19,18 @@ namespace Downfall.TestCode;
 
 public class CollectorTests
 {
+    // Reserve conversion is for X-energy cards only; an X-star card pays its (numeric) energy cost normally.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task XStarCardDoesNotConvertReserve(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Stardust>();
+        ctx.Player.PlayerCombatState!.Energy = 2;
+        await CollectorCmd.GainReserve(ctx.Player, 3);
+
+        await card.SpendResources();
+
+        Assert.AreEqual(3, ctx.Player.PlayerCombatState.Reserve, "An X-star card must leave Reserve untouched.");
+    }
 
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task PyreCardWithOtherHandCardIsPlayable(TestContext ctx)

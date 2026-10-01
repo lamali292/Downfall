@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -20,7 +21,7 @@ public class SpreadTheChaos : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = cardPlay.Target?.Player?
-            .Hand.Where(e => !e.EnergyCost.CostsX).OrderByDescending(e => e.EnergyCost.GetAmountToSpend())
+            .Hand.Where(e => e.HasNumericCost).OrderByDescending(e => e.EffectiveCost)
             .Take(DynamicVars["Muddle"].IntValue);
         if (cards == null) return;
         await SneckoCmd.Muddle(ctx, cards, this);
