@@ -73,7 +73,7 @@
     "CHAMP-FAN_OF_KNIVES.description": "对所有敌人造成{Damage:diff()}点伤害。\n[gold]战狂连段[/gold]：\n造成两次伤害。",
     "CHAMP-FAN_OF_KNIVES.title": "刃扇",
     "CHAMP-FLASH_STRIKE.description": "造成{Damage:diff()}点伤害。\n[gold]防守连段[/gold]：\n获得{CounterPower:diff()}点[gold]反击[/gold]。",
-    "CHAMP-FLASH_STRIKE.title": "迅疾打击",
+    "CHAMP-FLASH_STRIKE.title": "疾风打击",
     "CHAMP-FLURRY_OF_STRIKES.description": "造成{Damage:diff()}点伤害。\n每当你进入[gold]姿态[/gold]时，将此牌从[gold]弃牌堆[/gold]返回[gold]手牌[/gold]。",
     "CHAMP-FLURRY_OF_STRIKES.title": "骤雨打击",
     "CHAMP-GLADIATOR_FORM.description": "你每回合打出的第一张攻击牌伤害翻倍。",

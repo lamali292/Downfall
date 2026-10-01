@@ -58,5 +58,8 @@
     "SLIMEBOSS-ENERGIZED_POWER.smartDescription": "在你的回合开始时，获得{Amount:energyIcons()}。",
     "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.title": "下回合力量",
     "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.description": "在你的下个回合内，获得[gold]力量[/gold]。",
-    "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.smartDescription": "在你的下个回合内，{Amount:cond:>0?获得[blue]{Amount}[/blue]|失去[blue]{NAmount}[/blue]}点[gold]力量[/gold]。"
+    "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.smartDescription": "在你的下个回合内，{Amount:cond:>0?获得[blue]{Amount}[/blue]|失去[blue]{NAmount}[/blue]}点[gold]力量[/gold]。",
+    "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.title": "下回合史莱姆粉碎！！！",
+    "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.description": "在下个回合开始时，将[gold]史莱姆粉碎！！！[/gold]加入你的[gold]手牌[/gold]。",
+    "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.smartDescription": "在下个回合开始时，将[gold]史莱姆粉碎！！！[/gold]加入你的[gold]手牌[/gold]。"
 }
