@@ -6,8 +6,7 @@ namespace Downfall.DownfallCode.Extensions;
 /// <summary>
 /// The single place that reads a card's cost from the game. Callers ask domain questions here and never
 /// pick a game accessor (resolved / amount-to-spend / with-modifiers / canonical) or spell the X checks
-/// themselves, so a game-API change only needs editing in this file. The decisions themselves live in
-/// <see cref="CardCostRules"/>.
+/// themselves, so a game-API change only needs editing in this file.
 /// </summary>
 public static class CardCostExtensions
 {
@@ -16,13 +15,16 @@ public static class CardCostExtensions
         /// <summary>Card costs X energy: it spends all energy (and whatever else the owner converts) when played.</summary>
         public bool IsXEnergy => card.EnergyCost.CostsX;
 
-        /// <summary>Not X-energy and not X-star. See <see cref="CardCostRules.HasNumericCost"/>.</summary>
+        /// <summary>
+        /// Not X-energy and not X-star. X cards have no fixed number to compare, sort or randomize, so
+        /// effects that work on "the cost" must skip them.
+        /// </summary>
         public bool HasNumericCost => !card.EnergyCost.CostsX && !card.HasStarCostX;
 
         /// <summary>The energy the player pays right now (X cards: all current energy, never negative).</summary>
-        public int EffectiveCost => CardCostRules.EffectiveCost(card.EnergyCost.CostsX,
-            card.EnergyCost.CostsX ? card.EnergyCost.GetAmountToSpend() : 0,
-            card.EnergyCost.GetWithModifiers(CostModifiers.All));
+        public int EffectiveCost => card.EnergyCost.CostsX
+            ? card.EnergyCost.GetAmountToSpend()
+            : Math.Max(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
 
         /// <summary>
         /// The current cost with every modifier applied. Unlike <see cref="EffectiveCost"/> this keeps the

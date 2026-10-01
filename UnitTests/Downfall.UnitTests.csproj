@@ -23,7 +23,6 @@
     <ItemGroup>
         <!-- Pure modules under test -->
         <Compile Include="../DownfallCode/Extensions/LinqExtensions.cs" Link="Pure/LinqExtensions.cs"/>
-        <Compile Include="../DownfallCode/Extensions/CardCostRules.cs" Link="Pure/CardCostRules.cs"/>
         <Compile Include="../HermitCode/Core/HandGeometry.cs" Link="Pure/HandGeometry.cs"/>
         <Compile Include="../DownfallCode/Voting/Client/VotingRequest.cs" Link="Pure/VotingRequest.cs"/>
         <Compile Include="../DownfallCode/Voting/Client/VotingTransport.cs" Link="Pure/VotingTransport.cs"/>
