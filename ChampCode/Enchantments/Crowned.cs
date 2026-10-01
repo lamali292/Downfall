@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Abstract;
+﻿using Downfall.DownfallCode.Extensions;
+using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 
@@ -8,7 +9,7 @@ public class Crowned : DownfallEnchantmentModel<Core.Champ>
 {
     public override bool CanEnchant(CardModel card)
     {
-        return base.CanEnchant(card) && !card.EnergyCost.CostsX && !card.HasStarCostX;
+        return base.CanEnchant(card) && card.HasNumericCost;
     }
     
     protected override void OnEnchant()

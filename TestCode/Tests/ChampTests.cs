@@ -1,4 +1,6 @@
-﻿using Champ.ChampCode.Cards.Basic;
+using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models;
+using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Cards.Uncommon;
 using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Powers;
@@ -11,6 +13,21 @@ namespace Downfall.TestCode;
 
 public class ChampTests
 {
+    // Crowned makes a card free via its base cost, which is meaningless for X cards, so neither
+    // X-energy nor X-star cards may be crowned.
+    [CardTest(typeof(Champ.ChampCode.Core.Champ))]
+    public async Task CrownedOnlyAllowsNumericCostCards(TestContext ctx)
+    {
+        var crowned = ModelDb.Enchantment<Crowned>();
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+        var stardust = await ctx.AddCardToHand<Stardust>();
+
+        Assert.IsTrue(crowned.CanEnchant(strike), "A numeric-cost card can be crowned.");
+        Assert.IsTrue(!crowned.CanEnchant(whirlwind), "An X-energy card cannot be crowned.");
+        Assert.IsTrue(!crowned.CanEnchant(stardust), "An X-star card cannot be crowned.");
+    }
+
     // Regression guard: Vigor's damage bonus was only applying to Challenge's first hit, not the
     // second one triggered when the target has Strength, even though the card's description implies
     // both hits should be identical. Root cause was that the repeat used a second, separate
