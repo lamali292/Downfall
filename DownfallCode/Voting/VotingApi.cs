@@ -1,9 +1,9 @@
-using System.Text;
+﻿using System.Text;
 using Godot;
 using Godot.Collections;
 using MegaCrit.Sts2.Core.Models;
+using Downfall.DownfallCode.Voting.Client;
 using FileAccess = Godot.FileAccess;
-using HttpClient = Godot.HttpClient;
 
 namespace Downfall.DownfallCode.Voting;
 
@@ -18,11 +18,21 @@ public partial class VotingApi : Node
 
     public static VotingApi Instance { get; private set; } = null!;
 
-    private static string[] JsonHeaders =>
-    [
-        $"apikey: {GateKey}",
-        "Content-Type: application/json"
-    ];
+    private static VotingTransport Transport { get; } = CreateTransport();
+
+    private static VotingTransport CreateTransport() =>
+        new(new GodotHttpAdapter(), BaseUrl, GateKey, message => DownfallMainFile.Logger.Info(message))
+        {
+            Auth = new StaticAuthTokens()
+        };
+
+    /// <summary>Bridges the transport's token needs to the (still static) <see cref="VotingAuth"/>.</summary>
+    private sealed class StaticAuthTokens : IAuthTokens
+    {
+        public string? Token => VotingAuth.Token;
+
+        public Task<bool> ReauthenticateAsync() => VotingAuth.ReauthenticateAsync();
+    }
 
     public override void _Ready()
     {
@@ -39,9 +49,9 @@ public partial class VotingApi : Node
         }
 
         var (code, resp) = await Send(
-            $"{BaseUrl}/submissions?category={Uri.EscapeDataString(data.ModelId.Category)}" +
+            $"/submissions?category={Uri.EscapeDataString(data.ModelId.Category)}" +
             $"&entry={Uri.EscapeDataString(data.ModelId.Entry)}&user={Uri.EscapeDataString(user)}",
-            HttpClient.Method.Get);
+            HttpVerb.Get);
 
         if (code == 200)
             return Parse(resp, data);
@@ -59,7 +69,7 @@ public partial class VotingApi : Node
     /// </summary>
     public async Task<List<ArtData>> GetMissingCards()
     {
-        var (code, resp) = await Send($"{BaseUrl}/missing-cards", HttpClient.Method.Get);
+        var (code, resp) = await Send($"/missing-cards", HttpVerb.Get);
 
         if (code != 200)
         {
@@ -110,7 +120,7 @@ public partial class VotingApi : Node
         if (pools.Count > 0)
             body["pools"] = new Godot.Collections.Array(pools.Select(p => (Variant)p.ToString()).ToArray());
 
-        var (code, resp) = await Send($"{BaseUrl}/submissions/feed", HttpClient.Method.Post, Json.Stringify(body));
+        var (code, resp) = await Send($"/submissions/feed", HttpVerb.Post, Json.Stringify(body));
 
         if (code != 200)
         {
@@ -168,7 +178,7 @@ public partial class VotingApi : Node
         }
 
         var body = Json.Stringify(new Dictionary { { "submissionId", submissionId } });
-        var (code, resp) = await SendAuthedRetrying($"{BaseUrl}/vote", HttpClient.Method.Post, body);
+        var (code, resp) = await SendAuthedRetrying($"/vote", HttpVerb.Post, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"CastVote {code}: {resp}");
@@ -183,7 +193,7 @@ public partial class VotingApi : Node
         }
 
         var body = Json.Stringify(new Dictionary { { "submissionId", submissionId } });
-        var (code, resp) = await SendAuthedRetrying($"{BaseUrl}/unvote", HttpClient.Method.Post, body);
+        var (code, resp) = await SendAuthedRetrying($"/unvote", HttpVerb.Post, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ClearVote {code}: {resp}");
@@ -204,7 +214,7 @@ public partial class VotingApi : Node
             { "on", on }
         });
 
-        var (code, resp) = await SendAuthedRetrying($"{BaseUrl}/flag", HttpClient.Method.Post, body);
+        var (code, resp) = await SendAuthedRetrying($"/flag", HttpVerb.Post, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ToggleFlag {code}: {resp}");
@@ -233,7 +243,7 @@ public partial class VotingApi : Node
             { "remove", new Godot.Collections.Array(remove.Select(r => (Variant)r).ToArray()) },
         });
 
-        var (code, resp) = await SendAuthedRetrying($"{BaseUrl}/flag/batch", HttpClient.Method.Post, body);
+        var (code, resp) = await SendAuthedRetrying($"/flag/batch", HttpVerb.Post, body);
 
         if (code is < 200 or > 299)
             GD.PrintErr($"ToggleFlags {code}: {resp}");
@@ -243,7 +253,7 @@ public partial class VotingApi : Node
 
     public async Task<(string? state, string? loginUrl)> StartSteamLogin()
     {
-        var (code, resp) = await Send($"{BaseUrl}/auth/steam/start", HttpClient.Method.Post, "{}");
+        var (code, resp) = await Send($"/auth/steam/start", HttpVerb.Post, "{}");
 
         if (code != 200)
         {
@@ -258,8 +268,8 @@ public partial class VotingApi : Node
     public async Task<(string status, string? token)> PollSteamLogin(string state)
     {
         var (code, resp) = await Send(
-            $"{BaseUrl}/auth/steam/poll?state={Uri.EscapeDataString(state)}",
-            HttpClient.Method.Get);
+            $"/auth/steam/poll?state={Uri.EscapeDataString(state)}",
+            HttpVerb.Get);
 
         if (code == 403)
             return ("banned", null);
@@ -288,7 +298,7 @@ public partial class VotingApi : Node
         if (token == null)
             return null;
 
-        var (code, resp) = await SendAuthed($"{BaseUrl}/my/profile", HttpClient.Method.Get, token);
+        var (code, resp) = await SendAuthed($"/my/profile", HttpVerb.Get);
 
         if (code != 200)
         {
@@ -314,7 +324,7 @@ public partial class VotingApi : Node
         if (token == null)
             return null;
 
-        var (code, resp) = await SendAuthed($"{BaseUrl}/my/profile", HttpClient.Method.Get, token);
+        var (code, resp) = await SendAuthed($"/my/profile", HttpVerb.Get);
 
         if (code != 200)
         {
@@ -341,7 +351,7 @@ public partial class VotingApi : Node
             return (false, null);
 
         var body = Json.Stringify(new Dictionary { { "creditName", creditName } });
-        var (code, resp) = await SendAuthed($"{BaseUrl}/my/profile", HttpClient.Method.Put, token, body);
+        var (code, resp) = await SendAuthed($"/my/profile", HttpVerb.Put, body);
 
         if (code is < 200 or > 299)
         {
@@ -400,29 +410,15 @@ public partial class VotingApi : Node
         body.AddRange(fileBytes);
         body.AddRange(Encoding.UTF8.GetBytes($"\r\n--{boundary}--\r\n"));
 
-        string[] headers =
-        [
-            $"apikey: {GateKey}",
-            $"Authorization: Bearer {token}",
-            $"Content-Type: multipart/form-data; boundary={boundary}"
-        ];
-
-        var http = new HttpRequest();
-        AddChild(http);
-
-        var err = http.RequestRaw($"{BaseUrl}/submissions", headers, HttpClient.Method.Post, body.ToArray());
-
-        if (err != Error.Ok)
+        var response = await Transport.SendAsync(new VotingRequest(HttpVerb.Post, "/submissions")
         {
-            http.QueueFree();
-            return (false, $"Request failed to send: {err}");
-        }
+            Body = body.ToArray(),
+            ContentType = $"multipart/form-data; boundary={boundary}",
+            Authed = true,
+        });
 
-        var result = await ToSignal(http, HttpRequest.SignalName.RequestCompleted);
-        http.QueueFree();
-
-        var code = result[1].AsInt64();
-        var text = Encoding.UTF8.GetString(result[3].AsByteArray());
+        var code = response.Status;
+        var text = response.Body;
 
         if (code is >= 200 and < 300)
             return (true, "");
@@ -439,7 +435,7 @@ public partial class VotingApi : Node
         if (token == null)
             return null;
 
-        var (code, resp) = await SendAuthed($"{BaseUrl}/my/submissions", HttpClient.Method.Get, token);
+        var (code, resp) = await SendAuthed($"/my/submissions", HttpVerb.Get);
 
         if (code != 200)
         {
@@ -471,7 +467,7 @@ public partial class VotingApi : Node
         if (token == null)
             return false;
 
-        var (code, resp) = await SendAuthed($"{BaseUrl}/my/submissions/{id}", HttpClient.Method.Delete, token);
+        var (code, resp) = await SendAuthed($"/my/submissions/{id}", HttpVerb.Delete);
 
         if (code is < 200 or > 299)
         {
@@ -549,85 +545,23 @@ public partial class VotingApi : Node
         return list;
     }
 
-    /// <summary>
-    /// Like <see cref="SendAuthed"/>, but a 401 (the server-side session expired or
-    /// was revoked after the local token was already accepted once - see
-    /// <see cref="VotingAuth.ReauthenticateAsync"/>) clears it, re-prompts Steam
-    /// login, and retries the same request once with the new token, instead of
-    /// leaving every write endpoint permanently stuck on a stale token.
-    /// </summary>
-    private async Task<(long code, string body)> SendAuthedRetrying(
-        string url, HttpClient.Method method, string body = "")
-    {
-        var (code, resp) = await SendAuthed(url, method, VotingAuth.Token!, body);
-
-        if (code == 401 && await VotingAuth.ReauthenticateAsync())
-            (code, resp) = await SendAuthed(url, method, VotingAuth.Token!, body);
-
-        return (code, resp);
-    }
-
-    private Task<(long code, string body)> SendAuthed(
-        string url,
-        HttpClient.Method method,
-        string token,
-        string body = "")
-    {
-        string[] headers =
-        [
-            $"apikey: {GateKey}",
-            $"Authorization: Bearer {token}",
-            "Content-Type: application/json"
-        ];
-
-        return Send(url, method, body, headers);
-    }
-
-    // Requests/responses that list every card (submissions/feed) can run
-    // into the tens of KB; logging them in full just to see "-> POST .../vote"
-    // elsewhere buries the log in noise, so anything past this gets cut off.
-    private const int LogBodyLimit = 300;
-
-    private async Task<(long code, string body)> Send(
-        string url,
-        HttpClient.Method method,
-        string body = "",
-        string[]? headers = null)
-    {
-        DownfallMainFile.Logger.Info(
-            $"[VotingApi] -> {method} {url} {Truncate(body)}");
-
-        var http = new HttpRequest();
-        AddChild(http);
-
-        var err = http.Request(url, headers ?? JsonHeaders, method, body);
-
-        if (err != Error.Ok)
+    private Task<(long code, string body)> SendAuthedRetrying(string path, HttpVerb method, string body = "") =>
+        SendVia(new VotingRequest(method, path)
         {
-            http.QueueFree();
+            Body = Encoding.UTF8.GetBytes(body),
+            Authed = true,
+            RetryOnUnauthorized = true,
+        });
 
-            DownfallMainFile.Logger.Info(
-                $"[VotingApi] <- request failed to send: {err}");
+    private Task<(long code, string body)> SendAuthed(string path, HttpVerb method, string body = "") =>
+        SendVia(new VotingRequest(method, path) { Body = Encoding.UTF8.GetBytes(body), Authed = true });
 
-            return (0, "request failed");
-        }
+    private Task<(long code, string body)> Send(string path, HttpVerb method, string body = "") =>
+        SendVia(new VotingRequest(method, path) { Body = Encoding.UTF8.GetBytes(body) });
 
-        var result = await ToSignal(
-            http,
-            HttpRequest.SignalName.RequestCompleted);
-
-        http.QueueFree();
-
-        var code = result[1].AsInt64();
-        var text = Encoding.UTF8.GetString(
-            result[3].AsByteArray());
-
-        DownfallMainFile.Logger.Info(
-            $"[VotingApi] <- {code} {url} :: {Truncate(text)}");
-
-        return (code, text);
+    private async Task<(long code, string body)> SendVia(VotingRequest request)
+    {
+        var response = await Transport.SendAsync(request);
+        return (response.Status, response.Body);
     }
-
-    private static string Truncate(string text) =>
-        text.Length > LogBodyLimit ? $"{text[..LogBodyLimit]}... ({text.Length} chars)" : text;
 }
