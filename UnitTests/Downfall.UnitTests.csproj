@@ -23,5 +23,6 @@
     <ItemGroup>
         <!-- Pure modules under test -->
         <Compile Include="../DownfallCode/Extensions/LinqExtensions.cs" Link="Pure/LinqExtensions.cs"/>
+        <Compile Include="../CollectorCode/Core/ReservePayment.cs" Link="Pure/ReservePayment.cs"/>
     </ItemGroup>
 </Project>
