@@ -33,7 +33,7 @@ public class SunbloomKindling : CollectorCardModel
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
-            await CollectorCmd.Kindle(ctx, this);
+            await TorchheadCmd.Kindle(ctx, this);
             await CommonActions.ApplySelf<StrengthPower>(ctx, this);
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
                 CardPilePosition.Bottom, IsUpgraded);

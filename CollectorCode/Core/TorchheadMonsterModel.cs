@@ -45,7 +45,7 @@ public class TorchheadMonsterModel : CustomMonsterModel
         // Unlike Osty (whose MaxHp only ever grows), Torchhead's MaxHp is kept in sync with its
         // remaining CurrentHp above, so its health bar always reads "full" - meaning MaxHp really
         // does drop on every hit here, and the visual scale (driven by MaxHp) needs to follow it.
-        CollectorCmd.RefreshTorchheadScale(target);
+        TorchheadCmd.RefreshTorchheadScale(target);
     }
 
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,

@@ -21,14 +21,14 @@ public sealed class CollectorCardPlayPhases : ICardPlayPhases
     {
         if (card.Keywords.Contains(CollectorKeyword.Pyre))
         {
-            var pyred = await CollectorCmd.Pyre(ctx, card);
+            var pyred = await PyreCmd.Pyre(ctx, card);
             if (card is IUsesPyredCards pyre) pyre.PyredCards = pyred == null ? [] : [pyred];
             return pyred != null;
         }
 
         if (card.Keywords.Contains(CollectorKeyword.Megapyre))
         {
-            var pyred = await CollectorCmd.MegaPyre(ctx, card);
+            var pyred = await PyreCmd.MegaPyre(ctx, card);
             if (card is IUsesPyredCards pyre) pyre.PyredCards = pyred;
             return pyred.Any();
         }

@@ -38,7 +38,7 @@ public class BygoneEffigyCardPower : CollectorPowerModel
         else
         {
             Flash();
-            await CollectorCmd.GainReserve(this);
+            await ReserveCmd.GainReserve(this);
             await MyCommonActions.ApplySelf<StrengthPower>(ctx, this);
             await PowerCmd.Remove(this);
         }

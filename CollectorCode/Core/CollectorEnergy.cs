@@ -21,6 +21,12 @@ public class CollectorEnergy : CardResource
     
     private readonly SpireField<CardModel, int> _lastSpent = new(() => 0);
 
+    public CollectorEnergy()
+    {
+        Changed += (player, value) =>
+            GD.Print($"[CollectorEnergy] Set fired: player={player.GetHashCode()} value={value}");
+    }
+
     public override Control CreateCounter(Player player)
     {
         return NCollectorEnergyCounter.Create(player);
