@@ -1,5 +1,7 @@
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
+
+using Downfall.DownfallCode.Voting.Client;
 
 namespace Downfall.DownfallCode.Voting;
 
@@ -8,7 +10,7 @@ namespace Downfall.DownfallCode.Voting;
 /// the voting grid, the upload popup and the card picker, none of which
 /// should need to know about each other to answer this question themselves.
 /// Which cards actually qualify is admin-curated server-side
-/// (<see cref="VotingApi.GetMissingCards"/>, backed by
+/// (<see cref="VotingClient.GetMissingCardsAsync"/>, backed by
 /// <c>voting_missing_art_cards</c>) rather than inferred here from the
 /// client's own asset state - a card can already have placeholder "beta
 /// art" and still need real art, which a "does the portrait resolve to

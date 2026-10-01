@@ -1,5 +1,7 @@
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Helpers;
+
+using Downfall.DownfallCode.Voting.Client;
 
 namespace Downfall.DownfallCode.Voting;
 
@@ -74,55 +76,52 @@ public partial class NMySubmissionsPopup : Control
         _saveCreditNameButton.Disabled = true;
         _creditNameStatus.Text = "";
 
-        var (ok, error) = await VotingApi.Instance.SetMyCreditName(creditName);
+        var result = await VotingServices.Client.SetCreditNameAsync(creditName);
         if (!IsInstanceValid(this))
             return;
 
         _saveCreditNameButton.Disabled = false;
-        _creditNameStatus.Text = ok
+        _creditNameStatus.Text = result.IsOk
             ? VotingUi.Loc("DOWNFALL-VOTING.status_credit_name_saved")
-            : error ?? VotingUi.Loc("DOWNFALL-VOTING.error_credit_name_save_failed");
+            : VotingText.For(result.Error!.Value, "DOWNFALL-VOTING.error_credit_name_save_failed");
     }
 
     private async Task Load()
     {
-        if (!VotingAuth.IsSignedIn)
-        {
-            _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_signing_in");
-            var (ok, message) = await VotingAuth.LoginAsync();
-            if (!IsInstanceValid(this))
-                return;
-            if (!ok)
-            {
-                _status.Text = message;
-                return;
-            }
-        }
+        // Refresh signs in by itself where needed.
+        await Refresh();
+        if (!IsInstanceValid(this) || !VotingServices.Session.IsSignedIn)
+            return;
 
-        var saved = await VotingApi.Instance.GetMyCreditName();
+        var saved = (await VotingServices.Client.GetMyProfileAsync()).Value?.CreditName;
         if (!IsInstanceValid(this))
             return;
         if (!string.IsNullOrEmpty(saved))
             _creditNameEdit.Text = saved;
-
-        await Refresh();
     }
 
     private async Task Refresh()
     {
-        _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_loading");
-        var submissions = await VotingApi.Instance.GetMySubmissions();
+        _status.Text = VotingServices.Session.IsSignedIn
+            ? VotingUi.Loc("DOWNFALL-VOTING.status_loading")
+            : VotingUi.Loc("DOWNFALL-VOTING.status_signing_in");
+
+        var result = await VotingServices.Client.GetMySubmissionsAsync();
         if (!IsInstanceValid(this))
             return;
 
         foreach (var child in _list.GetChildren())
             child.QueueFree();
 
-        if (submissions == null)
+        if (!result.IsOk)
         {
-            _status.Text = VotingUi.Loc("DOWNFALL-VOTING.error_load_failed");
+            _status.Text = result.Error is { IsSignInFailure: true } failure
+                ? VotingText.For(failure, "DOWNFALL-VOTING.error_load_failed")
+                : VotingUi.Loc("DOWNFALL-VOTING.error_load_failed");
             return;
         }
+
+        var submissions = result.Value!.Select(VotingMapping.ToMySubmission).ToList();
 
         if (submissions.Count == 0)
         {
@@ -193,7 +192,7 @@ public partial class NMySubmissionsPopup : Control
     private async Task Withdraw(MySubmission sub, Button withdrawButton)
     {
         withdrawButton.Disabled = true;
-        var ok = await VotingApi.Instance.DeleteMySubmission(sub.Id);
+        var ok = (await VotingServices.Client.DeleteMySubmissionAsync(sub.Id)).IsOk;
         if (!IsInstanceValid(this))
             return;
         if (!ok)

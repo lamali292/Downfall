@@ -219,7 +219,9 @@ public partial class NSelectCardPopup : Control
         _noResultsLabel.Text = VotingUi.Loc("DOWNFALL-VOTING.status_loading");
         _noResultsLabel.Visible = true;
 
-        var categories = await VotingApi.Instance.GetMissingCards();
+        // A failed fetch degrades to "nothing to pick" rather than an error.
+        var categories = (await VotingServices.Client.GetMissingCardsAsync()).Value?
+            .Select(VotingMapping.ToArtData).ToList() ?? [];
         if (!IsInstanceValid(this))
             return;
 
