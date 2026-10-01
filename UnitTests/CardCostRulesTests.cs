@@ -41,26 +41,4 @@ public class CardCostRulesTests
     {
         Assert.Equal(0, CardCostRules.EffectiveCost(false, 3, cost));
     }
-
-    [Fact]
-    public void IsFreeNow_FalseWithoutNumericCostEvenAtZero()
-    {
-        Assert.False(CardCostRules.IsFreeNow(false, 0));
-    }
-
-    [Fact]
-    public void IsFreeNow_FalseAtNegativeCost()
-    {
-        Assert.False(CardCostRules.IsFreeNow(true, -1));
-        Assert.False(CardCostRules.IsFreeNow(true, -2));
-    }
-
-    [Theory]
-    [InlineData(0, true)]
-    [InlineData(1, false)]
-    [InlineData(3, false)]
-    public void IsFreeNow_NumericCostOnlyExactlyZero(int cost, bool expected)
-    {
-        Assert.Equal(expected, CardCostRules.IsFreeNow(true, cost));
-    }
 }

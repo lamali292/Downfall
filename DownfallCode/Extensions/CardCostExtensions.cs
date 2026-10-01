@@ -17,7 +17,7 @@ public static class CardCostExtensions
         public bool IsXEnergy => card.EnergyCost.CostsX;
 
         /// <summary>Not X-energy and not X-star. See <see cref="CardCostRules.HasNumericCost"/>.</summary>
-        public bool HasNumericCost => CardCostRules.HasNumericCost(card.EnergyCost.CostsX, card.HasStarCostX);
+        public bool HasNumericCost => !card.EnergyCost.CostsX && !card.HasStarCostX;
 
         /// <summary>The energy the player pays right now (X cards: all current energy, never negative).</summary>
         public int EffectiveCost => CardCostRules.EffectiveCost(card.EnergyCost.CostsX,
@@ -33,7 +33,7 @@ public static class CardCostExtensions
         /// <summary>The cost printed on the card, ignoring every modifier. X cards report 0.</summary>
         public int PrintedCost => card.EnergyCost.Canonical;
 
-        /// <summary>A numeric cost that is currently zero. See <see cref="CardCostRules.IsFreeNow"/>.</summary>
-        public bool IsFreeNow => CardCostRules.IsFreeNow(card.HasNumericCost, card.ModifiedCost);
+        /// <summary>A numeric cost that is currently zero.</summary>
+        public bool IsFreeNow => card is { HasNumericCost: true, ModifiedCost: 0 };
     }
 }

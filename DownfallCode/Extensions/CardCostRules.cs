@@ -24,14 +24,4 @@ public static class CardCostRules
     {
         return costsXEnergy ? energyAvailable : Math.Max(0, modifiedCost);
     }
-
-    /// <summary>
-    /// Free means "a numeric cost that is currently exactly zero". The modified cost is used unclamped
-    /// on purpose: unplayable cards carry a negative cost (Ascender's Bane is -2) and must not look free.
-    /// X cards are never free, even though their base cost is stored as 0.
-    /// </summary>
-    public static bool IsFreeNow(bool hasNumericCost, int modifiedCost)
-    {
-        return hasNumericCost && modifiedCost == 0;
-    }
 }
