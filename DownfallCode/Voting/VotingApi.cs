@@ -9,30 +9,9 @@ namespace Downfall.DownfallCode.Voting;
 
 public partial class VotingApi : Node
 {
-    private const string BaseUrl = "https://api.downfall-sts2.org/voting";
-
-    // Shared secret Caddy expects on every request to this domain. Not a
-    // real per-user credential - same threat model as the old Supabase
-    // publishable key: it just keeps casual scraping/abuse off the API.
-    private const string GateKey = "0asdj0asdj0a0j0q22pm";
-
     public static VotingApi Instance { get; private set; } = null!;
 
-    private static VotingTransport Transport { get; } = CreateTransport();
-
-    private static VotingTransport CreateTransport() =>
-        new(new GodotHttpAdapter(), BaseUrl, GateKey, message => DownfallMainFile.Logger.Info(message))
-        {
-            Auth = new StaticAuthTokens()
-        };
-
-    /// <summary>Bridges the transport's token needs to the (still static) <see cref="VotingAuth"/>.</summary>
-    private sealed class StaticAuthTokens : IAuthTokens
-    {
-        public string? Token => VotingAuth.Token;
-
-        public Task<bool> ReauthenticateAsync() => VotingAuth.ReauthenticateAsync();
-    }
+    private static VotingTransport Transport => VotingServices.Transport;
 
     public override void _Ready()
     {
@@ -171,7 +150,7 @@ public partial class VotingApi : Node
 
     public async Task CastVote(long submissionId)
     {
-        if (!await VotingAuth.EnsureSignedIn())
+        if (await VotingServices.Session.EnsureSignedInAsync() != LoginOutcome.Success)
         {
             GD.PrintErr("CastVote skipped: not signed in with Steam");
             return;
@@ -186,7 +165,7 @@ public partial class VotingApi : Node
 
     public async Task ClearVote(long submissionId)
     {
-        if (!await VotingAuth.EnsureSignedIn())
+        if (await VotingServices.Session.EnsureSignedInAsync() != LoginOutcome.Success)
         {
             GD.PrintErr("ClearVote skipped: not signed in with Steam");
             return;
@@ -201,7 +180,7 @@ public partial class VotingApi : Node
 
     public async Task ToggleFlag(long submissionId, string reason, bool on)
     {
-        if (!await VotingAuth.EnsureSignedIn())
+        if (await VotingServices.Session.EnsureSignedInAsync() != LoginOutcome.Success)
         {
             GD.PrintErr("ToggleFlag skipped: not signed in with Steam");
             return;
@@ -230,7 +209,7 @@ public partial class VotingApi : Node
         if (add.Count == 0 && remove.Count == 0)
             return;
 
-        if (!await VotingAuth.EnsureSignedIn())
+        if (await VotingServices.Session.EnsureSignedInAsync() != LoginOutcome.Success)
         {
             GD.PrintErr("ToggleFlags skipped: not signed in with Steam");
             return;
@@ -249,43 +228,6 @@ public partial class VotingApi : Node
             GD.PrintErr($"ToggleFlags {code}: {resp}");
     }
 
-    // ---- Steam login (device-code-style: open browser, poll for completion) ----
-
-    public async Task<(string? state, string? loginUrl)> StartSteamLogin()
-    {
-        var (code, resp) = await Send($"/auth/steam/start", HttpVerb.Post, "{}");
-
-        if (code != 200)
-        {
-            GD.PrintErr($"StartSteamLogin {code}: {resp}");
-            return (null, null);
-        }
-
-        var d = Json.ParseString(resp).AsGodotDictionary();
-        return (d["state"].AsString(), d["loginUrl"].AsString());
-    }
-
-    public async Task<(string status, string? token)> PollSteamLogin(string state)
-    {
-        var (code, resp) = await Send(
-            $"/auth/steam/poll?state={Uri.EscapeDataString(state)}",
-            HttpVerb.Get);
-
-        if (code == 403)
-            return ("banned", null);
-
-        if (code != 200)
-        {
-            GD.PrintErr($"PollSteamLogin {code}: {resp}");
-            return ("error", null);
-        }
-
-        var d = Json.ParseString(resp).AsGodotDictionary();
-        var status = d["status"].AsString();
-        var token = status == "completed" ? d["token"].AsString() : null;
-        return (status, token);
-    }
-
     // ---- Artist credit name (one per Steam account, not per submission) ----
 
     /// <summary>
@@ -294,7 +236,7 @@ public partial class VotingApi : Node
     /// </summary>
     public async Task<string?> GetMyCreditName()
     {
-        var token = VotingAuth.Token;
+        var token = VotingServices.Session.Token;
         if (token == null)
             return null;
 
@@ -312,7 +254,7 @@ public partial class VotingApi : Node
 
     /// <summary>
     /// The real, server-verified steamid64 backing the current
-    /// <see cref="VotingAuth"/> session - not necessarily the same account
+    /// <see cref="VotingSession"/> session - not necessarily the same account
     /// as whichever Steam client happens to be running the game locally
     /// (usually true, but the browser sign-in could be a different
     /// account). Used to show "you're signed in as ..." against the
@@ -320,7 +262,7 @@ public partial class VotingApi : Node
     /// </summary>
     public async Task<string?> GetMySteamId()
     {
-        var token = VotingAuth.Token;
+        var token = VotingServices.Session.Token;
         if (token == null)
             return null;
 
@@ -346,7 +288,7 @@ public partial class VotingApi : Node
     /// </summary>
     public async Task<(bool ok, string? error)> SetMyCreditName(string creditName)
     {
-        var token = VotingAuth.Token;
+        var token = VotingServices.Session.Token;
         if (token == null)
             return (false, null);
 
@@ -362,12 +304,12 @@ public partial class VotingApi : Node
         return (true, null);
     }
 
-    // ---- Upload (requires a Steam-verified session from VotingAuth) ----
+    // ---- Upload (requires a Steam-verified session from VotingSession) ----
 
     public async Task<(bool ok, string error)> UploadSubmission(
         ModelId modelId, string imagePath)
     {
-        var token = VotingAuth.Token;
+        var token = VotingServices.Session.Token;
         if (token == null)
             return (false, VotingUi.Loc("DOWNFALL-VOTING.error_upload_not_signed_in"));
 
@@ -431,7 +373,7 @@ public partial class VotingApi : Node
 
     public async Task<List<MySubmission>?> GetMySubmissions()
     {
-        var token = VotingAuth.Token;
+        var token = VotingServices.Session.Token;
         if (token == null)
             return null;
 
@@ -463,7 +405,7 @@ public partial class VotingApi : Node
 
     public async Task<bool> DeleteMySubmission(long id)
     {
-        var token = VotingAuth.Token;
+        var token = VotingServices.Session.Token;
         if (token == null)
             return false;
 

@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Helpers;
 using Steamworks;
 
@@ -6,11 +6,11 @@ namespace Downfall.DownfallCode.Voting;
 
 /// <summary>
 /// "You're signed in as ..." readout - the avatar and persona name of the
-/// account actually backing the current <see cref="VotingAuth"/> session
+/// account actually backing the current <see cref="VotingSession"/> session
 /// (see <see cref="SteamAvatar"/>), not just whichever Steam account
 /// happens to be running the game locally. Hidden entirely until there's a
 /// real signed-in session to show, and refreshes reactively via
-/// <see cref="VotingAuth.SignedIn"/> for popups (like the upload flow) that
+/// <see cref="VotingServices.Session.SignedIn"/> for popups (like the upload flow) that
 /// sign in lazily well after this badge's own <c>_Ready()</c>. Its own
 /// scene since it's reused across the upload popup and My Submissions popup.
 /// </summary>
@@ -27,20 +27,20 @@ public partial class NSteamProfileBadge : HBoxContainer
         _nameLabel = GetNode<Label>("%NameLabel");
         Visible = false;
 
-        VotingAuth.SignedIn += OnSignedIn;
+        VotingServices.Session.SignedIn += OnSignedIn;
         TaskHelper.RunSafely(Refresh());
     }
 
     public override void _ExitTree()
     {
-        VotingAuth.SignedIn -= OnSignedIn;
+        VotingServices.Session.SignedIn -= OnSignedIn;
     }
 
     private void OnSignedIn() => TaskHelper.RunSafely(Refresh());
 
     private async Task Refresh()
     {
-        if (!VotingAuth.IsSignedIn)
+        if (!VotingServices.Session.IsSignedIn)
             return;
 
         var steamIdText = await VotingApi.Instance.GetMySteamId();

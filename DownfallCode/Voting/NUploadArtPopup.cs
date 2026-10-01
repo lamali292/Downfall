@@ -1,5 +1,7 @@
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Helpers;
+
+using Downfall.DownfallCode.Voting.Client;
 
 namespace Downfall.DownfallCode.Voting;
 
@@ -114,7 +116,7 @@ public partial class NUploadArtPopup : Control
         // lazily, so a first-time uploader won't have one yet at Open() time,
         // and the Steam persona name above is already a reasonable default
         // for that case.
-        if (VotingAuth.IsSignedIn)
+        if (VotingServices.Session.IsSignedIn)
             TaskHelper.RunSafely(LoadSavedCreditName());
     }
 
@@ -187,13 +189,13 @@ public partial class NUploadArtPopup : Control
 
         _submitButton.Disabled = true;
 
-        if (!VotingAuth.IsSignedIn)
+        if (!VotingServices.Session.IsSignedIn)
         {
             _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_signing_in");
-            var (ok, message) = await VotingAuth.LoginAsync();
-            if (!ok)
+            var outcome = await VotingServices.Session.LoginAsync();
+            if (outcome != LoginOutcome.Success)
             {
-                _status.Text = message;
+                _status.Text = VotingText.ForLogin(outcome);
                 _submitButton.Disabled = false;
                 return;
             }

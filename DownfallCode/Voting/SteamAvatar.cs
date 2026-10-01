@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Platform.Steam;
 using Steamworks;
 
@@ -11,7 +11,7 @@ namespace Downfall.DownfallCode.Voting;
 /// key, no scraping steamcommunity.com. Takes an explicit
 /// <see cref="CSteamID"/> rather than always assuming "the local player" -
 /// the voting UI uses this to show the account backing the actual
-/// authenticated <see cref="VotingAuth"/> session (via
+/// authenticated <see cref="VotingSession"/> session (via
 /// <see cref="VotingApi.GetMySteamId"/>), which usually but not necessarily
 /// matches whichever Steam client is running the game locally.
 /// </summary>

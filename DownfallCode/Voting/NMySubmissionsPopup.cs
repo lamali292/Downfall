@@ -1,5 +1,7 @@
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Helpers;
+
+using Downfall.DownfallCode.Voting.Client;
 
 namespace Downfall.DownfallCode.Voting;
 
@@ -86,15 +88,15 @@ public partial class NMySubmissionsPopup : Control
 
     private async Task Load()
     {
-        if (!VotingAuth.IsSignedIn)
+        if (!VotingServices.Session.IsSignedIn)
         {
             _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_signing_in");
-            var (ok, message) = await VotingAuth.LoginAsync();
+            var outcome = await VotingServices.Session.LoginAsync();
             if (!IsInstanceValid(this))
                 return;
-            if (!ok)
+            if (outcome != LoginOutcome.Success)
             {
-                _status.Text = message;
+                _status.Text = VotingText.ForLogin(outcome);
                 return;
             }
         }
