@@ -1,4 +1,4 @@
-using Collector.CollectorCode.Core;
+﻿using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
@@ -24,8 +24,6 @@ public static class CollectorMainFile
     {
         PostInitRegistry.Register(PostModelInit);
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
-        CardExecutionHooks.RegisterBefore(CollectorCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionHooks.RegisterAfter(CollectorCardEffectHandler.DoAfterPlayInternal);
 
         BundledSubmodLocRegistry.Register(ModId);
         
