@@ -1,116 +1,57 @@
-﻿using Downfall.DownfallCode.Extensions;
+﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
-using Collector.CollectorCode.Extensions;
-using Collector.CollectorCode.Interfaces;
-using Collector.CollectorCode.Vfx;
-using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Core;
 using Godot;
-using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Core;
 
-public class CollectorEnergy : CardResource
+/// <summary>
+/// The Collector's Reserve: a per-player pool that covers the Energy deficit of any card and is the only
+/// currency for cards implementing <c>IUsesCollectorEnergyOnly</c>. Holds the state only; how it is paid
+/// and checked lives in <see cref="ReservePaymentRules"/> and the patches in <c>Patches/Reserve*</c>.
+/// </summary>
+public class CollectorEnergy : CustomSingletonModel
 {
-    public override string ResourceName => "Collector Energy";
-    public override Vector2 UiPosition => new(80f, 80f);
-    public override Vector2 UiScale => new(0.6f, 0.6f);
+    /// <summary>The singleton, set when the game constructs the model. First instance wins.</summary>
+    public static CollectorEnergy? Instance { get; private set; }
 
-    protected override bool InteractsWithEnergy => true;
-    
+    private readonly PlayerField<int> _current = new(() => 0);
     private readonly SpireField<CardModel, int> _lastSpent = new(() => 0);
 
-    public CollectorEnergy()
+    public CollectorEnergy() : base(HookType.Combat)
     {
-        Changed += (player, value) =>
-            GD.Print($"[CollectorEnergy] Set fired: player={player.GetHashCode()} value={value}");
+        Instance ??= this;
     }
 
-    public override Control CreateCounter(Player player)
+    public event Action<PlayerCombatState, int>? Changed;
+
+    public int Get(Player player) => _current.Get(player);
+
+    public int Get(PlayerCombatState player) => _current.Get(player);
+
+    public void Set(PlayerCombatState player, int amount)
     {
-        return NCollectorEnergyCounter.Create(player);
+        var clamped = Math.Max(0, amount);
+        _current[player] = clamped;
+        GD.Print($"[CollectorEnergy] Set fired: player={player.GetHashCode()} value={clamped}");
+        Changed?.Invoke(player, clamped);
     }
 
-    public override (int energySpent, int starsSpent) HandleSpending(CardModel card)
+    public override Task BeforeCombatStart()
     {
-        var player = card.Owner;
-
-        if (card.IsXEnergy)
-        {
-            // X-cost cards spend all Energy AND all Reserve. Merge Reserve into Energy before
-            // the base CardModel.SpendResources() (which still runs after this prefix, since
-            // X-cost cards aren't UsesResourceExclusively) computes/captures the amount spent,
-            // so the vanilla plumbing (CapturedXValue, history, hooks) sees the combined total.
-            var xReserve = Get(player);
-            if (xReserve > 0 && player.PlayerCombatState != null)
-            {
-                player.PlayerCombatState.GainEnergy(xReserve);
-                player.PlayerCombatState.Reserve -= xReserve;
-            }
-            _lastSpent[card] = xReserve;
-            return (0, 0);
-        }
-
-        var cost = card.EffectiveCost;
-
-        if (UsesResourceExclusively(card))
-        {
-            if (!CanAfford(player, cost))
-            {
-                _lastSpent[card] = 0;
-                return (0, 0);
-            }
-
-            player.PlayerCombatState?.Reserve -= cost;
-            _lastSpent[card] = cost;
-            return (0, 0);
-        }
-
-        var energy = player.PlayerCombatState?.Energy ?? 0;
-        if (energy >= cost)
-        {
-            _lastSpent[card] = 0;
-            return (cost, 0);
-        }
-
-        var deficit = cost - energy;
-        var available = Get(player);
-        var cover = Math.Min(deficit, available);
-
-        if (cover > 0) player.PlayerCombatState?.Reserve -= cover;;
-        _lastSpent[card] = cover;
-        return (energy, 0);
+        var state = CombatManager.Instance.DebugOnlyGetState();
+        if (state == null) return Task.CompletedTask;
+        foreach (var player in state.Players)
+            if (player.PlayerCombatState != null)
+                Set(player.PlayerCombatState, 0);
+        return Task.CompletedTask;
     }
 
-    public override (bool hasResources, UnplayableReason reason) CheckResources(CardModel card)
-    {
-        var player = card.Owner;
-        var cost = card.ModifiedCost;
-
-        if (UsesResourceExclusively(card))
-            return Get(player) >= cost ? (true, UnplayableReason.None) : (false, UnplayableReason.EnergyCostTooHigh);
-
-        var energy = player.PlayerCombatState?.Energy ?? 0;
-        var totalAvailable = energy + Get(player);
-
-        return totalAvailable >= cost ? (true, UnplayableReason.None) : (false, UnplayableReason.EnergyCostTooHigh);
-    }
-
-    public override bool ShouldHandleSpending(CardModel card)
-    {
-        return true;
-    }
-
-    public override bool ShouldHandleResourceCheck(CardModel card)
-    {
-        return true;
-    }
-
-    public override bool UsesResourceExclusively(CardModel card)
-    {
-        return card is IUsesCollectorEnergyOnly;
-    }
+    /// <summary>Records how much Reserve the last play of <paramref name="card"/> took.</summary>
+    public void RecordSpent(CardModel card, int amount) => _lastSpent[card] = amount;
 
     public bool WasSpentOn(CardModel card) => _lastSpent[card] > 0;
     public int AmountSpentOn(CardModel card) => _lastSpent[card];
