@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Cards;
 using Champ.ChampCode.Cards.Basic;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Extensions;
@@ -71,15 +72,25 @@ public class ChampCmd
         await ChampModel.SetStance<ChampNoStance>(ctx, player);
     }
 
-    public static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay,
-        bool affectsAllPlayers = false,
-        bool skipClear = false,
-        int repeat = 1)
+    /// <summary>
+    /// Whether a Finisher card would act right now: the stance has a Finisher, or a hook (e.g. Signature) allows it without one.
+    /// Playability, glow and <see cref="PlayFinisher"/> all use this so the UI cannot disagree with the effect.
+    /// </summary>
+    public static bool FinisherCanAct(CardModel card)
+    {
+        if (!card.Tags.Contains(ChampTag.Finisher) || card._owner == null || card.CombatState is not { } cs)
+            return false;
+        return card.Owner.ChampStance.HasFinisher || ChampHook.AllowFinisherWithoutStance(cs, card);
+    }
+
+    internal static async Task PlayFinisher(PlayerChoiceContext ctx, CardPlay cardPlay, FinisherDescriptor finisher)
     {
         var player = cardPlay.Card.Owner;
         var m = player.ChampStance;
         var combatState = player.Creature.CombatState!;
-        if (!m.HasFinisher && !ChampHook.AllowFinisherWithoutStance(combatState, cardPlay.Card)) return;
+        if (!FinisherCanAct(cardPlay.Card)) return;
+        var affectsAllPlayers = finisher.AffectsAllPlayers;
+        var repeat = finisher.Repeat;
 
         for (var i = 0; i < repeat; i++)
         {
@@ -92,7 +103,7 @@ public class ChampCmd
                     CombatManager.Instance.History, combatState.Players));
         }
 
-        if (skipClear || ChampHook.KeepStanceAfterFinisher(combatState, cardPlay.Card)) return;
+        if (finisher.KeepsStance || ChampHook.KeepStanceAfterFinisher(combatState, cardPlay.Card)) return;
         await ClearStance(ctx, player);
         if (m is ChampUltimateStance)
             await EnterStance<ChampUltimateStance>(ctx, player);
