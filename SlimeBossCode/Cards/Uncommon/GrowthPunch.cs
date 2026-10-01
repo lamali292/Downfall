@@ -1,16 +1,14 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
-using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class GrowthPunch : SlimeBossCardModel, IHasConsumeEffect
+public class GrowthPunch : SlimeBossCardModel
 {
     public GrowthPunch() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -24,13 +22,11 @@ public class GrowthPunch : SlimeBossCardModel, IHasConsumeEffect
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.Consume(ctx, this, cardPlay);
-    }
-
-    public Task ConsumeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, Creature target)
-    {
-        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
-        DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
-        return Task.CompletedTask;
+        await SlimeBossCmd.Consume(ctx, this, cardPlay, _ =>
+        {
+            DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+            DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+            return Task.CompletedTask;
+        });
     }
 }

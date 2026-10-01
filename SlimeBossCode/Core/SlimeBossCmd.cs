@@ -12,7 +12,6 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
-using SlimeBoss.SlimeBossCode.Interfaces;
 using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
 
@@ -34,7 +33,8 @@ public static class SlimeBossCmd
     /// attempted explicitly by the card itself (like Schlurp) rather than gated behind an attack landing -
     /// there is no separate Goop resource anymore, Consume keys directly off the target's Weak stacks.
     /// </summary>
-    public static async Task<bool> Consume(PlayerChoiceContext ctx, CardModel card, CardPlay? cardPlay)
+    public static async Task<bool> Consume(PlayerChoiceContext ctx, CardModel card, CardPlay? cardPlay,
+        Func<Creature, Task> effect)
     {
         if (cardPlay == null) return false;
         // card.GetTargets() only resolves AoE target types; single-target cards (AnyEnemy etc.) need the
@@ -48,7 +48,7 @@ public static class SlimeBossCmd
             if (weak is not { Amount: > 0 }) continue;
             await PowerCmd.ModifyAmount(ctx, weak, -1, card.Owner.Creature, card);
             consumed++;
-            if (card is IHasConsumeEffect effect) await effect.ConsumeEffect(ctx, cardPlay, target);
+            await effect(target);
             if (target.CombatState != null)
                 await SlimeBossHook.AfterConsumeEffect(target.CombatState, ctx, target, card.Owner.Creature);
         }
