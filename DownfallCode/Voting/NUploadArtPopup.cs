@@ -189,22 +189,23 @@ public partial class NUploadArtPopup : Control
 
         _submitButton.Disabled = true;
 
-        if (!VotingServices.Session.IsSignedIn)
+        // The client signs in by itself where needed; this is only the hint
+        // shown while the browser sign-in is pending.
+        _status.Text = VotingServices.Session.IsSignedIn
+            ? VotingUi.Loc("DOWNFALL-VOTING.status_uploading")
+            : VotingUi.Loc("DOWNFALL-VOTING.status_signing_in");
+
+        var creditName = _creditNameEdit.Text.Trim();
+        var rename = await VotingServices.Client.SetCreditNameAsync(string.IsNullOrEmpty(creditName) ? "Anonymous" : creditName);
+        if (rename.Error is { IsSignInFailure: true } signInFailure)
         {
-            _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_signing_in");
-            var outcome = await VotingServices.Session.LoginAsync();
-            if (outcome != LoginOutcome.Success)
-            {
-                _status.Text = VotingText.ForLogin(outcome);
-                _submitButton.Disabled = false;
-                return;
-            }
+            _status.Text = VotingText.For(signInFailure, "DOWNFALL-VOTING.error_upload_generic");
+            _submitButton.Disabled = false;
+            return;
         }
 
         _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_uploading");
 
-        var creditName = _creditNameEdit.Text.Trim();
-        var rename = await VotingServices.Client.SetCreditNameAsync(string.IsNullOrEmpty(creditName) ? "Anonymous" : creditName);
         if (!rename.IsOk)
         {
             // Rename didn't take (e.g. rate-limited) - upload still proceeds

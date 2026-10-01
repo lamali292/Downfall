@@ -35,7 +35,12 @@ public enum VotingErrorCode
     Server
 }
 
-public readonly record struct VotingError(VotingErrorCode Code, long Status = 0, string? ServerMessage = null);
+public readonly record struct VotingError(VotingErrorCode Code, long Status = 0, string? ServerMessage = null)
+{
+    /// <summary>The call never ran because the required sign-in did not complete.</summary>
+    public bool IsSignInFailure => Code is VotingErrorCode.LoginUnreachable or VotingErrorCode.LoginBanned
+        or VotingErrorCode.LoginExpired or VotingErrorCode.LoginFailed or VotingErrorCode.LoginTimeout;
+}
 
 public readonly record struct VotingResult(VotingError? Error)
 {

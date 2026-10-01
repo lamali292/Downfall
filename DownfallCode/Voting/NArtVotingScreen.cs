@@ -24,7 +24,7 @@ namespace Downfall.DownfallCode.Voting;
 /// full history, downloaded and instantiated as a node, the moment the
 /// screen opens), and computing "hot" client-side over a partial page
 /// wouldn't rank correctly anyway. Each (sort, pool-set) combination gets
-/// its own page cache keyed in <see cref="_cache"/>, so switching sort or
+/// its own page cache in <see cref="ArtFeedStore"/>, so switching sort or
 /// pool back and forth re-renders instantly from cache instead of
 /// re-fetching, and scrolling near the bottom fetches the next page of
 /// whichever feed is active. The search box stays a client-side filter over
@@ -57,14 +57,6 @@ public partial class NArtVotingScreen : NSubmenu
     public static NArtVotingScreen? Create() =>
         TestMode.IsOn ? null : PreloadManager.Cache.GetScene(ScenePath).Instantiate<NArtVotingScreen>();
 
-    private sealed class FeedCache
-    {
-        public required IReadOnlySet<VotingPool> Pools;
-        public readonly List<ArtEntry> Items = [];
-        public int? NextOffset = 0;
-        public bool Loading;
-    }
-
     private NVotingFilter _filter = null!;
     private HFlowContainer _content = null!;
     private NScrollableContainer _scroll = null!;
@@ -72,8 +64,8 @@ public partial class NArtVotingScreen : NSubmenu
     private PackedScene _voteCardScene = null!;
     private bool _loaded;
 
-    private readonly Dictionary<(NVotingFilter.SortMode Sort, string PoolKey), FeedCache> _cache = new();
-    private (NVotingFilter.SortMode Sort, string PoolKey) _activeKey;
+    private readonly ArtFeedStore _feeds = new(VotingServices.Client, PageSize);
+    private FeedKey _activeKey;
 
     public override void _Ready()
     {
@@ -137,21 +129,14 @@ public partial class NArtVotingScreen : NSubmenu
 
     // ---- Feed loading (paginated, cached per sort+pool combo) ----
 
-    private (NVotingFilter.SortMode Sort, string PoolKey) CurrentKey() =>
-        (_filter.ActiveSort, PoolKey(_filter.SelectedPools));
+    private FeedKey CurrentKey() => FeedKey.For(SortName(_filter.ActiveSort), _filter.SelectedPools);
 
-    private static string PoolKey(IReadOnlySet<VotingPool> pools) =>
-        pools.Count == 0 ? "" : string.Join(",", pools.OrderBy(p => p));
-
-    private FeedCache GetOrCreateCache((NVotingFilter.SortMode Sort, string PoolKey) key)
+    private static string SortName(NVotingFilter.SortMode sort) => sort switch
     {
-        if (_cache.TryGetValue(key, out var cache))
-            return cache;
-
-        cache = new FeedCache { Pools = _filter.SelectedPools };
-        _cache[key] = cache;
-        return cache;
-    }
+        NVotingFilter.SortMode.Top => "top",
+        NVotingFilter.SortMode.New => "new",
+        _ => "hot",
+    };
 
     private void OnFilterChanged()
     {
@@ -177,7 +162,7 @@ public partial class NArtVotingScreen : NSubmenu
         foreach (var child in _content.GetChildren())
             child.QueueFree();
 
-        var cache = GetOrCreateCache(_activeKey);
+        var cache = _feeds.GetOrCreate(_activeKey, _filter.SelectedPools);
 
         if (cache.Items.Count > 0)
         {
@@ -187,7 +172,7 @@ public partial class NArtVotingScreen : NSubmenu
             ApplyLocalFilter();
             Callable.From(() => { ClampContentWidth(); EnsureFilled(); }).CallDeferred();
         }
-        else if (cache.NextOffset != null && !cache.Loading)
+        else if (cache.CanLoadMore)
         {
             TaskHelper.RunSafely(FetchPage(_activeKey, cache));
         }
@@ -200,7 +185,7 @@ public partial class NArtVotingScreen : NSubmenu
         if (value < LoadMoreThreshold)
             return;
 
-        if (!_cache.TryGetValue(_activeKey, out var cache) || cache.Loading || cache.NextOffset == null)
+        if (_feeds.Get(_activeKey) is not { CanLoadMore: true } cache)
             return;
 
         TaskHelper.RunSafely(FetchPage(_activeKey, cache));
@@ -216,47 +201,21 @@ public partial class NArtVotingScreen : NSubmenu
         if (!IsInstanceValid(this) || _scroll == null || _scroll.Scrollbar.Visible)
             return;
 
-        if (!_cache.TryGetValue(_activeKey, out var cache) || cache.Loading || cache.NextOffset == null)
+        if (_feeds.Get(_activeKey) is not { CanLoadMore: true } cache)
             return;
 
         TaskHelper.RunSafely(FetchPage(_activeKey, cache));
     }
 
-    private async Task FetchPage((NVotingFilter.SortMode Sort, string PoolKey) key, FeedCache cache)
+    private async Task FetchPage(FeedKey key, ArtFeed cache)
     {
-        if (cache.Loading || cache.NextOffset == null)
-            return;
-
-        cache.Loading = true;
-
-        var sort = key.Sort switch
-        {
-            NVotingFilter.SortMode.Top => "top",
-            NVotingFilter.SortMode.New => "new",
-            _ => "hot",
-        };
-
-        var result = await VotingServices.Client.GetFeedAsync(
-            cache.Pools.Select(p => p.ToString()).ToList(), sort, cache.NextOffset.Value, PageSize);
-
-        cache.Loading = false;
+        var items = await _feeds.LoadNextPageAsync(key, cache);
 
         // The screen may have closed, or the user may have switched to a
-        // different sort/pool, while this request was in flight - either
-        // way this page no longer belongs anywhere.
-        if (!IsInstanceValid(this) || _activeKey != key)
+        // different sort/pool, while this request was in flight - the page
+        // still lands in its own cache, but there is nothing to render now.
+        if (items == null || !IsInstanceValid(this) || _activeKey != key)
             return;
-
-        if (!result.IsOk)
-        {
-            GD.PrintErr($"GetFeed failed: {result.Error}");
-            cache.NextOffset = null;
-            return;
-        }
-
-        var items = result.Value!.Items.Select(VotingMapping.ToArtEntry).ToList();
-        cache.NextOffset = result.Value.NextOffset;
-        cache.Items.AddRange(items);
 
         foreach (var entry in items)
             AddCard(entry);
@@ -299,7 +258,7 @@ public partial class NArtVotingScreen : NSubmenu
     /// <summary>
     /// A vote card's own like/count state lives on the node (see
     /// <see cref="NVoteCard.Like"/>) - the <see cref="ArtEntry"/> sitting in
-    /// a <see cref="FeedCache"/> is a separate, immutable snapshot from
+    /// a <see cref="ArtFeed"/> is a separate, immutable snapshot from
     /// whenever that page was fetched. Without this, liking a card, then
     /// switching sort/pool and back, re-renders from the stale cached entry
     /// and the like visually reverts even though the server still has it.
@@ -307,20 +266,8 @@ public partial class NArtVotingScreen : NSubmenu
     /// several caches at once (Hot/Top/New, per pool filter), so every
     /// cache gets checked, not just the active one.
     /// </summary>
-    private void OnCardScoreChanged(NVoteCard card)
-    {
-        foreach (var cache in _cache.Values)
-        {
-            for (var i = 0; i < cache.Items.Count; i++)
-            {
-                if (cache.Items[i].Id != card.SubmissionId)
-                    continue;
-
-                cache.Items[i] = cache.Items[i] with { Liked = card.Liked, Upvotes = card.Likes };
-                break;
-            }
-        }
-    }
+    private void OnCardScoreChanged(NVoteCard card) =>
+        _feeds.ApplyVote(card.SubmissionId, card.Liked, card.Likes);
 
     private void ApplyLocalFilter()
     {
@@ -404,7 +351,7 @@ public partial class NArtVotingScreen : NSubmenu
     /// </summary>
     private void OnArtUploaded()
     {
-        _cache.Clear();
+        _feeds.Clear();
         SwitchFeed();
     }
 

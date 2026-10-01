@@ -88,44 +88,40 @@ public partial class NMySubmissionsPopup : Control
 
     private async Task Load()
     {
-        if (!VotingServices.Session.IsSignedIn)
-        {
-            _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_signing_in");
-            var outcome = await VotingServices.Session.LoginAsync();
-            if (!IsInstanceValid(this))
-                return;
-            if (outcome != LoginOutcome.Success)
-            {
-                _status.Text = VotingText.ForLogin(outcome);
-                return;
-            }
-        }
+        // Refresh signs in by itself where needed.
+        await Refresh();
+        if (!IsInstanceValid(this) || !VotingServices.Session.IsSignedIn)
+            return;
 
         var saved = (await VotingServices.Client.GetMyProfileAsync()).Value?.CreditName;
         if (!IsInstanceValid(this))
             return;
         if (!string.IsNullOrEmpty(saved))
             _creditNameEdit.Text = saved;
-
-        await Refresh();
     }
 
     private async Task Refresh()
     {
-        _status.Text = VotingUi.Loc("DOWNFALL-VOTING.status_loading");
-        var submissions = (await VotingServices.Client.GetMySubmissionsAsync()).Value?
-            .Select(VotingMapping.ToMySubmission).ToList();
+        _status.Text = VotingServices.Session.IsSignedIn
+            ? VotingUi.Loc("DOWNFALL-VOTING.status_loading")
+            : VotingUi.Loc("DOWNFALL-VOTING.status_signing_in");
+
+        var result = await VotingServices.Client.GetMySubmissionsAsync();
         if (!IsInstanceValid(this))
             return;
 
         foreach (var child in _list.GetChildren())
             child.QueueFree();
 
-        if (submissions == null)
+        if (!result.IsOk)
         {
-            _status.Text = VotingUi.Loc("DOWNFALL-VOTING.error_load_failed");
+            _status.Text = result.Error is { IsSignInFailure: true } failure
+                ? VotingText.For(failure, "DOWNFALL-VOTING.error_load_failed")
+                : VotingUi.Loc("DOWNFALL-VOTING.error_load_failed");
             return;
         }
+
+        var submissions = result.Value!.Select(VotingMapping.ToMySubmission).ToList();
 
         if (submissions.Count == 0)
         {
