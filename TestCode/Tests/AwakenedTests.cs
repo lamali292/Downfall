@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Models.Cards;
 using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Cards.Common;
 using Awakened.AwakenedCode.Cards.Uncommon;
@@ -13,6 +14,17 @@ namespace Downfall.TestCode;
 
 public class AwakenedTests
 {
+    // Clutch counts cards whose modified cost is exactly zero; an unplayable negative-cost card
+    // (Ascender's Bane) must not look free.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task ClutchIgnoresNegativeCostCards(TestContext ctx)
+    {
+        var bane = await ctx.AddCardToTopOfDraw<AscendersBane>();
+        var clutch = await ctx.AddCardToHand<Clutch>();
+        await ctx.PlayCard(clutch, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(!ctx.Player.Hand.Contains(bane), "Clutch must not fetch a negative-cost card as if it were free.");
+    }
     private static int ZeroCostCardsInHand(TestContext ctx) =>
         ctx.Player.Hand.Count(c => c.EnergyCost.GetAmountToSpend() == 0 && !c.EnergyCost.CostsX);
 

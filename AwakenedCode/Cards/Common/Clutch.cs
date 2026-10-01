@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Extensions;
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -25,10 +26,10 @@ public class Clutch : AwakenedCardModel
     // to check the card's actual current cost, not its canonical/printed one, or the glow and the
     // pick can disagree about what's really 0-cost right now.
     //
-    // Use GetWithModifiers directly rather than GetAmountToSpend(): the latter clamps negative
+    // IsFreeNow reads the unclamped modified cost rather than the amount to spend: the latter clamps negative
     // costs to 0, which would make unplayable cards like Ascender's Bane (cost -2) look free.
     private IEnumerable<CardModel> ZeroCostCandidates =>
-        Owner.DrawPile.Where(c => !c.EnergyCost.CostsX && c.EnergyCost.GetWithModifiers(CostModifiers.All) == 0);
+        Owner.DrawPile.Where(c => c.IsFreeNow);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
