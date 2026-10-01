@@ -26,15 +26,6 @@ public class Headshot : HermitCardModel, IHasDeadOnEffect, IModifyDamageMultipli
         return Task.CompletedTask;
     }
 
-/*
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource, CardPlay? cardPlay)
-    {
-        if (this is not IHasDeadOnEffect deadOnEffect) return 1;
-        if (cardSource != this || dealer != Owner.Creature || !props.IsPoweredAttack() || !deadOnEffect.IsDeadOn)
-            return 1;
-        return Owner.Creature.HasPower<SnipePower>() ? 4 : 2;    }
-*/
     public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
