@@ -1,4 +1,5 @@
 using Hermit.HermitCode.Core;
+using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,10 +11,17 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class SmokingBarrelPower : HermitPowerModel, IAfterDeadOnTrigger
 {
-    public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
+    public SmokingBarrelPower()
+    {
+        WithTip(HermitKeywords.DeadOn);
+        WithTip<VigorPower>();
+    }
+    
+    
+    public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card)
     {
         if (card.Owner.Creature != Owner) return;
         Flash();
-        await PowerCmd.Apply<VigorPower>(ctx, Owner, Amount, Owner, cardPlay.Card);
+        await PowerCmd.Apply<VigorPower>(ctx, Owner, Amount, Owner, card);
     }
 }

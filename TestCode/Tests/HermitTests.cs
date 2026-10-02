@@ -1,7 +1,9 @@
+using BaseLib.Abstracts;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Hermit.HermitCode.Cards.Common;
 using Hermit.HermitCode.Cards.Multiplayer;
+using Hermit.HermitCode.Cards.Rare;
 using Hermit.HermitCode.Cards.Uncommon;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.History;
@@ -322,6 +324,54 @@ public class HermitTests
         Assert.IsTrue(ctx.Player.Hand.Count() > 2, "Vantage's Dead On effect should have drawn cards mid-play.");
         Assert.AreEqual(2, DeadOnEntries(vantage),
             "Both replay instances are Dead On even though the first one changed the hand.");
+    }
+
+    // CursedSkull's DeadOnReplay modifier attaches to a card with no Dead On effect of its own
+    // (Strike) - it only ever contributes extra plays, and records its own DeadOnEntry for Called
+    // Shot/Combo-style readers, while the modified card happens to be Dead On.
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task DeadOnReplayModifierAddsAPlayOnlyWhileDeadOn(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var strike = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        CardModifier.AddModifier<DeadOnReplay>(strike);
+
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.DefendHermit>();
+        await CardPileCmd.Add(strike, PileType.Hand);
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.DefendHermit>();
+        Assert.IsTrue(HermitCmd.IsDeadOn(strike), "Strike in the middle of three cards is Dead On.");
+        await ctx.PlayCard(strike);
+        Assert.AreEqual(2, DeadOnEntries(strike), "DeadOnReplay granted one extra play while Dead On.");
+
+        await ctx.ClearHand();
+        await CardPileCmd.Add(strike, PileType.Hand);
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.DefendHermit>();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.DefendHermit>();
+        Assert.IsTrue(!HermitCmd.IsDeadOn(strike), "Strike at the edge is not Dead On.");
+        await ctx.PlayCard(strike);
+        Assert.AreEqual(2, DeadOnEntries(strike),
+            "No extra play granted while not Dead On - still just the 2 entries from the first play.");
+    }
+
+    // Called Shot's own "did my last play trigger Dead On" check reads DeadOnEntry history, not
+    // keywords - DeadOnReplay-granted plays must record their own entry for it to see.
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task DeadOnReplayModifierRecordsEntryForCalledShotToRead(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.DefendHermit>();
+        var strike = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        CardModifier.AddModifier<DeadOnReplay>(strike);
+        await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.DefendHermit>();
+        Assert.IsTrue(HermitCmd.IsDeadOn(strike), "Strike in the middle of three cards is Dead On.");
+        await ctx.PlayCard(strike);
+
+        var calledShot = await ctx.AddCardToHand<CalledShot>();
+        var handCountBeforeCalledShot = ctx.Player.Hand.Count();
+        await ctx.PlayCard(calledShot, ctx.Combat.HittableEnemies.First());
+        Assert.AreEqual(handCountBeforeCalledShot, ctx.Player.Hand.Count(),
+            "Called Shot should draw a card: the immediately preceding play (DeadOnReplay's Strike) triggered Dead On.");
     }
 
     // ---- Curse adjacency ----
