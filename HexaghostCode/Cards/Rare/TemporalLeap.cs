@@ -20,5 +20,6 @@ public class TemporalLeap : HexaghostCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.Draw(this, ctx);
+        await HexaghostCmd.Advance(ctx, Owner, this);
     }
 }

@@ -23,6 +23,7 @@ public class Incorporeal : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await HexaghostCmd.Retract(ctx, Owner, this);
         await MyCommonActions.LoseHp(ctx, this, cardPlay.Target);
         await CommonActions.ApplySelf<IntangiblePower>(ctx, this);
     }
