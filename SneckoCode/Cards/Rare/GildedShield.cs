@@ -20,6 +20,6 @@ public class GildedShield : SneckoCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CardPileCmd.Add(this, PileType.Hand);
-        await SneckoCmd.Muddle(ctx, this);
+        await MuddleCmd.Muddle(ctx, this);
     }
 }

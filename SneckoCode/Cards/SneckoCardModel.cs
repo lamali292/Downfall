@@ -1,7 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
@@ -19,26 +18,24 @@ public abstract class SneckoCardModel(
     bool autoAdd = true)
     : DownfallCardModel<Core.Snecko>(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
 {
-    protected override ICardPlayPhases PlayPhases => SneckoCardPlayPhases.Instance;
-
     protected override bool ShouldGlowGoldInternal =>
-        Keywords.Contains(SneckoKeywords.Overflow) && SneckoCmd.OverflowActive(this);
+        Keywords.Contains(SneckoKeywords.Overflow) && OverflowCmd.OverflowActive(this);
 
 
-    public ConstructedCardModel WithMuddle(decimal val, decimal upgrade = 0)
+    protected ConstructedCardModel WithMuddle(decimal val, decimal upgrade = 0)
     {
         WithVars(new MuddleVar(val).WithUpgrade(upgrade));
         WithKeyword(SneckoKeywords.Muddle);
         return this;
     }
 
-    public ConstructedCardModel WithOverflow()
+    protected ConstructedCardModel WithOverflow()
     {
         WithKeyword(SneckoKeywords.Overflow);
         return this;
     }
 
-    public ConstructedCardModel WithGift(Gift gift)
+    protected ConstructedCardModel WithGift(Gift gift)
     {
         if (this is not IHasGift giftCard) return this;
         if (giftCard.Gift != null) throw new InvalidOperationException("Gift already set");

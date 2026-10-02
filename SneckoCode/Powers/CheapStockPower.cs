@@ -22,6 +22,6 @@ public class CheapStockPower : SneckoPowerModel
             .OrderByDescending(e => e.EnergyCost.GetAmountToSpend())
             .Take(Amount);
         var ctx = new BlockingPlayerChoiceContext();
-        await SneckoCmd.Muddle(ctx, cards, this);
+        await MuddleCmd.Muddle(ctx, cards, this);
     }
 }
