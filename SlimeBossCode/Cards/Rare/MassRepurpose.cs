@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
@@ -31,12 +32,14 @@ public class MassRepurpose : SlimeBossCardModel
     {
         var cards = await DownfallCardSelectionCmd.SelectFromHand(ctx,
             CardSelectorPrefs.TransformSelectionPrompt, Owner.Hand.Count, this, c => c != this, true);
+        var transformations = new List<CardTransformation>();
         foreach (var card in cards)
         {
             var slimed = CombatState?.CreateCard<Slimed>( Owner);
             if (slimed == null) continue;
             EnchantSlimed(slimed, this);
-            await CardCmd.Transform(card, slimed);
+            transformations.Add(new CardTransformation(card, slimed));
         }
+        await CardCmd.Transform(transformations, null);
     }
 }
