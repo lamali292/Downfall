@@ -51,7 +51,7 @@ public class SunbloomKindling : CollectorCardModel
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var v = 0; v < playCount; ++v)
         {
-            await CollectorCmd.Kindle(ctx, this);
+            await TorchheadCmd.Kindle(ctx, this);
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
                 CardPilePosition.Bottom, IsUpgraded,
                 action: ember => DownfallCardCmd.ForceEnchant<Spiral>(ember, 1));
