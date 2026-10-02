@@ -1,12 +1,10 @@
-﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
+﻿using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.DynamicVars;
 using Automaton.AutomatonCode.Encode;
 using Automaton.AutomatonCode.Interfaces;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace Automaton.AutomatonCode.Cards;
@@ -33,8 +31,6 @@ public abstract class AutomatonCardModel : DownfallCardModel<Core.Automaton>, IE
     ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
     }
-
-    protected override ICardPlayPhases PlayPhases => AutomatonCardPlayPhases.Instance;
 
     public IEnumerable<Encodable> Encodings => _encodings;
     public IEnumerable<Compilable> Compilations => _compilations;
