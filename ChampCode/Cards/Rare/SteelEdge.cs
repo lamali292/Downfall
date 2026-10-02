@@ -28,6 +28,7 @@ public class SteelEdge : ChampCardModel
                 .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character),
                     Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
                 .Execute(ctx);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 
     public override FinisherDescriptor Finisher => new(RepeatCount: () => Math.Max(1, ResolveEnergyXValue()));
