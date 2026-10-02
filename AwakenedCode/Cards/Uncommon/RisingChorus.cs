@@ -1,5 +1,7 @@
 using Awakened.AwakenedCode.Core;
+using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,6 +15,7 @@ public class RisingChorus : AwakenedCardModel
     public RisingChorus() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
+        WithTip(AwakenedKeyword.Chant);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
