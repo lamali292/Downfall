@@ -14,7 +14,7 @@ public class BobAndWeave : ChampCardModel
     {
         WithBlock(4, 2);
         WithPower<VigorPower>(3, 1);
-        WithEnterBerserker();
+        WithBerserkerTip();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -23,5 +23,6 @@ public class BobAndWeave : ChampCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<VigorPower>(ctx, this);
+        await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 }

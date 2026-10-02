@@ -22,5 +22,6 @@ public class GroupEffort : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 }

@@ -6,6 +6,6 @@ namespace Champ.ChampCode.CustomEnums;
 public static class ChampTag
 {
     [CustomEnum] public static CardTag Finisher;
-    [CustomEnum] public static CardTag EnterDefensive;
-    [CustomEnum] public static CardTag EnterBerserker;
+    [CustomEnum] public static CardTag BerserkerCombo;
+    [CustomEnum] public static CardTag DefensiveCombo;
 }

@@ -10,13 +10,12 @@ using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.Cards;
 
 public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherCard
 {
-    protected override ICardPlayPhases PlayPhases => ChampCardPlayPhases.Instance;
-
     protected ChampCardModel(
         int cost,
         CardType type,
@@ -26,10 +25,9 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
         bool autoAdd = true
     ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        if (this is IBerserkerComboCard) WithTip(ChampTip.Combo);
-
-        if (this is not IDefensiveComboCard) return;
-        WithTip(ChampTip.Combo);
+        WithTips(card => card.Tags.Contains(ChampTag.BerserkerCombo) || card.Tags.Contains(ChampTag.DefensiveCombo)
+            ? [HoverTipFactory.Static(ChampTip.Combo)]
+            : []);
     }
 
 
@@ -37,8 +35,8 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
         ChampCmd.FinisherCanAct(this);
 
     protected override bool ShouldGlowGoldInternal =>
-        (this is IBerserkerComboCard && Owner.ShouldBerserkerComboTrigger)
-        || (this is IDefensiveComboCard && Owner.ShouldDefensiveComboTrigger);
+        (Tags.Contains(ChampTag.BerserkerCombo) && Owner.ShouldBerserkerComboTrigger)
+        || (Tags.Contains(ChampTag.DefensiveCombo) && Owner.ShouldDefensiveComboTrigger);
 
     protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || ChampCmd.FinisherCanAct(this);
 
@@ -68,17 +66,19 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
     }
 
 
-    public ConstructedCardModel WithEnterBerserker()
+    /// <summary>Marks the card as a Berserker combo card for the glow/tip; the card's own OnPlayInternal
+    /// still has to call <see cref="ChampCmd.BerserkerCombo"/> to actually run the combo effect.</summary>
+    public ConstructedCardModel WithBerserkerCombo()
     {
-        WithTags(ChampTag.EnterBerserker);
-        WithBerserkerTip();
+        WithTags(ChampTag.BerserkerCombo);
         return this;
     }
 
-    public ConstructedCardModel WithEnterDefensive()
+    /// <summary>Marks the card as a Defensive combo card for the glow/tip; the card's own OnPlayInternal
+    /// still has to call <see cref="ChampCmd.DefensiveCombo"/> to actually run the combo effect.</summary>
+    public ConstructedCardModel WithDefensiveCombo()
     {
-        WithTags(ChampTag.EnterDefensive);
-        WithDefensiveTip();
+        WithTags(ChampTag.DefensiveCombo);
         return this;
     }
 

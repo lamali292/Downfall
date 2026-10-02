@@ -17,5 +17,6 @@ public class StrikeChamp : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await ChampCmd.TriggerSkillBonusIfKeyworded(ctx, this);
     }
 }

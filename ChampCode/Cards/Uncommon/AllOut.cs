@@ -19,4 +19,9 @@ public class AllOut : ChampCardModel
 
     public override FinisherDescriptor Finisher =>
         new(KeepsStance: true, RepeatCount: () => DynamicVars.Repeat.IntValue);
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
+    }
 }
