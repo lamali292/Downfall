@@ -46,7 +46,7 @@ public static class ChantCmd
         return lastCardEntry.CardPlay.Card.Type == CardType.Power;
     }
 
-    public static bool WasLastCardPlayedPower(CardPlay cardPlay)
+    private static bool WasLastCardPlayedPower(CardPlay cardPlay)
     {
         if (!CombatManager.Instance.IsInProgress) return false;
         var lastCardEntry = CombatManager.Instance.History.CardPlaysStarted
