@@ -24,13 +24,13 @@ public class Recitation : AwakenedCardModel
     {
         if (CombatState == null || cardPlay.Target == null) return;
         var context = await AttackCommand.CreateContextAsync(CombatState, ctx, cardPlay);
-        var list1 = (await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
-            DynamicVars.Damage.Props, this, cardPlay)).ToList();
+        var list1 = await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+            DynamicVars.Damage.Props, this, cardPlay);
         context.AddHit(list1);
         await ChantCmd.Chant(cardPlay, async () =>
         {
-            var list2 = (await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
-                DynamicVars.Damage.Props, this, cardPlay)).ToList();
+            var list2 = await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+                DynamicVars.Damage.Props, this, cardPlay);
             context.AddHit(list2);
         });
         
