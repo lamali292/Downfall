@@ -1,4 +1,4 @@
-using Awakened.AwakenedCode.Cards;
+﻿using Awakened.AwakenedCode.Cards;
 using Awakened.AwakenedCode.Cards.Uncommon;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Localization;
@@ -27,7 +27,6 @@ public static class AwakenedMainFile
     {
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("chants");
-        CardExecutionHooks.RegisterAfter(AwakenedCardEffectHandler.DoAfterOnPlayInternal);
         CardDescriptionRegistry.Register<AwakenedCardModel>(DescriptionInjectionPoint.BelowMainText,
             new ChantDescriptionSource());
 

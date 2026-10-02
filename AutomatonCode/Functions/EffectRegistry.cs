@@ -16,7 +16,7 @@ namespace Automaton.AutomatonCode.Functions;
 /// </summary>
 public static class EffectRegistry
 {
-    private static readonly object Gate = new();
+    private static readonly Lock Gate = new();
     private static readonly List<Encodable> Encode = [];
     private static readonly List<Compilable> Compile = [];
     private static bool _frozen;

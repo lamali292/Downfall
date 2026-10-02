@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3]
 
-[ext_resource type="Script" path="res://DownfallCode/Voting/NSelectCardPopup.cs" id="1_script"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/Ui/NSelectCardPopup.cs" id="1_script"]
 [ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="2_font"]
 [ext_resource type="Script" path="res://src/Core/Nodes/CommonUi/NSearchBar.cs" id="3_searchbar"]
 [ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NMegaLineEdit.cs" id="4_lineedit"]

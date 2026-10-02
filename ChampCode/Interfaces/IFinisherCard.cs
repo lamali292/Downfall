@@ -1,10 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-
-namespace Champ.ChampCode.Interfaces;
+﻿namespace Champ.ChampCode.Interfaces;
 
 public interface IFinisherCard
 {
-    bool AffectsAllPlayers { get; }
-    Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay);
+    /// <summary>The Finisher's declared rules; see <see cref="FinisherDescriptor"/>.</summary>
+    FinisherDescriptor Finisher { get; }
 }

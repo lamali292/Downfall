@@ -9,29 +9,25 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Hermit.HermitCode.Cards.Uncommon;
 
-public sealed class Cheat : HermitCardModel, IHasDeadOnEffect
+public sealed class Cheat : HermitCardModel
 {
     public Cheat() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithCards(3, 2);
+        WithDeadOn();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
-
-    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        return Task.CompletedTask;
-    }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         // Snapshot taken by DeadOnPatch when this card started playing; per-card, so the
         // auto-played card below can't clobber it.
         var isDeadOn = HermitCmd.IsDeadOn(this);
+        await HermitCmd.DeadOn(ctx, this, play);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-
-        var drawPile = PileType.Draw.GetPile(Owner);
-        var topCards = drawPile.Cards.Take(DynamicVars.Cards.IntValue).ToList();
+        
+        var topCards = Owner.DrawPile.Take(DynamicVars.Cards.IntValue).ToList();
         if (topCards.Count == 0)
             return;
 

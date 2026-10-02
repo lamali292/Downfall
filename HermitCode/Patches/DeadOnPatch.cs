@@ -30,11 +30,18 @@ internal static class DeadOnPatch
     private static readonly FieldInfo ThisField = AccessTools.Field(StateMachineType, "<>4__this");
 
     // Keyed per card so simultaneous plays (multiplayer) can't overwrite each other's snapshot.
-    private static readonly SpireField<CardModel, bool> WasDeadOn = new(() => false);
-    private static readonly SpireField<CardModel, bool> WasAdjacentToCurse = new(() => false);
+    private static readonly SpireField<CardModel, PlayStartHandStatus> Status = new(() => PlayStartHandStatus.None);
 
-    internal static bool WasPlayedDeadOn(CardModel card) => WasDeadOn[card];
-    internal static bool WasPlayedAdjacentToCurse(CardModel card) => WasAdjacentToCurse[card];
+    internal static PlayStartHandStatus StatusOf(CardModel card) => Status[card];
+
+    /// <summary>
+    ///     Snapshots hand status for a card that never goes through <c>OnPlayWrapper</c> but still
+    ///     needs <see cref="HermitCmd.IsDeadOn" /> to work once it leaves the hand - currently only
+    ///     <c>ImpendingDoom</c>, from its <c>HasTurnEndInHandEffect</c> getter (the last point the
+    ///     engine reads while the card is still in the Hand pile; by the time <c>OnTurnEndInHand</c>
+    ///     runs, the card has already been moved to the Play pile).
+    /// </summary>
+    internal static void CaptureNow(CardModel card) => Status[card] = HermitCmd.CaptureHandStatus(card);
 
     private static MethodBase TargetMethod() => AccessTools.Method(StateMachineType, "MoveNext");
 
@@ -46,7 +53,6 @@ internal static class DeadOnPatch
         // Hand-position only: IShouldTriggerDeadOn sources are re-checked live per replay
         // instance instead (see HermitCmd.IsDeadOn), since their answer can change
         // across a single card's own replay instances while a stale snapshot here cannot.
-        WasDeadOn[card] = HermitCmd.IsDeadOnByHandPosition(card);
-        WasAdjacentToCurse[card] = HermitCmd.IsAdjacentToCurseInCurrentHandState(card);
+        Status[card] = HermitCmd.CaptureHandStatus(card);
     }
 }

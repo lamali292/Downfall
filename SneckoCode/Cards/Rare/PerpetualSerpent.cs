@@ -3,12 +3,11 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Rare;
 
 [Pool(typeof(SneckoCardPool))]
-public class PerpetualSerpent : SneckoCardModel, IHasOverflowEffect
+public class PerpetualSerpent : SneckoCardModel
 {
     public PerpetualSerpent() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
@@ -17,13 +16,10 @@ public class PerpetualSerpent : SneckoCardModel, IHasOverflowEffect
         WithOverflow();
     }
 
-    public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var overflowing = OverflowCmd.OverflowActive(this);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await OverflowCmd.Overflow(overflowing, cardPlay, () => PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner));
     }
 }

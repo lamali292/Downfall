@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -27,8 +27,6 @@ public static class HexaghostMainFile
     {
         PostInitRegistry.Register(PostModelInit);
         RichTextEffectRegistry.Register<RichTextAfterlife>();
-        CardExecutionHooks.RegisterBefore(HexaghostCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionHooks.RegisterAfter(HexaghostCardEffectHandler.DoAfterOnPlayInternal);
         CustomLocTableManager.Register("ghostflames");
         HexaghostSubscriber.Subscribe();
 

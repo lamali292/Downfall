@@ -1,3 +1,4 @@
+﻿using Downfall.DownfallCode.Extensions;
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,7 +20,7 @@ public class RapidStrikes : ChampCardModel
     {
         await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
         Owner.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand
-                .Where(c => c.Tags.Contains(CardTag.Strike) && c.EnergyCost.GetResolved() > 0 && !c.EnergyCost.CostsX)
+                .Where(c => c.Tags.Contains(CardTag.Strike) && !c.EnergyCost.CostsX && c.EnergyCost.GetAmountToSpend() > 0)
             )?
             .EnergyCost
             .SetThisTurn(0);

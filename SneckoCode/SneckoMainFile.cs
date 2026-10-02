@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Localization;
+﻿using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
@@ -18,8 +18,6 @@ public static class SneckoMainFile
 
     public static void Initialize()
     {
-        CardExecutionHooks.RegisterBefore(SneckoCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionHooks.RegisterAfter(SneckoCardEffectHandler.DoAfterOnPlayInternal);
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<SneckoCardPool>(VotingPool.Snecko, ModId);
 

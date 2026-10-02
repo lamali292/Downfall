@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -16,8 +17,11 @@ public class AllOut : ChampCardModel
         // WithTip(ChampTip.Stance);
     }
 
-    public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override FinisherDescriptor Finisher =>
+        new(KeepsStance: true, RepeatCount: () => DynamicVars.Repeat.IntValue);
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await ChampCmd.PlayFinisher(ctx, cardPlay, false, true, DynamicVars.Repeat.IntValue);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 }

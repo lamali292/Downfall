@@ -121,7 +121,7 @@
         </Reference>
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="$(BaseLibVersion)" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.1.9"/>
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.2.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -143,6 +143,7 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData._data"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.AncientEventModel.RelicOption"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.BaseStarCost"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.GeneratePlayCount"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>

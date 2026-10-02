@@ -27,7 +27,7 @@ public class DecimillipedeCard : Collectible<DecimillipedeElite>, ISkipReplayOnS
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
-            await CollectorCmd.Kindle(ctx, this);
+            await TorchheadCmd.Kindle(ctx, this);
             var block = await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
             await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this, block);
         }

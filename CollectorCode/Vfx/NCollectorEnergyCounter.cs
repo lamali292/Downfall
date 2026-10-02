@@ -1,7 +1,5 @@
-using Collector.CollectorCode.Core;
+﻿using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
-using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Patches;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -11,7 +9,7 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
 namespace Collector.CollectorCode.Vfx;
 
-public partial class NCollectorEnergyCounter : Control, IAnimatedCounter
+public partial class NCollectorEnergyCounter : Control
 {
     private Tween? _fadeTween;
     private MegaLabel? _label;
@@ -28,7 +26,7 @@ public partial class NCollectorEnergyCounter : Control, IAnimatedCounter
     public void Initialize(Player player)
     {
         _player = player;
-        _resource = CardResourceRegistry.Get<CollectorEnergy>();
+        _resource = CollectorEnergy.Instance;
         if (_resource != null)
             _resource.Changed += OnEnergyChanged;
     }

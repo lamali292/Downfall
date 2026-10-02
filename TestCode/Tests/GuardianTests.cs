@@ -1,3 +1,5 @@
+using Guardian.GuardianCode.Powers;
+using MegaCrit.Sts2.Core.Models.Cards;
 using BaseLib.Abstracts;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Basic;
@@ -19,6 +21,32 @@ namespace Downfall.TestCode;
 
 public class GuardianTests
 {
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task StasisCounterIsCostPlusOneAndEnergyPlusOneForXCards(TestContext ctx)
+    {
+        ctx.Player.PlayerCombatState!.Energy = 3;
+        var strike = await ctx.AddCardToHand<StrikeIronclad>();
+        var whirlwind = await ctx.AddCardToHand<Whirlwind>();
+
+        GuardianCmd.SetStasisCounter(strike);
+        GuardianCmd.SetStasisCounter(whirlwind);
+
+        Assert.AreEqual(2, GuardianCombatModel.StasisCounter[strike], "A 1-cost card waits cost + 1 turns.");
+        Assert.AreEqual(4, GuardianCombatModel.StasisCounter[whirlwind], "An X card waits energy + 1 turns.");
+    }
+
+    // Stasis Engine counts free card plays; an X card's stored base cost is 0 but it is not free.
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task StasisEngineDoesNotCountXCardsAsFree(TestContext ctx)
+    {
+        await PowerCmd.Apply<StasisEnginePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+        ctx.Player.PlayerCombatState!.Energy = 0;
+
+        for (var i = 0; i < 3; i++) await ctx.PlayCard(await ctx.AddCardToHand<Whirlwind>());
+
+        Assert.AreEqual(0, ctx.Player.PlayerCombatState.Energy, "Playing X cards must not trigger Stasis Engine.");
+    }
     [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
     public async Task RerouteWithCryoChamberUpgradesRoutedCard(TestContext ctx)
     {

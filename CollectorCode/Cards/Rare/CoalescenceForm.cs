@@ -19,7 +19,7 @@ public class CoalescenceForm : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CollectorCmd.GainReserve(this);
+        await ReserveCmd.GainReserve(this);
         await CommonActions.ApplySelf<CoalescenceFormPower>(ctx, this);
     }
 

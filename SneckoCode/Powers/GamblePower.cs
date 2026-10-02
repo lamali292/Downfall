@@ -19,7 +19,7 @@ public class GamblePower : SneckoPowerModel
         if (player != Owner.Player || AmountOnTurnStart == 0) return;
 
         var drawn = await CardPileCmd.Draw(ctx, Amount, player, true);
-        await SneckoCmd.Muddle(ctx, drawn, this);
+        await MuddleCmd.Muddle(ctx, drawn, this);
 
         await PowerCmd.Remove(this);
     }

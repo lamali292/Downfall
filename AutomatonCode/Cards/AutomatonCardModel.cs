@@ -1,5 +1,4 @@
-﻿using Automaton.AutomatonCode.Core;
-using Automaton.AutomatonCode.CustomEnums;
+﻿using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.DynamicVars;
 using Automaton.AutomatonCode.Encode;

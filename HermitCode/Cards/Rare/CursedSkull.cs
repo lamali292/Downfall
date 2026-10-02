@@ -1,9 +1,8 @@
-﻿using BaseLib.Abstracts;
+using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
-using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -31,7 +30,7 @@ public class CursedSkull : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => !HermitCmd.HasDeadOn(e), this)).FirstOrDefault();
         if (card == null) return;
         var deadOnReplay = CardModifier.Modifiers(card).OfType<DeadOnReplay>().FirstOrDefault();
         if (deadOnReplay == null)
@@ -43,14 +42,26 @@ public class CursedSkull : HermitCardModel
 
 public class DeadOnReplay : DownfallCardModifier
 {
-    private bool IsDeadOn => Owner != null && HermitCmd.IsDeadOn(Owner);
-    private int ModVal => Value * (Owner?.Owner.Creature.HasPower<SnipePower>() ?? false ? 2 : 1);
-    public override bool ShouldGlowGold => IsDeadOn;
     public int Value { get; set; } = 1;
+    
+    private int ModVal => Owner == null ? Value : Value * HermitCmd.DeadOnMultiplier(Owner);
+
+    public override bool ShouldGlowGold => Owner != null && HermitCmd.IsDeadOn(Owner);
 
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        return card == Owner && IsDeadOn ? playCount + ModVal : playCount;
+        return card == Owner && HermitCmd.IsDeadOn(card) ? playCount + ModVal : playCount;
+    }
+    
+    public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (cardPlay.Card == Owner && HermitCmd.IsDeadOn(cardPlay.Card))
+            await HermitCmd.RecordDeadOnTrigger(choiceContext, cardPlay.Card, cardPlay);
+    }
+
+    public override Task AfterModifyingCardPlayCount(CardModel card)
+    {
+        return card == Owner && HermitCmd.IsDeadOn(card) ? HermitCmd.ConsumeDeadOnMultiplier(card) : Task.CompletedTask;
     }
 
     public override void ModifyDescription(Creature? target, ref string description)

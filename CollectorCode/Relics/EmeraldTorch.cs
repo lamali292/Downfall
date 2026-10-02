@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Relics;
@@ -14,11 +13,9 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class EmeraldTorch : CollectorRelicModel
 {
-    private bool active;
     public EmeraldTorch() : base(RelicRarity.Starter)
     {
         WithKindle(3);
-        active = true;
     }
     
     public override RelicModel GetUpgradeReplacement()
@@ -32,30 +29,33 @@ public class EmeraldTorch : CollectorRelicModel
         ICombatState combatState)
     {
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
-        await CollectorCmd.Kindle(ctx, this);
+        await TorchheadCmd.Kindle(ctx, this);
         Flash();
     }
-
-    public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions,
-        CardCreationOptions creationOptions)
+    
+    /*
+    public override Task AfterCombatEnd(CombatRoom room)
     {
-        if (!active) return false;
-        if (Owner == player)
+        if (room.RoomType is not (RoomType.Elite or RoomType.Boss)) return Task.CompletedTask;
+        var existsCard = ModelDb.CardPool<CollectibleCardPool>().AllCards.Any(c => c is ICollectible col && col.GetEncounterModel().Id == room.Encounter.Id);
+        if (!existsCard) return Task.CompletedTask;
+        foreach (var player in room.CombatState.Players.Where(p => p.Character is Core.Collector))
         {
-            var findFirst = CollectorCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions);
-            if (findFirst)
-            {
-                active = false;
-                Flash();   
-            }
-            return findFirst;
+            room.AddExtraReward(player, new CollectibleReward(room.Encounter.Id, player, false));
         }
-        return false;
+        return Task.CompletedTask;
     }
-
-    public override async Task AfterRoomEntered(AbstractRoom room)
+    */
+    
+    public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions)
     {
-        active = true;
+        return Owner == player && CollectorRewardsCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions);
     }
 
+    /*
+    public override Task AfterModifyingCardRewardOptions()
+    {
+        Flash();
+        return Task.CompletedTask;
+    }*/
 }

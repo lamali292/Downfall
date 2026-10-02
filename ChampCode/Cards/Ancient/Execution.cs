@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
+using Champ.ChampCode.Interfaces;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -27,10 +28,8 @@ public class Execution : ChampCardModel
             .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character),
                 Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
             .Execute(ctx);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 
-    public override async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await ChampCmd.PlayFinisher(ctx, cardPlay, false, true, 2);
-    }
+    public override FinisherDescriptor Finisher => new(KeepsStance: true, RepeatCount: () => 2);
 }

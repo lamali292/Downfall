@@ -1,14 +1,13 @@
 ﻿using BaseLib.Abstracts;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
-using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.Cards;
 
@@ -23,47 +22,40 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
         bool autoAdd = true
     ) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        if (this is IBerserkerComboCard) WithTip(ChampTip.Combo);
-
-        if (this is not IDefensiveComboCard) return;
-        WithTip(ChampTip.Combo);
+        WithTips(card => card.Tags.Contains(ChampTag.BerserkerCombo) || card.Tags.Contains(ChampTag.DefensiveCombo)
+            ? [HoverTipFactory.Static(ChampTip.Combo)]
+            : []);
     }
 
 
     protected override bool ShouldGlowRedInternal =>
-        Tags.Contains(ChampTag.Finisher) && Owner.ChampStance.HasFinisher;
+        ChampCmd.FinisherCanAct(this);
 
     protected override bool ShouldGlowGoldInternal =>
-        (this is IBerserkerComboCard && Owner.ShouldBerserkerComboTrigger)
-        || (this is IDefensiveComboCard && Owner.ShouldDefensiveComboTrigger);
+        (Tags.Contains(ChampTag.BerserkerCombo) && Owner.ShouldBerserkerComboTrigger)
+        || (Tags.Contains(ChampTag.DefensiveCombo) && Owner.ShouldDefensiveComboTrigger);
 
-    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || Owner.ChampStance.HasFinisher ||
-                                          Enchantment is Signature;
+    protected override bool IsPlayable => !Tags.Contains(ChampTag.Finisher) || ChampCmd.FinisherCanAct(this);
 
-    public virtual async Task FinisherEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await ChampCmd.PlayFinisher(ctx, cardPlay);
-    }
-
-    public virtual bool AffectsAllPlayers => false;
+    public virtual FinisherDescriptor Finisher => FinisherDescriptor.Default;
 
 
-    public ConstructedCardModel WithDefensiveTip()
+    protected ConstructedCardModel WithDefensiveTip()
     {
         return WithTips(e => ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTips);
     }
 
-    public ConstructedCardModel WithBerserkerTip()
+    protected ConstructedCardModel WithBerserkerTip()
     {
         return WithTips(e => ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTips);
     }
 
-    public ConstructedCardModel WithUltimateTip()
+    protected ConstructedCardModel WithUltimateTip()
     {
         return WithTips(e => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
     }
 
-    public ConstructedCardModel WithFinisher()
+    protected ConstructedCardModel WithFinisher()
     {
         WithTags(ChampTag.Finisher);
         WithTip(ChampTip.Finisher);
@@ -71,21 +63,23 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
     }
 
 
-    public ConstructedCardModel WithEnterBerserker()
+    /// <summary>Marks the card as a Berserker combo card for the glow/tip; the card's own OnPlayInternal
+    /// still has to call <see cref="ChampCmd.BerserkerCombo"/> to actually run the combo effect.</summary>
+    protected ConstructedCardModel WithBerserkerCombo()
     {
-        WithTags(ChampTag.EnterBerserker);
-        WithBerserkerTip();
+        WithTags(ChampTag.BerserkerCombo);
         return this;
     }
 
-    public ConstructedCardModel WithEnterDefensive()
+    /// <summary>Marks the card as a Defensive combo card for the glow/tip; the card's own OnPlayInternal
+    /// still has to call <see cref="ChampCmd.DefensiveCombo"/> to actually run the combo effect.</summary>
+    protected ConstructedCardModel WithDefensiveCombo()
     {
-        WithTags(ChampTag.EnterDefensive);
-        WithDefensiveTip();
+        WithTags(ChampTag.DefensiveCombo);
         return this;
     }
 
-    public ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
+    protected ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
     {
         WithPower<GloryPower>(baseVal, upgrade);
         //card.WithUltimateTip();

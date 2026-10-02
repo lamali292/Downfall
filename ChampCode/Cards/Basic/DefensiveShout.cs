@@ -13,7 +13,7 @@ public class DefensiveShout : ChampCardModel
     public DefensiveShout() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithPower<CounterPower>(2, 2);
-        WithEnterDefensive();
+        WithDefensiveTip();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -21,5 +21,6 @@ public class DefensiveShout : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<CounterPower>(ctx, this);
+        await ChampCmd.EnterDefensiveStance(ctx, Owner);
     }
 }
