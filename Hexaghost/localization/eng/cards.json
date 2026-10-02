@@ -123,7 +123,7 @@
   "HEXAGHOST-PHANTOM_FIREBALL.title": "Phantom Fireball",
   "HEXAGHOST-PHASE.title": "Phase",
   "HEXAGHOST-PHASE.description": "Gain {Block:diff()} [gold]Block[/gold].\nThe next [gold]Ethereal[/gold] card you play costs {energyPrefix:energyIcons(0)}.",
-  "HEXAGHOST-POLTERGEIST.description": "Whenever you [gold]Advance[/gold] or [gold]Retract[/gold], a random enemy loses {PoltergeistPower:diff()} HP.",
+  "HEXAGHOST-POLTERGEIST.description": "Whenever you [gold]Advance[/gold] or [gold]Retract[/gold] during your turn, a random enemy loses {PoltergeistPower:diff()} HP.",
   "HEXAGHOST-POLTERGEIST.title": "Poltergeist",
   "HEXAGHOST-POWER_FROM_BEYOND.description": "[afterlife]Gain[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]\nNext turn, gain {Energy:energyIcons()}.",
   "HEXAGHOST-POWER_FROM_BEYOND.title": "Power from Beyond",
