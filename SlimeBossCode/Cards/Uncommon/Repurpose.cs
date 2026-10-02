@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -36,12 +37,14 @@ public class Repurpose : SlimeBossCardModel
     {
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToTopSelectionPrompt, DynamicVars.Cards.IntValue);
         var cards = await CardSelectCmd.FromCombatPile(ctx, PileType.Draw.GetPile(Owner), Owner, prefs);
+        var transformations = new List<CardTransformation>();
         foreach (var card in cards)
         {
             var slimed = CombatState?.CreateCard<Slimed>(Owner);
             if (slimed == null) continue;
             EnchantSlimed(slimed, this);
-            await CardCmd.Transform(card, slimed);
+            transformations.Add(new CardTransformation(card, slimed));
         }
+        await CardCmd.Transform(transformations, null);
     }
 }

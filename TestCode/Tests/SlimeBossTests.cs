@@ -2,7 +2,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Enchantments;
 using MegaCrit.Sts2.Core.Models.Powers;
+using SlimeBoss.SlimeBossCode.Cards.Basic;
 using SlimeBoss.SlimeBossCode.Cards.Common;
 using SlimeBoss.SlimeBossCode.Cards.Rare;
 using SlimeBoss.SlimeBossCode.Cards.Token;
@@ -85,5 +87,41 @@ public class SlimeBossTests
         var amount = bruiser.GetPower<PotencyPower>()?.Amount ?? 0;
         Assert.AreEqual(potencyBefore + 1, amount,
             $"Spreading Slime should grant Bruiser Slime 1 Potency when a Status is played, got {amount}.");
+    }
+
+    // Regression guard: Repurpose's OnPlayInternal was changed from transforming selected cards one at a
+    // time in a loop to batching them into a single CardCmd.Transform(IEnumerable<CardTransformation>, ...)
+    // call - verify every selected card still ends up as an enchanted Slimed.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task RepurposeTransformsSelectedCardsIntoEnchantedSlimed(TestContext ctx)
+    {
+        var repurpose = await ctx.AddCardToHand<Repurpose>();
+
+        await ctx.PlayCard(repurpose);
+
+        var slimedCards = PileType.Draw.GetPile(ctx.Player).Cards.OfType<Slimed>().ToList();
+        Assert.AreEqual(2, slimedCards.Count,
+            $"Repurpose should transform 2 cards into Slimed, got {slimedCards.Count}.");
+        Assert.IsTrue(slimedCards.All(c => c.Enchantment is Swift { Amount: 1 }),
+            "Each transformed Slimed should be enchanted with Swift 1.");
+    }
+
+    // Same batching change as Repurpose, but selecting from hand and with a different enchant amount -
+    // verify MassRepurpose transforms every other hand card.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task MassRepurposeTransformsAllOtherHandCardsIntoEnchantedSlimed(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<StrikeSlimeBoss>();
+        await ctx.AddCardToHand<StrikeSlimeBoss>();
+        var massRepurpose = await ctx.AddCardToHand<MassRepurpose>();
+
+        await ctx.PlayCard(massRepurpose);
+
+        var slimedCards = PileType.Hand.GetPile(ctx.Player).Cards.OfType<Slimed>().ToList();
+        Assert.AreEqual(2, slimedCards.Count,
+            $"MassRepurpose should transform every other hand card into Slimed, got {slimedCards.Count}.");
+        Assert.IsTrue(slimedCards.All(c => c.Enchantment is Swift { Amount: 5 }),
+            "Each transformed Slimed should be enchanted with Swift 5 (MassRepurpose's Adroit amount).");
     }
 }
