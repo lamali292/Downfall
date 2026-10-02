@@ -25,6 +25,6 @@ public class ForgeContract : CollectorCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await Cmd.CustomScaledWait(0.1f, 0.3f);
-        await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
     }
 }

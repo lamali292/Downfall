@@ -20,7 +20,7 @@ public class Endure : ChampCardModel, IIgnoreDexterityCard
         WithCalculatedBlock(6, BlockCalc, BlockProps.card, 2);
         WithTip<StrengthPower>();
         WithTips(e => e.IsUpgraded ? [] : [HoverTipFactory.FromPower<DexterityPower>()]);
-        WithEnterDefensive();
+        WithDefensiveTip();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

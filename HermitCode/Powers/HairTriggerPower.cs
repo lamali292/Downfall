@@ -18,7 +18,7 @@ public class HairTriggerPower : HermitPowerModel, IAfterDeadOnTrigger
         WithCardTip<StrikeHermit>((e, _) => e.AddKeyword(CardKeyword.Exhaust));
     }
 
-    public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
+    public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card)
     {
         if (card.Owner.Creature != Owner) return;
         var canonical = ModelDb.Card<StrikeHermit>();

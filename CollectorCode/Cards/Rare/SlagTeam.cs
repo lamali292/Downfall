@@ -28,7 +28,7 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CollectorCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         //await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
     }
 

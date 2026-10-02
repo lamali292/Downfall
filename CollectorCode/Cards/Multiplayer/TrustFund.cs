@@ -38,7 +38,7 @@ public class TrustFund : CollectorCardModel
         await CreatureCmd.GainBlock(targetCreature, ownerBlock, BlockProps.cardUnpowered, cardPlay);
         await CreatureCmd.GainBlock(ownerCreature, targetBlock, BlockProps.cardUnpowered, cardPlay);
 
-        await CollectorCmd.GainReserve(Owner, DynamicVars.Reserve.IntValue);
-        await CollectorCmd.GainReserve(targetPlayer, DynamicVars.Reserve.IntValue);
+        await ReserveCmd.GainReserve(Owner, DynamicVars.Reserve.IntValue);
+        await ReserveCmd.GainReserve(targetPlayer, DynamicVars.Reserve.IntValue);
     }
 }

@@ -59,6 +59,12 @@ public class VictoriousCrown : ChampRelicModel, IOnFinisher
         await ChampCmd.EnterDifferentStance(ctx, player);
         var stance = Owner.ChampStance;
         await stance.SkillBonus(ctx);
-        await MyCommonActions.Draw(this, ctx);
+    }
+
+    // Extra card is part of the turn-start hand draw, so it isn't blocked by effects like Fiddle.
+    public override decimal ModifyHandDraw(Player player, decimal count)
+    {
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return count;
+        return count + DynamicVars.Cards.IntValue;
     }
 }

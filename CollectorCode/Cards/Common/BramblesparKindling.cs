@@ -39,7 +39,7 @@ public class BramblesparKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
-            await CollectorCmd.Kindle(choiceContext, this);
+            await TorchheadCmd.Kindle(choiceContext, this);
             await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
         }
     }

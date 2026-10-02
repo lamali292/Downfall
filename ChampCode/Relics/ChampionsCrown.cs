@@ -2,7 +2,6 @@ using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -37,6 +36,12 @@ public class ChampionsCrown : ChampRelicModel
         await ChampCmd.EnterDifferentStance(ctx, player);
         var stance = Owner.ChampStance;
         await stance.SkillBonus(ctx);
-        await MyCommonActions.Draw(this, ctx);
+    }
+
+    // Extra card is part of the turn-start hand draw, so it isn't blocked by effects like Fiddle.
+    public override decimal ModifyHandDraw(Player player, decimal count)
+    {
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return count;
+        return count + DynamicVars.Cards.IntValue;
     }
 }

@@ -23,6 +23,6 @@ public class YouYourself : ActsFromThePastCard
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
-        await CollectorCmd.Kindle(ctx, this);
+        await TorchheadCmd.Kindle(ctx, this);
     }
 }

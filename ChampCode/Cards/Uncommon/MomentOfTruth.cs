@@ -18,5 +18,6 @@ public class MomentOfTruth : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 }

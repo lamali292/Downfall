@@ -37,7 +37,7 @@ public class BlockedChakra : CollectorRelicModel
     {
         if (!participants.Contains(Owner.Creature)) return;
         Flash();
-        await CollectorCmd.Kindle(new BlockingPlayerChoiceContext(), this);
+        await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), this);
     }
     
 }

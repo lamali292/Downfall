@@ -1,3 +1,5 @@
 ﻿{
+  "AWAKENED-CHANT.title": "Chant",
+  "AWAKENED-CHANT.description": "If the last card played was a Power, this card's bonus effect activates for the rest of combat.",
   "AWAKENED-CHANT.card_text": "{Chanted:cond:[jitter][blue]Chanted[/blue][/jitter]|[gold]Chant[/gold]}"
 }

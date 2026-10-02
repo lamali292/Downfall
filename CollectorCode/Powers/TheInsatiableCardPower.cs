@@ -22,7 +22,7 @@ public class TheInsatiableCardPower : CollectorPowerModel, IAfterCardPyred
     {
         if (pyred.Owner.Creature != Owner) return;
         if (pyred.EnergyCost.GetAmountToSpend() < DynamicVars.Energy.IntValue) return;
-        await CollectorCmd.Kindle(ctx, pyred.Owner, Amount, this);
+        await TorchheadCmd.Kindle(ctx, pyred.Owner, Amount, this);
         Flash();
     }
 }

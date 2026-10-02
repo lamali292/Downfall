@@ -23,6 +23,6 @@ public class Restock : SneckoCardModel
         var cards = Owner.Hand;
         await CardCmd.DiscardAndDraw(ctx, cards, DynamicVars.Cards.IntValue);
         var newCards = Owner.Hand;
-        await SneckoCmd.Muddle(ctx, newCards, this);
+        await MuddleCmd.Muddle(ctx, newCards, this);
     }
 }

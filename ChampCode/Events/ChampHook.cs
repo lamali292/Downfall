@@ -54,6 +54,16 @@ public static class ChampHook
         return HookUtils.AfterModifying(cs, modifiers, m => m.AfterModifyingCounterStrike(player, card));
     }
 
+    public static bool AllowFinisherWithoutStance(ICombatState cs, CardModel card)
+    {
+        return HookUtils.Any<IAllowFinisherWithoutStance>(cs, m => m.AllowFinisherWithoutStance(card));
+    }
+
+    public static bool KeepStanceAfterFinisher(ICombatState cs, CardModel card)
+    {
+        return HookUtils.Any<IKeepStanceAfterFinisher>(cs, m => m.KeepStanceAfterFinisher(card));
+    }
+
     public static bool IgnoreChargeCap(ICombatState cs, Player player)
     {
         return HookUtils.Any<IIgnoreChampChargeCap>(cs, m => m.IgnoreChargeCap(player));

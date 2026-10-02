@@ -22,7 +22,7 @@ public class FinisherDescriptionSource : IExtraDescriptionSource
 
         var locString = new LocString("champ_stances", $"{stance.GetType().GetPrefix()}{stance.Id.Entry}.finisher");
         stance.DynamicVars.AddTo(locString);
-        var affectsAll = card is IFinisherCard { AffectsAllPlayers: true };
+        var affectsAll = card is IFinisherCard { Finisher.AffectsAllPlayers: true };
         locString.Add("AffectsAllPlayers", affectsAll);
         yield return locString.GetFormattedText();
     }

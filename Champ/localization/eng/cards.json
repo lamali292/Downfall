@@ -71,7 +71,7 @@
   "CHAMP-FACE_SLAP.title": "Face Slap",
   "CHAMP-FANCY_FOOTWORK.description": "Enter a [gold]Stance[/gold] you aren't in.\nThe next [gold]Finisher[/gold] this turn deals {FancyFootworkPower:diff()} damage to ALL enemies.",
   "CHAMP-FANCY_FOOTWORK.title": "Fancy Footwork",
-  "CHAMP-FAN_OF_KNIVES.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Berserker Combo[/gold]:\nDeals damage twice.",
+  "CHAMP-FAN_OF_KNIVES.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Berserker Combo[/gold]:\nDeals damage twice instead.",
   "CHAMP-FAN_OF_KNIVES.title": "Fan of Blades",
   "CHAMP-FLASH_STRIKE.description": "Deal {Damage:diff()} damage.\n[gold]Defensive Combo[/gold]:\nGain {CounterPower:diff()} [gold]Counter[/gold].",
   "CHAMP-FLASH_STRIKE.title": "Flash Strike",

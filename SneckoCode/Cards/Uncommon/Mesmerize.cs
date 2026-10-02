@@ -22,7 +22,7 @@ public class Mesmerize : SneckoCardModel
     {
         if (CombatState == null) return;
         await CommonActions.Apply<MesmerizePower>(ctx, this, cardPlay);
-        await SneckoCmd.MuddleHandCards(ctx, this);
+        await MuddleCmd.MuddleHandCards(ctx, this);
     }
 }
 

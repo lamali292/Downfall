@@ -169,3 +169,17 @@ jobs:
           name: Downfall
           path: output/mods/Downfall
           retention-days: 14
+
+  # Fast plain-.NET unit tests (UnitTests/): pure logic only, no game or engine needed. Separate
+  # from the self-hosted in-game test job; runs in parallel with the publish job.
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Unit tests
+        run: dotnet test UnitTests/Downfall.UnitTests.csproj -c Release

@@ -15,10 +15,4 @@ public static class HermitCardEffectHandler
             await CommonActions.ApplySelf<ConcentrationPower>(ctx, card, 1);
         return true;
     }
-
-    public static async Task DoAfterOnPlayInternal(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (HermitCmd.HasActiveDeadOnEffect(card))
-            await HermitCmd.TriggerDeadOnEffect(ctx, card, cardPlay);
-    }
 }

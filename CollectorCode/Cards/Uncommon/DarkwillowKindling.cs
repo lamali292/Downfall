@@ -32,7 +32,7 @@ public class DarkwillowKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
-            await CollectorCmd.Kindle(ctx, this);
+            await TorchheadCmd.Kindle(ctx, this);
             await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         }
     }

@@ -27,7 +27,7 @@ public class TerrorEelCard
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
-            await CollectorCmd.Kindle(ctx, this);
+            await TorchheadCmd.Kindle(ctx, this);
             await CommonActions.Apply<VulnerablePower>(ctx, CombatState.HittableEnemies, this);
         }
     }

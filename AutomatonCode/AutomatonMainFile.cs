@@ -31,7 +31,6 @@ public static class AutomatonMainFile
         EffectRegistry.RegisterAssembly(typeof(AutomatonMainFile).Assembly);
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("encode");
-        CardExecutionHooks.RegisterBefore(AutomatonCardEffectHandler.DoBeforeOnPlayInternal);
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
@@ -43,6 +42,7 @@ public static class AutomatonMainFile
         FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
         RegisterEncodeLocationFilter();
+        CardExecutionHooks.RegisterBefore(AutomatonCardEffectHandler.DoBeforeOnPlayInternal);
     }
 
     private static void RegisterEncodeLocationFilter()

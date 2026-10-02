@@ -38,7 +38,7 @@ public class CastIron : CollectorCardModel
             await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         }
         var repeat = (int)((CalculatedVar)DynamicVars["KindleCalc"]).Calculate(null);
-        await CollectorCmd.Kindle(ctx,Owner, repeat, this);
+        await TorchheadCmd.Kindle(ctx,Owner, repeat, this);
     }
 
 }

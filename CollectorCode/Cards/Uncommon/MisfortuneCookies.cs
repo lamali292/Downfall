@@ -33,7 +33,7 @@ public class MisfortuneCookies : CollectorCardModel
         var cards = (int)((CalculatedVar)DynamicVars["Cards"]).Calculate(cardPlay.Target);
         var kindle = (int)((CalculatedVar)DynamicVars["KindleCalc"]).Calculate(cardPlay.Target);
         await CardPileCmd.Draw(ctx, cards, Owner);
-        await CollectorCmd.Kindle(ctx, Owner, kindle, this);
+        await TorchheadCmd.Kindle(ctx, Owner, kindle, this);
     }
     
     private static bool ShouldCountPower(PowerModel power)

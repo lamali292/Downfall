@@ -1,12 +1,12 @@
 {
     "AWAKENED-ABYSS_BLADE.title": "アビスブレード",
-    "AWAKENED-ABYSS_BLADE.description": "毎ターン、最初に[gold]ドレイン[/gold]した時、{Energy:energyIcons()}を得てカードを1枚引く。",
+    "AWAKENED-ABYSS_BLADE.description": "毎ターン、最初に[gold]ドレイン[/gold]した時、{Energy:energyIcons()}を得てカードを[blue]1[/blue]枚引く。",
     "AWAKENED-ABYSS_BLADE.flavor": "虚無の払い戻し。",
     "AWAKENED-BIRD_FACED_VASE.title": "鳥頭壺",
     "AWAKENED-BIRD_FACED_VASE.description": "パワーをプレイするたび、HPを[blue]3[/blue]回復する。(各戦闘で最大[blue]4[/blue]回まで。)",
     "AWAKENED-BIRD_FACED_VASE.flavor": "この壺には、いたずらっぽい表情の烏神マザレスが描かれている。",
     "AWAKENED-CRESCENT_TALISMAN.title": "クレセントタリスマン",
-    "AWAKENED-CRESCENT_TALISMAN.description": "取得時、[gold]喚起[/gold]を持たないアタックかスキルを1枚選び、[purple]召喚術[/purple]を[gold]エンチャント[/gold]する。",
+    "AWAKENED-CRESCENT_TALISMAN.description": "取得時、[gold]喚起[/gold]を持たないアタックかスキルを[blue]1[/blue]枚選び、[purple]召喚術[/purple]を[gold]エンチャント[/gold]する。",
     "AWAKENED-CRESCENT_TALISMAN.flavor": "「お願い。ただ……私を忘れないで。私が死んだ後も、ずっと。」",
     "AWAKENED-DESSICATED_HAND.title": "干乾びた手",
     "AWAKENED-EYE_OF_THE_OCCULT.title": "神秘の眼",
@@ -34,10 +34,10 @@
     "AWAKENED-WHITE_RIBBON.description": "[gold]詠唱[/gold]を持つカードをプレイするたび、それが発動していなくても[blue]3[/blue][gold]ブロック[/gold]を得る。",
     "AWAKENED-WHITE_RIBBON.flavor": "正式な儀式が無くとも、口にした言葉に力を与える。",
     "AWAKENED-ZENER_DECK.title": "ゼナーデッキ",
-    "AWAKENED-ZENER_DECK.description": "戦闘開始時、[gold]ESP[/gold]を1枚呪文書に加える。",
+    "AWAKENED-ZENER_DECK.description": "戦闘開始時、[gold]ESP[/gold]を[blue]1[/blue]枚呪文書に加える。",
     "AWAKENED-ZENER_DECK.flavor": "「1、2、3、すべての視線は私に注がれるべき。」",
     "AWAKENED-ZETSUMEI.title": "ゼツメイ",
-    "AWAKENED-ZETSUMEI.description": "呪文を[blue]{Cards}[/blue]枚プレイするたび、[gold]セレモニー[/gold]を1枚[gold]手札[/gold]に加える。",
+    "AWAKENED-ZETSUMEI.description": "呪文を[blue]{Cards}[/blue]枚プレイするたび、[gold]セレモニー[/gold]を[blue]1[/blue]枚[gold]手札[/gold]に加える。",
     "AWAKENED-ZETSUMEI.flavor": "放った魔法を自らに還流させる能力から、魔術師に好まれる刀。",
     "SEA_GLASS.AWAKENED-AWAKENED.title": "カルティストグラス"
 }

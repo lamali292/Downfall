@@ -4,6 +4,8 @@ using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -22,6 +24,16 @@ public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction, IForce
         WithTip(AutomatonKeyword.Encode);
     }
 
+       
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
+    {
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
+        Flash();
+        await Cmd.Wait(0.2f);
+        await AutomatonCmd.EncodeCard<DefendAutomaton>(Owner, ctx);
+        await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx);
+    }
+    
     // The encode itself is performed by EncodeOutcome.CommitAfterPlay (via IForceEncodesCard);
     // the relic only shows that it was the one responsible.
     public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)

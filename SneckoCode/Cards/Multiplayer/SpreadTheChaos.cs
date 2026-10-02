@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -23,6 +24,6 @@ public class SpreadTheChaos : SneckoCardModel
             .Hand.Where(e => !e.EnergyCost.CostsX).OrderByDescending(e => e.EnergyCost.GetAmountToSpend())
             .Take(DynamicVars["Muddle"].IntValue);
         if (cards == null) return;
-        await SneckoCmd.Muddle(ctx, cards, this);
+        await MuddleCmd.Muddle(ctx, cards, this);
     }
 }

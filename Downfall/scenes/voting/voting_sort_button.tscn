@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://DownfallCode/Voting/NVotingSortButton.cs" id="1_vsb"]
+[ext_resource type="Script" path="res://DownfallCode/Voting/Ui/NVotingSortButton.cs" id="1_vsb"]
 [ext_resource type="Texture2D" path="res://images/ui/reward_screen/reward_item_button.png" id="2_vsb"]
 [ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_one.tres" id="3_vsb"]
 [ext_resource type="Texture2D" path="res://images/atlases/ui_atlas.sprites/sort_descending.tres" id="4_vsb"]

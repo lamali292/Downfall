@@ -22,5 +22,6 @@ public class CrookedStrike : ChampCardModel, IRetainVigorCard
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 }

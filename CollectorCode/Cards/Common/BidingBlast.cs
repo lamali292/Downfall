@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -18,7 +17,7 @@ public class BidingBlast : CollectorCardModel
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var reserve = CardResourceRegistry.Get<CollectorEnergy>();
+        var reserve = CollectorEnergy.Instance;
         var usedReserve = reserve != null && reserve.WasSpentOn(this);
         var hits = 1;
         if (usedReserve) hits++;

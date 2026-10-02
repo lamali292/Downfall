@@ -25,5 +25,6 @@ public class Piledriver : ChampCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this);
         await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 }

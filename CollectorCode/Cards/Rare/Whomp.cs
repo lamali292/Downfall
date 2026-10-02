@@ -26,7 +26,7 @@ public class Whomp : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CollectorCmd.Kindle(ctx, this);
+        await TorchheadCmd.Kindle(ctx, this);
         if (IsUpgraded)
             await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand, upgraded: true);
         else 

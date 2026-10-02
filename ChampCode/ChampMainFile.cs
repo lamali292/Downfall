@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Champ.ChampCode.Cards;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
@@ -23,7 +23,6 @@ public static class ChampMainFile
 
     public static void Initialize()
     {
-        CardExecutionHooks.RegisterAfter(ChampCardEffectHandler.DoAfterOnPlayInternal);
         CustomLocTableManager.Register("champ_stances");
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new SkillBonusDescriptionSource());
