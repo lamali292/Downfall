@@ -8,12 +8,13 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Cards.Multiplayer;
 
-public class RubberBullet : HermitCardModel, IHasDeadOnEffect, IModifyCardPlayResultLocation
+public class RubberBullet : HermitCardModel, IModifyCardPlayResultLocation
 {
     public RubberBullet() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(7, 2);
         WithVar("Increase", 7, 2);
+        WithDeadOn();
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
@@ -38,12 +39,6 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect, IModifyCardPlayRe
         return Task.CompletedTask;
     }
 
-    public Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
-        return Task.CompletedTask;
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
@@ -53,5 +48,13 @@ public class RubberBullet : HermitCardModel, IHasDeadOnEffect, IModifyCardPlayRe
                 return Task.CompletedTask;
             })
             .Execute(ctx);
+        // Upgrades this card instance's damage for its *next* play, not this one - matches the
+        // redirect-to-teammate-hand effect above, which the game already committed before this runs.
+        await HermitCmd.DeadOn(ctx, this, cardPlay,
+            () =>
+            {
+                DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].IntValue);
+                return Task.CompletedTask;
+            });
     }
 }

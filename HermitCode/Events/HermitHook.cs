@@ -14,9 +14,9 @@ public class HermitHook
         return HookUtils.Any<IShouldTriggerDeadOn>(cs, e => e.ShouldTriggerDeadOn(card));
     }
 
-    public static Task AfterDeadOnTrigger(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
+    public static Task AfterDeadOnTrigger(ICombatState cs, PlayerChoiceContext ctx, CardModel card)
     {
-        return HookUtils.Dispatch<IAfterDeadOnTrigger>(cs, e => e.AfterDeadOnTrigger(ctx, card, cardPlay));
+        return HookUtils.Dispatch<IAfterDeadOnTrigger>(cs, e => e.AfterDeadOnTrigger(ctx, card));
     }
 
     public static int ModifyDeadOnCount(ICombatState cs, int orignal, CardModel card,
@@ -25,10 +25,10 @@ public class HermitHook
         return HookUtils.Modify(cs, orignal, (e, amount) => e.ModifyDeadOnCount(amount, card), out modifiers);
     }
 
-    public static Task AfterModifyingDeadOnCount(ICombatState cs, PlayerChoiceContext ctx, CardModel card,
+    public static Task AfterModifyingDeadOnCount(ICombatState cs, CardModel card,
         IEnumerable<IModifyDeadOnCount> modifiers)
     {
-        return HookUtils.AfterModifying(cs, modifiers, e => e.AfterModifyingDeadOnCount(ctx, card));
+        return HookUtils.AfterModifying(cs, modifiers, e => e.AfterModifyingDeadOnCount(card));
     }
 
     public static bool ShouldPreventBruiseRemoval(ICombatState cs, BruisePower power,

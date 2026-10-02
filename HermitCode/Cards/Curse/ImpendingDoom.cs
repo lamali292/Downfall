@@ -3,6 +3,8 @@ using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Core;
+using Hermit.HermitCode.Patches;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
@@ -17,12 +19,13 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Hermit.HermitCode.Cards.Curse;
 
 [Pool(typeof(CurseCardPool))]
-public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
+public sealed class ImpendingDoom : HermitCardModel
 {
     public ImpendingDoom() : base(-2, CardType.Curse, CardRarity.Curse, DownfallTargetType.MeAndEnemies)
     {
         WithVar(new DamageVar(13, DamageProps.cardUnpowered));
         WithKeyword(CardKeyword.Unplayable);
+        WithDeadOn();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
@@ -32,34 +35,35 @@ public sealed class ImpendingDoom : HermitCardModel, IHasDeadOnEffect
 
     protected override bool ShouldGlowGoldInternal => false;
     protected override bool ShouldGlowRedInternal => HermitCmd.HasActiveDeadOnEffect(this);
-    public override bool HasTurnEndInHandEffect => HermitCmd.HasActiveDeadOnEffect(this);
+
+    // The game moves this card into the Play pile before calling OnTurnEndInHand, so this getter
+    // (read while the card is still in Hand) is the last chance to snapshot Dead On status for
+    // HermitCmd.IsDeadOn to find afterward - see DeadOnPatch.CaptureNow.
+    public override bool HasTurnEndInHandEffect
+    {
+        get
+        {
+            DeadOnPatch.CaptureNow(this);
+            return HermitCmd.HasActiveDeadOnEffect(this);
+        }
+    }
+
     public override bool CanBeGeneratedByModifiers => false;
 
     private static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
 
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        var targets = CombatState!.Creatures.Where(e => e is { IsAlive: true, IsPet: false });
-        foreach (var target in targets)
-        {
-            var child = NFireBurstVfx.Create(target, 0.75f)!;
-            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(child);
-        }
-
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-
     protected override async Task OnTurnEndInHand(PlayerChoiceContext ctx)
     {
-        var cardPlay = CardPlayCompat.Create(this, null, PileType.Discard, new ResourceInfo
+        await HermitCmd.DeadOn(ctx, this, null, async () =>
         {
-            EnergySpent = 0,
-            EnergyValue = 0,
-            StarsSpent = 0,
-            StarValue = 0
-        }, playCount: 1);
-        await HermitCmd.TriggerDeadOnEffect(ctx, this, cardPlay);
+            var targets = CombatState!.Creatures.Where(e => e is { IsHittable: true, IsPet: false }).ToList();
+            foreach (var child in targets.Select(target => NFireBurstVfx.Create(target, 0.75f)!))
+            {
+                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(child);
+            }
+
+            await CreatureCmd.Damage(ctx, targets, DynamicVars.Damage, Owner.Creature, this, null);
+        });
     }
 
     protected override void AddExtraArgsToDescription(LocString description)
