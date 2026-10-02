@@ -2,14 +2,11 @@
 using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
-using Champ.ChampCode.Events;
 using Champ.ChampCode.Interfaces;
 using Champ.ChampCode.Powers;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Champ.ChampCode.Cards;
@@ -43,22 +40,22 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
     public virtual FinisherDescriptor Finisher => FinisherDescriptor.Default;
 
 
-    public ConstructedCardModel WithDefensiveTip()
+    protected ConstructedCardModel WithDefensiveTip()
     {
         return WithTips(e => ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTips);
     }
 
-    public ConstructedCardModel WithBerserkerTip()
+    protected ConstructedCardModel WithBerserkerTip()
     {
         return WithTips(e => ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTips);
     }
 
-    public ConstructedCardModel WithUltimateTip()
+    protected ConstructedCardModel WithUltimateTip()
     {
         return WithTips(e => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
     }
 
-    public ConstructedCardModel WithFinisher()
+    protected ConstructedCardModel WithFinisher()
     {
         WithTags(ChampTag.Finisher);
         WithTip(ChampTip.Finisher);
@@ -68,7 +65,7 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
 
     /// <summary>Marks the card as a Berserker combo card for the glow/tip; the card's own OnPlayInternal
     /// still has to call <see cref="ChampCmd.BerserkerCombo"/> to actually run the combo effect.</summary>
-    public ConstructedCardModel WithBerserkerCombo()
+    protected ConstructedCardModel WithBerserkerCombo()
     {
         WithTags(ChampTag.BerserkerCombo);
         return this;
@@ -76,13 +73,13 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
 
     /// <summary>Marks the card as a Defensive combo card for the glow/tip; the card's own OnPlayInternal
     /// still has to call <see cref="ChampCmd.DefensiveCombo"/> to actually run the combo effect.</summary>
-    public ConstructedCardModel WithDefensiveCombo()
+    protected ConstructedCardModel WithDefensiveCombo()
     {
         WithTags(ChampTag.DefensiveCombo);
         return this;
     }
 
-    public ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
+    protected ConstructedCardModel WithGlory(int baseVal, int upgrade = 0)
     {
         WithPower<GloryPower>(baseVal, upgrade);
         //card.WithUltimateTip();
