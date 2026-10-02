@@ -1,9 +1,7 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
-using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Utils;
 using Awakened.AwakenedCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -14,8 +12,6 @@ namespace Awakened.AwakenedCode.Cards;
 
 public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
 {
-    protected override ICardPlayPhases PlayPhases => AwakenedCardPlayPhases.Instance;
-
     protected AwakenedCardModel(
         int cost,
         CardType type,
@@ -25,16 +21,16 @@ public abstract class AwakenedCardModel : DownfallCardModel<AwakenedCharacter>
         bool autoAdd = true)
         : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        WithTips(card => card is IChantable chantable
-            ? chantable.HasChanted
+        WithTips(card => card.Keywords.Contains(AwakenedKeyword.Chant)
+            ? ChantCmd.HasChanted(card)
                 ? [HoverTipFactory.Static(AwakenedTip.Chanted)]
                 : [HoverTipFactory.Static(AwakenedTip.Chant)]
             : []);
     }
 
-    protected override bool ShouldGlowGoldInternal => this is IChantable chantable &&
-                                                      (AwakenedCmd.WasLastCardPlayedPower(this) ||
-                                                       chantable.HasChanted);
+    protected override bool ShouldGlowGoldInternal =>
+        Keywords.Contains(AwakenedKeyword.Chant) &&
+        (ChantCmd.WasLastCardPlayedPower(this) || ChantCmd.HasChanted(this));
 
     public ConstructedCardModel WithConjure(Func<CardModel, bool>? a = null)
     {
