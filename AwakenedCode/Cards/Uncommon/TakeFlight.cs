@@ -1,5 +1,5 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Interfaces;
+using Awakened.AwakenedCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,27 +10,23 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Awakened.AwakenedCode.Cards.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class TakeFlight : AwakenedCardModel, IChantable
+public class TakeFlight : AwakenedCardModel
 {
     public TakeFlight() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(12, 3);
         WithPower<BlurPower>(1, false);
+        WithKeyword(AwakenedKeyword.Chant);
     }
 
     protected override Artist Artist => Artist.Get<Eudaimonia>();
 
-
-    public bool HasChanted { get; set; } = false;
-
-    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await CommonActions.ApplySelf<BlurPower>(ctx, this, 1);
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, cardPlay);
+        await ChantCmd.Chant( cardPlay, () =>
+            CommonActions.ApplySelf<BlurPower>(ctx, this, 1)
+            );
     }
 }

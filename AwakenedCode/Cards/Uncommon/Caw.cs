@@ -1,6 +1,5 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Events;
-using Awakened.AwakenedCode.Interfaces;
+using Awakened.AwakenedCode.CustomEnums;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,7 +12,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 namespace Awakened.AwakenedCode.Cards.Uncommon;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Caw : AwakenedCardModel, IChantable, IOnChant
+public class Caw : AwakenedCardModel
 {
     private static readonly LocString CawCawDialogue = new("monsters", "DAMP_CULTIST.moves.INCANTATION.banter");
 
@@ -21,29 +20,25 @@ public class Caw : AwakenedCardModel, IChantable, IOnChant
     {
         WithDamage(4, 1);
         WithVar("Caw", 4, 1);
+        WithKeyword(AwakenedKeyword.Chant);
     }
 
     protected override Artist Artist => Artist.Get<Occultpyromancer>();
-
-    public bool HasChanted { get; set; } = false;
-
-    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await Task.CompletedTask;
-    }
-
-    public Task OnCardChanted(CardModel card, PlayerChoiceContext ctx, CardPlay cardPlay, bool firstTime,
-        bool isFirstChantInSeries)
-    {
-        if (card is Caw && card.Owner == Owner) DynamicVars.Damage.UpgradeValueBy(card.DynamicVars["Caw"].BaseValue);
-
-        return Task.CompletedTask;
-    }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions
             .CardAttack(this, cardPlay, sfx: "event:/sfx/enemy/enemy_attacks/cultists/cultists_buff_damp").Execute(ctx);
         TalkCmd.Play(CawCawDialogue, Owner.Creature, VfxColor.Blue);
+        await ChantCmd.Chant(cardPlay, () =>
+        {
+            if (Owner.PlayerCombatState == null) return Task.CompletedTask;
+            var caws = Owner.PlayerCombatState.AllCards.OfType<Caw>();
+            foreach (var caw in caws)
+            {
+                caw.DynamicVars.Damage.UpgradeValueBy(DynamicVars["Caw"].BaseValue);
+            }
+            return Task.CompletedTask;
+        });
     }
 }
