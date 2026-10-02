@@ -26,6 +26,6 @@ public class Reroll : SneckoCardModel
         var highestCostCards = candidates.Where(e => e.EnergyCost.GetAmountToSpend() == maxCost).ToList();
         var card = RunState!.Rng.CombatCardSelection.NextItem(highestCostCards);
         if (card == null) return;
-        await SneckoCmd.Muddle(ctx, card, this);
+        await MuddleCmd.Muddle(ctx, card, this);
     }
 }
