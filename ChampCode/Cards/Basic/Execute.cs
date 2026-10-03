@@ -28,5 +28,6 @@ public class Execute : ChampCardModel, ITranscendenceCard
             .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character),
                 Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
             .Execute(ctx);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 }

@@ -2,7 +2,7 @@ using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Cards.Ancient;
-using Hermit.HermitCode.Powers;
+using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -13,31 +13,17 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Cards.Basic;
 
-public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendenceCard
+public sealed class Snapshot : HermitCardModel, ITranscendenceCard
 {
-    private AttackCommand? _result;
-
-
     public Snapshot() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
+        WithDeadOn();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
 
     public override bool GainsBlock => true;
-
-    public async Task DeadOnEffect(PlayerChoiceContext ctx, CardPlay play)
-    {
-        if (_result == null) return;
-        var unblockedDamage = _result.Results.SelectMany(e => e).Sum(e => e.TotalDamage + e.OverkillDamage);
-
-        var hasSnipe = Owner.Creature.HasPower<SnipePower>() ? 2 : 1;
-        for (var i = 0; i < hasSnipe; i++)
-            await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, BlockProps.card, play);
-        _result = null;
-    }
-
 
     public CardModel GetTranscendenceTransformedCard()
     {
@@ -48,12 +34,17 @@ public sealed class Snapshot : HermitCardModel, IHasDeadOnEffect, ITranscendence
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        _result = await CommonActions.CardAttack(this, play)
+        var result = await CommonActions.CardAttack(this, play)
             .WithHermitGunHitFx().BeforeDamage(() =>
             {
                 HermitSfx.PlayGun1();
                 return Task.CompletedTask;
             })
             .Execute(ctx);
+        var unblockedDamage = result.Results.SelectMany(e => e).Sum(e => e.TotalDamage + e.OverkillDamage);
+        await HermitCmd.DeadOn(ctx, this, play, async () =>
+        {
+            await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, BlockProps.card, play);
+        });
     }
 }

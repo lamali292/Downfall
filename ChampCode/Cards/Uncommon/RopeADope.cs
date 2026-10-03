@@ -25,5 +25,6 @@ public class RopeADope : ChampCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<EnergyNextTurnPower>(ctx, this, DynamicVars.Energy.BaseValue);
         await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 }

@@ -13,7 +13,7 @@ public class BattlePlan : ChampCardModel
     public BattlePlan() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithBlock(2, 2);
-        WithEnterDefensive();
+        WithDefensiveTip();
         WithScry(2, 1);
     }
 
@@ -23,5 +23,6 @@ public class BattlePlan : ChampCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         await ScryCmd.Execute(ctx, this);
+        await ChampCmd.EnterDefensiveStance(ctx, Owner);
     }
 }

@@ -2,12 +2,11 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
 [Pool(typeof(SneckoCardPool))]
-public class DiceCrush : SneckoCardModel, IHasOverflowEffect
+public class DiceCrush : SneckoCardModel
 {
     public DiceCrush() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
@@ -16,14 +15,10 @@ public class DiceCrush : SneckoCardModel, IHasOverflowEffect
         WithCards(2);
     }
 
-    public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.Draw(this, ctx);
-    }
-
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var overflowing = OverflowCmd.OverflowActive(this);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await OverflowCmd.Overflow(overflowing, cardPlay, () => CommonActions.Draw(this, ctx));
     }
 }

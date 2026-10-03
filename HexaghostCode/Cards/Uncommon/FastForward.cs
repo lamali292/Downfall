@@ -21,5 +21,6 @@ public class FastForward : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
+        await HexaghostCmd.Advance(ctx, Owner, this);
     }
 }

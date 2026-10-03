@@ -25,7 +25,6 @@ public static class HermitMainFile
     {
         PostInitRegistry.Register(PostModelInit);
         CardExecutionHooks.RegisterBefore(HermitCardEffectHandler.DoBeforeOnPlayInternal);
-        CardExecutionHooks.RegisterAfter(HermitCardEffectHandler.DoAfterOnPlayInternal);
 
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<HermitCardPool>(VotingPool.Hermit, ModId);

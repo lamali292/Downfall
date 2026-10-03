@@ -37,7 +37,11 @@ public class FlareFlick : HexaghostCardModel
         if (cardPlay.Target == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await HexaghostCmd.Ignite(ctx, Owner);
-        if (!IsUpgraded) return;
+        if (!IsUpgraded)
+        {
+            await HexaghostCmd.Advance(ctx, Owner, this);
+            return;
+        }
 
         var choices = new[] { HexaghostKeyword.Retract, HexaghostKeyword.Advance }
             .Select(f => FlareFlickChoice.Create(f, Owner))

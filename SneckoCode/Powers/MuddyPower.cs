@@ -21,7 +21,7 @@ public class MuddyPower : SneckoPowerModel
         ICombatState combatState)
     {
         if (!participants.Contains(Owner) || AmountOnTurnStart == 0 || Owner.Player == null) return;
-        await SneckoCmd.Muddle(new BlockingPlayerChoiceContext(), Owner.Player.Hand, this);
+        await MuddleCmd.Muddle(new BlockingPlayerChoiceContext(), Owner.Player.Hand, this);
         Flash();
         await PowerCmd.Decrement(this);
     }

@@ -20,6 +20,7 @@ public class LingeringShades : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await HexaghostCmd.Retract(ctx, Owner, this);
         await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
         await SoulBurnPower.SoulburnEffect(cardPlay.Target);
         await CardPileCmd.Add(

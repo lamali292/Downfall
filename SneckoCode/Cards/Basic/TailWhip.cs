@@ -6,12 +6,11 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Cards.Ancient;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Basic;
 
 [Pool(typeof(SneckoCardPool))]
-public class TailWhip : SneckoCardModel, IHasOverflowEffect, ITranscendenceCard
+public class TailWhip : SneckoCardModel, ITranscendenceCard
 {
     public TailWhip() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
@@ -21,13 +20,6 @@ public class TailWhip : SneckoCardModel, IHasOverflowEffect, ITranscendenceCard
         WithPower<VulnerablePower>(1, 1);
     }
 
-
-    public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
-        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-    }
-
     public CardModel GetTranscendenceTransformedCard()
     {
         return ModelDb.Card<Whiplash>();
@@ -35,6 +27,12 @@ public class TailWhip : SneckoCardModel, IHasOverflowEffect, ITranscendenceCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var overflowing = OverflowCmd.OverflowActive(this);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await OverflowCmd.Overflow(overflowing, cardPlay, async () =>
+        {
+            await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+            await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        });
     }
 }

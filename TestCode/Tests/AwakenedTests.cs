@@ -1,6 +1,8 @@
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Cards.Common;
+using Awakened.AwakenedCode.Cards.Rare;
 using Awakened.AwakenedCode.Cards.Uncommon;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
@@ -91,7 +93,7 @@ public class AwakenedTests
             ctx.Player.Creature, null);
 
         var recitation = (Recitation)await ctx.AddCardToHand<Recitation>();
-        recitation.HasChanted = true;
+        ChantCmd.SetChanted(recitation);
         await ctx.PlayCard(recitation, enemy);
 
         var totalDamage = startHp - enemy.CurrentHp;
@@ -112,7 +114,7 @@ public class AwakenedTests
             ctx.Player.Creature, null);
 
         var featherFlare = (FeatherFlare)await ctx.AddCardToHand<FeatherFlare>();
-        featherFlare.HasChanted = true;
+        ChantCmd.SetChanted(featherFlare);
 
         await ctx.PlayCard(featherFlare, ctx.Combat.HittableEnemies.First());
 
@@ -120,6 +122,87 @@ public class AwakenedTests
         Assert.IsTrue(drawPower != null && drawPower.Amount == 2,
             "Rising Chorus should double an already-chanted card's chant effect on the turn's first chant " +
             $"(expected DrawCardsNextTurnPower amount 2, got {drawPower?.Amount.ToString() ?? "none"}).");
+    }
+
+    // Regression guard for the IModifyChantRepeatCount refactor: ChantCmd.Chant only asks for a
+    // repeat count on a genuine chant (isFirstChantInSeries) and runs every resulting bonus chant with
+    // that flag false, so a listener can never recurse into itself through the loop. A Rising Chorus
+    // Amount far larger than ChantThisTurn would, without that guard, have the bonus chant's own
+    // ModifyChantRepeatCount call see ChantThisTurn (still 1) <= Amount and keep granting more bonus
+    // chants forever. This asserts the chant only ever doubles (not triples+) even at high Amount.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task RisingChorusDoesNotRecurseBeyondOneBonusChantAtHighAmount(TestContext ctx)
+    {
+        await PowerCmd.Apply<RisingChorusPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 10,
+            ctx.Player.Creature, null);
+
+        var featherFlare = (FeatherFlare)await ctx.AddCardToHand<FeatherFlare>();
+        ChantCmd.SetChanted(featherFlare);
+        await ctx.PlayCard(featherFlare, ctx.Combat.HittableEnemies.First());
+
+        var drawPower = ctx.Player.Creature.Powers.OfType<DrawCardsNextTurnPower>().FirstOrDefault();
+        Assert.IsTrue(drawPower != null && drawPower.Amount == 2,
+            "A single chant should trigger exactly one bonus chant (not recurse further) regardless of " +
+            $"how high Rising Chorus's Amount is, got DrawCardsNextTurnPower amount={drawPower?.Amount.ToString() ?? "none"}.");
+    }
+
+    // Regression guard: ChantCmd.Chant now queries ModifyChantRepeatCount before recording this
+    // chant's own ChantEntry, so RisingChorusPower's ChantThisTurn (counted from history) only sees
+    // chants strictly before the current one - it must compare with "<" rather than "<=" to still mean
+    // "only the turn's first Amount chants get doubled". With the wrong operator, a second chant this
+    // turn would see ChantThisTurn==1<=Amount(1) and incorrectly double too.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task RisingChorusOnlyDoublesTheTurnsFirstChantNotTheSecond(TestContext ctx)
+    {
+        await PowerCmd.Apply<RisingChorusPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+
+        var first = (FeatherFlare)await ctx.AddCardToHand<FeatherFlare>();
+        ChantCmd.SetChanted(first);
+        var second = (FeatherFlare)await ctx.AddCardToHand<FeatherFlare>();
+        ChantCmd.SetChanted(second);
+
+        await ctx.PlayCard(first, ctx.Combat.HittableEnemies.First());
+        await ctx.PlayCard(second, ctx.Combat.HittableEnemies.First());
+
+        var drawPower = ctx.Player.Creature.Powers.OfType<DrawCardsNextTurnPower>().FirstOrDefault();
+        Assert.IsTrue(drawPower != null && drawPower.Amount == 3,
+            "Only the turn's first chant should double (first +2, second +1 = 3 total), got " +
+            $"DrawCardsNextTurnPower amount={drawPower?.Amount.ToString() ?? "none"}.");
+    }
+
+    // Regression guard: GreatHex's and Victuals' own chant effect briefly called ChantCmd.Chant
+    // again from inside PlayChantEffect (instead of from OnPlayInternal) - since Chant() re-checks its
+    // own gate (which is already true once HasChanted is set) that was unconditional self-recursion, a
+    // guaranteed stack overflow the moment either card actually chanted. This plays each one with
+    // HasChanted forced true (so the chant fires) and asserts the chant effect actually lands exactly
+    // once, which both proves there's no infinite recursion and that the effect still works at all now
+    // that nothing but the card's own OnPlayInternal triggers its chant.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task GreatHexAppliesItsPowerOnceWhenChanted(TestContext ctx)
+    {
+        var greatHex = (GreatHex)await ctx.AddCardToHand<GreatHex>();
+        ChantCmd.SetChanted(greatHex);
+        var enemy = ctx.Combat.HittableEnemies.First();
+
+        await ctx.PlayCard(greatHex, enemy);
+
+        var amount = enemy.GetPower<GreatHexPower>()?.Amount ?? 0;
+        Assert.AreEqual((int)greatHex.DynamicVars.Power<GreatHexPower>().BaseValue, amount,
+            $"GreatHex should apply its GreatHexPower exactly once when chanted, got Amount={amount}.");
+    }
+
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task VictualsGainsEnergyOnceWhenChanted(TestContext ctx)
+    {
+        var victuals = (Victuals)await ctx.AddCardToHand<Victuals>();
+        ChantCmd.SetChanted(victuals);
+        var energyBefore = ctx.Player.PlayerCombatState!.Energy;
+
+        await ctx.PlayCard(victuals);
+
+        Assert.AreEqual(energyBefore + (int)victuals.DynamicVars.Energy.BaseValue, ctx.Player.PlayerCombatState!.Energy,
+            "Victuals should gain its chant energy exactly once.");
     }
 
     // Regression guard: reported for offclass Byrd's Eye - it read spellbook.Cards without

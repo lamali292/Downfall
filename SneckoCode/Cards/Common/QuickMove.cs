@@ -4,12 +4,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Common;
 
 [Pool(typeof(SneckoCardPool))]
-public class QuickMove : SneckoCardModel, IHasOverflowEffect
+public class QuickMove : SneckoCardModel
 {
     public QuickMove() : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
     {
@@ -20,13 +19,10 @@ public class QuickMove : SneckoCardModel, IHasOverflowEffect
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
-    public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var overflowing = OverflowCmd.OverflowActive(this);
         await CommonActions.CardBlock(this, cardPlay);
+        await OverflowCmd.Overflow(overflowing, cardPlay, () => CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay));
     }
 }

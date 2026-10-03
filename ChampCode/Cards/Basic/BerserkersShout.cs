@@ -13,7 +13,7 @@ public class BerserkersShout : ChampCardModel
     public BerserkersShout() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithPower<VigorPower>(2, 2);
-        WithEnterBerserker();
+        WithBerserkerTip();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -21,5 +21,6 @@ public class BerserkersShout : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<VigorPower>(ctx, this);
+        await ChampCmd.EnterBerserkerStance(ctx, Owner);
     }
 }

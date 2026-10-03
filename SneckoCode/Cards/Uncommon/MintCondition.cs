@@ -3,12 +3,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Snecko.SneckoCode.Core;
-using Snecko.SneckoCode.Interfaces;
 
 namespace Snecko.SneckoCode.Cards.Uncommon;
 
 [Pool(typeof(SneckoCardPool))]
-public class MintCondition : SneckoCardModel, IHasOverflowEffect
+public class MintCondition : SneckoCardModel
 {
     public MintCondition() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -16,9 +15,10 @@ public class MintCondition : SneckoCardModel, IHasOverflowEffect
         WithOverflow();
     }
 
-
-    public async Task OverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        return OverflowCmd.Overflow(cardPlay, 
+            () => CommonActions.ApplySelf<StrengthPower>(ctx, this)
+            );
     }
 }

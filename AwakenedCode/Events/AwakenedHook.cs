@@ -9,9 +9,10 @@ namespace Awakened.AwakenedCode.Events;
 
 /// <summary>
 /// Dispatch points for Awakened's custom combat hooks. Each method fans a game event out to every
-/// <see cref="IOnDrained"/>/<see cref="IOnChant"/>/<see cref="IOnAwaken"/>/<see cref="IModifyManaburnDamage"/>/
-/// <see cref="IModifyBaseSpells"/> listener in the combat (powers, relics, cards, ...) via
-/// <c>HookUtils</c>. Call sites raise the event; listeners implement the matching interface to react to it.
+/// <see cref="IOnDrained"/>/<see cref="IModifyChantRepeatCount"/>/<see cref="IOnAwaken"/>/
+/// <see cref="IModifyManaburnDamage"/>/<see cref="IModifyBaseSpells"/> listener in the combat (powers,
+/// relics, cards, ...) via <c>HookUtils</c>. Call sites raise the event; listeners implement the
+/// matching interface to react to it.
 /// </summary>
 public static class AwakenedHook
 {
@@ -30,31 +31,40 @@ public static class AwakenedHook
     }
 
     /// <summary>
-    /// Raised from <see cref="AwakenedCmd.Chant"/> after a card's chant effect has played and its
-    /// <c>HasChanted</c> flag has been set. Lets listeners react to (or trigger extra) chants, e.g.
-    /// <c>RisingChorusPower</c> doubling the turn's first chant, or <c>Caw</c> scaling off other Caws.
+    /// Lets listeners (e.g. <c>RisingChorusPower</c>) make a card chant extra times beyond the one that
+    /// just happened. Queried once per <see cref="ChantCmd.Chant"/> call, before any of that call's
+    /// activations run - the resulting extra activations never query this hook again, so a listener
+    /// can't recurse into itself through it.
     /// </summary>
     /// <param name="cs">Combat the chant happened in.</param>
-    /// <param name="ctx">Choice context to run the reaction through.</param>
-    /// <param name="card">The card whose chant effect just played.</param>
-    /// <param name="cardPlay">The play (target, resources spent, ...) the chant is attached to.</param>
-    /// <param name="firstTime">
-    /// True only the very first time this specific card instance has ever chanted in its lifetime
-    /// (i.e. <c>HasChanted</c> was false before this call). Stays false on every later chant of the
-    /// same card, even in a new turn - it does not mean "first chant this turn". Used for one-off
-    /// per-card flavor (banter/SFX, tooltip wording), not for turn-scoped logic.
+    /// <param name="card">The card that just chanted.</param>
+    /// <param name="cardPlay">The play the chant is attached to.</param>
+    /// <param name="original">The repeat count before any listener has touched it (normally 1).</param>
+    /// <param name="modifiers">
+    /// Out: every <see cref="IModifyChantRepeatCount"/> listener that actually changed the count - pass
+    /// this straight into <see cref="AfterModifyingChantRepeatCount"/>.
     /// </param>
-    /// <param name="isFirstChantInSeries">
-    /// True for the "genuine" chant that came from actually playing the card; false when this chant
-    /// was itself triggered as a bonus activation by another effect (e.g. Rising Chorus recursing
-    /// into <see cref="AwakenedCmd.Chant"/> a second time). Use this to tell a real chant apart from
-    /// an echo of one - e.g. to avoid re-triggering off a chant that is already a bonus trigger.
-    /// </param>
-    public static Task OnCardChanted(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay,
-        bool firstTime, bool isFirstChantInSeries)
+    /// <returns>How many times the card should chant in total.</returns>
+    public static int ModifyChantRepeatCount(ICombatState cs, CardModel card, CardPlay cardPlay, int original,
+        out IEnumerable<IModifyChantRepeatCount> modifiers)
     {
-        return HookUtils.Dispatch<IOnChant>(cs, ctx,
-            m => m.OnCardChanted(card, ctx, cardPlay, firstTime, isFirstChantInSeries));
+        return HookUtils.Modify<IModifyChantRepeatCount, int>(cs, original,
+            (e, count) => e.ModifyChantRepeatCount(card, cardPlay, count), out modifiers);
+    }
+
+    /// <summary>
+    /// Notifies each modifier from a prior <see cref="ModifyChantRepeatCount"/> call (e.g. so
+    /// <c>RisingChorusPower</c> can refresh its displayed remaining-uses amount) once the repeat count
+    /// is final, before any chant activation runs.
+    /// </summary>
+    /// <param name="cs">Combat the chant happened in.</param>
+    /// <param name="card">The card that just chanted.</param>
+    /// <param name="cardPlay">The play the chant is attached to.</param>
+    /// <param name="modifiers">The modifiers returned by the matching <see cref="ModifyChantRepeatCount"/> call.</param>
+    public static Task AfterModifyingChantRepeatCount(ICombatState cs, CardModel card, CardPlay cardPlay,
+        IEnumerable<IModifyChantRepeatCount> modifiers)
+    {
+        return HookUtils.AfterModifying(cs, modifiers, e => e.AfterModifyingChantRepeatCount(card, cardPlay));
     }
 
     /// <summary>

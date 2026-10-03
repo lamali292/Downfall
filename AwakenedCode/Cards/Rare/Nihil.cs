@@ -1,5 +1,5 @@
 using Awakened.AwakenedCode.Core;
-using Awakened.AwakenedCode.Interfaces;
+using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
@@ -12,36 +12,34 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Awakened.AwakenedCode.Cards.Rare;
 
 [Pool(typeof(AwakenedCardPool))]
-public class Nihil : AwakenedCardModel, IChantable
+public class Nihil : AwakenedCardModel
 {
     public Nihil() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithPower<ManaburnPower>(13, 4);
+        WithKeyword(AwakenedKeyword.Chant);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public bool HasChanted { get; set; } = false;
-
-    public async Task PlayChantEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        if (CombatState == null) return;
-        foreach (var combatStateEnemy in CombatState.HittableEnemies)
-        {
-            var a = combatStateEnemy.GetInstancedPowerAmountSum<ManaburnPower>();
-            if (a <= 0) continue;
-            await CompatibilityCreatureCmd.Damage(
-                ctx,
-                combatStateEnemy,
-                a,
-                DamageProps.cardHpLoss,
-                this, cardPlay);
-        }
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.Apply<ManaburnPower>(ctx, this, cardPlay);
+        await ChantCmd.Chant(cardPlay, async () =>
+        {
+            if (CombatState == null) return;
+            foreach (var combatStateEnemy in CombatState.HittableEnemies)
+            {
+                var a = combatStateEnemy.GetInstancedPowerAmountSum<ManaburnPower>();
+                if (a <= 0) continue;
+                await CompatibilityCreatureCmd.Damage(
+                    ctx,
+                    combatStateEnemy,
+                    a,
+                    DamageProps.cardHpLoss,
+                    this, cardPlay);
+            }
+        });
     }
 }

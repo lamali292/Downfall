@@ -15,9 +15,9 @@ public sealed class SnipePower : HermitPowerModel, IModifyDeadOnCount
         return card.Owner.Creature == Owner ? amount + 1 : amount;
     }
 
-    public async Task AfterModifyingDeadOnCount(PlayerChoiceContext ctx, CardModel card)
+    public async Task AfterModifyingDeadOnCount(CardModel card)
     {
-        await PowerCmd.ModifyAmount(ctx, this, -1, Owner, card);
+        await PowerCmd.Decrement(this);
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
