@@ -81,6 +81,30 @@ public class HermitTests
         Assert.AreEqual(0, ctx.Player.Creature.GetPowerAmount<PlatedArmorPower>(), "No Plated Armor expected.");
     }
 
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task TrackingShotGrantsConcentrationForcingOffCenterDeadOn(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var trackingShot = await ctx.AddCardToHand<TrackingShot>();
+        await ctx.PlayCard(trackingShot, ctx.Combat.HittableEnemies.First());
+        Assert.IsTrue(ctx.Player.Creature.HasPower<ConcentrationPower>(),
+            "Tracking Shot should grant Concentration on play.");
+
+        await ctx.ClearHand();
+        // 3 cards, target Dive last → index 2, center is index 1 → off-center by hand position.
+        await ctx.AddCardToHand<Dive>();
+        await ctx.AddCardToHand<Dive>();
+        var dive = await ctx.AddCardToHand<Dive>();
+        Assert.IsTrue(!HandGeometry.IsCenter(dive.Owner.Hand, dive),
+            "Dive at the edge of hand should not be centered.");
+
+        await ctx.PlayCard(dive);
+
+        Assert.AreEqual(1, DeadOnEntries(dive),
+            "Concentration should force the off-center Dive's Dead On effect to trigger.");
+        Assert.IsTrue(!ctx.Player.Creature.HasPower<ConcentrationPower>(), "Concentration should be consumed.");
+    }
+
     // ---- multiplayer ----
 
     private static CardModel? RubberBulletInHandOf(Player player) =>
