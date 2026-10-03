@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Artists;
+using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,5 +23,6 @@ public sealed class EyeOfTheStorm : HermitCardModel
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var gain = Owner.PlayerCombatState!.MaxEnergy - Owner.PlayerCombatState.Energy;
         await PlayerCmd.GainEnergy(gain, Owner);
+        await HermitCmd.Concentrate(ctx, this);
     }
 }

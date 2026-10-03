@@ -2,7 +2,9 @@
 using Hermit.HermitCode.Events;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Patches;
+using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -11,6 +13,12 @@ namespace Hermit.HermitCode.Core;
 
 public static class HermitCmd
 {
+
+    public static Task Concentrate(PlayerChoiceContext ctx, AbstractModel model, int amount = 1)
+    {
+        return PowerCmd.Apply<ConcentrationPower>(ctx, model.Creature, amount, model.Creature, model as CardModel);
+    }
+    
     /// <summary>
     ///     The one Dead On question: is this card Dead On right now, for the play it is part of?
     ///     <para>
