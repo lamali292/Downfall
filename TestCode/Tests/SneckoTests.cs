@@ -345,6 +345,49 @@ public class SneckoTests
             "A later play with a small hand must not fire Overflow again.");
     }
 
+    // Regression guard for the SneckoCardPlayPhases removal: Overflow cards now snapshot
+    // OverflowCmd.OverflowActive themselves at the top of OnPlayInternal and pass that into
+    // OverflowCmd.Overflow, instead of a central BeforePlay phase doing it for them. This must still hold
+    // even when something else shrinks the hand mid-play - e.g. another card/power that draws or
+    // discards in reaction to this card's own attack - so the snapshot, not the live hand, decides.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task OverflowHonorsSnapshotTakenBeforeHandShrinksMidPlay(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<DiceBlock>();
+        for (var i = 0; i < 5; i++) await ctx.AddCardToHand<StrikeIronclad>();
+
+        var wasActive = OverflowCmd.OverflowActive(card);
+        Assert.IsTrue(wasActive, "Test setup: hand should start with Overflow active (5+ other cards).");
+
+        // Simulate something else reacting mid-play and shrinking the hand before the Overflow-gated
+        // effect would run.
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<DiceBlock>();
+        Assert.IsTrue(!OverflowCmd.OverflowActive(card), "Test setup: the live hand should no longer qualify.");
+
+        var cardPlay = new CardPlay
+        {
+            Card = card,
+            Player = ctx.Player,
+            Target = null,
+            ResultPile = PileType.Discard,
+            Resources = new ResourceInfo { EnergySpent = 0, EnergyValue = 0, StarsSpent = 0, StarValue = 0 },
+            IsAutoPlay = false,
+            PlayIndex = 0,
+            PlayCount = 1
+        };
+
+        var ran = false;
+        await OverflowCmd.Overflow(wasActive, cardPlay, () =>
+        {
+            ran = true;
+            return Task.CompletedTask;
+        });
+
+        Assert.IsTrue(ran, "Overflow should still fire off the snapshot taken before the hand shrank mid-play.");
+    }
+
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
     public async Task ShapeshiftPlusUpgradesTheReplacements(TestContext ctx)
     {

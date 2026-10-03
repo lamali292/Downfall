@@ -7,7 +7,6 @@ namespace Awakened.AwakenedCode.History;
 
 public class ChantEntry(
     CardPlay cardPlay,
-    bool firstChantInSeries,
     int roundNumber,
     CombatSide currentSide,
     CombatHistory history,
@@ -15,7 +14,6 @@ public class ChantEntry(
     : CombatHistoryEntry(cardPlay.Card.Owner.Creature, roundNumber, currentSide, history, players)
 {
     public CardPlay CardPlay { get; set; } = cardPlay;
-    public bool FirstChantInSeries { get; set; } = firstChantInSeries;
     public override string Description =>
         $"{Actor.Player?.Character.Id.Entry} started chanting {CardPlay.Card.Id.Entry}";
 }

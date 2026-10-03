@@ -34,6 +34,15 @@ internal static class DeadOnPatch
 
     internal static PlayStartHandStatus StatusOf(CardModel card) => Status[card];
 
+    /// <summary>
+    ///     Snapshots hand status for a card that never goes through <c>OnPlayWrapper</c> but still
+    ///     needs <see cref="HermitCmd.IsDeadOn" /> to work once it leaves the hand - currently only
+    ///     <c>ImpendingDoom</c>, from its <c>HasTurnEndInHandEffect</c> getter (the last point the
+    ///     engine reads while the card is still in the Hand pile; by the time <c>OnTurnEndInHand</c>
+    ///     runs, the card has already been moved to the Play pile).
+    /// </summary>
+    internal static void CaptureNow(CardModel card) => Status[card] = HermitCmd.CaptureHandStatus(card);
+
     private static MethodBase TargetMethod() => AccessTools.Method(StateMachineType, "MoveNext");
 
     private static void Prefix(object __instance)

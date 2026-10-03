@@ -18,6 +18,6 @@ public class DiscountSale : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
-        await SneckoCmd.MuddleHandCards(ctx, this);
+        await MuddleCmd.MuddleHandCards(ctx, this);
     }
 }

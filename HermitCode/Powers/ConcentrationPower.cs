@@ -17,10 +17,10 @@ public sealed class ConcentrationPower : HermitPowerModel, IShouldTriggerDeadOn,
         WithTip(HermitKeywords.DeadOn);
     }
 
-    public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
+    public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card)
     {
         if (card.Owner.Creature != Owner) return;
-        await PowerCmd.ModifyAmount(ctx, this, -1, Owner, cardPlay.Card);
+        await PowerCmd.Decrement(this);
     }
 
     public bool ShouldTriggerDeadOn(CardModel card)

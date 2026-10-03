@@ -2,7 +2,6 @@ using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -22,7 +21,7 @@ public sealed class BlackPowder : HermitRelicModel, IAfterDeadOnTrigger
         WithTip(HermitKeywords.DeadOn);
     }
 
-    public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay)
+    public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card)
     {
         if (card.Owner != Owner) return;
         await CreatureCmd.Damage(ctx, Owner.Creature.CombatState!.HittableEnemies, DynamicVars.Damage, Owner.Creature);

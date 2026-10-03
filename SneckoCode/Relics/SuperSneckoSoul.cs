@@ -30,6 +30,6 @@ public class SuperSneckoSoul : SneckoRelicModel
         if (turnNumber == 1) await DownfallCardCmd.GiveCard<SoulRoll>(player, PileType.Hand);
         var card = await CardPileCmd.Draw(ctx, Owner);
         if (card == null) return;
-        await SneckoCmd.Muddle(ctx, card, this);
+        await MuddleCmd.Muddle(ctx, card, this);
     }
 }

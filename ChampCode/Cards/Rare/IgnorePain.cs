@@ -20,5 +20,6 @@ public class IgnorePain : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<IgnorePainPower>(ctx, this);
+        await ChampCmd.PlayFinisher(ctx, cardPlay, Finisher);
     }
 }

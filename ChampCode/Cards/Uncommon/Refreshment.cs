@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
-using Champ.ChampCode.Interfaces;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,25 +9,26 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace Champ.ChampCode.Cards.Uncommon;
 
 [Pool(typeof(ChampCardPool))]
-public class Refreshment : ChampCardModel, IBerserkerComboCard, IDefensiveComboCard
+public class Refreshment : ChampCardModel
 {
     public Refreshment() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithEnergy(2, 1);
         WithCards(3, 1);
         WithTip(CardKeyword.Exhaust);
+        WithBerserkerCombo();
+        WithDefensiveCombo();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public async Task BerserkerComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-        await CardCmdCompatibility.Exhaust(ctx, this);
-    }
-
-    public async Task DefensiveComboEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        await CommonActions.Draw(this, ctx);
+        await ChampCmd.BerserkerCombo(cardPlay, async () =>
+        {
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+            await CardCmdCompatibility.Exhaust(ctx, this);
+        });
+        await ChampCmd.DefensiveCombo(cardPlay, () => CommonActions.Draw(this, ctx));
     }
 }

@@ -18,6 +18,6 @@ public class Shift : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await CommonActions.Draw(this, ctx);
-        await SneckoCmd.Muddle(ctx, cards, this);
+        await MuddleCmd.Muddle(ctx, cards, this);
     }
 }

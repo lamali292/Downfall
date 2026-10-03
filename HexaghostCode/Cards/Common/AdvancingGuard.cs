@@ -21,5 +21,6 @@ public class AdvancingGuard : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
+        await HexaghostCmd.Advance(ctx, Owner, this);
     }
 }

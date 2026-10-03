@@ -33,7 +33,12 @@ public class Float : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Draw(this, ctx);
-        if (!IsUpgraded || CombatState == null) return;
+        if (!IsUpgraded)
+        {
+            await HexaghostCmd.Advance(ctx, Owner, this);
+            return;
+        }
+        if (CombatState == null) return;
         List<HexaghostCardModel> choices =
         [
             CombatState.CreateCard<FloatChoiceRetract>(Owner),

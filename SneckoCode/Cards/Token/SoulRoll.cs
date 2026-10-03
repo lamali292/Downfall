@@ -20,6 +20,6 @@ public class SoulRoll : SneckoCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await SneckoCmd.MuddleHandCards(ctx, this);
+        await MuddleCmd.MuddleHandCards(ctx, this);
     }
 }

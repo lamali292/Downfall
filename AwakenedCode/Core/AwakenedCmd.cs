@@ -1,23 +1,17 @@
-﻿using Awakened.AwakenedCode.Cards.Uncommon;
-using Awakened.AwakenedCode.Events;
-using Awakened.AwakenedCode.History;
-using Awakened.AwakenedCode.Interfaces;
+﻿using Awakened.AwakenedCode.Events;
 using Awakened.AwakenedCode.Piles;
 using Awakened.AwakenedCode.Powers;
 using Awakened.AwakenedCode.Vfx;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Core;
 using Godot;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
-using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Awakened.AwakenedCode.Core;
 
@@ -43,31 +37,6 @@ public static class AwakenedCmd
         GetSpellbook(player).Refresh(player);
     }
 
-    public static bool WasLastCardPlayedPower(CardModel card)
-    {
-        if (!CombatManager.Instance.IsInProgress) return false;
-        var lastCardEntry = CombatManager.Instance.History.CardPlaysStarted
-            .LastOrDefault(e =>
-                e.CardPlay.Card.Owner == card.Owner &&
-                e.CardPlay.Card != card);
-
-        if (lastCardEntry == null) return false;
-        return lastCardEntry.CardPlay.Card.Type == CardType.Power;
-    }
-
-    public static bool WasLastCardPlayedPower(CardPlay cardPlay)
-    {
-        if (!CombatManager.Instance.IsInProgress) return false;
-        var lastCardEntry = CombatManager.Instance.History.CardPlaysStarted
-            .LastOrDefault(e =>
-                e.CardPlay.Card.Owner == cardPlay.Card.Owner &&
-                e.CardPlay != cardPlay);
-
-        if (lastCardEntry == null) return false;
-
-        return lastCardEntry.CardPlay.Card.Type == CardType.Power;
-    }
-
     public static async Task Awaken(Player player, PlayerChoiceContext ctx)
     {
         if (!AwakenedModel.MarkAwakened(player)) return;
@@ -77,25 +46,6 @@ public static class AwakenedCmd
         awakenedVisuals.SetParticles(true);
         await CreatureCmd.TriggerAnim(player.Creature, "Cast", player.Character.CastAnimDelay);
         await AwakenedHook.OnAwaken(player.Creature.CombatState!, ctx, player);
-    }
-
-    public static async Task Chant(PlayerChoiceContext ctx, CardModel card, CardPlay cardPlay, bool isFirstChantInSeries = true)
-    {
-        var combatState = card.CombatState;
-        if (card is not IChantable chantable || combatState == null) return;
-        var firstTime = !chantable.HasChanted;
-        if (firstTime && card is not Caw && TestMode.IsOff)
-        {
-            TalkCmd.Play(new LocString("monsters", "DAMP_CULTIST.moves.INCANTATION.banter"), card.Owner.Creature,
-                VfxColor.Blue);
-            SfxCmd.Play("event:/sfx/characters/awakened-awakened/chant");
-        }
-
-        var entry = new ChantEntry(cardPlay, isFirstChantInSeries, combatState.RoundNumber, combatState.CurrentSide, CombatManager.Instance.History, combatState.Players);
-        CombatManager.Instance.History.Add(combatState, entry);
-        chantable.HasChanted = true;
-        await chantable.PlayChantEffect(ctx, cardPlay);
-        await AwakenedHook.OnCardChanted(card.CombatState!, ctx, card, cardPlay, firstTime, isFirstChantInSeries);
     }
 
     private static bool CanConjure(Player player)
