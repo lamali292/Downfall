@@ -11,13 +11,10 @@ public class StrikeAutomaton : AutomatonCardModel
 {
     public StrikeAutomaton() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
-        WithEncode<DamageEncode>(false);
         WithTags(CardTag.Strike);
         WithDamage(6, 3);
     }
-
-
-
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay)
