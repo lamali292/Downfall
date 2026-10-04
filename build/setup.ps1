@@ -50,12 +50,20 @@ if ($LASTEXITCODE -ne 0) {
     if ($LASTEXITCODE -ne 0) { throw "Downfall build failed" }
 }
 
-Write-Host "=== Building SlimeBoss (standalone submod) ==="
+Write-Host "=== Building SlimeBoss (internal submod) ==="
 dotnet build SlimeBoss.csproj --nologo -v q
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Retrying SlimeBoss (cold publicizer cache)..." -ForegroundColor Yellow
     dotnet build SlimeBoss.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
+}
+
+Write-Host "=== Building Collector (standalone mod) ==="
+dotnet build Collector.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Collector (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Collector.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Collector build failed" }
 }
 
 $pubDir = ".godot\mono\temp\obj\Debug\PublicizedAssemblies"

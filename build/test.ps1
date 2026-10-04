@@ -37,12 +37,19 @@ if (-not $NoBuild) {
     dotnet build Downfall.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "Build failed" }
 
-    # SlimeBoss is a standalone submod (its own SlimeBoss.dll) since the standalone-submods
+    # SlimeBoss is an internal submod (its own SlimeBoss.dll) since the standalone-submods
     # effort - build it too so its [CardTest]s (SlimeBossCode/Tests/) are present in mods/ and get
     # picked up by CardTestRunner's cross-assembly scan.
     Write-Host "=== Building SlimeBoss ===" -ForegroundColor Cyan
     dotnet build SlimeBoss.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
+
+    # Collector is a standalone mod (its own Collector.dll/Collector.json manifest) - build it too
+    # so its [CardTest]s (CollectorCode/Tests/) are present in mods/Collector/ and get picked up by
+    # CardTestRunner's cross-assembly scan.
+    Write-Host "=== Building Collector ===" -ForegroundColor Cyan
+    dotnet build Collector.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Collector build failed" }
 }
 
 $outFile = Join-Path $env:TEMP "downfall_tests.json"

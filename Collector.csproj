@@ -1,5 +1,13 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
+
+    <!-- Collector as a standalone mod (ADR 0003 / CONTEXT.md "Mod Packaging"): unlike SlimeBoss,
+         this is a genuinely separate, independently-loadable Workshop item with its own manifest/
+         ModId - players deliberately subscribe to it while it's still in development, separate
+         from the core Downfall download. The game's own ModManager discovers and loads it the
+         normal way (Collector.json -> Collector.dll/.pck), exactly like Downfall's own manifest.
+         CollectorMainFile keeps its own [ModInitializer] - it is NOT loaded by reflection from
+         DownfallMainFile the way SlimeBoss is. See .scratch/standalone-submods/issues/04-*.md. -->
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -8,27 +16,17 @@
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-        
-        <!-- Override ModId/ModName in local.props to build a separately-installable mod (e.g. a
-             single-character beta) alongside the main Downfall install. The DLL and PCK must be
-             named exactly "<id>.dll"/"<id>.pck" for the game's mod loader to find them, so both
-             derive from ModId; the manifest's own filename doesn't matter, only its "id" field
-             does, but it's still named after ModId for clarity in the mods/ folder. -->
-        <ModId Condition="'$(ModId)' == ''">Downfall</ModId>
+
+        <!-- ModId "Collector" is both the manifest's "id" (so ModManager discovers Collector.json
+             and loads exactly Collector.dll/.pck) and the existing CollectorMainFile.ModId
+             constant used for its Logger/Harmony instance names - keeping both in sync avoids
+             renaming that constant for this extraction. ModOutputFolder is its own ("Collector"),
+             distinct from Downfall's, so it lands as its own separate mods/Collector/ entry. -->
+        <ModId>Collector</ModId>
         <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
         <AssemblyName>$(ModId)</AssemblyName>
         <ModOutputFolder>$(ModId)</ModOutputFolder>
-
-        <!-- SlimeBoss intentionally absent: it's an internal submod now (SlimeBoss.csproj/
-             SlimeBoss.dll, ADR 0003) - compiled separately but still loaded as part of the one
-             Downfall mod entry (DownfallMainFile calls into it directly by reflection; see its
-             Initialize() method), never compiled into Downfall.dll itself. This default is also
-             independent of whatever an existing developer's local.props still lists for Submods -
-             see the ItemGroups below, which no longer have a Compile branch that reacts to
-             "SlimeBoss" at all (its assets still do, unconditionally - see below), so an
-             un-updated local.props (still containing "SlimeBoss" from before this change) is
-             harmless here. -->
-        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;Snecko</Submods>
+        <PackFolders>Collector</PackFolders>
 
         <ImplicitUsings>true</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -36,15 +34,29 @@
         <DefaultItemExcludes>
             packages/**;
             src/**;shaders/**;steam/**;System/**;themes/**;addons/**;
-            animations/**;banks/**;debug_audio/**;fonts/**;images/**;i rn
+            animations/**;banks/**;debug_audio/**;fonts/**;images/**;
             localization/**;materials/**;models/**;RiderTestRunner/**;scenes/**
         </DefaultItemExcludes>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-     
+
+        <!-- Godot.NET.Sdk defaults every csproj in this folder to the SAME intermediate dir
+             (.godot/mono/temp/obj/<Configuration>/), including Krafs.Publicizer's own
+             PublicizedAssemblies cache under it. Downfall.csproj and SlimeBoss.csproj already share
+             that collision today, invisibly, because SlimeBoss's Publicize list is a strict subset
+             of Downfall's - whichever gets built last still leaves a cache broad enough for the
+             other. Collector's list is as broad as Downfall's, so the same collision is no longer
+             safe to ignore: building SlimeBoss right before Collector (the order build/test.ps1
+             uses) leaves SlimeBoss's narrower publicized sts2.dll cached, and Collector's build
+             then fails with CS0103/CS1061 on members only Downfall's/Collector's own list
+             needs (reproduced and confirmed while building this project) - not an actual
+             incompatibility, just a stale cache from the previous project's build. Giving
+             Collector its own intermediate dir avoids depending on build order for correctness. -->
+        <BaseIntermediateOutputPath>.godot\mono\temp\obj\Collector\</BaseIntermediateOutputPath>
+        <IntermediateOutputPath>.godot\mono\temp\obj\Collector\$(Configuration)\</IntermediateOutputPath>
+
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
-       
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <AssemblyVersion>0.1.20.0</AssemblyVersion>
         <FileVersion>0.1.20.0</FileVersion>
@@ -64,13 +76,14 @@
         <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
 
-    <!-- OS Detection -->
     <ItemGroup>
-        <None Include="Downfall.json"/>
-        <None Include="local.props"/>
-        <None Include="local.props.example"/>
-        <None Include=".gitignore"/>
+        <None Include="Collector.json"/>
     </ItemGroup>
+
+    <!-- OS detection, game assembly references, BaseLib/Publicizer setup: mirrors Downfall.csproj/
+         SlimeBoss.csproj. Kept duplicated rather than factored into a shared .props file, same
+         rationale as SlimeBoss.csproj's own header comment - a shared-props cleanup can happen
+         later if a third project needs this scaffolding again. -->
     <PropertyGroup>
         <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
         <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
@@ -95,7 +108,6 @@
         <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
     </PropertyGroup>
 
-    <!-- Game assemblies: real DLLs when STS2 is installed locally... -->
     <ItemGroup Condition="Exists('$(Sts2DataDir)')">
         <Reference Include="0Harmony">
             <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
@@ -113,9 +125,6 @@
         </Reference>
     </ItemGroup>
 
-    <!-- ...reference assemblies from NuGet when it isn't (CI). -->
-    <!-- RefLib covers sts2 + Harmony; SmartFormat and Steamworks come as compile-only packages
-         (ExcludeAssets=runtime so the game's own DLLs are used at runtime, nothing is shipped). -->
     <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
         <PackageReference Include="lamali.StS2.RefLib" Version="0.111.0-beta" ExcludeAssets="runtime" PrivateAssets="all"/>
         <PackageReference Include="SmartFormat.NET" Version="3.*" ExcludeAssets="runtime" PrivateAssets="all"/>
@@ -129,13 +138,30 @@
         </Reference>
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="$(BaseLibVersion)" Condition="'$(UseLocalBaseLib)' != 'true'"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.2.1" />
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.2.1"/>
+    </ItemGroup>
+
+    <!-- Reference the core Downfall project for shared framework types (DownfallCode, and
+         transitively Awakened/Champ/Guardian/Hermit/Hexaghost/Snecko, which are still bundled
+         submods compiled directly into Downfall.dll). Also reference SlimeBoss.csproj directly -
+         SlimeBoss is its own internal-submod assembly (SlimeBoss.dll) now, no longer part of
+         Downfall.dll, so a project that needs its types has to reference it separately. Collector
+         -> SlimeBoss is a normal, uncomplicated ProjectReference: it's only core (Downfall) ->
+         SlimeBoss that had to avoid a circular reference (see ADR 0003's Implementation note). -->
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+        <ProjectReference Include="SlimeBoss.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <!-- Publicizer is opt-in: add each sts2 member/type we need access to here (all overloads of a name are included). -->
+        <!-- Publicizer is opt-in per project. Collector's code touches a wide range of sts2/
+             BaseLib internals (AttackCommand, NCard, NCombatCardPile/Ui, NCreature*, NIntent,
+             NPlayerHand, NPower, hover tips, multiplayer state, rest site, card library, ...) -
+             copied verbatim from Downfall.csproj's own list rather than hand-trimmed, since
+             CollectorCode was developed as part of that project and already relies on this exact
+             set; trimming it is a follow-up cleanup, not required for this extraction. -->
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.Attacker"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.IsRandomlyTargeted"/>
@@ -145,7 +171,7 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._singleTarget"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._sourceType"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Cards.CardKeywordExtensions"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData+InternalData"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData._data"/>
@@ -157,11 +183,11 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel._dynamicVars"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Powers.VigorPower+Data"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._doubledPowers"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._isFinishedTriggering"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._triggeringCard"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.Reload"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.ReloadOverlay"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.UpdateTypePlaqueSizeAndPosition"/>
@@ -169,7 +195,7 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._overlayContainer"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._portrait"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._typeLabel"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile.RemoveCard"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
@@ -177,22 +203,22 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._localPlayer"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._positionTween"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._combatPilesContainer"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._energyCounter"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature.UpdateBounds"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._tempScale"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureVisuals._body"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._intent"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._owner"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._targets"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._valueLabel"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPlayerHand.RefreshLayout"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower.RefreshAmount"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower._model"/>
@@ -204,19 +230,19 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Potions.NPotionPopup.Potion"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Potions.NPotionPopup._useButton"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Relics.NRelic.Reload"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton.Reload"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton._isUnclickable"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.GetDescriptionOrFallback"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetDescription"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetOptions"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary.UpdateCardPoolFilter"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._lastHoveredControl"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._miscPoolFilter"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._poolFilters"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricUtilities.ShouldUploadMetrics"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricsSerializerContext"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
@@ -233,101 +259,23 @@
         </Publicize>
     </ItemGroup>
 
-    <!-- PackFolders drives which top-level asset folders build/pack_mod.gd packs into Downfall.pck.
-         Computed from $(Submods) rather than aliased to it directly, and with "SlimeBoss" and
-         "Collector" always stripped out, so Downfall.pck never bundles their assets even if an
-         un-updated local.props still lists them in Submods.
-         - SlimeBoss is an internal submod (ADR 0003): although it has no manifest/ModId of its own
-           (so the game's own manifest-driven mod loader would never discover a separate
-           "SlimeBoss.pck"), its assets still ship in their OWN pck, built by SlimeBoss.csproj and
-           loaded explicitly at runtime via Godot.ProjectSettings.LoadResourcePack(...) from
-           DownfallMainFile.Initialize() - the same "call it directly, don't rely on
-           manifest-driven discovery" pattern used for its code (see
-           DownfallMainFile.InitializeSlimeBoss()). Kept as its own pck, not merged into
-           Downfall.pck, so a future SlimeBoss Beta replacement mod can ship genuinely different
-           assets under the same resource paths without colliding with stock SlimeBoss's.
-         - Collector is a standalone mod (its own Collector.csproj/Collector.pck/Collector.json
-           manifest) - its assets are packed by Collector.csproj's own GodotPublish, genuinely
-           discovered and loaded by the game via its own manifest, so they must never also end up
-           inside Downfall.pck. -->
     <ItemGroup>
-        <_PackFolder Include="$(Submods)"/>
-        <_PackFolder Remove="SlimeBoss"/>
-        <_PackFolder Remove="Collector"/>
-    </ItemGroup>
-    <PropertyGroup>
-        <PackFolders>@(_PackFolder, ';')</PackFolders>
-    </PropertyGroup>
-
-    <ItemGroup Condition="$(Submods.Contains('Downfall'))">
-        <Compile Include="DownfallCode/**/*.cs"/>
-        <AdditionalFiles Include="Downfall/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Automaton'))">
-        <Compile Include="AutomatonCode/**/*.cs"/>
-        <AdditionalFiles Include="Automaton/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Awakened'))">
-        <Compile Include="AwakenedCode/**/*.cs"/>
-        <AdditionalFiles Include="Awakened/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Champ'))">
-        <Compile Include="ChampCode/**/*.cs"/>
-        <AdditionalFiles Include="Champ/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Gremlins'))">
-        <Compile Include="GremlinsCode/**/*.cs"/>
-        <AdditionalFiles Include="Gremlins/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Guardian'))">
-        <Compile Include="GuardianCode/**/*.cs"/>
-        <AdditionalFiles Include="Guardian/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Hexaghost'))">
-        <Compile Include="HexaghostCode/**/*.cs"/>
-        <AdditionalFiles Include="Hexaghost/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Hermit'))">
-        <Compile Include="HermitCode/**/*.cs"/>
-        <AdditionalFiles Include="Hermit/**/*"/>
-    </ItemGroup>
-    <!-- SlimeBoss has no branch here anymore: its C# code and assets both live in its own
-         SlimeBoss.csproj (internal submod, own SlimeBoss.dll/SlimeBoss.pck, loaded directly by
-         DownfallMainFile - see ADR 0003). Deliberately not reacting to "SlimeBoss" in $(Submods)
-         even if an un-updated local.props still lists it - see the Submods default comment above. -->
-    <ItemGroup Condition="$(Submods.Contains('Snecko'))">
-        <Compile Include="SneckoCode/**/*.cs"/>
-        <AdditionalFiles Include="Snecko/**/*"/>
-    </ItemGroup>
-    <!-- Collector has no branch here anymore: it's a standalone mod now (its own Collector.csproj,
-         own Collector.dll/Collector.pck/Collector.json manifest, ADR 0003 / CONTEXT.md "Mod
-         Packaging") - never compiled into Downfall.dll, even if an un-updated local.props still
-         lists "Collector" in $(Submods) (harmless: this project no longer reacts to it). -->
-
-    <ItemGroup Condition="$(Submods.Contains('Test'))">
-        <Compile Include="TestCode/**/*.cs"/>
-        <AdditionalFiles Include="Test/**/*"/>
-    </ItemGroup>
-    <ItemGroup>
+        <Compile Include="CollectorCode/**/*.cs" Exclude="CollectorCode/Tests/**/*.cs"/>
+        <AdditionalFiles Include="Collector/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
 
+    <!-- Collector's own [CardTest]s (none yet) would need TestCode's infra (CardTestAttribute,
+         TestContext, ...), which only exists in Downfall.dll when Downfall.csproj itself is built
+         with "Test" in its Submods - same opt-in flag as every other character's tests, read from
+         the same local.props this project already imports. Mirrors SlimeBoss.csproj's own block. -->
+    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
+        <Compile Include="CollectorCode/Tests/**/*.cs"/>
+    </ItemGroup>
 
-
-    <Target Name="ReportSubmods" BeforeTargets="CoreCompile">
-        <Message Text="Building submods: '$(Submods)'" Importance="high"/>
-    </Target>
-
-    <!-- Downfall.json is the checked-in template/source of truth (CI bumps its version/
-         min_game_version fields in place); this rewrites just "id" and "name" into a copy
-         so a custom ModId/ModName build doesn't collide with a normal Downfall install.
-         With the default ModId/ModName ("Downfall"), the rewrite is a no-op. -->
     <Target Name="GenerateModManifest">
         <PropertyGroup>
-            <_ModManifestJson>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\Downfall.json'))</_ModManifestJson>
-            <!-- Anchored to the top-level "id" immediately followed by "name" (the manifest's
-                 first two keys) so this can't also match "id" inside the "dependencies" array. -->
-            <_ModManifestJson>$([System.Text.RegularExpressions.Regex]::Replace($(_ModManifestJson), '("id"\s*:\s*)"[^"]*"(\s*,\s*"name"\s*:\s*)"[^"]*"', '$1"$(ModId)"$2"$(ModName)"'))</_ModManifestJson>
+            <_ModManifestJson>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\Collector.json'))</_ModManifestJson>
         </PropertyGroup>
         <ItemGroup>
             <_ModManifestLine Remove="@(_ModManifestLine)"/>
@@ -337,23 +285,11 @@
     </Target>
 
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest">
-         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
         <Copy SourceFiles="$(IntermediateOutputPath)$(ModId).json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
               DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
-
-        <Message Text="Copying BaseLib dependencies..." Importance="high"/>
-
-        <ItemGroup Condition="'$(UseLocalBaseLib)' != 'true'">
-            <BaseLibFiles Include="
-                $(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/lib/**/BaseLib.dll;
-                $(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.pck;
-                $(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.json;
-            "/>
-        </ItemGroup>
-
-        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
     </Target>
 
     <Target Name="GodotImport" BeforeTargets="GodotPublish"
@@ -363,12 +299,15 @@
               IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
+    <!-- Packs Collector/ into its own Collector.pck, dropped into its own mods/Collector/ folder
+         next to Collector.dll and Collector.json, so ModManager discovers and loads it as a
+         genuinely separate mod entry - unlike SlimeBoss.csproj's GodotPublish, which deliberately
+         lands its pck inside mods/Downfall/ instead. -->
     <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; @(_PackFolder, ' ')"
+        <Message Text="--- PACKING COLLECTOR RELEASE: '$(PackFolders)' ---" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; $(PackFolders.Replace(';', ' '))"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
               IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
     </Target>
-    <Import Project="addons/sentry/dotnet/Sentry.Godot.props" Condition="Exists('addons/sentry/dotnet/Sentry.Godot.props')" />
 </Project>
