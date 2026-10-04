@@ -14,7 +14,7 @@ public class MinionMaster : SlimeBossCardModel
     public MinionMaster() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<MinionMasterPower>(1, false);
-        WithKeyword(CardKeyword.Innate);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithSlimeTip<BruiserSlime>();
         WithTip(SlimeBossTip.Command);
     }

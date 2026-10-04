@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,7 +20,8 @@ public class Mitosis : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var cards = await DownfallCardSelectionCmd.SelectFromHand(ctx, DownfallCardSelectorPrefs.ToTopSelectionPrompt,
+        var cards = await DownfallCardSelectionCmd
+            .SelectFromHand(ctx, DownfallCardSelectorPrefs.CopySelectionPrompt,
             1, this, c => c != this, true);
         var card = cards.FirstOrDefault();
         if (card == null) return;
