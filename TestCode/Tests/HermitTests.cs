@@ -23,7 +23,7 @@ namespace Downfall.TestCode;
 public class HermitTests
 {
     private static int DeadOnEntries(CardModel card) =>
-        CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e => e.CardPlay.Card == card);
+        CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e => e.CardPlay?.Card == card);
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
     public async Task DeadOnCardPlayedFromCenterTriggers(TestContext ctx)

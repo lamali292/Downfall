@@ -19,6 +19,7 @@ public class Replicate : AutomatonCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await EncodeOutcome.EncodePlayEffect(this, ctx, cardPlay);
         var copiedCard = cardPlay.Card.CreateClone();
         var result = await CardPileCmd.AddGeneratedCardToCombat(copiedCard, PileType.Discard, Owner);
         if (result.success)
