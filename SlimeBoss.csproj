@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
 
-    <!-- SlimeBoss as a standalone submod (ADR 0003): its own assembly/manifest/ModId, compiling
-         only SlimeBossCode/ and packing only the SlimeBoss/ asset folder, referencing the core
-         Downfall.csproj/Downfall.dll for whatever DownfallCode surface it still needs. Still ships
-         inside the core mod's own Workshop download/release folder, side by side with Downfall.dll/
-         .pck - the game's mod loader discovers and loads each manifested mod independently, no
-         assembly needs to reference-load the other at runtime. See .scratch/standalone-submods/. -->
+    <!-- SlimeBoss as an internal submod (ADR 0003): its own assembly for code-separation, but no
+         manifest of its own anymore - the game's mod loader never discovers or loads this
+         project's output on its own. Still compiles only SlimeBossCode/ and references the core
+         Downfall.csproj/Downfall.dll for whatever DownfallCode surface it needs. How its dll/pck
+         actually reach a player (ModOutputFolder, CopyToModsFolderOnBuild, asset packing) is
+         revisited in full separately - this change only removes the manifest. -->
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -16,12 +16,10 @@
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
 
-        <!-- Fixed, unlike Downfall.csproj's ModId: this project only ever builds one mod. Must stay
-             "SlimeBoss" to match the output "SlimeBoss.dll"/"SlimeBoss.pck" the game's mod loader
-             expects (file name == manifest "id") and the ModId already hardcoded in
-             SlimeBossMainFile.cs (used for its Logger/Harmony instance name). -->
+        <!-- ModId stays "SlimeBoss" for the AssemblyName (-> SlimeBoss.dll) and the Logger/Harmony
+             instance name already hardcoded in SlimeBossMainFile.cs - it is NOT a manifest id
+             anymore, this project produces no manifest. -->
         <ModId>SlimeBoss</ModId>
-        <ModName Condition="'$(ModName)' == ''">Downfall - SlimeBoss</ModName>
         <AssemblyName>$(ModId)</AssemblyName>
         <ModOutputFolder>$(ModId)</ModOutputFolder>
         <PackFolders>SlimeBoss</PackFolders>
@@ -58,10 +56,6 @@
         <DebugType>none</DebugType>
         <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="SlimeBoss.json"/>
-    </ItemGroup>
 
     <!-- OS detection, game assembly references, BaseLib/Publicizer setup: mirrors Downfall.csproj.
          Kept duplicated rather than factored into a shared .props file, to avoid touching the
@@ -174,13 +168,9 @@
         <Compile Include="SlimeBossCode/Tests/**/*.cs"/>
     </ItemGroup>
 
-    <Target Name="GenerateModManifest">
-        <Copy SourceFiles="$(MSBuildProjectDirectory)\SlimeBoss.json" DestinationFiles="$(IntermediateOutputPath)$(ModId).json"/>
-    </Target>
-
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest">
+    <!-- No manifest to generate/copy anymore. -->
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-        <Copy SourceFiles="$(IntermediateOutputPath)$(ModId).json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
               DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>

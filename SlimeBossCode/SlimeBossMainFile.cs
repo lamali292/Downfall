@@ -9,7 +9,13 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace SlimeBoss.SlimeBossCode;
 
-[ModInitializer(nameof(Initialize))]
+/// <summary>
+/// NOT a mod entry point. SlimeBoss is an internal submod (ADR 0003): its own assembly
+/// (<c>SlimeBoss.dll</c>) for code-separation, but no manifest/ModId of its own, so the game's
+/// mod loader never discovers or calls this type directly - it's called explicitly by
+/// <see cref="Downfall.DownfallCode.DownfallMainFile.Initialize"/>, which also owns the
+/// submod-supersession guard gating this call.
+/// </summary>
 public static class SlimeBossMainFile
 {
     public const string ModId = "SlimeBoss"; //At the moment, this is used only for the Logger and harmony names.
@@ -19,12 +25,6 @@ public static class SlimeBossMainFile
 
     public static void Initialize()
     {
-        // Submod supersession guard (ADR 0003): "SlimeBossBeta" doesn't exist yet - this is the
-        // forward-declared replacement ModId a future SlimeBoss Beta standalone submod will use.
-        // If it's ever loaded alongside this bundled SlimeBoss, skip registering entirely so the
-        // two never both register the same model IDs.
-        if (ReplaceableSubmod.IsSupersededBy("SlimeBossBeta")) return;
-
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss, ModId);
         HivePowerExemptRegistry.Register<SlimeModel>();
