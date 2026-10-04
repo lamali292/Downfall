@@ -42,7 +42,6 @@ public static class AutomatonMainFile
         FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
         RegisterEncodeLocationFilter();
-        CardExecutionHooks.RegisterBefore(AutomatonCardEffectHandler.DoBeforeOnPlayInternal);
     }
 
     private static void RegisterEncodeLocationFilter()
