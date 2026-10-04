@@ -1,4 +1,4 @@
-﻿using Collector.CollectorCode.Cards.Basic;
+using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Cards.Common;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Cards.Uncommon;
@@ -8,17 +8,25 @@ using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Intents;
 using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
+using Downfall.TestCode;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.TestCode;
+namespace Collector.CollectorCode.Tests;
 
 public class CollectorTests
 {
+    // Regression guard (standalone-mod smoke test, issue 04): confirms Collector's own standalone
+    // assembly/manifest still registers and plays normally - i.e. the Collector.csproj extraction
+    // into a genuinely separate mod didn't break anything.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public IEnumerable<CardTestCase> PlayCollectorCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+
     // Reserve conversion is for X-energy cards only; an X-star card pays its (numeric) energy cost normally.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task XStarCardDoesNotConvertReserve(TestContext ctx)
@@ -41,7 +49,7 @@ public class CollectorTests
 
         Assert.IsTrue(roast.CanPlay(), "Roast should be playable once another card is in hand to exhaust.");
     }
-    
+
 
     // Regression guard for a previously-missing feature: X-cost cards only spent Energy and never
     // touched Reserve, so Collector's Reserve resource did nothing to boost their effect. CardModel.
