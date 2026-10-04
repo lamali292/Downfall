@@ -19,9 +19,13 @@
         <AssemblyName>$(ModId)</AssemblyName>
         <ModOutputFolder>$(ModId)</ModOutputFolder>
 
-        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko</Submods>
-        <PackFolders>$(Submods)</PackFolders>
-        
+        <!-- SlimeBoss intentionally absent: it's a standalone submod now (SlimeBoss.csproj), never
+             compiled into Downfall.dll. This default is also independent of whatever an existing
+             developer's local.props still lists for Submods - see the ItemGroups below, which no
+             longer have a branch that reacts to "SlimeBoss" at all, so an un-updated local.props
+             (still containing "SlimeBoss" from before this change) is harmless here. -->
+        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;Snecko</Submods>
+
         <ImplicitUsings>true</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -224,8 +228,20 @@
             </Members>
         </Publicize>
     </ItemGroup>
- 
-    
+
+    <!-- PackFolders drives which top-level asset folders build/pack_mod.gd packs into Downfall.pck.
+         Computed from $(Submods) rather than aliased to it directly, and with "SlimeBoss" always
+         stripped out, so Downfall.pck never bundles SlimeBoss's assets even if an un-updated
+         local.props still lists "SlimeBoss" in Submods - its assets now ship only in SlimeBoss.pck
+         (built by SlimeBoss.csproj). -->
+    <ItemGroup>
+        <_PackFolder Include="$(Submods)"/>
+        <_PackFolder Remove="SlimeBoss"/>
+    </ItemGroup>
+    <PropertyGroup>
+        <PackFolders>@(_PackFolder, ';')</PackFolders>
+    </PropertyGroup>
+
     <ItemGroup Condition="$(Submods.Contains('Downfall'))">
         <Compile Include="DownfallCode/**/*.cs"/>
         <AdditionalFiles Include="Downfall/**/*"/>
@@ -258,10 +274,10 @@
         <Compile Include="HermitCode/**/*.cs"/>
         <AdditionalFiles Include="Hermit/**/*"/>
     </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('SlimeBoss'))">
-        <Compile Include="SlimeBossCode/**/*.cs"/>
-        <AdditionalFiles Include="SlimeBoss/**/*"/>
-    </ItemGroup>
+    <!-- SlimeBoss has no branch here anymore: it moved to its own SlimeBoss.csproj (standalone
+         submod, own SlimeBoss.dll/.pck, referencing this project's output). Deliberately not
+         reacting to "SlimeBoss" in $(Submods) even if an un-updated local.props still lists it -
+         see the Submods default comment above. -->
     <ItemGroup Condition="$(Submods.Contains('Snecko'))">
         <Compile Include="SneckoCode/**/*.cs"/>
         <AdditionalFiles Include="Snecko/**/*"/>
@@ -333,7 +349,7 @@
     <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <Message Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; $(PackFolders.Replace(';', ' '))"
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; @(_PackFolder, ' ')"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
               IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
     </Target>
