@@ -43,8 +43,8 @@ public class AllCardsTest
     [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
     public IEnumerable<CardTestCase> PlayHexaghostCards(CharacterModel character) => PlayAllCards(character);
 
-    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public IEnumerable<CardTestCase> PlaySlimeBossCards(CharacterModel character) => PlayAllCards(character);
+    // SlimeBoss moved to its own standalone-submod assembly (SlimeBoss.csproj) - its pool test
+    // lives in SlimeBossCode/Tests/SlimeBossTests.cs now, calling the public PlayAllCards below.
 
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
     public IEnumerable<CardTestCase> PlaySneckoCards(CharacterModel character) => PlayAllCards(character);
@@ -53,7 +53,9 @@ public class AllCardsTest
     public IEnumerable<CardTestCase> PlayCollectorCards(CharacterModel character) => PlayAllCards(character);
 
     
-    private IEnumerable<CardTestCase> PlayAllCards(CharacterModel character)
+    // Public + static (never used instance state): reused from SlimeBossCode/Tests/SlimeBossTests.cs,
+    // which lives in a separate assembly (SlimeBoss.csproj) and can't share a private instance method.
+    public static IEnumerable<CardTestCase> PlayAllCards(CharacterModel character)
     {
         return character.CardPool.AllCards.Select(model => new CardTestCase(model.GetType().Name, async ctx =>
         {
