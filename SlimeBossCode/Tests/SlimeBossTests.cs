@@ -1,6 +1,8 @@
+﻿using Downfall.TestCode;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Cards.Rare;
 using SlimeBoss.SlimeBossCode.Cards.Token;
@@ -9,16 +11,22 @@ using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
 
-namespace Downfall.TestCode;
+namespace SlimeBoss.SlimeBossCode.Tests;
 
 public class SlimeBossTests
 {
+    // Regression guard (standalone-submod smoke test, issue 03): confirms SlimeBoss's own
+    // standalone assembly still registers and plays normally with no replacement mod loaded -
+    // i.e. the SlimeBoss.csproj extraction and ReplaceableSubmod guard didn't break anything.
+    [CardTest(typeof(Core.SlimeBoss))]
+    public IEnumerable<CardTestCase> PlaySlimeBossCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+
     // Regression guard: Duplicated Form checked `cardPlay.Target?.Side == CombatSide.Enemy` to decide
     // whether a card play targeted an enemy, but AoE cards like Mega-Lick/Iron Fang (TargetType.AllEnemies)
     // are played with a null Target - there's no single selected creature - so that check always failed
     // for them and Duplicated Form silently never doubled AoE cards. The fix resolves the card's actual
     // targets via DownfallCmd.TargetsEnemy (CardModel.MyGetTargets) instead of trusting the raw Target.
-    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    [CardTest(typeof(Core.SlimeBoss))]
     public async Task DuplicatedFormDoublesAoeCardsTargetingEnemies(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
@@ -37,7 +45,7 @@ public class SlimeBossTests
     // card's own still-executing OnPlayWrapper (and, outside of tests, its still-in-flight NCard/pile
     // visuals) and corrupting its play state - crashing on a later play. The "play this twice" effect
     // is now done by repeating the attack+heal in OnPlayInternal instead of replaying the whole card.
-    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    [CardTest(typeof(Core.SlimeBoss))]
     public async Task EqualizeConsumeReplaysWithoutCorruptingCardState(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
@@ -72,7 +80,7 @@ public class SlimeBossTests
     // CardCmd.Exhaust also no-opping once combat IsOverOrEnding - left the card stuck in the
     // transient Play pile. The fix skips only the now-pointless second attack; the second Heal still
     // applies, since CreatureCmd.Heal explicitly still heals players even once combat IsEnding.
-    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    [CardTest(typeof(Core.SlimeBoss))]
     public async Task EqualizeStillHealsTwiceWhenFirstHitEndsCombat(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
@@ -105,7 +113,7 @@ public class SlimeBossTests
     // computes the Frail-reduced PreviewValue via Hook.ModifyBlock. The fix uses the ":preview()"
     // SmartFormat formatter (which does read PreviewValue), matching the pattern already used
     // elsewhere (e.g. COLLECTOR-WILDFIRE's "{Hits:preview()}").
-    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    [CardTest(typeof(Core.SlimeBoss))]
     public async Task ServeProtectDescriptionShowsFrailReducedBlock(TestContext ctx)
     {
         await SlimeQueue.AddSlime<BronzeSlime>(ctx.Player);

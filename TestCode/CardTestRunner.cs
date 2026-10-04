@@ -33,8 +33,15 @@ public class CardTestRunner
 
 		try
 		{
-			var testMethods = Assembly.GetExecutingAssembly()
-				.GetTypes()
+			// Scans every loaded assembly, not just this one: a standalone submod (e.g. SlimeBoss,
+			// its own .dll since the standalone-submods effort) can't reference TestCode's assembly
+			// back (that would be circular - TestCode's assembly already references the submod's
+			// DownfallCode-dependent types), so its [CardTest] methods live in its own loaded
+			// assembly instead. GetTypes() can throw ReflectionTypeLoadException for assemblies with
+			// unresolvable types (e.g. dynamic/reflection-emit assemblies) - skip those rather than
+			// aborting the whole scan.
+			var testMethods = AppDomain.CurrentDomain.GetAssemblies()
+				.SelectMany(GetLoadableTypes)
 				.SelectMany(t => t.GetMethods())
 				.Where(m => m.GetCustomAttributes(typeof(CardTestAttribute), false).Length > 0)
 				.Where(m => string.IsNullOrEmpty(filter) ||
@@ -142,6 +149,22 @@ public class CardTestRunner
 			{
 				EndCombat();
 			}
+		}
+	}
+
+	private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
+	{
+		try
+		{
+			return assembly.GetTypes();
+		}
+		catch (ReflectionTypeLoadException ex)
+		{
+			return ex.Types.Where(t => t != null).Select(t => t!);
+		}
+		catch
+		{
+			return [];
 		}
 	}
 
