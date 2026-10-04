@@ -36,6 +36,13 @@ if (-not $NoBuild) {
     Write-Host "=== Building Downfall ===" -ForegroundColor Cyan
     dotnet build Downfall.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "Build failed" }
+
+    # SlimeBoss is a standalone submod (its own SlimeBoss.dll) since the standalone-submods
+    # effort - build it too so its [CardTest]s (SlimeBossCode/Tests/) are present in mods/ and get
+    # picked up by CardTestRunner's cross-assembly scan.
+    Write-Host "=== Building SlimeBoss ===" -ForegroundColor Cyan
+    dotnet build SlimeBoss.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
 }
 
 $outFile = Join-Path $env:TEMP "downfall_tests.json"

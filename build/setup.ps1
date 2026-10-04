@@ -50,6 +50,14 @@ if ($LASTEXITCODE -ne 0) {
     if ($LASTEXITCODE -ne 0) { throw "Downfall build failed" }
 }
 
+Write-Host "=== Building SlimeBoss (standalone submod) ==="
+dotnet build SlimeBoss.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying SlimeBoss (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build SlimeBoss.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
+}
+
 $pubDir = ".godot\mono\temp\obj\Debug\PublicizedAssemblies"
 $sts2Pub = Get-ChildItem -Path $pubDir -Recurse -Filter "sts2.dll" -ErrorAction SilentlyContinue | Select-Object -First 1
 if (-not $sts2Pub) { throw "Publicized sts2.dll not found" }

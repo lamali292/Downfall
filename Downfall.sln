@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Downfall", "Downfall.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGen", "ImageGen\ImageGen.csproj", "{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimeBoss", "SlimeBoss.csproj", "{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,12 @@ Global
 		{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{109DC8AD-86FC-43EB-B0B2-CE0E6EC2EC57}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FBA6FE9-30B1-4073-B3BA-7246C22AC781}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
