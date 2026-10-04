@@ -234,20 +234,26 @@
     </ItemGroup>
 
     <!-- PackFolders drives which top-level asset folders build/pack_mod.gd packs into Downfall.pck.
-         Computed from $(Submods) rather than aliased to it directly, and with "SlimeBoss" always
-         stripped out, so Downfall.pck never bundles SlimeBoss's assets even if an un-updated
-         local.props still lists "SlimeBoss" in Submods. SlimeBoss is an internal submod (ADR
-         0003): although it has no manifest/ModId of its own (so the game's own manifest-driven
-         mod loader would never discover a separate "SlimeBoss.pck"), its assets still ship in
-         their OWN pck, built by SlimeBoss.csproj and loaded explicitly at runtime via
-         Godot.ProjectSettings.LoadResourcePack(...) from DownfallMainFile.Initialize() - the same
-         "call it directly, don't rely on manifest-driven discovery" pattern used for its code
-         (see DownfallMainFile.InitializeSlimeBoss()). Kept as its own pck, not merged into
-         Downfall.pck, so a future SlimeBoss Beta replacement mod can ship genuinely different
-         assets under the same resource paths without colliding with stock SlimeBoss's. -->
+         Computed from $(Submods) rather than aliased to it directly, and with "SlimeBoss" and
+         "Collector" always stripped out, so Downfall.pck never bundles their assets even if an
+         un-updated local.props still lists them in Submods.
+         - SlimeBoss is an internal submod (ADR 0003): although it has no manifest/ModId of its own
+           (so the game's own manifest-driven mod loader would never discover a separate
+           "SlimeBoss.pck"), its assets still ship in their OWN pck, built by SlimeBoss.csproj and
+           loaded explicitly at runtime via Godot.ProjectSettings.LoadResourcePack(...) from
+           DownfallMainFile.Initialize() - the same "call it directly, don't rely on
+           manifest-driven discovery" pattern used for its code (see
+           DownfallMainFile.InitializeSlimeBoss()). Kept as its own pck, not merged into
+           Downfall.pck, so a future SlimeBoss Beta replacement mod can ship genuinely different
+           assets under the same resource paths without colliding with stock SlimeBoss's.
+         - Collector is a standalone mod (its own Collector.csproj/Collector.pck/Collector.json
+           manifest) - its assets are packed by Collector.csproj's own GodotPublish, genuinely
+           discovered and loaded by the game via its own manifest, so they must never also end up
+           inside Downfall.pck. -->
     <ItemGroup>
         <_PackFolder Include="$(Submods)"/>
         <_PackFolder Remove="SlimeBoss"/>
+        <_PackFolder Remove="Collector"/>
     </ItemGroup>
     <PropertyGroup>
         <PackFolders>@(_PackFolder, ';')</PackFolders>
@@ -293,10 +299,10 @@
         <Compile Include="SneckoCode/**/*.cs"/>
         <AdditionalFiles Include="Snecko/**/*"/>
     </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Collector'))">
-        <Compile Include="CollectorCode/**/*.cs"/>
-        <AdditionalFiles Include="Collector/**/*"/>
-    </ItemGroup>
+    <!-- Collector has no branch here anymore: it's a standalone mod now (its own Collector.csproj,
+         own Collector.dll/Collector.pck/Collector.json manifest, ADR 0003 / CONTEXT.md "Mod
+         Packaging") - never compiled into Downfall.dll, even if an un-updated local.props still
+         lists "Collector" in $(Submods) (harmless: this project no longer reacts to it). -->
 
     <ItemGroup Condition="$(Submods.Contains('Test'))">
         <Compile Include="TestCode/**/*.cs"/>
