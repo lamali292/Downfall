@@ -18,7 +18,7 @@ public class DiceBoulder : SneckoCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
-        DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
+        DynamicVars.Block.BaseValue += DynamicVars["Increase"].BaseValue;
         EnergyCost.AddThisCombat(DynamicVars.Energy.IntValue);
     }
 }
