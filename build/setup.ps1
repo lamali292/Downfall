@@ -58,6 +58,14 @@ if ($LASTEXITCODE -ne 0) {
     if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
 }
 
+Write-Host "=== Building Automaton (internal submod) ==="
+dotnet build Automaton.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Automaton (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Automaton.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Automaton build failed" }
+}
+
 Write-Host "=== Building Collector (standalone mod) ==="
 dotnet build Collector.csproj --nologo -v q
 if ($LASTEXITCODE -ne 0) {

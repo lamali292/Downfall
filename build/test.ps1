@@ -44,6 +44,13 @@ if (-not $NoBuild) {
     dotnet build SlimeBoss.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
 
+    # Automaton is an internal submod (its own Automaton.dll) since the standalone-submods
+    # effort - build it too so its [CardTest]s (AutomatonCode/Tests/) are present in mods/ and get
+    # picked up by CardTestRunner's cross-assembly scan.
+    Write-Host "=== Building Automaton ===" -ForegroundColor Cyan
+    dotnet build Automaton.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Automaton build failed" }
+
     # Collector is a standalone mod (its own Collector.dll/Collector.json manifest) - build it too
     # so its [CardTest]s (CollectorCode/Tests/) are present in mods/Collector/ and get picked up by
     # CardTestRunner's cross-assembly scan.
