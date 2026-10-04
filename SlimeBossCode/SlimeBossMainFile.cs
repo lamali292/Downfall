@@ -19,6 +19,12 @@ public static class SlimeBossMainFile
 
     public static void Initialize()
     {
+        // Submod supersession guard (ADR 0003): "SlimeBossBeta" doesn't exist yet - this is the
+        // forward-declared replacement ModId a future SlimeBoss Beta standalone submod will use.
+        // If it's ever loaded alongside this bundled SlimeBoss, skip registering entirely so the
+        // two never both register the same model IDs.
+        if (ReplaceableSubmod.IsSupersededBy("SlimeBossBeta")) return;
+
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss, ModId);
         HivePowerExemptRegistry.Register<SlimeModel>();
