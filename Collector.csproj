@@ -142,12 +142,15 @@
     </ItemGroup>
 
     <!-- Reference the core Downfall project for shared framework types (DownfallCode, and
-         transitively Awakened/Champ/Guardian/Hermit/Hexaghost/Snecko, which are still bundled
-         submods compiled directly into Downfall.dll). Also reference SlimeBoss.csproj directly -
-         SlimeBoss is its own internal-submod assembly (SlimeBoss.dll) now, no longer part of
-         Downfall.dll, so a project that needs its types has to reference it separately. Collector
-         -> SlimeBoss is a normal, uncomplicated ProjectReference: it's only core (Downfall) ->
-         SlimeBoss that had to avoid a circular reference (see ADR 0003's Implementation note). -->
+         transitively Awakened/Champ/Guardian/Hexaghost/Snecko, which are still bundled submods
+         compiled directly into Downfall.dll). Also reference SlimeBoss.csproj directly - SlimeBoss
+         is its own internal-submod assembly (SlimeBoss.dll) now, no longer part of Downfall.dll, so
+         a project that needs its types has to reference it separately. Collector -> SlimeBoss is a
+         normal, uncomplicated ProjectReference: it's only core (Downfall) -> SlimeBoss that had to
+         avoid a circular reference (see ADR 0003's Implementation note). Hermit is likewise its own
+         internal-submod assembly now (Hermit.csproj/Hermit.dll) - no ProjectReference to it is
+         added here since `grep -rl Hermit CollectorCode/` finds no actual compile-time reference
+         into HermitCode; add one the same way as SlimeBoss's above if that ever changes. -->
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
         <ProjectReference Include="SlimeBoss.csproj"/>

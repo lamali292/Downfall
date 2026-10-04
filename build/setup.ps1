@@ -66,6 +66,14 @@ if ($LASTEXITCODE -ne 0) {
     if ($LASTEXITCODE -ne 0) { throw "Automaton build failed" }
 }
 
+Write-Host "=== Building Hermit (internal submod) ==="
+dotnet build Hermit.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Hermit (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Hermit.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hermit build failed" }
+}
+
 Write-Host "=== Building Collector (standalone mod) ==="
 dotnet build Collector.csproj --nologo -v q
 if ($LASTEXITCODE -ne 0) {
