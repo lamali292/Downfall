@@ -12,12 +12,14 @@ using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
-using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Automaton.AutomatonCode;
 
-[ModInitializer(nameof(Initialize))]
+// Automaton is an internal submod (ADR 0003): its own assembly (Automaton.dll, built by
+// Automaton.csproj) for code-separation, but NOT independently discovered/loaded by the game's mod
+// loader - no [ModInitializer] here. Downfall's own MainFile loads this assembly by reflection and
+// calls Initialize() directly (see DownfallMainFile.InitializeAutomaton()).
 public static class AutomatonMainFile
 {
     public const string ModId = "Automaton"; //At the moment, this is used only for the Logger and harmony names.

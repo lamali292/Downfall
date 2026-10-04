@@ -19,16 +19,16 @@
         <AssemblyName>$(ModId)</AssemblyName>
         <ModOutputFolder>$(ModId)</ModOutputFolder>
 
-        <!-- SlimeBoss intentionally absent: it's an internal submod now (SlimeBoss.csproj/
-             SlimeBoss.dll, ADR 0003) - compiled separately but still loaded as part of the one
-             Downfall mod entry (DownfallMainFile calls into it directly by reflection; see its
-             Initialize() method), never compiled into Downfall.dll itself. This default is also
-             independent of whatever an existing developer's local.props still lists for Submods -
-             see the ItemGroups below, which no longer have a Compile branch that reacts to
-             "SlimeBoss" at all (its assets still do, unconditionally - see below), so an
-             un-updated local.props (still containing "SlimeBoss" from before this change) is
-             harmless here. -->
-        <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;Snecko</Submods>
+        <!-- SlimeBoss and Automaton are intentionally absent: both are internal submods now
+             (SlimeBoss.csproj/SlimeBoss.dll, Automaton.csproj/Automaton.dll - ADR 0003) - compiled
+             separately but still loaded as part of the one Downfall mod entry (DownfallMainFile
+             calls into each directly by reflection; see InitializeSlimeBoss()/InitializeAutomaton()),
+             never compiled into Downfall.dll itself. This default is also independent of whatever an
+             existing developer's local.props still lists for Submods - see the ItemGroups below,
+             which no longer have a Compile branch that reacts to "SlimeBoss"/"Automaton" at all
+             (their assets still do, unconditionally - see below), so an un-updated local.props
+             (still containing "SlimeBoss"/"Automaton" from before this change) is harmless here. -->
+        <Submods Condition="'$(Submods)' == ''">Downfall;Awakened;Champ;Guardian;Hexaghost;Hermit;Snecko</Submods>
 
         <ImplicitUsings>true</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -237,15 +237,16 @@
          Computed from $(Submods) rather than aliased to it directly, and with "SlimeBoss" and
          "Collector" always stripped out, so Downfall.pck never bundles their assets even if an
          un-updated local.props still lists them in Submods.
-         - SlimeBoss is an internal submod (ADR 0003): although it has no manifest/ModId of its own
-           (so the game's own manifest-driven mod loader would never discover a separate
-           "SlimeBoss.pck"), its assets still ship in their OWN pck, built by SlimeBoss.csproj and
-           loaded explicitly at runtime via Godot.ProjectSettings.LoadResourcePack(...) from
-           DownfallMainFile.Initialize() - the same "call it directly, don't rely on
-           manifest-driven discovery" pattern used for its code (see
-           DownfallMainFile.InitializeSlimeBoss()). Kept as its own pck, not merged into
-           Downfall.pck, so a future SlimeBoss Beta replacement mod can ship genuinely different
-           assets under the same resource paths without colliding with stock SlimeBoss's.
+         - SlimeBoss and Automaton are internal submods (ADR 0003): although neither has a
+           manifest/ModId of its own (so the game's own manifest-driven mod loader would never
+           discover a separate "SlimeBoss.pck"/"Automaton.pck"), their assets still ship in their
+           OWN pck, built by SlimeBoss.csproj/Automaton.csproj and loaded explicitly at runtime via
+           Godot.ProjectSettings.LoadResourcePack(...) from DownfallMainFile.Initialize() - the same
+           "call it directly, don't rely on manifest-driven discovery" pattern used for their code
+           (see DownfallMainFile.InitializeSlimeBoss()/InitializeAutomaton()). Kept as their own
+           pck, not merged into Downfall.pck, so a future beta replacement mod for either can ship
+           genuinely different assets under the same resource paths without colliding with stock
+           SlimeBoss's/Automaton's.
          - Collector is a standalone mod (its own Collector.csproj/Collector.pck/Collector.json
            manifest) - its assets are packed by Collector.csproj's own GodotPublish, genuinely
            discovered and loaded by the game via its own manifest, so they must never also end up
@@ -253,6 +254,7 @@
     <ItemGroup>
         <_PackFolder Include="$(Submods)"/>
         <_PackFolder Remove="SlimeBoss"/>
+        <_PackFolder Remove="Automaton"/>
         <_PackFolder Remove="Collector"/>
     </ItemGroup>
     <PropertyGroup>
@@ -263,10 +265,10 @@
         <Compile Include="DownfallCode/**/*.cs"/>
         <AdditionalFiles Include="Downfall/**/*"/>
     </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Automaton'))">
-        <Compile Include="AutomatonCode/**/*.cs"/>
-        <AdditionalFiles Include="Automaton/**/*"/>
-    </ItemGroup>
+    <!-- Automaton has no branch here anymore: its C# code and assets both live in its own
+         Automaton.csproj (internal submod, own Automaton.dll/Automaton.pck, loaded directly by
+         DownfallMainFile - see ADR 0003). Deliberately not reacting to "Automaton" in $(Submods)
+         even if an un-updated local.props still lists it - see the Submods default comment above. -->
     <ItemGroup Condition="$(Submods.Contains('Awakened'))">
         <Compile Include="AwakenedCode/**/*.cs"/>
         <AdditionalFiles Include="Awakened/**/*"/>

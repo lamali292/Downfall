@@ -108,6 +108,12 @@ public static class DownfallMainFile
         // same model IDs.
         if (!ReplaceableSubmod.IsSupersededBy("SlimeBossBeta"))
             InitializeSlimeBoss();
+
+        // Automaton is an internal submod (ADR 0003), same pattern as SlimeBoss above.
+        // "AutomatonBeta" doesn't exist yet - forward-declared replacement ModId, same rationale as
+        // "SlimeBossBeta" above.
+        if (!ReplaceableSubmod.IsSupersededBy("AutomatonBeta"))
+            InitializeAutomaton();
     }
 
     // Loaded by reflection, not a normal C# reference: SlimeBossCode needs DownfallCode's own
@@ -195,6 +201,54 @@ public static class DownfallMainFile
         catch (Exception ex)
         {
             Logger.Error($"Failed to initialize the internal SlimeBoss submod:\n{ex}");
+        }
+    }
+
+    // Same recipe as InitializeSlimeBoss() above - see its doc comment for the full rationale
+    // (ALC-based loading, AssociateAssemblyWithMod, why this can't be a normal ProjectReference).
+    private static void InitializeAutomaton()
+    {
+        try
+        {
+            var downfallDir = Path.GetDirectoryName(typeof(DownfallMainFile).Assembly.Location) ?? "";
+
+            var automatonPckPath = Path.Combine(downfallDir, "Automaton.pck");
+            if (File.Exists(automatonPckPath))
+            {
+                if (!ProjectSettings.LoadResourcePack(automatonPckPath))
+                    Logger.Error($"Godot errored while loading Automaton's resource pack at '{automatonPckPath}'.");
+            }
+            else
+            {
+                Logger.Error($"Automaton.pck not found at '{automatonPckPath}' - its assets will not be available.");
+            }
+
+            var automatonPath = Path.Combine(downfallDir, "Automaton.dll");
+            if (!File.Exists(automatonPath))
+            {
+                Logger.Error($"Automaton.dll not found at '{automatonPath}' - internal Automaton submod will not be loaded.");
+                return;
+            }
+
+            var loadContext = AssemblyLoadContext.GetLoadContext(typeof(DownfallMainFile).Assembly);
+            var automatonAssembly = loadContext != null
+                ? loadContext.LoadFromAssemblyPath(automatonPath)
+                : Assembly.LoadFrom(automatonPath);
+            ModManager.AssociateAssemblyWithMod(ModId, automatonAssembly);
+
+            var automatonMainFile = automatonAssembly.GetType("Automaton.AutomatonCode.AutomatonMainFile");
+            var initialize = automatonMainFile?.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
+            if (initialize == null)
+            {
+                Logger.Error("Loaded Automaton.dll but could not find Automaton.AutomatonCode.AutomatonMainFile.Initialize() via reflection.");
+                return;
+            }
+
+            initialize.Invoke(null, null);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error($"Failed to initialize the internal Automaton submod:\n{ex}");
         }
     }
 
