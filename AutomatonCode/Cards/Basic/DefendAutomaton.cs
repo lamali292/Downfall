@@ -11,7 +11,6 @@ public sealed class DefendAutomaton : AutomatonCardModel
 {
     public DefendAutomaton() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithEncode<BlockEncode>(false);
         WithTags(CardTag.Defend);
         WithBlock(5, 3);
     }

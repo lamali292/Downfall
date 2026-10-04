@@ -1,4 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Basic;
+using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
@@ -16,8 +17,8 @@ public class BronzeCore : AutomatonRelicModel
 {
     public BronzeCore() : base(RelicRarity.Starter)
     {
-        WithTip<StrikeAutomaton>();
-        WithTip<DefendAutomaton>();
+        WithTip<CoreStrike>();
+        WithTip<CoreDefend>();
         WithTip(AutomatonKeyword.Encode);
     }
 
@@ -31,7 +32,7 @@ public class BronzeCore : AutomatonRelicModel
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         Flash();
         await Cmd.Wait(0.2f);
-        await AutomatonCmd.EncodeCard<DefendAutomaton>(Owner, ctx);
-        await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx);
+        await AutomatonCmd.EncodeCard<CoreStrike>(Owner, ctx);
+        await AutomatonCmd.EncodeCard<CoreDefend>(Owner, ctx);
     }
   }
