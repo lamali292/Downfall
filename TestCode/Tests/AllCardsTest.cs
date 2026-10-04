@@ -25,8 +25,8 @@ public class AllCardsTest
     // ---- pool tests: return IEnumerable<CardTestCase>, take CharacterModel ----
     // NOTE: plain (non-async) generators — the runner drives each case in its own combat.
 
-    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
-    public IEnumerable<CardTestCase> PlayAutomatonCards(CharacterModel character) => PlayAllCards(character);
+    // Automaton moved to its own standalone-submod assembly (Automaton.csproj) - its pool test
+    // lives in AutomatonCode/Tests/AutomatonTests.cs now, calling the public PlayAllCards below.
 
     [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
     public IEnumerable<CardTestCase> PlayAwakenedCards(CharacterModel character) => PlayAllCards(character);
@@ -52,9 +52,10 @@ public class AllCardsTest
     // Collector moved to its own standalone-mod assembly (Collector.csproj) - its pool test lives
     // in CollectorCode/Tests/CollectorTests.cs now, calling the public PlayAllCards below.
 
-    // Public + static (never used instance state): reused from SlimeBossCode/Tests/SlimeBossTests.cs
-    // and CollectorCode/Tests/CollectorTests.cs, which live in separate assemblies (SlimeBoss.csproj,
-    // Collector.csproj) and can't share a private instance method.
+    // Public + static (never used instance state): reused from AutomatonCode/Tests/AutomatonTests.cs,
+    // SlimeBossCode/Tests/SlimeBossTests.cs and CollectorCode/Tests/CollectorTests.cs, which live in
+    // separate assemblies (Automaton.csproj, SlimeBoss.csproj, Collector.csproj) and can't share a
+    // private instance method.
     public static IEnumerable<CardTestCase> PlayAllCards(CharacterModel character)
     {
         return character.CardPool.AllCards.Select(model => new CardTestCase(model.GetType().Name, async ctx =>

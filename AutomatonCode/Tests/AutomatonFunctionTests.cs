@@ -14,6 +14,7 @@ using Automaton.AutomatonCode.Powers;
 using Automaton.AutomatonCode.Relics;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Powers;
+using Downfall.TestCode;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,7 +23,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Enchantments;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.TestCode;
+namespace Automaton.AutomatonCode.Tests;
 
 /// <summary>
 ///     Characterization tests for how a Function is assembled from its source cards (values, type,

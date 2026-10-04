@@ -12,17 +12,25 @@ using Automaton.AutomatonCode.Powers;
 using Automaton.AutomatonCode.Relics;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Compatibility;
+using Downfall.TestCode;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Enchantments;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.TestCode;
+namespace Automaton.AutomatonCode.Tests;
 
 public class AutomatonTests
 {
+    // Regression guard (standalone-submod smoke test): confirms Automaton's own standalone
+    // assembly still registers and plays normally with no replacement mod loaded - i.e. the
+    // Automaton.csproj extraction and ReplaceableSubmod guard didn't break anything.
+    [CardTest(typeof(Core.Automaton))]
+    public IEnumerable<CardTestCase> PlayAutomatonCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+
     // Regression guard: MergeConflictPower.AfterCardGeneratedForCombat fires again for the
     // clone it adds via AddGeneratedCardToCombat, which used to re-trigger itself and cascade
     // into Amount copies from a single Function creation instead of ticking down by 1 per
