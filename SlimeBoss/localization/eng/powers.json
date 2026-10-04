@@ -22,7 +22,7 @@
   "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.smartDescription": "Whenever you [gold]Command[/gold] [gold]Bruiser Slime[/gold], all other Slimes gain [blue]{Amount}[/blue] [gold]Potency[/gold] this turn.",
   "SLIMEBOSS-MINION_MASTER_POWER.title": "Minion Master",
   "SLIMEBOSS-MINION_MASTER_POWER.description": "Whenever you play a Strike or Defend, [gold]Command[/gold] [gold]Bruiser Slime[/gold]. ",
-  "SLIMEBOSS-MINION_MASTER_POWER.smartDescription": "Whenever you play a Strike or Defend, [gold]Command[/gold] [gold]Bruiser Slime[/gold]{Amount:plural:|[blue]{}[/blue] times}. ",
+  "SLIMEBOSS-MINION_MASTER_POWER.smartDescription": "Whenever you play a Strike or Defend, [gold]Command[/gold] [gold]Bruiser Slime[/gold]{Amount:plural:| [blue]{}[/blue] times}. ",
   "SLIMEBOSS-RALLY_THE_TROOPS_POWER.title": "Rally the Troops",
   "SLIMEBOSS-RALLY_THE_TROOPS_POWER.description": "Whenever you play a card this turn, gain [gold]Potency[/gold] this turn.",
   "SLIMEBOSS-RALLY_THE_TROOPS_POWER.smartDescription": "Whenever you play a card this turn, gain [blue]{Amount}[/blue] [gold]Potency[/gold] this turn.",

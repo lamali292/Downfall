@@ -49,7 +49,7 @@
   "SLIMEBOSS-MASS_REPURPOSE.title": "Mass Repurpose",
   "SLIMEBOSS-MINION_MASTER.description": "Whenever you play a Strike or Defend, [gold]Command[/gold] [gold]Bruiser Slime[/gold].",
   "SLIMEBOSS-MINION_MASTER.title": "Minion Master",
-  "SLIMEBOSS-ONE_TWO_COMBO.description": "Deal {Damage:diff()} damage.\nWhenever you [gold]Split[/gold] or [gold]Command[/gold] a Slime, put this into your [gold]Hand[/gold].",
+  "SLIMEBOSS-ONE_TWO_COMBO.description": "Deal {Damage:diff()} damage.\nWhenever you [gold]Command[/gold] a Slime, put this into your [gold]Hand[/gold].",
   "SLIMEBOSS-ONE_TWO_COMBO.title": "One-Two Combo",
   "SLIMEBOSS-OOZE_BATH.description": "While the enemy has [gold]Weak[/gold], they lose {OozeBathPower:diff()} HP at the start of their turn and whenever you play a Status.",
   "SLIMEBOSS-OOZE_BATH.title": "Ooze Bath",

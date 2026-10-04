@@ -14,4 +14,5 @@ public struct DownfallCardSelectorPrefs
     public static LocString ConjureSelectionPrompt => new("card_selection", "DOWNFALL-TO_CONJURE");
     public static LocString RetainSelectionPrompt => new("card_selection", "DOWNFALL-TO_RETAIN");
     public static LocString AddEtherealSelectionPrompt => new("card_selection", "DOWNFALL-ADD_ETHEREAL");
+    public static LocString CopySelectionPrompt => new("card_selection", "DOWNFALL-TO_COPY");
 }

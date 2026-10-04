@@ -11,11 +11,11 @@ using SlimeBoss.SlimeBossCode.Slimes;
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class OneTwoCombo : SlimeBossCardModel, IAfterSplit, IAfterCommand
+public class OneTwoCombo : SlimeBossCardModel, IAfterCommand
 {
     public OneTwoCombo() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(5, 2);
+        WithDamage(6, 2);
     }
 
     private async Task ReturnToHand(Player player)
@@ -23,11 +23,7 @@ public class OneTwoCombo : SlimeBossCardModel, IAfterSplit, IAfterCommand
         if (player != Owner || Pile == null || Pile.Type == PileType.Hand) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
-
-    public Task AfterSplit(PlayerChoiceContext ctx, Player player, SlimeModel slime)
-    {
-        return ReturnToHand(player);
-    }
+    
 
     public Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source, bool isAutomatic)
     {
