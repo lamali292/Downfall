@@ -25,8 +25,9 @@
              Initialize() method), never compiled into Downfall.dll itself. This default is also
              independent of whatever an existing developer's local.props still lists for Submods -
              see the ItemGroups below, which no longer have a Compile branch that reacts to
-             "SlimeBoss" at all, so an un-updated local.props (still containing "SlimeBoss" from
-             before this change) is harmless here. -->
+             "SlimeBoss" at all (its assets still do, unconditionally - see below), so an
+             un-updated local.props (still containing "SlimeBoss" from before this change) is
+             harmless here. -->
         <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;Snecko</Submods>
 
         <ImplicitUsings>true</ImplicitUsings>
@@ -235,8 +236,15 @@
     <!-- PackFolders drives which top-level asset folders build/pack_mod.gd packs into Downfall.pck.
          Computed from $(Submods) rather than aliased to it directly, and with "SlimeBoss" always
          stripped out, so Downfall.pck never bundles SlimeBoss's assets even if an un-updated
-         local.props still lists "SlimeBoss" in Submods - its assets now ship only in SlimeBoss.pck
-         (built by SlimeBoss.csproj). -->
+         local.props still lists "SlimeBoss" in Submods. SlimeBoss is an internal submod (ADR
+         0003): although it has no manifest/ModId of its own (so the game's own manifest-driven
+         mod loader would never discover a separate "SlimeBoss.pck"), its assets still ship in
+         their OWN pck, built by SlimeBoss.csproj and loaded explicitly at runtime via
+         Godot.ProjectSettings.LoadResourcePack(...) from DownfallMainFile.Initialize() - the same
+         "call it directly, don't rely on manifest-driven discovery" pattern used for its code
+         (see DownfallMainFile.InitializeSlimeBoss()). Kept as its own pck, not merged into
+         Downfall.pck, so a future SlimeBoss Beta replacement mod can ship genuinely different
+         assets under the same resource paths without colliding with stock SlimeBoss's. -->
     <ItemGroup>
         <_PackFolder Include="$(Submods)"/>
         <_PackFolder Remove="SlimeBoss"/>
@@ -277,10 +285,10 @@
         <Compile Include="HermitCode/**/*.cs"/>
         <AdditionalFiles Include="Hermit/**/*"/>
     </ItemGroup>
-    <!-- SlimeBoss has no branch here anymore: it moved to its own SlimeBoss.csproj (standalone
-         submod, own SlimeBoss.dll/.pck, referencing this project's output). Deliberately not
-         reacting to "SlimeBoss" in $(Submods) even if an un-updated local.props still lists it -
-         see the Submods default comment above. -->
+    <!-- SlimeBoss has no branch here anymore: its C# code and assets both live in its own
+         SlimeBoss.csproj (internal submod, own SlimeBoss.dll/SlimeBoss.pck, loaded directly by
+         DownfallMainFile - see ADR 0003). Deliberately not reacting to "SlimeBoss" in $(Submods)
+         even if an un-updated local.props still lists it - see the Submods default comment above. -->
     <ItemGroup Condition="$(Submods.Contains('Snecko'))">
         <Compile Include="SneckoCode/**/*.cs"/>
         <AdditionalFiles Include="Snecko/**/*"/>

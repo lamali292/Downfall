@@ -1,12 +1,20 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
 
-    <!-- SlimeBoss as an internal submod (ADR 0003): its own assembly for code-separation, but no
-         manifest of its own anymore - the game's mod loader never discovers or loads this
-         project's output on its own. Still compiles only SlimeBossCode/ and references the core
-         Downfall.csproj/Downfall.dll for whatever DownfallCode surface it needs. How its dll/pck
-         actually reach a player (ModOutputFolder, CopyToModsFolderOnBuild, asset packing) is
-         revisited in full separately - this change only removes the manifest. -->
+    <!-- SlimeBoss as an internal submod (ADR 0003): its own assembly for code-separation, with no
+         manifest/ModId of its own - the game's mod loader never discovers or loads this project's
+         output on its own. Compiles only SlimeBossCode/, references the core Downfall.csproj for
+         whatever DownfallCode surface it needs, and its build output (SlimeBoss.dll/.pdb and its
+         own SlimeBoss.pck) is copied into the SAME mod output folder as Downfall.csproj's own (see
+         ModOutputFolder below and CopyToModsFolderOnBuild/GodotPublish), where
+         Downfall.DownfallCode.DownfallMainFile.Initialize() loads the dll by reflection (calling
+         SlimeBossMainFile.Initialize() directly - see that method's doc comment for why this can't
+         be a normal compile-time reference in that direction) and the pck via
+         Godot.ProjectSettings.LoadResourcePack(...). Assets stay in their OWN pck rather than
+         folding into Downfall.pck (a separate, unmanifested pck is never auto-loaded by the game's
+         manifest-driven mod loader, but nothing stops loading it explicitly ourselves, same as the
+         dll) so a future SlimeBoss Beta replacement mod can ship different assets under the same
+         resource paths without colliding with stock SlimeBoss's. See .scratch/standalone-submods/. -->
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -16,12 +24,16 @@
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
 
-        <!-- ModId stays "SlimeBoss" for the AssemblyName (-> SlimeBoss.dll) and the Logger/Harmony
-             instance name already hardcoded in SlimeBossMainFile.cs - it is NOT a manifest id
-             anymore, this project produces no manifest. -->
+        <!-- ModId stays "SlimeBoss" for the AssemblyName/pck name (-> SlimeBoss.dll/.pck) and the
+             Logger/Harmony instance name already hardcoded in SlimeBossMainFile.cs - it is NOT a
+             manifest id anymore, this project produces no manifest. ModOutputFolder deliberately
+             matches Downfall.csproj's own ("Downfall"), not ModId, so CopyToModsFolderOnBuild/
+             GodotPublish below land SlimeBoss.dll/.pck in the same mods/Downfall/ folder as
+             Downfall.dll/.pck, where DownfallMainFile can find and load them at a known relative
+             path next to itself. -->
         <ModId>SlimeBoss</ModId>
         <AssemblyName>$(ModId)</AssemblyName>
-        <ModOutputFolder>$(ModId)</ModOutputFolder>
+        <ModOutputFolder>Downfall</ModOutputFolder>
         <PackFolders>SlimeBoss</PackFolders>
 
         <ImplicitUsings>true</ImplicitUsings>
@@ -168,7 +180,12 @@
         <Compile Include="SlimeBossCode/Tests/**/*.cs"/>
     </ItemGroup>
 
-    <!-- No manifest to generate/copy anymore. -->
+    <!-- No manifest: SlimeBoss is an internal submod now, so only the compiled assembly (and its
+         PDB for debugging) need to reach the mods/ folder here - landing in the SAME mod output
+         folder as Downfall.csproj's own output (ModOutputFolder is "Downfall" above) so
+         DownfallMainFile can find and load it by reflection at a known relative path next to
+         itself. Its own SlimeBoss.pck is produced separately by GodotPublish below (publish only,
+         same as Downfall.csproj's own asset packing - plain `dotnet build` never touches pck/loc). -->
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
@@ -183,6 +200,11 @@
               IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
+    <!-- Packs SlimeBoss/ into its OWN SlimeBoss.pck (not Downfall.pck - see the header comment),
+         dropped into the same mods/Downfall/ folder as Downfall's own pck so DownfallMainFile can
+         find and load it next to itself. Both projects share the same Godot project (same
+         directory, same project.godot), so the res://SlimeBoss/... paths packed here are identical
+         to what Downfall.csproj's own GodotPublish would have produced for the same folder. -->
     <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <Message Text="--- PACKING SLIMEBOSS RELEASE: '$(PackFolders)' ---" Importance="high"/>
