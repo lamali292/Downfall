@@ -19,11 +19,14 @@
         <AssemblyName>$(ModId)</AssemblyName>
         <ModOutputFolder>$(ModId)</ModOutputFolder>
 
-        <!-- SlimeBoss intentionally absent: it's a standalone submod now (SlimeBoss.csproj), never
-             compiled into Downfall.dll. This default is also independent of whatever an existing
-             developer's local.props still lists for Submods - see the ItemGroups below, which no
-             longer have a branch that reacts to "SlimeBoss" at all, so an un-updated local.props
-             (still containing "SlimeBoss" from before this change) is harmless here. -->
+        <!-- SlimeBoss intentionally absent: it's an internal submod now (SlimeBoss.csproj/
+             SlimeBoss.dll, ADR 0003) - compiled separately but still loaded as part of the one
+             Downfall mod entry (DownfallMainFile calls into it directly by reflection; see its
+             Initialize() method), never compiled into Downfall.dll itself. This default is also
+             independent of whatever an existing developer's local.props still lists for Submods -
+             see the ItemGroups below, which no longer have a Compile branch that reacts to
+             "SlimeBoss" at all, so an un-updated local.props (still containing "SlimeBoss" from
+             before this change) is harmless here. -->
         <Submods Condition="'$(Submods)' == ''">Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;Snecko</Submods>
 
         <ImplicitUsings>true</ImplicitUsings>

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.Loader;
 using BaseLib.Config;
 using BaseLib.Patches.Features;
 using BaseLib.Patches.Saves;
@@ -94,6 +95,94 @@ public static class DownfallMainFile
         //FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Master.strings.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
+
+        // SlimeBoss is an internal submod (ADR 0003): its own assembly (SlimeBossCode compiled
+        // into SlimeBoss.dll by SlimeBoss.csproj) for code-separation, with no manifest/ModId of
+        // its own, so the game's mod loader never discovers or calls it - Downfall's own MainFile
+        // is responsible for calling into it directly.
+        //
+        // "SlimeBossBeta" doesn't exist yet - this is the forward-declared replacement ModId a
+        // future SlimeBoss Beta standalone submod will use. If it's ever loaded alongside this
+        // internal SlimeBoss, skip calling into it entirely so the two never both register the
+        // same model IDs.
+        if (!ReplaceableSubmod.IsSupersededBy("SlimeBossBeta"))
+            InitializeSlimeBoss();
+    }
+
+    // Loaded by reflection, not a normal C# reference: SlimeBossCode needs DownfallCode's own
+    // types (registries, ModPatcher, DownfallCardModel, ...) via SlimeBoss.csproj's
+    // ProjectReference to this project, and a mutual ProjectReference between the two .csproj
+    // files isn't something MSBuild/.NET supports - that would be a true circular dependency,
+    // not just an awkward one. Keeping the ProjectReference in the direction that matters for
+    // runtime correctness (SlimeBoss -> Downfall, so both share the one compiled copy of
+    // DownfallCode's static registries - duplicating that source into SlimeBoss.dll instead would
+    // silently split BundledSubmodLocRegistry/etc. into two independent, non-communicating
+    // copies) means the Downfall -> SlimeBoss direction has to be a late-bound call instead.
+    // SlimeBoss.dll is built as its own project (`dotnet build SlimeBoss.csproj`, see
+    // local.props.example) and copied next to Downfall.dll in the same mod output folder by its
+    // own CopyToModsFolderOnBuild target, so it's always sitting alongside whatever assembly this
+    // method itself was loaded from - that's resolved here instead of relying on default assembly
+    // probing, since Downfall.dll itself was loaded by the game's own AssemblyLoadContext from an
+    // arbitrary mod path, not the probing paths used for the main app.
+    //
+    // Loading the dll alone is NOT enough for its [Pool]-attributed cards/powers/relics/character
+    // to be discovered: BaseLib/the game's own content scanning (ReflectionHelper.ModTypes) only
+    // walks types from assemblies ModManager has associated with a *loaded mod record*
+    // (Mod.assemblies) - an assembly pulled in by Assembly.LoadFrom on its own is invisible to it,
+    // which silently drops every SlimeBoss model (confirmed by a real test run: SlimeBoss's
+    // character came back as "unknown" and nothing SlimeBoss-related registered). ModManager
+    // exposes exactly this escape hatch for mods with secondary assemblies:
+    // ModManager.AssociateAssemblyWithMod(modId, assembly) - call it before anything scans for
+    // content (ModelDb.InitIds and earlier), associating SlimeBoss.dll with this mod's own
+    // ("Downfall") id.
+    //
+    // Once SlimeBossMainFile.Initialize() runs, SlimeBoss's own Harmony patches are already
+    // applied as part of it (via its own explicit ModPatcher.Create(...).Add(...).PatchAll()
+    // calls - a per-type Harmony.CreateClassProcessor(...).Patch(), not an assembly scan - so
+    // this doesn't depend on the game's automatic Harmony.PatchAll(assembly), which only covers
+    // the manifest's own assembly (Downfall.dll) anyway).
+    private static void InitializeSlimeBoss()
+    {
+        try
+        {
+            var downfallDir = Path.GetDirectoryName(typeof(DownfallMainFile).Assembly.Location) ?? "";
+
+            var slimeBossPath = Path.Combine(downfallDir, "SlimeBoss.dll");
+            if (!File.Exists(slimeBossPath))
+            {
+                Logger.Error($"SlimeBoss.dll not found at '{slimeBossPath}' - internal SlimeBoss submod will not be loaded.");
+                return;
+            }
+
+            // Assembly.LoadFrom loads into its own default-load-context bucket, which does NOT
+            // share already-resolved references with whatever context Downfall.dll itself was
+            // loaded into (the game's ModManager loads mod assemblies via
+            // AssemblyLoadContext.GetLoadContext(...).LoadFromAssemblyPath, not Assembly.LoadFrom
+            // - see ModManager.TryLoadMod). Using Assembly.LoadFrom here caused SlimeBoss.dll's own
+            // "BaseLib" reference to fail resolving (BaseLib.dll was already loaded, but into the
+            // OTHER context), spamming FileNotFoundException and effectively hanging startup -
+            // confirmed by an actual test run. Loading into the SAME context Downfall.dll lives in
+            // lets SlimeBoss.dll's references resolve against what's already loaded there.
+            var loadContext = AssemblyLoadContext.GetLoadContext(typeof(DownfallMainFile).Assembly);
+            var slimeBossAssembly = loadContext != null
+                ? loadContext.LoadFromAssemblyPath(slimeBossPath)
+                : Assembly.LoadFrom(slimeBossPath);
+            ModManager.AssociateAssemblyWithMod(ModId, slimeBossAssembly);
+
+            var slimeBossMainFile = slimeBossAssembly.GetType("SlimeBoss.SlimeBossCode.SlimeBossMainFile");
+            var initialize = slimeBossMainFile?.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
+            if (initialize == null)
+            {
+                Logger.Error("Loaded SlimeBoss.dll but could not find SlimeBoss.SlimeBossCode.SlimeBossMainFile.Initialize() via reflection.");
+                return;
+            }
+
+            initialize.Invoke(null, null);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error($"Failed to initialize the internal SlimeBoss submod:\n{ex}");
+        }
     }
 
     private static void PostModelInit()
