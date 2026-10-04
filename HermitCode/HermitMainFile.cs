@@ -6,14 +6,17 @@ using Hermit.HermitCode.Cards.Uncommon;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Patches;
 using MegaCrit.Sts2.Core.Logging;
-using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 
 namespace Hermit.HermitCode;
 
-[ModInitializer(nameof(Initialize))]
+// Hermit is an internal submod (ADR 0003): no [ModInitializer] here - the game's mod loader never
+// discovers this assembly on its own (it has no manifest). Downfall.DownfallCode.DownfallMainFile
+// loads Hermit.dll by reflection and calls Initialize() directly - see its InitializeHermit() for
+// the full rationale (AssemblyLoadContext loading, ModManager.AssociateAssemblyWithMod, why this
+// can't be a normal compile-time reference in that direction).
 public static class HermitMainFile
 {
     public const string ModId = "Hermit";

@@ -1,13 +1,19 @@
-<Project Sdk="Godot.NET.Sdk/4.5.1">
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
 
-    <!-- Collector as a standalone mod (ADR 0003 / CONTEXT.md "Mod Packaging"): unlike SlimeBoss,
-         this is a genuinely separate, independently-loadable Workshop item with its own manifest/
-         ModId - players deliberately subscribe to it while it's still in development, separate
-         from the core Downfall download. The game's own ModManager discovers and loads it the
-         normal way (Collector.json -> Collector.dll/.pck), exactly like Downfall's own manifest.
-         CollectorMainFile keeps its own [ModInitializer] - it is NOT loaded by reflection from
-         DownfallMainFile the way SlimeBoss is. See .scratch/standalone-submods/issues/04-*.md. -->
+    <!-- Hermit as an internal submod (ADR 0003): its own assembly for code-separation, with no
+         manifest/ModId of its own - the game's mod loader never discovers or loads this project's
+         output on its own. Compiles only HermitCode/, references the core Downfall.csproj for
+         whatever DownfallCode surface it needs, and its build output (Hermit.dll/.pdb and its
+         own Hermit.pck) is copied into the SAME mod output folder as Downfall.csproj's own (see
+         ModOutputFolder below and CopyToModsFolderOnBuild/GodotPublish), where
+         Downfall.DownfallCode.DownfallMainFile.Initialize() loads the dll by reflection (calling
+         HermitMainFile.Initialize() directly - see that method's doc comment for why this can't
+         be a normal compile-time reference in that direction) and the pck via
+         Godot.ProjectSettings.LoadResourcePack(...). Assets stay in their OWN pck rather than
+         folding into Downfall.pck, same as SlimeBoss, so a future Hermit Beta replacement mod
+         can ship different assets under the same resource paths without colliding with stock
+         Hermit's. See .scratch/standalone-submods/. -->
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -17,16 +23,17 @@
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
         <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
 
-        <!-- ModId "Collector" is both the manifest's "id" (so ModManager discovers Collector.json
-             and loads exactly Collector.dll/.pck) and the existing CollectorMainFile.ModId
-             constant used for its Logger/Harmony instance names - keeping both in sync avoids
-             renaming that constant for this extraction. ModOutputFolder is its own ("Collector"),
-             distinct from Downfall's, so it lands as its own separate mods/Collector/ entry. -->
-        <ModId>Collector</ModId>
-        <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
+        <!-- ModId stays "Hermit" for the AssemblyName/pck name (-> Hermit.dll/.pck) and the
+             Logger/Harmony instance name already hardcoded in HermitMainFile.cs - it is NOT a
+             manifest id anymore, this project produces no manifest. ModOutputFolder deliberately
+             matches Downfall.csproj's own ("Downfall"), not ModId, so CopyToModsFolderOnBuild/
+             GodotPublish below land Hermit.dll/.pck in the same mods/Downfall/ folder as
+             Downfall.dll/.pck, where DownfallMainFile can find and load them at a known relative
+             path next to itself. -->
+        <ModId>Hermit</ModId>
         <AssemblyName>$(ModId)</AssemblyName>
-        <ModOutputFolder>$(ModId)</ModOutputFolder>
-        <PackFolders>Collector</PackFolders>
+        <ModOutputFolder>Downfall</ModOutputFolder>
+        <PackFolders>Hermit</PackFolders>
 
         <ImplicitUsings>true</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -39,20 +46,12 @@
         </DefaultItemExcludes>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
 
-        <!-- Godot.NET.Sdk defaults every csproj in this folder to the SAME intermediate dir
-             (.godot/mono/temp/obj/<Configuration>/), including Krafs.Publicizer's own
-             PublicizedAssemblies cache under it. Downfall.csproj and SlimeBoss.csproj already share
-             that collision today, invisibly, because SlimeBoss's Publicize list is a strict subset
-             of Downfall's - whichever gets built last still leaves a cache broad enough for the
-             other. Collector's list is as broad as Downfall's, so the same collision is no longer
-             safe to ignore: building SlimeBoss right before Collector (the order build/test.ps1
-             uses) leaves SlimeBoss's narrower publicized sts2.dll cached, and Collector's build
-             then fails with CS0103/CS1061 on members only Downfall's/Collector's own list
-             needs (reproduced and confirmed while building this project) - not an actual
-             incompatibility, just a stale cache from the previous project's build. Giving
-             Collector its own intermediate dir avoids depending on build order for correctness. -->
-        <BaseIntermediateOutputPath>.godot\mono\temp\obj\Collector\</BaseIntermediateOutputPath>
-        <IntermediateOutputPath>.godot\mono\temp\obj\Collector\$(Configuration)\</IntermediateOutputPath>
+        <!-- Own intermediate dir, same rationale as Collector.csproj's header comment: avoids
+             sharing (and colliding on) the Godot.NET.Sdk default .godot/mono/temp/obj/<Config>/
+             Publicizer cache with the other csproj's in this folder, regardless of how narrow this
+             project's own Publicize list currently is. -->
+        <BaseIntermediateOutputPath>.godot\mono\temp\obj\Hermit\</BaseIntermediateOutputPath>
+        <IntermediateOutputPath>.godot\mono\temp\obj\Hermit\$(Configuration)\</IntermediateOutputPath>
 
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
     </PropertyGroup>
@@ -76,14 +75,9 @@
         <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
 
-    <ItemGroup>
-        <None Include="Collector.json"/>
-    </ItemGroup>
-
     <!-- OS detection, game assembly references, BaseLib/Publicizer setup: mirrors Downfall.csproj/
          SlimeBoss.csproj. Kept duplicated rather than factored into a shared .props file, same
-         rationale as SlimeBoss.csproj's own header comment - a shared-props cleanup can happen
-         later if a third project needs this scaffolding again. -->
+         rationale as those projects' own header comments. -->
     <PropertyGroup>
         <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
         <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
@@ -141,28 +135,22 @@
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.2.1"/>
     </ItemGroup>
 
-    <!-- Reference the core Downfall project for shared framework types (DownfallCode, and
-         transitively Awakened/Champ/Guardian/Hexaghost/Snecko, which are still bundled submods
-         compiled directly into Downfall.dll). Also reference SlimeBoss.csproj directly - SlimeBoss
-         is its own internal-submod assembly (SlimeBoss.dll) now, no longer part of Downfall.dll, so
-         a project that needs its types has to reference it separately. Collector -> SlimeBoss is a
-         normal, uncomplicated ProjectReference: it's only core (Downfall) -> SlimeBoss that had to
-         avoid a circular reference (see ADR 0003's Implementation note). Hermit is likewise its own
-         internal-submod assembly now (Hermit.csproj/Hermit.dll) - no ProjectReference to it is
-         added here since `grep -rl Hermit CollectorCode/` finds no actual compile-time reference
-         into HermitCode; add one the same way as SlimeBoss's above if that ever changes. -->
+    <!-- Only the core Downfall project reference: pulls in DownfallCode's public surface (and,
+         transitively, BaseLib) that HermitCode legitimately uses. -->
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
-        <ProjectReference Include="SlimeBoss.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <!-- Publicizer is opt-in per project. Collector's code touches a wide range of sts2/
-             BaseLib internals (AttackCommand, NCard, NCombatCardPile/Ui, NCreature*, NIntent,
-             NPlayerHand, NPower, hover tips, multiplayer state, rest site, card library, ...) -
-             copied verbatim from Downfall.csproj's own list rather than hand-trimmed, since
-             CollectorCode was developed as part of that project and already relies on this exact
-             set; trimming it is a follow-up cleanup, not required for this extraction. -->
+        <!-- Publicizer is opt-in per project. A hand-trimmed grep-based list missed several real
+             uses (private-field/implicit-property access through inherited sts2 base classes, e.g.
+             NCombatCardPile._pile reached only as "_pile" in a derived class, or
+             combatState.History.Add(...) resolving to the internal CombatHistory.Add - neither
+             literally spells the owning type's name at the call site, so grepping for the type name
+             doesn't find them). Copied verbatim from Downfall.csproj's own list instead (same
+             rationale Collector.csproj's header comment gives: most of it is for other characters'
+             code and isn't needed here, but trimming it is a follow-up cleanup, not required for
+             this extraction). -->
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
 
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
@@ -263,33 +251,27 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="CollectorCode/**/*.cs" Exclude="CollectorCode/Tests/**/*.cs"/>
-        <AdditionalFiles Include="Collector/**/*"/>
+        <Compile Include="HermitCode/**/*.cs" Exclude="HermitCode/Tests/**/*.cs"/>
+        <AdditionalFiles Include="Hermit/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
 
-    <!-- Collector's own [CardTest]s (none yet) would need TestCode's infra (CardTestAttribute,
-         TestContext, ...), which only exists in Downfall.dll when Downfall.csproj itself is built
-         with "Test" in its Submods - same opt-in flag as every other character's tests, read from
-         the same local.props this project already imports. Mirrors SlimeBoss.csproj's own block. -->
+    <!-- Hermit's own [CardTest]s need TestCode's infra (CardTestAttribute, TestContext, ...),
+         which only exists in Downfall.dll when Downfall.csproj itself is built with "Test" in its
+         Submods - same opt-in flag as every other character's tests, read from the same local.props
+         this project already imports. -->
     <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="CollectorCode/Tests/**/*.cs"/>
+        <Compile Include="HermitCode/Tests/**/*.cs"/>
     </ItemGroup>
 
-    <Target Name="GenerateModManifest">
-        <PropertyGroup>
-            <_ModManifestJson>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\Collector.json'))</_ModManifestJson>
-        </PropertyGroup>
-        <ItemGroup>
-            <_ModManifestLine Remove="@(_ModManifestLine)"/>
-            <_ModManifestLine Include="$(_ModManifestJson)"/>
-        </ItemGroup>
-        <WriteLinesToFile File="$(IntermediateOutputPath)$(ModId).json" Lines="@(_ModManifestLine)" Overwrite="true"/>
-    </Target>
-
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest">
+    <!-- No manifest: Hermit is an internal submod now, so only the compiled assembly (and its
+         PDB for debugging) need to reach the mods/ folder here - landing in the SAME mod output
+         folder as Downfall.csproj's own output (ModOutputFolder is "Downfall" above) so
+         DownfallMainFile can find and load it by reflection at a known relative path next to
+         itself. Its own Hermit.pck is produced separately by GodotPublish below (publish only,
+         same as Downfall.csproj's own asset packing - plain `dotnet build` never touches pck/loc). -->
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-        <Copy SourceFiles="$(IntermediateOutputPath)$(ModId).json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
               DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
@@ -302,13 +284,14 @@
               IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
-    <!-- Packs Collector/ into its own Collector.pck, dropped into its own mods/Collector/ folder
-         next to Collector.dll and Collector.json, so ModManager discovers and loads it as a
-         genuinely separate mod entry - unlike SlimeBoss.csproj's GodotPublish, which deliberately
-         lands its pck inside mods/Downfall/ instead. -->
+    <!-- Packs Hermit/ into its OWN Hermit.pck (not Downfall.pck - see the header comment),
+         dropped into the same mods/Downfall/ folder as Downfall's own pck so DownfallMainFile can
+         find and load it next to itself. Both projects share the same Godot project (same
+         directory, same project.godot), so the res://Hermit/... paths packed here are identical
+         to what Downfall.csproj's own GodotPublish would have produced for the same folder. -->
     <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="--- PACKING COLLECTOR RELEASE: '$(PackFolders)' ---" Importance="high"/>
+        <Message Text="--- PACKING HERMIT RELEASE: '$(PackFolders)' ---" Importance="high"/>
         <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; $(PackFolders.Replace(';', ' '))"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
               IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>

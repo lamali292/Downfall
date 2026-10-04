@@ -114,6 +114,12 @@ public static class DownfallMainFile
         // "SlimeBossBeta" above.
         if (!ReplaceableSubmod.IsSupersededBy("AutomatonBeta"))
             InitializeAutomaton();
+
+        // Hermit is an internal submod (ADR 0003), same pattern as SlimeBoss/Automaton above.
+        // "HermitBeta" doesn't exist yet - forward-declared replacement ModId, same rationale as
+        // "SlimeBossBeta"/"AutomatonBeta" above.
+        if (!ReplaceableSubmod.IsSupersededBy("HermitBeta"))
+            InitializeHermit();
     }
 
     // Loaded by reflection, not a normal C# reference: SlimeBossCode needs DownfallCode's own
@@ -249,6 +255,53 @@ public static class DownfallMainFile
         catch (Exception ex)
         {
             Logger.Error($"Failed to initialize the internal Automaton submod:\n{ex}");
+        }
+    }
+
+    // Same recipe as InitializeSlimeBoss()/InitializeAutomaton() above.
+    private static void InitializeHermit()
+    {
+        try
+        {
+            var downfallDir = Path.GetDirectoryName(typeof(DownfallMainFile).Assembly.Location) ?? "";
+
+            var hermitPckPath = Path.Combine(downfallDir, "Hermit.pck");
+            if (File.Exists(hermitPckPath))
+            {
+                if (!ProjectSettings.LoadResourcePack(hermitPckPath))
+                    Logger.Error($"Godot errored while loading Hermit's resource pack at '{hermitPckPath}'.");
+            }
+            else
+            {
+                Logger.Error($"Hermit.pck not found at '{hermitPckPath}' - its assets will not be available.");
+            }
+
+            var hermitPath = Path.Combine(downfallDir, "Hermit.dll");
+            if (!File.Exists(hermitPath))
+            {
+                Logger.Error($"Hermit.dll not found at '{hermitPath}' - internal Hermit submod will not be loaded.");
+                return;
+            }
+
+            var loadContext = AssemblyLoadContext.GetLoadContext(typeof(DownfallMainFile).Assembly);
+            var hermitAssembly = loadContext != null
+                ? loadContext.LoadFromAssemblyPath(hermitPath)
+                : Assembly.LoadFrom(hermitPath);
+            ModManager.AssociateAssemblyWithMod(ModId, hermitAssembly);
+
+            var hermitMainFile = hermitAssembly.GetType("Hermit.HermitCode.HermitMainFile");
+            var initialize = hermitMainFile?.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
+            if (initialize == null)
+            {
+                Logger.Error("Loaded Hermit.dll but could not find Hermit.HermitCode.HermitMainFile.Initialize() via reflection.");
+                return;
+            }
+
+            initialize.Invoke(null, null);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error($"Failed to initialize the internal Hermit submod:\n{ex}");
         }
     }
 
