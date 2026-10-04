@@ -50,17 +50,8 @@ public static class AutomatonCmd
         CardModel card,
         PlayerChoiceContext ctx)
     {
-        // A dupe (History Course, Feral, ...) always ceases to exist after playing instead of
-        // going anywhere - see CardModel.GetResultLocationForCardPlay. The dupe still applies its
-        // Encoding effects via AutomatonCardEffectHandler.DoBeforeOnPlayInternal like any other
-        // Encodable play; only the resulting pile placement is skipped so the transient copy
-        // vanishes instead of lingering in the Encode pile / compiling into a Function.
+
         if (card.IsDupe) return null;
-
-        // Being put into the Encode pile makes a card an Encode card. Cards that are not Encode cards by
-        // default (starter Strike and Defend) become one here, whichever effect placed them.
-        if (!IsEncodable(card)) card.AddKeyword(AutomatonKeyword.Encode);
-
         var player = card.Owner;
         if (LocalContext.IsMe(player))
             Callable.From(() => NEncodePile.RevealFor(player)).CallDeferred();
@@ -70,14 +61,11 @@ public static class AutomatonCmd
         await Cmd.Wait(0.2f);
         EncodePile.FunctionSequence.GetPile(player).InvokeContentsChanged();
         //NSequenceDisplay.Refresh(creature);
-
         FunctionCard? functionCard = null;
         if (player.EncodePile.Count >= GetMax(player))
         {
             functionCard = await CompileFunctionCard(player, ctx);
         }
-
-
         await AutomatonHook.OnCardEncoded(player.Creature.CombatState!, ctx, card);
         return functionCard;
     }
