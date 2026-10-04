@@ -14,6 +14,7 @@ using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
+using Godot;
 using Godot.Bridge;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
@@ -118,12 +119,13 @@ public static class DownfallMainFile
     // DownfallCode's static registries - duplicating that source into SlimeBoss.dll instead would
     // silently split BundledSubmodLocRegistry/etc. into two independent, non-communicating
     // copies) means the Downfall -> SlimeBoss direction has to be a late-bound call instead.
-    // SlimeBoss.dll is built as its own project (`dotnet build SlimeBoss.csproj`, see
-    // local.props.example) and copied next to Downfall.dll in the same mod output folder by its
-    // own CopyToModsFolderOnBuild target, so it's always sitting alongside whatever assembly this
-    // method itself was loaded from - that's resolved here instead of relying on default assembly
-    // probing, since Downfall.dll itself was loaded by the game's own AssemblyLoadContext from an
-    // arbitrary mod path, not the probing paths used for the main app.
+    // SlimeBoss.dll/.pck are built as their own project (`dotnet build`/`dotnet publish
+    // SlimeBoss.csproj`, see local.props.example) and copied next to Downfall.dll/.pck in the same
+    // mod output folder by its own CopyToModsFolderOnBuild/GodotPublish targets, so they're always
+    // sitting alongside whatever assembly this method itself was loaded from - that's resolved
+    // here instead of relying on default assembly probing, since Downfall.dll itself was loaded by
+    // the game's own AssemblyLoadContext from an arbitrary mod path, not the probing paths used
+    // for the main app.
     //
     // Loading the dll alone is NOT enough for its [Pool]-attributed cards/powers/relics/character
     // to be discovered: BaseLib/the game's own content scanning (ReflectionHelper.ModTypes) only
@@ -146,6 +148,17 @@ public static class DownfallMainFile
         try
         {
             var downfallDir = Path.GetDirectoryName(typeof(DownfallMainFile).Assembly.Location) ?? "";
+
+            var slimeBossPckPath = Path.Combine(downfallDir, "SlimeBoss.pck");
+            if (File.Exists(slimeBossPckPath))
+            {
+                if (!ProjectSettings.LoadResourcePack(slimeBossPckPath))
+                    Logger.Error($"Godot errored while loading SlimeBoss's resource pack at '{slimeBossPckPath}'.");
+            }
+            else
+            {
+                Logger.Error($"SlimeBoss.pck not found at '{slimeBossPckPath}' - its assets will not be available.");
+            }
 
             var slimeBossPath = Path.Combine(downfallDir, "SlimeBoss.dll");
             if (!File.Exists(slimeBossPath))

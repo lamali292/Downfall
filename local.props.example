@@ -7,15 +7,20 @@
         <SteamLibraryPath>C:\Program Files (x86)\Steam\steamapps</SteamLibraryPath>
         <!-- Path to your GDRE extracted Slay the Spire 2 assets folder -->
         <AssetSourcePath>C:\...\Slay the Spire 2</AssetSourcePath>
-         <!-- Enabled Characters. SlimeBoss is NOT listed here: it's a standalone submod with its
-              own SlimeBoss.csproj now (own SlimeBoss.dll/.pck/manifest), never compiled into
-              Downfall.dll regardless of what's in this list - see SlimeBoss.csproj. To build and
-              test SlimeBoss locally, run `dotnet build SlimeBoss.csproj` separately (or
-              `dotnet publish SlimeBoss.csproj` for asset/loc changes) and copy both it and
-              Downfall's own output into mods/ - the MSBuild post-build step already does this for
-              you as long as SteamLibraryPath above is set. If your own local.props still lists
-              "SlimeBoss" here from before this change, it's harmless (Downfall.csproj no longer
-              reacts to it) but you can remove it for clarity. -->
+         <!-- Enabled Characters. SlimeBoss is NOT listed here: it's an internal submod with its
+              own SlimeBoss.csproj now (own SlimeBoss.dll and its own SlimeBoss.pck, but no
+              manifest of its own - see ADR 0003), never compiled into Downfall.dll regardless of
+              what's in this list - see SlimeBoss.csproj. It's still loaded as part of the one
+              Downfall mod entry: Downfall's own MainFile loads both by reflection/
+              ProjectSettings.LoadResourcePack and calls into SlimeBossMainFile.Initialize()
+              directly (see DownfallMainFile.Initialize()). To build and test SlimeBoss locally,
+              run `dotnet build SlimeBoss.csproj` separately (or `dotnet publish SlimeBoss.csproj`
+              for asset/loc changes - this is a SEPARATE publish from Downfall's own, since
+              SlimeBoss's assets are packed into their own pck, not Downfall.pck) and copy its
+              output into mods/ alongside Downfall's own - the MSBuild post-build step already does
+              this for you as long as SteamLibraryPath above is set. If your own local.props still
+              lists "SlimeBoss" here from before this change, it's harmless (Downfall.csproj no
+              longer reacts to it) but you can remove it for clarity. -->
         <Submods>Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;Snecko</Submods>
 
         <!-- Uncomment to build a separately-installable mod (e.g. a single-character beta) that
