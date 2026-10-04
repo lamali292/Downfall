@@ -37,8 +37,8 @@ public class AllCardsTest
     [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
     public IEnumerable<CardTestCase> PlayGuardianCards(CharacterModel character) => PlayAllCards(character);
 
-    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
-    public IEnumerable<CardTestCase> PlayHermitCards(CharacterModel character) => PlayAllCards(character);
+    // Hermit moved to its own standalone-submod assembly (Hermit.csproj) - its pool test
+    // lives in HermitCode/Tests/HermitTests.cs now, calling the public PlayAllCards below.
 
     [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
     public IEnumerable<CardTestCase> PlayHexaghostCards(CharacterModel character) => PlayAllCards(character);
@@ -53,9 +53,9 @@ public class AllCardsTest
     // in CollectorCode/Tests/CollectorTests.cs now, calling the public PlayAllCards below.
 
     // Public + static (never used instance state): reused from AutomatonCode/Tests/AutomatonTests.cs,
-    // SlimeBossCode/Tests/SlimeBossTests.cs and CollectorCode/Tests/CollectorTests.cs, which live in
-    // separate assemblies (Automaton.csproj, SlimeBoss.csproj, Collector.csproj) and can't share a
-    // private instance method.
+    // SlimeBossCode/Tests/SlimeBossTests.cs, CollectorCode/Tests/CollectorTests.cs and
+    // HermitCode/Tests/HermitTests.cs, which live in separate assemblies (Automaton.csproj,
+    // SlimeBoss.csproj, Collector.csproj, Hermit.csproj) and can't share a private instance method.
     public static IEnumerable<CardTestCase> PlayAllCards(CharacterModel character)
     {
         return character.CardPool.AllCards.Select(model => new CardTestCase(model.GetType().Name, async ctx =>

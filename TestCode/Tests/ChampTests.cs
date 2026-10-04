@@ -65,24 +65,14 @@ public class ChampTests
     // CardFactory.GetDistinctForCombat (used to pick the random Strike cards) unconditionally
     // filters out Basic-rarity cards, so a pool whose only Strike Attack is Basic Strike resolves
     // to empty. Fixed by falling back to Basic Strike to fill any remaining slots.
-    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
-    public async Task StrikeOfGeniusFallsBackToBasicStrikeWhenNoOtherStrikeExists(TestContext ctx)
-    {
-        var handBefore = ctx.Player.Hand.ToList();
-
-        var power = await PowerCmd.Apply<StrikeOfGeniusPower>(new BlockingPlayerChoiceContext(),
-            ctx.Player.Creature, 3, ctx.Player.Creature, null);
-        Assert.IsTrue(power != null, "Sanity check: StrikeOfGeniusPower should have been applied.");
-
-        await power!.BeforeHandDraw(ctx.Player, new BlockingPlayerChoiceContext(), ctx.Combat);
-
-        var generated = ctx.Player.Hand.Except(handBefore).ToList();
-        Assert.AreEqual(3, generated.Count,
-            "Strike of Genius should still generate its full Amount when the only Strike card " +
-            "the character has is Basic Strike.");
-        Assert.IsTrue(generated.All(c => c.Rarity == CardRarity.Basic && c.Tags.Contains(CardTag.Strike)),
-            "The fallback cards should be Basic Strike.");
-    }
+    //
+    // This test needs a non-Champ character with no Strike Attack besides Basic Strike (Hermit),
+    // so it lives in HermitCode/Tests/HermitTests.cs instead of here - Hermit is its own
+    // standalone-submod assembly (Hermit.csproj) now, and TestCode (compiled into Downfall.dll)
+    // can't reference back into it (same circular-reference restriction as DownfallCode -> Hermit;
+    // see ADR 0003). The reverse direction works fine: Hermit.csproj -> Downfall.csproj already
+    // includes ChampCode (still bundled), so the moved test can reference StrikeOfGeniusPower
+    // directly.
 
     // Regression guard: a Finisher played without a stance via the Signature enchantment never
     // triggered Dancing Master because PlayFinisher bailed out when the stance had no Finisher.

@@ -1,6 +1,8 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
+using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
+using Downfall.TestCode;
 using Hermit.HermitCode.Cards.Common;
 using Hermit.HermitCode.Cards.Multiplayer;
 using Hermit.HermitCode.Cards.Rare;
@@ -18,12 +20,44 @@ using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.TestCode;
+namespace Hermit.HermitCode.Tests;
 
 public class HermitTests
 {
+    // Regression guard (internal-submod smoke test): confirms Hermit's own standalone assembly
+    // still registers and plays normally with no replacement mod loaded - i.e. the Hermit.csproj
+    // extraction and ReplaceableSubmod guard didn't break anything.
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public IEnumerable<CardTestCase> PlayHermitCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+
     private static int DeadOnEntries(CardModel card) =>
         CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e => e.CardPlay?.Card == card);
+
+    // Regression guard: player-reported that Strike of Genius (a Champ power) generates nothing
+    // for a Hermit who has no Strike-tagged Attack cards other than Basic Strike. Root cause was
+    // that CardFactory.GetDistinctForCombat (used to pick the random Strike cards) unconditionally
+    // filters out Basic-rarity cards, so a pool whose only Strike Attack is Basic Strike resolves
+    // to empty. Fixed by falling back to Basic Strike to fill any remaining slots. Lives here (not
+    // TestCode/Tests/ChampTests.cs) because it needs Hermit's character/card pool specifically -
+    // see the comment left in ChampTests.cs for why that cross-assembly direction works.
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task StrikeOfGeniusFallsBackToBasicStrikeWhenNoOtherStrikeExists(TestContext ctx)
+    {
+        var handBefore = ctx.Player.Hand.ToList();
+
+        var power = await PowerCmd.Apply<StrikeOfGeniusPower>(new BlockingPlayerChoiceContext(),
+            ctx.Player.Creature, 3, ctx.Player.Creature, null);
+        Assert.IsTrue(power != null, "Sanity check: StrikeOfGeniusPower should have been applied.");
+
+        await power!.BeforeHandDraw(ctx.Player, new BlockingPlayerChoiceContext(), ctx.Combat);
+
+        var generated = ctx.Player.Hand.Except(handBefore).ToList();
+        Assert.AreEqual(3, generated.Count,
+            "Strike of Genius should still generate its full Amount when the only Strike card " +
+            "the character has is Basic Strike.");
+        Assert.IsTrue(generated.All(c => c.Rarity == CardRarity.Basic && c.Tags.Contains(CardTag.Strike)),
+            "The fallback cards should be Basic Strike.");
+    }
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
     public async Task DeadOnCardPlayedFromCenterTriggers(TestContext ctx)
@@ -65,7 +99,7 @@ public class HermitTests
     {
         await ctx.ClearHand();
         var dive = await ctx.AddCardToTopOfDraw<Dive>();
-        // 3 cards, Cheat last → index 2, center is index 1 → not Dead On.
+        // 3 cards, Cheat last â†’ index 2, center is index 1 â†’ not Dead On.
         await ctx.AddCardToHand<Dive>();
         await ctx.AddCardToHand<Dive>();
         var cheat = await ctx.AddCardToHand<Cheat>();
@@ -91,7 +125,7 @@ public class HermitTests
             "Tracking Shot should grant Concentration on play.");
 
         await ctx.ClearHand();
-        // 3 cards, target Dive last → index 2, center is index 1 → off-center by hand position.
+        // 3 cards, target Dive last â†’ index 2, center is index 1 â†’ off-center by hand position.
         await ctx.AddCardToHand<Dive>();
         await ctx.AddCardToHand<Dive>();
         var dive = await ctx.AddCardToHand<Dive>();
