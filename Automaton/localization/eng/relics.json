@@ -24,7 +24,7 @@
   "AUTOMATON-MALLET.description": "Whenever you [gold]Stash[/gold] a card, [gold]Upgrade[/gold] it for the remainder of combat.",
   "AUTOMATON-MALLET.flavor": "That's it! I'm gettin me mallet!",
   "AUTOMATON-PLATINUM_CORE.title": "Platinum Core",
-  "AUTOMATON-PLATINUM_CORE.description": "At the start of each combat, [gold]Encode[/gold] a [gold]Core Strike[/gold] and [gold]Core Defend[/gold]. Whenever you play a [gold]Strike[/gold] or [gold]Defend[/gold], [gold]Exhaust[/gold] it and [gold]Encode[/gold] the matching [gold]Core[/gold] card.\n[gold]Functions[/gold] made of [blue]2[/blue] or more cards containing \"Core\" are free to play.",
+  "AUTOMATON-PLATINUM_CORE.description": "At the start of each combat, [gold]Encode[/gold] a [gold]Core Strike[/gold] and [gold]Core Defend[/gold].\nWhenever you play a [gold]Strike[/gold] or [gold]Defend[/gold], [gold]Exhaust[/gold] it and [gold]Encode[/gold] the matching [gold]Core[/gold] card.\n[gold]Functions[/gold] made of [blue]2[/blue] or more cards containing \"Core\" are free to play.",
   "AUTOMATON-PLATINUM_CORE.flavor": "Changelog: Improved user experience.",
   "AUTOMATON-PROTECTIVE_GOGGLES.title": "Protective Goggles",
   "AUTOMATON-PROTECTIVE_GOGGLES.description": "At the end of your turn, gain [gold]Block[/gold] equal to the number of cards in your [gold]Stash Pile[/gold].",

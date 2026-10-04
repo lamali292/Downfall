@@ -14,7 +14,7 @@
     "GUARDIAN-SOCKET.title": "ソケット",
     "GUARDIAN-SOCKET.description": "[gold]休憩所[/gold]で[gold]ジェム[/gold]を埋め込み、その効果を取り込むことができる。",
     "GUARDIAN-STASIS.title": "停滞",
-    "GUARDIAN-STASIS.description": "カードのコスト＋[blue]1[/blue]ターンの間、[gold]停滞[/gold]スロットに配置される。\nカウントが[blue]0[/blue]になると[gold]手札[/gold]に戻り、プレイするまでこのカードのコストは0。",
+    "GUARDIAN-STASIS.description": "カードのコスト+[blue]1[/blue]カウントの間、[gold]停滞[/gold]スロットに配置される。\nターン開始時にカウントが減少し、カウントが[blue]0[/blue]になると[gold]手札[/gold]に戻る。このターン、それはコストを支払わずにプレイできる。",
     "GUARDIAN-TICK.title": "ティック",
     "GUARDIAN-TICK.description": "このカードの[gold]停滞[/gold]カウントが減少するたび、効果を発動する。"
 }
