@@ -51,7 +51,7 @@
     "GUARDIAN-HARDEN.title": "硬化",
     "GUARDIAN-INCINERATE.description": "{Damage:diff()}ダメージを与える。\n{IfUpgraded:show:2回|}[gold]加速[/gold]する。",
     "GUARDIAN-INCINERATE.title": "焼き払う",
-    "GUARDIAN-LASER_TURRET.description": "{Damage:diff()}ダメージを与える。\nこのカードを[gold]停滞[/gold]させる。\n4ターン[gold]停滞[/gold]する。\n[gold]ティック[/gold]：ランダムな敵に{Damage:diff()}ダメージを与える。",
+    "GUARDIAN-LASER_TURRET.description": "{Damage:diff()}ダメージを与える。\nこのカードを[gold]停滞[/gold]させる。\nこのカードを[gold]停滞[/gold]させると、4ターン[gold]停滞[/gold]する。\n[gold]ティック[/gold]：ランダムな敵に{Damage:diff()}ダメージを与える。",
     "GUARDIAN-LASER_TURRET.title": "レーザータレット",
     "GUARDIAN-MULTI_BEAM.description": "すべての敵に{Damage:diff()}ダメージをX回与える。\nこのカードを停滞させると、3ターン[gold]停滞[/gold]する。\n[gold]ティック[/gold]：この戦闘中、このカードのダメージが{Increase:diff()}増加する。",
     "GUARDIAN-MULTI_BEAM.title": "マルチ-ビーム",
@@ -160,7 +160,7 @@
     "GUARDIAN-MAXIMUM_OVERDRIVE.title": "マキシマムオーバードライブ",
     "GUARDIAN-MAXIMUM_OVERDRIVE.description": "[gold]停滞[/gold]中のカードのカウントが減少するたび、ターン終了時まで[gold]筋力[/gold]{MaximumOverdrivePower:diff()}を得る。",
     "GUARDIAN-SHARED_FLUX.title": "共有フラックス",
-    "GUARDIAN-SHARED_FLUX.description": "他のプレイヤーを1人選ぶ。\nそのプレイヤーは自分の[gold]山札[/gold]のカード1枚を[gold]停滞[/gold]させる。",
+    "GUARDIAN-SHARED_FLUX.description": "他のプレイヤーを1人選ぶ。\nそのプレイヤーは自分の[gold]山札[/gold]のカード1枚を[gold]停滞[/gold]させてもよい。",
     "GUARDIAN-OVERBLOCK.title": "過剰な防御",
     "GUARDIAN-OVERBLOCK.description": "[gold]防御態勢[/gold]に入るたび、[gold]ブロック[/gold]が最も少ない味方は{OverblockBlockPower:diff()}[gold]ブロック[/gold]と、ターン終了時まで[gold]トゲ[/gold]{OverblockThornsPower:diff()}を得る。",
     "GUARDIAN-REFRACTED_LIGHT.title": "屈折光線",
@@ -168,5 +168,5 @@
     "GUARDIAN-MULTI_TROPS.title": "マルチ-トロプス",
     "GUARDIAN-MULTI_TROPS.description": "すべてのプレイヤーは[gold]トゲ[/gold]{ThornsPower:diff()}を得る。",
     "GUARDIAN-BASTION.title": "要塞",
-    "GUARDIAN-BASTION.description": "[gold]制動[/gold]するたび、すべての味方は[gold]ブロック[/gold]{BastionPower:diff()}を得る。"
+    "GUARDIAN-BASTION.description": "[gold]制動[/gold]するたび、自身を除くすべてのプレイヤーは[gold]ブロック[/gold]{BastionPower:diff()}を得る。"
 }
