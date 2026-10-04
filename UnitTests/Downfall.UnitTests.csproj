@@ -27,5 +27,6 @@
         <Compile Include="../DownfallCode/Voting/Client/VotingRequest.cs" Link="Pure/VotingRequest.cs"/>
         <Compile Include="../DownfallCode/Voting/Client/VotingTransport.cs" Link="Pure/VotingTransport.cs"/>
         <Compile Include="../CollectorCode/Core/ReservePayment.cs" Link="Pure/ReservePayment.cs"/>
+        <Compile Include="../DownfallCode/Utils/Compat/ReplaceableSubmod.IsSupersededByAny.cs" Link="Pure/ReplaceableSubmod.IsSupersededByAny.cs"/>
     </ItemGroup>
 </Project>
