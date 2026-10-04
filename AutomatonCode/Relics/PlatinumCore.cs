@@ -42,13 +42,25 @@ public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction
         await CardCmdCompatibility.Exhaust(ctx, card);
         if (card.Tags.Contains(CardTag.Strike))
         {
-            await AutomatonCmd.EncodeCard<CoreStrike>(Owner, ctx);
+            await AutomatonCmd.EncodeCard<CoreStrike>(Owner, ctx, c => CopyUpgradeAndEnchant(card, c));
         }
         else if (card.Tags.Contains(CardTag.Defend))
         {
-            await AutomatonCmd.EncodeCard<CoreDefend>(Owner, ctx);
+            await AutomatonCmd.EncodeCard<CoreDefend>(Owner, ctx, c => CopyUpgradeAndEnchant(card, c));
         }
         Flash();
+    }
+
+    // Keep the generated CoreStrike/CoreDefend a perfect copy of the Strike/Defend it replaced -
+    // only the class changes, so upgrade status and any enchantment must carry over too.
+    private static void CopyUpgradeAndEnchant(CardModel source, CardModel card)
+    {
+        if (source.IsUpgraded)
+            card.UpgradeInternal();
+        var enchant = (EnchantmentModel?)source.Enchantment?.MutableClone();
+        if (enchant == null) return;
+        if (enchant.CanEnchant(card))
+            card.EnchantInternal(enchant, enchant.Amount);
     }
     
     public bool ModifyCompiledFunction(FunctionCard function, Player player)
