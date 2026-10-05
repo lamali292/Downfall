@@ -38,6 +38,7 @@ public static class TestMainFile
             .Add(typeof(FtueTestModePatch))
             .PatchAll();
 
+        /*
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Unit Test",
@@ -46,6 +47,7 @@ public static class TestMainFile
             CreateSubmenu = null,
             OnPress = _ => TaskHelper.RunSafely(RunTests(System.Environment.GetEnvironmentVariable(EnvFilter)))
         });
+        */
     }
 
     /// Fired via BootTimingPatch right after OneTimeInitialization.ExecuteEssential - well before
