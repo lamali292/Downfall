@@ -5,16 +5,21 @@ using Champ.ChampCode.Cards.Uncommon;
 using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
+using Downfall.TestCode;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.TestCode;
+namespace Champ.ChampCode.Teets;
 
 public class ChampTests
 {
+    
+    [CardTest(typeof(Champ.ChampCode.Core.Champ))]
+    public IEnumerable<CardTestCase> PlayChampCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+    
     // Crowned makes a card free via its base cost, which is meaningless for X cards, so neither
     // X-energy nor X-star cards may be crowned.
     [CardTest(typeof(Champ.ChampCode.Core.Champ))]
