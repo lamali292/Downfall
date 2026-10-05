@@ -1,0 +1,161 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
+    
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>14</LangVersion>
+
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+        
+        <ModId>Guardian</ModId>
+        <AssemblyName>$(ModId)</AssemblyName>
+        <ModOutputFolder>Downfall</ModOutputFolder>
+        <PackFolders>Guardian</PackFolders>
+
+        <ImplicitUsings>true</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefaultItemExcludes>
+            packages/**;
+            src/**;shaders/**;steam/**;System/**;themes/**;addons/**;
+            animations/**;banks/**;debug_audio/**;fonts/**;images/**;
+            localization/**;materials/**;models/**;RiderTestRunner/**;scenes/**
+        </DefaultItemExcludes>
+        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
+
+        <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <AssemblyVersion>0.1.20.0</AssemblyVersion>
+        <FileVersion>0.1.20.0</FileVersion>
+        <Version>0.1.20</Version>
+        <BaseLibVersion>3.4.7</BaseLibVersion>
+        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <Optimize>false</Optimize>
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <Optimize>true</Optimize>
+        <DebugType>none</DebugType>
+        <PathMap>$(AppOutputBase)=.\</PathMap>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
+        <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
+        <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsWindows)' == 'true'">
+        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
+        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsLinux)' == 'true'">
+        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
+        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_linuxbsd_x86_64</Sts2DataDir>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(IsOSX)' == 'true'">
+        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/MacOS/mods/</ModsPath>
+        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
+    </PropertyGroup>
+
+    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
+        <Reference Include="0Harmony">
+            <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="sts2">
+            <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
+            <Private>false</Private>
+            <Publicize>true</Publicize>
+        </Reference>
+        <Reference Include="SmartFormat">
+            <HintPath>$(Sts2DataDir)/SmartFormat.dll</HintPath>
+        </Reference>
+        <Reference Include="Steamworks.NET">
+            <HintPath>$(Sts2DataDir)/Steamworks.NET.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
+        <PackageReference Include="lamali.StS2.RefLib" Version="0.111.0-beta" ExcludeAssets="runtime" PrivateAssets="all"/>
+        <PackageReference Include="SmartFormat.NET" Version="3.*" ExcludeAssets="runtime" PrivateAssets="all"/>
+        <PackageReference Include="Steamworks.NET" Version="2024.8.0" ExcludeAssets="runtime" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="BaseLib" Condition="'$(UseLocalBaseLib)' == 'true'">
+            <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="$(BaseLibVersion)" Condition="'$(UseLocalBaseLib)' != 'true'"/>
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.2.1"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton.Reload"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton._isUnclickable"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.ReloadOverlay"/>
+
+        <Publicize Include="BaseLib:BaseLib.Abstracts.CardModifier._dynamicVars"/>
+        <Publicize Include="BaseLib:BaseLib.Utils.SpireField`2._table"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="GuardianCode/**/*.cs" Exclude="GuardianCode/Tests/**/*.cs"/>
+        <AdditionalFiles Include="Guardian/**/*"/>
+        <Using Include="Downfall.DownfallCode.Extensions"/>
+    </ItemGroup>
+    
+    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
+        <Compile Include="GuardianCode/Tests/**/*.cs"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include=".godot\mono\temp\" />
+    </ItemGroup>
+    
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
+              DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
+              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+    </Target>
+
+    <Target Name="GodotImport" BeforeTargets="GodotPublish"
+            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(SkipGodotImport)' != 'true'">
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
+              IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true"/>
+    </Target>
+    
+    <Target Name="GodotPublish" AfterTargets="Publish"
+            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+        <Message Text="--- PACKING Guardian RELEASE: '$(PackFolders)' ---" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; $(PackFolders.Replace(';', ' '))"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
+              IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
+    </Target>
+</Project>
