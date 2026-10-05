@@ -80,11 +80,8 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <_PackFolder Include="$(Submods)"/>
-    </ItemGroup>
     <PropertyGroup>
-        <PackFolders>@(_PackFolder, ';')</PackFolders>
+        <PackFolders>$(Submods)</PackFolders>
     </PropertyGroup>
 
     <ItemGroup Condition="$(Submods.Contains('Downfall'))">
