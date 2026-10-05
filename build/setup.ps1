@@ -74,6 +74,47 @@ if ($LASTEXITCODE -ne 0) {
     if ($LASTEXITCODE -ne 0) { throw "Hermit build failed" }
 }
 
+Write-Host "=== Building Awakened (internal submod) ==="
+dotnet build Awakened.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Awakened (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Awakened.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Awakened build failed" }
+}
+
+Write-Host "=== Building Champ (internal submod) ==="
+dotnet build Champ.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Champ (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Champ.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Champ build failed" }
+}
+
+Write-Host "=== Building Guardian (internal submod) ==="
+dotnet build Guardian.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Guardian (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Guardian.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Guardian build failed" }
+}
+
+Write-Host "=== Building Snecko (internal submod) ==="
+dotnet build Snecko.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Snecko (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Snecko.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Snecko build failed" }
+}
+
+Write-Host "=== Building Hexaghost (internal submod) ==="
+dotnet build Hexaghost.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Hexaghost (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Snecko.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hexaghost build failed" }
+}
+
+
 Write-Host "=== Building Collector (standalone mod) ==="
 dotnet build Collector.csproj --nologo -v q
 if ($LASTEXITCODE -ne 0) {

@@ -96,109 +96,61 @@ public static class DownfallMainFile
         //FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Master.strings.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
-
-        // SlimeBoss is an internal submod (ADR 0003): its own assembly (SlimeBossCode compiled
-        // into SlimeBoss.dll by SlimeBoss.csproj) for code-separation, with no manifest/ModId of
-        // its own, so the game's mod loader never discovers or calls it - Downfall's own MainFile
-        // is responsible for calling into it directly.
-        //
-        // "SlimeBossBeta" doesn't exist yet - this is the forward-declared replacement ModId a
-        // future SlimeBoss Beta standalone submod will use. If it's ever loaded alongside this
-        // internal SlimeBoss, skip calling into it entirely so the two never both register the
-        // same model IDs.
-        if (!ReplaceableSubmod.IsSupersededBy("SlimeBossBeta"))
-            InitializeSlimeBoss();
-
-        // Automaton is an internal submod (ADR 0003), same pattern as SlimeBoss above.
-        // "AutomatonBeta" doesn't exist yet - forward-declared replacement ModId, same rationale as
-        // "SlimeBossBeta" above.
-        if (!ReplaceableSubmod.IsSupersededBy("AutomatonBeta"))
-            InitializeAutomaton();
-
-        // Hermit is an internal submod (ADR 0003), same pattern as SlimeBoss/Automaton above.
-        // "HermitBeta" doesn't exist yet - forward-declared replacement ModId, same rationale as
-        // "SlimeBossBeta"/"AutomatonBeta" above.
-        if (!ReplaceableSubmod.IsSupersededBy("HermitBeta"))
-            InitializeHermit();
+        
+        List<string> list = ["Automaton", "Awakened", "Champ", "SlimeBoss", "Hermit", "Guardian", "Snecko", "Hexaghost"];
+        foreach (var se in list)
+        {
+            InitializeSubmod(se);
+        }
     }
 
-    // Loaded by reflection, not a normal C# reference: SlimeBossCode needs DownfallCode's own
-    // types (registries, ModPatcher, DownfallCardModel, ...) via SlimeBoss.csproj's
-    // ProjectReference to this project, and a mutual ProjectReference between the two .csproj
-    // files isn't something MSBuild/.NET supports - that would be a true circular dependency,
-    // not just an awkward one. Keeping the ProjectReference in the direction that matters for
-    // runtime correctness (SlimeBoss -> Downfall, so both share the one compiled copy of
-    // DownfallCode's static registries - duplicating that source into SlimeBoss.dll instead would
-    // silently split BundledSubmodLocRegistry/etc. into two independent, non-communicating
-    // copies) means the Downfall -> SlimeBoss direction has to be a late-bound call instead.
-    // SlimeBoss.dll/.pck are built as their own project (`dotnet build`/`dotnet publish
-    // SlimeBoss.csproj`, see local.props.example) and copied next to Downfall.dll/.pck in the same
-    // mod output folder by its own CopyToModsFolderOnBuild/GodotPublish targets, so they're always
-    // sitting alongside whatever assembly this method itself was loaded from - that's resolved
-    // here instead of relying on default assembly probing, since Downfall.dll itself was loaded by
-    // the game's own AssemblyLoadContext from an arbitrary mod path, not the probing paths used
-    // for the main app.
-    //
-    // Loading the dll alone is NOT enough for its [Pool]-attributed cards/powers/relics/character
-    // to be discovered: BaseLib/the game's own content scanning (ReflectionHelper.ModTypes) only
-    // walks types from assemblies ModManager has associated with a *loaded mod record*
-    // (Mod.assemblies) - an assembly pulled in by Assembly.LoadFrom on its own is invisible to it,
-    // which silently drops every SlimeBoss model (confirmed by a real test run: SlimeBoss's
-    // character came back as "unknown" and nothing SlimeBoss-related registered). ModManager
-    // exposes exactly this escape hatch for mods with secondary assemblies:
-    // ModManager.AssociateAssemblyWithMod(modId, assembly) - call it before anything scans for
-    // content (ModelDb.InitIds and earlier), associating SlimeBoss.dll with this mod's own
-    // ("Downfall") id.
-    //
-    // Once SlimeBossMainFile.Initialize() runs, SlimeBoss's own Harmony patches are already
-    // applied as part of it (via its own explicit ModPatcher.Create(...).Add(...).PatchAll()
-    // calls - a per-type Harmony.CreateClassProcessor(...).Patch(), not an assembly scan - so
-    // this doesn't depend on the game's automatic Harmony.PatchAll(assembly), which only covers
-    // the manifest's own assembly (Downfall.dll) anyway).
-    private static void InitializeSlimeBoss()
+    private static void InitializeSubmod(string name)
+    {
+        if (!ReplaceableSubmod.IsSupersededBy($"{name}Beta"))
+            InitializeSubmod(name,
+                $"{name}.{name}Code.{name}MainFile");
+    }
+    
+    private static void InitializeSubmod(string name, string mainTypeName)
     {
         try
         {
             var downfallDir = Path.GetDirectoryName(typeof(DownfallMainFile).Assembly.Location) ?? "";
 
-            var slimeBossPckPath = Path.Combine(downfallDir, "SlimeBoss.pck");
-            if (File.Exists(slimeBossPckPath))
+            var pckPath = Path.Combine(downfallDir, $"{name}.pck");
+            if (File.Exists(pckPath))
             {
-                if (!ProjectSettings.LoadResourcePack(slimeBossPckPath))
-                    Logger.Error($"Godot errored while loading SlimeBoss's resource pack at '{slimeBossPckPath}'.");
+                if (!ProjectSettings.LoadResourcePack(pckPath))
+                    Logger.Error($"Godot errored while loading {name}'s resource pack at '{pckPath}'.");
             }
             else
             {
-                Logger.Error($"SlimeBoss.pck not found at '{slimeBossPckPath}' - its assets will not be available.");
+                Logger.Error($"{name}.pck not found at '{pckPath}' - its assets will not be available.");
             }
 
-            var slimeBossPath = Path.Combine(downfallDir, "SlimeBoss.dll");
-            if (!File.Exists(slimeBossPath))
+            var dllPath = Path.Combine(downfallDir, $"{name}.dll");
+            if (!File.Exists(dllPath))
             {
-                Logger.Error($"SlimeBoss.dll not found at '{slimeBossPath}' - internal SlimeBoss submod will not be loaded.");
+                Logger.Error($"{name}.dll not found at '{dllPath}' - internal {name} submod will not be loaded.");
                 return;
             }
 
-            // Assembly.LoadFrom loads into its own default-load-context bucket, which does NOT
-            // share already-resolved references with whatever context Downfall.dll itself was
-            // loaded into (the game's ModManager loads mod assemblies via
-            // AssemblyLoadContext.GetLoadContext(...).LoadFromAssemblyPath, not Assembly.LoadFrom
-            // - see ModManager.TryLoadMod). Using Assembly.LoadFrom here caused SlimeBoss.dll's own
-            // "BaseLib" reference to fail resolving (BaseLib.dll was already loaded, but into the
-            // OTHER context), spamming FileNotFoundException and effectively hanging startup -
-            // confirmed by an actual test run. Loading into the SAME context Downfall.dll lives in
-            // lets SlimeBoss.dll's references resolve against what's already loaded there.
             var loadContext = AssemblyLoadContext.GetLoadContext(typeof(DownfallMainFile).Assembly);
-            var slimeBossAssembly = loadContext != null
-                ? loadContext.LoadFromAssemblyPath(slimeBossPath)
-                : Assembly.LoadFrom(slimeBossPath);
-            ModManager.AssociateAssemblyWithMod(ModId, slimeBossAssembly);
+            var assembly = loadContext != null
+                ? loadContext.LoadFromAssemblyPath(dllPath)
+                : Assembly.LoadFrom(dllPath);
 
-            var slimeBossMainFile = slimeBossAssembly.GetType("SlimeBoss.SlimeBossCode.SlimeBossMainFile");
-            var initialize = slimeBossMainFile?.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
+            ModManager.AssociateAssemblyWithMod(ModId, assembly);
+
+            var mainFile = assembly.GetType(mainTypeName);
+            var initialize = mainFile?.GetMethod(
+                "Initialize",
+                BindingFlags.Public | BindingFlags.Static);
+
             if (initialize == null)
             {
-                Logger.Error("Loaded SlimeBoss.dll but could not find SlimeBoss.SlimeBossCode.SlimeBossMainFile.Initialize() via reflection.");
+                Logger.Error(
+                    $"Loaded {name}.dll but could not find {mainTypeName}.Initialize() via reflection.");
                 return;
             }
 
@@ -206,102 +158,7 @@ public static class DownfallMainFile
         }
         catch (Exception ex)
         {
-            Logger.Error($"Failed to initialize the internal SlimeBoss submod:\n{ex}");
-        }
-    }
-
-    // Same recipe as InitializeSlimeBoss() above - see its doc comment for the full rationale
-    // (ALC-based loading, AssociateAssemblyWithMod, why this can't be a normal ProjectReference).
-    private static void InitializeAutomaton()
-    {
-        try
-        {
-            var downfallDir = Path.GetDirectoryName(typeof(DownfallMainFile).Assembly.Location) ?? "";
-
-            var automatonPckPath = Path.Combine(downfallDir, "Automaton.pck");
-            if (File.Exists(automatonPckPath))
-            {
-                if (!ProjectSettings.LoadResourcePack(automatonPckPath))
-                    Logger.Error($"Godot errored while loading Automaton's resource pack at '{automatonPckPath}'.");
-            }
-            else
-            {
-                Logger.Error($"Automaton.pck not found at '{automatonPckPath}' - its assets will not be available.");
-            }
-
-            var automatonPath = Path.Combine(downfallDir, "Automaton.dll");
-            if (!File.Exists(automatonPath))
-            {
-                Logger.Error($"Automaton.dll not found at '{automatonPath}' - internal Automaton submod will not be loaded.");
-                return;
-            }
-
-            var loadContext = AssemblyLoadContext.GetLoadContext(typeof(DownfallMainFile).Assembly);
-            var automatonAssembly = loadContext != null
-                ? loadContext.LoadFromAssemblyPath(automatonPath)
-                : Assembly.LoadFrom(automatonPath);
-            ModManager.AssociateAssemblyWithMod(ModId, automatonAssembly);
-
-            var automatonMainFile = automatonAssembly.GetType("Automaton.AutomatonCode.AutomatonMainFile");
-            var initialize = automatonMainFile?.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
-            if (initialize == null)
-            {
-                Logger.Error("Loaded Automaton.dll but could not find Automaton.AutomatonCode.AutomatonMainFile.Initialize() via reflection.");
-                return;
-            }
-
-            initialize.Invoke(null, null);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error($"Failed to initialize the internal Automaton submod:\n{ex}");
-        }
-    }
-
-    // Same recipe as InitializeSlimeBoss()/InitializeAutomaton() above.
-    private static void InitializeHermit()
-    {
-        try
-        {
-            var downfallDir = Path.GetDirectoryName(typeof(DownfallMainFile).Assembly.Location) ?? "";
-
-            var hermitPckPath = Path.Combine(downfallDir, "Hermit.pck");
-            if (File.Exists(hermitPckPath))
-            {
-                if (!ProjectSettings.LoadResourcePack(hermitPckPath))
-                    Logger.Error($"Godot errored while loading Hermit's resource pack at '{hermitPckPath}'.");
-            }
-            else
-            {
-                Logger.Error($"Hermit.pck not found at '{hermitPckPath}' - its assets will not be available.");
-            }
-
-            var hermitPath = Path.Combine(downfallDir, "Hermit.dll");
-            if (!File.Exists(hermitPath))
-            {
-                Logger.Error($"Hermit.dll not found at '{hermitPath}' - internal Hermit submod will not be loaded.");
-                return;
-            }
-
-            var loadContext = AssemblyLoadContext.GetLoadContext(typeof(DownfallMainFile).Assembly);
-            var hermitAssembly = loadContext != null
-                ? loadContext.LoadFromAssemblyPath(hermitPath)
-                : Assembly.LoadFrom(hermitPath);
-            ModManager.AssociateAssemblyWithMod(ModId, hermitAssembly);
-
-            var hermitMainFile = hermitAssembly.GetType("Hermit.HermitCode.HermitMainFile");
-            var initialize = hermitMainFile?.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
-            if (initialize == null)
-            {
-                Logger.Error("Loaded Hermit.dll but could not find Hermit.HermitCode.HermitMainFile.Initialize() via reflection.");
-                return;
-            }
-
-            initialize.Invoke(null, null);
-        }
-        catch (Exception ex)
-        {
-            Logger.Error($"Failed to initialize the internal Hermit submod:\n{ex}");
+            Logger.Error($"Failed to initialize the internal {name} submod:\n{ex}");
         }
     }
 
