@@ -98,14 +98,35 @@ public static class DownfallMainFile
         FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
         
         List<string> list = ["Automaton", "Awakened", "Champ", "SlimeBoss", "Hermit", "Guardian", "Snecko", "Hexaghost"];
+
         foreach (var se in list)
         {
             InitializeSubmod(se);
         }
     }
 
+    private static bool IsSubmodHidden(string name) => name switch
+    {
+        "Automaton" => DownfallConfig.HideAutomaton,
+        "Awakened" => DownfallConfig.HideAwakened,
+        "Champ" => DownfallConfig.HideChamp,
+        "Collector" => DownfallConfig.HideCollector,
+        "SlimeBoss" => DownfallConfig.HideSlimeboss,
+        "Hermit" => DownfallConfig.HideHermit,
+        "Guardian" => DownfallConfig.HideGuardian,
+        "Snecko" => DownfallConfig.HideSnecko,
+        "Hexaghost" => DownfallConfig.HideHexaghost,
+        _ => false
+    };
+
     private static void InitializeSubmod(string name)
     {
+        if (IsSubmodHidden(name))
+        {
+            Logger.Info($"{name} is hidden via config - skipping load.");
+            return;
+        }
+
         if (!ReplaceableSubmod.IsSupersededBy($"{name}Beta"))
             InitializeSubmod(name,
                 $"{name}.{name}Code.{name}MainFile");
