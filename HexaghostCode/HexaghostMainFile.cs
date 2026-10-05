@@ -16,7 +16,6 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Hexaghost.HexaghostCode;
 
-[ModInitializer(nameof(Initialize))]
 public static class HexaghostMainFile
 {
     public const string ModId = "Hexaghost"; //At the moment, this is used only for the Logger and harmony names.
