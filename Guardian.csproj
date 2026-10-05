@@ -14,19 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton.Reload"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton._isUnclickable"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.ReloadOverlay"/>
-
-        <Publicize Include="BaseLib:BaseLib.Abstracts.CardModifier._dynamicVars"/>
-        <Publicize Include="BaseLib:BaseLib.Utils.SpireField`2._table"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Include="GuardianCode/**/*.cs" Exclude="GuardianCode/Tests/**/*.cs"/>
         <AdditionalFiles Include="Guardian/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>

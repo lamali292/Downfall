@@ -15,21 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.GetDescriptionOrFallback"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetDescription"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetOptions"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Events.NAncientEventLayout.SetDialogueLineAndAnimate"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Events.NAncientEventLayout._dialogueContainer"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Relics.NRelic.Reload"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.Reload"/>
-    </ItemGroup>
-
-
-    <ItemGroup>
         <Compile Include="SneckoCode/**/*.cs" Exclude="SneckoCode/Tests/**/*.cs"/>
         <AdditionalFiles Include="Snecko/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>

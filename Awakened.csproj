@@ -14,13 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._energyCounter"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet.TextHoverTipDimensions"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Include="AwakenedCode/**/*.cs" Exclude="AwakenedCode/Tests/**/*.cs"/>
         <AdditionalFiles Include="Awakened/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>

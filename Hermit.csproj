@@ -14,17 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.IsRandomlyTargeted"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._singleTarget"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPlayerHand.RefreshLayout"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Include="HermitCode/**/*.cs" Exclude="HermitCode/Tests/**/*.cs"/>
         <AdditionalFiles Include="Hermit/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>

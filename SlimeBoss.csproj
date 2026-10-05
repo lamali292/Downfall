@@ -15,23 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.Attacker"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.ModelSource"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimName"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._sourceType"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature.UpdateBounds"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Include="SlimeBossCode/**/*.cs" Exclude="SlimeBossCode/Tests/**/*.cs"/>
         <AdditionalFiles Include="SlimeBoss/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>

@@ -14,13 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._tempScale"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.GeneratePlayCount"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Include="HexaghostCode/**/*.cs" Exclude="HexaghostCode/Tests/**/*.cs"/>
         <AdditionalFiles Include="Hexaghost/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>

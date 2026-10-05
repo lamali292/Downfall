@@ -19,29 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.Attacker"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.IsRandomlyTargeted"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.ModelSource"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimDelay"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimName"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._singleTarget"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._sourceType"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
-
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary.UpdateCardPoolFilter"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._lastHoveredControl"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._miscPoolFilter"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._poolFilters"/>
-
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Include="CollectorCode/**/*.cs" Exclude="CollectorCode/Tests/**/*.cs"/>
         <AdditionalFiles Include="Collector/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
