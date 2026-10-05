@@ -33,9 +33,7 @@ public class StrikeForStrike : GuardianCardModel, IGemSocketCard
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await DamageCmd.Attack(DynamicVars["SelfDamage"].BaseValue)
-            .FromCardCompatibility(this, cardPlay)
-            .Targeting(Owner.Creature)
-            .Execute(ctx);
+        var damage = (DamageVar)DynamicVars["SelfDamage"];
+        await CreatureCmd.Damage(ctx, Owner.Creature, damage, this, cardPlay);
     }
 }
