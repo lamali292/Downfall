@@ -105,6 +105,27 @@ jobs:
             /p:AssemblyVersion="$VERSION.0" \
             /p:FileVersion="$VERSION.0"
 
+      # Automaton/Awakened/Champ/Guardian/Hermit/Hexaghost/SlimeBoss/Snecko are internal submods
+      # (ADR 0003 / CONTEXT.md "Mod Packaging"): no manifest of their own, each its own .csproj/
+      # .dll/.pck, all landing in the SAME output/mods/Downfall folder as Downfall's own (their
+      # ModOutputFolder is "Downfall") where DownfallMainFile loads each by reflection at runtime.
+      # Without this step the released zip/Workshop upload would be the bare framework only - none
+      # of these eight characters are compiled into Downfall.dll anymore. Collector is NOT built
+      # here: it's a standalone mod (own manifest/Workshop item), deliberately never part of this
+      # artifact - see .scratch/standalone-submods/issues/05-... for giving it (and a future
+      # SlimeBoss Beta) their own release jobs.
+      - name: Publish internal submods
+        run: |
+          for proj in Automaton Awakened Champ Guardian Hermit Hexaghost SlimeBoss Snecko; do
+            dotnet publish "$proj.csproj" -c Release \
+              /p:GodotPath="$GODOT_PATH" \
+              /p:ModsPath="${{ github.workspace }}/output/mods/" \
+              /p:SkipGodotImport=true \
+              /p:Version="$VERSION" \
+              /p:AssemblyVersion="$VERSION.0" \
+              /p:FileVersion="$VERSION.0"
+          done
+
       - name: Package zip
         run: |
           test -d output/mods/Downfall || { echo "Built mod folder missing"; exit 1; }
