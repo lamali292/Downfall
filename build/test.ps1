@@ -36,31 +36,39 @@ if (-not $NoBuild) {
     Write-Host "=== Building Downfall ===" -ForegroundColor Cyan
     dotnet build Downfall.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "Build failed" }
-
-    # SlimeBoss is an internal submod (its own SlimeBoss.dll) since the standalone-submods
-    # effort - build it too so its [CardTest]s (SlimeBossCode/Tests/) are present in mods/ and get
-    # picked up by CardTestRunner's cross-assembly scan.
+    
     Write-Host "=== Building SlimeBoss ===" -ForegroundColor Cyan
     dotnet build SlimeBoss.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
-
-    # Automaton is an internal submod (its own Automaton.dll) since the standalone-submods
-    # effort - build it too so its [CardTest]s (AutomatonCode/Tests/) are present in mods/ and get
-    # picked up by CardTestRunner's cross-assembly scan.
+    
     Write-Host "=== Building Automaton ===" -ForegroundColor Cyan
     dotnet build Automaton.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "Automaton build failed" }
 
-    # Hermit is an internal submod (its own Hermit.dll) since the standalone-submods effort -
-    # build it too so its [CardTest]s (HermitCode/Tests/) are present in mods/ and get picked up by
-    # CardTestRunner's cross-assembly scan.
     Write-Host "=== Building Hermit ===" -ForegroundColor Cyan
     dotnet build Hermit.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "Hermit build failed" }
+    
+    Write-Host "=== Building Awakened ===" -ForegroundColor Cyan
+    dotnet build Awakened.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Awakened build failed" }
 
-    # Collector is a standalone mod (its own Collector.dll/Collector.json manifest) - build it too
-    # so its [CardTest]s (CollectorCode/Tests/) are present in mods/Collector/ and get picked up by
-    # CardTestRunner's cross-assembly scan.
+    Write-Host "=== Building Champ ===" -ForegroundColor Cyan
+    dotnet build Champ.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Champ build failed" }
+    
+    Write-Host "=== Building Guardian ===" -ForegroundColor Cyan
+    dotnet build Guardian.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Guardian build failed" }
+
+    Write-Host "=== Building Snecko ===" -ForegroundColor Cyan
+    dotnet build Snecko.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Snecko build failed" }
+
+    Write-Host "=== Building Hexaghost ===" -ForegroundColor Cyan
+    dotnet build Hexaghost.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hexaghost build failed" }
+
     Write-Host "=== Building Collector ===" -ForegroundColor Cyan
     dotnet build Collector.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "Collector build failed" }

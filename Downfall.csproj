@@ -18,18 +18,8 @@
         <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
         <AssemblyName>$(ModId)</AssemblyName>
         <ModOutputFolder>$(ModId)</ModOutputFolder>
-
-        <!-- SlimeBoss, Automaton and Hermit are intentionally absent: all three are internal submods
-             now (SlimeBoss.csproj/SlimeBoss.dll, Automaton.csproj/Automaton.dll, Hermit.csproj/
-             Hermit.dll - ADR 0003) - compiled separately but still loaded as part of the one Downfall
-             mod entry (DownfallMainFile calls into each directly by reflection; see
-             InitializeSlimeBoss()/InitializeAutomaton()/InitializeHermit()), never compiled into
-             Downfall.dll itself. This default is also independent of whatever an existing developer's
-             local.props still lists for Submods - see the ItemGroups below, which no longer have a
-             Compile branch that reacts to "SlimeBoss"/"Automaton"/"Hermit" at all (their assets still
-             do, unconditionally - see below), so an un-updated local.props (still containing
-             "SlimeBoss"/"Automaton"/"Hermit" from before this change) is harmless here. -->
-        <Submods Condition="'$(Submods)' == ''">Downfall;Awakened;Champ;Guardian;Hexaghost;Snecko</Submods>
+        
+        <Submods Condition="'$(Submods)' == ''">Downfall;Test</Submods>
 
         <ImplicitUsings>true</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -43,8 +33,8 @@
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
      
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
-       
     </PropertyGroup>
+    
     
     <PropertyGroup>
         <AssemblyVersion>0.1.20.0</AssemblyVersion>
@@ -105,6 +95,7 @@
         <Reference Include="sts2">
             <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
             <Private>false</Private>
+            <Publicize>true</Publicize>
         </Reference>
         <Reference Include="SmartFormat">
             <HintPath>$(Sts2DataDir)/SmartFormat.dll</HintPath>
@@ -137,128 +128,66 @@
         <!-- Publicizer is opt-in: add each sts2 member/type we need access to here (all overloads of a name are included). -->
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
         
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.Attacker"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.IsRandomlyTargeted"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.ModelSource"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimDelay"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimName"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._singleTarget"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._sourceType"/>
-        
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Cards.CardKeywordExtensions"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData+InternalData"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData._data"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.AncientEventModel.RelicOption"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.BaseStarCost"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.GeneratePlayCount"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel._dynamicVars"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Powers.VigorPower+Data"/>
-        
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._doubledPowers"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._isFinishedTriggering"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._triggeringCard"/>
-        
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.Reload"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.ReloadOverlay"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.UpdateTypePlaqueSizeAndPosition"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._ancientPortrait"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._overlayContainer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._portrait"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._typeLabel"/>
-        
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile.RemoveCard"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._localPlayer"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._positionTween"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
         
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._combatPilesContainer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._energyCounter"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet._textHoverTipContainer"/>
         
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature.UpdateBounds"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._tempScale"/>
-        
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureVisuals._body"/>
-        
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithKeyword"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithKeywords"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithTip"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithTips"/>
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._intent"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._owner"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._targets"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._valueLabel"/>
         
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPlayerHand.RefreshLayout"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel._constructedDynamicVars"/>
+        <Publicize Include="BaseLib:BaseLib.Utils.SpireField`2._table"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.addons.mega_text.MegaRichTextLabel.HasEffect"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._combatPilesContainer"/>
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower.RefreshAmount"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower._model"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Events.NAncientEventLayout.SetDialogueLineAndAnimate"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Events.NAncientEventLayout._dialogueContainer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet.TextHoverTipDimensions"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet._textHoverTipContainer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Multiplayer.NMultiplayerPlayerState.AnimateCardObtained"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Potions.NPotionPopup.Potion"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Potions.NPotionPopup._useButton"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Relics.NRelic.Reload"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile.RemoveCard"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Powers.VigorPower+Data"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._doubledPowers"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._isFinishedTriggering"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._triggeringCard"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.UpdateTypePlaqueSizeAndPosition"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimName"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._sourceType"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.Attacker"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.ModelSource"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
         
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton.Reload"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton._isUnclickable"/>
-        
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.GetDescriptionOrFallback"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetDescription"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetOptions"/>
-        
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary.UpdateCardPoolFilter"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._lastHoveredControl"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._miscPoolFilter"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._poolFilters"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData._data"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData+InternalData"/>
         
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricUtilities.ShouldUploadMetrics"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricsSerializerContext"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.addons.mega_text.MegaRichTextLabel.HasEffect"/>
-    </ItemGroup>
-    <ItemGroup>
-        <Publicize Include="BaseLib" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false">
-            <Members>
-                M:BaseLib.Abstracts.ConstructedCardModel.WithKeyword(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword,BaseLib.Abstracts.ConstructedCardModel.UpgradeType);
-                M:BaseLib.Abstracts.ConstructedCardModel.WithKeywords(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword[]);
-                M:BaseLib.Abstracts.ConstructedCardModel.WithTip(BaseLib.Utils.TooltipSource);
-                M:BaseLib.Abstracts.ConstructedCardModel.WithTips(System.Func{MegaCrit.Sts2.Core.Models.CardModel,System.Collections.Generic.IEnumerable{MegaCrit.Sts2.Core.HoverTips.IHoverTip}});
-            </Members>
-        </Publicize>
-    </ItemGroup>
 
-    <!-- PackFolders drives which top-level asset folders build/pack_mod.gd packs into Downfall.pck.
-         Computed from $(Submods) rather than aliased to it directly, and with "SlimeBoss" and
-         "Collector" always stripped out, so Downfall.pck never bundles their assets even if an
-         un-updated local.props still lists them in Submods.
-         - SlimeBoss, Automaton and Hermit are internal submods (ADR 0003): although none has a
-           manifest/ModId of its own (so the game's own manifest-driven mod loader would never
-           discover a separate "SlimeBoss.pck"/"Automaton.pck"/"Hermit.pck"), their assets still ship
-           in their OWN pck, built by SlimeBoss.csproj/Automaton.csproj/Hermit.csproj and loaded
-           explicitly at runtime via Godot.ProjectSettings.LoadResourcePack(...) from
-           DownfallMainFile.Initialize() - the same "call it directly, don't rely on manifest-driven
-           discovery" pattern used for their code (see
-           DownfallMainFile.InitializeSlimeBoss()/InitializeAutomaton()/InitializeHermit()). Kept as
-           their own pck, not merged into Downfall.pck, so a future beta replacement mod for any of
-           them can ship genuinely different assets under the same resource paths without colliding
-           with stock SlimeBoss's/Automaton's/Hermit's.
-         - Collector is a standalone mod (its own Collector.csproj/Collector.pck/Collector.json
-           manifest) - its assets are packed by Collector.csproj's own GodotPublish, genuinely
-           discovered and loaded by the game via its own manifest, so they must never also end up
-           inside Downfall.pck. -->
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
+        
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
+    </ItemGroup>
+    
     <ItemGroup>
         <_PackFolder Include="$(Submods)"/>
-        <_PackFolder Remove="SlimeBoss"/>
-        <_PackFolder Remove="Automaton"/>
-        <_PackFolder Remove="Hermit"/>
-        <_PackFolder Remove="Collector"/>
     </ItemGroup>
     <PropertyGroup>
         <PackFolders>@(_PackFolder, ';')</PackFolders>
@@ -268,44 +197,10 @@
         <Compile Include="DownfallCode/**/*.cs"/>
         <AdditionalFiles Include="Downfall/**/*"/>
     </ItemGroup>
-    <!-- Automaton has no branch here anymore: its C# code and assets both live in its own
-         Automaton.csproj (internal submod, own Automaton.dll/Automaton.pck, loaded directly by
-         DownfallMainFile - see ADR 0003). Deliberately not reacting to "Automaton" in $(Submods)
-         even if an un-updated local.props still lists it - see the Submods default comment above. -->
-    <ItemGroup Condition="$(Submods.Contains('Awakened'))">
-        <Compile Include="AwakenedCode/**/*.cs"/>
-        <AdditionalFiles Include="Awakened/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Champ'))">
-        <Compile Include="ChampCode/**/*.cs"/>
-        <AdditionalFiles Include="Champ/**/*"/>
-    </ItemGroup>
     <ItemGroup Condition="$(Submods.Contains('Gremlins'))">
         <Compile Include="GremlinsCode/**/*.cs"/>
         <AdditionalFiles Include="Gremlins/**/*"/>
     </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Guardian'))">
-        <Compile Include="GuardianCode/**/*.cs"/>
-        <AdditionalFiles Include="Guardian/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Hexaghost'))">
-        <Compile Include="HexaghostCode/**/*.cs"/>
-        <AdditionalFiles Include="Hexaghost/**/*"/>
-    </ItemGroup>
-    <!-- SlimeBoss and Hermit have no branch here anymore: their C# code and assets both live in
-         their own SlimeBoss.csproj/Hermit.csproj (internal submods, own SlimeBoss.dll/SlimeBoss.pck
-         and Hermit.dll/Hermit.pck, loaded directly by DownfallMainFile - see ADR 0003). Deliberately
-         not reacting to "SlimeBoss"/"Hermit" in $(Submods) even if an un-updated local.props still
-         lists either - see the Submods default comment above. -->
-    <ItemGroup Condition="$(Submods.Contains('Snecko'))">
-        <Compile Include="SneckoCode/**/*.cs"/>
-        <AdditionalFiles Include="Snecko/**/*"/>
-    </ItemGroup>
-    <!-- Collector has no branch here anymore: it's a standalone mod now (its own Collector.csproj,
-         own Collector.dll/Collector.pck/Collector.json manifest, ADR 0003 / CONTEXT.md "Mod
-         Packaging") - never compiled into Downfall.dll, even if an un-updated local.props still
-         lists "Collector" in $(Submods) (harmless: this project no longer reacts to it). -->
-
     <ItemGroup Condition="$(Submods.Contains('Test'))">
         <Compile Include="TestCode/**/*.cs"/>
         <AdditionalFiles Include="Test/**/*"/>

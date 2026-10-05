@@ -1,5 +1,4 @@
-﻿using Champ.ChampCode.Cards.Ancient;
-using Downfall.DownfallCode.Compatibility;
+﻿using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,52 +9,7 @@ namespace Downfall.TestCode;
 
 public class AllCardsTest
 {
-    // ---- single-combat tests: return Task, take TestContext ----
-
-    [CardTest]
-    public async Task ExecutionNormalTargetDealsBaseDamage(TestContext ctx)
-    {
-        var target = ctx.Combat.HittableEnemies.First();
-        var startingHp = target.CurrentHp;
-        var card = await ctx.AddCardToHand<Execution>();
-        await ctx.PlayCard(card, target);
-        Assert.IsTrue(target.CurrentHp < startingHp, "Target should have taken damage.");
-    }
-
-    // ---- pool tests: return IEnumerable<CardTestCase>, take CharacterModel ----
-    // NOTE: plain (non-async) generators — the runner drives each case in its own combat.
-
-    // Automaton moved to its own standalone-submod assembly (Automaton.csproj) - its pool test
-    // lives in AutomatonCode/Tests/AutomatonTests.cs now, calling the public PlayAllCards below.
-
-    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
-    public IEnumerable<CardTestCase> PlayAwakenedCards(CharacterModel character) => PlayAllCards(character);
-
-    [CardTest(typeof(Champ.ChampCode.Core.Champ))]
-    public IEnumerable<CardTestCase> PlayChampCards(CharacterModel character) => PlayAllCards(character);
-
-    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
-    public IEnumerable<CardTestCase> PlayGuardianCards(CharacterModel character) => PlayAllCards(character);
-
-    // Hermit moved to its own standalone-submod assembly (Hermit.csproj) - its pool test
-    // lives in HermitCode/Tests/HermitTests.cs now, calling the public PlayAllCards below.
-
-    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
-    public IEnumerable<CardTestCase> PlayHexaghostCards(CharacterModel character) => PlayAllCards(character);
-
-    // SlimeBoss moved to its own standalone-submod assembly (SlimeBoss.csproj) - its pool test
-    // lives in SlimeBossCode/Tests/SlimeBossTests.cs now, calling the public PlayAllCards below.
-
-    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
-    public IEnumerable<CardTestCase> PlaySneckoCards(CharacterModel character) => PlayAllCards(character);
-
-    // Collector moved to its own standalone-mod assembly (Collector.csproj) - its pool test lives
-    // in CollectorCode/Tests/CollectorTests.cs now, calling the public PlayAllCards below.
-
-    // Public + static (never used instance state): reused from AutomatonCode/Tests/AutomatonTests.cs,
-    // SlimeBossCode/Tests/SlimeBossTests.cs, CollectorCode/Tests/CollectorTests.cs and
-    // HermitCode/Tests/HermitTests.cs, which live in separate assemblies (Automaton.csproj,
-    // SlimeBoss.csproj, Collector.csproj, Hermit.csproj) and can't share a private instance method.
+ 
     public static IEnumerable<CardTestCase> PlayAllCards(CharacterModel character)
     {
         return character.CardPool.AllCards.Select(model => new CardTestCase(model.GetType().Name, async ctx =>
@@ -65,10 +19,6 @@ public class AllCardsTest
             var card = ctx.Combat.CreateCard(model, ctx.Player);
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, ctx.Player);
 
-            // Regression guard: a missing/misregistered loc table doesn't throw, it silently falls
-            // back to the raw key (e.g. "cards.SLIMEBOSS-SERVE_PROTECT.description") - fetch both
-            // once here so every card's loc actually resolves, not just whichever ones happen to
-            // have a dedicated description test.
             var title = card.Title;
             var description = card.GetDescriptionForPile(PileType.Hand);
             Assert.IsTrue(!string.IsNullOrEmpty(title) && !title.Contains(card.Id.Entry),
