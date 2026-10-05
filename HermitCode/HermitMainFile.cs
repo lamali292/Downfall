@@ -26,6 +26,8 @@ public static class HermitMainFile
 
     public static void Initialize()
     {
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(HermitMainFile).Assembly);
+
         PostInitRegistry.Register(PostModelInit);
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<HermitCardPool>(VotingPool.Hermit, ModId);
