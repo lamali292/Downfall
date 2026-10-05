@@ -1,11 +1,18 @@
+using Downfall.TestCode;
 using Hexaghost.HexaghostCode.Cards.Common;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Downfall.TestCode;
+namespace Hexaghost.HexaghostCode.Tests;
 
 public class HexaghostTests
 {
+    
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public IEnumerable<CardTestCase> PlayHexaghostCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+
+
+    
     // Regression guard for the HexaghostCardPlayPhases removal: Retract/Advance used to be dispatched
     // centrally off the card's keyword after/before OnPlay; now each card calls HexaghostCmd.Retract/
     // Advance itself from OnPlayInternal, so this checks the wheel actually still moves.
