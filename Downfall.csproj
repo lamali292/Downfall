@@ -19,67 +19,6 @@
         <None Include=".gitignore"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Cards.CardKeywordExtensions"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet._textHoverTipContainer"/>
-
-        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithKeyword"/>
-        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithKeywords"/>
-        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithTip"/>
-        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithTips"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._intent"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._targets"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._valueLabel"/>
-
-        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel._constructedDynamicVars"/>
-        <Publicize Include="BaseLib:BaseLib.Utils.SpireField`2._table"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.addons.mega_text.MegaRichTextLabel.HasEffect"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._combatPilesContainer"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower.RefreshAmount"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower._model"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile.RemoveCard"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Powers.VigorPower+Data"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._doubledPowers"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._isFinishedTriggering"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._triggeringCard"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.UpdateTypePlaqueSizeAndPosition"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimName"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._sourceType"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.Attacker"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.ModelSource"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData._data"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData+InternalData"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricUtilities.ShouldUploadMetrics"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricsSerializerContext"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
-    </ItemGroup>
-
     <PropertyGroup>
         <PackFolders>$(Submods)</PackFolders>
     </PropertyGroup>
