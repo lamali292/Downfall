@@ -1,21 +1,29 @@
-using BaseLib.Extensions;
-using MegaCrit.Sts2.Core.Models.Cards;
 using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Cards.Common;
 using Awakened.AwakenedCode.Cards.Rare;
 using Awakened.AwakenedCode.Cards.Uncommon;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
+using BaseLib.Extensions;
+using Downfall.TestCode;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 
-namespace Downfall.TestCode;
+namespace Awakened.AwakenedCode.Tests;
 
 public class AwakenedTests
 {
+    // Regression guard (internal-submod smoke test): confirms Awakened's own standalone assembly
+    // still registers and plays normally with no replacement mod loaded - i.e. the Awakened.csproj
+    // extraction and ReplaceableSubmod guard didn't break anything.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public IEnumerable<CardTestCase> PlayAwakenedCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+
     // Clutch counts cards whose modified cost is exactly zero; an unplayable negative-cost card
     // (Ascender's Bane) must not look free.
     [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
