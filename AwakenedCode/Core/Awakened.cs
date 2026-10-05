@@ -29,9 +29,6 @@ public class Awakened : DownfallCharacterModel
     public override float CardColorS => 0.5f;
     public override float CardColorV => 1f;
     public override Color MapDrawingColor => Color;
-
-    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideAwakened;
-    public override bool HideInCompendium => DownfallConfig.HideAwakened;
     
     public override CharacterGender Gender => CharacterGender.Masculine;
     protected override CharacterModel? UnlocksAfterRunAs => null;
