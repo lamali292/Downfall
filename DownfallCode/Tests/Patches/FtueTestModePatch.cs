@@ -2,7 +2,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.TestSupport;
 
-namespace Downfall.TestCode;
+namespace Downfall.DownfallCode.Tests;
 
 /// SaveManager.SeenPopup already returns true unconditionally under TestMode.IsOn, but
 /// SaveManager.SeenFtue has no such check - so the very first ShuffleIfNecessary of a whole test

@@ -1,7 +1,7 @@
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Models.Cards;
 using BaseLib.Abstracts;
-using Downfall.TestCode;
+using Downfall.DownfallCode.Tests;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Cards.Common;

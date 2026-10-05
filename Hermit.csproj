@@ -14,12 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="HermitCode/**/*.cs" Exclude="HermitCode/Tests/**/*.cs"/>
+        <Compile Include="HermitCode/**/*.cs"/>
         <AdditionalFiles Include="Hermit/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="HermitCode/Tests/**/*.cs"/>
     </ItemGroup>
 </Project>

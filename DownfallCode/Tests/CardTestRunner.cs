@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.TestSupport;
 using MegaCrit.Sts2.Core.Unlocks;
 
-namespace Downfall.TestCode;
+namespace Downfall.DownfallCode.Tests;
 
 public class CardTestRunner
 {
@@ -34,9 +34,9 @@ public class CardTestRunner
 		try
 		{
 			// Scans every loaded assembly, not just this one: a standalone submod (e.g. SlimeBoss,
-			// its own .dll since the standalone-submods effort) can't reference TestCode's assembly
-			// back (that would be circular - TestCode's assembly already references the submod's
-			// DownfallCode-dependent types), so its [CardTest] methods live in its own loaded
+			// its own .dll since the standalone-submods effort) can't reference Downfall.dll (this
+			// harness's assembly) back (that would be circular - Downfall.dll already references the
+			// submod's DownfallCode-dependent types), so its [CardTest] methods live in its own loaded
 			// assembly instead. GetTypes() can throw ReflectionTypeLoadException for assemblies with
 			// unresolvable types (e.g. dynamic/reflection-emit assemblies) - skip those rather than
 			// aborting the whole scan.

@@ -14,12 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="AutomatonCode/**/*.cs" Exclude="AutomatonCode/Tests/**/*.cs"/>
+        <Compile Include="AutomatonCode/**/*.cs"/>
         <AdditionalFiles Include="Automaton/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-    
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="AutomatonCode/Tests/**/*.cs"/>
     </ItemGroup>
 </Project>

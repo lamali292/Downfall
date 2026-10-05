@@ -14,12 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="HexaghostCode/**/*.cs" Exclude="HexaghostCode/Tests/**/*.cs"/>
+        <Compile Include="HexaghostCode/**/*.cs"/>
         <AdditionalFiles Include="Hexaghost/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="HexaghostCode/Tests/**/*.cs"/>
     </ItemGroup>
 </Project>

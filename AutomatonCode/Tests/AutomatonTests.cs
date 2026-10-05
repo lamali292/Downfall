@@ -12,7 +12,7 @@ using Automaton.AutomatonCode.Powers;
 using Automaton.AutomatonCode.Relics;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Compatibility;
-using Downfall.TestCode;
+using Downfall.DownfallCode.Tests;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -332,7 +332,7 @@ public class AutomatonTests
     // max size as a literal "3" in the loc text instead of a {Max} placeholder, so it never reflected
     // Electromagnetic Coil raising AutomatonCmd.GetMax to 4. This exercises the same LocString +
     // AutomatonCmd.GetMax substitution NEncodePile.BuildHoverTip now uses (the Godot node itself
-    // isn't reachable from a headless CardTest - see TestCode/CLAUDE.md).
+    // isn't reachable from a headless CardTest - see DownfallCode/Tests/CLAUDE.md).
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
     public async Task EncodeOrbTooltipReflectsElectromagneticCoil(TestContext ctx)
     {

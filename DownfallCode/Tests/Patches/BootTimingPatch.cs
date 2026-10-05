@@ -1,7 +1,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Helpers;
 
-namespace Downfall.TestCode;
+namespace Downfall.DownfallCode.Tests;
 
 /// Starts the automated DOWNFALL_RUN_TESTS=1 run right after OneTimeInitialization.ExecuteEssential
 /// ("essential initialization needed before main menu can display" - mods/loc/ModelDb), instead of

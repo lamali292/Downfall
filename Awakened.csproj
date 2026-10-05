@@ -14,12 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="AwakenedCode/**/*.cs" Exclude="AwakenedCode/Tests/**/*.cs"/>
+        <Compile Include="AwakenedCode/**/*.cs"/>
         <AdditionalFiles Include="Awakened/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-    
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="AwakenedCode/Tests/**/*.cs"/>
     </ItemGroup>
 </Project>

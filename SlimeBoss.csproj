@@ -15,12 +15,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="SlimeBossCode/**/*.cs" Exclude="SlimeBossCode/Tests/**/*.cs"/>
+        <Compile Include="SlimeBossCode/**/*.cs"/>
         <AdditionalFiles Include="SlimeBoss/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="SlimeBossCode/Tests/**/*.cs"/>
     </ItemGroup>
 </Project>

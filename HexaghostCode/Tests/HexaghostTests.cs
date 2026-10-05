@@ -1,4 +1,4 @@
-using Downfall.TestCode;
+using Downfall.DownfallCode.Tests;
 using Hexaghost.HexaghostCode.Cards.Common;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Models;

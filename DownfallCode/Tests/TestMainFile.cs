@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Saves;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
-namespace Downfall.TestCode;
+namespace Downfall.DownfallCode.Tests;
 
 
 [ModInitializer(nameof(Initialize))]
@@ -32,6 +32,7 @@ public static class TestMainFile
 
     public static void Initialize()
     {
+        if (System.Environment.GetEnvironmentVariable(EnvRunTests) != "1") return;
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(BootTimingPatch))
             .Add(typeof(ScreenShakeTestModePatch))

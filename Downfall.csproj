@@ -8,8 +8,6 @@
         <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
         <AssemblyName>$(ModId)</AssemblyName>
         <IsStandaloneMod>true</IsStandaloneMod>
-
-        <Submods Condition="'$(Submods)' == ''">Downfall;Test</Submods>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,26 +21,12 @@
         <PackFolders>$(Submods)</PackFolders>
     </PropertyGroup>
 
-    <ItemGroup Condition="$(Submods.Contains('Downfall'))">
+    <ItemGroup>
         <Compile Include="DownfallCode/**/*.cs"/>
         <AdditionalFiles Include="Downfall/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Gremlins'))">
-        <Compile Include="GremlinsCode/**/*.cs"/>
-        <AdditionalFiles Include="Gremlins/**/*"/>
-    </ItemGroup>
-    <ItemGroup Condition="$(Submods.Contains('Test'))">
-        <Compile Include="TestCode/**/*.cs"/>
-        <AdditionalFiles Include="Test/**/*"/>
-    </ItemGroup>
-    <ItemGroup>
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
-
-    <Target Name="ReportSubmods" BeforeTargets="CoreCompile">
-        <Message Text="Building submods: '$(Submods)'" Importance="high"/>
-    </Target>
-
+    
     <Target Name="CopyBaseLibDependencies" AfterTargets="CopyToModsFolderOnBuild">
         <Message Text="Copying BaseLib dependencies..." Importance="high"/>
 

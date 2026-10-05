@@ -1,4 +1,4 @@
-﻿namespace Downfall.TestCode;
+﻿namespace Downfall.DownfallCode.Tests;
 
 public static class Assert
 {

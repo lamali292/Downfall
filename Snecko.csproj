@@ -15,12 +15,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="SneckoCode/**/*.cs" Exclude="SneckoCode/Tests/**/*.cs"/>
+        <Compile Include="SneckoCode/**/*.cs"/>
         <AdditionalFiles Include="Snecko/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-    
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="SneckoCode/Tests/**/*.cs"/>
     </ItemGroup>
 </Project>
