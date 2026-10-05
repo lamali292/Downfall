@@ -39,20 +39,9 @@
         </DefaultItemExcludes>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
 
-        <!-- Godot.NET.Sdk defaults every csproj in this folder to the SAME intermediate dir
-             (.godot/mono/temp/obj/<Configuration>/), including Krafs.Publicizer's own
-             PublicizedAssemblies cache under it. Downfall.csproj and SlimeBoss.csproj already share
-             that collision today, invisibly, because SlimeBoss's Publicize list is a strict subset
-             of Downfall's - whichever gets built last still leaves a cache broad enough for the
-             other. Collector's list is as broad as Downfall's, so the same collision is no longer
-             safe to ignore: building SlimeBoss right before Collector (the order build/test.ps1
-             uses) leaves SlimeBoss's narrower publicized sts2.dll cached, and Collector's build
-             then fails with CS0103/CS1061 on members only Downfall's/Collector's own list
-             needs (reproduced and confirmed while building this project) - not an actual
-             incompatibility, just a stale cache from the previous project's build. Giving
-             Collector its own intermediate dir avoids depending on build order for correctness. -->
-        <BaseIntermediateOutputPath>.godot\mono\temp\obj\Collector\</BaseIntermediateOutputPath>
-        <IntermediateOutputPath>.godot\mono\temp\obj\Collector\$(Configuration)\</IntermediateOutputPath>
+        <!-- Intermediate output dir: see Directory.Build.props at repo root (this project is the
+             reason it exists - see that file's comment for the Publicizer cache collision this
+             used to cause, reproduced and confirmed while first building this project). -->
 
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
     </PropertyGroup>
@@ -116,6 +105,7 @@
         <Reference Include="sts2">
             <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
             <Private>false</Private>
+            <Publicize>true</Publicize>
         </Reference>
         <Reference Include="SmartFormat">
             <HintPath>$(Sts2DataDir)/SmartFormat.dll</HintPath>
@@ -157,12 +147,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <!-- Publicizer is opt-in per project. Collector's code touches a wide range of sts2/
-             BaseLib internals (AttackCommand, NCard, NCombatCardPile/Ui, NCreature*, NIntent,
-             NPlayerHand, NPower, hover tips, multiplayer state, rest site, card library, ...) -
-             copied verbatim from Downfall.csproj's own list rather than hand-trimmed, since
-             CollectorCode was developed as part of that project and already relies on this exact
-             set; trimming it is a follow-up cleanup, not required for this extraction. -->
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
 
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
@@ -175,81 +159,14 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._singleTarget"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._sourceType"/>
 
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Cards.CardKeywordExtensions"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData+InternalData"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData._data"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.AncientEventModel.RelicOption"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.BaseStarCost"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.GeneratePlayCount"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel._dynamicVars"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Powers.VigorPower+Data"/>
 
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._doubledPowers"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._isFinishedTriggering"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._triggeringCard"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.Reload"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.ReloadOverlay"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.UpdateTypePlaqueSizeAndPosition"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._ancientPortrait"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._overlayContainer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._portrait"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._typeLabel"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile.RemoveCard"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._localPlayer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._positionTween"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._combatPilesContainer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._energyCounter"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature.UpdateBounds"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._tempScale"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureVisuals._body"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._intent"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._owner"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._targets"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._valueLabel"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPlayerHand.RefreshLayout"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower.RefreshAmount"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower._model"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Events.NAncientEventLayout.SetDialogueLineAndAnimate"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Events.NAncientEventLayout._dialogueContainer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet.TextHoverTipDimensions"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet._textHoverTipContainer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Multiplayer.NMultiplayerPlayerState.AnimateCardObtained"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Potions.NPotionPopup.Potion"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Potions.NPotionPopup._useButton"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Relics.NRelic.Reload"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton.Reload"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton._isUnclickable"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.GetDescriptionOrFallback"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetDescription"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetOptions"/>
 
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary.UpdateCardPoolFilter"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._lastHoveredControl"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._miscPoolFilter"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._poolFilters"/>
 
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricUtilities.ShouldUploadMetrics"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricsSerializerContext"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.addons.mega_text.MegaRichTextLabel.HasEffect"/>
     </ItemGroup>
     <ItemGroup>
         <Publicize Include="BaseLib" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false">

@@ -1,0 +1,23 @@
+﻿<Project>
+    <!-- Gives every project in this repo its own Godot.NET.Sdk intermediate-output directory
+         (.godot/mono/temp/obj/<ProjectName>/<Config>/), keyed by project name. Each
+         internal-submod/standalone-mod .csproj (Automaton, Awakened, Hermit, Collector, Champ,
+         Guardian, Hexaghost, Snecko, ...) used to set BaseIntermediateOutputPath/
+         IntermediateOutputPath itself, inside a <PropertyGroup> after its own
+         <Project Sdk="Godot.NET.Sdk/..."> line - but Microsoft.Common.props already reads
+         BaseIntermediateOutputPath for NuGet/restore paths before that point, which produced a
+         harmless but noisy MSB3539 warning on every build ("the value ... was modified after it
+         was used"). Directory.Build.props is imported as part of the SDK's own Sdk.props ->
+         Microsoft.Common.props chain, before a project's own content runs, so setting it here
+         avoids the warning entirely instead of just tolerating it.
+
+         This also fixes the one real bug the old per-project approach risked: a Publicizer cache
+         collision between any two projects that happened to still share the SDK default directory
+         (confirmed reproducible between SlimeBoss.csproj and Collector.csproj during Collector's
+         extraction - see .scratch/standalone-submods/issues/04-....md). Every project gets its own
+         directory now, not just the ones whose author remembered to set it. -->
+    <PropertyGroup>
+        <BaseIntermediateOutputPath>.godot\mono\temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+        <IntermediateOutputPath>.godot\mono\temp\obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
+    </PropertyGroup>
+</Project>
