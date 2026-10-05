@@ -9,13 +9,8 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace SlimeBoss.SlimeBossCode;
 
-/// <summary>
-/// NOT a mod entry point. SlimeBoss is an internal submod (ADR 0003): its own assembly
-/// (<c>SlimeBoss.dll</c>) for code-separation, but no manifest/ModId of its own, so the game's
-/// mod loader never discovers or calls this type directly - it's called explicitly by
-/// <see cref="Downfall.DownfallCode.DownfallMainFile.Initialize"/>, which also owns the
-/// submod-supersession guard gating this call.
-/// </summary>
+
+[ModInitializer(nameof(Initialize))]
 public static class SlimeBossMainFile
 {
     public const string ModId = "SlimeBoss"; //At the moment, this is used only for the Logger and harmony names.
