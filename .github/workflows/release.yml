@@ -140,7 +140,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           MIN_GAME=$(grep -oE '"min_game_version"[[:space:]]*:[[:space:]]*"[^"]+"' Downfall.json | sed -E 's/.*"([^"]+)"$/\1/' || true)
-          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+</BaseLibVersion>' build/mod.build.props | sed -E 's/<\/?BaseLibVersion>//g' || true)
+          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+</BaseLibVersion>' Directory.Build.props | sed -E 's/<\/?BaseLibVersion>//g' || true)
           {
             echo "Works with Slay the Spire 2 version ${MIN_GAME:-unknown} or newer."
             echo "Requires BaseLib ${BASELIB:-unknown} (not included — install it separately)."

@@ -1,142 +1,36 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <LangVersion>14</LangVersion>
-
-        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
-        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-        
-        <!-- Override ModId/ModName in local.props to build a separately-installable mod (e.g. a
-             single-character beta) alongside the main Downfall install. The DLL and PCK must be
-             named exactly "<id>.dll"/"<id>.pck" for the game's mod loader to find them, so both
-             derive from ModId; the manifest's own filename doesn't matter, only its "id" field
-             does, but it's still named after ModId for clarity in the mods/ folder. -->
         <ModId Condition="'$(ModId)' == ''">Downfall</ModId>
         <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
         <AssemblyName>$(ModId)</AssemblyName>
-        <ModOutputFolder>$(ModId)</ModOutputFolder>
-        
+        <IsStandaloneMod>true</IsStandaloneMod>
+
         <Submods Condition="'$(Submods)' == ''">Downfall;Test</Submods>
-
-        <ImplicitUsings>true</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <DefaultItemExcludes>
-            packages/**;
-            src/**;shaders/**;steam/**;System/**;themes/**;addons/**;
-            animations/**;banks/**;debug_audio/**;fonts/**;images/**;i rn
-            localization/**;materials/**;models/**;RiderTestRunner/**;scenes/**
-        </DefaultItemExcludes>
-        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-     
-        <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
-    </PropertyGroup>
-    
-    
-    <PropertyGroup>
-        <AssemblyVersion>0.1.20.0</AssemblyVersion>
-        <FileVersion>0.1.20.0</FileVersion>
-        <Version>0.1.20</Version>
-        <BaseLibVersion>3.4.7</BaseLibVersion>
-        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-        <Optimize>false</Optimize>
-        <DebugType>portable</DebugType>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-        <Optimize>true</Optimize>
-        <DebugType>none</DebugType>
-        <PathMap>$(AppOutputBase)=.\</PathMap>
-    </PropertyGroup>
-
-    <!-- OS Detection -->
     <ItemGroup>
         <None Include="Downfall.json"/>
         <None Include="local.props"/>
         <None Include="local.props.example"/>
         <None Include=".gitignore"/>
     </ItemGroup>
-    <PropertyGroup>
-        <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
-        <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
-        <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(IsWindows)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(IsLinux)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_linuxbsd_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(IsOSX)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/MacOS/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <!-- Game assemblies: real DLLs when STS2 is installed locally... -->
-    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
-        <Reference Include="0Harmony">
-            <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="sts2">
-            <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
-            <Private>false</Private>
-            <Publicize>true</Publicize>
-        </Reference>
-        <Reference Include="SmartFormat">
-            <HintPath>$(Sts2DataDir)/SmartFormat.dll</HintPath>
-        </Reference>
-        <Reference Include="Steamworks.NET">
-            <HintPath>$(Sts2DataDir)/Steamworks.NET.dll</HintPath>
-        </Reference>
-    </ItemGroup>
-
-    <!-- ...reference assemblies from NuGet when it isn't (CI). -->
-    <!-- RefLib covers sts2 + Harmony; SmartFormat and Steamworks come as compile-only packages
-         (ExcludeAssets=runtime so the game's own DLLs are used at runtime, nothing is shipped). -->
-    <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
-        <PackageReference Include="lamali.StS2.RefLib" Version="0.111.0-beta" ExcludeAssets="runtime" PrivateAssets="all"/>
-        <PackageReference Include="SmartFormat.NET" Version="3.*" ExcludeAssets="runtime" PrivateAssets="all"/>
-        <PackageReference Include="Steamworks.NET" Version="2024.8.0" ExcludeAssets="runtime" PrivateAssets="all"/>
-    </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="BaseLib" Condition="'$(UseLocalBaseLib)' == 'true'">
-            <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="$(BaseLibVersion)" Condition="'$(UseLocalBaseLib)' != 'true'"/>
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.2.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <!-- Publicizer is opt-in: add each sts2 member/type we need access to here (all overloads of a name are included). -->
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Cards.CardKeywordExtensions"/>
 
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet._textHoverTipContainer"/>
-        
+
         <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithKeyword"/>
         <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithKeywords"/>
         <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithTip"/>
@@ -146,7 +40,7 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._owner"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._targets"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._valueLabel"/>
-        
+
         <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel._constructedDynamicVars"/>
         <Publicize Include="BaseLib:BaseLib.Utils.SpireField`2._table"/>
 
@@ -172,20 +66,20 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.Attacker"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.ModelSource"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData._data"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData+InternalData"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricUtilities.ShouldUploadMetrics"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricsSerializerContext"/>
 
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>
 
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
-        
+
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
     </ItemGroup>
-    
+
     <ItemGroup>
         <_PackFolder Include="$(Submods)"/>
     </ItemGroup>
@@ -209,37 +103,11 @@
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
 
-
-
     <Target Name="ReportSubmods" BeforeTargets="CoreCompile">
         <Message Text="Building submods: '$(Submods)'" Importance="high"/>
     </Target>
 
-    <!-- Downfall.json is the checked-in template/source of truth (CI bumps its version/
-         min_game_version fields in place); this rewrites just "id" and "name" into a copy
-         so a custom ModId/ModName build doesn't collide with a normal Downfall install.
-         With the default ModId/ModName ("Downfall"), the rewrite is a no-op. -->
-    <Target Name="GenerateModManifest">
-        <PropertyGroup>
-            <_ModManifestJson>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\Downfall.json'))</_ModManifestJson>
-            <!-- Anchored to the top-level "id" immediately followed by "name" (the manifest's
-                 first two keys) so this can't also match "id" inside the "dependencies" array. -->
-            <_ModManifestJson>$([System.Text.RegularExpressions.Regex]::Replace($(_ModManifestJson), '("id"\s*:\s*)"[^"]*"(\s*,\s*"name"\s*:\s*)"[^"]*"', '$1"$(ModId)"$2"$(ModName)"'))</_ModManifestJson>
-        </PropertyGroup>
-        <ItemGroup>
-            <_ModManifestLine Remove="@(_ModManifestLine)"/>
-            <_ModManifestLine Include="$(_ModManifestJson)"/>
-        </ItemGroup>
-        <WriteLinesToFile File="$(IntermediateOutputPath)$(ModId).json" Lines="@(_ModManifestLine)" Overwrite="true"/>
-    </Target>
-
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest">
-         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-        <Copy SourceFiles="$(IntermediateOutputPath)$(ModId).json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
-              DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
-              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
-
+    <Target Name="CopyBaseLibDependencies" AfterTargets="CopyToModsFolderOnBuild">
         <Message Text="Copying BaseLib dependencies..." Importance="high"/>
 
         <ItemGroup Condition="'$(UseLocalBaseLib)' != 'true'">
@@ -252,20 +120,5 @@
 
         <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
     </Target>
-
-    <Target Name="GodotImport" BeforeTargets="GodotPublish"
-            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(SkipGodotImport)' != 'true'">
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
-              IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true"/>
-    </Target>
-
-    <Target Name="GodotPublish" AfterTargets="Publish"
-            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="--- PACKING COMBINED RELEASE: '$(PackFolders)' ---" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; @(_PackFolder, ' ')"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
-              IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
-    </Target>
-    <Import Project="addons/sentry/dotnet/Sentry.Godot.props" Condition="Exists('addons/sentry/dotnet/Sentry.Godot.props')" />
+    <Import Project="addons/sentry/dotnet/Sentry.Godot.props" Condition="Exists('addons/sentry/dotnet/Sentry.Godot.props')"/>
 </Project>
