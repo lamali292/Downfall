@@ -11,7 +11,7 @@ public static class CardOverlayPatch
     [HarmonyPostfix]
     public static void CreatureOverlay(NCard __instance)
     {
-        foreach (var child in __instance._overlayContainer.GetChildren())
+        foreach (var child in __instance.OverlayContainer.GetChildren())
         {
             if (!child.Name.ToString().StartsWith("Downfall")) continue;
             child.Name = "DELETING_OLD_OVERLAY";
@@ -22,6 +22,6 @@ public static class CardOverlayPatch
         var customNode = additional.CreateAdditionalOverlay();
         if (customNode == null) return;
         customNode.Name = additional.OverlayNodeName;
-        __instance._overlayContainer.AddChildSafely(customNode);
+        __instance.OverlayContainer.AddChildSafely(customNode);
     }
 }

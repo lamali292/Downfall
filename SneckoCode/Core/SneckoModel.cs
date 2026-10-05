@@ -87,9 +87,9 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
 
     public override Task AfterRoomEntered(AbstractRoom room)
     {
-        var state = RunManager.Instance.State!;
+        var state = RunManager.Instance.DebugOnlyGetState()!;
         if (state.Act.ActNumber() > 1 || state.ActFloor > 1) return Task.CompletedTask;
-        SneckoPoolSelection.RunActEntry(RunManager.Instance.State!);
+        SneckoPoolSelection.RunActEntry(RunManager.Instance.DebugOnlyGetState()!);
         return Task.CompletedTask;
     }
 }
