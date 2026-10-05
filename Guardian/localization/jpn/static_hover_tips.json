@@ -2,7 +2,7 @@
     "GUARDIAN-ACCELERATE.title": "加速",
     "GUARDIAN-ACCELERATE.description": "[gold]停滞[/gold]スロットの一番右側にあるカードのカウントを減少させる。",
     "GUARDIAN-AGGRAVATE.title": "負担",
-    "GUARDIAN-AGGRAVATE.description": "戦闘開始時、このカードのコストが[blue]1[/blue]増加する。",
+    "GUARDIAN-AGGRAVATE.description": "戦闘中、このジェムが埋め込まれたカードのコストが[blue]1[/blue]増加する。",
     "GUARDIAN-BRACE.title": "制動",
     "GUARDIAN-BRACE.description": "[gold]モードシフト[/gold]の発動に必要なカウントを減少させる。",
     "GUARDIAN-DEFENSIVE_MODE.title": "防御態勢",
