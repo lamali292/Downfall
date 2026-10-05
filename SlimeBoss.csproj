@@ -137,9 +137,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <!-- Publicizer is opt-in per project: only the sts2/BaseLib members SlimeBossCode actually
-             reaches into directly (verified by grep against Downfall.csproj's full list - most of
-             that list is for other characters' code and isn't needed here). -->
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
 
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
@@ -154,16 +151,6 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature.UpdateBounds"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
-    </ItemGroup>
-    <ItemGroup>
-        <Publicize Include="BaseLib" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false">
-            <Members>
-                M:BaseLib.Abstracts.ConstructedCardModel.WithKeyword(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword,BaseLib.Abstracts.ConstructedCardModel.UpgradeType);
-                M:BaseLib.Abstracts.ConstructedCardModel.WithKeywords(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword[]);
-                M:BaseLib.Abstracts.ConstructedCardModel.WithTip(BaseLib.Utils.TooltipSource);
-                M:BaseLib.Abstracts.ConstructedCardModel.WithTips(System.Func{MegaCrit.Sts2.Core.Models.CardModel,System.Collections.Generic.IEnumerable{MegaCrit.Sts2.Core.HoverTips.IHoverTip}});
-            </Members>
-        </Publicize>
     </ItemGroup>
 
     <ItemGroup>
