@@ -50,6 +50,79 @@ if ($LASTEXITCODE -ne 0) {
     if ($LASTEXITCODE -ne 0) { throw "Downfall build failed" }
 }
 
+Write-Host "=== Building SlimeBoss (internal submod) ==="
+dotnet build SlimeBoss.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying SlimeBoss (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build SlimeBoss.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
+}
+
+Write-Host "=== Building Automaton (internal submod) ==="
+dotnet build Automaton.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Automaton (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Automaton.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Automaton build failed" }
+}
+
+Write-Host "=== Building Hermit (internal submod) ==="
+dotnet build Hermit.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Hermit (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Hermit.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hermit build failed" }
+}
+
+Write-Host "=== Building Awakened (internal submod) ==="
+dotnet build Awakened.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Awakened (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Awakened.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Awakened build failed" }
+}
+
+Write-Host "=== Building Champ (internal submod) ==="
+dotnet build Champ.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Champ (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Champ.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Champ build failed" }
+}
+
+Write-Host "=== Building Guardian (internal submod) ==="
+dotnet build Guardian.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Guardian (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Guardian.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Guardian build failed" }
+}
+
+Write-Host "=== Building Snecko (internal submod) ==="
+dotnet build Snecko.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Snecko (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Snecko.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Snecko build failed" }
+}
+
+Write-Host "=== Building Hexaghost (internal submod) ==="
+dotnet build Hexaghost.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Hexaghost (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Snecko.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hexaghost build failed" }
+}
+
+
+Write-Host "=== Building Collector (standalone mod) ==="
+dotnet build Collector.csproj --nologo -v q
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Retrying Collector (cold publicizer cache)..." -ForegroundColor Yellow
+    dotnet build Collector.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Collector build failed" }
+}
+
 $pubDir = ".godot\mono\temp\obj\Debug\PublicizedAssemblies"
 $sts2Pub = Get-ChildItem -Path $pubDir -Recurse -Filter "sts2.dll" -ErrorAction SilentlyContinue | Select-Object -First 1
 if (-not $sts2Pub) { throw "Publicized sts2.dll not found" }

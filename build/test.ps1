@@ -36,6 +36,42 @@ if (-not $NoBuild) {
     Write-Host "=== Building Downfall ===" -ForegroundColor Cyan
     dotnet build Downfall.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "Build failed" }
+    
+    Write-Host "=== Building SlimeBoss ===" -ForegroundColor Cyan
+    dotnet build SlimeBoss.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
+    
+    Write-Host "=== Building Automaton ===" -ForegroundColor Cyan
+    dotnet build Automaton.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Automaton build failed" }
+
+    Write-Host "=== Building Hermit ===" -ForegroundColor Cyan
+    dotnet build Hermit.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hermit build failed" }
+    
+    Write-Host "=== Building Awakened ===" -ForegroundColor Cyan
+    dotnet build Awakened.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Awakened build failed" }
+
+    Write-Host "=== Building Champ ===" -ForegroundColor Cyan
+    dotnet build Champ.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Champ build failed" }
+    
+    Write-Host "=== Building Guardian ===" -ForegroundColor Cyan
+    dotnet build Guardian.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Guardian build failed" }
+
+    Write-Host "=== Building Snecko ===" -ForegroundColor Cyan
+    dotnet build Snecko.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Snecko build failed" }
+
+    Write-Host "=== Building Hexaghost ===" -ForegroundColor Cyan
+    dotnet build Hexaghost.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hexaghost build failed" }
+
+    Write-Host "=== Building Collector ===" -ForegroundColor Cyan
+    dotnet build Collector.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Collector build failed" }
 }
 
 $outFile = Join-Path $env:TEMP "downfall_tests.json"

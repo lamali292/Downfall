@@ -1,0 +1,26 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
+    
+    <PropertyGroup>
+        <ModId>Collector</ModId>
+        <ModName>$(ModId)</ModName>
+        <AssemblyName>$(ModId)</AssemblyName>
+        <PackFolders>Collector</PackFolders>
+        <IsStandaloneMod>true</IsStandaloneMod>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="Collector.json"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+        <ProjectReference Include="SlimeBoss.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="CollectorCode/**/*.cs"/>
+        <AdditionalFiles Include="Collector/**/*"/>
+        <Using Include="Downfall.DownfallCode.Extensions"/>
+    </ItemGroup>
+</Project>

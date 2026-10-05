@@ -71,7 +71,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         IEnumerable<Creature> participants)
     {
         if (side != CombatSide.Player) return;
-        foreach (var player in RunManager.Instance.State?.Players ?? [])
+        foreach (var player in RunManager.Instance.DebugOnlyGetState()?.Players ?? [])
             if (HexaghostCmd.GetCurrentFlame(player).IsIgnited)
                 await HexaghostCmd.Advance(ctx, player, null, true, true);
     }

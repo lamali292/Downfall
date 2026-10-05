@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
@@ -78,7 +79,17 @@ public class FlareFlickChoice : HexaghostCardModel
 
     protected override void AddExtraArgsToDescription(LocString description)
     {
-        description.Add("Keyword", Keyword.GetTitle());
+        description.Add("Keyword", GetTitle(Keyword));
+    }
+
+    private static LocString GetTitle(CardKeyword keyword)
+    {
+        return new LocString("card_keywords", GetLocKeyPrefix(keyword) + ".title");
+    }
+
+    private static string GetLocKeyPrefix(CardKeyword keyword)
+    {
+        return StringHelper.Slugify(keyword.ToString());
     }
     
     public override bool CanBeGeneratedByModifiers => false;

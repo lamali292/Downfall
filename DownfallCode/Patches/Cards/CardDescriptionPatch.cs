@@ -164,7 +164,7 @@ public static class CardKeywordSubRegistry
     }
 }
 
-[HarmonyPatch(typeof(CardKeywordExtensions), nameof(CardKeywordExtensions.GetCardText))]
+[HarmonyPatch(typeof(CardKeywordExtensions),"GetCardText")]
 public static class GetCardTextPatch
 {
     [ThreadStatic] public static CardModel? CurrentCard;

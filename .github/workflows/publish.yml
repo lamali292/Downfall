@@ -154,6 +154,23 @@ jobs:
             /p:ModsPath="${{ github.workspace }}/output/mods/" \
             /p:SkipGodotImport=true
 
+      # Automaton/Awakened/Champ/Guardian/Hermit/Hexaghost/SlimeBoss/Snecko are internal submods
+      # (ADR 0003 / CONTEXT.md "Mod Packaging"): no manifest of their own, each its own .csproj/
+      # .dll/.pck, all landing in the SAME output/mods/Downfall folder as Downfall's own (their
+      # ModOutputFolder is "Downfall") where DownfallMainFile loads each by reflection at runtime.
+      # Without this step the uploaded artifact would be the bare framework only - none of these
+      # eight characters are compiled into Downfall.dll anymore. Collector is NOT built here: it's
+      # a standalone mod (own manifest/Workshop item), deliberately never part of this artifact.
+      - name: Publish internal submods
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        run: |
+          for proj in Automaton Awakened Champ Guardian Hermit Hexaghost SlimeBoss Snecko; do
+            dotnet publish "$proj.csproj" -c Release \
+              /p:GodotPath="$GODOT_PATH" \
+              /p:ModsPath="${{ github.workspace }}/output/mods/" \
+              /p:SkipGodotImport=true
+          done
+
       # Code-only push: the restored .pck from the cache hit above is still correct, so a
       # plain build (no Godot involved) is enough to refresh the DLL in place next to it.
       - name: Build (code-only, reusing cached .pck)
@@ -162,6 +179,15 @@ jobs:
           mkdir -p "${{ github.workspace }}/output/mods"
           dotnet build Downfall.csproj -c Release \
             /p:ModsPath="${{ github.workspace }}/output/mods/"
+
+      # Same eight internal submods as above, code-only path - see that step's comment.
+      - name: Build internal submods (code-only, reusing cached .pck)
+        if: steps.cache-pck.outputs.cache-hit == 'true'
+        run: |
+          for proj in Automaton Awakened Champ Guardian Hermit Hexaghost SlimeBoss Snecko; do
+            dotnet build "$proj.csproj" -c Release \
+              /p:ModsPath="${{ github.workspace }}/output/mods/"
+          done
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

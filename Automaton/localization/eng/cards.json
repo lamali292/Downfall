@@ -131,7 +131,7 @@
   "AUTOMATON-PHILOSOPHIZE.title": "Philosophize",
   "AUTOMATON-PIERCING_SHOT.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Upgrade[/gold] {Cards:diff()} {Cards:plural:card|cards} in your [gold]Stash Pile[/gold].",
   "AUTOMATON-PIERCING_SHOT.title": "Piercing Shot",
-  "AUTOMATON-RECURSIVE_STRIKE.description": "Deal {Damage:diff()} damage twice.\n[gold]Encode[/gold] {Cards:plural:a [gold]Core Strike[/gold]|{:diff()} [gold]Core Strikes[/gold]}{ifUpgraded:show:[gold]+[/gold]|}.",
+  "AUTOMATON-RECURSIVE_STRIKE.description": "Deal {Damage:diff()} damage twice.\n[gold]Encode[/gold] {Cards:plural:a [gold]Core Strike[/gold]|{:diff()} [gold]Core Strikes[/gold]}{IfUpgraded:plus()}.",
   "AUTOMATON-RECURSIVE_STRIKE.title": "Recursive Strike",
   "AUTOMATON-REFACTOR.description": "[gold]Scry[/gold] {Scry:diff()}.\n[gold]Exhaust[/gold] all Status cards discarded.\nGain {Block:diff()} [gold]Block[/gold] for each card [gold]Exhausted[/gold].",
   "AUTOMATON-REFACTOR.title": "Refactor",
