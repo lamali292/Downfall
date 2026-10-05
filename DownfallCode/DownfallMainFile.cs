@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.Loader;
 using BaseLib.Config;
 using BaseLib.Patches.Features;
 using BaseLib.Patches.Saves;
@@ -13,6 +14,7 @@ using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
+using Godot;
 using Godot.Bridge;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
@@ -94,6 +96,70 @@ public static class DownfallMainFile
         //FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Master.strings.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
+        
+        List<string> list = ["Automaton", "Awakened", "Champ", "SlimeBoss", "Hermit", "Guardian", "Snecko", "Hexaghost"];
+        foreach (var se in list)
+        {
+            InitializeSubmod(se);
+        }
+    }
+
+    private static void InitializeSubmod(string name)
+    {
+        if (!ReplaceableSubmod.IsSupersededBy($"{name}Beta"))
+            InitializeSubmod(name,
+                $"{name}.{name}Code.{name}MainFile");
+    }
+    
+    private static void InitializeSubmod(string name, string mainTypeName)
+    {
+        try
+        {
+            var downfallDir = Path.GetDirectoryName(typeof(DownfallMainFile).Assembly.Location) ?? "";
+
+            var pckPath = Path.Combine(downfallDir, $"{name}.pck");
+            if (File.Exists(pckPath))
+            {
+                if (!ProjectSettings.LoadResourcePack(pckPath))
+                    Logger.Error($"Godot errored while loading {name}'s resource pack at '{pckPath}'.");
+            }
+            else
+            {
+                Logger.Error($"{name}.pck not found at '{pckPath}' - its assets will not be available.");
+            }
+
+            var dllPath = Path.Combine(downfallDir, $"{name}.dll");
+            if (!File.Exists(dllPath))
+            {
+                Logger.Error($"{name}.dll not found at '{dllPath}' - internal {name} submod will not be loaded.");
+                return;
+            }
+
+            var loadContext = AssemblyLoadContext.GetLoadContext(typeof(DownfallMainFile).Assembly);
+            var assembly = loadContext != null
+                ? loadContext.LoadFromAssemblyPath(dllPath)
+                : Assembly.LoadFrom(dllPath);
+
+            ModManager.AssociateAssemblyWithMod(ModId, assembly);
+
+            var mainFile = assembly.GetType(mainTypeName);
+            var initialize = mainFile?.GetMethod(
+                "Initialize",
+                BindingFlags.Public | BindingFlags.Static);
+
+            if (initialize == null)
+            {
+                Logger.Error(
+                    $"Loaded {name}.dll but could not find {mainTypeName}.Initialize() via reflection.");
+                return;
+            }
+
+            initialize.Invoke(null, null);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error($"Failed to initialize the internal {name} submod:\n{ex}");
+        }
     }
 
     private static void PostModelInit()

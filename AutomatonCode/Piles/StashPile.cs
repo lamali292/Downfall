@@ -4,6 +4,7 @@ using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Automaton.AutomatonCode.Piles;
@@ -17,4 +18,8 @@ public class StashPile() : CustomPile(Stash)
     {
         return NCustomCombatCardPile.GetPositionFor<NStashPile>();
     }
+    
+    public override LocString Name => new("card_selection", "AUTOMATON-STASH_PILE");
+    public override string IconPath => "res://Automaton/images/character/character_icon.png";
+    
 }

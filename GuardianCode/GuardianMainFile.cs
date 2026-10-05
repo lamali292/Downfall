@@ -18,7 +18,6 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Guardian.GuardianCode;
 
-[ModInitializer(nameof(Initialize))]
 public static class GuardianMainFile
 {
     public const string ModId = "Guardian";

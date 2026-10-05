@@ -1,6 +1,7 @@
 ﻿using Downfall.DownfallCode.Interfaces;
 using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.Cards;
@@ -24,7 +25,7 @@ public static class NCardUpdateTypePlaquePatch
         text.Add("original", originalText);
         text.Add("type", overrideText);
         var result = text.GetFormattedText();
-        __instance._typeLabel.SetTextAutoSize(result);
+        __instance.GetNodeOrNull<MegaLabel>("%TypeLabel").SetTextAutoSize(result);
         Callable.From(__instance.UpdateTypePlaqueSizeAndPosition).CallDeferred();
     }
 }

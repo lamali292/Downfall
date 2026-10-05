@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Patches;
@@ -50,7 +49,7 @@ public sealed class ImpendingDoom : HermitCardModel
 
     public override bool CanBeGeneratedByModifiers => false;
 
-    private static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
+    private static bool IsMultiplayer => (RunManager.Instance.DebugOnlyGetState()?.Players.Count ?? 1) > 1;
 
     protected override async Task OnTurnEndInHand(PlayerChoiceContext ctx)
     {

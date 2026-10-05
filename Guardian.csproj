@@ -1,0 +1,21 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
+
+    <PropertyGroup>
+        <ModId>Guardian</ModId>
+        <ModName>$(ModId)</ModName>
+        <AssemblyName>$(ModId)</AssemblyName>
+        <PackFolders>Guardian</PackFolders>
+        <!-- <IsStandaloneMod>true</IsStandaloneMod> -->
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="GuardianCode/**/*.cs"/>
+        <AdditionalFiles Include="Guardian/**/*"/>
+        <Using Include="Downfall.DownfallCode.Extensions"/>
+    </ItemGroup>
+</Project>

@@ -58,7 +58,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         // SpireField<CardModel, int> instead, so it still needs its own explicit reset here.
         StasisCounter._table.Clear();
 
-        foreach (var player in RunManager.Instance.State?.Players ?? [])
+        foreach (var player in RunManager.Instance.DebugOnlyGetState()?.Players ?? [])
         {
             if (StasisSlots[player] < 0)
                 StasisSlots.Set(player, player.Character is Guardian ? 3 : 1);

@@ -61,7 +61,7 @@ public static class SneckoSpiritEntryPatch
 	{
 		if (SneckoSpiritGate.Done) return true;
 
-		var state = __instance.State;
+		var state = __instance.DebugOnlyGetState();
 		if (state is not { CurrentActIndex: 0 }) return true;
 		if (!coord.Equals(state.Map.StartingMapPoint.coord)) return true;
 		if (!state.Players.Any(p => p.Character is Core.Snecko)) return true;
