@@ -2,11 +2,11 @@
     <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
 
     <PropertyGroup>
-        <ModId>SlimeBoss</ModId>
+        <ModId>SlimeBossBeta</ModId>
         <ModName>$(ModId)</ModName>
         <AssemblyName>$(ModId)</AssemblyName>
         <PackFolders>SlimeBoss</PackFolders>
-        <!-- <IsStandaloneMod>true</IsStandaloneMod> -->
+        <IsStandaloneMod>true</IsStandaloneMod>
         <PublicizeSts2Reference>false</PublicizeSts2Reference>
     </PropertyGroup>
 
@@ -16,6 +16,7 @@
 
     <ItemGroup>
         <Compile Include="SlimeBossCode/**/*.cs"/>
+        <None Include="SlimeBoss.json" />
         <AdditionalFiles Include="SlimeBoss/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
