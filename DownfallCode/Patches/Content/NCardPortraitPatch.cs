@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Interfaces;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
@@ -9,11 +10,12 @@ internal static class CustomPortraitApplier
     internal static void Apply(NCard nCard)
     {
         if (nCard.Model is not ICustomPortrait card) return;
-        if (nCard._portrait == null) return;
+        var portrait = nCard.GetNodeOrNull<TextureRect>("%Portrait");
+        if (portrait == null) return;
 
         var texture = card.GetPortraitTexture();
         if (texture != null)
-            nCard._portrait.Texture = texture;
+            portrait.Texture = texture;
     }
 }
 
