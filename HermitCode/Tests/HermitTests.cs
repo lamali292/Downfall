@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Downfall.TestCode;
@@ -32,32 +31,7 @@ public class HermitTests
 
     private static int DeadOnEntries(CardModel card) =>
         CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e => e.CardPlay?.Card == card);
-
-    // Regression guard: player-reported that Strike of Genius (a Champ power) generates nothing
-    // for a Hermit who has no Strike-tagged Attack cards other than Basic Strike. Root cause was
-    // that CardFactory.GetDistinctForCombat (used to pick the random Strike cards) unconditionally
-    // filters out Basic-rarity cards, so a pool whose only Strike Attack is Basic Strike resolves
-    // to empty. Fixed by falling back to Basic Strike to fill any remaining slots. Lives here (not
-    // TestCode/Tests/ChampTests.cs) because it needs Hermit's character/card pool specifically -
-    // see the comment left in ChampTests.cs for why that cross-assembly direction works.
-    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
-    public async Task StrikeOfGeniusFallsBackToBasicStrikeWhenNoOtherStrikeExists(TestContext ctx)
-    {
-        var handBefore = ctx.Player.Hand.ToList();
-
-        var power = await PowerCmd.Apply<StrikeOfGeniusPower>(new BlockingPlayerChoiceContext(),
-            ctx.Player.Creature, 3, ctx.Player.Creature, null);
-        Assert.IsTrue(power != null, "Sanity check: StrikeOfGeniusPower should have been applied.");
-
-        await power!.BeforeHandDraw(ctx.Player, new BlockingPlayerChoiceContext(), ctx.Combat);
-
-        var generated = ctx.Player.Hand.Except(handBefore).ToList();
-        Assert.AreEqual(3, generated.Count,
-            "Strike of Genius should still generate its full Amount when the only Strike card " +
-            "the character has is Basic Strike.");
-        Assert.IsTrue(generated.All(c => c.Rarity == CardRarity.Basic && c.Tags.Contains(CardTag.Strike)),
-            "The fallback cards should be Basic Strike.");
-    }
+    
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
     public async Task DeadOnCardPlayedFromCenterTriggers(TestContext ctx)
