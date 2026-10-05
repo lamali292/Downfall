@@ -2,7 +2,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.TestSupport;
 
-namespace Downfall.TestCode;
+namespace Downfall.DownfallCode.Tests;
 
 /// The [CardTest] harness (CardTestRunner.NewCombatAsync) never instantiates a real NCombatRoom,
 /// so NGame's screenshake target is never set - every damage instance during a test otherwise

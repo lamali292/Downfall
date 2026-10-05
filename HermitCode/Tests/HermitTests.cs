@@ -1,7 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
-using Downfall.TestCode;
+using Downfall.DownfallCode.Tests;
 using Hermit.HermitCode.Cards.Common;
 using Hermit.HermitCode.Cards.Multiplayer;
 using Hermit.HermitCode.Cards.Rare;

@@ -2,7 +2,8 @@
     <!--
         Plain-.NET unit test seam (fast, no game). References ONLY pure source files by link -
         never sts2.dll, Godot, Harmony or BaseLib. Pure decision logic is tested here; anything
-        touching combat state, piles, UI or patches stays a [CardTest] in TestCode/.
+        touching combat state, piles, UI or patches stays a [CardTest] in DownfallCode/Tests/ or a
+        per-character Tests/ folder.
         To cover a new pure module: add a <Compile Include="..." Link="..."/> below (the file must
         compile with no game usings) and a test class next to it.
         Run: dotnet test UnitTests/Downfall.UnitTests.csproj

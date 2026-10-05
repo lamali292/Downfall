@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Downfall.TestCode;
+namespace Downfall.DownfallCode.Tests;
 
 public sealed record TestFailure(string Name, string Message, string Details);
 

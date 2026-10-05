@@ -14,16 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="GuardianCode/**/*.cs" Exclude="GuardianCode/Tests/**/*.cs"/>
+        <Compile Include="GuardianCode/**/*.cs"/>
         <AdditionalFiles Include="Guardian/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="GuardianCode/Tests/**/*.cs"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include=".godot\mono\temp\" />
     </ItemGroup>
 </Project>

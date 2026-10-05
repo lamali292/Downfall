@@ -1,4 +1,4 @@
-﻿namespace Downfall.TestCode;
+﻿namespace Downfall.DownfallCode.Tests;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class CardTestAttribute(Type? characterType = null, Type? encounterType = null, int playerCount = 1) : Attribute

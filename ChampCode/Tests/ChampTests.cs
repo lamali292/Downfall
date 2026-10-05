@@ -5,7 +5,7 @@ using Champ.ChampCode.Cards.Uncommon;
 using Champ.ChampCode.Enchantments;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
-using Downfall.TestCode;
+using Downfall.DownfallCode.Tests;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -73,7 +73,7 @@ public class ChampTests
     //
     // This test needs a non-Champ character with no Strike Attack besides Basic Strike (Hermit),
     // so it lives in HermitCode/Tests/HermitTests.cs instead of here - Hermit is its own
-    // standalone-submod assembly (Hermit.csproj) now, and TestCode (compiled into Downfall.dll)
+    // standalone-submod assembly (Hermit.csproj) now, and the test harness (DownfallCode/Tests, compiled into Downfall.dll)
     // can't reference back into it (same circular-reference restriction as DownfallCode -> Hermit;
     // see ADR 0003). The reverse direction works fine: Hermit.csproj -> Downfall.csproj already
     // includes ChampCode (still bundled), so the moved test can reference StrikeOfGeniusPower

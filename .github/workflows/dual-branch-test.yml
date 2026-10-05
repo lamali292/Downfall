@@ -83,7 +83,7 @@ jobs:
       # (distinct from publish.yml's "default") and including Collector/ (part of $ALL_SUBMODS
       # here, excluded from publish.yml's default Submods) because this job packs different
       # folders into the .pck than publish.yml even for identical asset content. Test isn't
-      # listed: it has no asset folder of its own (TestCode/ only), so it can't affect the hash.
+      # listed: it has no asset folder of its own (DownfallCode/Tests/ only), so it can't affect the hash.
       # Declared first so its cache-hit is known before the engine/atlas/Godot-import caches
       # below even attempt to restore — none of those are needed on a code-only push.
       - name: Cache packed mod output

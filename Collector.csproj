@@ -19,12 +19,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="CollectorCode/**/*.cs" Exclude="CollectorCode/Tests/**/*.cs"/>
+        <Compile Include="CollectorCode/**/*.cs"/>
         <AdditionalFiles Include="Collector/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-    
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="CollectorCode/Tests/**/*.cs"/>
     </ItemGroup>
 </Project>

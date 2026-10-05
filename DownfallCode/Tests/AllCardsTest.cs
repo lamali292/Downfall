@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
-namespace Downfall.TestCode;
+namespace Downfall.DownfallCode.Tests;
 
 public class AllCardsTest
 {

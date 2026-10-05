@@ -14,12 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="ChampCode/**/*.cs" Exclude="ChampCode/Tests/**/*.cs"/>
+        <Compile Include="ChampCode/**/*.cs"/>
         <AdditionalFiles Include="Champ/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
-        <Compile Include="ChampCode/Tests/**/*.cs"/>
     </ItemGroup>
 </Project>
