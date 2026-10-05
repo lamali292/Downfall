@@ -20,7 +20,7 @@ public partial class NSpellbookButton : NCustomCombatCardPile
     protected override Vector2 HoverTipOffset => new(30f, -850f);
     protected override Vector2 ButtonOffsets => new(20f, -360f);
 
-    private CardModel? Next => (_pile as AwakenedPile)?.NextSpell;
+    private CardModel? Next => (CardPile as AwakenedPile)?.NextSpell;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         Next == null ? [] : [HoverTipFactory.FromCard(Next), ..Next.HoverTips];
