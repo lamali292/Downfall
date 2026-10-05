@@ -9,11 +9,13 @@ using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
+using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Awakened.AwakenedCode;
 
+[ModInitializer(nameof(Initialize))]
 public static class AwakenedMainFile
 {
     public const string ModId = "Awakened"; //At the moment, this is used only for the Logger and harmony names.

@@ -8,6 +8,7 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Snecko.SneckoCode;
 
+[ModInitializer(nameof(Initialize))]
 public static class SneckoMainFile
 {
     public const string ModId = "Snecko"; //At the moment, this is used only for the Logger and harmony names.
