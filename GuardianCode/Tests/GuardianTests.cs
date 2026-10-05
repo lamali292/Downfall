@@ -1,6 +1,7 @@
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Models.Cards;
 using BaseLib.Abstracts;
+using Downfall.TestCode;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Cards.Common;
@@ -13,14 +14,17 @@ using Guardian.GuardianCode.Relics;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Downfall.TestCode;
+namespace Guardian.GuardianCode.Tests;
 
 public class GuardianTests
 {
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public IEnumerable<CardTestCase> PlayGuardianCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+    
     [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
     public async Task StasisCounterIsCostPlusOneAndEnergyPlusOneForXCards(TestContext ctx)
     {
