@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using Downfall.TestCode;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -14,10 +15,13 @@ using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.Powers;
 using Snecko.SneckoCode.Relics;
 
-namespace Downfall.TestCode;
+namespace Snecko.SneckoCode.Tests;
 
 public class SneckoTests
 {
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public IEnumerable<CardTestCase> PlaySneckoCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
+    
     // Cost-module consistency: X-energy cards have no numeric cost, so every Muddle path
     // must skip them the same way. Muddle selection prompts auto-pick the first eligible card, so the
     // X card goes first in hand: if it were eligible it would be the one muddled.
