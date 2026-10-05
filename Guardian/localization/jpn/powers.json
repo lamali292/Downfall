@@ -69,9 +69,9 @@
     "GUARDIAN-BASTION_POWER.description": "[gold]制動[/gold]するたび、自身を除くすべてのプレイヤーは[gold]ブロック[/gold]を得る。",
     "GUARDIAN-BASTION_POWER.smartDescription": "[gold]制動[/gold]するたび、自身を除くすべてのプレイヤーは[gold]ブロック[/gold][blue]{Amount}[/blue]を得る。",
     "GUARDIAN-STUNNED_POWER.title": "スタン",
-    "GUARDIAN-STUNNED_POWER.description": "あなたはこのターン、カードのプレイ、ドロー、エナジーの獲得ができない。",
-    "GUARDIAN-STUNNED_POWER.smartDescription": "あなたはこのターン、カードのプレイ、ドロー、エナジーの獲得ができない。",
-    "GUARDIAN-NEXT_TURN_STUNNED_POWER.title": "次のターン開始時、スタンする。",
+    "GUARDIAN-STUNNED_POWER.description": "このターン、カードのプレイ、ドロー、エナジーの獲得ができない。",
+    "GUARDIAN-STUNNED_POWER.smartDescription": "このターン、カードのプレイ、ドロー、エナジーの獲得ができない。",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.title": "次ターンスタン",
     "GUARDIAN-NEXT_TURN_STUNNED_POWER.description": "あなたの次のターンをスキップする。",
     "GUARDIAN-NEXT_TURN_STUNNED_POWER.smartDescription": "あなたの次の[blue]{Amount}[/blue]ターンをスキップする。"
 }
