@@ -1,137 +1,15 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
 
-    <!-- SlimeBoss as an internal submod (ADR 0003): its own assembly for code-separation, with no
-         manifest/ModId of its own - the game's mod loader never discovers or loads this project's
-         output on its own. Compiles only SlimeBossCode/, references the core Downfall.csproj for
-         whatever DownfallCode surface it needs, and its build output (SlimeBoss.dll/.pdb and its
-         own SlimeBoss.pck) is copied into the SAME mod output folder as Downfall.csproj's own (see
-         ModOutputFolder below and CopyToModsFolderOnBuild/GodotPublish), where
-         Downfall.DownfallCode.DownfallMainFile.Initialize() loads the dll by reflection (calling
-         SlimeBossMainFile.Initialize() directly - see that method's doc comment for why this can't
-         be a normal compile-time reference in that direction) and the pck via
-         Godot.ProjectSettings.LoadResourcePack(...). Assets stay in their OWN pck rather than
-         folding into Downfall.pck (a separate, unmanifested pck is never auto-loaded by the game's
-         manifest-driven mod loader, but nothing stops loading it explicitly ourselves, same as the
-         dll) so a future SlimeBoss Beta replacement mod can ship different assets under the same
-         resource paths without colliding with stock SlimeBoss's. See .scratch/standalone-submods/. -->
-
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <LangVersion>14</LangVersion>
-
-        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
-        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-
-        <!-- ModId stays "SlimeBoss" for the AssemblyName/pck name (-> SlimeBoss.dll/.pck) and the
-             Logger/Harmony instance name already hardcoded in SlimeBossMainFile.cs - it is NOT a
-             manifest id anymore, this project produces no manifest. ModOutputFolder deliberately
-             matches Downfall.csproj's own ("Downfall"), not ModId, so CopyToModsFolderOnBuild/
-             GodotPublish below land SlimeBoss.dll/.pck in the same mods/Downfall/ folder as
-             Downfall.dll/.pck, where DownfallMainFile can find and load them at a known relative
-             path next to itself. -->
         <ModId>SlimeBoss</ModId>
+        <ModName>$(ModId)</ModName>
         <AssemblyName>$(ModId)</AssemblyName>
-        <ModOutputFolder>Downfall</ModOutputFolder>
         <PackFolders>SlimeBoss</PackFolders>
-
-        <ImplicitUsings>true</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <DefaultItemExcludes>
-            packages/**;
-            src/**;shaders/**;steam/**;System/**;themes/**;addons/**;
-            animations/**;banks/**;debug_audio/**;fonts/**;images/**;
-            localization/**;materials/**;models/**;RiderTestRunner/**;scenes/**
-        </DefaultItemExcludes>
-        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-
-        <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
+        <!-- <IsStandaloneMod>true</IsStandaloneMod> -->
+        <PublicizeSts2Reference>false</PublicizeSts2Reference>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <AssemblyVersion>0.1.20.0</AssemblyVersion>
-        <FileVersion>0.1.20.0</FileVersion>
-        <Version>0.1.20</Version>
-        <BaseLibVersion>3.4.7</BaseLibVersion>
-        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-        <Optimize>false</Optimize>
-        <DebugType>portable</DebugType>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-        <Optimize>true</Optimize>
-        <DebugType>none</DebugType>
-        <PathMap>$(AppOutputBase)=.\</PathMap>
-    </PropertyGroup>
-
-    <!-- OS detection, game assembly references, BaseLib/Publicizer setup: mirrors Downfall.csproj.
-         Kept duplicated rather than factored into a shared .props file, to avoid touching the
-         already-working Downfall.csproj's structure for this extraction - a shared-props cleanup
-         can happen later if/when Collector needs the same scaffolding (see spec). -->
-    <PropertyGroup>
-        <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
-        <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
-        <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(IsWindows)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(IsLinux)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_linuxbsd_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(IsOSX)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/MacOS/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
-        <Reference Include="0Harmony">
-            <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="sts2">
-            <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="SmartFormat">
-            <HintPath>$(Sts2DataDir)/SmartFormat.dll</HintPath>
-        </Reference>
-        <Reference Include="Steamworks.NET">
-            <HintPath>$(Sts2DataDir)/Steamworks.NET.dll</HintPath>
-        </Reference>
-    </ItemGroup>
-
-    <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
-        <PackageReference Include="lamali.StS2.RefLib" Version="0.111.0-beta" ExcludeAssets="runtime" PrivateAssets="all"/>
-        <PackageReference Include="SmartFormat.NET" Version="3.*" ExcludeAssets="runtime" PrivateAssets="all"/>
-        <PackageReference Include="Steamworks.NET" Version="2024.8.0" ExcludeAssets="runtime" PrivateAssets="all"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Reference Include="BaseLib" Condition="'$(UseLocalBaseLib)' == 'true'">
-            <HintPath>C:\Users\lamal\Desktop\Programmieren\sts2mods\BaseLib-StS2\publish\BaseLib.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="$(BaseLibVersion)" Condition="'$(UseLocalBaseLib)' != 'true'"/>
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="0.2.1"/>
-    </ItemGroup>
-
-    <!-- Only the core Downfall project reference: pulls in DownfallCode's public surface (and,
-         transitively, BaseLib) that SlimeBossCode legitimately uses. -->
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
     </ItemGroup>
@@ -159,44 +37,7 @@
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
 
-    <!-- SlimeBoss's own [CardTest]s need TestCode's infra (CardTestAttribute, TestContext, ...),
-         which only exists in Downfall.dll when Downfall.csproj itself is built with "Test" in its
-         Submods - same opt-in flag as every other character's tests, read from the same local.props
-         this project already imports. -->
     <ItemGroup Condition="'$(Submods)' != '' and $(Submods.Contains('Test'))">
         <Compile Include="SlimeBossCode/Tests/**/*.cs"/>
     </ItemGroup>
-
-    <!-- No manifest: SlimeBoss is an internal submod now, so only the compiled assembly (and its
-         PDB for debugging) need to reach the mods/ folder here - landing in the SAME mod output
-         folder as Downfall.csproj's own output (ModOutputFolder is "Downfall" above) so
-         DownfallMainFile can find and load it by reflection at a known relative path next to
-         itself. Its own SlimeBoss.pck is produced separately by GodotPublish below (publish only,
-         same as Downfall.csproj's own asset packing - plain `dotnet build` never touches pck/loc). -->
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
-        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
-              DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
-              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
-    </Target>
-
-    <Target Name="GodotImport" BeforeTargets="GodotPublish"
-            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(SkipGodotImport)' != 'true'">
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; --import --quit --extra-args --no-window"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
-              IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true"/>
-    </Target>
-
-    <!-- Packs SlimeBoss/ into its OWN SlimeBoss.pck (not Downfall.pck - see the header comment),
-         dropped into the same mods/Downfall/ folder as Downfall's own pck so DownfallMainFile can
-         find and load it next to itself. Both projects share the same Godot project (same
-         directory, same project.godot), so the res://SlimeBoss/... paths packed here are identical
-         to what Downfall.csproj's own GodotPublish would have produced for the same folder. -->
-    <Target Name="GodotPublish" AfterTargets="Publish"
-            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="--- PACKING SLIMEBOSS RELEASE: '$(PackFolders)' ---" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; $(PackFolders.Replace(';', ' '))"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
-              IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
-    </Target>
 </Project>
