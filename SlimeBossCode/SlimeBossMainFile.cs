@@ -25,6 +25,8 @@ public static class SlimeBossMainFile
 
     public static void Initialize()
     {
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(SlimeBossMainFile).Assembly);
+
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss, ModId);
         HivePowerExemptRegistry.Register<SlimeModel>();
