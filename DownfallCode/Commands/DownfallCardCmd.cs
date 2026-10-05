@@ -16,6 +16,7 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Runs.History;
 
 namespace Downfall.DownfallCode.Commands;
 
@@ -207,5 +208,33 @@ public class DownfallCardCmd
 
         return CardFactory.GetDistinctForCombat(player, cards.Where(cond), count,
             player.RunState.Rng.CombatCardGeneration);
+    }
+    
+    
+    public static T? Enchant<T>(CardModel card, decimal amount) where T : EnchantmentModel
+    {
+        return Enchant(ModelDb.Enchantment<T>().ToMutable(), card, amount) as T;
+    }
+
+    private static EnchantmentModel? Enchant(
+        EnchantmentModel enchantment,
+        CardModel card,
+        decimal amount)
+    {
+        enchantment.AssertMutable();
+        if (card.Enchantment == null)
+        {
+            card.EnchantInternal(enchantment, amount);
+            enchantment.ModifyCard();
+        }
+        else if (card.Enchantment.GetType() == enchantment.GetType())
+            card.Enchantment.Amount += (int) amount;
+        else
+            throw new InvalidOperationException($"Cannot enchant {card.Id} with {enchantment.Id} because it already has enchantment {card.Enchantment.Id}.");
+        card.FinalizeUpgradeInternal();
+        var pile = card.Pile;
+        if (pile is { Type: PileType.Deck })
+            card.Owner.RunState.CurrentMapPointHistoryEntry?.GetEntry(card.Owner.NetId).CardsEnchanted.Add(new CardEnchantmentHistoryEntry(card, enchantment.Id));
+        return card.Enchantment;
     }
 }
