@@ -7,7 +7,6 @@
         <ModId Condition="'$(ModId)' == ''">Downfall</ModId>
         <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
         <IsStandaloneMod>true</IsStandaloneMod>
-        -->
         <AssemblyName Condition="'$(Configuration)' == 'Debug'">DownfallEditorHost</AssemblyName>
         <AssemblyName Condition="'$(Configuration)' != 'Debug'">$(ModId)</AssemblyName>
     </PropertyGroup>
@@ -23,17 +22,7 @@
     <PropertyGroup>
         <PackFolders>Downfall</PackFolders>
     </PropertyGroup>
-
-    <!--
-        DownfallCode must NOT also be compiled into the "Debug" (editor-host) build. If it were, the SAME source
-        would exist as two distinct CLR types in one process - one in the primary "DownfallEditorHost" assembly
-        (auto-loaded natively by Godot), one in the real, separately mod-loaded "Downfall.dll" - and Godot's
-        scene-to-script cache binds a given .tscn's node type to whichever assembly registered it first (the
-        primary one). Any later cross-assembly generic instantiation
-        (PackedScene.Instantiate&lt;NCustomCardHolder&gt;() etc.) then throws InvalidCastException: same type name,
-        different assembly, not castable (confirmed: NCustomCardHolder.InitPool()). So the editor-host build gets
-        NONE of DownfallCode - only the real mod-loaded Downfall.dll ever contains it, exactly like the real game.
-    -->
+    
     <ItemGroup Condition="!$(DefineConstants.Contains('TOOLS'))">
         <Compile Include="DownfallCode/**/*.cs"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
