@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,6 +26,7 @@ public class QueenCard : Collectible<QueenBoss>
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if ((await PyreCmd.MegaPyre(ctx, this)).Count == 0) return;
         await CommonActions.ApplySelf<PyrePower>(ctx, this, DynamicVars.Energy.BaseValue);
         //I use pyre power because it's funny that the pyre card gives you the pyre power on the pyre character.
         await CommonActions.ApplySelf<ChainsOfBindingPower>(ctx, this);

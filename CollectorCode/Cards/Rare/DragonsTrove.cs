@@ -23,6 +23,7 @@ public class DragonsTrove : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (await PyreCmd.Pyre(ctx, this) == null) return;
         var cards = Owner.DrawPile.Where(e => e.VisualCardPool.IsColorless);
         await CardPileCmd.Add(cards, PileType.Hand);
         await ReserveCmd.GainReserve(this);

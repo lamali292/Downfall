@@ -24,6 +24,7 @@ public class Roast : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
     }

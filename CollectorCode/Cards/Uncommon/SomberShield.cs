@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class SomberShield : CollectorCardModel, IUsesPyredCards
+public class SomberShield : CollectorCardModel
 {
     public SomberShield() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -21,18 +21,17 @@ public class SomberShield : CollectorCardModel, IUsesPyredCards
         WithPower<CopyNextTurnPower>(1, false);
     }
     
-    public IEnumerable<CardModel> PyredCards { get; set; } = [];
-
     protected override Artist Artist => Artist.Get<Opal>();
     
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var pyredCard = await PyreCmd.Pyre(ctx, this);
+        if (pyredCard == null) return;
+
         await CommonActions.CardBlock(this, cardPlay);
         var a = await CommonActions.ApplySelf<CopyNextTurnPower>(ctx, this);
-        var pyredCard = PyredCards.FirstOrDefault();
-        if (a == null || pyredCard == null) return;
-        a.Card = pyredCard.CreateClone();
+        a?.Card = pyredCard.CreateClone();
     }
 
 

@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class HoardersStrike : CollectorCardModel, IUsesPyredCards
+public class HoardersStrike : CollectorCardModel
 {
     public HoardersStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
@@ -22,15 +22,13 @@ public class HoardersStrike : CollectorCardModel, IUsesPyredCards
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    public IEnumerable<CardModel> PyredCards { get; set; } = [];
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var card = await PyreCmd.Pyre(ctx, this);
+        if (card == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var card = PyredCards.FirstOrDefault();
-        if (card == null || !card.VisualCardPool.IsColorless) return;
-        await CardCmd.AutoPlay(ctx, card, null);
+        if (card.VisualCardPool.IsColorless) await CardCmd.AutoPlay(ctx, card, null);
     }
     
 
