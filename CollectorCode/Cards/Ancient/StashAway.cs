@@ -30,6 +30,7 @@ public class StashAway : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this);

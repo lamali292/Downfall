@@ -22,6 +22,7 @@ public class Flash : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
+        if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
     }
 }
