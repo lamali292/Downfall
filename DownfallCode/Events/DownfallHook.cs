@@ -17,13 +17,7 @@ namespace Downfall.DownfallCode.Events;
 /// </summary>
 public static class DownfallHook
 {
-    public static Task AfterCustomDraw(ICombatState cs, PlayerChoiceContext ctx, Player player, PileType pile,
-        CardPileAddResult result)
-    {
-        return HookUtils.Dispatch<IAfterCustomDraw>(cs, ctx, m => m.AfterCustomDraw(player, pile, result));
-    }
-
-    public static Task AfterSoulburnDetonate(ICombatState cs, PlayerChoiceContext ctx, Creature creature)
+  public static Task AfterSoulburnDetonate(ICombatState cs, PlayerChoiceContext ctx, Creature creature)
     {
         return HookUtils.Dispatch<IAfterSoulburnDetonate>(cs, ctx, m => m.AfterSoulburnDetonate(ctx, creature));
     }
