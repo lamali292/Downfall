@@ -23,6 +23,7 @@ public class LanternFlare : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Apply<ScorchedPower>(ctx, this, cardPlay);
     }

@@ -1,5 +1,9 @@
 ﻿{
   "DOWNFALL.mod_title": "Downfall",
+  "DOWNFALL-UI.title": "UI",
+  "DOWNFALL-SYNC.title": "Sync",
+  "DOWNFALL-HIDE_SECTION.title": "Disable Characters",
+
   "DOWNFALL-PRISMATIC_OPTION.title": "Kaleidoscope and Prismatic Gem Option",
   "DOWNFALL-PRISMATIC_OPTION.VanillaOnly": "Vanilla Only",
   "DOWNFALL-PRISMATIC_OPTION.DownfallAndVanilla": "Downfall + Vanilla",

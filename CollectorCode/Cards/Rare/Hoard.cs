@@ -25,6 +25,7 @@ public class Hoard : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (await PyreCmd.Pyre(ctx, this) == null) return;
         while (Owner.Hand.Count < DynamicVars.Cards.IntValue)
         {
             var drawn = await CardPileCmd.Draw(ctx, Owner);

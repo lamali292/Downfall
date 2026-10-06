@@ -6,7 +6,6 @@ using Collector.CollectorCode.DynamicVars;
 using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
@@ -17,8 +16,6 @@ namespace Collector.CollectorCode.Cards;
 public abstract class CollectorCardModel
     : DownfallCardModel<Core.Collector>
 {
-    protected override ICardPlayPhases PlayPhases => CollectorCardPlayPhases.Instance;
-
     protected CollectorCardModel(
         int cost,
         CardType type,
