@@ -36,11 +36,11 @@ public class MassFeed : SlimeBossCardModel
             .WithHitFx("vfx/vfx_bite", tmpSfx: "blunt_attack.mp3")
             .Execute(ctx);
 
-        var anyFatalKill = attackCommand.Results
+        var fatalKillCount = attackCommand.Results
             .SelectMany(r => r)
-            .Any(r => r.WasTargetKilled && fatalEligible.Contains(r.Receiver));
+            .Count(r => r.WasTargetKilled && fatalEligible.Contains(r.Receiver));
 
-        if (!anyFatalKill) return;
-        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.IntValue);
+        if (fatalKillCount == 0) return;
+        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.IntValue * fatalKillCount);
     }
 }
