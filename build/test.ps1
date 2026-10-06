@@ -9,8 +9,8 @@
     ./build/test.ps1 -NoBuild -Filter CheatDeadOn
 
 .NOTES
-    Requires "Test" in the Submods property of local.props, and Steam running
-    (the game exe is launched directly; steam_appid.txt is shipped with the game).
+    Requires Steam running (the game exe is launched directly; steam_appid.txt is
+    shipped with the game).
 #>
 param(
     [string]$Filter = "",
@@ -24,10 +24,6 @@ Set-Location $ProjectRoot
 if (-not (Test-Path "local.props")) { throw "local.props not found. Copy local.props.example to local.props." }
 $props = [xml](Get-Content "local.props")
 $steamLib = $props.Project.PropertyGroup.SteamLibraryPath
-$submods  = $props.Project.PropertyGroup.Submods
-if ($submods -and ($submods -split ";") -notcontains "Test") {
-    throw "Add 'Test' to <Submods> in local.props (currently: $submods)."
-}
 
 $exe = Join-Path $steamLib "common\Slay the Spire 2\SlayTheSpire2.exe"
 if (-not (Test-Path $exe)) { throw "Game executable not found: $exe" }

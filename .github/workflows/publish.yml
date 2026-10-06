@@ -33,7 +33,7 @@ jobs:
       # ---- Packed mod output cache: skip repacking entirely when only C# changed ----
       # Whitelist, not a blacklist: hash the full content of every directory that can feed the
       # .pck — ImageGen/ (atlas tool + its source images) and each character's asset folder
-      # (Downfall/, Automaton/, Awakened/, ... — i.e. PackFolders' $(Submods) list, deliberately
+      # (Downfall/, Automaton/, Awakened/, ... — each character's own asset folder, deliberately
       # NOT the matching *Code/ folder, which is pure C#) — rather than picking out subpatterns
       # like */images/** that silently miss anything not under images/localization/scenes/audio
       # (e.g. Downfall/scripts/, mod_image.png, per-character non-standard files). No
