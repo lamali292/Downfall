@@ -21,15 +21,21 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
         WithCardTip<Ember>();
-        //WithCardTip<Soot>();
+        WithTip(CollectorKeyword.Torchhead);
     }
     
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (Owner.IsTorchheadAlive)
+        {
         await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
-        //await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
+        }
+        else
+        {
+            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+        }
     }
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)

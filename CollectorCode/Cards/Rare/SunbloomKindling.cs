@@ -39,7 +39,7 @@ public class SunbloomKindling : CollectorCardModel
             CardCmd.Upgrade(ember);
         }
 
-        DownfallCardCmd.ForceEnchant<Spiral>(ember, 1);
+        DownfallCardCmd.Enchant<Spiral>(ember, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -54,7 +54,7 @@ public class SunbloomKindling : CollectorCardModel
             await TorchheadCmd.Kindle(ctx, this);
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
                 CardPilePosition.Bottom, IsUpgraded,
-                action: ember => DownfallCardCmd.ForceEnchant<Spiral>(ember, 1));
+                action: ember => DownfallCardCmd.Enchant<Spiral>(ember, 1));
         }
     }
 }

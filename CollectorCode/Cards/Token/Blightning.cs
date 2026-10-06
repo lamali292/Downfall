@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
@@ -20,6 +21,7 @@ public class Blightning : CollectorCardModel
         WithCards(2);
         WithKeyword(CardKeyword.Exhaust);
         WithTags(CardTag.Strike);
+        WithTip(CollectorKeyword.Torchhead);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -28,8 +30,14 @@ public class Blightning : CollectorCardModel
     {
         if (cardPlay.Target == null) return;
         await TorchheadCmd.Kindle(ctx, this);
+        if (Owner.IsTorchheadAlive)
+        {
         await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
-        //await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        }
+        else
+        {
+            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+        }
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Draw(this, ctx);
 

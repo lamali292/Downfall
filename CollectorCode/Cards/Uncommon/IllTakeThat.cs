@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
@@ -20,6 +21,7 @@ public class IllTakeThat : CollectorCardModel
         WithTorchheadDamage(10, 4);
         //WithDamage(10, 4);
         WithTip(StaticHoverTip.Block);
+        WithTip(CollectorKeyword.Torchhead);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -35,8 +37,13 @@ public class IllTakeThat : CollectorCardModel
             await CompatibilityCreatureCmd.LoseBlock(ctx, cardPlay.Target, stolenBlock, cardPlay.Card.Owner.Creature);
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, BlockProps.cardUnpowered, cardPlay);
         }
-
-        //await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (Owner.IsTorchheadAlive)
+        {
         await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        }
+        else
+        {
+            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+        }
     }
 }

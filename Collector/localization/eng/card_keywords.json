@@ -4,5 +4,7 @@
   "COLLECTOR-MEGAPYRE.description": "Requires [gold]Exhausting[/gold] ALL cards in your [gold]Hand[/gold] to be played.",
   "COLLECTOR-MEGAPYRE.title": "Megapyre",
   "COLLECTOR-FLICKER.description": "This card's effects activate when it is [gold]Exhausted[/gold] rather than when it is played.",
-  "COLLECTOR-FLICKER.title": "Flicker"
+  "COLLECTOR-FLICKER.title": "Flicker",
+  "COLLECTOR-TORCHHEAD.description": "The [gold]Torchhead[/gold] attacks at the end of the turn or when commanded to attack. If it is not alive, commanding it to attack will [gold]Kindle[/gold] it with [blue]1[/blue] HP instead.",
+  "COLLECTOR-TORCHHEAD.title": "Torchhead"
 }

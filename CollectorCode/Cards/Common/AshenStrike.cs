@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -18,6 +19,7 @@ public class AshenStrike : CollectorCardModel
         WithTorchheadDamage(14, 2);
         WithUpgradeChangingCardTip<Burn, Soot>();
         WithTags(CardTag.Strike);
+        WithTip(CollectorKeyword.Torchhead);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -26,7 +28,14 @@ public class AshenStrike : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (Owner.IsTorchheadAlive)
+        {
         await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        }
+        else
+        {
+            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+        }
         if (IsUpgraded)
             await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
         else 
