@@ -1,9 +1,8 @@
 name: Dual-branch headless test
-# Ticket 05: builds Downfall with the Test submod included (publish.yml's default Submods
-# excludes it - see Downfall.csproj), syncs both Steam branches via SteamCMD on the self-hosted
-# runner, and runs the full [CardTest] suite headlessly against each, public and public-beta
-# concurrently (see "Run tests" step below). Ticket 06: either branch's failure fails the whole
-# run - see "Evaluate results".
+# Ticket 05: builds Downfall (DownfallCode/Tests/ compiles unconditionally - no Submods switch
+# needed), syncs both Steam branches via SteamCMD on the self-hosted runner, and runs the full
+# [CardTest] suite headlessly against each, public and public-beta concurrently (see "Run tests"
+# step below). Ticket 06: either branch's failure fails the whole run - see "Evaluate results".
 #
 # PR-only, not push-to-main like publish.yml: this job runs on the self-hosted Hetzner runner
 # (shared with the voting-server stack), and pull_request runs the workflow file as it exists on
@@ -29,13 +28,6 @@ env:
   MEGADOT_VERSION: 4.5.1-m.14
   SPINE_VERSION: 4.2-4.5.1-stable
   STEAM_APP_ID: 2868840
-  # Downfall.csproj no longer has a Compile/PackFolders branch for any character name (ADR 0003 -
-  # Automaton/Awakened/Champ/Guardian/Hermit/Hexaghost/SlimeBoss/Snecko are internal submods with
-  # their own .csproj now, Collector is a standalone mod with its own .csproj) - listing them here
-  # would be a no-op. Only "Test" still matters to Downfall.csproj's own Submods check, and every
-  # submod .csproj reads the SAME local.props for its own "Test" check (see "Configure Submods"
-  # below), so this is the one name that actually needs setting.
-  SHARED_SUBMODS: Downfall;Test
   # Built/published as their own .csproj (see "Publish internal submods"/"Publish Collector"
   # below), not via $(Submods) - this list is what drives those steps' loops.
   INTERNAL_SUBMODS: Automaton Awakened Champ Guardian Hermit Hexaghost SlimeBoss Snecko
@@ -53,19 +45,6 @@ jobs:
 
       - name: Clean stale build artifacts
         run: rm -rf .godot obj bin mod-output
-
-      # Submods must be set via local.props (XML), not a `/p:` CLI switch: MSBuild's
-      # command-line parser splits `/p:Name=A;B;C` on the bare semicolons, misreading each
-      # segment as a separate switch instead of one semicolon-separated property value.
-      - name: Configure Submods (include Test)
-        run: |
-          cat > local.props <<'EOF'
-          <Project>
-              <PropertyGroup>
-                  <Submods>${{ env.SHARED_SUBMODS }}</Submods>
-              </PropertyGroup>
-          </Project>
-          EOF
 
       # Targets net9.0, but LangVersion 14 needs .NET 10's Roslyn - GitHub-hosted runners
       # (see publish.yml) already ship a newer SDK alongside whatever setup-dotnet adds, so
@@ -176,7 +155,7 @@ jobs:
 
       # Assets/localization changed (or the pck cache was empty/evicted): run the full
       # pipeline, which also repacks the .pck.
-      - name: Publish mod (Test submod included)
+      - name: Publish mod
         if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           mkdir -p "${{ github.workspace }}/mod-output/mods"
