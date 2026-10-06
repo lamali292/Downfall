@@ -29,9 +29,6 @@ public class Guardian : DownfallCharacterModel
     public override float CardColorS => 1.5f;
     public override float CardColorV => 1.2f;
     public override Color MapDrawingColor => Color;
-
-    public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideGuardian;
-    public override bool HideInCompendium => DownfallConfig.HideGuardian;
     
     public override CharacterGender Gender => CharacterGender.Neutral;
     protected override CharacterModel? UnlocksAfterRunAs => null;

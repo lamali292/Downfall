@@ -19,7 +19,7 @@ public class BodyCrash : GuardianCardModel
 
     private static decimal Calc2(CardModel card, Creature? arg2)
     {
-        return card.Owner.Creature.Block + card.DynamicVars.Block.PreviewValue;
+        return card.Owner.Creature.Block + Math.Floor(card.DynamicVars.Block.PreviewValue);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)

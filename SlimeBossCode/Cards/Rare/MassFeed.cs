@@ -34,11 +34,11 @@ public class MassFeed : SlimeBossCardModel
             .ToHashSet();
         var attackCommand = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
 
-        var anyFatalKill = attackCommand.Results
+        var fatalKillCount = attackCommand.Results
             .SelectMany(r => r)
-            .Any(r => r.WasTargetKilled && fatalEligible.Contains(r.Receiver));
+            .Count(r => r.WasTargetKilled && fatalEligible.Contains(r.Receiver));
 
-        if (!anyFatalKill) return;
-        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.IntValue);
+        if (fatalKillCount == 0) return;
+        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.IntValue * fatalKillCount);
     }
 }

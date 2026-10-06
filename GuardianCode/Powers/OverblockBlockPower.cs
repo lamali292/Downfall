@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Events;
@@ -34,7 +35,7 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange
             : CombatState.RunState.Rng.CombatTargets.NextItem(lowest);
         if (target == null) return;
         await CreatureCmd.GainBlock(target.Creature, Amount, BlockProps.nonCardUnpowered, null);
-        await PowerCmd.Apply<ThornsPower>(ctx, target.Creature, ThornsAmount, Owner, null);
+        await PowerCmd.Apply<OverblockBlockPowerThornsPower>(ctx, target.Creature, ThornsAmount, Owner, null);
         Flash();
     }
 
@@ -47,3 +48,5 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange
         this.InvokeSilentDisplayAmountChanged();
     }
 }
+
+public class OverblockBlockPowerThornsPower : CustomTemporaryPowerModelWrapper<OverblockBlockPower, ThornsPower>;
