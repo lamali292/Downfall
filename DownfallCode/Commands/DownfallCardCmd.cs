@@ -159,34 +159,7 @@ public class DownfallCardCmd
             new CardPileAddResult { cardAdded = card, success = true, oldPile = null, modifyingModels = null },
             0.6f);
     }
-
-    public static async Task<CardPileAddResult> DrawFromCustomPile(PlayerChoiceContext ctx, Player player,
-        PileType pileType)
-    {
-        if (player.Creature.CombatState == null) return default;
-        var pile = CustomPiles.GetCustomPile(player.PlayerCombatState, pileType);
-        CardPileAddResult result;
-        if (pile == null || pile.Cards.Count == 0)
-        {
-            result = new CardPileAddResult();
-        }
-        else
-        {
-            var cardsToDraw = pile.Cards[0];
-            result = await CardPileCmd.Add(cardsToDraw, PileType.Hand);
-        }
-
-        await DownfallHook.AfterCustomDraw(player.Creature.CombatState, ctx, player, pileType, result);
-        return result;
-    }
-
-    public static async Task<IReadOnlyList<CardPileAddResult>> DrawFromCustomPile(PlayerChoiceContext ctx,
-        Player player, PileType pileType, int amount)
-    {
-        var result = new List<CardPileAddResult>();
-        for (var i = 0; i < amount; i++) result.Add(await DrawFromCustomPile(ctx, player, pileType));
-        return result;
-    }
+    
 
     /// <summary>
     ///     Finds unlocked cards matching <paramref name="cond" />.
