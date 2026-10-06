@@ -15,6 +15,7 @@ public class Pyrework : CollectorCardModel
         WithPower<PyreworkPower>(1, 1, false);
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
+        WithTip(CollectorKeyword.Torchhead);
         WithTorchheadDamage(4);
     }
     
