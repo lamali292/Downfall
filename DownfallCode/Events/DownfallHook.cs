@@ -26,17 +26,4 @@ public static class DownfallHook
     {
         return HookUtils.Any<IShouldSoulburnDetonateTargetAll>(cs, m => m.ShouldSoulburnDetonateTargetAll(ctx, owner));
     }
-
-    public static decimal ModifySelfDamage(ICombatState cs, decimal original, AbstractModel model,
-        out IEnumerable<IModifySelfDamage> modifiers)
-    {
-        return MyHookUtils.Modify(cs, original, (m, a) => m.ModifySelfDamage(a, model), out modifiers,
-            MyHookUtils.HookScope.CombatRaw);
-    }
-
-    public static Task AfterModifyingSelfDamage(ICombatState cs, IEnumerable<IModifySelfDamage> modifiers,
-        AbstractModel model)
-    {
-        return HookUtils.AfterModifying(cs, modifiers, m => m.AfterModifyingSelfDamage(model));
-    }
 }
