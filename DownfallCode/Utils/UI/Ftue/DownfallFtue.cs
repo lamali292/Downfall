@@ -18,6 +18,7 @@ public static class DownfallFtue
 
     private const string LocTable = "ftues";
     private const string PointerScene = "res://Downfall/scenes/ftue/pointer_ftue.tscn";
+    private const string RulesScene = "res://Downfall/scenes/ftue/rules_ftue.tscn";
 
     private const double TickSeconds = 0.25;
     private const int MaxTicks = 600;
@@ -28,10 +29,10 @@ public static class DownfallFtue
 
     private static readonly HashSet<string> Pending = new();
 
-    public static void QueueRules(Tip tip, Player player, string scenePath, int pageCount) =>
+    public static void QueueRules(Tip tip, Player player, params string?[] imagePaths) =>
         Queue(tip, player, (modal, _) =>
         {
-            ShowRules(tip, scenePath, pageCount, modal);
+            ShowRules(tip, imagePaths, modal);
             return true;
         });
 
@@ -88,14 +89,19 @@ public static class DownfallFtue
         await timer.ToSignal(timer, SceneTreeTimer.SignalName.Timeout);
     }
 
-    private static void ShowRules(Tip tip, string scenePath, int pageCount, NModalContainer modal)
+    private static void ShowRules(Tip tip, string?[] imagePaths, NModalContainer modal)
     {
-        var popup = ResourceLoader.Load<PackedScene>(scenePath).Instantiate<NDownfallRulesFtue>();
+        var popup = ResourceLoader.Load<PackedScene>(RulesScene).Instantiate<NDownfallRulesFtue>();
         modal.Add(popup);
+        var pageCount = imagePaths.Length;
         var pages = new string[pageCount];
+        var images = new Texture2D?[pageCount];
         for (var i = 0; i < pageCount; i++)
+        {
             pages[i] = new LocString(LocTable, $"{tip.LocKey}.body{i + 1}").GetFormattedText();
-        popup.SetText(new LocString(LocTable, tip.LocKey + ".title").GetFormattedText(), pages);
+            images[i] = imagePaths[i] is { } path ? ResourceLoader.Load<Texture2D>(path) : null;
+        }
+        popup.SetText(new LocString(LocTable, tip.LocKey + ".title").GetFormattedText(), pages, images);
     }
 
     private static void ShowPointer(Tip tip, NModalContainer modal, PointerTarget target,
