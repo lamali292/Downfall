@@ -7,16 +7,8 @@ using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Downfall.DownfallCode.Utils.UI.Ftue;
 
-public abstract partial class NDownfallRulesFtue : NFtue
+public partial class NDownfallRulesFtue : NFtue
 {
-    private Texture2D? Image1 => ResourceLoader.Load<Texture2D>(ImagePath1);
-    private Texture2D? Image2 => ResourceLoader.Load<Texture2D>(ImagePath2);
-    private Texture2D? Image3 => ResourceLoader.Load<Texture2D>(ImagePath3);
-
-    protected abstract string? ImagePath1 { get; }
-    protected abstract string? ImagePath2 { get; }
-    protected abstract string? ImagePath3 { get; }
-    
     private TextureRect _image = null!;
     private MegaLabel _header = null!;
     private MegaLabel _pageCount = null!;
@@ -38,14 +30,14 @@ public abstract partial class NDownfallRulesFtue : NFtue
         _nextButton = GetNode<NGoldArrowButton>("%RightArrow");
         _prevButton.Connect(NClickableControl.SignalName.Released, Callable.From((NButton _) => Page(-1)));
         _nextButton.Connect(NClickableControl.SignalName.Released, Callable.From((NButton _) => Page(1)));
-        _images = [Image1, Image2, Image3];
     }
 
-    // `pages` is this tip's body text, one entry per page; `title` stays on screen throughout.
-    public void SetText(string title, string[] pages)
+    // `pages` is this tip's body text and `images` its per-page art (null = no image), one entry each; `title` stays on screen throughout.
+    public void SetText(string title, string[] pages, Texture2D?[] images)
     {
         _header.SetTextAutoSize(title);
         _pages = pages;
+        _images = images;
         _currentPage = 0;
         ShowPage();
     }
