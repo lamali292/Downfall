@@ -17,7 +17,10 @@ public class TemporalStrike : GuardianCardModel, IGemSocketCard
         WithDamage(7, 3);
         WithEnergy(1);
         WithTip(GuardianTip.Stasis);
+        WithTags(CardTag.Strike);
     }
+
+    protected override bool ShouldGlowGoldInternal => Owner.StasisPile.Count > 0;
 
     public int GemSlots => 1;
 
