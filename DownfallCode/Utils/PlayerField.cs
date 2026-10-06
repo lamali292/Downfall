@@ -7,12 +7,7 @@ namespace Downfall.DownfallCode.Core;
 public sealed class PlayerField<TVal>
 {
     private readonly SpireField<PlayerCombatState, TVal> _inner;
-
-    // player.PlayerCombatState is only replaced by a fresh instance when the NEXT combat starts, not
-    // when the current one ends - it stays set (and its data readable) through the whole map/shop/rest
-    // site window in between. Clearing here, rather than requiring every consuming model to remember a
-    // Clear() call in AfterCombatEnd, closes that window immediately instead of leaving stale data
-    // visible until the next combat happens to overwrite it.
+    
     public PlayerField(Func<TVal?> defaultVal)
     {
         _inner = new SpireField<PlayerCombatState, TVal>(defaultVal);

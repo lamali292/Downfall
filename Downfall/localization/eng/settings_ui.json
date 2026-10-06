@@ -1,5 +1,9 @@
 ﻿{
   "DOWNFALL.mod_title": "Downfall",
+  "DOWNFALL-UI.title": "UI",
+  "DOWNFALL-SYNC.title": "Sync",
+  "DOWNFALL-HIDE_SECTION.title": "Disable Characters",
+
   "DOWNFALL-PRISMATIC_OPTION.title": "Kaleidoscope and Prismatic Gem Option",
   "DOWNFALL-PRISMATIC_OPTION.VanillaOnly": "Vanilla Only",
   "DOWNFALL-PRISMATIC_OPTION.DownfallAndVanilla": "Downfall + Vanilla",
@@ -8,32 +12,32 @@
   "DOWNFALL-PRISMATIC_OPTION.All": "All",
   "DOWNFALL-PRISMATIC_OPTION.hover.desc": "Controls which characters' cards Kaleidoscope and Prismatic Gem can pull from (doesn't affect other mods).\n\nSame: only Downfall cards if you're a Downfall character, vanilla cards if you're a base-game character.",
 
-  "DOWNFALL-HIDE_AUTOMATON.title": "Hide Automaton",
-  "DOWNFALL-HIDE_AUTOMATON.hover.desc": "Hides Automaton from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_AUTOMATON.title": "Disable Automaton",
+  "DOWNFALL-HIDE_AUTOMATON.hover.desc": "Disables Automaton entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
 
-  "DOWNFALL-HIDE_AWAKENED.title": "Hide Awakened",
-  "DOWNFALL-HIDE_AWAKENED.hover.desc": "Hides Awakened One from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_AWAKENED.title": "Disable Awakened",
+  "DOWNFALL-HIDE_AWAKENED.hover.desc": "Disables Awakened One entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
 
-  "DOWNFALL-HIDE_CHAMP.title": "Hide Champ",
-  "DOWNFALL-HIDE_CHAMP.hover.desc": "Hides the Champ from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_CHAMP.title": "Disable Champ",
+  "DOWNFALL-HIDE_CHAMP.hover.desc": "Disables the Champ entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
 
-  "DOWNFALL-HIDE_COLLECTOR.title": "Hide Collector",
-  "DOWNFALL-HIDE_COLLECTOR.hover.desc": "Hides the Collector from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_COLLECTOR.title": "Disable Collector",
+  "DOWNFALL-HIDE_COLLECTOR.hover.desc": "Disables the Collector entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
 
-  "DOWNFALL-HIDE_GUARDIAN.title": "Hide Guardian",
-  "DOWNFALL-HIDE_GUARDIAN.hover.desc": "Hides the Guardian from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_GUARDIAN.title": "Disable Guardian",
+  "DOWNFALL-HIDE_GUARDIAN.hover.desc": "Disables the Guardian entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
 
-  "DOWNFALL-HIDE_HERMIT.title": "Hide Hermit",
-  "DOWNFALL-HIDE_HERMIT.hover.desc": "Hides the Hermit from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_HERMIT.title": "Disable Hermit",
+  "DOWNFALL-HIDE_HERMIT.hover.desc": "Disables the Hermit entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
 
-  "DOWNFALL-HIDE_HEXAGHOST.title": "Hide Hexaghost",
-  "DOWNFALL-HIDE_HEXAGHOST.hover.desc": "Hides Hexaghost from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_HEXAGHOST.title": "Disable Hexaghost",
+  "DOWNFALL-HIDE_HEXAGHOST.hover.desc": "Disables Hexaghost entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
 
-  "DOWNFALL-HIDE_SLIMEBOSS.title": "Hide Slimeboss",
-  "DOWNFALL-HIDE_SLIMEBOSS.hover.desc": "Hides the Slime Boss from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_SLIMEBOSS.title": "Disable Slimeboss",
+  "DOWNFALL-HIDE_SLIMEBOSS.hover.desc": "Disables the Slime Boss entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
 
-  "DOWNFALL-HIDE_SNECKO.title": "Hide Snecko",
-  "DOWNFALL-HIDE_SNECKO.hover.desc": "Hides Snecko from the character select and compendium. It stays registered and its cards can still appear in runs.",
+  "DOWNFALL-HIDE_SNECKO.title": "Disable Snecko",
+  "DOWNFALL-HIDE_SNECKO.hover.desc": "Disables Snecko entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
   
   "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.title": "Show Art Submission Button",
   "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.hover.desc": "Shows or hides the \"Downfall Art Submission\" button on the main menu.",

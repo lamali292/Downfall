@@ -18,6 +18,8 @@ public static class SneckoMainFile
 
     public static void Initialize()
     {
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(SneckoMainFile).Assembly);
+        
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<SneckoCardPool>(VotingPool.Snecko, ModId);
 

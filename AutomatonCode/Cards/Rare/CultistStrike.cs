@@ -11,9 +11,6 @@ namespace Automaton.AutomatonCode.Cards.Rare;
 [Pool(typeof(AutomatonCardPool))]
 public class CultistStrike : AutomatonCardModel
 {
-    private int _currentDamage = 6;
-    private int _increasedDamage;
-
     public CultistStrike() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithEncode<DamageEncode>();
@@ -24,36 +21,38 @@ public class CultistStrike : AutomatonCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
     [SavedProperty]
+    // ReSharper disable once MemberCanBePrivate.Global
     public int CurrentDamage
     {
-        get => _currentDamage;
+        get;
         set
         {
             AssertMutable();
-            _currentDamage = value;
-            DynamicVars.Damage.BaseValue = _currentDamage;
+            field = value;
+            DynamicVars.Damage.BaseValue = field;
         }
-    }
+    } = 6;
 
     [SavedProperty]
+    // ReSharper disable once MemberCanBePrivate.Global
     public int IncreasedDamage
     {
-        get => _increasedDamage;
+        get;
         set
         {
             AssertMutable();
-            _increasedDamage = value;
+            field = value;
         }
     }
 
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        await EncodeOutcome.EncodePlayEffect(this, ctx, cardPlay);
         var intValue = DynamicVars["Increase"].IntValue;
         BuffFromPlay(intValue);
-        if (DeckVersion is not CultistStrike deckVersion) return Task.CompletedTask;
+        if (DeckVersion is not CultistStrike deckVersion) return;
         deckVersion.BuffFromPlay(intValue);
-        return Task.CompletedTask;
     }
 
     protected override void AfterDowngraded()

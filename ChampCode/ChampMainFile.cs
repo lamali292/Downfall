@@ -23,6 +23,8 @@ public static class ChampMainFile
 
     public static void Initialize()
     {
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(ChampMainFile).Assembly);
+        
         CustomLocTableManager.Register("champ_stances");
         CardDescriptionRegistry.Register<ChampCardModel>(DescriptionInjectionPoint.BelowMainText,
             new SkillBonusDescriptionSource());

@@ -23,10 +23,7 @@ public class SlimeBoss : DownfallCharacterModel
 	public override float CardColorS => 0.5f;
 	public override float CardColorV => 1.2f;
 	public override Color MapDrawingColor => Color;
-
-	public override bool HideFromVanillaCharacterSelect => DownfallConfig.HideSlimeboss;
-	public override bool HideInCompendium => DownfallConfig.HideSlimeboss;
-
+	
 	public override CharacterGender Gender => CharacterGender.Neutral;
 	protected override CharacterModel? UnlocksAfterRunAs => null;
 	public override int StartingHp => 65;

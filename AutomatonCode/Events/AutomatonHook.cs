@@ -48,9 +48,4 @@ public static class AutomatonHook
         return HookUtils.Dispatch<IAfterCompilingFunction>(cs, ctx,
             m => m.AfterCompilingFunction(ctx, player, result));
     }
-
-    public static bool WillForceEncode(ICombatState? cs, CardModel card)
-    {
-        return cs != null && HookUtils.Any<IForceEncodesCard>(cs, m => m.ForceEncodes(card));
-    }
 }

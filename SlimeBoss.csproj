@@ -1,0 +1,22 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
+
+    <PropertyGroup>
+        <ModId>SlimeBoss</ModId>
+        <ModName>$(ModId)</ModName>
+        <AssemblyName>$(ModId)</AssemblyName>
+        <PackFolders>SlimeBoss</PackFolders>
+        <!-- <IsStandaloneMod>true</IsStandaloneMod> -->
+        <PublicizeSts2Reference>false</PublicizeSts2Reference>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="SlimeBossCode/**/*.cs"/>
+        <AdditionalFiles Include="SlimeBoss/**/*"/>
+        <Using Include="Downfall.DownfallCode.Extensions"/>
+    </ItemGroup>
+</Project>

@@ -1,10 +1,7 @@
-using BaseLib.Commands;
 using BaseLib.Patches.Content;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using Downfall.DownfallCode.Utils;
 using Godot;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
@@ -18,10 +15,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Runs.History;
-using MegaCrit.Sts2.Core.TestSupport;
 
 namespace Downfall.DownfallCode.Commands;
 
@@ -215,122 +210,13 @@ public class DownfallCardCmd
             player.RunState.Rng.CombatCardGeneration);
     }
     
-    public static async Task<IEnumerable<CardModel>> MulitPileSelect(
-        PlayerChoiceContext ctx,
-        Player player,
-        CardSelectorPrefs prefs,
-        List<CardModel> cards,
-        PileType[]? pileTypes = null)
-    {
-        if (!TestMode.IsOn)
-            return await MultiPileCardSelect.Select(
-                ctx,
-                player,
-                prefs,
-                cards,
-                pileTypes);
-        if (CardSelectCmd.Selector == null)
-            return [];
-
-        return await CardSelectCmd.Selector.GetSelectedCards(
-            cards,
-            prefs.MinSelect,
-            prefs.MaxSelect);
-
-    }
     
-    public static async Task<IEnumerable<CardModel>> MulitPileSelect(
-        PlayerChoiceContext ctx,
-        Player player,
-        CardSelectorPrefs prefs,
-        Func<CardModel, bool>? filter = null,
-        params PileType[] pileTypes)
+    public static T? Enchant<T>(CardModel card, decimal amount) where T : EnchantmentModel
     {
-        if (!TestMode.IsOn)
-            return await MultiPileCardSelect.Select(
-                ctx,
-                player,
-                prefs,
-                filter,
-                pileTypes);
-        if (CardSelectCmd.Selector == null)
-            return [];
-
-        return await CardSelectCmd.Selector.GetSelectedCards(
-            pileTypes.SelectMany(e => e.GetPile(player).Cards),
-            prefs.MinSelect,
-            prefs.MaxSelect);
-
+        return Enchant(ModelDb.Enchantment<T>().ToMutable(), card, amount) as T;
     }
 
-
-    public static async Task RemoveFromCombat(IEnumerable<CardModel> cards)
-    {
-        var list = cards.ToList();
-        foreach (var card in list)
-        {
-            await PlayDestroyPreview(card, 0.1f);
-        }
-        await CardPileCmd.RemoveFromCombat(list, true);
-    }
-    
-    
-    private static async Task PlayDestroyPreview(CardModel card, float delay)
-    {
-        if (!LocalContext.IsMine(card)) return;
- 
-        if (delay > 0f)
-            await Cmd.Wait(delay);
- 
-        var cardNode = NCard.Create(card);
-        if (cardNode == null) return;
- 
-        var room = NCombatRoom.Instance;
-        if (room == null) return;
- 
-        var container = room.Ui.MessyCardPreviewContainer;
-        container.AddChildSafely(cardNode);
-        cardNode.UpdateVisuals(PileType.None, CardPreviewMode.Normal);
- 
-        var tween = cardNode.CreateTween();
-        tween.TweenProperty(cardNode, "scale", Vector2.One, 0.25)
-            .From(Vector2.Zero)
-            .SetEase(Tween.EaseType.Out)
-            .SetTrans(Tween.TransitionType.Cubic);
- 
-        if (!TestMode.IsOn && CardRemoveVfxCompat.IsAvailable)
-        {
-            tween.TweenInterval(0.25);
-            tween.TweenCallback(Callable.From(() =>
-            {
-                var vfx = CardRemoveVfxCompat.Create(cardNode);
-                if (vfx != null)
-                    container.AddChildSafely(vfx);
-            }));
-            tween.TweenInterval(CardRemoveVfxCompat.DeleteCardDelay);
-        }
-        tween.TweenCallback(Callable.From(cardNode.QueueFreeSafely));
-    }
-    
-    /// <summary>
-    /// Be very careful using this method, it does not provide ANY checks for whether the card should be enchanted so will crash if the card already has an enchantment.
-    /// You should almost always use CardCmd.Enchant instead of this method.
-    /// Valid use cases include enchanting status cards and curse cards which are normally excluded from but function normally with enchantments.
-    /// </summary>
-    public static T? ForceEnchant<T>(CardModel card, decimal amount) where T : EnchantmentModel
-    {
-        return ForceEnchant(ModelDb.Enchantment<T>().ToMutable(), card, amount) as T;
-    }
-    
-    /// <summary>
-    /// Forcefully applies an enchantment to a card without checking if it is supposed to.
-    /// </summary>
-    /// <param name="enchantment"> An enchantment you must check is valid BEFORE calling this method.</param>
-    /// <param name="card"> A card that normally wouldn't be allowed to get an enchantment (I.E Curses).</param>
-    /// <param name="amount"> The amount of stacks of this enchantment.</param>
-    /// <returns></returns>
-    /// <exception cref="InvalidOperationException"></exception>
-    private static EnchantmentModel? ForceEnchant(
+    private static EnchantmentModel? Enchant(
         EnchantmentModel enchantment,
         CardModel card,
         decimal amount)
@@ -342,16 +228,12 @@ public class DownfallCardCmd
             enchantment.ModifyCard();
         }
         else if (card.Enchantment.GetType() == enchantment.GetType())
-        {
-            card.Enchantment.Amount += (int)amount;
-        }
+            card.Enchantment.Amount += (int) amount;
         else
-        {
-            return null;
-        }
+            throw new InvalidOperationException($"Cannot enchant {card.Id} with {enchantment.Id} because it already has enchantment {card.Enchantment.Id}.");
         card.FinalizeUpgradeInternal();
         var pile = card.Pile;
-        if (pile is {Type: PileType.Deck})
+        if (pile is { Type: PileType.Deck })
             card.Owner.RunState.CurrentMapPointHistoryEntry?.GetEntry(card.Owner.NetId).CardsEnchanted.Add(new CardEnchantmentHistoryEntry(card, enchantment.Id));
         return card.Enchantment;
     }

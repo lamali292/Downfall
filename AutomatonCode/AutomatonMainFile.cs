@@ -17,6 +17,11 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Automaton.AutomatonCode;
 
+// Automaton is an internal submod (ADR 0003): its own assembly (Automaton.dll, built by
+// Automaton.csproj) for code-separation, but NOT independently discovered/loaded by the game's mod
+// loader - Downfall's own MainFile loads this assembly by reflection and calls Initialize()
+// directly (see DownfallMainFile.InitializeAutomaton()). [ModInitializer] is inert on that path;
+// it's here so flipping to a standalone mod later needs no change here.
 [ModInitializer(nameof(Initialize))]
 public static class AutomatonMainFile
 {
@@ -27,9 +32,10 @@ public static class AutomatonMainFile
 
     public static void Initialize()
     {
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(AutomatonMainFile).Assembly);
+
         // Before ModelDb.Init: the Function card takes its vars from this registry.
         EffectRegistry.RegisterAssembly(typeof(AutomatonMainFile).Assembly);
-        PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("encode");
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.AboveMainText,
             new EncodeDescriptionSource());
@@ -42,19 +48,11 @@ public static class AutomatonMainFile
         FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
         RegisterEncodeLocationFilter();
-        CardExecutionHooks.RegisterBefore(AutomatonCardEffectHandler.DoBeforeOnPlayInternal);
     }
 
     private static void RegisterEncodeLocationFilter()
     {
         CardPlayLocationCompat.RegisterInitialLocationFilter(EncodeOutcome.HideFromDiscard);
     }
-
-    private static void PostModelInit()
-    {
-        // todo: use actual stash pile icon.
-        MultiPileCardSelect.RegisterPileIndicator(StashPile.Stash,
-            "res://Automaton/images/character/character_icon.png",
-            new LocString("card_selection", "AUTOMATON-STASH_PILE"));
-    }
+    
 }

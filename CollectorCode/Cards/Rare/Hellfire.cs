@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
-public class Hellfire : CollectorCardModel, IUsesPyredCards
+public class Hellfire : CollectorCardModel
 {
     public Hellfire() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
@@ -19,14 +19,13 @@ public class Hellfire : CollectorCardModel, IUsesPyredCards
         WithKeyword(CardKeyword.Exhaust);
         WithPower<MiasmaPower>(5, 3);
     }
-
-    public IEnumerable<CardModel> PyredCards { get; set; } = [];
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        var cardCount = PyredCards.Count();
-        for (var i = 0; i < cardCount; i++)
+        var pyred = await PyreCmd.MegaPyre(ctx, this);
+        if (pyred.Count == 0) return;
+        for (var i = 0; i < pyred.Count; i++)
         {
             await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         }

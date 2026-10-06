@@ -131,7 +131,7 @@
   "AUTOMATON-PHILOSOPHIZE.title": "Philosophize",
   "AUTOMATON-PIERCING_SHOT.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Upgrade[/gold] {Cards:diff()} {Cards:plural:card|cards} in your [gold]Stash Pile[/gold].",
   "AUTOMATON-PIERCING_SHOT.title": "Piercing Shot",
-  "AUTOMATON-RECURSIVE_STRIKE.description": "Deal {Damage:diff()} damage twice.\n[gold]Encode[/gold] 2 copies of [gold]Strike{IfUpgraded:plus()}[/gold].",
+  "AUTOMATON-RECURSIVE_STRIKE.description": "Deal {Damage:diff()} damage twice.\n[gold]Encode[/gold] {Cards:plural:a [gold]Core Strike[/gold]|{:diff()} [gold]Core Strikes[/gold]}{IfUpgraded:plus()}.",
   "AUTOMATON-RECURSIVE_STRIKE.title": "Recursive Strike",
   "AUTOMATON-REFACTOR.description": "[gold]Scry[/gold] {Scry:diff()}.\n[gold]Exhaust[/gold] all Status cards discarded.\nGain {Block:diff()} [gold]Block[/gold] for each card [gold]Exhausted[/gold].",
   "AUTOMATON-REFACTOR.title": "Refactor",
@@ -220,5 +220,9 @@
   "AUTOMATON-SHARE.title": "Share",
   "AUTOMATON-SHARE.description": "Whenever you gain [gold]Block[/gold] from a Function, the ally with the least [gold]Block[/gold] gains {SharePower:diff()} [gold]Block[/gold].",
   "AUTOMATON-BLUESCREEN.title": "Bluescreen",
-  "AUTOMATON-BLUESCREEN.description": "Give another player {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Error[/gold] on top of your [gold]Draw Pile[/gold]."
+  "AUTOMATON-BLUESCREEN.description": "Give another player {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Error[/gold] on top of your [gold]Draw Pile[/gold].",
+  "AUTOMATON-CORE_STRIKE.title": "Core Strike",
+  "AUTOMATON-CORE_STRIKE.description": "",
+  "AUTOMATON-CORE_DEFEND.title": "Core Defend",
+  "AUTOMATON-CORE_DEFEND.description": ""
 }

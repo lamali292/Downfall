@@ -1,6 +1,7 @@
 ﻿using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace Downfall.DownfallCode.Vfx;
@@ -61,14 +62,12 @@ public partial class NStatusBar : Control
 
 public static class StatusBarHelper
 {
-    private const string NodeName = "ExtraStatusBar";
-
-    public static NStatusBar? Get(Player player)
+    private static NStatusBar? Get(Player player)
     {
         return NCombatRoom.Instance?
             .GetCreatureNode(player.Creature)?
-            ._stateDisplay
-            .GetNodeOrNull<NStatusBar>(NodeName);
+            .GetNodeOrNull<NCreatureStateDisplay>("%HealthBar")
+            .GetNodeOrNull<NStatusBar>("ExtraStatusBar");
     }
 
     public static void SetStatus(Player player, int current, int max, Color? color)

@@ -9,8 +9,8 @@
     ./build/test.ps1 -NoBuild -Filter CheatDeadOn
 
 .NOTES
-    Requires "Test" in the Submods property of local.props, and Steam running
-    (the game exe is launched directly; steam_appid.txt is shipped with the game).
+    Requires Steam running (the game exe is launched directly; steam_appid.txt is
+    shipped with the game).
 #>
 param(
     [string]$Filter = "",
@@ -24,10 +24,6 @@ Set-Location $ProjectRoot
 if (-not (Test-Path "local.props")) { throw "local.props not found. Copy local.props.example to local.props." }
 $props = [xml](Get-Content "local.props")
 $steamLib = $props.Project.PropertyGroup.SteamLibraryPath
-$submods  = $props.Project.PropertyGroup.Submods
-if ($submods -and ($submods -split ";") -notcontains "Test") {
-    throw "Add 'Test' to <Submods> in local.props (currently: $submods)."
-}
 
 $exe = Join-Path $steamLib "common\Slay the Spire 2\SlayTheSpire2.exe"
 if (-not (Test-Path $exe)) { throw "Game executable not found: $exe" }
@@ -36,6 +32,42 @@ if (-not $NoBuild) {
     Write-Host "=== Building Downfall ===" -ForegroundColor Cyan
     dotnet build Downfall.csproj --nologo -v q
     if ($LASTEXITCODE -ne 0) { throw "Build failed" }
+    
+    Write-Host "=== Building SlimeBoss ===" -ForegroundColor Cyan
+    dotnet build SlimeBoss.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
+    
+    Write-Host "=== Building Automaton ===" -ForegroundColor Cyan
+    dotnet build Automaton.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Automaton build failed" }
+
+    Write-Host "=== Building Hermit ===" -ForegroundColor Cyan
+    dotnet build Hermit.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hermit build failed" }
+    
+    Write-Host "=== Building Awakened ===" -ForegroundColor Cyan
+    dotnet build Awakened.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Awakened build failed" }
+
+    Write-Host "=== Building Champ ===" -ForegroundColor Cyan
+    dotnet build Champ.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Champ build failed" }
+    
+    Write-Host "=== Building Guardian ===" -ForegroundColor Cyan
+    dotnet build Guardian.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Guardian build failed" }
+
+    Write-Host "=== Building Snecko ===" -ForegroundColor Cyan
+    dotnet build Snecko.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Snecko build failed" }
+
+    Write-Host "=== Building Hexaghost ===" -ForegroundColor Cyan
+    dotnet build Hexaghost.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Hexaghost build failed" }
+
+    Write-Host "=== Building Collector ===" -ForegroundColor Cyan
+    dotnet build Collector.csproj --nologo -v q
+    if ($LASTEXITCODE -ne 0) { throw "Collector build failed" }
 }
 
 $outFile = Join-Path $env:TEMP "downfall_tests.json"

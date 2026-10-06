@@ -1,4 +1,4 @@
-﻿using Automaton.AutomatonCode.Cards.Basic;
+﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using BaseLib.Utils;
@@ -16,9 +16,10 @@ public class RecursiveStrike : AutomatonCardModel
     public RecursiveStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
+        WithCards(2);
         WithTip(AutomatonKeyword.Encode);
         WithTags(CardTag.Strike);
-        WithUpgradingCardTip<StrikeAutomaton>();
+        WithUpgradingCardTip<CoreStrike>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -28,8 +29,8 @@ public class RecursiveStrike : AutomatonCardModel
         await CommonActions.CardAttack(this, cardPlay, 2)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
-        await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx, Upgrade);
-        await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx, Upgrade);
+        for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
+            await AutomatonCmd.EncodeCard<CoreStrike>(Owner, ctx, Upgrade);
     }
 
     private void Upgrade(CardModel card)

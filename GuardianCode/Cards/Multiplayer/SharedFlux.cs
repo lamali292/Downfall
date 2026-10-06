@@ -34,7 +34,6 @@ public class SharedFlux : GuardianCardModel
             target,
             new CardSelectorPrefs(
                 DownfallCardSelectorPrefs.StasisSelectionPrompt,
-                0,
                 1
             )
         )).FirstOrDefault();

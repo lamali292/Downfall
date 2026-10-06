@@ -3,6 +3,7 @@ using Automaton.AutomatonCode.Compile;
 using Automaton.AutomatonCode.Encode;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Automaton.AutomatonCode.Cards.Uncommon;
 
@@ -19,4 +20,8 @@ public class NullPointer : AutomatonCardModel
         WithEnergy(3);
     }
 
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return EncodeOutcome.EncodePlayEffect(this, ctx, cardPlay);
+    }
 }

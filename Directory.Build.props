@@ -1,0 +1,158 @@
+﻿<Project>
+    <PropertyGroup>
+        <BaseIntermediateOutputPath>.godot\mono\temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+        <IntermediateOutputPath>.godot\mono\temp\obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>14</LangVersion>
+
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+
+        <ImplicitUsings>true</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefaultItemExcludes>
+            packages/**;
+            src/**;shaders/**;steam/**;System/**;themes/**;addons/**;
+            animations/**;banks/**;debug_audio/**;fonts/**;images/**;
+            localization/**;materials/**;models/**;RiderTestRunner/**;scenes/**
+        </DefaultItemExcludes>
+        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
+
+        <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <AssemblyVersion>0.1.20.0</AssemblyVersion>
+        <FileVersion>0.1.20.0</FileVersion>
+        <Version>0.1.20</Version>
+        <BaseLibVersion>3.4.7</BaseLibVersion>
+        <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <Optimize>false</Optimize>
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <Optimize>true</Optimize>
+        <DebugType>none</DebugType>
+        <PathMap>$(AppOutputBase)=.\</PathMap>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
+        <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
+        <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
+    </PropertyGroup>
+
+    <!--
+        Shared across every submod .csproj so each project's Publicizer-rewritten copy of sts2.dll/BaseLib.dll
+        is identical. Krafs.Publicizer keeps the rewritten assembly's identity (name/version) unchanged, so an
+        IDE (e.g. Rider) that resolves one project's copy for a file belonging to a different project will see
+        false "inaccessible" errors if the lists differ. Keep this list a superset of everything any submod needs.
+    -->
+    <ItemGroup>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Cards.CardKeywordExtensions"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._localPlayer"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._positionTween"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile.RemoveCard"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet._textHoverTipContainer"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet.TextHoverTipDimensions"/>
+
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithKeyword"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithKeywords"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithTip"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel.WithTips"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.ConstructedCardModel._constructedDynamicVars"/>
+        <Publicize Include="BaseLib:BaseLib.Abstracts.CardModifier._dynamicVars"/>
+        <Publicize Include="BaseLib:BaseLib.Utils.SpireField`2._table"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._intent"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._owner"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._targets"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NIntent._valueLabel"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.addons.mega_text.MegaRichTextLabel.HasEffect"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._combatPilesContainer"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatUi._energyCounter"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower.RefreshAmount"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPower._model"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Powers.VigorPower+Data"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._doubledPowers"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._isFinishedTriggering"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.Relics.UnsettlingLamp._triggeringCard"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.UpdateTypePlaqueSizeAndPosition"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.ReloadOverlay"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard.Reload"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimName"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._attackerAnimDelay"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._sourceType"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._singleTarget"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.Attacker"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.ModelSource"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand.IsRandomlyTargeted"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand+SourceType"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData._data"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Entities.Intents.IntentAnimData+InternalData"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricUtilities.ShouldUploadMetrics"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricsSerializerContext"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel.GetInternalData"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.PowerModel._dynamicVars"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.BaseStarCost"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel._owner"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Models.CardModel.GeneratePlayCount"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton.Reload"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.RestSite.NRestSiteButton._isUnclickable"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._tempScale"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature.UpdateBounds"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.GetDescriptionOrFallback"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetDescription"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Rooms.NEventRoom.SetOptions"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Events.NAncientEventLayout.SetDialogueLineAndAnimate"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Events.NAncientEventLayout._dialogueContainer"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Relics.NRelic.Reload"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPlayerHand.RefreshLayout"/>
+
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary.UpdateCardPoolFilter"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._lastHoveredControl"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._miscPoolFilter"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._poolFilters"/>
+    </ItemGroup>
+</Project>

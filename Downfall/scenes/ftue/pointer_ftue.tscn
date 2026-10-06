@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 ]
+
+[ext_resource type="Script" path="res://DownfallCode/Utils/UI/Ftue/NDownfallPointerFtue.cs" id="1_script"]
+[ext_resource type="Texture2D" path="res://images/ftue/ftue_popup.png" id="2_tex"]
+[ext_resource type="Material" path="res://shaders/ftue_popup.tres" id="3_mat"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_two.tres" id="4_headerfont"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="5_megalabel"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="6_bodyfont"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_one.tres" id="7_bodyboldfont"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="8_megarichtext"]
+[ext_resource type="PackedScene" path="res://scenes/ftue/ftue_confirm_button.tscn" id="9_confirmbtn"]
+[ext_resource type="Texture2D" path="res://images/ftue/ftue_pointer_arrow.png" id="10_arrow"]
+
+[node name="DownfallPointerFtue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="FtuePopup" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = ExtResource("3_mat")
+layout_mode = 1
+offset_right = 579.0
+offset_bottom = 257.0
+texture = ExtResource("2_tex")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Header" type="Label" parent="FtuePopup"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 82.0
+offset_top = 20.0
+offset_right = -36.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+theme_override_colors/font_outline_color = Color(0.22, 0.192793, 0.1034, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_headerfont")
+theme_override_font_sizes/font_size = 26
+vertical_alignment = 1
+script = ExtResource("5_megalabel")
+MaxFontSize = 26
+
+[node name="FtueConfirmButton" parent="FtuePopup" instance=ExtResource("9_confirmbtn")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -137.5
+offset_top = -67.0
+offset_right = 137.5
+offset_bottom = 8.0
+grow_vertical = 0
+
+[node name="DescriptionContainer" type="MarginContainer" parent="FtuePopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = 73.0
+offset_right = -35.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Description" type="RichTextLabel" parent="FtuePopup/DescriptionContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/line_separation = -2
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("6_bodyfont")
+theme_override_fonts/bold_font = ExtResource("7_bodyboldfont")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
+bbcode_enabled = true
+scroll_active = false
+script = ExtResource("8_megarichtext")
+MaxFontSize = 22
+
+[node name="Arrow" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 244.0
+offset_bottom = 204.0
+pivot_offset = Vector2(122, 102)
+mouse_filter = 2
+texture = ExtResource("10_arrow")

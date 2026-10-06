@@ -28,6 +28,8 @@ public static class GuardianMainFile
 
     public static void Initialize()
     {
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(GuardianMainFile).Assembly);
+        
         CustomLocTableManager.Register("gems");
         RegisterGemSave();
         CardDescriptionRegistry.Register<GuardianCardModel>(DescriptionInjectionPoint.BelowMainText,
