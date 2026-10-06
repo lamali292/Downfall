@@ -6,6 +6,9 @@ namespace Downfall.DownfallCode.Config;
 [ConfigHoverTipsByDefault]
 public class DownfallConfig : SimpleModConfig
 {
+    [ConfigSection("UI")]
+    public static bool ShowArtSubmissionButton { get; set; } = true;
+    
     [ConfigSection("Sync")] 
     public static PrismaticMode PrismaticOption { get; set; } = PrismaticMode.All;
     
@@ -21,10 +24,4 @@ public class DownfallConfig : SimpleModConfig
     public static bool HideHexaghost { get; set; } = false;
     public static bool HideSlimeboss { get; set; } = false;
     public static bool HideSnecko { get; set; } = false;
-    
-    [ConfigSection("UI")]
-    public static bool ShowArtSubmissionButton { get; set; } = true;
-
-    [ConfigSection("Dev")]
-    public static bool DevMode { get; set; } = false;
 }
