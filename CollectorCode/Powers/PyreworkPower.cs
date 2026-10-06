@@ -17,13 +17,20 @@ public class PyreworkPower : CollectorPowerModel, IAddDumbVariablesToPowerDescri
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
         WithTorchheadDamage(5);//If this value changes, change the value in the main thing too.
+        WithTip(CollectorKeyword.Torchhead);
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || !(cardPlay.Card.Keywords.Contains(CollectorKeyword.Pyre) || cardPlay.Card.Keywords.Contains(CollectorKeyword.Megapyre))) return;
-        await (TorchheadCmd.TorchheadAttack(this, null)?.WithHitCount(Amount)).ExecuteIfPresent(ctx);
-       
+        if (Owner.Player != null && Owner.Player!.IsTorchheadAlive)
+        {
+            await (TorchheadCmd.TorchheadAttack(this)?.WithHitCount(Amount)).ExecuteIfPresent(ctx);
+        }
+        else
+        {
+            await TorchheadCmd.Kindle(ctx, Owner.Player!, 1, this);
+        }
     }
   
     

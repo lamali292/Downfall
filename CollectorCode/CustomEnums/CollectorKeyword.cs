@@ -13,4 +13,7 @@ public class CollectorKeyword
     
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Flicker;
+    
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword Torchhead;
 }

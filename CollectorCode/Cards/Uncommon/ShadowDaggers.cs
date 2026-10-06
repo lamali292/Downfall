@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,6 +19,7 @@ public class ShadowDaggers : CollectorCardModel
         WithTorchheadDamage(5, 3);
         WithCalculatedVar("CalculatedHits", 0, Calc);
         WithKeyword(CardKeyword.Exhaust);
+        WithTip(CollectorKeyword.Torchhead);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -37,7 +39,14 @@ public class ShadowDaggers : CollectorCardModel
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
         for (var i = 0; i < hits; i++)
         {
+            if (Owner.IsTorchheadAlive)
+            {
            await (TorchheadCmd.TorchheadAttack(this, cardPlay)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+            }
+            else
+            {
+                await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+            }
         }
 
     }

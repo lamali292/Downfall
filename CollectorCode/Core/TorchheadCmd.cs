@@ -2,7 +2,6 @@
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
