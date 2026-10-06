@@ -32,7 +32,7 @@ public static class AutomatonMainFile
 
     public static void Initialize()
     {
-        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(AutomatonMainFile).Assembly);
+        ScriptRegistration.Register(typeof(AutomatonMainFile).Assembly);
 
         // Before ModelDb.Init: the Function card takes its vars from this registry.
         EffectRegistry.RegisterAssembly(typeof(AutomatonMainFile).Assembly);

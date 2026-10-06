@@ -6,8 +6,10 @@
         <LangVersion>14</LangVersion>
         <ModId Condition="'$(ModId)' == ''">Downfall</ModId>
         <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
-        <AssemblyName>$(ModId)</AssemblyName>
         <IsStandaloneMod>true</IsStandaloneMod>
+        -->
+        <AssemblyName Condition="'$(Configuration)' == 'Debug'">DownfallEditorHost</AssemblyName>
+        <AssemblyName Condition="'$(Configuration)' != 'Debug'">$(ModId)</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,19 +17,40 @@
         <None Include="local.props"/>
         <None Include="local.props.example"/>
         <None Include=".gitignore"/>
+        <None Include="default_bus_layout.tres"/>
     </ItemGroup>
 
     <PropertyGroup>
         <PackFolders>Downfall</PackFolders>
     </PropertyGroup>
 
-    <ItemGroup>
+    <!--
+        DownfallCode must NOT also be compiled into the "Debug" (editor-host) build. If it were, the SAME source
+        would exist as two distinct CLR types in one process - one in the primary "DownfallEditorHost" assembly
+        (auto-loaded natively by Godot), one in the real, separately mod-loaded "Downfall.dll" - and Godot's
+        scene-to-script cache binds a given .tscn's node type to whichever assembly registered it first (the
+        primary one). Any later cross-assembly generic instantiation
+        (PackedScene.Instantiate&lt;NCustomCardHolder&gt;() etc.) then throws InvalidCastException: same type name,
+        different assembly, not castable (confirmed: NCustomCardHolder.InitPool()). So the editor-host build gets
+        NONE of DownfallCode - only the real mod-loaded Downfall.dll ever contains it, exactly like the real game.
+    -->
+    <ItemGroup Condition="!$(DefineConstants.Contains('TOOLS'))">
         <Compile Include="DownfallCode/**/*.cs"/>
-        <AdditionalFiles Include="Downfall/**/*"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
+    <ItemGroup>
+        <AdditionalFiles Include="Downfall/**/*"/>
+    </ItemGroup>
     
-    <Target Name="CopyBaseLibDependencies" AfterTargets="CopyToModsFolderOnBuild">
+    <ItemGroup Condition="$(DefineConstants.Contains('TOOLS'))">
+        <Compile Include="editor/**/*.cs"/>
+        <None Include="editor/**" Exclude="editor/**/*.cs"/>
+    </ItemGroup>
+    <ItemGroup Condition="!$(DefineConstants.Contains('TOOLS'))">
+        <None Include="editor/**"/>
+    </ItemGroup>
+
+    <Target Name="CopyBaseLibDependencies" AfterTargets="CopyToModsFolderOnBuild" Condition="'$(Configuration)' != 'Debug'">
         <Message Text="Copying BaseLib dependencies..." Importance="high"/>
 
         <ItemGroup Condition="'$(UseLocalBaseLib)' != 'true'">
@@ -39,6 +62,18 @@
         </ItemGroup>
 
         <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
+        <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(GodotModsPath)/BaseLib/" Condition="'$(CopyToGodotMods)' == 'true'"/>
     </Target>
     <Import Project="addons/sentry/dotnet/Sentry.Godot.props" Condition="Exists('addons/sentry/dotnet/Sentry.Godot.props')"/>
+    
+    <ItemGroup>
+        <PackageReference Remove="Sentry"/>
+    </ItemGroup>
+    <ItemGroup Condition="Exists('$(Sts2DataDir)/Sentry.dll')">
+        <Reference Include="Sentry">
+            <HintPath>$(Sts2DataDir)/Sentry.dll</HintPath>
+            <Private Condition="'$(Configuration)' == 'Debug'">true</Private>
+            <Private Condition="'$(Configuration)' != 'Debug'">false</Private>
+        </Reference>
+    </ItemGroup>
 </Project>

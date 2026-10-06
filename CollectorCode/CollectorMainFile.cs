@@ -22,7 +22,7 @@ public static class CollectorMainFile
 
     public static void Initialize()
     {
-        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(CollectorMainFile).Assembly);
+        ScriptRegistration.Register(typeof(CollectorMainFile).Assembly);
 
         PostInitRegistry.Register(PostModelInit);
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();

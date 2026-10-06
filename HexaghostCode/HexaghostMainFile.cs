@@ -26,7 +26,7 @@ public static class HexaghostMainFile
 
     public static void Initialize()
     {
-        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(HexaghostMainFile).Assembly);
+        ScriptRegistration.Register(typeof(HexaghostMainFile).Assembly);
         
         PostInitRegistry.Register(PostModelInit);
         RichTextEffectRegistry.Register<RichTextAfterlife>();
