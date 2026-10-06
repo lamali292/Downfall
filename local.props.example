@@ -7,41 +7,5 @@
         <SteamLibraryPath>C:\Program Files (x86)\Steam\steamapps</SteamLibraryPath>
         <!-- Path to your GDRE extracted Slay the Spire 2 assets folder -->
         <AssetSourcePath>C:\...\Slay the Spire 2</AssetSourcePath>
-         <!-- Enabled Characters. SlimeBoss, Automaton, Hermit, Awakened and Collector are NOT listed
-              here: none of them is ever compiled into Downfall.dll regardless of what's in this list.
-              - SlimeBoss, Automaton, Hermit and Awakened are internal submods, each with its own
-                .csproj (own SlimeBoss.dll/SlimeBoss.pck, Automaton.dll/Automaton.pck, Hermit.dll/
-                Hermit.pck, Awakened.dll/Awakened.pck, but no manifest of their own - see ADR 0003).
-                All four are still loaded as part of the one Downfall mod entry: Downfall's own
-                MainFile loads each by reflection/ProjectSettings.LoadResourcePack and calls into
-                SlimeBossMainFile.Initialize()/AutomatonMainFile.Initialize()/
-                HermitMainFile.Initialize()/AwakenedMainFile.Initialize() directly (see
-                DownfallMainFile.Initialize()). To build and test any of them locally, run `dotnet
-                build SlimeBoss.csproj` / `dotnet build Automaton.csproj` / `dotnet build
-                Hermit.csproj` / `dotnet build Awakened.csproj` separately (or `dotnet publish
-                <Name>.csproj` for asset/loc changes - this is a SEPARATE publish from Downfall's
-                own, since their assets are packed into their own pck, not Downfall.pck) and copy
-                the output into mods/ alongside Downfall's own - the MSBuild post-build step
-                already does this for you as long as SteamLibraryPath above is set.
-              - Collector is a standalone mod with its own Collector.csproj, own Collector.dll/
-                Collector.pck, AND its own Collector.json manifest (see CONTEXT.md's "Mod
-                Packaging" section) - a genuinely separate Workshop item the game's ModManager
-                discovers and loads on its own, landing in its own mods/Collector/ folder (not
-                alongside Downfall's). Build/publish it the same way: `dotnet build
-                Collector.csproj` / `dotnet publish Collector.csproj`.
-              If your own local.props still lists "SlimeBoss"/"Automaton"/"Hermit"/"Awakened"/
-              "Collector" here from before this change, it's harmless (Downfall.csproj no longer
-              reacts to any of them) but you can remove them for clarity. -->
-        <Submods>Downfall;Champ;Guardian;Hexaghost;Snecko</Submods>
-
-        <!-- Uncomment to build Downfall.csproj itself as a separately-installable mod (e.g. a
-             single-character beta of a BUNDLED submod) that can be loaded alongside a normal full
-             Downfall install without colliding with it. Leave both unset for a normal release
-             build (defaults to ModId/ModName "Downfall"). This does NOT apply to Collector - it's
-             always its own separate mod via Collector.csproj/Collector.json regardless of ModId
-             here; see the Collector note above. -->
-        <!--<Submods>Downfall</Submods>-->
-        <!--<ModId>DownfallBeta</ModId>-->
-        <!--<ModName>Downfall (Beta)</ModName>-->
     </PropertyGroup>
 </Project>
