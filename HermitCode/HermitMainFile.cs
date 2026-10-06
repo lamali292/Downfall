@@ -23,9 +23,9 @@ public static class HermitMainFile
 
     public static void Initialize()
     {
-        PostInitRegistry.Register(PostModelInit);
-        CardExecutionHooks.RegisterBefore(HermitCardEffectHandler.DoBeforeOnPlayInternal);
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(HermitMainFile).Assembly);
 
+        PostInitRegistry.Register(PostModelInit);
         BundledSubmodLocRegistry.Register(ModId);
         VotingPoolRegistry.Register<HermitCardPool>(VotingPool.Hermit, ModId);
 

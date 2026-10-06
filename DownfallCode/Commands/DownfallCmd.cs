@@ -39,5 +39,5 @@ public class DownfallCmd
         return creature?.Powers.Any(e => e.TypeForCurrentAmount == PowerType.Debuff) ?? false;
     }
 
-    public static bool IsMultiplayer => (RunManager.Instance.State?.Players.Count ?? 1) > 1;
+    public static bool IsMultiplayer => (RunManager.Instance.DebugOnlyGetState()?.Players.Count ?? 1) > 1;
 }

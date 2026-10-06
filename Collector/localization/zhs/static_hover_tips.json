@@ -4,7 +4,7 @@
     "COLLECTOR-KINDLE.description": "召唤[gold]火炬头[/gold]。如果已被召唤，则改为在本场战斗中为其增加最大生命值。",
     "COLLECTOR-KINDLE.smartDescription": "召唤拥有[blue]{Kindle}[/blue]点生命的[gold]火炬头[/gold]。如果已被召唤，则将其最大生命值提升[blue]{Kindle}[/blue]点。",
     "COLLECTOR-RESERVE.title": "火种",
-    "COLLECTOR-RESERVE.description": "在[gold]能量[/gold]耗尽后可以使用[gold]火种[/gold]打出卡牌。能跨回合保留。",
+    "COLLECTOR-RESERVE.description": "在[gold]能量[/gold]耗尽后可以消耗[gold]火种[/gold]打出卡牌。\n能跨回合保留。",
     "COLLECTOR-PYRED.description": "因[gold]焰葬[/gold]或[gold]煌葬[/gold]被[gold]消耗[/gold]的牌。",
     "COLLECTOR-PYRED.title": "被葬"
 }

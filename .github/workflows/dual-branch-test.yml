@@ -1,9 +1,8 @@
 name: Dual-branch headless test
-# Ticket 05: builds Downfall with the Test submod included (publish.yml's default Submods
-# excludes it - see Downfall.csproj), syncs both Steam branches via SteamCMD on the self-hosted
-# runner, and runs the full [CardTest] suite headlessly against each, public and public-beta
-# concurrently (see "Run tests" step below). Ticket 06: either branch's failure fails the whole
-# run - see "Evaluate results".
+# Ticket 05: builds Downfall (DownfallCode/Tests/ compiles unconditionally - no Submods switch
+# needed), syncs both Steam branches via SteamCMD on the self-hosted runner, and runs the full
+# [CardTest] suite headlessly against each, public and public-beta concurrently (see "Run tests"
+# step below). Ticket 06: either branch's failure fails the whole run - see "Evaluate results".
 #
 # PR-only, not push-to-main like publish.yml: this job runs on the self-hosted Hetzner runner
 # (shared with the voting-server stack), and pull_request runs the workflow file as it exists on
@@ -29,7 +28,9 @@ env:
   MEGADOT_VERSION: 4.5.1-m.14
   SPINE_VERSION: 4.2-4.5.1-stable
   STEAM_APP_ID: 2868840
-  ALL_SUBMODS: Downfall;Automaton;Awakened;Champ;Guardian;Hexaghost;Hermit;SlimeBoss;Snecko;Collector;Test
+  # Built/published as their own .csproj (see "Publish internal submods"/"Publish Collector"
+  # below), not via $(Submods) - this list is what drives those steps' loops.
+  INTERNAL_SUBMODS: Automaton Awakened Champ Guardian Hermit Hexaghost SlimeBoss Snecko
 
 jobs:
   test:
@@ -44,19 +45,6 @@ jobs:
 
       - name: Clean stale build artifacts
         run: rm -rf .godot obj bin mod-output
-
-      # Submods must be set via local.props (XML), not a `/p:` CLI switch: MSBuild's
-      # command-line parser splits `/p:Name=A;B;C` on the bare semicolons, misreading each
-      # segment as a separate switch instead of one semicolon-separated property value.
-      - name: Configure Submods (include Test)
-        run: |
-          cat > local.props <<'EOF'
-          <Project>
-              <PropertyGroup>
-                  <Submods>${{ env.ALL_SUBMODS }}</Submods>
-              </PropertyGroup>
-          </Project>
-          EOF
 
       # Targets net9.0, but LangVersion 14 needs .NET 10's Roslyn - GitHub-hosted runners
       # (see publish.yml) already ship a newer SDK alongside whatever setup-dotnet adds, so
@@ -74,7 +62,7 @@ jobs:
       # (distinct from publish.yml's "default") and including Collector/ (part of $ALL_SUBMODS
       # here, excluded from publish.yml's default Submods) because this job packs different
       # folders into the .pck than publish.yml even for identical asset content. Test isn't
-      # listed: it has no asset folder of its own (TestCode/ only), so it can't affect the hash.
+      # listed: it has no asset folder of its own (DownfallCode/Tests/ only), so it can't affect the hash.
       # Declared first so its cache-hit is known before the engine/atlas/Godot-import caches
       # below even attempt to restore — none of those are needed on a code-only push.
       - name: Cache packed mod output
@@ -167,11 +155,35 @@ jobs:
 
       # Assets/localization changed (or the pck cache was empty/evicted): run the full
       # pipeline, which also repacks the .pck.
-      - name: Publish mod (Test submod included)
+      - name: Publish mod
         if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           mkdir -p "${{ github.workspace }}/mod-output/mods"
           dotnet publish Downfall.csproj -c Release \
+            /p:GodotPath="$GODOT_PATH" \
+            /p:ModsPath="${{ github.workspace }}/mod-output/mods/" \
+            /p:SkipGodotImport=true
+
+      # Internal submods (ADR 0003): no manifest of their own, land in the same mod-output/mods/
+      # Downfall folder as Downfall's own output. Without this, the [CardTest] run below would
+      # only ever exercise DownfallCode itself - none of these eight characters' cards.
+      - name: Publish internal submods
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        run: |
+          for proj in ${{ env.INTERNAL_SUBMODS }}; do
+            dotnet publish "$proj.csproj" -c Release \
+              /p:GodotPath="$GODOT_PATH" \
+              /p:ModsPath="${{ github.workspace }}/mod-output/mods/" \
+              /p:SkipGodotImport=true
+          done
+
+      # Collector is a standalone mod (own Collector.csproj/Collector.dll/Collector.pck/
+      # Collector.json manifest, ADR 0003 / CONTEXT.md "Mod Packaging") - its own, separate
+      # mod-output/mods/Collector folder, installed alongside Downfall's below.
+      - name: Publish Collector
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        run: |
+          dotnet publish Collector.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/mod-output/mods/" \
             /p:SkipGodotImport=true
@@ -184,6 +196,15 @@ jobs:
           mkdir -p "${{ github.workspace }}/mod-output/mods"
           dotnet build Downfall.csproj -c Release \
             /p:ModsPath="${{ github.workspace }}/mod-output/mods/"
+
+      # Same internal submods/Collector as above, code-only path - see those steps' comments.
+      - name: Build internal submods and Collector (code-only, reusing cached .pck)
+        if: steps.cache-pck.outputs.cache-hit == 'true'
+        run: |
+          for proj in ${{ env.INTERNAL_SUBMODS }} Collector; do
+            dotnet build "$proj.csproj" -c Release \
+              /p:ModsPath="${{ github.workspace }}/mod-output/mods/"
+          done
 
       - name: Restore cached Steam session
         run: |
@@ -207,10 +228,11 @@ jobs:
       - name: Install mod into both branch installs
         run: |
           for d in /steam/public /steam/beta; do
-            rm -rf "$d/mods/Downfall" "$d/mods/BaseLib"
+            rm -rf "$d/mods/Downfall" "$d/mods/BaseLib" "$d/mods/Collector"
             mkdir -p "$d/mods"
             cp -r mod-output/mods/Downfall "$d/mods/Downfall"
             cp -r mod-output/mods/BaseLib "$d/mods/BaseLib"
+            cp -r mod-output/mods/Collector "$d/mods/Collector"
             chmod +x "$d/SlayTheSpire2"
           done
 

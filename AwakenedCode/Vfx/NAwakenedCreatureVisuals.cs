@@ -12,11 +12,12 @@ public partial class NAwakenedCreatureVisuals : NCreatureVisuals
     public override void _Ready()
     {
         base._Ready();
-        _eyeFlare = _body.GetNodeOrNull<Node2D>("%EyeFlare");
-        _wingFlare1 = _body.GetNodeOrNull<WingFlare>("%WingFlare1");
-        _wingFlare2 = _body.GetNodeOrNull<WingFlare>("%WingFlare2");
-        _wingFlare3 = _body.GetNodeOrNull<WingFlare>("%WingFlare3");
-        _wingFlare4 = _body.GetNodeOrNull<WingFlare>("%WingFlare4");
+        var body = GetCurrentBody();
+        _eyeFlare = body.GetNodeOrNull<Node2D>("%EyeFlare");
+        _wingFlare1 = body.GetNodeOrNull<WingFlare>("%WingFlare1");
+        _wingFlare2 = body.GetNodeOrNull<WingFlare>("%WingFlare2");
+        _wingFlare3 = body.GetNodeOrNull<WingFlare>("%WingFlare3");
+        _wingFlare4 = body.GetNodeOrNull<WingFlare>("%WingFlare4");
         SetParticles(false);
     }
     

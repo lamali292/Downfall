@@ -1,0 +1,22 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
+    
+    
+    <PropertyGroup>
+        <ModId>Snecko</ModId>
+        <ModName>$(ModId)</ModName>
+        <AssemblyName>$(ModId)</AssemblyName>
+        <PackFolders>Snecko</PackFolders>
+        <!-- <IsStandaloneMod>true</IsStandaloneMod> -->
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="SneckoCode/**/*.cs"/>
+        <AdditionalFiles Include="Snecko/**/*"/>
+        <Using Include="Downfall.DownfallCode.Extensions"/>
+    </ItemGroup>
+</Project>

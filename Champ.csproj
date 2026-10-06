@@ -1,0 +1,21 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
+    
+    <PropertyGroup>
+        <ModId>Champ</ModId>
+        <ModName>$(ModId)</ModName>
+        <AssemblyName>$(ModId)</AssemblyName>
+        <PackFolders>Champ</PackFolders>
+        <!-- <IsStandaloneMod>true</IsStandaloneMod> -->
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="Downfall.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="ChampCode/**/*.cs"/>
+        <AdditionalFiles Include="Champ/**/*"/>
+        <Using Include="Downfall.DownfallCode.Extensions"/>
+    </ItemGroup>
+</Project>

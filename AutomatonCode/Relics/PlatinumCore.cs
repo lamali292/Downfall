@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,12 +16,12 @@ using MegaCrit.Sts2.Core.Models;
 namespace Automaton.AutomatonCode.Relics;
 
 [Pool(typeof(AutomatonRelicPool))]
-public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction, IForceEncodesCard
+public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction
 {
     public PlatinumCore() : base(RelicRarity.Starter)
     {
-        WithTip<StrikeAutomaton>();
-        WithTip<DefendAutomaton>();
+        WithCardTip<CoreStrike>();
+        WithCardTip<CoreDefend>();
         WithTip(AutomatonKeyword.Encode);
     }
 
@@ -30,26 +31,41 @@ public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction, IForce
         if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
         Flash();
         await Cmd.Wait(0.2f);
-        await AutomatonCmd.EncodeCard<DefendAutomaton>(Owner, ctx);
-        await AutomatonCmd.EncodeCard<StrikeAutomaton>(Owner, ctx);
+        await AutomatonCmd.EncodeCard<CoreStrike>(Owner, ctx);
+        await AutomatonCmd.EncodeCard<CoreDefend>(Owner, ctx);
+    }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var card = cardPlay.Card;
+        if (Owner != card.Owner || !card.IsBasicStrikeOrDefend || card.IsDupe) return;
+        await CardCmdCompatibility.Exhaust(ctx, card);
+        if (card.Tags.Contains(CardTag.Strike))
+        {
+            await AutomatonCmd.EncodeCard<CoreStrike>(Owner, ctx, c => CopyUpgradeAndEnchant(card, c));
+        }
+        else if (card.Tags.Contains(CardTag.Defend))
+        {
+            await AutomatonCmd.EncodeCard<CoreDefend>(Owner, ctx, c => CopyUpgradeAndEnchant(card, c));
+        }
+        Flash();
+    }
+
+    // Keep the generated CoreStrike/CoreDefend a perfect copy of the Strike/Defend it replaced -
+    // only the class changes, so upgrade status and any enchantment must carry over too.
+    private static void CopyUpgradeAndEnchant(CardModel source, CardModel card)
+    {
+        if (source.IsUpgraded)
+            card.UpgradeInternal();
+        var enchant = (EnchantmentModel?)source.Enchantment?.MutableClone();
+        if (enchant == null) return;
+        if (enchant.CanEnchant(card))
+            card.EnchantInternal(enchant, enchant.Amount);
     }
     
-    // The encode itself is performed by EncodeOutcome.CommitAfterPlay (via IForceEncodesCard);
-    // the relic only shows that it was the one responsible.
-    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (ForceEncodes(cardPlay.Card)) Flash();
-        return Task.CompletedTask;
-    }
-
-    public bool ForceEncodes(CardModel card)
-    {
-        return Owner == card.Owner && card.IsBasicStrikeOrDefend;
-    }
-
     public bool ModifyCompiledFunction(FunctionCard function, Player player)
     {
-        if (function.SourceCards.Count(e => e.Rarity == CardRarity.Basic) < 2) return false;
+        if (function.SourceCards.Count(e => e.Tags.Contains(AutomatonTag.Core)) < 2) return false;
         function.EnergyCost.SetUntilPlayed(0);
         return true;
     }

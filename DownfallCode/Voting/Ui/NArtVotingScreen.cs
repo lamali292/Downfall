@@ -310,11 +310,10 @@ public partial class NArtVotingScreen : NSubmenu
             await ToSignal(rect, Node.SignalName.Ready);
 
         rect.UpdateVisuals(PileType.Deck, CardPreviewMode.Normal);
-
         if (card.Rarity == CardRarity.Ancient)
-            rect._ancientPortrait.Texture = tex;
+            rect.GetNodeOrNull<TextureRect>("%AncientPortrait").Texture = tex;
         else
-            rect._portrait.Texture = tex;
+            rect.GetNodeOrNull<TextureRect>("%Portrait").Texture = tex;
 
         overlay.GuiInput += e =>
         {

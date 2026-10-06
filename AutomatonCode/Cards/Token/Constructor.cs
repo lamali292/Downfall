@@ -1,7 +1,9 @@
-﻿using Automaton.AutomatonCode.Encode;
+﻿using Automaton.AutomatonCode.Core;
+using Automaton.AutomatonCode.Encode;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -19,4 +21,8 @@ public class Constructor : AutomatonCardModel
         WithVars(new BlockVar("ExtraBlock", 5, BlockProps.card).WithUpgrade(2));
     }
 
+    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        return EncodeOutcome.EncodePlayEffect(this, ctx, cardPlay);
+    }
 }

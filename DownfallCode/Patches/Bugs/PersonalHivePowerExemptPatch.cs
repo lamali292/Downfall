@@ -5,7 +5,9 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.DownfallCode.Utils;
 
-internal static class HivePowerExemptRegistry
+// Public: called from standalone submods' own MainFile (e.g. SlimeBoss, a separate assembly
+// since the standalone-submods effort), not just code compiled into Downfall.dll itself.
+public static class HivePowerExemptRegistry
 {
     private static readonly HashSet<Type> Exempt = new();
 

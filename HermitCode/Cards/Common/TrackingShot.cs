@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -32,5 +33,6 @@ public sealed class TrackingShot : HermitCardModel
                 return Task.CompletedTask;
             })
             .Execute(ctx);
+        await HermitCmd.Concentrate(ctx, this);
     }
 }

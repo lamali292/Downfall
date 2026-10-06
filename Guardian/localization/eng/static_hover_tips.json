@@ -14,7 +14,7 @@
   "GUARDIAN-SOCKET.title": "Socket",
   "GUARDIAN-SOCKET.description": "Can be forged with a [gold]Gem[/gold] at a Rest Site to permanently absorb its effect.",
   "GUARDIAN-STASIS.title": "Stasis",
-  "GUARDIAN-STASIS.description": "A card in [gold]Stasis[/gold] stays for turns equal to its cost +[blue]1[/blue]. When it exits, it returns to your [gold]Hand[/gold] and is free until played.",
+  "GUARDIAN-STASIS.description": "A card in [gold]Stasis[/gold] stays for turns equal to its cost +[blue]1[/blue]. When it exits, it returns to your [gold]Hand[/gold] and is free to play that turn.",
   "GUARDIAN-TICK.title": "Tick",
   "GUARDIAN-TICK.description": "Tick effects activate whenever this card's [gold]Stasis[/gold] counter is reduced."
 }

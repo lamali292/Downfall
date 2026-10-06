@@ -31,6 +31,8 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
     protected virtual void AfterInitialize(Player player) { }
     protected virtual bool SelfPositions => false;
 
+    protected CardPile? CardPile => _pile;
+    
     public override void _Ready()
     {
         ConnectSignals();
@@ -92,7 +94,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
 
     protected static T? GetPileNode<T>() where T : NCustomCombatCardPile
     {
-        var container = NCombatRoom.Instance?.Ui._combatPilesContainer;
+        var container = NCombatRoom.Instance?.Ui.GetNodeOrNull<NCombatPilesContainer>("%CombatPileContainer");;
         if (container == null || !IsInstanceValid(container)) return null;
         return container.GetChildren()
             .OfType<T>()
