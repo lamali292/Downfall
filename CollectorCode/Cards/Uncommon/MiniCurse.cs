@@ -27,6 +27,7 @@ public class MiniCurse : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
         await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);

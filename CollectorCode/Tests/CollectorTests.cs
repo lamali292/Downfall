@@ -228,9 +228,10 @@ public class CollectorTests
             "Should grant exactly 1 Miasma as a fallback.");
     }
 
-    // Regression guard for Pyre state on replayed plays: CollectorCardPlayPhases.BeforePlay stores the pyred card(s) on the
-    // card instance (IUsesPyredCards.PyredCards) and AfterPlay clears them, so every replay
-    // (OnPlayWrapper's playCount loop) must pyre its own card and end with no leftover state.
+    // Regression guard for Pyre state on replayed plays: cards pyre inline in their own OnPlayInternal
+    // (see PyreCmd.Pyre) and store the pyred card(s) on the card instance (IUsesPyredCards.PyredCards),
+    // clearing them once done, so every replay (OnPlayWrapper's playCount loop) must pyre its own card
+    // and end with no leftover state.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task ReplayedPyreCardPyresOncePerPlayAndLeavesNoState(TestContext ctx)
     {

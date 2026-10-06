@@ -6,12 +6,11 @@ using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Cards.Multiplayer;
 
 [Pool(typeof(CollectorCardPool))]
-public class MysteriousWinds : CollectorCardModel, IUsesPyredCards
+public class MysteriousWinds : CollectorCardModel
 {
     public MysteriousWinds() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
     {
@@ -24,9 +23,9 @@ public class MysteriousWinds : CollectorCardModel, IUsesPyredCards
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var powers = await CommonActions.Apply<CopyNextTurnPower>(ctx, this, cardPlay);
-        var pyredCard = PyredCards.FirstOrDefault();
+        var pyredCard = await PyreCmd.Pyre(ctx, this);
         if (pyredCard == null) return;
+        var powers = await CommonActions.Apply<CopyNextTurnPower>(ctx, this, cardPlay);
         foreach (var copyNextTurnPower in powers)
         {
             var card = pyredCard.CreateClone();
@@ -35,6 +34,4 @@ public class MysteriousWinds : CollectorCardModel, IUsesPyredCards
             copyNextTurnPower.Card = card;
         }
     }
-
-    public IEnumerable<CardModel> PyredCards { get; set; } = [];
 }

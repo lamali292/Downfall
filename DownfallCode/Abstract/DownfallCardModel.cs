@@ -38,22 +38,10 @@ public abstract class DownfallCardModel
 
     protected sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var phases = PlayPhases;
-        // Both run to completion even if the first votes to cancel, like the global listeners among themselves.
-        var phaseCancel = phases != null && !await phases.BeforePlay(this, ctx, cardPlay);
-        var listenerCancel = await CardExecutionHooks.BeforeOnPlayInternal(this, ctx, cardPlay);
-        if (phaseCancel || listenerCancel) return;
+        // we could use OnPlay directly, but we might use the easy wrapper again sometimes
         await OnPlayInternal(ctx, cardPlay);
-        if (phases != null) await phases.AfterPlay(this, ctx, cardPlay);
-        await CardExecutionHooks.AfterOnPlayInternal(this, ctx, cardPlay);
     }
-
-    /// <summary>
-    ///     The owning character's before/after-play phases; overridden by each character's card base.
-    ///     Runs in addition to the global <see cref="CardExecutionHooks" /> listeners (kept for other mods).
-    /// </summary>
-    protected virtual ICardPlayPhases? PlayPhases => null;
-
+    
     protected ConstructedCardModel WithPower<T>(int baseVal, int upgrade,
         bool showTooltip)
         where T : PowerModel

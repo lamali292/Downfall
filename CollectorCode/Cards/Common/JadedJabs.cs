@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class JadedJabs : CollectorCardModel, IUsesPyredCards
+public class JadedJabs : CollectorCardModel
 {
     public JadedJabs() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
@@ -23,20 +23,23 @@ public class JadedJabs : CollectorCardModel, IUsesPyredCards
 
     private static decimal Calc(CardModel card, Creature? creature)
     {
-        if (card is IUsesPyredCards usesPyredCards)
+        if (card is JadedJabs usesPyredCards)
         {
-            return usesPyredCards.PyredCards.FirstOrDefault()?.EnergyCost.GetAmountToSpend() ?? 0;
+            return usesPyredCards.PyredCard?.EnergyCost.GetAmountToSpend() ?? 0;
         }
-
         return 0;
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public IEnumerable<CardModel> PyredCards { get; set; } = [];
+    private CardModel? PyredCard { get; set; }
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var pyred = await PyreCmd.Pyre(ctx, this);
+        if (pyred == null) return;
+        PyredCard = pyred;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        PyredCard = null;
     }
 
 
