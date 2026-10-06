@@ -38,7 +38,6 @@ public static class HexaghostMainFile
 
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(NCreatureAnimationPatch))
-            .Add(typeof(PatchCreatureHoverTips))
             .PatchAll();
     }
 

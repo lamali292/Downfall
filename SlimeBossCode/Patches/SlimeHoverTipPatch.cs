@@ -11,7 +11,9 @@ internal static class SlimeHoverTipPatch
     private static void Postfix(Creature __instance, ref IEnumerable<IHoverTip> __result)
     {
         if (__instance.Monster is not SlimeModel slime) return;
-        __result = __result.Append(slime.SlimeTip);
-        __result = __result.Concat(slime.ExtraTips);
+        IEnumerable<IHoverTip> tips = [slime.SlimeTip];
+        tips = tips.Concat(slime.ExtraTips);
+        tips = tips.Concat(__result);
+        __result = tips;
     }
 }
