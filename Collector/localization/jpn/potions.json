@@ -4,5 +4,5 @@
     "COLLECTOR-LAMP_OIL.title": "ランプの油",
     "COLLECTOR-LAMP_OIL.description": "[gold]点火[/gold][blue]{Kindle}[/blue]。",
     "COLLECTOR-SMOKE_BOMB.title": "スモークボム",
-    "COLLECTOR-SMOKE_BOMB.description": "すべての敵に[gold]瘴気[/gold][blue]{Miasma}[/blue]を付与する。"
+    "COLLECTOR-SMOKE_BOMB.description": "すべての敵に[gold]瘴気[/gold][blue]{MiasmaPower:diff()}[/blue]を付与する。"
 }

@@ -126,7 +126,7 @@
     "AUTOMATON-STRIKE_AUTOMATON.title": "ストライク",
     "AUTOMATON-SUMMON_ORB.description": "毎ターン、最初にプレイするアタックまたはスキルは[gold]格納[/gold]される。",
     "AUTOMATON-SUMMON_ORB.title": "サモンオーブ",
-    "AUTOMATON-TERMINATOR.description": "これが関数の最後のカードとして[gold]エンコード[/gold]された場合、次に作成される関数は[gold]リプレイ[/gold]を得る。",
+    "AUTOMATON-TERMINATOR.description": "これが関数の最後のカードとして[gold]エンコード[/gold]された場合、作成される関数は[gold]リプレイ[/gold]1を得る。",
     "AUTOMATON-TERMINATOR.title": "ターミネーター",
     "AUTOMATON-THUNDER_WAVE.description": "{Damage:diff()}ダメージを与える。\n次にHPを失う時、それを1回防ぐ。",
     "AUTOMATON-THUNDER_WAVE.title": "サンダーウェーブ",
