@@ -28,6 +28,7 @@ config/windows_native_icon="res://images/icon.ico"
 
 [autoload]
 
+RuntimeBootstrap="*res://editor/GameRegistrationBootstrap/RuntimeBootstrap.cs"
 SentryBootstrap="*res://addons/sentry/SentryBootstrap.cs"
 FmodManager="*res://addons/fmod/FmodManager.gd"
 
@@ -48,7 +49,7 @@ mouse_cursor/custom_image_hotspot=Vector2(14, 5)
 
 [dotnet]
 
-project/assembly_name="Downfall"
+project/assembly_name="DownfallEditorHost"
 project/solution_directory="../"
 
 [editor]
@@ -62,7 +63,7 @@ text_editor/behavior/indent/size=4
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/atlas_generator/plugin.cfg", "res://addons/dev_tools/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/mega_text/plugin.cfg", "res://addons/megacontentcreator/plugin.cfg")
+enabled=PackedStringArray("res://editor/GameRegistrationBootstrap/plugin.cfg", "res://addons/atlas_generator/plugin.cfg", "res://addons/dev_tools/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/mega_text/plugin.cfg", "res://addons/megacontentcreator/plugin.cfg")
 
 [filesystem]
 

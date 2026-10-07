@@ -1,0 +1,193 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://DownfallCode/Utils/UI/Ftue/NDownfallRulesFtue.cs" id="0_script"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="1_headerfont"]
+[ext_resource type="FontVariation" path="res://themes/kreon_bold_glyph_space_one.tres" id="2_bodyboldfont"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="3_megalabel"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="4_megarichtext"]
+[ext_resource type="Script" path="res://src/Core/Nodes/CommonUi/NGoldArrowButton.cs" id="5_arrowbtn"]
+[ext_resource type="Texture2D" path="res://images/packed/common_ui/settings_tiny_left_arrow.png" id="6_leftarrow"]
+[ext_resource type="Texture2D" path="res://images/packed/common_ui/settings_tiny_right_arrow.png" id="7_rightarrow"]
+[ext_resource type="Shader" path="res://shaders/hsv.gdshader" id="8_hsv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_left"]
+shader = ExtResource("8_hsv")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 0.9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_right"]
+shader = ExtResource("8_hsv")
+shader_parameter/h = 1.0
+shader_parameter/s = 1.0
+shader_parameter/v = 0.9
+
+[node name="DownfallRulesFtue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("0_script")
+
+[node name="Image" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(671, 512)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -668.0
+offset_top = -288.0
+offset_right = 3.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Header" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1200, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = 281.0
+offset_right = 600.0
+offset_bottom = 341.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.937255, 0.784314, 0.317647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("1_headerfont")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_megalabel")
+MaxFontSize = 28
+
+[node name="PageCount" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1200, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = 314.0
+offset_right = 600.0
+offset_bottom = 374.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.529412, 0.807843, 0.921569, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("1_headerfont")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_megalabel")
+MaxFontSize = 24
+
+[node name="Description" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = -269.0
+offset_right = 668.0
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/line_separation = -2
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("1_headerfont")
+theme_override_fonts/bold_font = ExtResource("2_bodyboldfont")
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
+bbcode_enabled = true
+vertical_alignment = 1
+visible_characters_behavior = 1
+script = ExtResource("4_megarichtext")
+MaxFontSize = 28
+
+[node name="LeftArrow" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -64.0
+offset_right = 168.0
+offset_bottom = 64.0
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+script = ExtResource("5_arrowbtn")
+
+[node name="TextureRect" type="TextureRect" parent="LeftArrow"]
+material = SubResource("ShaderMaterial_left")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("6_leftarrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightArrow" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -64.0
+offset_right = -40.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+script = ExtResource("5_arrowbtn")
+
+[node name="TextureRect" type="TextureRect" parent="RightArrow"]
+material = SubResource("ShaderMaterial_right")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+texture = ExtResource("7_rightarrow")
+expand_mode = 1
+stretch_mode = 5

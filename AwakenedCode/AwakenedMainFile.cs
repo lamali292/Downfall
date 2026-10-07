@@ -25,7 +25,7 @@ public static class AwakenedMainFile
 
     public static void Initialize()
     {
-        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(AwakenedMainFile).Assembly);
+        ScriptRegistration.Register(typeof(AwakenedMainFile).Assembly);
 
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("chants");
