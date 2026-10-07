@@ -1,6 +1,6 @@
 {
   "AWAKENED-SPELLBOOK_FTUE.title": "The Spellbook",
-  "AWAKENED-SPELLBOOK_FTUE.description": "Cards with [gold]Conjure[/gold] pull the next [gold]Spell[/gold] card from your [gold]Spellbook[/gold] into your hand.\nHover over it to see which spell is lined up next.",
+  "AWAKENED-SPELLBOOK_FTUE.description": "Your [gold]Spellbook[/gold] holds a fixed set of Spell cards. Any [gold]Conjure[/gold] effect puts the next one into your [gold]Hand[/gold].\nOnce they've all been [gold]Conjured[/gold], it refills with the same Spells. Hover over it to see what's next.",
   "AWAKENED-AWAKEN_FTUE.title": "The Awaken Meter",
-  "AWAKENED-AWAKEN_FTUE.description": "Playing a [gold]Power[/gold] fills this meter.\nPlay [blue]7[/blue] [gold]Powers[/gold] to [gold]Awaken[/gold].\nOnce [gold]Awakened[/gold] all your [gold]Spell[/gold] cards are [gold]Upgraded[/gold]"
+  "AWAKENED-AWAKEN_FTUE.description": "Playing a Power fills this meter.\nPlay [blue]7[/blue] Powers to [gold]Awaken[/gold] this combat.\nOnce [gold]Awakened[/gold], all your Spell cards are [gold]Upgraded[/gold]."
 }
