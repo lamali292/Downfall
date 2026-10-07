@@ -1,5 +1,6 @@
 ﻿using Godot;
 using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Ftue;
@@ -19,6 +20,10 @@ public partial class NDownfallRulesFtue : NFtue
     private Texture2D?[] _images = [];
     private string[] _pages = [];
     private int _currentPage; // 0-based
+
+    // Set by DownfallFtue when this popup is one of several shown together on the same screen:
+    // dismissing it then only removes itself instead of clearing the whole modal (see DownfallFtue.ShowCombo).
+    public Action? OnDismissed;
 
     public override void _Ready()
     {
@@ -48,11 +53,24 @@ public partial class NDownfallRulesFtue : NFtue
         _currentPage += delta;
         if (_currentPage >= _pages.Length)
         {
-            CloseFtue();
+            Dismiss();
             return;
         }
 
         ShowPage();
+    }
+
+    private void Dismiss()
+    {
+        if (OnDismissed is { } onDismissed)
+        {
+            onDismissed();
+            this.QueueFreeSafely();
+        }
+        else
+        {
+            CloseFtue();
+        }
     }
 
     private void ShowPage()

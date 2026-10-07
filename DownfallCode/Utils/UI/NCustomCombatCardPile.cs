@@ -92,7 +92,7 @@ public abstract partial class NCustomCombatCardPile : NCombatCardPile
         return btn != null ? btn.GlobalPosition + btn.Size * 0.5f : Vector2.Zero;
     }
 
-    protected static T? GetPileNode<T>() where T : NCustomCombatCardPile
+    public static T? GetPileNode<T>() where T : NCustomCombatCardPile
     {
         var container = NCombatRoom.Instance?.Ui.GetNodeOrNull<NCombatPilesContainer>("%CombatPileContainer");;
         if (container == null || !IsInstanceValid(container)) return null;
