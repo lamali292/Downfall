@@ -21,11 +21,6 @@ internal static class GameScriptRegistration
     {
         if (_registered) return;
         _registered = true;
-
-        // This whole file only ever compiles into the Godot-editor-host build (Downfall.csproj includes
-		// "editor/**/*.cs" only when TOOLS is defined - see Downfall.csproj and editor/CLAUDE.md), so there's no
-		// "live game" scenario to guard against here - that assembly never contains this type at all.
-		GD.Print("[GameRegistrationBootstrap] Looking up the Scripts in the game assembly");
 		Register(typeof(NFtue).Assembly);
 	}
 

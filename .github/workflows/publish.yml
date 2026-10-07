@@ -30,21 +30,6 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      # ---- Packed mod output cache: skip repacking entirely when only C# changed ----
-      # Whitelist, not a blacklist: hash the full content of every directory that can feed the
-      # .pck — ImageGen/ (atlas tool + its source images) and each character's asset folder
-      # (Downfall/, Automaton/, Awakened/, ... — each character's own asset folder, deliberately
-      # NOT the matching *Code/ folder, which is pure C#) — rather than picking out subpatterns
-      # like */images/** that silently miss anything not under images/localization/scenes/audio
-      # (e.g. Downfall/scripts/, mod_image.png, per-character non-standard files). No
-      # restore-keys: an exact match is required, since a stale pck for different assets would
-      # be silently wrong. A hit means every one of those directories is byte-identical to some
-      # prior successful run, so that run's .pck is still correct: the atlas build and Godot
-      # import steps below can be skipped, and `dotnet build` (see CLAUDE.md's build-vs-publish
-      # guidance) is enough to refresh the DLL without touching the restored .pck (GodotPublish
-      # only runs after `dotnet publish`, never after `build`).
-      # Declared first so its cache-hit is known before the engine/atlas/Godot-import caches
-      # below even attempt to restore — none of those are needed on a code-only push.
       - name: Cache packed mod output
         id: cache-pck
         uses: actions/cache@v4
@@ -154,13 +139,6 @@ jobs:
             /p:ModsPath="${{ github.workspace }}/output/mods/" \
             /p:SkipGodotImport=true
 
-      # Automaton/Awakened/Champ/Guardian/Hermit/Hexaghost/SlimeBoss/Snecko are internal submods
-      # (ADR 0003 / CONTEXT.md "Mod Packaging"): no manifest of their own, each its own .csproj/
-      # .dll/.pck, all landing in the SAME output/mods/Downfall folder as Downfall's own (their
-      # ModOutputFolder is "Downfall") where DownfallMainFile loads each by reflection at runtime.
-      # Without this step the uploaded artifact would be the bare framework only - none of these
-      # eight characters are compiled into Downfall.dll anymore. Collector is NOT built here: it's
-      # a standalone mod (own manifest/Workshop item), deliberately never part of this artifact.
       - name: Publish internal submods
         if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
