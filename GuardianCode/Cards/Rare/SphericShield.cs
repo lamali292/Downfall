@@ -21,7 +21,7 @@ public class SphericShield : GuardianCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var x = EnergyCost.GetResolved();
+        var x = ResolveEnergyXValue();
         for (var i = 0; i < x; i++) await GuardianCmd.Brace(ctx, this);
     }
 }
