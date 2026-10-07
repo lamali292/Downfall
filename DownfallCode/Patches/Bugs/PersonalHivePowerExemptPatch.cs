@@ -5,8 +5,6 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Downfall.DownfallCode.Utils;
 
-// Public: called from standalone submods' own MainFile (e.g. SlimeBoss, a separate assembly
-// since the standalone-submods effort), not just code compiled into Downfall.dll itself.
 public static class HivePowerExemptRegistry
 {
     private static readonly HashSet<Type> Exempt = new();
@@ -18,11 +16,21 @@ public static class HivePowerExemptRegistry
         Exempt.Any(t => t.IsInstanceOfType(monster));
 }
 
-
-
 [HarmonyPatch(typeof(PersonalHivePower), nameof(PersonalHivePower.AfterDamageReceived))]
 internal static class PersonalHivePowerExemptPatch
 {
+    
+    /*
+    [HarmonyPrefix]
+    public static void Prefix(ref Creature? dealer)
+    {
+        if (dealer?.Monster is not null && HivePowerExemptRegistry.IsExempt(dealer.Monster))
+        {
+            dealer = dealer.PetOwner?.Creature;
+        }
+    }
+    */
+ 
     private static bool Prefix(Creature? dealer, ref Task __result)
     {
         if (dealer?.Monster is null || !HivePowerExemptRegistry.IsExempt(dealer.Monster))

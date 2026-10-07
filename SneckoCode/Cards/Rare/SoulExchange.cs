@@ -18,6 +18,6 @@ public class SoulExchange : SneckoCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await MuddleCmd.Muddle(ctx, Owner.Hand, this);
+        await MuddleCmd.Muddle(ctx, Owner.Hand);
     }
 }
