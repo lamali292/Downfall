@@ -24,8 +24,6 @@ namespace Guardian.GuardianCode.Core;
 
 public abstract class GemModel : CardModifier, ICustomModel
 {
-    private GemModel _canonicalInstance = null!;
-
     private PowerModel? _power;
 
     public PowerModel Power
@@ -56,13 +54,13 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     public GemModel CanonicalInstance
     {
-        get => !IsMutable ? this : _canonicalInstance;
+        get => !IsMutable ? this : field;
         private set
         {
             AssertMutable();
-            _canonicalInstance = value;
+            field = value;
         }
-    }
+    } = null!;
 
     public IEnumerable<IHoverTip> HoverTips
     {
