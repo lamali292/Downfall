@@ -25,9 +25,7 @@ namespace Automaton.AutomatonCode.Tests;
 
 public class AutomatonTests
 {
-    // Regression guard (standalone-submod smoke test): confirms Automaton's own standalone
-    // assembly still registers and plays normally with no replacement mod loaded - i.e. the
-    // Automaton.csproj extraction and ReplaceableSubmod guard didn't break anything.
+
     [CardTest(typeof(Core.Automaton))]
     public IEnumerable<CardTestCase> PlayAutomatonCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
 
@@ -327,12 +325,7 @@ public class AutomatonTests
         Assert.AreEqual(baseDamage + 3, function!.DynamicVars.Damage.BaseValue,
             "Momentum's extra damage from the play that completed the Function must be part of the compiled Function.");
     }
-
-    // Regression guard: AUTOMATON-ENCODE_PILE.description ("Encode Orb") used to hardcode the pile's
-    // max size as a literal "3" in the loc text instead of a {Max} placeholder, so it never reflected
-    // Electromagnetic Coil raising AutomatonCmd.GetMax to 4. This exercises the same LocString +
-    // AutomatonCmd.GetMax substitution NEncodePile.BuildHoverTip now uses (the Godot node itself
-    // isn't reachable from a headless CardTest - see DownfallCode/Tests/CLAUDE.md).
+    
     [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
     public async Task EncodeOrbTooltipReflectsElectromagneticCoil(TestContext ctx)
     {

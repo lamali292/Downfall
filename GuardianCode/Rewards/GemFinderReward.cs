@@ -103,7 +103,7 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
         if (LocalContext.IsMe(Player))
         {
             var prefs = new CardSelectorPrefs(
-                DownfallCardSelectorPrefs.ToDeckSelectionPrompt, 0, choosable);
+                DownfallCardSelectorPrefs.ToDeckSelectionPrompt, choosable);
             // Screen exists only on the owning client, like CardReward.
             IEnumerable<CardModel> selectedCards;
             if (TestMode.IsOn)
