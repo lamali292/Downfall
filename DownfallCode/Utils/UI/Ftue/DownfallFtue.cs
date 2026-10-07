@@ -19,6 +19,12 @@ public static class DownfallFtue
         Tip Tip, Func<Player, PointerTarget?> FindTarget, Vector2 ArrowFromTarget, Vector2 PopupFromArrow,
         float? ArrowPointDirectionDegrees = null);
 
+    public enum ComboMode
+    {
+        Sequential, // one tip at a time; dismissing one ("got it") shows the next
+        Simultaneous, // all tips shown together; each dismisses independently
+    }
+
     private const string LocTable = "ftues";
     private const string PointerScene = "res://Downfall/scenes/ftue/pointer_ftue.tscn";
     private const string RulesScene = "res://Downfall/scenes/ftue/rules_ftue.tscn";
@@ -51,16 +57,21 @@ public static class DownfallFtue
             return true;
         });
 
-    // Shows several pointer tips together on one screen: each is dismissed on its own (no highlight
-    // between them), and the screen itself only fully closes once every tip shown has been dismissed.
-    // Items already marked as seen are left out, so a single still-unseen item just shows normally.
-    public static void QueueComboPointer(Player player, params PointerItem[] items)
+    // Shows several pointer tips together on the same screen (one shared backstop, no re-wait between
+    // them), either one at a time (`Sequential`, default) or all at once (`Simultaneous`). Either way
+    // the screen only fully closes once every tip shown has been dismissed. Items already marked as
+    // seen are left out, so a single still-unseen item just shows normally.
+    public static void QueueComboPointer(Player player, ComboMode mode, params PointerItem[] items)
     {
         if (TestMode.IsOn) return;
         var comboId = string.Join("+", items.Select(i => i.Tip.Id));
         if (!Pending.Add(comboId)) return;
-        TaskHelper.RunSafely(ShowComboWhenClear(comboId, player, items));
+        TaskHelper.RunSafely(ShowComboWhenClear(comboId, player, items, mode));
     }
+
+    // Defaults to Sequential — pass a mode explicitly to show every tip at once instead.
+    public static void QueueComboPointer(Player player, params PointerItem[] items) =>
+        QueueComboPointer(player, ComboMode.Sequential, items);
 
     private static void Queue(Tip tip, Player player, Func<NModalContainer, Player, bool> show)
     {
@@ -149,7 +160,7 @@ public static class DownfallFtue
         popup.Track(() => findTarget(player), arrowFromTarget, popupFromArrow, arrowPointDirectionDegrees);
     }
 
-    private static async Task ShowComboWhenClear(string comboId, Player player, PointerItem[] items)
+    private static async Task ShowComboWhenClear(string comboId, Player player, PointerItem[] items, ComboMode mode)
     {
         try
         {
@@ -190,7 +201,7 @@ public static class DownfallFtue
                 }
                 if (++settled < SettleTicks) continue;
 
-                ShowCombo(toShow, targets, player, modal);
+                ShowCombo(toShow, targets, player, modal, mode);
                 return;
             }
         }
@@ -200,11 +211,22 @@ public static class DownfallFtue
         }
     }
 
-    private static void ShowCombo(PointerItem[] items, PointerTarget[] targets, Player player, NModalContainer modal)
+    private static void ShowCombo(PointerItem[] items, PointerTarget[] targets, Player player,
+        NModalContainer modal, ComboMode mode)
     {
         var host = ResourceLoader.Load<PackedScene>(ComboScene).Instantiate<NDownfallComboFtue>();
-        host.Prepare(items.Length);
         modal.Add(host);
+        if (mode == ComboMode.Simultaneous)
+            ShowComboSimultaneous(items, targets, player, host);
+        else
+            ShowComboStep(items, targets, player, host, 0);
+    }
+
+    // All items shown together; the host closes once every one of them has been dismissed.
+    private static void ShowComboSimultaneous(PointerItem[] items, PointerTarget[] targets, Player player,
+        NDownfallComboFtue host)
+    {
+        host.PrepareSimultaneous(items.Length);
         for (var i = 0; i < items.Length; i++)
         {
             var tip = items[i].Tip;
@@ -213,10 +235,35 @@ public static class DownfallFtue
                 items[i].ArrowFromTarget, items[i].PopupFromArrow, onDismissed: () =>
                 {
                     SaveManager.Instance.MarkFtueAsComplete(tip.Id);
-                    host.Release();
+                    host.ReleaseSimultaneous();
                 },
                 arrowPointDirectionDegrees: items[i].ArrowPointDirectionDegrees);
         }
+    }
+
+    // Shows items[index], then on dismissal recurses into index+1; once past the last item, closes
+    // the shared host instead of showing anything more.
+    private static void ShowComboStep(PointerItem[] items, PointerTarget[] targets, Player player,
+        NDownfallComboFtue host, int index)
+    {
+        if (index >= items.Length)
+        {
+            host.Finish();
+            return;
+        }
+
+        var tip = items[index].Tip;
+        var findTarget = items[index].FindTarget;
+        // Re-resolve rather than trusting the stale pre-fetched target: earlier items may have taken a
+        // while to dismiss, so this item's target could have moved (or, defensively, disappeared).
+        var target = findTarget(player) ?? targets[index];
+        ShowPointer(tip, popup => host.AddChildSafely(popup), player, findTarget, target,
+            items[index].ArrowFromTarget, items[index].PopupFromArrow, onDismissed: () =>
+            {
+                SaveManager.Instance.MarkFtueAsComplete(tip.Id);
+                ShowComboStep(items, targets, player, host, index + 1);
+            },
+            arrowPointDirectionDegrees: items[index].ArrowPointDirectionDegrees);
     }
 
     // The z the backstop competes with: every ancestor's z_index adds up while z_as_relative holds
