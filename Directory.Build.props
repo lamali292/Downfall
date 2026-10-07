@@ -1,4 +1,16 @@
 ﻿<Project>
+    <!--
+        Godot.NET.Sdk hardcodes the TOOLS define constant to the literal "Debug" configuration (its own editor
+        and editor-player builds always compile as Debug). Every other build that actually ships as a loadable
+        mod - the everyday local dev build against the real game, and CI's "-c Release" - must NOT define
+        TOOLS, or it would skip the LookupScriptsInAssembly call the game's own reflection-based mod loading
+        needs. So "Debug" is reserved for the Godot editor itself; the identical-but-TOOLS-free config used for
+        everyday local dev against the real game is "ExportDebug" - pass it explicitly (`dotnet build
+        X.csproj -c ExportDebug`); MSBuild resolves a bare `dotnet build` with no "-c" to "Debug" before this
+        file is even imported, so a default can't be set here. build/test.ps1 and build/setup.ps1 already pass
+        "-c ExportDebug"; CI always passes an explicit "-c Release" and is unaffected.
+    -->
+
     <PropertyGroup>
         <BaseIntermediateOutputPath>.godot\mono\temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
         <IntermediateOutputPath>.godot\mono\temp\obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
@@ -34,7 +46,7 @@
         <UseLocalBaseLib Condition="'$(UseLocalBaseLib)' == ''">false</UseLocalBaseLib>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'ExportDebug'">
         <Optimize>false</Optimize>
         <DebugType>portable</DebugType>
     </PropertyGroup>

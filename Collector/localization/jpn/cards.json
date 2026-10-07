@@ -161,7 +161,7 @@
     "COLLECTOR-ASHES_OF_CALAMITY.title": "災厄の灰",
     "COLLECTOR-ASHES_OF_CALAMITY.description": "{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。\nすべての状態異常1枚につき、追加で{Increase:diff()}ブロックを得る。",
     "COLLECTOR-ASHES_TO_ASHES.title": "濃縮",
-    "COLLECTOR-ASHES_TO_ASHES.description": "[gold]燃え殻[/gold]を作成するたび、それを{:diff()}回[gold]アップグレード[/gold]する。",
+    "COLLECTOR-ASHES_TO_ASHES.description": "[gold]燃え殻[/gold]を作成するたび、それを{AshesToAshesPower:diff()}回[gold]アップグレード[/gold]する。",
     "COLLECTOR-VEIL_OF_SMOKE.title": "煙のベール",
     "COLLECTOR-VEIL_OF_SMOKE.description": "このターン終了時、{VeilOfSmokePower:diff()}[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]の状態異常1枚につき、1ターン追加で持続する。",
     "COLLECTOR-REFINED_FUEL.title": "燃料精製",

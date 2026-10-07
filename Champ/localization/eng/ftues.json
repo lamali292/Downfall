@@ -1,0 +1,6 @@
+{
+  "CHAMP-RULES_FTUE.title": "Stance Dances",
+  "CHAMP-RULES_FTUE.body1": "Certain cards, relics, and other effects let the Champ enter a [gold]Stance[/gold].\nThe three Stances are Berserker, Defensive, and Ultimate.",
+  "CHAMP-RULES_FTUE.body2": "While in a [gold]Stance[/gold], playing a [gold]Skill[/gold] triggers its [gold]Skill Bonus[/gold], a small extra effect like gaining [gold]Vigor[/gold].\nYou can only trigger it a limited number of times before entering a Stance again to reset the count.",
+  "CHAMP-RULES_FTUE.body3": "Some cards have a {:finisher()} [gold]Finisher[/gold] effect and can only be played while in a [gold]Stance[/gold].\nPlaying one triggers that effect and leaves the Stance."
+}

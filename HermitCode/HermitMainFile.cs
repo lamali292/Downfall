@@ -23,7 +23,7 @@ public static class HermitMainFile
 
     public static void Initialize()
     {
-        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(typeof(HermitMainFile).Assembly);
+        ScriptRegistration.Register(typeof(HermitMainFile).Assembly);
 
         PostInitRegistry.Register(PostModelInit);
         BundledSubmodLocRegistry.Register(ModId);

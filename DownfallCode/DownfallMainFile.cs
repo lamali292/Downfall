@@ -43,7 +43,7 @@ public static class DownfallMainFile
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
 
-        ScriptManagerBridge.LookupScriptsInAssembly(Assembly.GetExecutingAssembly());
+        ScriptRegistration.Register(Assembly.GetExecutingAssembly());
         DownfallPatchManager.HarmonyPatches();
         //Patch(Assembly.GetExecutingAssembly(), ModId);
 

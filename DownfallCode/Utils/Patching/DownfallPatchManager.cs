@@ -78,6 +78,8 @@ public class DownfallPatchManager
         foreach (var patch in CardPlayLocationCompat.PatchTypes)
             patcher.Add(patch);
 
+        patcher.Add(typeof(IsEditorPatches));
+
         // Todo : only for 0.110.1
         // /*
         // patcher.Add(typeof(VoidFormBonePatch))
