@@ -1,4 +1,5 @@
-﻿using Hermit.HermitCode.Cards.Basic;
+﻿using Downfall.DownfallCode.Compatibility;
+using Hermit.HermitCode.Cards.Basic;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
@@ -23,10 +24,9 @@ public class HairTriggerPower : HermitPowerModel, IAfterDeadOnTrigger
         if (card.Owner.Creature != Owner) return;
         var canonical = ModelDb.Card<StrikeHermit>();
         var strike = CombatState.CreateCard(canonical, card.Owner);
-        strike.AddKeyword(CardKeyword.Exhaust);
         for (var i = 0; i < Amount; i++)
         {
-            var clone = strike.CreateClone();
+            var clone = strike.CreateDupeCompat(Owner.Player);
             await CardCmd.AutoPlay(ctx, clone, null);
         }
     }
