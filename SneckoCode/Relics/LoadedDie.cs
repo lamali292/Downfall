@@ -21,7 +21,7 @@ public class LoadedDie : SneckoRelicModel, IAfterCardMuddled
     }
 
 
-    public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
+    public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card)
     {
         if (card.Owner != Owner) return;
         var cost = card.EnergyCost.GetAmountToSpend();
