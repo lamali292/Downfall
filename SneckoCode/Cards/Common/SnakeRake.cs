@@ -20,6 +20,6 @@ public class SnakeRake : SneckoCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var cards = await CommonActions.Draw(this, ctx);
-        await MuddleCmd.Muddle(ctx, cards, this);
+        await MuddleCmd.Muddle(ctx, cards);
     }
 }

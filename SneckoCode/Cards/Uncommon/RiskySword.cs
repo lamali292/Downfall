@@ -18,7 +18,7 @@ public class RiskySword : SneckoCardModel, IAfterCardMuddled
         WithTip(SneckoKeywords.Muddle);
     }
 
-    public Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
+    public Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card)
     {
         if (card != this) return Task.CompletedTask;
         DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
