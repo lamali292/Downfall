@@ -35,13 +35,12 @@ public class ShadowDaggers : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (Owner.IsTorchheadMissing) return;//If no Torchhead, do not run.
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
         for (var i = 0; i < hits; i++)
         {
             if (Owner.IsTorchheadAlive)
             {
-           await (TorchheadCmd.TorchheadAttack(this, cardPlay)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+                await (TorchheadCmd.TorchheadAttack(this, cardPlay)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
             }
             else
             {
