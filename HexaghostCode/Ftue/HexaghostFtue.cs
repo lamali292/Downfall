@@ -9,11 +9,11 @@ public static class HexaghostFtue
 {
     public static readonly DownfallFtue.Tip Wheel = new("hexaghost_wheel_ftue", "HEXAGHOST-WHEEL_FTUE");
 
-    private static  Vector2 ArrowFromTarget => new(150, -50);
-    private static Vector2 PopupFromArrow => new(150, 200);
+    private static  Vector2 ArrowFromTarget => new(30, -30);
+    private static Vector2 PopupFromArrow => new(275, 180);
 
     public static void QueueWheel(Player player) =>
-        DownfallFtue.QueuePointer(Wheel, player, FindTarget, ArrowFromTarget, PopupFromArrow);
+        DownfallFtue.QueuePointer(Wheel, player, FindTarget, ArrowFromTarget, PopupFromArrow, 165);
 
     private static DownfallFtue.PointerTarget? FindTarget(Player player)
     {
