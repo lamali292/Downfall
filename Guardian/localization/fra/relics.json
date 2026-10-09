@@ -27,7 +27,6 @@
     "GUARDIAN-QUANTUM_CHAMBER.description": "La première fois que vous mettez une carte en [gold]Stase[/gold] chaque tour, [gold]Accélérez-la[/gold].",
     "GUARDIAN-QUANTUM_CHAMBER.flavor": "On obtient la poule en faisant éclore l'œuf, pas en l'écrasant.",
     "GUARDIAN-SACK_OF_GEMS.title": "Sacoche de gemmes",
-    "GUARDIAN-SACK_OF_GEMS.description": "Lorsque vous la récupérez, vous pouvez ajouter jusqu'à [blue]5[/blue] [gold]Gemmes[/gold] aléatoires dans votre [gold]Deck[/gold].",
     "GUARDIAN-SACK_OF_GEMS.flavor": "Ooh... brillant !",
     "GUARDIAN-WANDER_BOTS.title": "Drones errants",
     "GUARDIAN-WANDER_BOTS.description": "Au début de chaque combat, perdez [blue]1[/blue] emplacement de [gold]Stase[/gold]. NL Gagnez {Energy:energyIcons()} au début de votre tour.",

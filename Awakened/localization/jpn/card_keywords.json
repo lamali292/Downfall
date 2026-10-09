@@ -1,3 +1,5 @@
 {
+    "AWAKENED-CHANT.title": "詠唱",
+    "AWAKENED-CHANT.description": "最後にプレイしたカードタイプが[gold]パワー[/gold]だった場合、このカードは戦闘終了まで追加効果を得る。",
     "AWAKENED-CHANT.card_text": "{Chanted:cond:[jitter][blue]詠唱済み[/blue][/jitter]|[gold]詠唱[/gold]}"
 }

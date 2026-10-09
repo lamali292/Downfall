@@ -147,6 +147,5 @@
     "GUARDIAN-BRONZE_BRAMBLES.description": "디버프를 받을 때마다, {BronzeBramblesPower:diff()} [gold]가시[/gold]를 얻습니다.",
     "GUARDIAN-MAXIMUM_OVERDRIVE.title": "최대 과부하",
     "GUARDIAN-SHARED_FLUX.title": "공유된 흐름",
-    "GUARDIAN-SHARED_FLUX.description": "다른 플레이어를 선택하여 그 플레이어가 자신의 [gold]뽑을 카드 더미[/gold]에서 카드를 한 장 선택해 [gold]정지장[/gold] 상태로 만들게 합니다. ",
     "GUARDIAN-OVERBLOCK.title": "과잉 방어"
 }
