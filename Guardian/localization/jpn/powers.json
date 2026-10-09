@@ -13,7 +13,7 @@
     "GUARDIAN-CONSTRUCTION_FORM_POWER.smartDescription": "ターン開始時、[gold]バッファー[/gold]を所持している場合、[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
     "GUARDIAN-DEFENSIVE_MODE_POWER.title": "防御態勢",
     "GUARDIAN-DEFENSIVE_MODE_POWER.description": "[gold]トゲ[/gold][blue]3[/blue]を得て、[gold]ブロック[/gold]が失われなくなる。\n次のターン開始時、[gold]防御態勢[/gold]を解除する。",
-    "GUARDIAN-DEFENSIVE_MODE_POWER.smartDescription": "[gold]トゲ[/gold]{ThornsPower:diff()}を得て、[gold]ブロック[/gold]が失われなくなる。\n[blue]{Amount}[/blue]ターン後のターン開始時、[gold]防御態勢[/gold]を解除する。",
+    "GUARDIAN-DEFENSIVE_MODE_POWER.smartDescription": "[gold]トゲ[/gold]{ThornsPower:diff()}を得て、[gold]ブロック[/gold]が失われなくなる。\n{Amount:cond:>1?[gold]防御態勢[/gold]はあと[blue]{Amount}[/blue]ターン継続する。|次のターン開始時、[gold]防御態勢[/gold]を解除する。}",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.title": "回避プロトコル",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.description": "[gold]防御態勢[/gold]に入るたび、[gold]洗練[/gold][blue]1[/blue]。",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.smartDescription": "[gold]防御態勢[/gold]に入るたび、[gold]洗練[/gold][blue]{Amount}[/blue]。",
@@ -73,5 +73,5 @@
     "GUARDIAN-STUNNED_POWER.smartDescription": "このターン、カードのプレイ、ドロー、エナジーの獲得ができない。",
     "GUARDIAN-NEXT_TURN_STUNNED_POWER.title": "次ターンスタン",
     "GUARDIAN-NEXT_TURN_STUNNED_POWER.description": "あなたの次のターンをスキップする。",
-    "GUARDIAN-NEXT_TURN_STUNNED_POWER.smartDescription": "あなたの次の[blue]{Amount}[/blue]ターンをスキップする。"
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.smartDescription": "あなたの次の{Amount:cond:>1?[blue]{Amount}[/blue]|}ターンをスキップする。"
 }

@@ -104,7 +104,7 @@
     "COLLECTOR-SCORCHING_RAY.title": "灼熱の光線",
     "COLLECTOR-SEED_OF_DOUBT.description": "[gold]瘴気[/gold]{MiasmaPower:diff()}を付与する。\nこのカードが[gold]手札[/gold]にある間にカードが[gold]廃棄[/gold]されるたび、付与する[gold]瘴気[/gold]が{Increase:diff()}増加する。",
     "COLLECTOR-SEED_OF_DOUBT.title": "疑惑の種",
-    "COLLECTOR-EXTRICATE.description": "{CalculatedDamage:diff()}ダメージを与える。\n敵が受けている[gold]瘴気[/gold]1につき、追加で1ダメージを与える。",
+    "COLLECTOR-EXTRICATE.description": "{CalculatedDamage:diff()}ダメージを与える。\n敵に付与されている[gold]瘴気[/gold]に等しい追加ダメージを与える。",
     "COLLECTOR-EXTRICATE.title": "魂の解放",
     "COLLECTOR-SHADOW_DAGGERS.description": "[gold]デッキ[/gold]の無色カード1枚につき、[gold]トーチヘッド[/gold]が{TorchheadTargetsAll:cond:すべての敵に|}{TorchheadDamage:diff()}ダメージを与える。{InCombat:\n(攻撃回数は{CalculatedHits:diff()}回)|}",
     "COLLECTOR-SHADOW_DAGGERS.title": "シャドウダガー",
