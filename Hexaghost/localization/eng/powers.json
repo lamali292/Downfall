@@ -1,7 +1,7 @@
 {
   "HEXAGHOST-DEVILS_DANCE_POWER.title": "Devil's Dance",
-  "HEXAGHOST-DEVILS_DANCE_POWER.description": "The first time you [gold]Advance[/gold] or [gold]Retract[/gold] each turn, draw a card.",
-  "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Advance[/gold] or [gold]Retract[/gold] each turn, draw a card.",
+  "HEXAGHOST-DEVILS_DANCE_POWER.description": "The first time you [gold]Advance[/gold] or [gold]Retract[/gold] during your turn each turn, draw a card.",
+  "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Advance[/gold] or [gold]Retract[/gold] during your turn each turn, draw a card.",
   "HEXAGHOST-DOOMSDAY_POWER.title": "Doomsday",
   "HEXAGHOST-DOOMSDAY_POWER.description": "The next time you [gold]Ignite[/gold] ALL Ghostflames, gain an additional turn.",
   "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "The next time you [gold]Ignite[/gold] ALL Ghostflames, gain {Amount:plural:an additional turn|{Amount} additional turns}.",

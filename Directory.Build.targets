@@ -17,14 +17,23 @@
         <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
     </PropertyGroup>
 
+    <!--
+        In the real game, sts2.dll/0Harmony.dll are already loaded into the process (it IS sts2.exe), so these
+        stay Private=false (not copied to the mod's own output) for every shipping config. The Godot editor's
+        own process is not the game, so it has no such assembly loaded - the Debug (editor) config needs these
+        copied locally or GameScriptRegistration's typeof(NFtue).Assembly access throws FileNotFoundException
+        trying to resolve "sts2" at runtime. Mirrors ModRemoteScene's mod.build.props.
+    -->
     <ItemGroup Condition="Exists('$(Sts2DataDir)')">
         <Reference Include="0Harmony">
             <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
-            <Private>false</Private>
+            <Private Condition="'$(Configuration)' == 'Debug'">true</Private>
+            <Private Condition="'$(Configuration)' != 'Debug'">false</Private>
         </Reference>
         <Reference Include="sts2">
             <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
-            <Private>false</Private>
+            <Private Condition="'$(Configuration)' == 'Debug'">true</Private>
+            <Private Condition="'$(Configuration)' != 'Debug'">false</Private>
             <Publicize Condition="'$(PublicizeSts2Reference)' != 'false'">true</Publicize>
         </Reference>
         <Reference Include="SmartFormat">
@@ -58,6 +67,19 @@
               IgnoreExitCode="true" IgnoreStandardErrorWarningFormat="true"/>
     </Target>
 
+    <!--
+        So the Godot editor, launched standalone on this project (not through the game's own exe), can load mods
+        the same way the game does: the engine resolves a relative "mods" folder next to its own executable, i.e.
+        next to GodotPath rather than next to Sts2Path. Opt in via local.props: <CopyToGodotMods>true</CopyToGodotMods>.
+    -->
+    <PropertyGroup Condition="'$(GodotPath)' != ''">
+        <GodotRoot Condition="'$(GodotRoot)' == ''">$([System.IO.Path]::GetDirectoryName('$(GodotPath)'))</GodotRoot>
+        <GodotModsPath Condition="'$(GodotModsPath)' == ''">$(GodotRoot)\mods</GodotModsPath>
+    </PropertyGroup>
+    <PropertyGroup>
+        <CopyToGodotMods Condition="'$(CopyToGodotMods)' == ''">false</CopyToGodotMods>
+    </PropertyGroup>
+
     <PropertyGroup>
         <IsStandaloneMod Condition="'$(IsStandaloneMod)' == ''">false</IsStandaloneMod>
         <ModOutputFolder Condition="'$(ModOutputFolder)' == '' and '$(IsStandaloneMod)' == 'true'">$(ModId)</ModOutputFolder>
@@ -78,12 +100,25 @@
         <WriteLinesToFile File="$(IntermediateOutputPath)$(ModId).json" Lines="@(_ModManifestLine)" Overwrite="true"/>
     </Target>
 
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest">
+    <!-- "Debug" is reserved for the Godot editor itself (see the TOOLS comment in Directory.Build.props) and
+         never ships as a loadable mod, so it never gets copied into either mods folder. -->
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest"
+            Condition="'$(Configuration)' != 'Debug'">
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"/>
         <Copy SourceFiles="$(IntermediateOutputPath)$(ModId).json" DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
               Condition="'$(IsStandaloneMod)' == 'true'"/>
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
               DestinationFolder="$(ModsPath)$(ModOutputFolder)/"
+              Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+    </Target>
+
+    <Target Name="CopyToGodotModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest"
+            Condition="'$(CopyToGodotMods)' == 'true' and '$(Configuration)' != 'Debug'">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GodotModsPath)/$(ModOutputFolder)/"/>
+        <Copy SourceFiles="$(IntermediateOutputPath)$(ModId).json" DestinationFolder="$(GodotModsPath)/$(ModOutputFolder)/"
+              Condition="'$(IsStandaloneMod)' == 'true'"/>
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb"
+              DestinationFolder="$(GodotModsPath)/$(ModOutputFolder)/"
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
     </Target>
 
@@ -97,5 +132,8 @@
         <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; @(_PackFolderList, ' ')"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
               IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
+        <Copy SourceFiles="$(ModsPath)$(ModOutputFolder)/$(ModId).pck"
+              DestinationFolder="$(GodotModsPath)/$(ModOutputFolder)/"
+              Condition="'$(CopyToGodotMods)' == 'true' and '$(Configuration)' != 'Debug'"/>
     </Target>
 </Project>

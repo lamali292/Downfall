@@ -1,0 +1,6 @@
+{
+    "COLON": ": ",
+    "DOWNFALL-ECHO.title": "Echo",
+    "DOWNFALL-ECHO.description": "Echos sind Kopien von Karten mit [gold]Flüchtig[/gold] und [gold]Erschöpft[/gold].\nVon Echos können keine weiteren Echos erstellt werden.",
+    "DOWNFALL-ECHO.card_title": "Echo: {card}"
+}

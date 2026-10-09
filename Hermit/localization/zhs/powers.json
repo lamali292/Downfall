@@ -69,8 +69,6 @@
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "[gold]防御[/gold]获得[gold]重放[/gold]。",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "[gold]防御[/gold]获得[gold]重放[/gold][blue]{Amount}[/blue]。",
     "HERMIT-HAIR_TRIGGER_POWER.title": "一触即发",
-    "HERMIT-HAIR_TRIGGER_POWER.description": "每当你触发[gold]精准[/gold]效果时，对随机敌人打出一张带[gold]消耗[/gold]的[gold]打击[/gold]。",
-    "HERMIT-HAIR_TRIGGER_POWER.smartDescription": "每当你触发[gold]精准[/gold]效果时，对随机敌人打出[blue]{Amount}[/blue]张带[gold]消耗[/gold]的[gold]打击[/gold]。",
     "HERMIT-UNYIELDING_POWER.title": "不屈",
     "HERMIT-UNYIELDING_POWER.description": "如果你有[gold]易伤[/gold]，本回合中受到的伤害降低[blue]50%[/blue]。",
     "HERMIT-UNYIELDING_POWER.smartDescription": "如果你有[gold]易伤[/gold]，[blue]{Amount}[/blue]回合内受到的伤害降低[blue]{DamageDecrease:percentLess()}%[/blue]。",

@@ -5,6 +5,7 @@ using Downfall.DownfallCode.Tests;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.Cards.Basic;
 using Guardian.GuardianCode.Cards.Common;
+using Guardian.GuardianCode.Cards.Rare;
 using Guardian.GuardianCode.Cards.Uncommon;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Enchantments;
@@ -342,5 +343,86 @@ public class GuardianTests
         var strengthAfter = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
         Assert.IsTrue(strengthAfter > strengthBefore,
             "Playing a standalone Ruby gem card should still grant Strength, not silently no-op.");
+    }
+
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task DiamondOnlyConsumesOneTemporalRefractionStackPerCardPlay(TestContext ctx)
+    {
+        // Reported bug: Diamond has no OnPlayInternal effect - its whole benefit is the extra
+        // replays it grants itself via ModifyPlayCount, doubled to +2 replays by 2 Temporal
+        // Refraction stacks. Each of those 3 resulting physical executions used to fire its own
+        // AfterGemPlayed, draining all stacks in what the player experiences as a single play.
+        await ctx.ClearHand();
+        var strike = await ctx.AddCardToHand<TemporalStrike>();
+        ((IGemSocketCard)strike).AddGem(CardModifier.Get<DiamondGem>());
+        await PowerCmd.Apply<TemporalRefractionPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 2,
+            ctx.Player.Creature, null);
+        var temporalRefraction = ctx.Player.Creature.Powers.OfType<TemporalRefractionPower>().First();
+        var enemy = ctx.Combat.HittableEnemies.First();
+
+        await ctx.PlayCard(strike, enemy);
+
+        Assert.AreEqual(1, temporalRefraction.DisplayAmount,
+            "Playing one card with a lone Diamond should consume exactly one Temporal Refraction stack, " +
+            "not one per replay Diamond's own doubled bonus caused.");
+    }
+
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task BrilliantScalesAutoActivationDoesNotConsumeTemporalRefraction(TestContext ctx)
+    {
+        // Reported bug: Brilliant Scales' automatic turn-start activation calls GemModel.OnPlay
+        // with cardPlay = null for every stored gem. That still unconditionally fired
+        // AfterGemPlayed, wasting a Temporal Refraction stack on a passive pulse the player never
+        // "activated" by playing a card (per its own card text: "the first Gem effect you activate").
+        await ctx.ClearHand();
+        var brilliantScales = await ctx.AddCardToHand<BrilliantScales>();
+        ((IGemSocketCard)brilliantScales).AddGem(CardModifier.Get<DiamondGem>());
+        await ctx.PlayCard(brilliantScales);
+        var brilliantScalesPower = ctx.Player.Creature.Powers.OfType<BrilliantScalesPower>().First();
+
+        await PowerCmd.Apply<TemporalRefractionPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+        var temporalRefraction = ctx.Player.Creature.Powers.OfType<TemporalRefractionPower>().First();
+
+        await brilliantScalesPower.BeforeHandDraw(ctx.Player, new BlockingPlayerChoiceContext(), ctx.Combat);
+
+        Assert.AreEqual(1, temporalRefraction.DisplayAmount,
+            "Brilliant Scales' automatic turn-start gem activation should not consume a Temporal Refraction stack.");
+    }
+
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task TemporalRefractionOnlyDoublesTheFirstGemOnAMultiGemCard(TestContext ctx)
+    {
+        // Reported bug: previewing a card with two gems showed both doubling once Temporal
+        // Refraction's remaining stacks were spread across a prior play this turn (Amount 2,
+        // UsedAmount 1) - in reality only the first gem to activate (lowest SocketIndex) consumes
+        // the last stack, and the second gets the un-doubled value. Assert the real play outcome
+        // directly, since that is what the previewed value must match.
+        var card = (RefractedBeam)await ctx.AddCardToHand<RefractedBeam>();
+        CardCmd.Upgrade(card);
+        CardCmd.Upgrade(card);
+        var socketCard = (IGemSocketCard)card;
+        socketCard.AddGem(CardModifier.Get<RubyGem>());
+        socketCard.AddGem(CardModifier.Get<RubyGem>());
+
+        await PowerCmd.Apply<TemporalRefractionPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 2,
+            ctx.Player.Creature, null);
+        var power = ctx.Player.Creature.Powers.OfType<TemporalRefractionPower>().First();
+        // Simulate "already used one stack this turn" by playing a single-gem card first.
+        var filler = await ctx.AddCardToHand<TemporalStrike>();
+        ((IGemSocketCard)filler).AddGem(CardModifier.Get<RubyGem>());
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(filler, enemy);
+        Assert.AreEqual(1, power.DisplayAmount, "Sanity: the filler play should have consumed exactly one stack.");
+
+        var strengthBefore = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+        await ctx.PlayCard(card, enemy);
+        var strengthAfter = ctx.Player.Creature.GetInstancedPowerAmountSum<StrengthPower>();
+
+        // Each Ruby gem grants 2 Strength normally. With one stack left, only the first (lowest
+        // SocketIndex) gem should double to 4; the second should stay at 2 - total 6, not 8.
+        Assert.AreEqual(6, strengthAfter - strengthBefore,
+            "Only the first gem on the card should be doubled by the last Temporal Refraction stack.");
+        Assert.AreEqual(0, power.DisplayAmount, "The last stack should now be fully consumed.");
     }
 }

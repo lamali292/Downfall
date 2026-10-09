@@ -19,7 +19,7 @@ public class Cower : SneckoCardModel, IAfterCardMuddled
         WithTip(SneckoKeywords.Muddle);
     }
 
-    public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
+    public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card)
     {
         if (card != this) return;
         await CommonActions.ApplySelf<WeakPower>(ctx, this);

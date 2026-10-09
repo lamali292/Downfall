@@ -36,7 +36,6 @@
     "CHAMP-MAGNIFICENCE_POWER.smartDescription": "All'inizio del tuo turno, ottieni [blue]{Amount}[/blue] [gold]Gloria[/gold].",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.title": "Scudo Lanciato",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.description": "Non puoi ottenere [gold]Blocco[/gold] dalle carte il prossimo turno.",
-    "CHAMP-NO_BLOCK_NEXT_TURN_POWER.smartDescription": "Non puoi ottenere [gold]Blocco[/gold] dalle carte per i prossimi [blue]{Amount}[/blue] {Amount:plural:turno|turni}.",
     "CHAMP-PARRYING_POWER.title": "Parata",
     "CHAMP-PROTECTIVE_AURA_POWER.title": "Aura Protettiva",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.title": "Colpo del Genio+",
@@ -48,6 +47,5 @@
     "CHAMP-ULTIMATE_STANCE_POWER.description": "Sei in [gold]Posa Suprema[/gold] in questo turno.",
     "CHAMP-ULTIMATE_STANCE_POWER.smartDescription": "Sei in [gold]Posa Suprema[/gold] in questo turno.",
     "CHAMP-VIGOR_NEXT_TURN_POWER.title": "Vigore Prossimo Turno",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.description": "Il prossimo turno, ottieni [gold]Vigore[/gold].",
-    "CHAMP-VIGOR_NEXT_TURN_POWER.smartDescription": "Il prossimo turno, ottieni [blue]{}[/blue] [gold]Vigore[/gold]."
+    "CHAMP-VIGOR_NEXT_TURN_POWER.description": "Il prossimo turno, ottieni [gold]Vigore[/gold]."
 }

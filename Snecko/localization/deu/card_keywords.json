@@ -1,0 +1,6 @@
+{
+    "SNECKO-MUDDLE.title": "Irren",
+    "SNECKO-MUDDLE.description": "Eine Karte zu irren setzt ihre Kosten für diesen Zug zufällig zwischen [blue]0[/blue] und [blue]3[/blue].\nDie Kosten nach dem Irren unterscheiden sich immer von den ursprünglichen Kosten.",
+    "SNECKO-OVERFLOW.title": "Überschuss",
+    "SNECKO-OVERFLOW.description": "Überschuss-Effekte werden aktiviert, wenn du mehr als [blue]5[/blue] Karten auf deiner [gold]Hand[/gold] hast."
+}

@@ -1,0 +1,8 @@
+{
+    "AUTOMATON-STASH.title": "Lagern",
+    "AUTOMATON-STASH.description": "Lege eine Karte in deinen [gold]Lager-Orb[/gold]. Fasst bis zu [blue]5[/blue] Karten.",
+    "AUTOMATON-ENCODE_PILE.title": "Kodier-Orb",
+    "AUTOMATON-ENCODE_PILE.description": "Ein Orb, der bis zu [blue]{Max}[/blue] Karten fasst. Wenn er voll ist, werden die Effekte oberhalb von [gold]Kodieren[/gold] zu einer Funktionskarte mit Kosten [blue]1[/blue] kompiliert.",
+    "AUTOMATON-STASH_PILE.title": "Lager-Orb",
+    "AUTOMATON-STASH_PILE.description": "Ein Orb, der bis zu [blue]5[/blue] Karten fasst. Ziehe zu Beginn jedes Zuges die älteste Karte."
+}

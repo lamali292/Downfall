@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,6 +17,8 @@ public class Bless : AwakenedCardModel
         WithPower<StrengthPower>(2, 1);
         WithPower<StrengthPower>("StrengthLoss", 2);
     }
+
+    protected override Artist Artist => Artist.Get<SushiNigiri>();
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 

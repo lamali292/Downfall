@@ -1,0 +1,16 @@
+{
+    "GUARDIAN-GUARDIAN.aromaPrinciple": "[sine][blue]Direktive: Beschützen. Direktive: Beschützen. Direktive: Beschützen.[/blue][/sine]",
+    "GUARDIAN-GUARDIAN.banter.alive.endTurnPing": "Kampfeffizienz sinkt. Beweg dich.",
+    "GUARDIAN-GUARDIAN.banter.dead.endTurnPing": "...",
+    "GUARDIAN-GUARDIAN.cardsModifierDescription": "Wächter-Karten tauchen nun in Belohnungen und Läden auf.",
+    "GUARDIAN-GUARDIAN.cardsModifierTitle": "Wächter-Karten",
+    "GUARDIAN-GUARDIAN.description": "Ein Konstrukt des Spire, programmiert, ihn zu verteidigen.\nKann sich auf Befehl vor Schaden schützen.",
+    "GUARDIAN-GUARDIAN.eventDeathPrevention": "Abschaltsequenz verweigert. Der Spire muss beschützt werden.",
+    "GUARDIAN-GUARDIAN.goldMonologue": "[sine]Gold... könnte zu Bauteilen eingeschmolzen werden...[/sine]",
+    "GUARDIAN-GUARDIAN.possessiveAdjective": "sein",
+    "GUARDIAN-GUARDIAN.pronounObject": "es",
+    "GUARDIAN-GUARDIAN.pronounPossessive": "sein",
+    "GUARDIAN-GUARDIAN.pronounSubject": "es",
+    "GUARDIAN-GUARDIAN.title": "Der Wächter",
+    "GUARDIAN-GUARDIAN.titleObject": "Der Wächter"
+}

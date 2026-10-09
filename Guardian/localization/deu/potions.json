@@ -1,0 +1,8 @@
+{
+    "GUARDIAN-POLISHING_OIL.title": "Panzerpolitur",
+    "GUARDIAN-POLISHING_OIL.description": "[gold]Poliere[/gold] [blue]{Polish:diff()}[/blue] auf.",
+    "GUARDIAN-LIQUID_ACCELERANT.title": "Flüssiger Beschleuniger",
+    "GUARDIAN-LIQUID_ACCELERANT.description": "[gold]Beschleunige[/gold], bis eine Karte [gold]Stasis[/gold] verlässt.",
+    "GUARDIAN-QUANTUM_ELIXIR.title": "Quantenelixier",
+    "GUARDIAN-QUANTUM_ELIXIR.description": "Wähle [blue]1[/blue] von [blue]{Cards:diff()}[/blue] Karten, die du in [gold]Stasis[/gold] legst.\nWiederhole dies, bis deine [gold]Stasis[/gold]-Slots voll sind."
+}

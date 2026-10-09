@@ -1,0 +1,8 @@
+{
+    "HEXAGHOST-IGNITE.title": "Anzünden",
+    "HEXAGHOST-IGNITE.description": "Löst den Anzündeffekt aus, der auf einer Geisterflamme beschrieben ist.",
+    "HEXAGHOST-WHEEL.title": "Geisterflammenrad",
+    "HEXAGHOST-WHEEL.description": "Enthält 6 Geisterflammen. Die oberste Geisterflamme ist aktiv.\nErfüllt sie ihre Bedingung, wird sie [gold]Angezündet[/gold].\nFalls die aktive Geisterflamme am Ende des Zuges [gold]Angezündet[/gold] ist, schreite [gold]vorwärts[/gold].",
+    "HEXAGHOST-EXTINGUISH.title": "Löschen",
+    "HEXAGHOST-EXTINGUISH.description": "Setzt eine [gold]Angezündete[/gold] Geisterflamme zurück, sodass sie erneut [gold]Angezündet[/gold] werden kann."
+}

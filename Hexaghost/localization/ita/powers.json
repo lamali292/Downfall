@@ -1,7 +1,5 @@
 {
     "HEXAGHOST-DEVILS_DANCE_POWER.title": "Danza del Diavolo",
-    "HEXAGHOST-DEVILS_DANCE_POWER.description": "The first time you [gold]Avanza[/gold] or [gold]Ritira[/gold] each turn, pesca una carta.",
-    "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Avanza[/gold] or [gold]Ritira[/gold] each turn, pesca una carta.",
     "HEXAGHOST-DOOMSDAY_POWER.title": "Giorno del Giudizio",
     "HEXAGHOST-DOOMSDAY_POWER.description": "The next time you [gold]Accendi[/gold] ALL Ghostflames, gain an additional turn.",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "The next time you [gold]Accendi[/gold] ALL Ghostflames, gain {Amount:plural:an additional turn|{Amount} additional turns}.",
@@ -35,7 +33,6 @@
     "HEXAGHOST-VOLCANO_VISAGE_POWER.title": "Volto Vulcanico",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "Whenever you [gold]Accendi[/gold] a Ghostflame, apply [gold]Brucianima[/gold] a TUTTI i nemici.",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "Whenever you [gold]Accendi[/gold] a Ghostflame, apply [blue]{Amount}[/blue] [gold]Brucianima[/gold] a TUTTI i nemici.",
-    "HEXAGHOST-WILDFIRE_POWER.title": "Fuoco Selvaggio",
     "HEXAGHOST-WILDFIRE_POWER.description": "Whenever you apply a debuff to an enemy that doesn't already have esso, ottieni [gold]Blocco[/gold].",
     "HEXAGHOST-WILDFIRE_POWER.smartDescription": "Whenever you apply a debuff to an enemy that doesn't already have esso, gain [blue]{Amount}[/blue] [gold]Blocco[/gold].",
     "HEXAGHOST-HERE_AND_NOW_POWER.title": "Qui e Ora",

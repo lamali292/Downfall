@@ -32,10 +32,10 @@ public static class HexaghostHook
     }
 
     public static Task AfterWheelAdvance(ICombatState cs, PlayerChoiceContext ctx, Player player, AbstractModel? source,
-        GhostflameModel ghostflame, int ghostflameIndex, bool silent)
+        GhostflameModel ghostflame, int ghostflameIndex, bool silent, bool autoAdvance)
     {
         return HookUtils.Dispatch<IWheelMoved>(cs, ctx,
-            m => m.AfterWheelAdvance(ctx, player, source, ghostflame, ghostflameIndex, silent));
+            m => m.AfterWheelAdvance(ctx, player, source, ghostflame, ghostflameIndex, silent, autoAdvance));
     }
 
 

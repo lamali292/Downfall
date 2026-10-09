@@ -1,0 +1,16 @@
+{
+    "AWAKENED-AWAKENED.aromaPrinciple": "[sine][purple]Die Leere ruft. Ich antworte. Die Leere ruft. Ich antworte. [jitter]Ich antworte immer.[/jitter][/purple][/sine]",
+    "AWAKENED-AWAKENED.banter.alive.endTurnPing": "Die Ewigkeit wartet.",
+    "AWAKENED-AWAKENED.banter.dead.endTurnPing": "...",
+    "AWAKENED-AWAKENED.cardsModifierDescription": "Erweckten-Karten tauchen nun in Belohnungen und Läden auf.",
+    "AWAKENED-AWAKENED.cardsModifierTitle": "Erweckten-Karten",
+    "AWAKENED-AWAKENED.description": "Der Triumph des Kults und unsterblicher dunkler Hexenmeister des Jenseits.\nBesitzt Macht über die Leere und alle anderen Elemente.",
+    "AWAKENED-AWAKENED.eventDeathPrevention": "Ich bin unsterblich. Etwas so Banales kann mich nicht zu Fall bringen.",
+    "AWAKENED-AWAKENED.goldMonologue": "[sine]Reichtum bedeutet nichts für jemanden, der die Sterblichkeit überwunden hat... und doch...[/sine]",
+    "AWAKENED-AWAKENED.possessiveAdjective": "sein",
+    "AWAKENED-AWAKENED.pronounObject": "ihn",
+    "AWAKENED-AWAKENED.pronounPossessive": "sein",
+    "AWAKENED-AWAKENED.pronounSubject": "er",
+    "AWAKENED-AWAKENED.title": "Der Erweckte",
+    "AWAKENED-AWAKENED.titleObject": "Den Erweckten"
+}
