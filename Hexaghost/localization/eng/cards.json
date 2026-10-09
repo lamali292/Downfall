@@ -37,7 +37,7 @@
   "HEXAGHOST-DEVOUR_FLAME.title": "Devour Flame",
   "HEXAGHOST-DISPLACE.title": "Displace",
   "HEXAGHOST-DISPLACE.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nPlace {Place:diff()} {Place:plural:card|cards} from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
-  "HEXAGHOST-DIVIDER.description": "Deal {Damage:diff()} damage for each [gold]Ignited[/gold] Ghostflame.",
+  "HEXAGHOST-DIVIDER.description": "Deal {Damage:diff()} damage for each [gold]Ignited[/gold] Ghostflame.{InCombat:cond:\n(Hits {Hits:diff()} {Hits:plural:time|times})|}",
   "HEXAGHOST-DIVIDER.title": "Divider",
   "HEXAGHOST-DOOMSDAY.description": "The next time all 6 Ghostflames are [gold]Ignited[/gold], take an extra turn after ending your turn.",
   "HEXAGHOST-DOOMSDAY.title": "Doomsday",
