@@ -13,7 +13,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved
     
     public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
+        int ghostflameIndex, bool silent, bool autoAdvance)
     {
         return Task.CompletedTask;
     }
