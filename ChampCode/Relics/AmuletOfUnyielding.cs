@@ -8,14 +8,16 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace Champ.ChampCode.Relics;
 
 [Pool(typeof(ChampRelicPool))]
 public class AmuletOfUnyielding : ChampRelicModel
 {
-    private int _strengthGranted;
-    private decimal _vigorSpentThisCombat;
+    [SavedProperty]
+    // ReSharper disable once MemberCanBePrivate.Global
+    public int VigorProgress { get; private set; }
 
     public AmuletOfUnyielding() : base(RelicRarity.Rare)
     {
@@ -23,9 +25,9 @@ public class AmuletOfUnyielding : ChampRelicModel
         WithPower<VigorPower>(12);
     }
 
-    public override bool ShowCounter => CombatManager.Instance.IsInProgress;
+    public override bool ShowCounter => true;
 
-    public override int DisplayAmount => (int)(_vigorSpentThisCombat % VigorThreshold);
+    public override int DisplayAmount => VigorProgress;
     private int VigorThreshold => DynamicVars.Power<VigorPower>().IntValue;
     private int StrengthMult => DynamicVars.Power<StrengthPower>().IntValue;
 
@@ -34,16 +36,14 @@ public class AmuletOfUnyielding : ChampRelicModel
     {
         if (power.Owner != Owner.Creature || power is not VigorPower || amount >= 0) return;
 
-        _vigorSpentThisCombat -= amount;
+        VigorProgress += (int)-amount;
 
+        var thresholdsCrossed = VigorProgress / VigorThreshold;
+        if (thresholdsCrossed > 0)
+        {
+            VigorProgress -= thresholdsCrossed * VigorThreshold;
+            await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, thresholdsCrossed * StrengthMult, Owner.Creature, null);
+        }
         InvokeDisplayAmountChanged();
-        var totalEarned = (int)(_vigorSpentThisCombat / VigorThreshold);
-        var toGain = totalEarned - _strengthGranted;
-        if (toGain <= 0) return;
-
-        _strengthGranted = totalEarned;
-        toGain *= StrengthMult;
-        await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, toGain, Owner.Creature, null);
-        Flash();
     }
 }
