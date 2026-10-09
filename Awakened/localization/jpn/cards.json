@@ -72,7 +72,7 @@
     "AWAKENED-ENVISION.title": "想起",
     "AWAKENED-EVENTIDE.description": "ランダムな敵に{Damage:diff()}ダメージを2回与える。\n[gold]虚無[/gold]を1枚[gold]山札[/gold]の一番上に加える。",
     "AWAKENED-EVENTIDE.title": "黄昏",
-    "AWAKENED-EXTENSION.description": "{Damage:diff()}ダメージを与える。\nパワーをプレイするたび、このカードを[gold]捨て札[/gold]から[gold]手札[/gold]に戻す。",
+    "AWAKENED-EXTENSION.description": "{Damage:diff()}ダメージを与える。\nパワーをプレイするたび、これを[gold]捨て札[/gold]から[gold]手札[/gold]に戻す。",
     "AWAKENED-EXTENSION.title": "エクステンション",
     "AWAKENED-E_S_P.title": "ESP",
     "AWAKENED-E_S_P.description": "カードを{Cards:diff()}枚引く。",

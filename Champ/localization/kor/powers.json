@@ -36,7 +36,6 @@
     "CHAMP-MAGNIFICENCE_POWER.smartDescription": "턴 시작 시 [blue]{Amount}[/blue]의 [gold]영광[/gold]을 얻습니다.",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.title": "방패 던짐",
     "CHAMP-NO_BLOCK_NEXT_TURN_POWER.description": "다음 턴에 카드로부터 [gold]방어도[/gold]를 얻을 수 없습니다.",
-    "CHAMP-NO_BLOCK_NEXT_TURN_POWER.smartDescription": "다음 턴에 카드로부터 [gold]방어도[/gold]를 얻을 수 없습니다.",
     "CHAMP-PARRYING_POWER.title": "패링",
     "CHAMP-PROTECTIVE_AURA_POWER.title": "보호의 오라",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.title": "천재적인 타격+",

@@ -77,5 +77,5 @@
     "SNECKO-VENOMOLOGY_POWER.description": "このターン、この敵は他のプレイヤーにデバフを付与されるたび、[gold]猛毒[/gold]を得る。",
     "SNECKO-VENOMOLOGY_POWER.smartDescription": "このターン、この敵は他のプレイヤーにデバフを付与されるたび、[gold]猛毒[/gold][blue]{Amount}[/blue]を得る。",
     "SNECKO-VENOMOLOGY_POWER.remoteDescription": "このターン、この敵はあなたにデバフを付与されるたび、[gold]猛毒[/gold][blue]{Amount}[/blue]を得る。",
-    "SNECKO-MUDDY_POWER.smartDescription": "次の[blue]{Amount}[/blue]ターンの開始時、[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。"
+    "SNECKO-MUDDY_POWER.smartDescription": "{Amount:cond:>1?次の[blue]{Amount}[/blue]ターンの開始時|次のターン開始時}、[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。"
 }

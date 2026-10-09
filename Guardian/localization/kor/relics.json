@@ -22,7 +22,6 @@
     "GUARDIAN-QUANTUM_CHAMBER.description": "매 턴 처음으로 카드를 [gold]정지장[/gold] 상태로 만들 때, 그 카드를 [gold]가속[/gold]합니다.",
     "GUARDIAN-QUANTUM_CHAMBER.flavor": "닭을 얻으려면 알을 깨는 게 아니라 부화시켜야 한다.",
     "GUARDIAN-SACK_OF_GEMS.title": "보석 주머니",
-    "GUARDIAN-SACK_OF_GEMS.description": "획득 시, [gold]덱[/gold]에 추가할 무작위 보석을 최대 5개까지 선택할 수 있습니다.",
     "GUARDIAN-SACK_OF_GEMS.flavor": "오... 반짝여!",
     "GUARDIAN-WANDER_BOTS.title": "방랑 로봇",
     "GUARDIAN-WANDER_BOTS.description": "전투 시작 시, [gold]정지장[/gold] 슬롯 1개를 잃습니다. 턴 시작 시 {Energy:energyIcons()}을 얻습니다.",

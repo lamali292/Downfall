@@ -2,7 +2,7 @@
     "AUTOMATON-STASH.title": "格納",
     "AUTOMATON-STASH.description": "カードを[gold]格納オーブ[/gold]に配置する。最大[blue]5[/blue]枚まで保持できる。",
     "AUTOMATON-ENCODE_PILE.title": "エンコードオーブ",
-    "AUTOMATON-ENCODE_PILE.description": "最大[blue]3[/blue]枚のカードを保持するオーブ。満杯になった時、保持されたカードの[gold]エンコード[/gold]より上の効果を、コスト[blue]1[/blue]の関数に統合する。",
+    "AUTOMATON-ENCODE_PILE.description": "最大[blue]{Max}[/blue]枚のカードを保持するオーブ。満杯になった時、保持されたカードの[gold]エンコード[/gold]より上の効果を、コスト[blue]1[/blue]の関数に統合する。",
     "AUTOMATON-STASH_PILE.title": "格納オーブ",
     "AUTOMATON-STASH_PILE.description": "最大[blue]5[/blue]枚のカードを保持するオーブ。毎ターン開始時、この中から最も古いカードを1枚引く。"
 }

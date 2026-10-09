@@ -158,7 +158,6 @@
     "HEXAGHOST-VOLCANO_VISAGE.title": "화산의 얼굴",
     "HEXAGHOST-WHISPER_FROM_BEYOND.description": "피해를 {Damage:diff()} 줍니다.\n이번 턴에 카드가 [gold]소멸[/gold]될 때마다, 대상 적에게 [gold]영혼화상[/gold]을 {WhisperFromBeyondPower:diff()} 부여합니다.",
     "HEXAGHOST-WHISPER_FROM_BEYOND.title": "저편의 속삭임",
-    "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "들불",
     "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "적에게 새로운 디버프를 부여할 때마다, [gold]방어도[/gold]를 {WildfirePower:diff()} 얻습니다.",
     "HEXAGHOST-WORTHY_SACRIFICE.title": "가치 있는 희생",
     "HEXAGHOST-TEMPORAL_LEAP.title": "시간 도약",

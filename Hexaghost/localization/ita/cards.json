@@ -168,7 +168,6 @@
     "HEXAGHOST-VOLCANO_VISAGE.title": "Volto Vulcanico",
     "HEXAGHOST-WHISPER_FROM_BEYOND.description": "Infliggi {Damage:diff()} di danno.\nWhenever a card is [gold]Esaurita[/gold] this turn, apply {WhisperFromBeyondPower:diff()} [gold]Brucianima[/gold] to the enemy.",
     "HEXAGHOST-WHISPER_FROM_BEYOND.title": "Sussurro dall'Oltretomba",
-    "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Fuoco Selvaggio",
     "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Whenever you apply a debuff to an enemy that doesn't already have esso, gain {WildfirePower:diff()} [gold]Blocco[/gold].",
     "HEXAGHOST-WORTHY_SACRIFICE.title": "Sacrificio Degno",
     "HEXAGHOST-TEMPORAL_LEAP.title": "Balzo Temporale",

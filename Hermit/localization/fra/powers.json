@@ -69,8 +69,6 @@
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "Les [gold]Défenses[/gold] [gold]Basiques[/gold] obtiennent [gold]Rejouez[/gold].",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "Les [gold]Défenses[/gold] [gold]Basiques[/gold] obtiennent [gold]Rejouez[/gold] [blue]{Amount}[/blue] [gold]fois[/gold].",
     "HERMIT-HAIR_TRIGGER_POWER.title": "Gâchette Facile",
-    "HERMIT-HAIR_TRIGGER_POWER.description": "Lorsque vous activez un effet [gold]Dans Le Mille[/gold], jouez une [gold]Frappe[/gold] avec [gold]Épuisement[/gold] sur un ennemi aléatoire.",
-    "HERMIT-HAIR_TRIGGER_POWER.smartDescription": "Lorsque vous activez un effet [gold]Dans Le Mille[/gold], jouez {Amount:plural:une [gold]Frappe[/gold]|[blue]{}[/blue] [gold]Frappes[/gold]} avec [gold]Épuisement[/gold] sur un ennemi aléatoire.",
     "HERMIT-UNYIELDING_POWER.title": "Dur à Cuire",
     "HERMIT-UNYIELDING_POWER.description": "Si vous êtes [gold]Vulnérable[/gold], recevez [blue]50%[/blue] de dégâts en moins des Attaques ce tour.",
     "HERMIT-UNYIELDING_POWER.smartDescription": "Si vous êtes [gold]Vulnérable[/gold], recevez [blue]{DamageDecrease:percentLess()}%[/blue] de dégâts en moins des Attaques {Amount:plural:ce tour|pendant [blue]{}[/blue] tours}.",
