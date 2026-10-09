@@ -17,10 +17,10 @@ public class DevilsDancePower : HexaghostPowerModel, IWheelMoved
 
     public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
+        int ghostflameIndex, bool silent, bool autoAdvance)
     {
         if (player.Creature != Owner) return;
-        if (silent) return;
+        if (silent || autoAdvance) return;
         if (UsesLeft  <= 0) return;
         await CardPileCmd.Draw(ctx, player);
         UsesLeft--;
