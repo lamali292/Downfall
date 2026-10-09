@@ -1,7 +1,5 @@
 {
     "HEXAGHOST-DEVILS_DANCE_POWER.title": "Танец дьявола",
-    "HEXAGHOST-DEVILS_DANCE_POWER.description": "Вы добираете [blue]1[/blue] карту при первом [gold]Продвижении[/gold] или [gold]Откате[/gold] за ход.",
-    "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "Вы добираете [blue]1[/blue] карту при {Amount:plural:первом [gold]Продвижении[/gold] или [gold]Откате[/gold]|первых [blue]{Amount}[/blue] [gold]Продвижениях[/gold] или [gold]Откатах[/gold]} за ход.",
     "HEXAGHOST-DOOMSDAY_POWER.title": "Судный день",
     "HEXAGHOST-DOOMSDAY_POWER.description": "Вы получите дополнительный ход, когда в следующий раз [gold]Зажжете[/gold] все [blue]6[/blue] Огоньков.",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "Вы получите {Amount:plural(ru):дополнительный ход|{Amount} дополнительных хода|{Amount} дополнительных ходов}, когда в следующий раз [gold]Зажжете[/gold] все [blue]6[/blue] Огоньков.",

@@ -1,0 +1,5 @@
+{
+    "AWAKENED-CHANT.title": "Chor",
+    "AWAKENED-CHANT.description": "Wenn die zuletzt gespielte Karte eine Macht war, wird der Bonus-Effekt dieser Karte für den Rest des Kampfes aktiviert.",
+    "AWAKENED-CHANT.card_text": "{Chanted:cond:[jitter][blue]Chor aktiv[/blue][/jitter]|[gold]Chor[/gold]}"
+}

@@ -18,7 +18,7 @@
     "HEXAGHOST-RED_CANDLE.description": "[gold]ソウルバーン[/gold]を付与するたび、追加で[gold]ソウルバーン[/gold][blue]2[/blue]を付与する。",
     "HEXAGHOST-RED_CANDLE.flavor": "火がメラメラ燃える…",
     "HEXAGHOST-SNEAKY_TEAKWOOD_MATCH.title": "こっそりチーク材マッチ",
-    "HEXAGHOST-SNEAKY_TEAKWOOD_MATCH.description": "毎ターン、最初にゴーストフレイムを[gold]発火[/gold]した時、[gold]前進[/gold]するか[gold]後退[/gold]するかを選択することができる。",
+    "HEXAGHOST-SNEAKY_TEAKWOOD_MATCH.description": "毎ターン、最初にゴーストフレイムを[gold]発火[/gold]した時、[gold]前進[/gold]か[gold]後退[/gold]することができる。",
     "HEXAGHOST-SNEAKY_TEAKWOOD_MATCH.flavor": "どんな場所でも光る！",
     "HEXAGHOST-SOUL_STONE.title": "サーマルストーン",
     "HEXAGHOST-SOUL_STONE.description": "カードを[blue]{Cards}[/blue]枚[gold]廃棄[/gold]するたび、現在のゴーストフレイムを[gold]発火[/gold]する。",

@@ -1,0 +1,5 @@
+{
+    "HERMIT-SEETHING.title": "Brodelnd",
+    "HERMIT-SEETHING.description": "Wenn du diese Karte in jedem Zug zum ersten Mal spielst, nimm sie zurück auf deine [gold]Hand[/gold], erhalte {Energy:energyIcons()} und ziehe {Cards:plural:eine Karte|{} Karten}.",
+    "HERMIT-SEETHING.extraCardText": "Nimm diese Karte zurück auf deine [gold]Hand[/gold].\nErhalte {Energy:energyIcons()}.\nZiehe {Cards:plural:eine Karte|{} Karten}."
+}

@@ -1,0 +1,16 @@
+{
+    "CHAMP-CHAMP.aromaPrinciple": "[sine][orange]Ich habe nie verloren. Ich werde nie verlieren. [jitter]Ich kann nicht verlieren.[/jitter][/orange][/sine]",
+    "CHAMP-CHAMP.banter.alive.endTurnPing": "Mach deinen Zug.",
+    "CHAMP-CHAMP.banter.dead.endTurnPing": "...",
+    "CHAMP-CHAMP.cardsModifierDescription": "Champ-Karten tauchen nun in Belohnungen und Läden auf.",
+    "CHAMP-CHAMP.cardsModifierTitle": "Champ-Karten",
+    "CHAMP-CHAMP.description": "Der unangefochtene König der Arena.\nHat noch nie einen Kampf verloren.[fly_in][/fly_in]",
+    "CHAMP-CHAMP.eventDeathPrevention": "Der Champ fällt nicht. Nicht hier. Niemals.",
+    "CHAMP-CHAMP.goldMonologue": "[sine]Preisgeld... das Publikum zahlt immer gut...[/sine]",
+    "CHAMP-CHAMP.possessiveAdjective": "sein",
+    "CHAMP-CHAMP.pronounObject": "ihn",
+    "CHAMP-CHAMP.pronounPossessive": "sein",
+    "CHAMP-CHAMP.pronounSubject": "er",
+    "CHAMP-CHAMP.title": "Der Champ",
+    "CHAMP-CHAMP.titleObject": "Den Champ"
+}

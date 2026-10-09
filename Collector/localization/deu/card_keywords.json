@@ -1,0 +1,8 @@
+{
+    "COLLECTOR-PYRE.description": "Zum Spielen muss eine Karte auf deiner [gold]Hand[/gold] [gold]Erschöpft[/gold] werden.",
+    "COLLECTOR-PYRE.title": "Scheiterhaufen",
+    "COLLECTOR-MEGAPYRE.description": "Zum Spielen müssen ALLE Karten auf deiner [gold]Hand[/gold] [gold]Erschöpft[/gold] werden.",
+    "COLLECTOR-MEGAPYRE.title": "Mega-Scheiterhaufen",
+    "COLLECTOR-FLICKER.description": "Die Effekte dieser Karte werden ausgelöst, wenn sie [gold]Erschöpft[/gold] wird, statt wenn sie gespielt wird.",
+    "COLLECTOR-FLICKER.title": "Flackern"
+}
