@@ -35,7 +35,6 @@
     "HEXAGHOST-VOLCANO_VISAGE_POWER.title": "Volto Vulcanico",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "Whenever you [gold]Accendi[/gold] a Ghostflame, apply [gold]Brucianima[/gold] a TUTTI i nemici.",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "Whenever you [gold]Accendi[/gold] a Ghostflame, apply [blue]{Amount}[/blue] [gold]Brucianima[/gold] a TUTTI i nemici.",
-    "HEXAGHOST-WILDFIRE_POWER.title": "Fuoco Selvaggio",
     "HEXAGHOST-WILDFIRE_POWER.description": "Whenever you apply a debuff to an enemy that doesn't already have esso, ottieni [gold]Blocco[/gold].",
     "HEXAGHOST-WILDFIRE_POWER.smartDescription": "Whenever you apply a debuff to an enemy that doesn't already have esso, gain [blue]{Amount}[/blue] [gold]Blocco[/gold].",
     "HEXAGHOST-HERE_AND_NOW_POWER.title": "Qui e Ora",

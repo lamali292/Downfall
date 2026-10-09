@@ -32,7 +32,6 @@
     "AUTOMATON-FRAGMENT.functionPrefix": "pulito",
     "AUTOMATON-FRONTLOAD.functionName": "Muro",
     "AUTOMATON-FRONTLOAD.functionPrefix": "robusto",
-    "AUTOMATON-FULL_RELEASE.encode": "La Funzione è un Potere con \"Ora e all'inizio del tuo turno...\".",
     "AUTOMATON-FULL_RELEASE.functionName": "Rilascio",
     "AUTOMATON-FULL_RELEASE.functionPrefix": "pieno",
     "AUTOMATON-INFINITE_LOOP.functionName": "Ciclo",

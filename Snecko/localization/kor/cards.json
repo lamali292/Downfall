@@ -41,7 +41,6 @@
     "SNECKO-GLITTERING_GAMBIT.description": "{InCombat:cond:|[gold]선물[/gold]: 강화된 희귀 카드 및 {Gold:diff()} 골드.}",
     "SNECKO-GLITTERING_GAMBIT.title": "빛나는 승부수",
     "SNECKO-INERT_BLADE.title": "비활성 칼날",
-    "SNECKO-IRON_FANG.description": "모든 적에게 {Damage:diff()} 피해를 주고 {WeakPower:diff()} [gold]약화[/gold]를 적용합니다.",
     "SNECKO-IRON_FANG.title": "무쇠 송곳니",
     "SNECKO-JACKPOT.description": "{Energy:energyIcons()}를 얻습니다.",
     "SNECKO-LACERATE.title": "찢어발기기",

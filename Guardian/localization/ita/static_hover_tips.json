@@ -13,7 +13,6 @@
     "GUARDIAN-POLISH.description": "Riduci la tua [gold]Debolezza[/gold], [gold]Fragilità[/gold] e [gold]Vulnerabilità[/gold] di X ciascuna.\nConverti X accumuli di potenziamenti temporanei in potenziamenti permanenti.",
     "GUARDIAN-SOCKET.title": "Incasto",
     "GUARDIAN-STASIS.title": "Stasi",
-    "GUARDIAN-STASIS.description": "Una carta in [gold]Stasi[/gold] rimane per turni pari al suo costo +[blue]1[/blue]. Quando esce, torna nella tua [gold]Mano[/gold] ed è gratuita fino a quando non viene giocata.",
     "GUARDIAN-TICK.title": "Tic",
     "GUARDIAN-TICK.description": "Gli effetti Tick si attivano ogni volta che il contatore [gold]Stasi[/gold] di questa carta viene ridotto."
 }

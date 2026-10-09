@@ -53,7 +53,6 @@
     "SNECKO-GLITTERING_GAMBIT.title": "Pari Gagnant",
     "SNECKO-INERT_BLADE.description": "Infligez {Damage:diff()} dégâts.\nSi elle coûte...\n1+: Piochez {Cards:diff()} cartes.\n2+: Gagnez {Block:diff()} [gold]d'Armure[/gold].\n3+: Gagnez {StrengthPower:diff()} de [gold]Force[/gold].",
     "SNECKO-INERT_BLADE.title": "Lame Inerte",
-    "SNECKO-IRON_FANG.description": "Infligez {Damage:diff()} dégâts et appliquez {WeakPower:diff()} de [gold]Faiblesse[/gold] à TOUS les ennemis.",
     "SNECKO-IRON_FANG.title": "Crocs d'Acier",
     "SNECKO-JACKPOT.description": "Gagnez {Energy:energyIcons()}.",
     "SNECKO-JACKPOT.title": "Gekopot",

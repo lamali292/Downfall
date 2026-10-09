@@ -109,7 +109,7 @@
     "GUARDIAN-STASIS_FIELD.title": "停滞フィールド",
     "GUARDIAN-STASIS_STRIKE.description": "{Damage:diff()}ダメージを与える。\n[gold]停滞[/gold]スロットを{StasisSlots:diff()}得る。",
     "GUARDIAN-STASIS_STRIKE.title": "ステイシスストライク",
-    "GUARDIAN-STRIKE_FOR_STRIKE.description": "{Damage:diff()}ダメージを与える。\n敵はあなたに{EnemyDamage:inverseDiff()}ダメージを与える。",
+    "GUARDIAN-STRIKE_FOR_STRIKE.description": "{CalculatedDamage:diff()}ダメージを与える。\n自身に付与されている[gold]トゲ[/gold]に等しい追加ダメージを与える。\n{SelfDamage:inverseDiff()}ダメージを受ける。",
     "GUARDIAN-STRIKE_FOR_STRIKE.title": "ストライク合戦",
     "GUARDIAN-STRIKE_GUARDIAN.description": "{Damage:diff()}ダメージを与える。",
     "GUARDIAN-STRIKE_GUARDIAN.title": "ストライク",

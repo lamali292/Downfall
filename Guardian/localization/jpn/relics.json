@@ -27,7 +27,7 @@
     "GUARDIAN-QUANTUM_CHAMBER.description": "毎ターン、初めてカードを[gold]停滞[/gold]させた時、それを[gold]加速[/gold]する。",
     "GUARDIAN-QUANTUM_CHAMBER.flavor": "鶏を得るには、卵を孵すのだ。叩き割るのではなく。",
     "GUARDIAN-SACK_OF_GEMS.title": "ジェム入り袋",
-    "GUARDIAN-SACK_OF_GEMS.description": "取得時、[blue]10[/blue]種類のランダムな[gold]ジェム[/gold]から最大[blue]5[/blue]個まで選んで[gold]デッキ[/gold]に加える。",
+    "GUARDIAN-SACK_OF_GEMS.description": "取得時、[blue]{MaxGems}[/blue]種類のランダムな[gold]ジェム[/gold]から最大[blue]{Gem}[/blue]個まで選んで[gold]デッキ[/gold]に加える。",
     "GUARDIAN-SACK_OF_GEMS.flavor": "おおっ……ピカピカだ！",
     "GUARDIAN-WANDER_BOTS.title": "ワンダーボット",
     "GUARDIAN-WANDER_BOTS.description": "戦闘開始時、[gold]停滞[/gold]スロットを[blue]1[/blue]つ失う。ターン開始時、{Energy:energyIcons()}を得る。",

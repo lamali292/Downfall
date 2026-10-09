@@ -76,7 +76,6 @@
     "AUTOMATON-OVERHEAT.title": "과열",
     "AUTOMATON-PHILOSOPHIZE.title": "철학",
     "AUTOMATON-PIERCING_SHOT.title": "관통 사격",
-    "AUTOMATON-RECURSIVE_STRIKE.description": "피해를 {Damage:diff()} 두 번 줍니다.\n[gold]타격{IfUpgraded:plus()}[/gold] 2장을 [gold]부호화[/gold]합니다.",
     "AUTOMATON-RECURSIVE_STRIKE.title": "재귀 타격",
     "AUTOMATON-REFACTOR.title": "리팩토링",
     "AUTOMATON-REPAIR.description": "전투 종료 시, 체력을 {SelfRepairPower:diff()} 회복합니다.",
