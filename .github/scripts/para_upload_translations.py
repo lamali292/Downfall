@@ -58,7 +58,7 @@ async def main():
     token = get_api_key(LANG_CODE)
 
     # Define excluded repository directory names in lowercase
-    EXCLUDED_REPOS = {"collector", "gremlins"}
+    EXCLUDED_REPOS = {"gremlins"}
 
     repos = sorted(
         d for d in Path(".").iterdir()

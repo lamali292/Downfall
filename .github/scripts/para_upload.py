@@ -53,7 +53,7 @@ async def upload_file(api_client, project_id, file_path, local_file, existing_fi
 
 
 async def main():
-    EXCLUDED_REPOS = {"collector", "gremlins"}
+    EXCLUDED_REPOS = {"gremlins"}
     
     repos = sorted(
         d for d in Path(".").iterdir()
