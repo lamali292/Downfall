@@ -1,0 +1,22 @@
+{
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.char": "Ich bin wütend auf den Architekten.",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-0r.next": "Weiter",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-1r.ancient": "Du stirbst.",
+    "THE_ARCHITECT.talk.GUARDIAN-GUARDIAN.0-attack": "Beide",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-0.ancient": "[sine]...Ich.. habe.. dich.. ..wieder aufgebaut.. ..Konstrukt...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-0.next": "Weiter",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-1.ancient": "[sine]...nun.. geh...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.0-visit": "0",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-0.ancient": "[sine]..dieser.. [aqua]schillernde Edelstein[/aqua]....[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-0.next": "Weiter",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-1.ancient": "[sine]..er.. verändert sich.. ..jedes Mal, wenn du.. wieder aufgebaut wirst...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-1.next": "Weiter",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-2.ancient": "[sine]..nicht.. durch meinen.. Willen... ..seltsam...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.1-visit": "1",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-0.ancient": "[sine]..kennst.. du.. ..deinen.. Zweck...?[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-0.next": "Antworten",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-1.char": "[red][jitter]<56 45 52 4E 49 43 48 54 45> <41 4C 4C 45> <45 49 4E 44 52 49 4E 47 4C 49 4E 47 45>[/jitter][/red]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-1.next": "Weiter",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-2.ancient": "[sine]...[red][jitter]GUT[/jitter][/red]...[/sine]",
+    "NEOW.talk.GUARDIAN-GUARDIAN.2-visit": "2"
+}

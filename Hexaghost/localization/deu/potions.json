@@ -1,0 +1,8 @@
+{
+    "HEXAGHOST-ECTO_COOLER_POTION.title": "Ekto-Kühler",
+    "HEXAGHOST-ECTO_COOLER_POTION.description": "Wähle [blue]1[/blue] von [blue]3[/blue] [gold]Nachleben[/gold]-Karten, die du auf deine [gold]Hand[/gold] nimmst.\nSie ist in diesem Zug kostenlos spielbar.",
+    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "Brandbeschleuniger",
+    "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "Zünde die aktuelle Geisterflamme [blue]{Ignite:diff()}[/blue] Mal an.",
+    "HEXAGHOST-INFERNO_POTION_POTION.title": "Flüssiges Inferno",
+    "HEXAGHOST-INFERNO_POTION_POTION.description": "Geisterflammen wenden in diesem Kampf [gold]Seelenfeuer[/gold] an und fügen ALLEN Gegnern Schaden zu."
+}

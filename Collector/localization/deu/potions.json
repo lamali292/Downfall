@@ -1,0 +1,8 @@
+{
+    "COLLECTOR-BOTTLED_ROPE.title": "Seil in der Flasche",
+    "COLLECTOR-BOTTLED_ROPE.description": "Wende [blue]{WeakPower}[/blue] [gold]Schwach[/gold] an.\nWende [blue]{VulnerablePower}[/blue] [gold]Verwundbar[/gold] an.\nWende [blue]{MiasmaPower}[/blue] [gold]Gestank[/gold] an.",
+    "COLLECTOR-LAMP_OIL.title": "Lampenöl",
+    "COLLECTOR-LAMP_OIL.description": "[gold]Entfache[/gold] [blue]{Kindle}[/blue].",
+    "COLLECTOR-SMOKE_BOMB.title": "Rauchbombe",
+    "COLLECTOR-SMOKE_BOMB.description": "Wende auf ALLE Gegner [blue]{MiasmaPower}[/blue] [gold]Gestank[/gold] an."
+}

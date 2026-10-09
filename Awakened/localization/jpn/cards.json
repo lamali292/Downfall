@@ -175,7 +175,7 @@
     "AWAKENED-SOUL_STRIKE.title": "ソウルストライク",
     "AWAKENED-SPELLBINDER.description": "ターン開始時、[gold]喚起[/gold]する。",
     "AWAKENED-SPELLBINDER.title": "スペルバインダー",
-    "AWAKENED-SPELLSHIELD.description": "カードを1枚[gold]保留[/gold]するたび、{SpellshieldPower:diff()}[gold]ブロック[/gold]を得る。",
+    "AWAKENED-SPELLSHIELD.description": "ターン終了時、[gold]手札[/gold]の[gold]保留[/gold]1枚につき{SpellshieldPower:diff()}[gold]ブロック[/gold]を得る。",
     "AWAKENED-SPELLSHIELD.title": "スペルシールド",
     "AWAKENED-SPEW.description": "{Damage:diff()}ダメージを与える。\nこのカードに使った{energyPrefix:energyIcons(1)}は[gold]ドレイン[/gold]として扱われる。",
     "AWAKENED-SPEW.title": "吐瀉",

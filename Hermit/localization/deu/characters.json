@@ -1,0 +1,16 @@
+{
+    "HERMIT-HERMIT.title": "Der Einsiedler",
+    "HERMIT-HERMIT.titleObject": "Den Einsiedler",
+    "HERMIT-HERMIT.description": "Ein einsamer untoter Revolverheld von einem fernen Ort.\nHeimgesucht vom unentrinnbaren Schatten der Vergangenheit.",
+    "HERMIT-HERMIT.pronounSubject": "er",
+    "HERMIT-HERMIT.pronounObject": "ihn",
+    "HERMIT-HERMIT.possessiveAdjective": "sein",
+    "HERMIT-HERMIT.pronounPossessive": "sein",
+    "HERMIT-HERMIT.goldMonologue": "[sine]Diese Münzen... könnten etwas Munition kaufen...[/sine]",
+    "HERMIT-HERMIT.eventDeathPrevention": "Noch nicht... Ich habe noch unerledigte Geschäfte...",
+    "HERMIT-HERMIT.aromaPrinciple": "[sine][blue]...überleben, plündern, weiterziehen...[/blue][/sine]",
+    "HERMIT-HERMIT.cardsModifierTitle": "Einsiedler-Karten",
+    "HERMIT-HERMIT.cardsModifierDescription": "Einsiedler-Karten tauchen nun in Belohnungen und Läden auf.",
+    "HERMIT-HERMIT.banter.alive.endTurnPing": "Tick tack...",
+    "HERMIT-HERMIT.banter.dead.endTurnPing": "..."
+}

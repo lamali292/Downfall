@@ -1,7 +1,5 @@
 {
     "HEXAGHOST-DEVILS_DANCE_POWER.title": "악마의 춤",
-    "HEXAGHOST-DEVILS_DANCE_POWER.description": "매 턴 처음으로 [gold]팽창[/gold] 또는 [gold]수축[/gold]할 때, 카드를 1장 뽑습니다.",
-    "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "매 턴 [gold]팽창[/gold] 또는 [gold]수축[/gold]를 할 때 카드를 1장 뽑습니다. (턴당 최대 [blue]{Amount}[/blue] 회)",
     "HEXAGHOST-DOOMSDAY_POWER.title": "최후의 심판",
     "HEXAGHOST-DOOMSDAY_POWER.description": "모든 유령불꽃이 [gold]점화[/gold]되면, 추가 턴을 얻습니다.",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "모든 유령불꽃이 [gold]점화[/gold]되면, 추가 턴을 {Amount}회 얻습니다.",

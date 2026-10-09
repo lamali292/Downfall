@@ -1,0 +1,13 @@
+{
+    "DOWNFALL-TO_HAND": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du auf deine [gold]Hand[/gold] nimmst.",
+    "DOWNFALL-TO_TOP": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du oben auf deinen [gold]Nachziehstapel[/gold] legst.",
+    "DOWNFALL-TO_APPLY": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} auf die du die Effekte anwendest.",
+    "DOWNFALL-TO_DECK": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du deinem [gold]Deck[/gold] hinzufügst.",
+    "DOWNFALL-TO_STASIS": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du in [gold]Stasis[/gold] versetzt.",
+    "DOWNFALL-TO_CONJURE": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du [gold]Zauberst[/gold].",
+    "DOWNFALL-TO_PLAY": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du spielst.",
+    "DOWNFALL-ADD_ETHEREAL": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du [gold]Flüchtig[/gold] machst.",
+    "DOWNFALL-TO_RETAIN": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du [gold]Behältst[/gold].",
+    "DOWNFALL-TO_OTHER_HANDS": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du auf die [gold]Hand[/gold] eines anderen Spielers nimmst.",
+    "DOWNFALL-TO_COPY": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du [gold]Kopierst[/gold]."
+}

@@ -3,5 +3,6 @@
     "HEXAGHOST-ADVANCE.title": "Vorwärts",
     "HEXAGHOST-RETRACT.description": "Schreite im Gegenuhrzeigersinn zur vorherigen Geisterflamme. Das bewegen auf eine Geisterflamme [gold]Erlöscht[/gold] sie.",
     "HEXAGHOST-RETRACT.title": "Rückwärts",
-    "HEXAGHOST-AFTERLIFE.title": "Morbid"
+    "HEXAGHOST-AFTERLIFE.description": "Der grüne Effekt wird auch ausgelöst, wenn diese Karte [gold]Erschöpft[/gold] wird.",
+    "HEXAGHOST-AFTERLIFE.title": "Nachleben"
 }

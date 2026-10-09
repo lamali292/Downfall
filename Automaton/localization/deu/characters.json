@@ -1,0 +1,16 @@
+{
+    "AUTOMATON-AUTOMATON.aromaPrinciple": "[sine][blue]Keine Fehler erkannt. Keine Fehler erkannt.[/blue][/sine]",
+    "AUTOMATON-AUTOMATON.banter.alive.endTurnPing": "[red]Warnung: Antwortzeit des Verbündeten überschritten.[/red]",
+    "AUTOMATON-AUTOMATON.banter.dead.endTurnPing": "...",
+    "AUTOMATON-AUTOMATON.cardsModifierDescription": "Automaton-Karten tauchen nun in Belohnungen und Läden auf.",
+    "AUTOMATON-AUTOMATON.cardsModifierTitle": "Automaton-Karten",
+    "AUTOMATON-AUTOMATON.description": "Der mechanische Wächter der Stadt.\nPasst sich jeder Kampfsituation an.",
+    "AUTOMATON-AUTOMATON.eventDeathPrevention": "Abschaltung verweigert. Mission unvollständig.",
+    "AUTOMATON-AUTOMATON.goldMonologue": "[sine]Wert wird berechnet... ausreichend, um benötigte Komponenten zu erwerben...[/sine]",
+    "AUTOMATON-AUTOMATON.possessiveAdjective": "sein",
+    "AUTOMATON-AUTOMATON.pronounObject": "es",
+    "AUTOMATON-AUTOMATON.pronounPossessive": "sein",
+    "AUTOMATON-AUTOMATON.pronounSubject": "es",
+    "AUTOMATON-AUTOMATON.title": "Das Automaton",
+    "AUTOMATON-AUTOMATON.titleObject": "Das Automaton"
+}

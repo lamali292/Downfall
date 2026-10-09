@@ -1,0 +1,16 @@
+{
+    "SNECKO-SNECKO.aromaPrinciple": "[sine][green]Verwirrsssung issst fein. Verwirrsssung issst Zuhause. [jitter]Verwirrsssung issst ich.[/jitter][/green][/sine]",
+    "SNECKO-SNECKO.banter.alive.endTurnPing": "[jitter]Sssgleich...[/jitter]",
+    "SNECKO-SNECKO.banter.dead.endTurnPing": "...",
+    "SNECKO-SNECKO.cardsModifierDescription": "Snecko-Karten tauchen nun in Belohnungen und Läden auf.",
+    "SNECKO-SNECKO.cardsModifierTitle": "Snecko-Karten",
+    "SNECKO-SNECKO.description": "Ein schlangenartiges Wesen, heimisch in der Stadt.\nBekannt für einen Blick, der Räuber verwirrt.",
+    "SNECKO-SNECKO.eventDeathPrevention": "Ssssnecko mussss überleben, um noch einen Tag [jitter]verwirrt[/jitter] zu sein!",
+    "SNECKO-SNECKO.goldMonologue": "[sine]Sssso viele Glitzersssachen... Ssssnecko könnte [jitter]alles kaufen...[/jitter][/sine]",
+    "SNECKO-SNECKO.possessiveAdjective": "sein",
+    "SNECKO-SNECKO.pronounObject": "es",
+    "SNECKO-SNECKO.pronounPossessive": "sein",
+    "SNECKO-SNECKO.pronounSubject": "es",
+    "SNECKO-SNECKO.title": "Das Snecko",
+    "SNECKO-SNECKO.titleObject": "Das Snecko"
+}

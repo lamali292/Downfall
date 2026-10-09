@@ -1,7 +1,5 @@
 {
     "HEXAGHOST-DEVILS_DANCE_POWER.title": "Danza del Diavolo",
-    "HEXAGHOST-DEVILS_DANCE_POWER.description": "The first time you [gold]Avanza[/gold] or [gold]Ritira[/gold] each turn, pesca una carta.",
-    "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "The first {Amount:plural:time|[blue]{Amount}[/blue] times} you [gold]Avanza[/gold] or [gold]Ritira[/gold] each turn, pesca una carta.",
     "HEXAGHOST-DOOMSDAY_POWER.title": "Giorno del Giudizio",
     "HEXAGHOST-DOOMSDAY_POWER.description": "The next time you [gold]Accendi[/gold] ALL Ghostflames, gain an additional turn.",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "The next time you [gold]Accendi[/gold] ALL Ghostflames, gain {Amount:plural:an additional turn|{Amount} additional turns}.",
