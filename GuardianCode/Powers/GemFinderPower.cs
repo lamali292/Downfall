@@ -4,6 +4,7 @@ using Guardian.GuardianCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Guardian.GuardianCode.Powers;
 
@@ -19,7 +20,7 @@ public class GemFinderPower : GuardianPowerModel
     {
         var card = cardPlay.Card;
         if (card.Owner.Creature != Owner || card is not IGemCard) return;
-        await CardPileCmd.Draw(ctx, Amount, card.Owner);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(ctx, Owner, Amount, Owner, null);
     }
 
 

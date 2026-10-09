@@ -17,7 +17,6 @@
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.title": "Неуловимость",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.description": "[gold]Укрепление[/gold] [blue]1[/blue] при переходе в [gold]Оборонительный режим[/gold].",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.smartDescription": "[gold]Укрепление[/gold] [blue]{Amount}[/blue] при переходе в [gold]Оборонительный режим[/gold].",
-    "GUARDIAN-EXHAUST_STATUSES_POWER.title": "Репульсор",
     "GUARDIAN-FLOATING_ORBS_POWER.title": "Парящие сферы",
     "GUARDIAN-FLOATING_ORBS_POWER.description": "Наносит урон случайному врагу, когда вы разыгрываете карты стоимостью 0{energyPrefix:energyIcons(1)}.",
     "GUARDIAN-FLOATING_ORBS_POWER.smartDescription": "Наносит [blue]{Amount}[/blue] урона случайному врагу, когда вы разыгрываете карты стоимостью 0{energyPrefix:energyIcons(1)}.",

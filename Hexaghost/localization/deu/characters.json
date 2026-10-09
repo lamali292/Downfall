@@ -1,0 +1,16 @@
+{
+    "HEXAGHOST-HEXAGHOST.aromaPrinciple": "[sine][purple]Ich bin gebunden. Ich bestehe fort. Ich bin gebunden. Ich bestehe fort. [jitter]Ich bin gebunden.[/jitter][/purple][/sine]",
+    "HEXAGHOST-HEXAGHOST.banter.alive.endTurnPing": "...[jitter]spiel...[/jitter]",
+    "HEXAGHOST-HEXAGHOST.banter.dead.endTurnPing": "...",
+    "HEXAGHOST-HEXAGHOST.cardsModifierDescription": "Hexageist-Karten tauchen nun in Belohnungen und Läden auf.",
+    "HEXAGHOST-HEXAGHOST.cardsModifierTitle": "Hexageist-Karten",
+    "HEXAGHOST-HEXAGHOST.description": "Ein verfluchter Geist des Spires.\nAn ein ewiges Schicksal als Beschützerin gebunden.",
+    "HEXAGHOST-HEXAGHOST.eventDeathPrevention": "Ich kann noch nicht hinübergehen... meine Flammen brennen noch.",
+    "HEXAGHOST-HEXAGHOST.goldMonologue": "[sine]Gold... den Toten bedeutet es nichts... und doch...[/sine]",
+    "HEXAGHOST-HEXAGHOST.possessiveAdjective": "ihr",
+    "HEXAGHOST-HEXAGHOST.pronounObject": "ihr",
+    "HEXAGHOST-HEXAGHOST.pronounPossessive": "ihres",
+    "HEXAGHOST-HEXAGHOST.pronounSubject": "sie",
+    "HEXAGHOST-HEXAGHOST.title": "Der Hexageist",
+    "HEXAGHOST-HEXAGHOST.titleObject": "Der Hexageist"
+}

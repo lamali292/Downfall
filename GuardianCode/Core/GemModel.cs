@@ -24,8 +24,6 @@ namespace Guardian.GuardianCode.Core;
 
 public abstract class GemModel : CardModifier, ICustomModel
 {
-    private GemModel _canonicalInstance = null!;
-
     private PowerModel? _power;
 
     public PowerModel Power
@@ -56,13 +54,13 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     public GemModel CanonicalInstance
     {
-        get => !IsMutable ? this : _canonicalInstance;
+        get => !IsMutable ? this : field;
         private set
         {
             AssertMutable();
-            _canonicalInstance = value;
+            field = value;
         }
-    }
+    } = null!;
 
     public IEnumerable<IHoverTip> HoverTips
     {
@@ -159,6 +157,17 @@ public abstract class GemModel : CardModifier, ICustomModel
     protected abstract Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay,
         IEnumerable<Player> targetPlayers);
 
+    /// <summary>
+    /// Whether playing this gem for the given <paramref name="cardPlay"/> should be reported to
+    /// <see cref="IAfterGemPlayed"/> listeners (e.g. Temporal Refraction) as a genuine activation.
+    /// Gems whose benefit is decided once, up front, by <see cref="ModifyPlayCount"/> at
+    /// play-count-resolution time (instead of by <see cref="OnPlayInternal"/>) see OnPlay fire
+    /// again for every physical replay that one decision caused (<c>cardPlay.PlayIndex</c> 1, 2,
+    /// ...); reporting those too would let that single, already-paid-for decision drain further
+    /// per-turn resources it never asked for, so such a gem should override this to only report on
+    /// <c>cardPlay.PlayIndex == 0</c>.
+    /// </summary>
+    protected virtual bool ReportsActivation(CardPlay cardPlay) => true;
 
     public sealed override async Task OnPlay(PlayerChoiceContext ctx, CardPlay? cardPlay)
     {
@@ -173,7 +182,10 @@ public abstract class GemModel : CardModifier, ICustomModel
         var affectsAll = cardPlay?.Card is IGemSocketCard { GemsAffectAllPlayers: true };
         var targetPlayers = TargetPlayers(affectsAll).ToList();
         for (var i = 0; i < replay; i++) await OnPlayInternal(ctx, cardPlay, targetPlayers);
-        await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
+        // cardPlay is null for passive/synthetic triggers (e.g. Brilliant Scales' turn-start pulse) -
+        // those aren't "you activate [a gem] by playing a card", so they must not count as one.
+        if (cardPlay != null && ReportsActivation(cardPlay))
+            await GuardianHook.AfterGemPlayed(CombatState, ctx, this, cardPlay);
     }
 
     protected IEnumerable<Player> TargetPlayers(bool affectAllPlayers)

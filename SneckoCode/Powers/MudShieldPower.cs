@@ -18,7 +18,7 @@ public class MudShieldPower : SneckoPowerModel, IAfterCardMuddled
     }
 
 
-    public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card, AbstractModel? source)
+    public async Task AfterCardMuddled(PlayerChoiceContext ctx, CardModel card)
     {
         if (card.Owner.Creature != Owner) return;
         Flash();

@@ -1,0 +1,8 @@
+{
+    "AWAKENED-CULTISTS_DELIGHT.title": "Kultistenfreude",
+    "AWAKENED-CULTISTS_DELIGHT.description": "Erhalte [blue]{CuriosityPower:diff()}[/blue] [gold]Neugier[/gold].",
+    "AWAKENED-UNHOLY_WATER.title": "Unheiliges Wasser",
+    "AWAKENED-UNHOLY_WATER.description": "Wende [blue]{ManaburnPower:diff()}[/blue] [gold]Manabrand[/gold] an.",
+    "AWAKENED-SACRAMENTAL_WINE.title": "Sekten-Messwein",
+    "AWAKENED-SACRAMENTAL_WINE.description": "Immer wenn du eine Macht spielst, erhalte [blue]{SacramentalWinePower:diff()}[/blue] [gold]Block[/gold]."
+}

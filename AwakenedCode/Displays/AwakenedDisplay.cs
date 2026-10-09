@@ -10,6 +10,7 @@ public class AwakenedDisplay
 {
     private static readonly PlayerField<NAwakenMeter> AwakenMeterDisplays = new(() => null);
 
+    public static NAwakenMeter? GetAwakenMeter(Player player) => AwakenMeterDisplays.Get(player);
 
     public static void RefreshAwakenMeter(Player player, int value)
     {

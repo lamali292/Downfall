@@ -102,6 +102,6 @@ unique_name_in_owner = true
 layout_mode = 1
 offset_right = 244.0
 offset_bottom = 204.0
-pivot_offset = Vector2(122, 102)
+pivot_offset = Vector2(28, 195)
 mouse_filter = 2
 texture = ExtResource("10_arrow")

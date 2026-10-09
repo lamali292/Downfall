@@ -5,6 +5,12 @@ const SKIP_EXTENSIONS: Array[String] = [
 	".ogg", ".mp3", ".wav",
 ]
 
+# Source-only art files that are never meant to ship: no Godot import exists for them,
+# so unlike SKIP_EXTENSIONS they're just dropped outright rather than replaced by an import.
+const EXCLUDE_EXTENSIONS: Array[String] = [
+	".kra",
+]
+
 const REMAP_PATH_KEYS: Array[String] = [
 	"path.s3tc_bptc",
 	"path.etc2_astc",
@@ -35,6 +41,10 @@ func _init() -> void:
 		var mod_folder: String = _strip_folder_name(raw_folder)
 		print("Packing folder: res://" + mod_folder)
 		_pack_folder_recursive(packer, "res://" + mod_folder)
+		# Not needed to run the mod itself, but lets someone else's Godot editor (running their own project
+		# with this mod loaded as a dependency) resolve script class names in the remote scene tree.
+		print("Packing C# .uid files: res://" + mod_folder + "Code")
+		_pack_cs_uid_files_recursive(packer, "res://" + mod_folder + "Code")
 
 	err = packer.flush(true)
 	if err == OK:
@@ -80,16 +90,48 @@ func _pack_folder_recursive(packer: PCKPacker, path: String) -> void:
 		if dir.current_is_dir():
 			_pack_folder_recursive(packer, full_path)
 		else:
-			var is_raw_image: bool = SKIP_EXTENSIONS.any(
+			var is_excluded: bool = EXCLUDE_EXTENSIONS.any(
 				func(ext: String) -> bool: return file_name.ends_with(ext)
 			)
-			if not is_raw_image:
-				var err: int = packer.add_file(full_path, full_path)
-				if err != OK:
-					printerr("Failed to pack file: ", full_path)
+			if not is_excluded:
+				var is_raw_image: bool = SKIP_EXTENSIONS.any(
+					func(ext: String) -> bool: return file_name.ends_with(ext)
+				)
+				if not is_raw_image:
+					var err: int = packer.add_file(full_path, full_path)
+					if err != OK:
+						printerr("Failed to pack file: ", full_path)
 
-			if file_name.ends_with(".import"):
-				_pack_imported_dependency(packer, full_path)
+				if file_name.ends_with(".import"):
+					_pack_imported_dependency(packer, full_path)
+
+		file_name = dir.get_next()
+
+
+func _pack_cs_uid_files_recursive(packer: PCKPacker, path: String) -> void:
+	var dir: DirAccess = DirAccess.open(path)
+	if dir == null:
+		return
+
+	dir.list_dir_begin()
+	var file_name: String = dir.get_next()
+
+	while file_name != "":
+		if file_name == "." or file_name == "..":
+			file_name = dir.get_next()
+			continue
+
+		var full_path: String = path + "/" + file_name
+
+		if dir.current_is_dir():
+			_pack_cs_uid_files_recursive(packer, full_path)
+		# The ".cs" files themselves aren't needed to run the mod and can be dropped.
+		# However, not having them breaks script-name resolution when someone else loads this mod
+		# as a dependency and inspects it in their own editor's remote scene tree.
+		elif file_name.ends_with(".cs.uid") or file_name.ends_with(".cs"):
+			var err: int = packer.add_file(full_path, full_path)
+			if err != OK:
+				printerr("Failed to pack C# uid file: ", full_path)
 
 		file_name = dir.get_next()
 

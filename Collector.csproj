@@ -15,7 +15,6 @@
     
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
-        <ProjectReference Include="SlimeBoss.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

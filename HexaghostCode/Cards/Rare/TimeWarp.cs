@@ -23,9 +23,9 @@ public class TimeWarp : HexaghostCardModel, IWheelMoved
 
     public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
+        int ghostflameIndex, bool silent, bool autoAdvance)
     {
-        if (Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
+        if (autoAdvance || Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
 

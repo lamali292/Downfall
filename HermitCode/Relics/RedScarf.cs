@@ -28,7 +28,7 @@ public sealed class RedScarf : HermitRelicModel
     public override Task BeforePowerAmountChanged(PowerModel power, decimal amount, Creature target,
         Creature? applier, CardModel? cardSource)
     {
-        if (amount != 0 && target.IsEnemy && power.GetTypeForAmount(amount) == PowerType.Debuff &&
+        if (amount != 0 && target.IsEnemy && power.GetDownfallTypeForAmount(amount) == PowerType.Debuff &&
             (target.GetPower(power.Id)?.Amount ?? 0) == 0 && applier == Owner.Creature)
         {
             _pendingNewDebuffs.Add(power);

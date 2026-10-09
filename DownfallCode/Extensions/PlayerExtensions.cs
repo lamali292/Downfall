@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 
@@ -10,9 +11,14 @@ public static class PlayerExtensions
     {
         public IReadOnlyList<Player> AllTeammates
             => player.Creature.CombatState!.GetTeammatesOf(player.Creature)
-                .Where(e => e.IsAlive)
+                .Where(e => e.IsHittable)
                 .Select(c => c.Player)
                 .OfType<Player>().ToArray();
+        
+        public IReadOnlyList<Creature> AllOpponents
+            => player.Creature.CombatState!.GetOpponentsOf(player.Creature)
+                .Where(e => e.IsHittable)
+                .ToArray();
 
         public IReadOnlyList<Player> OtherTeammates => player.AllTeammates.Where(p => p != player).ToArray();
         public Player? RandomOtherTeammate => player.RunState.Rng.CombatTargets.NextItem(player.OtherTeammates);

@@ -1,0 +1,6 @@
+{
+    "AUTOMATON-ENCODE.title": "Kodieren",
+    "AUTOMATON-ENCODE.description": "Lege diese Karte in deinen [gold]Kodier-Orb[/gold]. Bei [blue]3[/blue] Karten werden ihre Effekte oberhalb dieses Schlüsselworts zu einer Funktionskarte mit Kosten [blue]1[/blue] zusammengeführt.",
+    "AUTOMATON-COMPILE.title": "Kompilieren",
+    "AUTOMATON-COMPILE.description": "Wird ausgelöst, wenn diese Karte zu einer Funktion zusammengeführt wird."
+}

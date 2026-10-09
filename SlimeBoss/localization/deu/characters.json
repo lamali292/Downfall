@@ -1,0 +1,16 @@
+{
+    "SLIMEBOSS-SLIME_BOSS.aromaPrinciple": "[sine][green]Wir sind viele. Wir sind eins. Wir sind viele. Wir sind eins. [jitter]Wir sind viele.[/jitter][/green][/sine]",
+    "SLIMEBOSS-SLIME_BOSS.banter.alive.endTurnPing": "Matsch matsch...",
+    "SLIMEBOSS-SLIME_BOSS.banter.dead.endTurnPing": "...",
+    "SLIMEBOSS-SLIME_BOSS.cardsModifierDescription": "Schleimboss-Karten tauchen nun in Belohnungen und Läden auf.",
+    "SLIMEBOSS-SLIME_BOSS.cardsModifierTitle": "Schleimboss-Karten",
+    "SLIMEBOSS-SLIME_BOSS.description": "Der schleimigste General des Herzens.\nKämpft allein oder als Vielzahl.",
+    "SLIMEBOSS-SLIME_BOSS.eventDeathPrevention": "Wir können nicht fallen. Unsere Schleime brauchen uns noch!",
+    "SLIMEBOSS-SLIME_BOSS.goldMonologue": "[sine]So viel Gold... genug, um einen ganzen Teich voller Glibber zu füllen...[/sine]",
+    "SLIMEBOSS-SLIME_BOSS.possessiveAdjective": "ihr",
+    "SLIMEBOSS-SLIME_BOSS.pronounObject": "sie",
+    "SLIMEBOSS-SLIME_BOSS.pronounPossessive": "ihres",
+    "SLIMEBOSS-SLIME_BOSS.pronounSubject": "sie",
+    "SLIMEBOSS-SLIME_BOSS.title": "Der Schleimboss",
+    "SLIMEBOSS-SLIME_BOSS.titleObject": "Der Schleimboss"
+}

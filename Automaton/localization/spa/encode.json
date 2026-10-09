@@ -29,7 +29,6 @@
     "AUTOMATON-FRAGMENT.functionPrefix": "Limpiar",
     "AUTOMATON-FRONTLOAD.functionName": "Muro",
     "AUTOMATON-FRONTLOAD.functionPrefix": "Resistente",
-    "AUTOMATON-FULL_RELEASE.encode": "[gold]Compilar[/gold]: La función se convierte en un Poder con «Al comienzo de tu turno...»",
     "AUTOMATON-FULL_RELEASE.functionName": "Lanzamiento ",
     "AUTOMATON-FULL_RELEASE.functionPrefix": "Lleno",
     "AUTOMATON-INFINITE_LOOP.functionName": "Bucle",

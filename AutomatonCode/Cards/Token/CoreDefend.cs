@@ -4,6 +4,7 @@ using Automaton.AutomatonCode.Encode;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Automaton.AutomatonCode.Cards.Token;
@@ -11,7 +12,7 @@ namespace Automaton.AutomatonCode.Cards.Token;
 [Pool(typeof(TokenCardPool))]
 public class CoreDefend : AutomatonCardModel
 {
-    public CoreDefend() : base(-1, CardType.Skill, CardRarity.Token, TargetType.Self)
+    public CoreDefend() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithEncode<BlockEncode>();
         WithBlock(5, 3);
@@ -21,6 +22,8 @@ public class CoreDefend : AutomatonCardModel
     
     public override bool CanBeGeneratedByModifiers => false;
     public override bool CanBeGeneratedInCombat => false;
+
+    public override CardPoolModel VisualCardPool => _owner?.Character.CardPool ?? Pool;
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

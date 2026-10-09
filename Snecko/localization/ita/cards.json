@@ -48,7 +48,6 @@
     "SNECKO-GLITTERING_GAMBIT.title": "Gambetto Scintillante",
     "SNECKO-INERT_BLADE.description": "Infliggi {Damage:diff()} danno.\nSe questa carta costa...\n1+: Pesca {Cards:diff()} carte.\n2+:  Ottieni {Block:diff()}[gold]Blocco[/gold].\n3+: Ottieni {StrengthPower:diff()} [gold]Forza[/gold].",
     "SNECKO-INERT_BLADE.title": "Lama Inerte",
-    "SNECKO-IRON_FANG.description": "Deal {Damage:diff()} damage and apply {WeakPower:diff()} [gold]Debolezza[/gold] a TUTTI i nemici.",
     "SNECKO-IRON_FANG.title": "Zanna di Ferro",
     "SNECKO-JACKPOT.description": "Ottieni {Energy:energyIcons()}.",
     "SNECKO-JACKPOT.title": "Snekpot",
