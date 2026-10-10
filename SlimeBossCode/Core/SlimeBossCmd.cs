@@ -210,8 +210,20 @@ public static class SlimeBossCmd
         slimeNode.UpdateBounds(slimeNode.Visuals);
     }
 
+    /// <summary>Height of the hidden HP bar (the power container's offset in creature_state_display.tscn).</summary>
+    private static float HiddenHealthBarHeight => 20f;
+
+    /// <summary>
+    /// Slimes show no HP bar, so the powers and nameplate that sit below it would leave a gap under the slime.
+    /// Lift both by the bar's height. The state display itself can't be moved: <c>AnimateIn</c> tweens its
+    /// position back to the one it captured in <c>_Ready</c>. Must run before <c>UpdateBounds</c>, which is
+    /// when the power container captures its own original position.
+    /// </summary>
     private static void HideHealthBar(NCreature slimeNode)
     {
-        slimeNode._stateDisplay._healthBar.Visible = false;
+        var display = slimeNode._stateDisplay;
+        display._healthBar.Visible = false;
+        foreach (var name in new[] { "%PowerContainer", "%NameplateContainer" })
+            display.GetNode<Control>(name).Position += Vector2.Up * HiddenHealthBarHeight;
     }
 }

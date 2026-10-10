@@ -1,8 +1,7 @@
-[gd_scene load_steps=34 format=3 ]
+[gd_scene load_steps=33 format=3 ]
 
 [ext_resource type="Texture2D" path="res://images/vfx/light.png" id="1_2iqbb"]
 [ext_resource type="Texture2D" path="res://images/vfx/vfx_constant_fire/fire_texture_2.png" id="1_a50js"]
-[ext_resource type="Script" path="res://HexaghostCode/Vfx/NFire.cs" id="1_yijhw"]
 [ext_resource type="Texture2D" path="res://images/vfx/vfx_constant_fire/fire_spark.png" id="2_b5fa0"]
 [ext_resource type="Script" path="res://scenes/backgrounds/little_light_script.gd" id="2_wg7um"]
 [ext_resource type="Material" path="res://themes/canvas_item_material_additive_shared.tres" id="shared_additive_mat"]
@@ -122,7 +121,6 @@ offsets = PackedFloat32Array(0, 0.514334, 0.662942)
 colors = PackedColorArray(0.537255, 0.537255, 0.537255, 1, 0.32549, 0.337255, 0.313726, 1, 0.210507, 0.210507, 0.210507, 0)
 
 [node name="vfx_fire" type="Node2D"]
-script = ExtResource("1_yijhw")
 
 [node name="fire_red" type="Node2D" parent="."]
 unique_name_in_owner = true
