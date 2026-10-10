@@ -13,7 +13,7 @@ public class EquipAxe : CollectorCardModel
 {
     public EquipAxe() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKindle(6, 1);
+        WithKindle(5, 2);
         WithPower<EquipAxePower>(2, 1, false);
     }
 
