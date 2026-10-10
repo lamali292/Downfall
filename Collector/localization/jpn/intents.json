@@ -1,0 +1,4 @@
+{
+    "COLLECTOR-TORCHHEAD_ATTACK_INTENT.title": "攻撃的",
+    "COLLECTOR-TORCHHEAD_ATTACK_INTENT.description": "ターン終了時、{TargetsAll:cond:すべての敵に|HPが最も少ない敵に}[blue]{Damage}[/blue]ダメージの[gold]アタック[/gold]を[blue]1[/blue]回行う。"
+}

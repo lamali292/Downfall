@@ -1,3 +1,5 @@
 {
-    "COLLECTIBLE_REWARD": "[gold]{Card}[/gold]をデッキに追加する。"
+    "COLLECTIBLE_CHOICE_REWARD": "デッキに{IsUpgraded:cond:[gold]アップグレード[/gold]された|}[gold]コレクト[/gold]カードを追加",
+    "COLLECTIBLE_REWARD": "[gold]{Card}[/gold]をデッキに追加する。",
+    "PYRE_NO_TARGET": "[jitter][red]火葬[/red][/jitter]するものがない！"
 }
