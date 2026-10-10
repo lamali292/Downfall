@@ -11,8 +11,8 @@ public class LuckyWick : CollectorCardModel
 {
     public LuckyWick() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithDamage(3, 1);
-        WithBlock(3, 1);
+        WithDamage(3, 2);
+        WithBlock(2);
         WithKeyword(CardKeyword.Exhaust);
     }
 

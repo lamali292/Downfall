@@ -19,7 +19,6 @@ public class FlameLash : CollectorCardModel
         WithTip(CollectorTip.Pyred);
         WithTip(CardKeyword.Exhaust);
         WithDamage(8, 4);
-        WithEnergy(2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -28,8 +27,8 @@ public class FlameLash : CollectorCardModel
     {
         var pyred = await PyreCmd.Pyre(ctx, this);
         if (pyred == null) return;
-        var cost = pyred.EnergyCost.GetAmountToSpend();
-        if (cost >= DynamicVars.Energy.IntValue)
+        var type = pyred.Type;
+        if (type is CardType.Status or CardType.Curse)
         {
             await DamageCmd.Attack(DynamicVars.Damage.IntValue).FromCardCompatibility(this, cardPlay)
                 .TargetingAllOpponents(CombatState!).Execute(ctx);
