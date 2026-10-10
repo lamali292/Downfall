@@ -8,12 +8,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Collector.CollectorCode.Cards.Uncommon;
+namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
 public class Empower : CollectorCardModel
 {
-    public Empower() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public Empower() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<EmpowerPower>(2, false);
         WithCardTip<Ember>();
