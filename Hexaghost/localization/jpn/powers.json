@@ -1,5 +1,7 @@
 {
     "HEXAGHOST-DEVILS_DANCE_POWER.title": "デビルズダンス",
+    "HEXAGHOST-DEVILS_DANCE_POWER.description": "毎ターン、最初に[gold]前進[/gold]または[gold]後退[/gold]した時、カードを1枚引く。",
+    "HEXAGHOST-DEVILS_DANCE_POWER.smartDescription": "毎ターン、最初に[gold]前進[/gold]または[gold]後退[/gold]した時、カードを1枚引く。(1ターンにつき最大[blue]{Amount}[/blue]回)",
     "HEXAGHOST-DOOMSDAY_POWER.title": "最後の審判",
     "HEXAGHOST-DOOMSDAY_POWER.description": "次にすべてのゴーストフレイムを[gold]発火[/gold]した時、追加のターンを得る。",
     "HEXAGHOST-DOOMSDAY_POWER.smartDescription": "次にすべてのゴーストフレイムを[gold]発火[/gold]した時、追加のターンを{Amount}回得る。",
