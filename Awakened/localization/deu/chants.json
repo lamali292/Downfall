@@ -1,0 +1,12 @@
+{
+    "AWAKENED-RECITATION.chant": "Füge erneut {Damage:diff()} Schaden zu.",
+    "AWAKENED-CAW.chant": "Erhöhe in diesem Kampf den Schaden ALLER [gold]Krächz![/gold]-Karten um {Caw:diff()}.",
+    "AWAKENED-FEATHER_FLARE.chant": "Ziehe im nächsten Zug 1 Karte mehr.",
+    "AWAKENED-GATHER.chant": "Nimm eine Karte aus deinem [gold]Abwurfstapel[/gold] auf deine [gold]Hand[/gold].",
+    "AWAKENED-GREAT_HEX.chant": "Der Zielgegner erhält am Ende jedes seiner Züge {GreatHexPower:diff()} [gold]Manabrand[/gold].",
+    "AWAKENED-NIHIL.chant": "ALLE Gegner verlieren TP in Höhe ihres [gold]Manabrands[/gold].",
+    "AWAKENED-RAVEN_STRIKE.chant": "Spiele die oberste Karte deines [gold]Nachziehstapels[/gold].",
+    "AWAKENED-TAKE_FLIGHT.chant": "[gold]Block[/gold] wird zu Beginn deines nächsten Zuges nicht entfernt.",
+    "AWAKENED-VICTUALS.chant": "Erhalte {Energy:energyIcons()}.",
+    "AWAKENED-SIPHON.chant": "Stehle für diesen Zug {SiphonPower:diff()} [gold]Stärke[/gold]."
+}

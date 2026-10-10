@@ -1,0 +1,16 @@
+{
+    "COLLECTOR-COLLECTOR.aromaPrinciple": "[sine][purple]Alles gehört mir. Alles wird mir gehören. [jitter]Alles.[/jitter][/purple][/sine]",
+    "COLLECTOR-COLLECTOR.banter.alive.endTurnPing": "Ich habe Seelen zu sammeln.",
+    "COLLECTOR-COLLECTOR.banter.dead.endTurnPing": "...",
+    "COLLECTOR-COLLECTOR.cardsModifierDescription": "Sammlerin-Karten tauchen nun in Belohnungen und Läden auf.",
+    "COLLECTOR-COLLECTOR.cardsModifierTitle": "Sammlerin-Karten",
+    "COLLECTOR-COLLECTOR.description": "Die berüchtigte Zauberin der Stadt.\nSammelt Seelen und Schmuckstücke gleichermaßen.",
+    "COLLECTOR-COLLECTOR.eventDeathPrevention": "Meine Sammlung ist noch nicht vollständig.",
+    "COLLECTOR-COLLECTOR.goldMonologue": "[sine]So viel Reichtum... Er wird sich prächtig in meiner Sammlung machen...[/sine][/sine]",
+    "COLLECTOR-COLLECTOR.possessiveAdjective": "ihr",
+    "COLLECTOR-COLLECTOR.pronounObject": "ihr",
+    "COLLECTOR-COLLECTOR.pronounPossessive": "ihres",
+    "COLLECTOR-COLLECTOR.pronounSubject": "sie",
+    "COLLECTOR-COLLECTOR.title": "Die Sammlerin",
+    "COLLECTOR-COLLECTOR.titleObject": "Die Sammlerin"
+}

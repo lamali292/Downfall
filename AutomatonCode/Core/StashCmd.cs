@@ -125,7 +125,14 @@ public class StashCmd
 
     public static async Task StashUpTo(PlayerChoiceContext ctx, Player player, int amount, AbstractModel source)
     {
-        var prefs = new CardSelectorPrefs(StashSelectionPrompt, 0, amount);
+        var space = RemainingSpace(player);
+        if (space <= 0)
+        {
+            NotifyFullStash(player);
+            return;
+        }
+
+        var prefs = new CardSelectorPrefs(StashSelectionPrompt, 0, Math.Min(amount, space));
         var cards = await CardSelectCmd.FromHand(ctx, player, prefs, null, source);
         await Stash(ctx, player, cards);
     }

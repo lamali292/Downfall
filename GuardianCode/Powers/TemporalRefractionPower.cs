@@ -24,7 +24,13 @@ public class TemporalRefractionPower : GuardianPowerModel, IModifyGemEffect, IAf
 
     public decimal ModifyGemEffect(GemModel model, decimal baseValue, CardModel? card)
     {
-        return Owner == card?.Owner.Creature && UsedAmount < Amount && model.SocketIndex < Amount
+        // Gems on the same card activate in socket order, each consuming one stack in turn, so a
+        // gem at SocketIndex s only gets doubled if the s gems before it on this card (which would
+        // consume first) still leave a stack for it - i.e. UsedAmount + s < Amount. This also keeps
+        // card-preview text in sync with what actually happens when the card is played: previewing
+        // every gem against the same not-yet-incremented UsedAmount (the old `SocketIndex < Amount`
+        // check) could show two gems on one card both doubling when only the first one really would.
+        return Owner == card?.Owner.Creature && UsedAmount + model.SocketIndex < Amount
             ? baseValue * 2
             : baseValue;
     }

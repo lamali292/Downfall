@@ -53,7 +53,6 @@
     "SNECKO-GLITTERING_GAMBIT.title": "豪赌",
     "SNECKO-INERT_BLADE.description": "造成{Damage:diff()}点伤害。\n如果此牌耗能大于等于……\n1：抽{Cards:diff()}张牌。\n2：获得{Block:diff()}点[gold]格挡[/gold]。\n3：获得{StrengthPower:diff()}点[gold]力量[/gold]。",
     "SNECKO-INERT_BLADE.title": "钝藏刀刃",
-    "SNECKO-IRON_FANG.description": "对所有敌人造成{Damage:diff()}点伤害。\n给予所有敌人{WeakPower:diff()}层[gold]虚弱[/gold]。",
     "SNECKO-IRON_FANG.title": "钢牙",
     "SNECKO-JACKPOT.description": "获得{Energy:energyIcons()}。",
     "SNECKO-JACKPOT.title": "蛇罐",

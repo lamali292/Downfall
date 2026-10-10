@@ -1,0 +1,16 @@
+{
+    "GREMLINS-GREMLINS.aromaPrinciple": "[sine][orange]Essen. Schätze. Essen. Schätze. [jitter]ESSEN![/jitter][/orange][/sine]",
+    "GREMLINS-GREMLINS.banter.alive.endTurnPing": "BEEIL DICH!!",
+    "GREMLINS-GREMLINS.banter.dead.endTurnPing": "...",
+    "GREMLINS-GREMLINS.cardsModifierDescription": "Gremlin-Karten tauchen nun in Belohnungen und Läden auf.",
+    "GREMLINS-GREMLINS.cardsModifierTitle": "Gremlin-Karten",
+    "GREMLINS-GREMLINS.description": "Ein chaotischer Haufen Spire-Bewohner, der sich auf der Suche nach Nahrung und Schätzen zusammengetan hat.",
+    "GREMLINS-GREMLINS.eventDeathPrevention": "Wir können noch nicht sterben, es gibt noch Schätze zu stehlen!",
+    "GREMLINS-GREMLINS.goldMonologue": "[sine]So viel Gold... wir könnten SO viel Essen kaufen...[/sine]",
+    "GREMLINS-GREMLINS.possessiveAdjective": "ihr",
+    "GREMLINS-GREMLINS.pronounObject": "sie",
+    "GREMLINS-GREMLINS.pronounPossessive": "ihres",
+    "GREMLINS-GREMLINS.pronounSubject": "sie",
+    "GREMLINS-GREMLINS.title": "Die Gremlins",
+    "GREMLINS-GREMLINS.titleObject": "Die Gremlins"
+}

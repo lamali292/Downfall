@@ -32,7 +32,7 @@ public static class SneckoCmd
                 .GetMethod(nameof(ModelDb.Power))
                 ?.MakeGenericMethod(t.GetGenericArguments()[0])
                 .Invoke(null, null) as PowerModel;
-        return power?.GetTypeForAmount(v.BaseValue) == PowerType.Debuff;
+        return power?.GetDownfallTypeForAmount(v.BaseValue) == PowerType.Debuff;
     }
 
     public static async Task GetGift(Player player, Gift gift, int amount = 3)

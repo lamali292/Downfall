@@ -1,0 +1,10 @@
+{
+    "AWAKENED-AWAKEN.title": "Erwachen",
+    "AWAKENED-AWAKEN.description": "Wenn du im Kampf [blue]7[/blue] Machtkarten spielst, [gold]Erwache[/gold].\nSolange du [gold]erwacht[/gold] bist, [gold]Verbessere[/gold] ALLE [gold]aufgerufenen[/gold] Zauberkarten für den Rest des Kampfes.",
+    "AWAKENED-CONJURE.title": "Zaubern",
+    "AWAKENED-CONJURE.description": "Nimm die nächste Karte aus deinem Zauberbuch auf deine [gold]Hand[/gold].",
+    "AWAKENED-DRAINED.title": "Ausgelaugt",
+    "AWAKENED-DRAINED.description": "Jeder Effekt, der dich {Energy:energyIcons()} verlieren lässt, auch wenn du keine mehr hast.\n(Beim Ausspielen von Karten ausgegebene {Energy:energyIcons()} zählen nicht dazu.)",
+    "AWAKENED-SPELLBOOK.title": "Zauberbuch",
+    "AWAKENED-SPELLBOOK.description": "Eine Sammlung von Zaubern.{HasSpell:cond:\nDein nächster Zauber ist [gold]{Spell}[/gold].|}"
+}

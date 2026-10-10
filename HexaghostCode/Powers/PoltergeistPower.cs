@@ -19,9 +19,9 @@ public class PoltergeistPower : HexaghostPowerModel, IWheelMoved
 
     public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
+        int ghostflameIndex, bool silent, bool autoAdvance)
     {
-        return DamageAction(ctx, player);
+        return autoAdvance ? Task.CompletedTask : DamageAction(ctx, player);
     }
 
     public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,

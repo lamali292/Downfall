@@ -19,7 +19,12 @@ public class RecursiveStrike : AutomatonCardModel
         WithCards(2);
         WithTip(AutomatonKeyword.Encode);
         WithTags(CardTag.Strike);
-        WithUpgradingCardTip<CoreStrike>();
+        WithUpgradingCardTip<CoreStrike>(Fun);
+    }
+
+    private static void Fun(CoreStrike arg1, CardModel arg2)
+    {
+        arg1._owner = arg2._owner;
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

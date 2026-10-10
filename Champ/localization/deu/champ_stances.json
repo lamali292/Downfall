@@ -1,0 +1,13 @@
+{
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.title": "Defensivhaltung",
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.description": "{Infinite:cond:Immer wenn|{Charges:plural:Das nächste Mal|Die nächsten [blue]{}[/blue] Male}, wenn} du eine Fertigkeit spielst, erhalte [blue]{DefensiveSkill}[/blue] [gold]Konter[/gold].\nImmer wenn ein [gold]Abschluss[/gold] ausgelöst wird, erhalte [blue]{DefensiveFinisher}[/blue] [gold]Block[/gold].",
+    "CHAMP-CHAMP_BERSERKER_STANCE.title": "Offensivhaltung",
+    "CHAMP-CHAMP_BERSERKER_STANCE.description": "{Infinite:cond:Immer wenn|{Charges:plural:Das nächste Mal|Die nächsten [blue]{}[/blue] Male}, wenn} du eine Fertigkeit spielst, erhalte [blue]{BerserkerSkill}[/blue] [gold]Elan[/gold].\nImmer wenn ein [gold]Abschluss[/gold] ausgelöst wird, erhalte [blue]{BerserkerFinisher}[/blue] [gold]Stärke[/gold].",
+    "CHAMP-CHAMP_NO_STANCE.title": "Keine Haltung",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.title": "Siegespose",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.description": "{Infinite:cond:Immer wenn|{Charges:plural:Das nächste Mal|Die nächsten [blue]{}[/blue] Male}, wenn} du eine Fertigkeit spielst, erhalte [blue]{BerserkerSkill}[/blue] [gold]Elan[/gold] und [blue]{DefensiveSkill}[/blue] [gold]Konter[/gold].\nImmer wenn ein [gold]Abschluss[/gold] ausgelöst wird, erhalte [blue]{BerserkerFinisher}[/blue] [gold]Stärke[/gold] und [blue]{DefensiveFinisher}[/blue] [gold]Block[/gold].",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: {AffectsAllPlayers:ALLE Spieler erhalten|Erhalte} {BerserkerFinisher} [gold]Stärke[/gold] und {DefensiveFinisher} [gold]Block[/gold].",
+    "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Abschluss[/gold]",
+    "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: {AffectsAllPlayers:ALLE Spieler erhalten|Erhalte} {BerserkerFinisher} [gold]Stärke[/gold].",
+    "CHAMP-CHAMP_DEFENSIVE_STANCE.finisher": "{:finisher()}: {AffectsAllPlayers:ALLE Spieler erhalten|Erhalte} {DefensiveFinisher} [gold]Block[/gold]."
+}

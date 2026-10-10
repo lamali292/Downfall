@@ -1,3 +1,11 @@
 {
-    "DOWNFALL-SOUL_BURN_POWER.title": "Seelenfeuer"
+    "DOWNFALL-METALLICIZE_POWER.description": "Erhalte immer am Ende deines Zuges [gold]Block[/gold].",
+    "DOWNFALL-METALLICIZE_POWER.smartDescription": "Erhalte immer am Ende deines Zuges [blue]{Amount}[/blue] [gold]Block[/gold].",
+    "DOWNFALL-METALLICIZE_POWER.title": "Metallisieren",
+    "DOWNFALL-PLATED_ARMOR_POWER.title": "Panzerrüstung",
+    "DOWNFALL-PLATED_ARMOR_POWER.description": "Erhalte immer am Ende deines Zuges [gold]Block[/gold]. Erleidest du ungeblockten Angriffsschaden, wird [gold]Panzerrüstung[/gold] um [blue]1[/blue] reduziert.",
+    "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "Erhalte immer am Ende deines Zuges [blue]{Amount}[/blue] [gold]Block[/gold]. Erleidest du ungeblockten Angriffsschaden, wird [gold]Panzerrüstung[/gold] um [blue]1[/blue] reduziert.",
+    "DOWNFALL-SOUL_BURN_POWER.title": "Seelenfeuer",
+    "DOWNFALL-SOUL_BURN_POWER.description": "In [blue]3[/blue] Zügen verliert dieser Gegner zu Beginn seines Zuges TP, dann wird [gold]Seelenfeuer[/gold] entfernt.",
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "In [blue]{Turns}[/blue] {Turns:plural:Zug|Zügen} verliert dieser Gegner zu Beginn seines Zuges [blue]{Amount}[/blue] TP, dann wird [gold]Seelenfeuer[/gold] entfernt."
 }

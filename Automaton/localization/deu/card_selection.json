@@ -1,0 +1,4 @@
+{
+    "AUTOMATON-TO_STASH": "Wähle {Amount:plural:eine Karte,|[blue]{}[/blue] Karten,} die du lagerst",
+    "AUTOMATON-STASH_PILE": "Lagerstapel"
+}

@@ -65,8 +65,6 @@
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "I [gold]Difendi[/gold] [gold]Base[/gold] ottengono [gold]Riproduci[/gold].",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "I [gold]Difendi[/gold] [gold]Base[/gold] ottengono [gold]Riproduci[/gold] [blue]{Amount}[/blue].",
     "HERMIT-HAIR_TRIGGER_POWER.title": "Grilletto Sensibile",
-    "HERMIT-HAIR_TRIGGER_POWER.description": "Ogni volta che attivi un effetto [gold]Nel Segno[/gold], gioca un [gold]Colpo[/gold] con [gold]Esaurimento[/gold] su un nemico casuale.",
-    "HERMIT-HAIR_TRIGGER_POWER.smartDescription": "Ogni volta che attivi un effetto [gold]Nel Segno[/gold], gioca {Amount:plural:un [gold]Colpo[/gold]|[blue]{}[/blue] [gold]Colpi[/gold]} con [gold]Esaurimento[/gold] su un nemico casuale.",
     "HERMIT-UNYIELDING_POWER.title": "Inflessibile",
     "HERMIT-UNYIELDING_POWER.description": "Se sei [gold]Vulnerabile[/gold], ricevi [blue]50%[/blue] di danno in meno dagli Attacchi in questo turno.",
     "HERMIT-UNYIELDING_POWER.smartDescription": "Se sei [gold]Vulnerabile[/gold], ricevi [blue]{DamageDecrease:percentLess()}%[/blue] di danno in meno dagli Attacchi {Amount:plural:in questo turno|per [blue]{}[/blue] turni}.",

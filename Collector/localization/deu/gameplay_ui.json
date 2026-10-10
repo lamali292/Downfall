@@ -1,0 +1,5 @@
+{
+    "COLLECTIBLE_CHOICE_REWARD": "Nimm {IsUpgraded:cond:eine [gold]Verbesserte[/gold] [gold]Sammlerstück[/gold]-Karte|eine [gold]Sammlerstück[/gold]-Karte} in dein Deck.",
+    "COLLECTIBLE_REWARD": "Nimm [gold]{Card}[/gold] in dein Deck.",
+    "PYRE_NO_TARGET": "Ich habe nichts\nmehr zu [jitter][red]opfern[/red][/jitter]!"
+}

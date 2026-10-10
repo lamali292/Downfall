@@ -1,0 +1,10 @@
+{
+    "COLLECTOR-KINDLE.title": "Entfachen",
+    "COLLECTOR-KINDLE.smartTitle": "Entfachen {Kindle}",
+    "COLLECTOR-KINDLE.description": "Beschwöre [gold]Fackelkopf[/gold]. Falls er bereits beschworen wurde, erhöhe seine max. TP für diesen Kampf.",
+    "COLLECTOR-KINDLE.smartDescription": "Beschwöre [gold]Fackelkopf[/gold] mit [blue]{Kindle}[/blue] TP. Falls er bereits beschworen wurde, erhöhe seine max. TP für diesen Kampf um [blue]{Kindle}[/blue].",
+    "COLLECTOR-RESERVE.title": "Reserve",
+    "COLLECTOR-RESERVE.description": "Reserve wird verwendet, um Karten aus deiner [gold]Hand[/gold] zu spielen, nachdem die [gold]Energie[/gold] aufgebraucht ist.\nBleibt zwischen den Zügen erhalten.",
+    "COLLECTOR-PYRED.description": "Eine Karte, die [gold]Erschöpft[/gold] wurde, um eine Karte mit [gold]Scheiterhaufen[/gold] zu spielen.",
+    "COLLECTOR-PYRED.title": "Geopfert"
+}
