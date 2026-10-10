@@ -19,6 +19,7 @@ public class BidingBlast : CollectorCardModel
         WithCards(1);
     }
 
+    protected override bool ShouldGlowGoldInternal => CollectorEnergy.Instance?.Get(Owner) > 0 && Owner.PlayerCombatState?.Energy <= 0;
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
