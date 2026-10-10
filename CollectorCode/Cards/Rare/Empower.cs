@@ -15,7 +15,7 @@ public class Empower : CollectorCardModel
 {
     public Empower() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<EmpowerPower>(2, false);
+        WithPower<EmpowerPower>(3, false);
         WithCardTip<Ember>();
         WithCardTip<Ember>(WithPreviewModifiers);
     }
