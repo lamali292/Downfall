@@ -1,4 +1,6 @@
-﻿using BaseLib.Abstracts;
+﻿using System.Security.Cryptography;
+using System.Text;
+using BaseLib.Abstracts;
 using Collector.CollectorCode.Intents;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -6,6 +8,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Multiplayer;
+using MegaCrit.Sts2.Core.Platform;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -41,24 +45,45 @@ public class TorchheadMonsterModel : CustomMonsterModel
     {
         if (target != Creature) return;
         await CreatureCmd.SetMaxHp(target, Creature.CurrentHp);
-
-        // Unlike Osty (whose MaxHp only ever grows), Torchhead's MaxHp is kept in sync with its
-        // remaining CurrentHp above, so its health bar always reads "full" - meaning MaxHp really
-        // does drop on every hit here, and the visual scale (driven by MaxHp) needs to follow it.
+        
         TorchheadCmd.RefreshTorchheadScale(target);
     }
 
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,
         float deathAnimLength)
     {
-        // Torchhead is kept in combat instead of removed when it dies (see
-        // ShouldCreatureBeRemovedFromCombatAfterDeath, needed for revival), so the engine's own
-        // AnimDie(shouldRemove: true) intent-hide - which runs from here, via StartDeathAnim,
-        // before this hook fires - never runs for it. Hide it ourselves once death is final.
         if (creature == Creature)
             NCombatRoom.Instance?.GetCreatureNode(creature)?.AnimHideIntent();
 
         return base.AfterDeath(choiceContext, creature, wasRemovalPrevented, deathAnimLength);
+    }
+    
+    private static readonly HashSet<string> PinkSkinPlayerHashes =
+    [
+        "A42F0405BD628AD46173867B5A5589F022D04D05B1EDBEA7785629A954C22168",
+        "054DAB2BA8A437F0752FEB3823FE68D0C14FCDD1681E5E8006EF88AFFEBF7C5C"
+    ];
+
+    private static string HashPlayerId(ulong id) =>
+        Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes($"downfall-skin:{id}")));
+
+    public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
+    {
+        var skinName = GetOwnerPlatformId() is { } id && PinkSkinPlayerHashes.Contains(HashPlayerId(id))
+            ? "pink"
+            : "standard";
+        skeleton.SetSkin(skeleton.GetData().FindSkin(skinName));
+        skeleton.SetSlotsToSetupPose();
+    }
+
+    /// <summary>
+    ///     Steam64 ID of the pet's owner. In multiplayer <c>Player.NetId</c> already is the platform ID; in
+    ///     singleplayer it is the placeholder <c>1</c>, and the only player is the local one.
+    /// </summary>
+    private ulong? GetOwnerPlatformId()
+    {
+        var netId = Creature.PetOwner?.NetId;
+        return netId == NetSingleplayerGameService.defaultNetId ? PlatformUtil.GetLocalPlayerId(PlatformUtil.PrimaryPlatform) : netId;
     }
 
     public override CreatureAnimator SetupCustomAnimationStates(MegaSprite controller)
