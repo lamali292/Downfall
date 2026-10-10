@@ -15,7 +15,7 @@ unique_name_in_owner = true
 [node name="SpineSlotNode" type="SpineSlotNode" parent="Visuals"]
 slot_name = "top"
 show_behind_parent = true
-position = Vector2(3.129997, -73.21954)
+position = Vector2(1.319984, -57.827652)
 rotation = -3.1415925
 
 [node name="vfx_fire" parent="Visuals/SpineSlotNode" instance=ExtResource("3_fmhxw")]
@@ -27,10 +27,9 @@ scale = Vector2(0.224, 0.224)
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -48.0
-offset_top = -91.0
-offset_right = 52.163933
-offset_bottom = 3.0
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

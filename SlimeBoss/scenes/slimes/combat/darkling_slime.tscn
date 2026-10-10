@@ -14,10 +14,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -48.0
-offset_top = -91.0
-offset_right = 52.163933
-offset_bottom = 3.0
+offset_left = -50.0
+offset_top = -69.0
+offset_right = 50.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

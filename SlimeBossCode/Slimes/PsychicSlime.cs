@@ -16,7 +16,7 @@ public class PsychicSlime : SlimeModel
         new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
-    protected override string? SkinName => "poison";
+    protected override string? SkinName => "hex";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

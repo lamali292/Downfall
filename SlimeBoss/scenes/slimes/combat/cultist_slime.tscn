@@ -15,7 +15,7 @@ unique_name_in_owner = true
 [node name="SpineSlotNode3" type="SpineSlotNode" parent="Visuals"]
 slot_name = "images-eyeback1"
 show_behind_parent = true
-position = Vector2(40.788315, -57.75246)
+position = Vector2(39.024338, -40.318913)
 rotation = -3.1415925
 
 [node name="StickL" type="TextureRect" parent="Visuals/SpineSlotNode3"]
@@ -30,7 +30,7 @@ metadata/_edit_use_anchors_ = true
 [node name="SpineSlotNode4" type="SpineSlotNode" parent="Visuals"]
 slot_name = "images-eyeback4"
 show_behind_parent = true
-position = Vector2(-12.960223, -53.58075)
+position = Vector2(-15.185417, -35.477356)
 rotation = -3.1415925
 
 [node name="StickR" type="TextureRect" parent="Visuals/SpineSlotNode4"]
@@ -45,10 +45,9 @@ texture = ExtResource("4_5ui8b")
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -48.0
-offset_top = -91.0
-offset_right = 52.163933
-offset_bottom = 3.0
+offset_left = -50.0
+offset_top = -69.0
+offset_right = 50.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

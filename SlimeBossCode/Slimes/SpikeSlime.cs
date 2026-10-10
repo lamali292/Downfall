@@ -25,7 +25,7 @@ public class SpikeSlime : SlimeModel
         HoverTipFactory.FromPower<ThornsPower>()
     ];
     
-    protected override string? SkinName => "poison";
+    protected override string SkinName => "scrap";
     
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

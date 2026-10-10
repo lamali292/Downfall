@@ -9,7 +9,7 @@ skeleton_file_res = ExtResource("2_skryc")
 
 [node name="SlimeM" type="SpineSprite"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_86nel")
-preview_skin = "cultist"
+preview_skin = "poison"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0

@@ -39,20 +39,7 @@ public static class MyCommonActions
         throw new InvalidOperationException(
             $"{model.GetType().Name} does not have a Block or CalculatedBlock var");
     }
-
-
-    public static async Task<IEnumerable<DamageResult>> SelfDamage(PlayerChoiceContext ctx, AbstractModel model)
-    {
-        var creature = model.Creature;
-        var combatState = creature.CombatState;
-        if (combatState == null) return [];
-        var damage = model.DynamicVars.SelfDamage;
-        var modified = DownfallHook.ModifySelfDamage(combatState, damage.BaseValue, model, out var mod);
-        await DownfallHook.AfterModifyingSelfDamage(combatState, mod, model);
-        if (modified <= 0) return [];
-        return await CreatureCmd.Damage(ctx, model.Creature, modified, damage.Props, model.Creature);
-    }
-
+    
     public static async Task LoseHpToTarget(PlayerChoiceContext ctx, AbstractModel model, Creature target)
     {
         await LoseHpToTarget(ctx, model, [target]);

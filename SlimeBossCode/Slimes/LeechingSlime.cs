@@ -24,7 +24,7 @@ public class LeechingSlime : SlimeModel
         HoverTipFactory.FromPower<WeakPower>()
     ];
 
-    protected override string? SkinName => "shield";
+    protected override string? SkinName => "sliming";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

@@ -16,7 +16,7 @@ public class RoyalSlime : SlimeModel
         new DamageVar(7, DamageProps.nonCardUnpowered)
     ];
 
-    protected override string? SkinName => "poison";
+    protected override string SkinName => "champ";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

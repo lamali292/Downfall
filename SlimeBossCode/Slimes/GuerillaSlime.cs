@@ -15,7 +15,7 @@ public class GuerillaSlime : SlimeModel
     ];
 
     
-    protected override string? SkinName => "poison";
+    protected override string SkinName => "poison";
 
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)

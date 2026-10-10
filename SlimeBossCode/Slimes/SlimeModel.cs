@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using Downfall.DownfallCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
@@ -147,6 +148,10 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
         foreach (var dynamicVar in DynamicVars.Values)
             switch (dynamicVar)
             {
+                case CustomModelCalculatedDamageVar calc:
+                    calc.PreviewValue = CompatibilityHook.ModifyDamage(CombatState.RunState, CombatState, null, Creature,
+                        calc.CalculateCustom(null), calc.Props, null, null, ModifyDamageHookType.All, CardPreviewMode.Normal, out _);
+                    break;
                 case DamageVar dmg:
                     dmg.PreviewValue = CompatibilityHook.ModifyDamage(
                         CombatState.RunState,
