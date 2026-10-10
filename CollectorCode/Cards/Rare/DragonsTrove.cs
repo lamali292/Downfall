@@ -16,7 +16,7 @@ public class DragonsTrove : CollectorCardModel
         WithKeyword(CollectorKeyword.Pyre);
         WithReserve(1);
         WithKeyword(CardKeyword.Exhaust);
-        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
