@@ -11,7 +11,7 @@ public class QuenchingDregs : CollectorCardModel
 {
     public QuenchingDregs() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(13, 3);
+        WithDamage(13, 5);
         WithCards(2);
         WithEnergy(1);
         WithKeyword(CardKeyword.Exhaust);

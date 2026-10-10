@@ -1,7 +1,7 @@
 {
   "COLLECTOR-ARROGANCE.description": "Gain {Block:diff()} [gold]Block[/gold].\nYour next Attack this turn also applies {DoomedAttackPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-ARROGANCE.title": "Arrogance",
-  "COLLECTOR-ASHEN_STRIKE.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nAdd a {IfUpgraded:show:[gold]Soot[/gold]|[gold]Burn[/gold]} into your [gold]Hand[/gold].",
+  "COLLECTOR-ASHEN_STRIKE.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nAdd {IfUpgraded:show:an [gold]Ember[/gold]|a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
   "COLLECTOR-ASHEN_STRIKE.title": "Candle Strike",
   "COLLECTOR-BELLOW_COLLECTOR.title": "Bellow",
   "COLLECTOR-BELLOW_COLLECTOR.description": "Apply [gold]Miasma[/gold] equal to unused [gold]Block[/gold] last turn.{InCombat:cond:\n(Apply {UnusedBlock:diff()} [gold]Miasma[/gold])|}",

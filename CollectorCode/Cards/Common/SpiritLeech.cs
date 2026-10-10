@@ -14,7 +14,7 @@ public class SpiritLeech : CollectorCardModel
 {
     public SpiritLeech() : base(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithTorchheadDamage(15, 6);
+        WithTorchheadDamage(14, 6);//Yes these numbers are balanced.
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
         WithTip(CollectorKeyword.Torchhead);
