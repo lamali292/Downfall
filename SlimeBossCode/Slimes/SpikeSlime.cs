@@ -25,6 +25,8 @@ public class SpikeSlime : SlimeModel
         HoverTipFactory.FromPower<ThornsPower>()
     ];
     
+    public override string CounterIconPath => "res://images/powers/thorns_power.png";
+
     protected override string SkinName => "scrap";
     
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)

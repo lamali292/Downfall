@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 ]
+
+[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NSlimeCounter.cs" id="1_counter"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_glyph_space_one.tres" id="2_font"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="3_label"]
+
+[node name="SlimeCounter" type="Control"]
+pivot_offset = Vector2(23, 14)
+custom_minimum_size = Vector2(46, 28)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 46.0
+offset_bottom = 28.0
+mouse_filter = 2
+script = ExtResource("1_counter")
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 28.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Value" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 22.0
+offset_right = 46.0
+offset_bottom = 28.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_label")

@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -20,6 +20,8 @@ public class EvolutionSlime : SlimeModel
     ];
 
     protected override string? SkinName => "torchhead";
+
+    public override DynamicVar CounterVar => _level < 2 ? DynamicVars.Damage : DynamicVars["Damage2"];
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

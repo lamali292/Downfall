@@ -140,6 +140,28 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
     public abstract Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null);
 
 
+    /// <summary>The var whose value the corner counter shows: this slime's damage, or its secondary value.</summary>
+    public virtual DynamicVar? CounterVar => DynamicVars.Values.FirstOrDefault(v =>
+        v is DamageVar or CalculatedDamageVar or SlimeSecondaryVar);
+
+    /// <summary>Icon on the corner counter; override for slimes whose main effect isn't damage.</summary>
+    public virtual string CounterIconPath => "res://images/packed/intents/attack/intent_attack_1.png";
+
+    /// <summary>What the next Command will do, with Potency and other modifiers applied. Null if nothing to show.</summary>
+    public decimal? CounterValue
+    {
+        get
+        {
+            var counterVar = CounterVar;
+            if (counterVar == null) return null;
+            UpdatePreviewValues();
+            return counterVar.PreviewValue;
+        }
+    }
+
+    /// <summary>The unmodified value <see cref="CounterValue"/> is compared against to colour the counter.</summary>
+    public decimal CounterBaseValue => CounterVar?.BaseValue ?? 0m;
+
     protected virtual void UpdatePreviewValues()
     {
         if (IsCanonical) return;
