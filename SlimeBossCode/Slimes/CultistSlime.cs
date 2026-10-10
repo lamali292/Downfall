@@ -20,7 +20,7 @@ public class CultistSlime : SlimeModel
 
     private static decimal PowersPlayedThisCombat(ICustomAbstractModel model, Creature? _) => CombatManager.Instance.History.Entries
         .OfType<CardPlayStartedEntry>()
-        .Count(e => e.CardPlay.Card.Type == CardType.Power && e.CardPlay.Card.Owner.Creature == ((SlimeModel)model).PetOwner);
+        .Count(e => e.CardPlay.Card.Type == CardType.Power && e.CardPlay.Card.Owner == model.Player);
 
     protected override string SkinName => "cultist";
 

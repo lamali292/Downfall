@@ -16,7 +16,7 @@ public class LeechingSlime : SlimeModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(3, DamageProps.nonCardUnpowered),
-        new SlimeSecondaryVar(1)
+        new PowerVar<WeakPower>(1)
     ];
 
     public override IEnumerable<IHoverTip> ExtraTips =>
@@ -33,8 +33,6 @@ public class LeechingSlime : SlimeModel
         var cmd = await attack.Execute(ctx);
         
         var target = cmd.Results.SelectMany(e => e).Select(e => e.Receiver);
-        var original = DynamicVars.Slime.IntValue;
-        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
-        await PowerCmd.Apply<WeakPower>(ctx, target, modified, Creature, null);
+        await PowerCmd.Apply<WeakPower>(ctx, target, DynamicVars.Weak.IntValue, Creature, null);
     }
 }
