@@ -17,7 +17,7 @@
   "SLIMEBOSS-MUSCLE_SLIME.name": "Muscle Slime",
   "SLIMEBOSS-MUSCLE_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage to whichever enemy was attacked last.\nGains [gold]Potency[/gold] this turn whenever you play an Attack.",
   "SLIMEBOSS-EVOLUTION_SLIME.name": "Evolution Slime",
-  "SLIMEBOSS-EVOLUTION_SLIME.description": "Evolves each time it attacks, up to 5 times.\nLvl 1: Deals [blue]{Damage:diff()}[/blue] damage.\nLvl 2: Deals [blue]{Damage2:diff()}[/blue] damage instead.\nLvl 3: Attacks ALL enemies.\nLvl 4: Gains Block equal to half the damage dealt.\nLvl 5: Gains [blue]2[/blue] [gold]Potency[/gold].",
+  "SLIMEBOSS-EVOLUTION_SLIME.description": "Evolves each time it attacks, up to 5 times.\nLvl 1: Deals [blue]{Damage:diff()}[/blue] damage.\nLvl 2: Deals [blue]{Damage2:diff()}[/blue] damage instead.\nLvl 3: Attacks ALL enemies.\nLvl 4: Gains [gold]Block[/gold] equal to half the damage dealt.\nLvl 5: Gains [blue]2[/blue] [gold]Potency[/gold].",
   "SLIMEBOSS-DARKLING_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage.\nAlso attacks whenever another Slime is Commanded.",
   "SLIMEBOSS-LEECHING_SLIME.name": "Leeching Slime",
   "SLIMEBOSS-LEECHING_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage.\nApplies [blue]{WeakPower:diff()}[/blue] [gold]Weak[/gold]. ",

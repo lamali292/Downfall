@@ -14,6 +14,7 @@ using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
+using SlimeBoss.SlimeBossCode.Vfx;
 
 namespace SlimeBoss.SlimeBossCode.Core;
 
@@ -208,6 +209,7 @@ public static class SlimeBossCmd
         HideHealthBar(slimeNode);
         slimeNode.GlobalPosition = playerNode.GlobalPosition + relativeOffset;
         slimeNode.UpdateBounds(slimeNode.Visuals);
+        if (pet.Monster is SlimeModel slime) slimeNode.AddChild(NSlimeCounter.Create(slimeNode, slime));
     }
 
     /// <summary>Height of the hidden HP bar (the power container's offset in creature_state_display.tscn).</summary>

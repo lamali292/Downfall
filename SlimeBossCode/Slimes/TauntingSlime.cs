@@ -23,6 +23,8 @@ public class TauntingSlime : SlimeModel
     ];
     
 
+    public override string CounterIconPath => "res://images/ui/combat/block.png";
+
     protected override string SkinName => "shield";
 
     
