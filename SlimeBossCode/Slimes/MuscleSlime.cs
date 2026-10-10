@@ -19,7 +19,7 @@ public class MuscleSlime : SlimeModel
         new DamageVar(6, DamageProps.nonCardUnpowered)
     ];
 
-    protected override string? SkinName => "poison";
+    protected override string? SkinName => "attack";
 
     // "Targets whichever enemy was attacked last during your turn" - looks up the most recent
     // CreatureAttackedEntry made by the owner this turn and re-targets its last hit's receiver.

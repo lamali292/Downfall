@@ -85,11 +85,6 @@ public abstract class DownfallCardModel
         return WithVar(new HpLossVar(baseVal).WithUpgrade(upgrade));
     }
 
-    protected ConstructedCardModel WithSelfDamage(int baseVal, int upgrade = 0)
-    {
-        return WithVar(new SelfDamageVar(baseVal, DamageProps.cardUnpowered).WithUpgrade(upgrade));
-    }
-
     protected ConstructedCardModel WithEnemyDamage(int baseValue, int upgrade = 0)
     {
         return WithVars(new EnemyDamageVar(baseValue, DamageProps.monsterMove).WithUpgrade(upgrade));

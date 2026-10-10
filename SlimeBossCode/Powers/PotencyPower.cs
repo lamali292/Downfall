@@ -11,15 +11,9 @@ using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescription, IModifySecondarySlimeEffects,
+public class PotencyPower : SlimeBossPowerModel, IModifySecondarySlimeEffects,
     IModifyDamageAdditive
 {
-    private int Amount2 => (Amount + 1) / 2;
-
-    public void AddDumbVariablesToPowerDescription(LocString description)
-    {
-        description.Add("Amount2", Amount2);
-    }
 
     // Potency can be applied either to a player (boosts every Slime that player owns) or directly to a
     // Slime's own Creature (boosts just that Slime). Both stack. Never crosses to another player's Slimes.
@@ -33,6 +27,6 @@ public class PotencyPower : SlimeBossPowerModel, IAddDumbVariablesToPowerDescrip
 
     public int ModifySecondarySlimeEffects(int amount, SlimeModel slime)
     {
-        return AppliesTo(slime) ? amount + Amount2 : amount;
+        return AppliesTo(slime) ? amount + Amount : amount;
     }
 }

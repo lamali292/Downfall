@@ -17,7 +17,7 @@ public class MassiveSlime : SlimeModel
         new("Sleep", 1)
     ];
 
-    protected override string? SkinName => "poison";
+    protected override string SkinName => "greed";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

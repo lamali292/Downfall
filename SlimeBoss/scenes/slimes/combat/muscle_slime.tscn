@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 ]
 
-[ext_resource type="Script" path="res://SlimeBossCode/Vfx/NMultiSlimeVisuals.cs" id="1_q3lam"]
-[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_darkling.tscn" id="2_ipaxr"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_ttttc"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.tscn" id="2_ttttc"]
 
-[node name="DarklingSlime" type="Node2D"]
-script = ExtResource("1_q3lam")
+[node name="AttackSlime" type="Node2D"]
+script = ExtResource("1_ttttc")
 
-[node name="Visuals" parent="." instance=ExtResource("2_ipaxr")]
+[node name="Visuals" parent="." instance=ExtResource("2_ttttc")]
 preview_animation = "idle_loop"
 unique_name_in_owner = true
 
@@ -15,7 +15,7 @@ unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = -50.0
-offset_top = -69.0
+offset_top = -70.0
 offset_right = 50.0
 mouse_filter = 2
 

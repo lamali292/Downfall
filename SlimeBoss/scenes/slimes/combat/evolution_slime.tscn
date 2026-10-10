@@ -58,8 +58,9 @@ unique_name_in_owner = true
 [node name="SpineSlotNode" type="SpineSlotNode" parent="Visuals"]
 slot_name = "images-eye"
 show_behind_parent = true
-position = Vector2(26.811043, -51.574028)
-rotation = -2.4743366
+position = Vector2(25.613333, -33.219055)
+rotation = -2.474317
+scale = Vector2(0.9999999, 0.9999999)
 
 [node name="RightEye" type="Control" parent="Visuals/SpineSlotNode"]
 layout_mode = 3
@@ -99,10 +100,9 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -48.0
-offset_top = -91.0
-offset_right = 52.163933
-offset_bottom = 3.0
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

@@ -19,7 +19,7 @@ public class EvolutionSlime : SlimeModel
         new DamageVar("Damage2", 4,  DamageProps.nonCardUnpowered)
     ];
 
-    protected override string? SkinName => "poison";
+    protected override string? SkinName => "torchhead";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

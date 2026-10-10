@@ -23,7 +23,7 @@ public class TauntingSlime : SlimeModel
     ];
     
 
-    protected override string? SkinName => "poison";
+    protected override string SkinName => "shield";
 
     
     // "Grants Block instead of dealing damage."

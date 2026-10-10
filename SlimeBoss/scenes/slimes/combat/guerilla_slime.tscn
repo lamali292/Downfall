@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_c84yf"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_s.tscn" id="2_c84yf"]
 
-[node name="PoisonSlime" type="Node2D"]
+[node name="GuerillaSlime" type="Node2D"]
 script = ExtResource("1_c84yf")
 
 [node name="Visuals" parent="." instance=ExtResource("2_c84yf")]
@@ -15,10 +15,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -48.0
-offset_top = -91.0
-offset_right = 52.163933
-offset_bottom = 3.0
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]

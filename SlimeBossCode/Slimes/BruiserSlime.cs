@@ -15,7 +15,7 @@ public class BruiserSlime : SlimeModel
         new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
-    protected override string? SkinName => "attack";
+    protected override string SkinName => "poison";
     
     private Creature? GetHighestHpOpponent()
     {

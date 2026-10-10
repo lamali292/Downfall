@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 ]
 
-[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_sjy6b"]
-[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.tscn" id="2_pkvbw"]
-[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/scrap.png" id="3_f4ijc"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_pktyc"]
+[ext_resource type="PackedScene" path="res://SlimeBoss/scenes/slimes/visuals/slime_alt_s.tscn" id="2_vgcio"]
+[ext_resource type="Texture2D" path="res://SlimeBoss/images/vfx/scrap.png" id="3_0478j"]
 
 [node name="ScrapSlime" type="Node2D"]
-script = ExtResource("1_sjy6b")
+script = ExtResource("1_pktyc")
 
-[node name="Visuals" parent="." instance=ExtResource("2_pkvbw")]
+[node name="Visuals" parent="." instance=ExtResource("2_vgcio")]
 preview_skin = "scrap"
 preview_animation = "idle_loop"
 unique_name_in_owner = true
@@ -15,7 +15,7 @@ unique_name_in_owner = true
 [node name="SpineSlotNode" type="SpineSlotNode" parent="Visuals"]
 slot_name = "images-eyeshadow"
 show_behind_parent = true
-position = Vector2(21.577587, -28.99204)
+position = Vector2(21.9973, -17.757938)
 rotation = -3.1415925
 scale = Vector2(1.5983874, 1.5983874)
 
@@ -26,16 +26,15 @@ offset_right = 155.9505
 offset_bottom = 132.18282
 rotation = 2.878949
 scale = Vector2(0.74238724, 0.74238724)
-texture = ExtResource("3_f4ijc")
+texture = ExtResource("3_0478j")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -48.0
-offset_top = -91.0
-offset_right = 52.163933
-offset_bottom = 3.0
+offset_left = -50.0
+offset_top = -69.0
+offset_right = 50.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]
