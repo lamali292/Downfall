@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
@@ -17,7 +18,7 @@ public class AshenStrike : CollectorCardModel
     public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithTorchheadDamage(14, 2);
-        WithUpgradeChangingCardTip<Burn, Soot>();
+        WithUpgradeChangingCardTip<Burn, Ember>();
         WithTags(CardTag.Strike);
         WithTip(CollectorKeyword.Torchhead);
     }
@@ -37,7 +38,7 @@ public class AshenStrike : CollectorCardModel
             await TorchheadCmd.Kindle(ctx, Owner, 1, this);
         }
         if (IsUpgraded)
-            await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
+            await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
         else 
             await DownfallCardCmd.GiveCard<Burn>(Owner, PileType.Hand);
     }
