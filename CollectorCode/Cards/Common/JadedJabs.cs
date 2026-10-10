@@ -1,14 +1,13 @@
 using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Interfaces;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
-
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
@@ -18,7 +17,8 @@ public class JadedJabs : CollectorCardModel
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithTip(CollectorTip.Pyred);
-        WithCalculatedDamage(14, 3, Calc, DamageProps.card, 2, 1);
+        WithDamage(13, 2);
+        WithTip<LuckyWick>();
     }
 
     private static decimal Calc(CardModel card, Creature? creature)
@@ -39,6 +39,10 @@ public class JadedJabs : CollectorCardModel
         if (pyred == null) return;
         PyredCard = pyred;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (PyredCard != null && PyredCard.EnergyCost.GetAmountToSpend() > 0)
+        {
+            await DownfallCardCmd.GiveCards<LuckyWick>(Owner, PileType.Hand, PyredCard.EnergyCost.GetAmountToSpend());
+        }
         PyredCard = null;
     }
 
