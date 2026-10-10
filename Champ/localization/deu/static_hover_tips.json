@@ -1,0 +1,6 @@
+{
+    "CHAMP-COMBO.title": "Combo",
+    "CHAMP-COMBO.description": "Zusätzlicher Effekt, wenn die Karte in der angegebenen [gold]Haltung[/gold] gespielt wird.",
+    "CHAMP-FINISHER.title": "Abschluss",
+    "CHAMP-FINISHER.description": "Erfordert eine [gold]Haltung[/gold].\nNach dem Spielen eines Abschlusses verlasse deine [gold]Haltung[/gold] und löse ihren Abschluss-Effekt aus."
+}

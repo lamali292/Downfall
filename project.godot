@@ -598,6 +598,13 @@ ui_end_turn={
 "events": []
 }
 
+[importer_defaults]
+
+texture={
+"compress/mode": 1,
+"compress/lossy_quality": 0.87
+}
+
 [internationalization]
 
 locale/include_text_server_data=true

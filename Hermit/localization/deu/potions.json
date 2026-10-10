@@ -1,0 +1,8 @@
+{
+    "HERMIT-TONIC.title": "Tonikum",
+    "HERMIT-TONIC.description": "Erhalte [blue]{RuggedPower:diff()}[/blue] [gold]Robust[/gold].",
+    "HERMIT-BLACK_BILE.title": "Schwarze Galle",
+    "HERMIT-BLACK_BILE.description": "Wende [blue]{BruisePower:diff()}[/blue] [gold]Prügel[/gold] an.",
+    "HERMIT-LIQUID_VOID.title": "Flüssige Leere",
+    "HERMIT-LIQUID_VOID.description": "Nimm eine Karte aus deinem [gold]Erschöpfungsstapel[/gold] auf deine [gold]Hand[/gold].\nSie ist in diesem Zug kostenlos spielbar."
+}

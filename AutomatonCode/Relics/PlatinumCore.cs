@@ -1,10 +1,8 @@
-﻿using Automaton.AutomatonCode.Cards.Basic;
-using Automaton.AutomatonCode.Cards.Token;
+﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.CustomEnums;
 using Automaton.AutomatonCode.Events;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace Automaton.AutomatonCode.Relics;
 
@@ -35,24 +34,29 @@ public class PlatinumCore : AutomatonRelicModel, IModifyCompiledFunction
         await AutomatonCmd.EncodeCard<CoreDefend>(Owner, ctx);
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    
+    public override bool HasUponPickupEffect => true;
+
+    public override async Task AfterObtained()
     {
-        var card = cardPlay.Card;
-        if (Owner != card.Owner || !card.IsBasicStrikeOrDefend || card.IsDupe) return;
-        await CardCmdCompatibility.Exhaust(ctx, card);
-        if (card.Tags.Contains(CardTag.Strike))
-        {
-            await AutomatonCmd.EncodeCard<CoreStrike>(Owner, ctx, c => CopyUpgradeAndEnchant(card, c));
-        }
-        else if (card.Tags.Contains(CardTag.Defend))
-        {
-            await AutomatonCmd.EncodeCard<CoreDefend>(Owner, ctx, c => CopyUpgradeAndEnchant(card, c));
-        }
+        var transformations = PileType.Deck.GetPile(Owner).Cards
+            .Where(c => c is { IsBasicStrikeOrDefend: true, IsTransformable: true })
+            .Select(c => new CardTransformation(c, CreateReplacement(c)))
+            .ToList();
+        if (transformations.Count > 0)
+            await CardCmd.Transform(transformations, null, CardPreviewStyle.MessyLayout);
         Flash();
     }
 
-    // Keep the generated CoreStrike/CoreDefend a perfect copy of the Strike/Defend it replaced -
-    // only the class changes, so upgrade status and any enchantment must carry over too.
+    private CardModel CreateReplacement(CardModel source)
+    {
+        var replacement = source.CardScope!.CreateCard(
+            source.Tags.Contains(CardTag.Strike) ? ModelDb.Card<CoreStrike>() : ModelDb.Card<CoreDefend>(),
+            Owner);
+        CopyUpgradeAndEnchant(source, replacement);
+        return replacement;
+    }
+    
     private static void CopyUpgradeAndEnchant(CardModel source, CardModel card)
     {
         if (source.IsUpgraded)

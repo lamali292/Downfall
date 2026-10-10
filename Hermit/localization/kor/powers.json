@@ -59,8 +59,6 @@
     "HERMIT-HIGH_NOON_DEFEND_POWER.description": "[gold]기본[/gold] [gold]수비[/gold]가 [gold]재사용[/gold]을 얻습니다. ",
     "HERMIT-HIGH_NOON_DEFEND_POWER.smartDescription": "[gold]기본[/gold] [gold]수비[/gold]가 [gold]재사용[/gold] [blue]{Amount}[/blue]를 얻습니다. ",
     "HERMIT-HAIR_TRIGGER_POWER.title": "예민한 방아쇠",
-    "HERMIT-HAIR_TRIGGER_POWER.description": "[gold]정조준[/gold] 효과를 발동시킬 때마다, 무작위 적에게 [gold]소멸[/gold]을 가진 [gold]타격[/gold]을 시전합니다. ",
-    "HERMIT-HAIR_TRIGGER_POWER.smartDescription": "[gold]정조준[/gold] 효과를 발동시킬 때마다, 무작위 적에게 [gold]소멸[/gold]을 가진 [gold]타격[/gold] {Amount:plural:1장을|[blue]{}[/blue]장을} 시전합니다. ",
     "HERMIT-UNYIELDING_POWER.title": "불굴",
     "HERMIT-UNYIELDING_POWER.description": "[gold]취약[/gold] 상태라면, 이번 턴 동안 공격으로 받는 피해가 [blue]50%[/blue] 감소합니다.",
     "HERMIT-UNYIELDING_POWER.smartDescription": "[gold]취약[/gold] 상태라면, {Amount:plural:이번 턴 동안|[blue]{}[/blue]턴 동안} 공격으로 받는 피해가 [blue]{DamageDecrease:percentLess()}%[/blue] 감소합니다.",

@@ -8,5 +8,6 @@
     "DOWNFALL-TO_PLAY": "プレイするカードを[blue]{Amount}[/blue]枚選ぶ。",
     "DOWNFALL-ADD_ETHEREAL": "[gold]エセリアル[/gold]を得るカードを[blue]{Amount}[/blue]枚選ぶ。",
     "DOWNFALL-TO_RETAIN": "[gold]保留[/gold]を得るカードを[blue]{Amount}[/blue]枚選ぶ。",
-    "DOWNFALL-TO_OTHER_HANDS": "他のプレイヤーの[gold]手札[/gold]に加えるカードを[blue]{Amount}[/blue]枚選ぶ。"
+    "DOWNFALL-TO_OTHER_HANDS": "他のプレイヤーの[gold]手札[/gold]に加えるカードを[blue]{Amount}[/blue]枚選ぶ。",
+    "DOWNFALL-TO_COPY": "[gold]複製[/gold]するカードを[blue]{Amount}[/blue]枚選ぶ。"
 }

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Patches;
@@ -20,7 +21,7 @@ namespace Hermit.HermitCode.Cards.Curse;
 [Pool(typeof(CurseCardPool))]
 public sealed class ImpendingDoom : HermitCardModel
 {
-    public ImpendingDoom() : base(-2, CardType.Curse, CardRarity.Curse, DownfallTargetType.MeAndEnemies)
+    public ImpendingDoom() : base(-1, CardType.Curse, CardRarity.Curse, DownfallTargetType.MeAndEnemies)
     {
         WithVar(new DamageVar(13, DamageProps.cardUnpowered));
         WithKeyword(CardKeyword.Unplayable);
@@ -34,10 +35,7 @@ public sealed class ImpendingDoom : HermitCardModel
 
     protected override bool ShouldGlowGoldInternal => false;
     protected override bool ShouldGlowRedInternal => HermitCmd.HasActiveDeadOnEffect(this);
-
-    // The game moves this card into the Play pile before calling OnTurnEndInHand, so this getter
-    // (read while the card is still in Hand) is the last chance to snapshot Dead On status for
-    // HermitCmd.IsDeadOn to find afterward - see DeadOnPatch.CaptureNow.
+    
     public override bool HasTurnEndInHandEffect
     {
         get
@@ -53,14 +51,15 @@ public sealed class ImpendingDoom : HermitCardModel
 
     protected override async Task OnTurnEndInHand(PlayerChoiceContext ctx)
     {
+        if (CombatState == null || !HermitCmd.HasActiveDeadOnEffect(this)) return;
+        var targets = Owner.AllOpponents.Append(Owner.Creature).ToList();
+        
         await HermitCmd.DeadOn(ctx, this, null, async () =>
         {
-            var targets = CombatState!.Creatures.Where(e => e is { IsHittable: true, IsPet: false }).ToList();
             foreach (var child in targets.Select(target => NFireBurstVfx.Create(target, 0.75f)!))
             {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(child);
             }
-
             await CreatureCmd.Damage(ctx, targets, DynamicVars.Damage, Owner.Creature, this, null);
         });
     }

@@ -17,7 +17,7 @@ public static class PowerExtensions
         }
         
         
-        public PowerType DownfallType => power.GetTypeForAmount(power.Amount);
+        public PowerType DownfallType => power.GetDownfallTypeForAmount(power.Amount);
         public PowerType GetDownfallTypeForAmount(decimal customAmount)
         {
             if (customAmount < 0 && power is ThornsPower) return PowerType.Debuff;

@@ -1,0 +1,6 @@
+{
+    "AWAKENED-SPELLBOOK_FTUE.title": "呪文書",
+    "AWAKENED-SPELLBOOK_FTUE.description": "[gold]呪文書[/gold]には、決まった呪文カードのセットが入っています。[gold]喚起[/gold]効果が発動するたびに、その中の次のカードが[gold]手札[/gold]に加わります。\nすべてのカードを[gold]喚起[/gold]し終えると、呪文カードの同じセットが再び補充されます。カーソルを合わせると、次にどの呪文が加わるかを確認できます。",
+    "AWAKENED-AWAKEN_FTUE.title": "覚醒ゲージ",
+    "AWAKENED-AWAKEN_FTUE.description": "パワーをプレイすると、このゲージが溜まります。\nパワーを[blue]7[/blue]枚プレイすると、この戦闘の間[gold]覚醒[/gold]します。\n[gold]覚醒[/gold]すると、すべての呪文カードが[gold]アップグレード[/gold]されます。"
+}

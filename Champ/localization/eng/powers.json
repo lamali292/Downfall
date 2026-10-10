@@ -52,7 +52,7 @@
   "CHAMP-PARRYING_POWER.smartDescription": "If your [gold]Counter[/gold] is triggered this turn, the [gold]Riposte[/gold] gains [gold]Replay[/gold] [blue]{Amount}[/blue].",
   "CHAMP-PROTECTIVE_AURA_POWER.title": "Protective Aura",
   "CHAMP-PROTECTIVE_AURA_POWER.description": "[gold]Defensive Finishers[/gold] grant additional [gold]Block[/gold].  ",
-  "CHAMP-PROTECTIVE_AURA_POWER.smartDescription": "[gold]Defensive Finishers[/gold] grant {ArenaMasteryDefensivePower:diff()} additional [gold]Block[/gold].  ",
+  "CHAMP-PROTECTIVE_AURA_POWER.smartDescription": "[gold]Defensive Finishers[/gold] grant [blue]{Amount}[/blue] additional [gold]Block[/gold].  ",
   "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.title": "Strike of Genius+",
   "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.description": "At the start of your turn, add a random [gold]upgraded[/gold] \"Strike\" [gold]Echo[/gold] into your [gold]Hand[/gold].\nIt's free to play for that turn.",
   "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.smartDescription": "At the start of your turn, add {Amount:plural:a|[blue]{Amount}[/blue]} random [gold]upgraded[/gold] \"Strike\" [gold]Echo[/gold] into your [gold]Hand[/gold]. {Amount:plural:It's|They're} free to play for that turn.",

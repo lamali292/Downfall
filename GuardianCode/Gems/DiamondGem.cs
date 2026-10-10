@@ -16,7 +16,6 @@ namespace Guardian.GuardianCode.Gems;
 
 public class DiamondGem : GemModel
 {
-    private bool _usedThisCombat;
     public override Color GemColor => new(0x97CADBFF);
     protected override IEnumerable<DynamicVar> CanonicalVars => [new GemVar(1)];
     public override CardRarity Rarity => CardRarity.Rare;
@@ -30,13 +29,20 @@ public class DiamondGem : GemModel
 
     private bool UsedThisCombat
     {
-        get => _usedThisCombat;
+        get;
         set
         {
             AssertMutable();
-            _usedThisCombat = value;
+            field = value;
         }
     }
+
+    // Diamond has no OnPlayInternal effect of its own - its one effect (extra replays of the host
+    // card) is decided once, up front, inside ModifyPlayCount. OnPlay then still fires again for
+    // every physical replay that single decision caused; only the first (PlayIndex 0) should be
+    // reported as "an activation" - the rest are consequences of that one decision, not fresh ones,
+    // and reporting them too would let Temporal Refraction's single doubling drain extra stacks.
+    protected override bool ReportsActivation(CardPlay cardPlay) => cardPlay.PlayIndex == 0;
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay? cardPlay,
         IEnumerable<Player> targetPlayers)
@@ -72,7 +78,6 @@ public class DiamondGem : GemModel
         modifiedCost = originalCost;
         if (Card is IGemCard || card != Card) return false;
         modifiedCost++;
-        ;
         return true;
     }
 }

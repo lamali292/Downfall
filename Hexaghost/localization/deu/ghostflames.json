@@ -1,6 +1,18 @@
 {
     "HEXAGHOST-BOLSTERING_GHOSTFLAME.title": "Stärkende Geisterflamme",
+    "HEXAGHOST-BOLSTERING_GHOSTFLAME.description": "[b]Zum Anzünden:[/b]\n- Spiele eine Machtkarte.\n\n[b]Wenn angezündet:[/b]\n- Erhalte {Block:diff()} [gold]Block[/gold].\n- Erhalte {StrengthPower:diff()} [gold]Stärke[/gold].",
     "HEXAGHOST-CRUSHING_GHOSTFLAME.title": "Schlagende Geisterflamme",
+    "HEXAGHOST-CRUSHING_GHOSTFLAME.description": "[b]Zum Anzünden:[/b]\n- Spiele 2 Fertigkeitskarten.\n\n[b]Wenn angezündet:[/b]\n- Füge zweimal {Damage:diff()} Schaden zu.",
     "HEXAGHOST-INFERNO_GHOSTFLAME.title": "Inferno-Geisterflamme",
-    "HEXAGHOST-SEARING_GHOSTFLAME.title": "Sengende Geisterflamme"
+    "HEXAGHOST-INFERNO_GHOSTFLAME.description": "[b]Zum Anzünden:[/b]\n- Gib {energyPrefix:energyIcons(3)} aus.\n\n[b]Wenn angezündet:[/b]\n- Füge {Damage:diff()} Schaden für jede [gold]Angezündete[/gold] Geisterflamme zu.\n- Falls alle Geisterflammen [gold]Angezündet[/gold] sind, erhalte {IntensityPower:diff()} [gold]Intensität[/gold].\n- [gold]Lösche[/gold] alle anderen Geisterflammen.\n\n[b]Ende des Zuges:[/b]\n- [gold]Löscht[/gold] sich selbst.",
+    "HEXAGHOST-SEARING_GHOSTFLAME.title": "Sengende Geisterflamme",
+    "HEXAGHOST-SEARING_GHOSTFLAME.description": "[b]Zum Anzünden:[/b]\n- Spiele 2 Angriffskarten.\n\n[b]Wenn angezündet:[/b]\n- Wende zweimal {Soulburn:diff()} [gold]Seelenfeuer[/gold] an.",
+    "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.title": "Fremde Stärkende Geisterflamme",
+    "HEXAGHOST-OFFCLASS_BOLSTERING_GHOSTFLAME.description": "[b]Zum Anzünden:[/b]\n- Spiele eine [gold]Fremde[/gold] Machtkarte.\n\n[b]Wenn angezündet:[/b]\n- Erhalte {Block:diff()} [gold]Block[/gold].\n- Erhalte {StrengthPower:diff()} [gold]Stärke[/gold].",
+    "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.title": "Fremde Schlagende Geisterflamme",
+    "HEXAGHOST-OFFCLASS_CRUSHING_GHOSTFLAME.description": "[b]Zum Anzünden:[/b]\n- Spiele 2 [gold]Fremde[/gold] Fertigkeitskarten.\n\n[b]Wenn angezündet:[/b]\n- Füge zweimal {Damage:diff()} Schaden zu.",
+    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.title": "Fremde Inferno-Geisterflamme",
+    "HEXAGHOST-OFFCLASS_INFERNO_GHOSTFLAME.description": "[b]Zum Anzünden:[/b]\n- Gib {energyPrefix:energyIcons(3)} für [gold]Fremde[/gold] Karten aus.\n\n[b]Wenn angezündet:[/b]\n- Füge {Damage:diff()} Schaden für jede [gold]Angezündete[/gold] Geisterflamme zu.\n- [gold]Lösche[/gold] alle anderen Geisterflammen.\n\n[b]Ende des Zuges:[/b]\n- [gold]Löscht[/gold] sich selbst.",
+    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.title": "Fremde Sengende Geisterflamme",
+    "HEXAGHOST-OFFCLASS_SEARING_GHOSTFLAME.description": "[b]Zum Anzünden:[/b]\n- Spiele 2 [gold]Fremde[/gold] Angriffskarten.\n\n[b]Wenn angezündet:[/b]\n- Wende zweimal {Soulburn:diff()} [gold]Seelenfeuer[/gold] an."
 }

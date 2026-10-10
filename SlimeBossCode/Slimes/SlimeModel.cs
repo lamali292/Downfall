@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Hooks;
@@ -18,18 +19,21 @@ using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
-public abstract class SlimeModel : CustomMonsterModel
+public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
 {
     private DynamicVarSet? _dynamicVars;
     public override int MinInitialHp => Really.bigNumber;
     public override int MaxInitialHp => Really.bigNumber;
     public abstract SlimeType SlimeType { get; }
 
+    
+    
     public override string CustomVisualPath =>
         $"combat/{Id.Entry.RemovePrefix().ToLowerInvariant()}.tscn".SlimeScenePath();
 
     public override bool HasDeathSfx => false;
     public Creature PetOwner => Creature.PetOwner?.Creature ?? throw new ArgumentNullException(nameof(PetOwner));
+    public Player Player => PetOwner.Player ?? throw new ArgumentNullException(nameof(Player));
     protected virtual LocString Description => L10NMonsterLookup(Id.Entry + ".description");
 
 
@@ -64,6 +68,8 @@ public abstract class SlimeModel : CustomMonsterModel
             return _dynamicVars;
         }
     }
+
+ 
 
 
     protected virtual IEnumerable<DynamicVar> CanonicalVars => [];

@@ -1,0 +1,4 @@
+{
+    "COLLECTOR-TORCHHEAD_ATTACK_INTENT.title": "Aggressiv",
+    "COLLECTOR-TORCHHEAD_ATTACK_INTENT.description": "Fackelkopf möchte am Ende deines Zuges {TargetsAll:cond:alle Gegner |den Gegner mit den wenigsten TP }für [blue]{Damage}[/blue] Schaden [gold]angreifen[/gold]."
+}

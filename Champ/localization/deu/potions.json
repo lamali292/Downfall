@@ -1,0 +1,8 @@
+{
+    "CHAMP-BOTTLED_TECHNIQUE.title": "Technikflasche",
+    "CHAMP-BOTTLED_TECHNIQUE.description": "Löse den [gold]Fertigkeitsbonus[/gold] deiner aktuellen [gold]Haltung[/gold] [blue]{Repeat:diff()}[/blue] Mal aus.",
+    "CHAMP-BREW_OF_SHARPNESS.title": "Gebräu der Schärfe",
+    "CHAMP-BREW_OF_SHARPNESS.description": "Erhalte [blue]{CounterPower:diff()}[/blue] [gold]Konter[/gold].",
+    "CHAMP-STIMPACK.title": "Stimpack",
+    "CHAMP-STIMPACK.description": "Nimm für [blue]1[/blue] Zug die [gold]Siegespose[/gold] ein."
+}

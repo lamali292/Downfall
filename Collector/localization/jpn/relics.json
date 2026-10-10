@@ -21,7 +21,7 @@
     "COLLECTOR-SOUL_LIT_LAMP.description": "コストが{Energy:energyIcons()}以上のカードを[gold]火葬[/gold]するたび、すべての敵に[gold]ソウルバーン[/gold][blue]{SoulBurnPower:diff()}[/blue]を付与する。",
     "COLLECTOR-SOUL_LIT_LAMP.flavor": "不気味な装飾品。炎のはぜる音の代わりに、うなるような嘆きが響く。",
     "COLLECTOR-THE_CONTRACT.title": "契約書",
-    "COLLECTOR-THE_CONTRACT.description": "取得時、[blue]5[/blue]枚の[gold]アップグレード[/gold]済みの[gold]コレクト[/gold]カードから[blue]1[/blue]枚を選び、[gold]デッキ[/gold]に追加する。",
+    "COLLECTOR-THE_CONTRACT.description": "取得時、[blue]{Cards:diff()}[/blue]枚の[gold]アップグレード[/gold]済みの[gold]コレクト[/gold]カードから[blue]1[/blue]枚を選び、[gold]デッキ[/gold]に追加する。",
     "COLLECTOR-THE_CONTRACT.flavor": "血で署名を。",
     "COLLECTOR-THIMBLE_HELM.title": "シンブルヘルム",
     "COLLECTOR-THIMBLE_HELM.description": "[gold]トーチヘッド[/gold]が生存している間、カードから得る[gold]ブロック[/gold]が[blue]{Block:diff()}[/blue]増加する。",

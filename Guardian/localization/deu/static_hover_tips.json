@@ -1,0 +1,20 @@
+{
+    "GUARDIAN-ACCELERATE.title": "Beschleunigung",
+    "GUARDIAN-ACCELERATE.description": "Verringere den Zugzähler der Karte ganz rechts in [gold]Stasis[/gold].",
+    "GUARDIAN-AGGRAVATE.title": "Verschärfen",
+    "GUARDIAN-AGGRAVATE.description": "Beim Betreten eines Kampfes steigen die Kosten dieser Karte um [blue]1[/blue].",
+    "GUARDIAN-BRACE.title": "Abhärten",
+    "GUARDIAN-BRACE.description": "Verringere den TP-Verlust, der nötig ist, um den [gold]Moduswechsel[/gold] auszulösen.",
+    "GUARDIAN-DEFENSIVE_MODE.title": "Defensivmodus",
+    "GUARDIAN-DEFENSIVE_MODE.description": "[gold]Haltung[/gold].\nIm Defensivmodus hast du [blue]3[/blue] [gold]Stacheln[/gold] und dein [gold]Block[/gold] wird nicht entfernt.",
+    "GUARDIAN-PACKAGE.title": "Paket",
+    "GUARDIAN-PACKAGE.description": "Ein Paket besteht aus drei Karten, die von einem gewählten Konstrukt des Spire inspiriert sind.",
+    "GUARDIAN-POLISH.title": "Aufpoliert",
+    "GUARDIAN-POLISH.description": "Verringere dein [gold]Schwach[/gold], [gold]Gebrechlich[/gold] und [gold]Verwundbar[/gold] jeweils um X.\nWandle X Stapel temporärer Buffs in permanente Buffs um.",
+    "GUARDIAN-SOCKET.title": "Fassung",
+    "GUARDIAN-SOCKET.description": "Kann an einem Lagerfeuer mit einem [gold]Juwel[/gold] geschmiedet werden, um dessen Effekt dauerhaft zu absorbieren.",
+    "GUARDIAN-STASIS.title": "Stasis",
+    "GUARDIAN-STASIS.description": "Eine Karte in [gold]Stasis[/gold] bleibt so viele Züge dort, wie ihre Kosten plus [blue]1[/blue] betragen. Beim Verlassen kehrt sie auf deine [gold]Hand[/gold] zurück und ist in diesem Zug kostenlos spielbar.",
+    "GUARDIAN-TICK.title": "Tick",
+    "GUARDIAN-TICK.description": "Tick-Effekte werden aktiviert, wann immer der [gold]Stasis[/gold]-Zähler dieser Karte verringert wird."
+}

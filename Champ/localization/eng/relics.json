@@ -1,6 +1,6 @@
 {
   "CHAMP-AMULET_OF_UNYIELDING.title": "Amulet of Unyielding",
-  "CHAMP-AMULET_OF_UNYIELDING.description": "Whenever you spend [gold]Vigor[/gold], gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold] for every [blue]{VigorPower}[/blue] [gold]Vigor[/gold] spent.",
+  "CHAMP-AMULET_OF_UNYIELDING.description": "Every [blue]{VigorPower}[/blue] [gold]Vigor[/gold] you spend, gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold].",
   "CHAMP-AMULET_OF_UNYIELDING.flavor": "Strength once thought fleeting flows through you as if it had always been there.",
   "CHAMP-BERSERKERS_GUIDE.title": "Berserker's Guide",
   "CHAMP-BERSERKERS_GUIDE.description": "At the start of your turn, gain [blue]{VigorPower}[/blue] [gold]Vigor[/gold].",

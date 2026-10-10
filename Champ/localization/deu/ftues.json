@@ -1,0 +1,6 @@
+{
+    "CHAMP-RULES_FTUE.title": "Haltungstänze",
+    "CHAMP-RULES_FTUE.body1": "Bestimmte Karten, Relikte und andere Effekte lassen den Champ eine [gold]Haltung[/gold] einnehmen.\nDie drei Haltungen sind Offensivhaltung, Defensivhaltung und Siegespose.",
+    "CHAMP-RULES_FTUE.body2": "Solange du in einer [gold]Haltung[/gold] bist, löst das Spielen einer [gold]Fertigkeit[/gold] ihren [gold]Fertigkeitsbonus[/gold] aus, einen kleinen Extra-Effekt wie das Erhalten von [gold]Elan[/gold].\nDu kannst ihn nur begrenzt oft auslösen, bevor du erneut eine Haltung einnehmen musst, um die Anzahl zurückzusetzen.",
+    "CHAMP-RULES_FTUE.body3": "Manche Karten haben einen {:finisher()} [gold]Abschluss[/gold]-Effekt und können nur gespielt werden, solange du in einer [gold]Haltung[/gold] bist.\nWenn du eine spielst, wird dieser Effekt ausgelöst und du verlässt die Haltung."
+}
