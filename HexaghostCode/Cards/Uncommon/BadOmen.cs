@@ -37,7 +37,8 @@ public class BadOmen : HexaghostCardModel
             .ToList();
         var chosen = await CardSelectCmd.FromChooseACardScreen(ctx, choices, owner, true);
         if (chosen is not BadOmenChoice { GhostflameModel : { } ghostflame }) return;
-        HexaghostCmd.SetCurrentGhostflame(owner, ghostflame);
+        // SetCurrentGhostflame expects the canonical model and makes its own owned copy.
+        HexaghostCmd.SetCurrentGhostflame(owner, ModelDb.GetById<GhostflameModel>(ghostflame.Id));
     }
 }
 
@@ -59,7 +60,8 @@ public class BadOmenChoice : HexaghostCardModel
     public static BadOmenChoice Create(GhostflameModel flame, Player owner)
     {
         var card = owner.Creature.CombatState!.CreateCard<BadOmenChoice>(owner);
-        card.GhostflameModel = flame;
+        // Mutable, owned copy: ghostflame tooltips need an owner (energy prefix, var previews).
+        card.GhostflameModel = flame.ToMutable(owner);
         return card;
     }
 
