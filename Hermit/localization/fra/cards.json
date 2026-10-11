@@ -166,8 +166,6 @@
     "HERMIT-HAIR_TRIGGER.title": "Gâchette Facile",
     "HERMIT-BURDENED.title": "Fardeau",
     "HERMIT-BURDENED.description": "Au début de votre tour, gagnez {BurdenedPower:diff()} de [gold]Vigueur[/gold] et ajoutez un [red]Déclin[/red] dans votre [gold]Main[/gold].",
-    "HERMIT-FIRE_AWAY.title": "Feu à Volonté",
-    "HERMIT-FIRE_AWAY.description": "Infligez {Damage:diff()} dégâts {Repeat:diff()} fois.\nCoûte 1 {Energy:energyIcons()} de moins pour chaque effet [gold]Dans le Mille[/gold] activé ce combat.",
     "HERMIT-LAST_CHANCE.title": "Dernière Chance",
     "HERMIT-LAST_CHANCE.description": "Infligez {Damage:diff()} dégâts.\nSi vous avez un débuff, piochez {Cards:diff()} cartes.",
     "HERMIT-TORN_PAGE.title": "Page Déchirée",

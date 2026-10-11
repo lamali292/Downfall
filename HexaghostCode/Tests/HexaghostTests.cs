@@ -1,10 +1,21 @@
-﻿using Downfall.DownfallCode.Tests;
+﻿using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Tests;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Cards.Common;
+using Hexaghost.HexaghostCode.Cards.Multiplayer;
+using Hexaghost.HexaghostCode.Cards.Basic;
 using Hexaghost.HexaghostCode.Cards.Rare;
+using Hexaghost.HexaghostCode.Cards.Uncommon;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Enchantments;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace Hexaghost.HexaghostCode.Tests;
 
@@ -41,6 +52,136 @@ public class HexaghostTests
 
         Assert.AreEqual((before + 1) % wheelLength, HexaghostCmd.GetCurrentIndex(ctx.Player),
             "AdvancingGuard should advance the wheel by one.");
+    }
+
+    // Afterlife effects run without a CardPlay, so the card is never seen as the block source and
+    // enchantments like Nimble (Fresnel Lens) used to be dropped from the Block gained on exhaust.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task AfterlifeBlockIncludesEnchantmentBonus(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<PowerFromBeyond>();
+        CardCmd.Enchant<Nimble>(card, 2);
+        ctx.Player.Creature.LoseBlockInternal(ctx.Player.Creature.Block);
+
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, true);
+
+        Assert.AreEqual(card.DynamicVars.Block.BaseValue + 2, (decimal)ctx.Player.Creature.Block,
+            "Afterlife Block on exhaust should include Nimble's +2.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task AfterlifeBlockWithoutEnchantmentIsUnchanged(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<PowerFromBeyond>();
+        ctx.Player.Creature.LoseBlockInternal(ctx.Player.Creature.Block);
+
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, true);
+
+        Assert.AreEqual(card.DynamicVars.Block.BaseValue, (decimal)ctx.Player.Creature.Block,
+            "Afterlife Block on exhaust without enchantment should be the base Block.");
+    }
+
+    // Vambrace only doubles block that has a source card; Afterlife block must count as card block.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task AfterlifeBlockTriggersVambrace(TestContext ctx)
+    {
+        await RelicCmd.Obtain(ModelDb.Relic<Vambrace>().ToMutable(), ctx.Player);
+        var card = await ctx.AddCardToHand<PowerFromBeyond>();
+        ctx.Player.Creature.LoseBlockInternal(ctx.Player.Creature.Block);
+
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, true);
+
+        Assert.AreEqual(card.DynamicVars.Block.BaseValue * 2, (decimal)ctx.Player.Creature.Block,
+            "Vambrace should double the first card Block, including Afterlife Block on exhaust.");
+    }
+
+    // Afterlife attacks on exhaust get the same synthetic CardPlay, so damage enchantments (Sharp) must apply.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task AfterlifeAttackIncludesEnchantmentBonus(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<SpectersWail>();
+        CardCmd.Enchant<Sharp>(card, 3);
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var hpBefore = enemy.CurrentHp;
+
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, true);
+
+        Assert.AreEqual(card.DynamicVars.Damage.BaseValue + 3, (decimal)(hpBefore - enemy.CurrentHp),
+            "Afterlife damage on exhaust should include Sharp's +3.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task SizzleExhaustsOnlyTheNextCardPlayed(TestContext ctx)
+    {
+        var sizzle = await ctx.AddCardToHand<Sizzle>();
+        var next = await ctx.AddCardToHand<AdvancingGuard>();
+        var after = await ctx.AddCardToHand<AdvancingGuard>();
+
+        await ctx.PlayCard(sizzle);
+        Assert.IsTrue(sizzle.Pile?.Type != PileType.Exhaust, "Sizzle itself must not be exhausted by its own power.");
+
+        await ctx.PlayCard(next);
+        Assert.IsTrue(next.Pile?.Type == PileType.Exhaust, "The next card played after Sizzle should be exhausted.");
+        Assert.IsTrue(ctx.Player.Creature.GetPower<SizzlePower>() == null, "Sizzle power should be used up.");
+
+        await ctx.PlayCard(after);
+        Assert.IsTrue(after.Pile?.Type != PileType.Exhaust, "Only one card should be exhausted.");
+    }
+
+    // Regression: a replayed Sizzle used to treat its own second play as "the next card" and exhaust itself.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task ReplayedSizzleDoesNotExhaustItself(TestContext ctx)
+    {
+        var creature = ctx.Player.Creature;
+        await PowerCmd.Apply<DuplicationPower>(new BlockingPlayerChoiceContext(), creature, 1, creature, null);
+        var sizzle = await ctx.AddCardToHand<Sizzle>();
+        var next = await ctx.AddCardToHand<AdvancingGuard>();
+
+        await ctx.PlayCard(sizzle);
+
+        Assert.IsTrue(sizzle.Pile?.Type != PileType.Exhaust, "A replayed Sizzle must not exhaust itself.");
+        Assert.AreEqual(2m, (decimal)creature.GetPower<SizzlePower>()!.Amount,
+            "Both plays of Sizzle should stack the power.");
+
+        await ctx.PlayCard(next);
+        Assert.IsTrue(next.Pile?.Type == PileType.Exhaust, "The next card should still be exhausted after a replayed Sizzle.");
+    }
+
+    // Card text says "whenever another player attacks this enemy": the applier's own attacks must not
+    // trigger it, a teammate's must, and Soul Burn is credited to the attacker.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost), playerCount: 2)]
+    public async Task BroilingFlamesTriggersOnlyOnOtherPlayersAttacks(TestContext ctx)
+    {
+        var teammate = ctx.Players[1];
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<BroilingFlames>(), enemy);
+        var power = enemy.GetPower<BroilingFlamesPower>();
+        Assert.IsTrue(power != null, "Broiling Flames should be applied to the enemy.");
+        Assert.IsTrue(power!.TypeForCurrentAmount == PowerType.Debuff, "Broiling Flames sits on an enemy and should be a debuff.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeHexaghost>(), enemy);
+        Assert.IsTrue(enemy.GetPower<SoulBurnPower>() == null, "The applier's own attack must not trigger Broiling Flames.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeHexaghost>(teammate), enemy);
+        Assert.AreEqual(power.Amount, enemy.GetPower<SoulBurnPower>()?.Amount ?? 0, "A teammate's attack should apply Soul Burn once.");
+    }
+
+    // Each player's Broiling Flames is its own instance: with both on the enemy, each player's attack
+    // triggers only the OTHER player's copy.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost), playerCount: 2)]
+    public async Task BroilingFlamesIsInstancedPerApplier(TestContext ctx)
+    {
+        var teammate = ctx.Players[1];
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<BroilingFlames>(), enemy);
+        await ctx.PlayCard(await ctx.AddCardToHand<BroilingFlames>(teammate), enemy);
+        var copies = enemy.Powers.OfType<BroilingFlamesPower>().ToList();
+        Assert.AreEqual(2, copies.Count, "Each player's Broiling Flames should be a separate instance.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeHexaghost>(), enemy);
+        var amount = copies[0].Amount;
+        Assert.AreEqual(amount, enemy.GetPower<SoulBurnPower>()?.Amount ?? 0,
+            "Player 1's attack should trigger only player 2's copy.");
     }
 
     // Cauterize's hit count comes from the captured X value and the Soul Burn it applies equals the damage dealt.

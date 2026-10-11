@@ -166,8 +166,6 @@
     "HERMIT-HAIR_TRIGGER.title": "一触即发",
     "HERMIT-BURDENED.title": "背负",
     "HERMIT-BURDENED.description": "在你的回合开始时，获得{BurdenedPower:diff()}点[gold]活力[/gold]并将一张[red]腐朽[/red]加入你的[gold]手牌[/gold]。",
-    "HERMIT-FIRE_AWAY.title": "开火",
-    "HERMIT-FIRE_AWAY.description": "造成{Damage:diff()}点伤害{Repeat:diff()}次。\n本场战斗中每触发一次[gold]精准[/gold]效果，耗能减{Energy:energyIcons()}。",
     "HERMIT-LAST_CHANCE.title": "英雄末路",
     "HERMIT-LAST_CHANCE.description": "造成{Damage:diff()}点伤害。\n如果你拥有负面效果，抽{Cards:diff()}张牌。",
     "HERMIT-TORN_PAGE.title": "禁忌书页",
