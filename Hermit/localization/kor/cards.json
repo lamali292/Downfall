@@ -144,8 +144,6 @@
     "HERMIT-CURSED_SKULL.description": "[gold]손패[/gold]의 카드 1장에 \"[gold]정조준[/gold]: [gold]재사용[/gold] 1\" 효과를 추가합니다.",
     "HERMIT-HAIR_TRIGGER.title": "예민한 방아쇠",
     "HERMIT-BURDENED.title": "중압감",
-    "HERMIT-FIRE_AWAY.title": "무차별 사격",
-    "HERMIT-FIRE_AWAY.description": "{Damage:diff()} 피해를 {Repeat:diff()}번 줍니다.\n이번 전투에서 발동된 [gold]정조준[/gold] 효과 한 번당 비용이 {Energy:energyIcons()} 감소합니다.",
     "HERMIT-LAST_CHANCE.title": "마지막 기회",
     "HERMIT-LAST_CHANCE.description": "{Damage:diff()} 피해를 줍니다.\n내가 디버프에 걸린 상태라면, 카드를 {Cards:diff()}장 뽑습니다.",
     "HERMIT-TORN_PAGE.title": "찢어진 페이지",

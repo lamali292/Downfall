@@ -150,8 +150,6 @@
     "HERMIT-CURSED_SKULL.selectionScreenPrompt": "Scegli {Amount:plural:una carta|[blue]{}[/blue] carte} e aggiungi \"[gold]Nel Segno[/gold]: [gold]Riproduci[/gold] 1.\" {Amount:plural:a essa|a esse}.",
     "HERMIT-HAIR_TRIGGER.title": "Grilletto Sensibile",
     "HERMIT-BURDENED.title": "Appesantito",
-    "HERMIT-FIRE_AWAY.title": "Spara a Raffica",
-    "HERMIT-FIRE_AWAY.description": "Infliggi {Damage:diff()} di danno {Repeat:diff()} volte.\nCosta {Energy:energyIcons()} in meno per ogni effetto [gold]Nel Segno[/gold] attivato in questo combattimento.",
     "HERMIT-LAST_CHANCE.title": "Ultima Occasione",
     "HERMIT-LAST_CHANCE.description": "Infliggi {Damage:diff()} di danno.\nSe hai penalità, pesca {Cards:diff()} carte.",
     "HERMIT-TORN_PAGE.title": "Pagina Strappata",
