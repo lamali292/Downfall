@@ -51,14 +51,15 @@ git clone https://github.com/lamali292/Downfall.git
 Copy `local.props.example` to `local.props` and fill in the values:
 
 - **`GodotPath`** - the `.exe` of your downloaded MegaDot / Godot
-- **`SteamLibraryPath`** - your `steamapps` folder, where Slay the Spire 2 is installed
+- **`Sts2Branch`** / **`Sts2BetaPath`** / **`Sts2PublicPath`** - the Slay the Spire 2 game folder(s); `Sts2Branch` (`beta` or `public`) picks which one is used
 - **`AssetSourcePath`** - *not needed for Path A*
 
 ```xml
 <Project>
     <PropertyGroup>
         <GodotPath>C:\...\MegaDot\MegaDot_v4.5.1_mono.exe</GodotPath>
-        <SteamLibraryPath>C:\Program Files (x86)\Steam\steamapps</SteamLibraryPath>
+        <Sts2Branch>beta</Sts2Branch>
+        <Sts2BetaPath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</Sts2BetaPath>
         <!-- AssetSourcePath is not required for Path A -->
     </PropertyGroup>
 </Project>
@@ -109,14 +110,15 @@ Extract Slay the Spire 2 using [GDRE](https://github.com/GDRETools/gdsdecomp). N
 Copy `local.props.example` to `local.props` and fill in the values:
 
 - **`GodotPath`** - the `.exe` of your downloaded MegaDot / Godot
-- **`SteamLibraryPath`** - your `steamapps` folder, where Slay the Spire 2 is installed
+- **`Sts2Branch`** / **`Sts2BetaPath`** / **`Sts2PublicPath`** - the Slay the Spire 2 game folder(s); `Sts2Branch` (`beta` or `public`) picks which one is used
 - **`AssetSourcePath`** - the root folder of your extracted GDRE project
 
 ```xml
 <Project>
     <PropertyGroup>
         <GodotPath>C:\...\MegaDot\MegaDot_v4.5.1_mono.exe</GodotPath>
-        <SteamLibraryPath>C:\Program Files (x86)\Steam\steamapps</SteamLibraryPath>
+        <Sts2Branch>beta</Sts2Branch>
+        <Sts2BetaPath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</Sts2BetaPath>
         <AssetSourcePath>C:\path\to\extracted\Slay the Spire 2</AssetSourcePath>
     </PropertyGroup>
 </Project>

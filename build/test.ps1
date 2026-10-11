@@ -1,21 +1,25 @@
 ﻿<#
 .SYNOPSIS
     Builds the mod, launches Slay the Spire 2 with the in-game test runner armed,
-    waits for it to finish, and prints the results. Exit code 0 = all passed.
+    waits for it to finish, and prints the results. The mod is compiled once against beta and
+    the same build outputs are run on BOTH game branches (beta, then public) by default.
+    Exit code 0 = all passed on every branch run.
 
 .EXAMPLE
-    ./build/test.ps1                     # run every [CardTest]
+    ./build/test.ps1                     # run every [CardTest] on beta and public
     ./build/test.ps1 -Filter Hermit      # only tests whose "Type.Method" contains "Hermit"
     ./build/test.ps1 -NoBuild -Filter CheatDeadOn
+    ./build/test.ps1 -Branch beta        # only one branch
 
 .NOTES
     Requires Steam running (the game exe is launched directly; steam_appid.txt is
-    shipped with the game).
+    shipped with the game). Game folders come from local.props (Sts2BetaPath / Sts2PublicPath).
 #>
 param(
     [string]$Filter = "",
     [switch]$NoBuild,
-    [int]$TimeoutMinutes = 15
+    [ValidateSet("both", "beta", "public")][string]$Branch = "both",
+    [int]$TimeoutMinutes = 5
 )
 $ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path $PSScriptRoot -Parent
@@ -23,86 +27,90 @@ Set-Location $ProjectRoot
 
 if (-not (Test-Path "local.props")) { throw "local.props not found. Copy local.props.example to local.props." }
 $props = [xml](Get-Content "local.props")
-$steamLib = $props.Project.PropertyGroup.SteamLibraryPath
+. "$PSScriptRoot\get-sts2-path.ps1"
 
-$exe = Join-Path $steamLib "common\Slay the Spire 2\SlayTheSpire2.exe"
-if (-not (Test-Path $exe)) { throw "Game executable not found: $exe" }
+# Every project that ships in the test setup, in build order.
+$projects = "Downfall", "SlimeBoss", "Automaton", "Hermit", "Awakened", "Champ", "Guardian", "Snecko", "Hexaghost", "Collector"
+
+# The branch the mod is compiled against. Other branches get a copy of these build outputs.
+$BuildBranch = "beta"
 
 if (-not $NoBuild) {
-    Write-Host "=== Building Downfall ===" -ForegroundColor Cyan
-    dotnet build Downfall.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Build failed" }
-
-    Write-Host "=== Building SlimeBoss ===" -ForegroundColor Cyan
-    dotnet build SlimeBoss.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "SlimeBoss build failed" }
-
-    Write-Host "=== Building Automaton ===" -ForegroundColor Cyan
-    dotnet build Automaton.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Automaton build failed" }
-
-    Write-Host "=== Building Hermit ===" -ForegroundColor Cyan
-    dotnet build Hermit.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Hermit build failed" }
-
-    Write-Host "=== Building Awakened ===" -ForegroundColor Cyan
-    dotnet build Awakened.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Awakened build failed" }
-
-    Write-Host "=== Building Champ ===" -ForegroundColor Cyan
-    dotnet build Champ.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Champ build failed" }
-
-    Write-Host "=== Building Guardian ===" -ForegroundColor Cyan
-    dotnet build Guardian.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Guardian build failed" }
-
-    Write-Host "=== Building Snecko ===" -ForegroundColor Cyan
-    dotnet build Snecko.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Snecko build failed" }
-
-    Write-Host "=== Building Hexaghost ===" -ForegroundColor Cyan
-    dotnet build Hexaghost.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Hexaghost build failed" }
-
-    Write-Host "=== Building Collector ===" -ForegroundColor Cyan
-    dotnet build Collector.csproj --nologo -v q -c ExportDebug
-    if ($LASTEXITCODE -ne 0) { throw "Collector build failed" }
-}
-
-$outFile = Join-Path $env:TEMP "downfall_tests.json"
-Remove-Item $outFile -ErrorAction SilentlyContinue
-
-$env:DOWNFALL_RUN_TESTS   = "1"
-$env:DOWNFALL_TEST_FILTER = $Filter
-$env:DOWNFALL_TEST_OUTPUT = $outFile
-try {
-    Write-Host "=== Launching game headlessly (filter: '$Filter') ===" -ForegroundColor Cyan
-    $proc = Start-Process -FilePath $exe -ArgumentList "--headless", "--audio-driver", "Dummy" -WorkingDirectory (Split-Path $exe) -PassThru
-    if (-not $proc.WaitForExit($TimeoutMinutes * 60 * 1000)) {
-        $proc.Kill()
-        throw "Timed out after $TimeoutMinutes minutes; killed the game."
+    foreach ($proj in $projects) {
+        Write-Host "=== Building $proj (against $BuildBranch) ===" -ForegroundColor Cyan
+        # --no-incremental: the projects share obj dirs (incl. the Publicizer cache), so never reuse a build
+        # made against a different sts2.dll.
+        dotnet build "$proj.csproj" --nologo -v q -c ExportDebug --no-incremental "-p:Sts2Branch=$BuildBranch" | Out-Host
+        if ($LASTEXITCODE -ne 0) { throw "$proj build failed" }
     }
 }
-finally {
-    Remove-Item Env:DOWNFALL_RUN_TESTS, Env:DOWNFALL_TEST_FILTER, Env:DOWNFALL_TEST_OUTPUT -ErrorAction SilentlyContinue
+
+# Runs the tests on one branch's game install and prints results.
+# Returns $true when every test passed (all other output goes to the host, so the return value stays a single bool).
+function Invoke-BranchTests([string]$BranchName) {
+    $gameDir = Get-Sts2Path $props $BranchName
+    $exe = Join-Path $gameDir "SlayTheSpire2.exe"
+    if (-not (Test-Path $exe)) { throw "Game executable not found: $exe" }
+
+    if ($BranchName -ne $BuildBranch) {
+        # The mod is compiled once, against $BuildBranch, and must run unchanged on every branch.
+        $src = Join-Path (Get-Sts2Path $props $BuildBranch) "mods"
+        Write-Host "=== [$BranchName] Syncing $BuildBranch-compiled mods from $src ===" -ForegroundColor Cyan
+        robocopy $src (Join-Path $gameDir "mods") /MIR /NFL /NDL /NJH /NJS /NP | Out-Null
+        if ($LASTEXITCODE -ge 8) { throw "robocopy failed ($LASTEXITCODE) syncing mods to $BranchName" }
+    }
+
+    $outFile = Join-Path $env:TEMP "downfall_tests_$BranchName.json"
+    Remove-Item $outFile -ErrorAction SilentlyContinue
+
+    $env:DOWNFALL_RUN_TESTS   = "1"
+    $env:DOWNFALL_TEST_FILTER = $Filter
+    $env:DOWNFALL_TEST_OUTPUT = $outFile
+    try {
+        Write-Host "=== [$BranchName] Launching game headlessly (filter: '$Filter') ===" -ForegroundColor Cyan
+        $proc = Start-Process -FilePath $exe -ArgumentList "--headless", "--audio-driver", "Dummy" -WorkingDirectory (Split-Path $exe) -PassThru
+        if (-not $proc.WaitForExit($TimeoutMinutes * 60 * 1000)) {
+            $proc.Kill()
+            throw "Timed out after $TimeoutMinutes minutes; killed the game ($BranchName)."
+        }
+    }
+    finally {
+        Remove-Item Env:DOWNFALL_RUN_TESTS, Env:DOWNFALL_TEST_FILTER, Env:DOWNFALL_TEST_OUTPUT -ErrorAction SilentlyContinue
+    }
+
+    if (-not (Test-Path $outFile)) {
+        $log = Join-Path $env:APPDATA "SlayTheSpire2\logs\godot.log"
+        throw "No result file was written for $BranchName (game exit code $($proc.ExitCode)). Check $log"
+    }
+
+    $result = Get-Content $outFile -Raw | ConvertFrom-Json
+    Write-Host ""
+    Write-Host ("[{0}] Seed {1}  |  {2:n1}s  |  {3} passed, {4} failed" -f `
+        $BranchName, $result.Seed, ([TimeSpan]$result.Duration).TotalSeconds, $result.Passed.Count, $result.Failed.Count) `
+        -ForegroundColor $(if ($result.Failed.Count -eq 0) { "Green" } else { "Red" })
+    foreach ($p in $result.Passed) { Write-Host "  PASS  $p" -ForegroundColor DarkGreen }
+    foreach ($f in $result.Failed) {
+        Write-Host "  FAIL  $($f.Name)" -ForegroundColor Red
+        Write-Host "        $($f.Message)"
+    }
+    Write-Host ""
+    Write-Host "Full JSON: $outFile"
+    return ($result.Failed.Count -eq 0)
 }
 
-if (-not (Test-Path $outFile)) {
-    $log = Join-Path $env:APPDATA "SlayTheSpire2\logs\godot.log"
-    throw "No result file was written (game exit code $($proc.ExitCode)). Check $log"
+$branches = if ($Branch -eq "both") { @("beta", "public") } else { @($Branch) }
+$summary = [ordered]@{}
+foreach ($b in $branches) {
+    try { $summary[$b] = if (Invoke-BranchTests $b) { "PASSED" } else { "FAILED" } }
+    catch {
+        Write-Host "[$b] ERROR: $($_.Exception.Message)" -ForegroundColor Red
+        $summary[$b] = "ERROR"
+    }
 }
 
-$result = Get-Content $outFile -Raw | ConvertFrom-Json
 Write-Host ""
-Write-Host ("Seed {0}  |  {1:n1}s  |  {2} passed, {3} failed" -f `
-    $result.Seed, ([TimeSpan]$result.Duration).TotalSeconds, $result.Passed.Count, $result.Failed.Count) `
-    -ForegroundColor $(if ($result.Failed.Count -eq 0) { "Green" } else { "Red" })
-foreach ($p in $result.Passed) { Write-Host "  PASS  $p" -ForegroundColor DarkGreen }
-foreach ($f in $result.Failed) {
-    Write-Host "  FAIL  $($f.Name)" -ForegroundColor Red
-    Write-Host "        $($f.Message)"
+Write-Host "=== Summary ===" -ForegroundColor Cyan
+foreach ($b in $summary.Keys) {
+    Write-Host ("  {0,-7} {1}" -f $b, $summary[$b]) -ForegroundColor $(if ($summary[$b] -eq "PASSED") { "Green" } else { "Red" })
 }
-Write-Host ""
-Write-Host "Full JSON: $outFile"
-exit $(if ($result.Failed.Count -eq 0) { 0 } else { 1 })
+exit $(if (@($summary.Values | Where-Object { $_ -ne "PASSED" }).Count -eq 0) { 0 } else { 1 })
