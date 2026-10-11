@@ -1,0 +1,71 @@
+name: Steam Workshop
+
+# Uploads an existing GitHub release's zip to the Steam Workshop. Runs automatically after the
+# Release workflow succeeds (workflow_run, because a release created with GITHUB_TOKEN doesn't
+# fire `release:` events), and can be run by hand to retry a failed upload for any tag.
+
+on:
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to upload (e.g. v0.1.21)'
+        required: true
+
+jobs:
+  steam:
+    # For workflow_run only proceed when the Release workflow succeeded.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: read
+    steps:
+      - name: Resolve tag
+        run: |
+          # For a tag-push run, workflow_run.head_branch is the tag name.
+          TAG="${{ github.event.inputs.tag || github.event.workflow_run.head_branch }}"
+          if ! echo "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Tag must be vX.Y.Z, got '$TAG'"; exit 1
+          fi
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+          echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+          fetch-tags: true
+
+      # release-prepare.yml stores the "Also upload to Steam Workshop" toggle in the annotated
+      # tag message (steam=true|false). Missing = true.
+      - name: Read steam flag from tag
+        run: |
+          STEAM=$(git for-each-ref "refs/tags/$TAG" --format='%(contents)' \
+                  | grep -oE 'steam=(true|false)' | cut -d= -f2 || true)
+          echo "STEAM=${STEAM:-true}" >> "$GITHUB_ENV"
+
+      - name: Download release zip
+        if: vars.STEAM_WORKSHOP_ID != '' && env.STEAM == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p steam-input
+          gh release download "$TAG" --repo "${{ github.repository }}" \
+            --pattern "Downfall-$VERSION.zip" --dir steam-input
+          unzip -q "steam-input/Downfall-$VERSION.zip" -d steam-input
+          test -d steam-input/Downfall || { echo "Downfall folder missing in zip"; exit 1; }
+
+      # config.vdf is the RAW contents of steamcmd's config/config.vdf (not base64).
+      # Refresh with build/refresh-steam-secret.sh when the cached session expires.
+      - name: Upload to Steam Workshop
+        if: vars.STEAM_WORKSHOP_ID != '' && env.STEAM == 'true'
+        uses: m00nl1ght-dev/steam-workshop-deploy@v4
+        with:
+          username: ${{ secrets.STEAM_USERNAME }}
+          configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
+          appId: 2868840
+          publishedFileId: ${{ vars.STEAM_WORKSHOP_ID }}
+          path: steam-input/Downfall
+          changeNote: "Release ${{ env.TAG }} - https://github.com/${{ github.repository }}/releases/tag/${{ env.TAG }}"
