@@ -25,7 +25,7 @@ public class AshesToAshesPower : CollectorPowerModel
 
     public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
     {
-        if (card.Owner.Creature != Owner || card.Type is not (CardType.Curse or CardType.Status)) return;
+        if (card.Owner.Creature != Owner || card.Type is not (CardType.Curse or CardType.Status) || card is Ember) return;
         await CardCmd.TransformTo<Ember>(card);
     }
 
