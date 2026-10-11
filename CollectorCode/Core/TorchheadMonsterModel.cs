@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer;
 using MegaCrit.Sts2.Core.Platform;
@@ -31,14 +30,6 @@ public class TorchheadMonsterModel : CustomMonsterModel
 
     public override bool IsHealthBarVisible => Creature.IsAlive;
 
-    private static bool _isPink = false; 
-    public override LocString Title => ResolveTitle();
-
-    private LocString ResolveTitle()
-    {
-        return _isPink ? L10NMonsterLookup("COLLECTOR-TORCHHEAD_MONSTER_MODEL_PINK.name") : L10NMonsterLookup(Id.Entry + ".name");
-    }
-    
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
         // Torchhead doesn't act through this state machine - the real attack fires from
@@ -69,7 +60,6 @@ public class TorchheadMonsterModel : CustomMonsterModel
     
     private static readonly HashSet<string> PinkSkinPlayerHashes =
     [
-        "A42F0405BD628AD46173867B5A5589F022D04D05B1EDBEA7785629A954C22168",
         "054DAB2BA8A437F0752FEB3823FE68D0C14FCDD1681E5E8006EF88AFFEBF7C5C"
     ];
 
@@ -81,13 +71,6 @@ public class TorchheadMonsterModel : CustomMonsterModel
         var skinName = GetOwnerPlatformId() is { } id && PinkSkinPlayerHashes.Contains(HashPlayerId(id))
             ? "pink"
             : "normal";
-        
-        //Now with name!
-        if (skinName is "pink")
-        {
-            _isPink = true;
-        }
-        
         skeleton.SetSkin(skeleton.GetData().FindSkin(skinName));
         skeleton.SetSlotsToSetupPose();
     }

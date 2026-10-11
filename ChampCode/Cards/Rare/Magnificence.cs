@@ -18,7 +18,8 @@ public class Magnificence : ChampCardModel
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-
+    protected override bool IsBetaArt => true;
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<MagnificencePower>(ctx, this);
