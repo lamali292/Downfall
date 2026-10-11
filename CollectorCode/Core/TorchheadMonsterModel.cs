@@ -60,7 +60,6 @@ public class TorchheadMonsterModel : CustomMonsterModel
     
     private static readonly HashSet<string> PinkSkinPlayerHashes =
     [
-        "A42F0405BD628AD46173867B5A5589F022D04D05B1EDBEA7785629A954C22168",
         "054DAB2BA8A437F0752FEB3823FE68D0C14FCDD1681E5E8006EF88AFFEBF7C5C"
     ];
 
@@ -71,7 +70,7 @@ public class TorchheadMonsterModel : CustomMonsterModel
     {
         var skinName = GetOwnerPlatformId() is { } id && PinkSkinPlayerHashes.Contains(HashPlayerId(id))
             ? "pink"
-            : "standard";
+            : "normal";
         skeleton.SetSkin(skeleton.GetData().FindSkin(skinName));
         skeleton.SetSlotsToSetupPose();
     }
