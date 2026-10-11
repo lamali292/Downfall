@@ -3,11 +3,15 @@ using Downfall.DownfallCode.Tests;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Cards.Common;
 using Hexaghost.HexaghostCode.Cards.Rare;
+using Hexaghost.HexaghostCode.Cards.Uncommon;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Enchantments;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 
 namespace Hexaghost.HexaghostCode.Tests;
@@ -101,6 +105,43 @@ public class HexaghostTests
 
         Assert.AreEqual(card.DynamicVars.Damage.BaseValue + 3, (decimal)(hpBefore - enemy.CurrentHp),
             "Afterlife damage on exhaust should include Sharp's +3.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task SizzleExhaustsOnlyTheNextCardPlayed(TestContext ctx)
+    {
+        var sizzle = await ctx.AddCardToHand<Sizzle>();
+        var next = await ctx.AddCardToHand<AdvancingGuard>();
+        var after = await ctx.AddCardToHand<AdvancingGuard>();
+
+        await ctx.PlayCard(sizzle);
+        Assert.IsTrue(sizzle.Pile?.Type != PileType.Exhaust, "Sizzle itself must not be exhausted by its own power.");
+
+        await ctx.PlayCard(next);
+        Assert.IsTrue(next.Pile?.Type == PileType.Exhaust, "The next card played after Sizzle should be exhausted.");
+        Assert.IsTrue(ctx.Player.Creature.GetPower<SizzlePower>() == null, "Sizzle power should be used up.");
+
+        await ctx.PlayCard(after);
+        Assert.IsTrue(after.Pile?.Type != PileType.Exhaust, "Only one card should be exhausted.");
+    }
+
+    // Regression: a replayed Sizzle used to treat its own second play as "the next card" and exhaust itself.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task ReplayedSizzleDoesNotExhaustItself(TestContext ctx)
+    {
+        var creature = ctx.Player.Creature;
+        await PowerCmd.Apply<DuplicationPower>(new BlockingPlayerChoiceContext(), creature, 1, creature, null);
+        var sizzle = await ctx.AddCardToHand<Sizzle>();
+        var next = await ctx.AddCardToHand<AdvancingGuard>();
+
+        await ctx.PlayCard(sizzle);
+
+        Assert.IsTrue(sizzle.Pile?.Type != PileType.Exhaust, "A replayed Sizzle must not exhaust itself.");
+        Assert.AreEqual(2m, (decimal)creature.GetPower<SizzlePower>()!.Amount,
+            "Both plays of Sizzle should stack the power.");
+
+        await ctx.PlayCard(next);
+        Assert.IsTrue(next.Pile?.Type == PileType.Exhaust, "The next card should still be exhausted after a replayed Sizzle.");
     }
 
     // Cauterize's hit count comes from the captured X value and the Soul Burn it applies equals the damage dealt.
