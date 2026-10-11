@@ -4,6 +4,7 @@ using Hexaghost.HexaghostCode.Ghostflames;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -83,7 +84,18 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         var playCount = await card.GeneratePlayCount(card.CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
-            await afterlifeEffect.AfterlifeEffect(ctx, null, true, causedByEthereal);
+            var cardPlay = new CardPlay
+            {
+                Card = card,
+                Player = card.Owner,
+                Target = null,
+                ResultPile = PileType.Exhaust,
+                Resources = new ResourceInfo { EnergySpent = 0, EnergyValue = 0, StarsSpent = 0, StarValue = 0 },
+                IsAutoPlay = true,
+                PlayIndex = i,
+                PlayCount = playCount
+            };
+            await afterlifeEffect.AfterlifeEffect(ctx, cardPlay, true, causedByEthereal);
         }
     }
 }
