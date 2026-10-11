@@ -93,7 +93,7 @@
   "COLLECTOR-OAKBRIM_KINDLING.title": "Oakbrim Kindling",
   "COLLECTOR-OMEN.description": "Whenever you play a Colorless card, gain {OmenPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-OMEN.title": "Omen",
-  "COLLECTOR-PYREWORK.description": "Whenever [gold]Pyre[/gold] a status, [gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}{IfUpgraded:show: twice|}.",
+  "COLLECTOR-PYREWORK.description": "Whenever you [gold]Pyre[/gold] a status card, [gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}{IfUpgraded:show: twice|}.",
   "COLLECTOR-PYREWORK.title": "Pyrework",
   "COLLECTOR-RECEIVE_TRIBUTE.description": "Choose 1 of {Cards:diff()} random [gold]Collectable[/gold] cards to add into your [gold]Hand[/gold].\n[gold]Enchant[/gold] it with [purple]Steady[/purple]{IfUpgraded:show: and [gold]Upgrade[/gold] it|}.",
   "COLLECTOR-RECEIVE_TRIBUTE.title": "Receive Tribute",
