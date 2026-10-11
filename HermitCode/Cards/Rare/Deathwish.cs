@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,6 +16,9 @@ public class Deathwish : HermitCardModel
         WithTip(HermitKeywords.DeadOn);
     }
 
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
