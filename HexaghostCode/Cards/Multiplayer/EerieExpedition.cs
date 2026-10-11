@@ -28,7 +28,7 @@ public class EerieExpedition : HexaghostCardModel
             var card = HexaghostCmd.GetAfterlifeCards(player, 1).FirstOrDefault();
             if (card == null) continue;
             card.SetToFreeThisTurn();
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
         }
     }
 }

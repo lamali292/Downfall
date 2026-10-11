@@ -51,6 +51,11 @@
           "name": "selectionScreenPrompt",
           "file": "powers.json",
           "optional": true
+        },
+        {
+          "name": "remoteDescription",
+          "file": "powers.json",
+          "optional": true
         }
       ]
     },
@@ -215,26 +220,6 @@
       ]
     }
   ],
-  "pinnedColors": [
-    {
-      "tag": "gold"
-    },
-    {
-      "tag": "blue"
-    },
-    {
-      "tag": "afterlife"
-    },
-    {
-      "hex": "#00B888",
-      "label": "#00B888"
-    }
-  ],
-  "customTags": [
-    {
-      "tag": "afterlife",
-      "label": "Afterlife",
-      "color": "#E087A4"
-    }
-  ]
+  "pinnedColors": [],
+  "customTags": []
 }

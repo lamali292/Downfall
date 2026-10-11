@@ -13,9 +13,11 @@ if (args.Contains("--sync-cards"))
 {
     const string sheetId = "1adgDbqi4A7oHqtAb2klUFrUsl4-TQR_AIWqDdDQUQ1g";
     var localProps = Path.Join(scriptDir, "..", "local.props");
-    var steamPath = MyRegex().Match(File.ReadAllText(localProps)).Groups[1].Value.Trim();
+    var propsText = File.ReadAllText(localProps);
+    var branch = ReadProp(propsText, "Sts2Branch") is { Length: > 0 } b ? b : "beta";
+    var gamePath = ReadProp(propsText, branch == "public" ? "Sts2PublicPath" : "Sts2BetaPath");
     new SyncSheets(scriptDir, sheetId).Run();
-    var cardsJson = Path.Join(steamPath, "common", "Slay the Spire 2", "export", "cards.json");
+    var cardsJson = Path.Join(gamePath, "export", "cards.json");
     new SyncCardSheets(scriptDir).Run(cardsJson, sheetId);
 }
 else
@@ -29,8 +31,5 @@ else
 }
 
 
-internal partial class Program
-{
-    [GeneratedRegex(@"<SteamLibraryPath>(.*?)</SteamLibraryPath>")]
-    private static partial Regex MyRegex();
-}
+static string ReadProp(string propsText, string name) =>
+    Regex.Match(propsText, $"<{name}>(.*?)</{name}>").Groups[1].Value.Trim();

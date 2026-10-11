@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,8 +16,10 @@ public class Unyielding : HermitCardModel
         WithTip<VulnerablePower>();
         WithPower<UnyieldingPower>(1, false);
     }
-
-
+    
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

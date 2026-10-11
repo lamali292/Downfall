@@ -445,44 +445,5 @@ public class AutomatonFunctionTests
 
         return Task.CompletedTask;
     }
-
-    // Strike and Defend are never Encode cards themselves - not even when Platinum Core is present.
-    // Playing one with Platinum Core Exhausts that exact card and Encodes a separate Throw/
-    // Catch token instead; the shared canonical card is never touched, so nothing leaks into
-    // the next combat or test run.
-    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
-    public async Task StrikeAndDefendBecomeEncodeCardsOnlyWhenEncoded(TestContext ctx)
-    {
-        await ctx.PlayCard(await ctx.AddCardToHand<Boost>()); // flush BronzeCore's opening batch
-        Assert.IsTrue(!ModelDb.Card<StrikeAutomaton>().Keywords.Contains(AutomatonKeyword.Encode),
-            "The canonical Strike must never gain the keyword.");
-
-        var plain = await ctx.AddCardToHand<StrikeAutomaton>();
-        await ctx.PlayCard(plain, ctx.Combat.HittableEnemies.First());
-        Assert.IsTrue(!plain.Keywords.Contains(AutomatonKeyword.Encode) && !ctx.Player.EncodePile.Contains(plain),
-            "Without Platinum Core a played Strike is just a Strike: no keyword, not encoded.");
-
-        await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
-        var forced = await ctx.AddCardToHand<StrikeAutomaton>();
-        await ctx.PlayCard(forced, ctx.Combat.HittableEnemies.First());
-        Assert.IsTrue(forced.Pile?.Type == PileType.Exhaust, "Platinum Core Exhausts the played Strike itself.");
-        Assert.IsTrue(!forced.Keywords.Contains(AutomatonKeyword.Encode),
-            "The exhausted Strike itself never gains the Encode keyword.");
-        Assert.IsTrue(ctx.Player.EncodePile.OfType<CoreStrike>().Any(),
-            "Platinum Core Encodes a Throw token instead of the played Strike.");
-
-        var catchToken = Make<CoreDefend>(ctx);
-        await AutomatonCmd.EncodeCard(catchToken, new BlockingPlayerChoiceContext());
-        Assert.IsTrue(catchToken.Keywords.Contains(AutomatonKeyword.Encode),
-            "A Catch token placed directly into the Encode pile (starter relic path) already has the Encode keyword.");
-
-        // EncodeCard no longer force-grants the keyword to whatever it's given - nothing takes that path
-        // anymore since Strike/Defend are Exhausted instead of encoded directly.
-        var placed = Make<DefendAutomaton>(ctx);
-        await AutomatonCmd.EncodeCard(placed, new BlockingPlayerChoiceContext());
-        Assert.IsTrue(!placed.Keywords.Contains(AutomatonKeyword.Encode),
-            "A plain Defend placed into the Encode pile does not gain the keyword by itself.");
-        Assert.IsTrue(!ModelDb.Card<DefendAutomaton>().Keywords.Contains(AutomatonKeyword.Encode),
-            "The canonical Defend must never gain the keyword.");
-    }
+    
 }

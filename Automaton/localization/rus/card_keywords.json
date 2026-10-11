@@ -1,0 +1,6 @@
+{
+    "AUTOMATON-ENCODE.title": "Программирование",
+    "AUTOMATON-ENCODE.description": "Помещает эту карту в [gold]Сферу кода[/gold]. Когда в коде [blue]3[/blue] карты, их эффекты объединяются в [gold]Функцию[/gold] стоимостью [blue]1[/blue].",
+    "AUTOMATON-COMPILE.title": "Компиляция",
+    "AUTOMATON-COMPILE.description": "Этот эффект срабатывает, когда карты объединяются в [gold]Функцию[/gold]."
+}

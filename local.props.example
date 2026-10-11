@@ -3,8 +3,12 @@
     <PropertyGroup>
         <!-- Path to your Godot executable -->
         <GodotPath>C:\...\MegaDot\MegaDot_v4.5.1_mono.exe</GodotPath>
-        <!-- Path to your Steam library's steamapps folder -->
-        <SteamLibraryPath>C:\Program Files (x86)\Steam\steamapps</SteamLibraryPath>
+        <!-- Which game install to build against / deploy to / test with: beta or public.
+             Switch here, or per build with -p:Sts2Branch=public. -->
+        <Sts2Branch>beta</Sts2Branch>
+        <!-- Full path to each "Slay the Spire 2" game folder (only the selected branch's path is needed) -->
+        <Sts2BetaPath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</Sts2BetaPath>
+        <Sts2PublicPath>C:\...\Slay the Spire 2</Sts2PublicPath>
         <!-- Path to your GDRE extracted Slay the Spire 2 assets folder -->
         <AssetSourcePath>C:\...\Slay the Spire 2</AssetSourcePath>
 

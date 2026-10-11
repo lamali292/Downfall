@@ -64,7 +64,6 @@
     "AWAKENED-DEMON_GLYPH.title": "Glyphe Démoniaque",
     "AWAKENED-DESPERATE_PRAYER.description": "Ajoutez {Cards:plural:une [gold]Cérémonie[/gold]|{Cards:diff()} [gold]Cérémonies[/gold]} dans votre [gold]Main[/gold].",
     "AWAKENED-DESPERATE_PRAYER.title": "Prière Désespérée",
-    "AWAKENED-ECLIPSE_EMBRACE.description": "Lorsque vous [gold]Épuisez[/gold] un [gold]Néant[/gold], gagnez {energyPrefix:energyIcons(1)} et piochez une carte au tour suivant.",
     "AWAKENED-ECLIPSE_EMBRACE.title": "Étreinte d'Éclipse",
     "AWAKENED-ENSORCELATE.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nLe prochain Pouvoir que vous jouez coûte {energyPrefix:energyIcons(0)}.",
     "AWAKENED-ENSORCELATE.title": "Ensorcellement",
