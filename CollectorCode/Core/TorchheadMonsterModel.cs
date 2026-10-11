@@ -31,16 +31,13 @@ public class TorchheadMonsterModel : CustomMonsterModel
 
     public override bool IsHealthBarVisible => Creature.IsAlive;
     
-    private static bool _isPink = false; 
-    private LocString ResolveTitle()
-    {
-        return _isPink ? L10NMonsterLookup("COLLECTOR-TORCHHEAD_MONSTER_MODEL_PINK.name") : L10NMonsterLookup(Id.Entry + ".name");
-    }
+    private static bool _isPink;
+    public override LocString Title => _isPink ? 
+        L10NMonsterLookup("COLLECTOR-TORCHHEAD_MONSTER_MODEL_PINK.name") : 
+        L10NMonsterLookup(Id.Entry + ".name");
     
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
-        // Torchhead doesn't act through this state machine - the real attack fires from
-        // TorchheadPower.AfterSideTurnEnd. This state only exists to carry an intent to display.
         var initialState = new MoveState("NOTHING_MOVE", _ => Task.CompletedTask, new TorchheadAttackIntent());
         initialState.FollowUpState = initialState;
         return new MonsterMoveStateMachine([initialState], initialState);
@@ -75,16 +72,8 @@ public class TorchheadMonsterModel : CustomMonsterModel
 
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
-        var skinName = GetOwnerPlatformId() is { } id && PinkSkinPlayerHashes.Contains(HashPlayerId(id))
-            ? "pink"
-            : "normal";
-        
-        //Now with name!
-        if (skinName is "pink")
-        {
-            _isPink = true;
-        }
-        
+        _isPink = GetOwnerPlatformId() is { } id && PinkSkinPlayerHashes.Contains(HashPlayerId(id));
+        var skinName = _isPink ? "pink" : "blue";
         skeleton.SetSkin(skeleton.GetData().FindSkin(skinName));
         skeleton.SetSlotsToSetupPose();
     }
