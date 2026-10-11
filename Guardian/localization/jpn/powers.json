@@ -56,7 +56,7 @@
     "GUARDIAN-BRILLIANT_SCALES_POWER.title": "輝く鱗",
     "GUARDIAN-BRILLIANT_SCALES_POWER.description": "ターン開始時、これに埋め込まれた[gold]ジェム[/gold]の効果を発動する。",
     "GUARDIAN-BRILLIANT_SCALES_POWER.smartDescription": "ターン開始時、\n{effects}",
-    "GUARDIAN-BRONZE_BRAMBLES_POWER.title": "銅のイバラ",
+    "GUARDIAN-BRONZE_BRAMBLES_POWER.title": "青銅のイバラ",
     "GUARDIAN-BRONZE_BRAMBLES_POWER.description": "デバフを受けるたび、[gold]トゲ[/gold]を得る。",
     "GUARDIAN-BRONZE_BRAMBLES_POWER.smartDescription": "デバフを受けるたび、[gold]トゲ[/gold][blue]{Amount}[/blue]を得る。",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.title": "マキシマムオーバードライブ",

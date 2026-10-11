@@ -169,8 +169,6 @@
     "HERMIT-HAIR_TRIGGER.description": "Immer wenn du einen [gold]Volltreffer[/gold]-Effekt auslöst, spiele einen [gold]Schlag[/gold] gegen einen zufälligen Gegner aus.",
     "HERMIT-BURDENED.title": "Belastet",
     "HERMIT-BURDENED.description": "Erhalte zu Beginn deines Zuges {BurdenedPower:diff()} [gold]Elan[/gold] und einen [red]Verfall[/red] auf deine [gold]Hand[/gold].",
-    "HERMIT-FIRE_AWAY.title": "Feuer frei",
-    "HERMIT-FIRE_AWAY.description": "Füge {Repeat:diff()} Mal {Damage:diff()} Schaden zu.\nKostet {Energy:energyIcons()} weniger für jeden in diesem Kampf ausgelösten [gold]Volltreffer[/gold]-Effekt.",
     "HERMIT-LAST_CHANCE.title": "Letzte Chance",
     "HERMIT-LAST_CHANCE.description": "Füge {Damage:diff()} Schaden zu.\nFalls du einen Debuff hast, ziehe {Cards:diff()} Karten.",
     "HERMIT-TORN_PAGE.title": "Zerrissene Seite",

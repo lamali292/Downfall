@@ -24,6 +24,7 @@
     "AUTOMATON-BUG_BARRAGE.title": "Преграда от багов",
     "AUTOMATON-BURN_OUT.description": "Когда вы кладете Статус или [red]Проклятие[/red] в [gold]Запас[/gold], наносит {BurnOutPower:diff()} урона ВСЕМ врагам и [gold]сжигает[/gold] его.",
     "AUTOMATON-BURN_OUT.title": "Выжечь",
+    "AUTOMATON-CLASS_DEFAULT.description": "Повышает даваемую [gold]защиту[/gold] и наносимый урон [gold]Функций[/gold] на {ClassDefaultPower:diff()}.",
     "AUTOMATON-CLASS_DEFAULT.title": "Базовый класс",
     "AUTOMATON-CLEAN_CODE.description": "Вы можете положить {CleanCodePower:plural:1 карту|до {} карт} в [gold]Запас[/gold] в конце хода.",
     "AUTOMATON-CLEAN_CODE.title": "Чистый код",
@@ -93,6 +94,7 @@
     "AUTOMATON-PHILOSOPHIZE.title": "Философствовать",
     "AUTOMATON-PIERCING_SHOT.description": "Наносит {Damage:diff()} урона ВСЕМ врагам.\n[gold]Улучшает[/gold] {Cards:diff()} {Cards:plural(ru):карту|карты|карт} из [gold]Запаса[/gold].",
     "AUTOMATON-PIERCING_SHOT.title": "Пронзающая пуля",
+    "AUTOMATON-RECURSIVE_STRIKE.description": "Наносит {Damage:diff()} урона дважды.\nВы [gold]Программируете[/gold] {Cards:plural(ru):[gold]«Удар ядром»[/gold]|{Cards:diff()} [gold]«Удара ядром»[/gold]|{Cards:diff()} [gold]«Ударов ядром»[/gold]}.",
     "AUTOMATON-RECURSIVE_STRIKE.title": "Рекурсивный удар",
     "AUTOMATON-REFACTOR.description": "Вы [gold]Предсказываете[/gold] {Scry:diff()} {Scry:plural(ru):карту|карты|карт}.\n[gold]Сжигает[/gold] все сброшенные Статусы.\nДает {Block:diff()} [gold]защиты[/gold] за каждую [gold]сожженную[/gold] карту.",
     "AUTOMATON-REFACTOR.title": "Анализ",
@@ -100,6 +102,7 @@
     "AUTOMATON-REPAIR.title": "Саморемонт",
     "AUTOMATON-REPLICATE.description": "Добавляет свою копию в [gold]стопку сброса[/gold].",
     "AUTOMATON-REPLICATE.title": "Копировать",
+    "AUTOMATON-REPULSOR.description": "Дает {RepulsePower:diff()} [gold]защиты[/gold], когда вы добираете Статус.",
     "AUTOMATON-REPULSOR.title": "Репульсор",
     "AUTOMATON-RETURN.description": "Вы кладете карту из [gold]стопки сброса[/gold] на верх [gold]стопки добора[/gold].\nДаст {Energy:energyIcons()} в следующем ходу.",
     "AUTOMATON-RETURN.title": "Восстановить",
@@ -169,9 +172,13 @@
     "AUTOMATON-UPTICK.title": "Всплеск",
     "AUTOMATON-UPTICK.description": "ВСЕ игроки получат {Energy:energyIcons()} и доберут {DrawCardsNextTurnPower:diff()} {DrawCardsNextTurnPower:plural(ru):карту|карты|карт} в начале следующего хода.",
     "AUTOMATON-HOOK.title": "Прицепить",
+    "AUTOMATON-HOOK.description": "Дает {Block:diff()} [gold]защиты[/gold].\nВы кладете карту из [gold]руки[/gold], [gold]стопки добора[/gold] или [gold]стопки сброса[/gold] в [gold]Запас[/gold].",
     "AUTOMATON-EXPORT.title": "Экспорт",
     "AUTOMATON-EXPORT.description": "Дает {Block:diff()} [gold]защиты[/gold].\nДает {Energy:energyIcons()} другому игроку.",
     "AUTOMATON-SHARE.title": "Публикация",
     "AUTOMATON-SHARE.description": "Когда вы получаете [gold]защиту[/gold] от [gold]Функции[/gold], дает {SharePower:diff()} [gold]защиты[/gold] другому игроку с наименьшей [gold]защитой[/gold].",
-    "AUTOMATON-BLUESCREEN.title": "Синий экран"
+    "AUTOMATON-BLUESCREEN.title": "Синий экран",
+    "AUTOMATON-BLUESCREEN.description": "Дает {Block:diff()} [gold]защиты[/gold] другому игроку.\nДобавляет [gold]«Баг»[/gold] на верх [gold]стопки добора[/gold].",
+    "AUTOMATON-CORE_STRIKE.title": "Удар ядром",
+    "AUTOMATON-CORE_DEFEND.title": "Оборона ядра"
 }

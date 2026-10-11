@@ -169,8 +169,6 @@
     "HERMIT-HAIR_TRIGGER.description": "[gold]命中[/gold]効果を発動するたび、[gold]ストライク[/gold]をランダムな敵にプレイする。",
     "HERMIT-BURDENED.title": "重荷",
     "HERMIT-BURDENED.description": "ターン開始時、[gold]活力[/gold]{BurdenedPower:diff()}を得て、[red]腐敗[/red]を1枚[gold]手札[/gold]に加える。",
-    "HERMIT-FIRE_AWAY.title": "撃ちまくれ",
-    "HERMIT-FIRE_AWAY.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\nこの戦闘中に発動した[gold]命中[/gold]効果1つにつき、コストが{Energy:energyIcons()}減少する。",
     "HERMIT-LAST_CHANCE.title": "ラストチャンス",
     "HERMIT-LAST_CHANCE.description": "{Damage:diff()}ダメージを与える。\nデバフを受けている場合、カードを{Cards:diff()}枚引く。",
     "HERMIT-TORN_PAGE.title": "破れたページ",

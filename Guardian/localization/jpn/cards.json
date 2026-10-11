@@ -155,7 +155,7 @@
     "GUARDIAN-ROCK_SLIDE.description": "{Damage:diff()}ダメージを与える。{InCombat:cond:|\n[gold]コモン[/gold]、[gold]アンコモン[/gold]、[gold]レア[/gold]の[gold]ジェム[/gold]がすでに埋め込まれている。}",
     "GUARDIAN-HIGH_FREQUENCY.title": "高周波",
     "GUARDIAN-HIGH_FREQUENCY.description": "カードを1枚[gold]廃棄[/gold]する。\n[gold]停滞[/gold]スロットをそのコピーで満たす。",
-    "GUARDIAN-BRONZE_BRAMBLES.title": "銅のイバラ",
+    "GUARDIAN-BRONZE_BRAMBLES.title": "青銅のイバラ",
     "GUARDIAN-BRONZE_BRAMBLES.description": "デバフを受けるたび、[gold]トゲ[/gold]{BronzeBramblesPower:diff()}を得る。",
     "GUARDIAN-MAXIMUM_OVERDRIVE.title": "マキシマムオーバードライブ",
     "GUARDIAN-MAXIMUM_OVERDRIVE.description": "[gold]停滞[/gold]中のカードのカウントが減少するたび、ターン終了時まで[gold]筋力[/gold]{MaximumOverdrivePower:diff()}を得る。",
