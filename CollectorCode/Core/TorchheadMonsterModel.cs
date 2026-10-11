@@ -79,8 +79,8 @@ public class TorchheadMonsterModel : CustomMonsterModel
     public override void SetupSkins(MegaSprite spine, MegaSkeleton skeleton)
     {
         var skinName = GetOwnerPlatformId() is { } id && PinkSkinPlayerHashes.Contains(HashPlayerId(id))
-            ? "normal"
-            : "pink";
+            ? "pink"
+            : "normal";
         
         //Now with name!
         if (skinName is "pink")
