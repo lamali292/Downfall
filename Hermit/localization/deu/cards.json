@@ -175,7 +175,6 @@
     "HERMIT-TORN_PAGE.description": "Erhalte {Block:diff()} [gold]Block[/gold].\n[purple]Belege[/purple] ALLE [red]Flüche[/red] auf deiner [gold]Hand[/gold] mit [purple]Nekromantisch[/purple].",
     "HERMIT-UNYIELDING.title": "Unnachgiebig",
     "HERMIT-UNYIELDING.description": "Erhalte {Block:diff()} [gold]Block[/gold].\nFalls du [gold]Verwundbar[/gold] bist, nimm in diesem Zug 50% weniger Schaden.",
-    "HERMIT-DEATHWISH.title": "Todeswunsch",
     "HERMIT-DEATHWISH.description": "Karten neben [red]Flüchen[/red] gelten als [gold]Volltreffer[/gold] und fügen {DeathwishPower:diff()} Schaden mehr zu.",
     "HERMIT-RUBBER_BULLET.title": "Gummigeschoss",
     "HERMIT-RUBBER_BULLET.description": "Füge {Damage:diff()} Schaden zu.\n[gold]Volltreffer[/gold]: Erhöhe den Schaden dieser Karte für diesen Kampf um {Increase:diff()} und lege sie auf die [gold]Hand[/gold] eines anderen zufälligen Spielers.",

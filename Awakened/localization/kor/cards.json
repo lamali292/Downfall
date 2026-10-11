@@ -53,7 +53,6 @@
     "AWAKENED-DEMON_GLYPH.description": "1의 [gold]힘[/gold]과 [gold]민첩[/gold]을 얻습니다.\n[gold]각성[/gold]할 때, {DemonGlyphPower:diff()}씩 더 얻습니다.",
     "AWAKENED-DEMON_GLYPH.title": "악마의 문양",
     "AWAKENED-DESPERATE_PRAYER.title": "절박한 기도",
-    "AWAKENED-ECLIPSE_EMBRACE.description": "[gold]공허[/gold]를 [gold]소멸[/gold]시킬 때마다 {energyPrefix:energyIcons(1)}를 얻고 다음 턴에 카드를 1장 뽑습니다.",
     "AWAKENED-ECLIPSE_EMBRACE.title": "일식의 포옹",
     "AWAKENED-ENSORCELATE.title": "매혹",
     "AWAKENED-ENVISION.description": "{Block:diff()}의 [gold]방어도[/gold]를 얻습니다.\n[gold]구현[/gold]하고 해당 주문을 [gold]뽑을 카드 더미[/gold] 맨 위에 놓습니다.",

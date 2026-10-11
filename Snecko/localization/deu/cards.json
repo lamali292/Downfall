@@ -174,7 +174,6 @@
     "SNECKO-MIMICRY.title": "Mimikry",
     "SNECKO-MIMICRY.description": "Immer wenn du eine [gold]Fremde[/gold] Karte spielst, erhalte für diesen Zug {MimicryPower:diff()} [gold]Stärke[/gold].",
     "SNECKO-WHIPLASH.title": "Peitschenhieb",
-    "SNECKO-WHIPLASH.description": "Füge ALLEN Gegnern {Damage:diff()} Schaden zu.\n[gold]Überschuss[/gold]: Wende auf ALLE Gegner {PowerVar:diff()} [gold]Schwach[/gold] und [gold]Verwundbar[/gold] an, erhöht um die Kosten dieser Karte.",
     "SNECKO-DICE_CASE.title": "Würfelbox",
     "SNECKO-DICE_CASE.description": "Wähle einen Verbündeten.\nEr erhält zu Beginn deines Zuges einen [gold]Seelenwürfel[/gold] auf seine [gold]Hand[/gold].",
     "SNECKO-FLURRY.title": "Tumult",

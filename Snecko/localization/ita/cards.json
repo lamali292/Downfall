@@ -155,7 +155,6 @@
     "SNECKO-SSSHARING.title": "Condivisione",
     "SNECKO-MIMICRY.title": "Mimetismo",
     "SNECKO-WHIPLASH.title": "Colpo di Frusta",
-    "SNECKO-WHIPLASH.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici.\n[gold]Straborda[/gold]: Applica{PowerVar:diff()}[gold]Debolezza[/gold] e [gold]Vulnerabilità[/gold] a TUTTI i nemici, incrementa il valore dal costo di questa carta.",
     "SNECKO-DICE_CASE.title": "Porta Dadi",
     "SNECKO-FLURRY.title": "Raffica",
     "SNECKO-FLURRY.description": "Infliggi {Damage:diff()} danno.\n[gold]Migliora[/gold] {Cards:diff()} carte casuali nella tua [gold]Pila di Pesca[/gold].",
