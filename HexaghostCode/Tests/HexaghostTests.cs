@@ -2,12 +2,15 @@
 using Downfall.DownfallCode.Tests;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Cards.Common;
+using Hexaghost.HexaghostCode.Cards.Multiplayer;
+using Hexaghost.HexaghostCode.Cards.Basic;
 using Hexaghost.HexaghostCode.Cards.Rare;
 using Hexaghost.HexaghostCode.Cards.Uncommon;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Enchantments;
@@ -142,6 +145,43 @@ public class HexaghostTests
 
         await ctx.PlayCard(next);
         Assert.IsTrue(next.Pile?.Type == PileType.Exhaust, "The next card should still be exhausted after a replayed Sizzle.");
+    }
+
+    // Card text says "whenever another player attacks this enemy": the applier's own attacks must not
+    // trigger it, a teammate's must, and Soul Burn is credited to the attacker.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost), playerCount: 2)]
+    public async Task BroilingFlamesTriggersOnlyOnOtherPlayersAttacks(TestContext ctx)
+    {
+        var teammate = ctx.Players[1];
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<BroilingFlames>(), enemy);
+        var power = enemy.GetPower<BroilingFlamesPower>();
+        Assert.IsTrue(power != null, "Broiling Flames should be applied to the enemy.");
+        Assert.IsTrue(power!.TypeForCurrentAmount == PowerType.Debuff, "Broiling Flames sits on an enemy and should be a debuff.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeHexaghost>(), enemy);
+        Assert.IsTrue(enemy.GetPower<SoulBurnPower>() == null, "The applier's own attack must not trigger Broiling Flames.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeHexaghost>(teammate), enemy);
+        Assert.AreEqual(power.Amount, enemy.GetPower<SoulBurnPower>()?.Amount ?? 0, "A teammate's attack should apply Soul Burn once.");
+    }
+
+    // Each player's Broiling Flames is its own instance: with both on the enemy, each player's attack
+    // triggers only the OTHER player's copy.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost), playerCount: 2)]
+    public async Task BroilingFlamesIsInstancedPerApplier(TestContext ctx)
+    {
+        var teammate = ctx.Players[1];
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<BroilingFlames>(), enemy);
+        await ctx.PlayCard(await ctx.AddCardToHand<BroilingFlames>(teammate), enemy);
+        var copies = enemy.Powers.OfType<BroilingFlamesPower>().ToList();
+        Assert.AreEqual(2, copies.Count, "Each player's Broiling Flames should be a separate instance.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeHexaghost>(), enemy);
+        var amount = copies[0].Amount;
+        Assert.AreEqual(amount, enemy.GetPower<SoulBurnPower>()?.Amount ?? 0,
+            "Player 1's attack should trigger only player 2's copy.");
     }
 
     // Cauterize's hit count comes from the captured X value and the Soul Burn it applies equals the damage dealt.
