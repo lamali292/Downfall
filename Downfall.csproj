@@ -53,6 +53,15 @@
         <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(ModsPath)BaseLib/"/>
         <Copy SourceFiles="@(BaseLibFiles)" DestinationFolder="$(GodotModsPath)/BaseLib/" Condition="'$(CopyToGodotMods)' == 'true'"/>
     </Target>
+    <!-- Keep BaseLib in sync across both configured game branches whenever the mod is published. -->
+    <Target Name="MirrorBaseLibDependencies" AfterTargets="GodotPublish" Condition="'$(Configuration)' != 'Debug' and '$(UseLocalBaseLib)' != 'true'">
+        <ItemGroup>
+            <_BaseLibMirrorFile Include="$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/lib/**/BaseLib.dll;$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.pck;$(NuGetPackageRoot)alchyr.sts2.baselib/$(BaseLibVersion)/Content/BaseLib.json"/>
+            <_BaseLibMirrorDir Include="$(Sts2BetaPath)/mods/BaseLib/" Condition="'$(Sts2BetaPath)' != '' and '$(Sts2BetaPath)' != '$(Sts2Path)' and Exists('$(Sts2BetaPath)')"/>
+            <_BaseLibMirrorDir Include="$(Sts2PublicPath)/mods/BaseLib/" Condition="'$(Sts2PublicPath)' != '' and '$(Sts2PublicPath)' != '$(Sts2Path)' and Exists('$(Sts2PublicPath)')"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(_BaseLibMirrorFile)" DestinationFolder="%(_BaseLibMirrorDir.Identity)" Condition="'@(_BaseLibMirrorDir)' != ''"/>
+    </Target>
     <Import Project="addons/sentry/dotnet/Sentry.Godot.props" Condition="Exists('addons/sentry/dotnet/Sentry.Godot.props')"/>
     
     <ItemGroup>

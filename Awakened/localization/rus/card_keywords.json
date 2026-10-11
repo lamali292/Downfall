@@ -1,3 +1,5 @@
 {
+    "AWAKENED-CHANT.title": "Зов",
+    "AWAKENED-CHANT.description": "Бонусный эффект этой карты становится активным до конца боя, если последняя разыгранная в бою карта - Талант.",
     "AWAKENED-CHANT.card_text": "{Chanted:cond:[jitter][blue]Хор[/blue][/jitter]|[gold]Зов[/gold]}"
 }

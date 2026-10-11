@@ -17,6 +17,9 @@
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.title": "Неуловимость",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.description": "[gold]Укрепление[/gold] [blue]1[/blue] при переходе в [gold]Оборонительный режим[/gold].",
     "GUARDIAN-EVASIVE_PROTOCOL_POWER.smartDescription": "[gold]Укрепление[/gold] [blue]{Amount}[/blue] при переходе в [gold]Оборонительный режим[/gold].",
+    "GUARDIAN-EXHAUST_STATUSES_POWER.title": "Репульсор",
+    "GUARDIAN-EXHAUST_STATUSES_POWER.description": "Когда вы добираете карту Статуса или [red]Проклятия[/red] первый раз за ход, она [gold]сжигается[/gold] и вы добираете [blue]1[/blue] карту.",
+    "GUARDIAN-EXHAUST_STATUSES_POWER.smartDescription": "Когда вы добираете {Amount:plural(ru):первую карту|первые [blue]{}[/blue] карты|первые [blue]{}[/blue] карт} Статуса или [red]Проклятия[/red] за ход, {Amount:plural:она [gold]сжигается[/gold]|они [gold]сжигаются[/gold]} и вы добираете [blue]1[/blue] карту.",
     "GUARDIAN-FLOATING_ORBS_POWER.title": "Парящие сферы",
     "GUARDIAN-FLOATING_ORBS_POWER.description": "Наносит урон случайному врагу, когда вы разыгрываете карты стоимостью 0{energyPrefix:energyIcons(1)}.",
     "GUARDIAN-FLOATING_ORBS_POWER.smartDescription": "Наносит [blue]{Amount}[/blue] урона случайному врагу, когда вы разыгрываете карты стоимостью 0{energyPrefix:energyIcons(1)}.",
@@ -64,5 +67,11 @@
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold] и [blue]{ThornsPower}[/blue] [gold]{ThornsPower:plural(ru):шип|шипа|шипов}[/gold] другому игроку с наименьшей [gold]защитой[/gold], когда вы переходите в [gold]Оборонительный режим[/gold].",
     "GUARDIAN-BASTION_POWER.title": "Оплот",
     "GUARDIAN-BASTION_POWER.description": "Дает другим игрокам [gold]защиту[/gold], когда вы получаете [gold]Укрепление[/gold].",
-    "GUARDIAN-BASTION_POWER.smartDescription": "Дает другим игрокам [blue]{Amount}[/blue] [gold]защиты[/gold], когда вы получаете [gold]Укрепление[/gold]."
+    "GUARDIAN-BASTION_POWER.smartDescription": "Дает другим игрокам [blue]{Amount}[/blue] [gold]защиты[/gold], когда вы получаете [gold]Укрепление[/gold].",
+    "GUARDIAN-STUNNED_POWER.title": "Оглушен",
+    "GUARDIAN-STUNNED_POWER.description": "Вы не можете разыгрывать и добирать карты или получать [gold]Энергию[/gold] в этот ход.",
+    "GUARDIAN-STUNNED_POWER.smartDescription": "Вы не можете разыгрывать и добирать карты или получать [gold]Энергию[/gold] в этот ход.",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.title": "Наступает оглушение",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.description": "Вы пропускаете следующий ход.",
+    "GUARDIAN-NEXT_TURN_STUNNED_POWER.smartDescription": "Вы пропускаете {Amount:plural(ru):следующий ход|[blue]{}[/blue] следующих хода|следующих [blue]{}[/blue] ходов}."
 }

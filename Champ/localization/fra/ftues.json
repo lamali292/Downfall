@@ -1,0 +1,6 @@
+{
+    "CHAMP-RULES_FTUE.title": "Danse des Poses",
+    "CHAMP-RULES_FTUE.body1": "Certaines cartes, reliques, et autres effets permettent au Champion d'adopter une [gold]Pose[/gold].\nLes trois Poses sont celle du Destructeur, Défensive et Ultime.",
+    "CHAMP-RULES_FTUE.body2": "Lorsque vous êtes dans une [gold]Pose[/gold], jouer une [gold]Compétence[/gold] déclenche son [gold]Bonus de Compétence[/gold], un petit effet supplémentaire comme gagner de la [gold]Vigueur[/gold].\nVous pouvez seulement le déclencher un nombre limité de fois avant d'adopter une Pose à nouveau pour réinitialiser le compteur.",
+    "CHAMP-RULES_FTUE.body3": "Certaines cartes ont un effet {:finisher()} [gold]Finisher[/gold] et peut seulement être joué lorsque vous êtres dans une [gold]Pose[/gold].\nEn jouer une déclenche cet effet et fait quitter la Pose."
+}

@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Cards.Affliction;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,9 @@ public class TornPage : HermitCardModel
         WithTips(_ => HoverTipFactory.FromAffliction<Necromantic>());
     }
 
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

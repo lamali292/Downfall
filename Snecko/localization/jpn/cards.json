@@ -174,7 +174,6 @@
     "SNECKO-MIMICRY.title": "擬態",
     "SNECKO-MIMICRY.description": "[gold]他クラス[/gold]カードをプレイするたび、ターン終了時まで[gold]筋力[/gold]{MimicryPower:diff()}を得る。",
     "SNECKO-WHIPLASH.title": "むち打ち",
-    "SNECKO-WHIPLASH.description": "すべての敵に{Damage:diff()}ダメージを与える。\n[gold]オーバーフロー[/gold]：すべての敵に[gold]脱力[/gold]と[gold]弱体[/gold]を{PowerVar:diff()}付与する。このカードのコスト1{energyPrefix:energyIcons(1)}につき、追加で1付与する。",
     "SNECKO-DICE_CASE.title": "ダイスケース",
     "SNECKO-DICE_CASE.description": "他のプレイヤーを1人選ぶ。\nターン開始時、その味方の[gold]手札[/gold]に[gold]ソウルロール[/gold]を1枚加える。",
     "SNECKO-FLURRY.title": "乱打",

@@ -18,7 +18,8 @@ public class BookOfSecrets : AwakenedCardModel
     }
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
-
+    protected override bool IsBetaArt => true;
+    
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

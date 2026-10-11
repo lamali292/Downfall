@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using Hexaghost.HexaghostCode.Core;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -200,11 +201,16 @@ public partial class NGhostflames : Control
 
     private void BuildScaffolding(int i)
     {
-        var intent = NIntent.Create(i * 0.3f);
-        intent.Visible = false;
-        intent.MouseFilter = MouseFilterEnum.Ignore;
-        AddChild(intent);
-        _intents[i] = intent;
+        // Intents are private in multiplayer: other players' intent nodes are never created
+        // (the flames themselves stay public). All _intents users already skip null entries.
+        if (_player != null && LocalContext.IsMe(_player))
+        {
+            var intent = NIntent.Create(i * 0.3f);
+            intent.Visible = false;
+            intent.MouseFilter = MouseFilterEnum.Ignore;
+            AddChild(intent);
+            _intents[i] = intent;
+        }
 
         var anchor = new Node2D();
         AddChild(anchor);
@@ -449,6 +455,7 @@ public partial class NGhostflames : Control
         for (var i = 0; i < _intents.Length; i++)
         {
             if (_intents[i] == null) continue;
+            // Intents are private in multiplayer: only the owner sees them (the flames stay public).
             _intents[i]!.Visible = true;
             _intentTween.TweenProperty(_intents[i], "modulate:a",
                     GhostflameLayout.IntentAlpha(i, currentIndex), 0.3f)

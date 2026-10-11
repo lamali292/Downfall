@@ -59,6 +59,7 @@
   "HEXAGHOST-BROILING_FLAMES_POWER.title": "Broiling Flames",
   "HEXAGHOST-BROILING_FLAMES_POWER.description": "This turn, whenever another player attacks this enemy, it gains [gold]Soulburn[/gold].",
   "HEXAGHOST-BROILING_FLAMES_POWER.smartDescription": "This turn, whenever another player attacks this enemy, it gains [blue]{Amount}[/blue] [gold]Soulburn[/gold].",
+  "HEXAGHOST-BROILING_FLAMES_POWER.remoteDescription": "This turn, whenever a player other than [orange]{ApplierName}[/orange] attacks this enemy, it gains [blue]{Amount}[/blue] [gold]Soulburn[/gold].",
   "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.title": "Whisper from Beyond",
   "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.description": "Whenever a card is [gold]Exhausted[/gold] this turn, apply [gold]Soulburn[/gold] to the enemy.",
   "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "Whenever a card is [gold]Exhausted[/gold] this turn, apply [blue]{Amount}[/blue] [gold]Soulburn[/gold] to the enemy.",

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Downfall.DownfallCode.Compatibility;
+using System.Reflection;
 using System.Runtime.Loader;
 using BaseLib.Config;
 using BaseLib.Patches.Features;
@@ -161,7 +162,7 @@ public static class DownfallMainFile
                 ? loadContext.LoadFromAssemblyPath(dllPath)
                 : Assembly.LoadFrom(dllPath);
 
-            ModManager.AssociateAssemblyWithMod(ModId, assembly);
+            ModManagerCompat.AssociateAssemblyWithMod(ModId, assembly);
 
             var mainFile = assembly.GetType(mainTypeName);
             var initialize = mainFile?.GetMethod(

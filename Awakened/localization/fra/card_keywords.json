@@ -1,3 +1,5 @@
 {
+    "AWAKENED-CHANT.title": "Chant",
+    "AWAKENED-CHANT.description": "Si la dernière carte jouée était un Pouvoir, l'effet bonus de cette carte s'active pour le reste du combat.",
     "AWAKENED-CHANT.card_text": "{Chanted:cond:[jitter][blue]Chanté[/blue][/jitter]|[gold]Chant[/gold]}"
 }

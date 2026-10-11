@@ -45,8 +45,6 @@
     "AWAKENED-DEMON_GLYPH_POWER.description": "Erhalte [gold]Stärke[/gold] und [gold]Geschicklichkeit[/gold], wenn du [gold]Erwachst[/gold].",
     "AWAKENED-DEMON_GLYPH_POWER.smartDescription": "Erhalte [blue]{Amount}[/blue] [gold]Stärke[/gold] und [gold]Geschicklichkeit[/gold], wenn du [gold]Erwachst[/gold].",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.title": "Sonnenfinsternis",
-    "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "Immer wenn eine [gold]Leere[/gold] [gold]Erschöpft[/gold] wird, erhalte {energyPrefix:energyIcons(1)} und ziehe im nächsten Zug eine Karte.",
-    "AWAKENED-ECLIPSE_EMBRACE_POWER.smartDescription": "Immer wenn eine [gold]Leere[/gold] [gold]Erschöpft[/gold] wird, erhalte {Amount:energyIcons()} und ziehe im nächsten Zug {Amount:plural:eine Karte|[blue]{Amount}[/blue] Karten}.",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "Inbrünstige Verehrung",
     "AWAKENED-FERVENT_WORSHIP_POWER.description": "Verliere zu Beginn deines Zuges [gold]Stärke[/gold].",
     "AWAKENED-FERVENT_WORSHIP_POWER.smartDescription": "Verliere zu Beginn deines Zuges [blue]{Amount}[/blue] [gold]Stärke[/gold].",

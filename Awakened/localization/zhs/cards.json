@@ -64,7 +64,6 @@
     "AWAKENED-DEMON_GLYPH.title": "恶魔符文",
     "AWAKENED-DESPERATE_PRAYER.description": "将{Cards:diff()}张[gold]祭仪[/gold]加入你的[gold]手牌[/gold]。",
     "AWAKENED-DESPERATE_PRAYER.title": "临危祷告",
-    "AWAKENED-ECLIPSE_EMBRACE.description": "每当你[gold]消耗[/gold]一张[gold]虚空[/gold]时，在下个回合获得{energyPrefix:energyIcons(1)}并抽1张牌。",
     "AWAKENED-ECLIPSE_EMBRACE.title": "日蚀之拥",
     "AWAKENED-ENSORCELATE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n你打出的下一张能力牌耗能变为{energyPrefix:energyIcons(0)}。",
     "AWAKENED-ENSORCELATE.title": "妖惑",

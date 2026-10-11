@@ -53,7 +53,6 @@
     "AWAKENED-DEMON_GLYPH.description": "Ottieni {StrengthPower:diff()} [gold]Forza[/gold] e [gold]Destrezza[/gold].\nQuando ti [gold]Risvegli[/gold], ottieni {DemonGlyphPower:diff()} in più.",
     "AWAKENED-DEMON_GLYPH.title": "Glifo Demoniaco",
     "AWAKENED-DESPERATE_PRAYER.title": "Preghiera Disperata",
-    "AWAKENED-ECLIPSE_EMBRACE.description": "Ogni volta che [gold]Esaurisci[/gold] un [gold]Vuoto[/gold], ottieni {energyPrefix:energyIcons(1)} e pesca una carta il prossimo turno.",
     "AWAKENED-ECLIPSE_EMBRACE.title": "Abbraccio dell'Eclissi",
     "AWAKENED-ENSORCELATE.title": "Ammalia",
     "AWAKENED-ENVISION.description": "Ottieni {Block:diff()} [gold]Blocco[/gold].\n[gold]Evoca[/gold] e metti la Magia in cima al tuo [gold]Mazzo Pesca[/gold].",

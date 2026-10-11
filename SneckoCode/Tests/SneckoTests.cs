@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Tests;
+﻿using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Tests;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -370,17 +371,9 @@ public class SneckoTests
         await ctx.AddCardToHand<DiceBlock>();
         Assert.IsTrue(!OverflowCmd.OverflowActive(card), "Test setup: the live hand should no longer qualify.");
 
-        var cardPlay = new CardPlay
-        {
-            Card = card,
-            Player = ctx.Player,
-            Target = null,
-            ResultPile = PileType.Discard,
-            Resources = new ResourceInfo { EnergySpent = 0, EnergyValue = 0, StarsSpent = 0, StarValue = 0 },
-            IsAutoPlay = false,
-            PlayIndex = 0,
-            PlayCount = 1
-        };
+        var cardPlay = CardPlayCompat.Create(card, null, PileType.Discard,
+            new ResourceInfo { EnergySpent = 0, EnergyValue = 0, StarsSpent = 0, StarValue = 0 },
+            false, 0, 1);
 
         var ran = false;
         await OverflowCmd.Overflow(wasActive, cardPlay, () =>

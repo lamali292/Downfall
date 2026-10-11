@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Guardian.GuardianCode.Core;
@@ -34,6 +35,6 @@ public class StrikeForStrike : GuardianCardModel, IGemSocketCard
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var damage = (DamageVar)DynamicVars["SelfDamage"];
-        await CreatureCmd.Damage(ctx, Owner.Creature, damage, this, cardPlay);
+        await CompatibilityCreatureCmd.Damage(ctx, Owner.Creature, damage.BaseValue, damage.Props, this, cardPlay);
     }
 }

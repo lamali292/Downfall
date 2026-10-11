@@ -1,18 +1,23 @@
 <Project>
+    <!-- Game install selection: local.props sets Sts2Branch (beta|public) plus Sts2BetaPath/Sts2PublicPath.
+         An explicit -p:Sts2Path=... on the command line still wins. -->
+    <PropertyGroup>
+        <Sts2Branch Condition="'$(Sts2Branch)' == ''">beta</Sts2Branch>
+        <Sts2Path Condition="'$(Sts2Path)' == '' and '$(Sts2Branch)' == 'public'">$(Sts2PublicPath)</Sts2Path>
+        <Sts2Path Condition="'$(Sts2Path)' == '' and '$(Sts2Branch)' == 'beta'">$(Sts2BetaPath)</Sts2Path>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(IsWindows)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
         <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
         <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(IsLinux)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
         <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
         <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_linuxbsd_x86_64</Sts2DataDir>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(IsOSX)' == 'true'">
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
         <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/MacOS/mods/</ModsPath>
         <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
     </PropertyGroup>
@@ -135,5 +140,23 @@
         <Copy SourceFiles="$(ModsPath)$(ModOutputFolder)/$(ModId).pck"
               DestinationFolder="$(GodotModsPath)/$(ModOutputFolder)/"
               Condition="'$(CopyToGodotMods)' == 'true' and '$(Configuration)' != 'Debug'"/>
+
+        <!-- Publish mirrors the whole mod (dll, pdb, manifest, pck) into the other configured branch's mods folder,
+             so one publish leaves both game installs loadable. The mirrored dll was compiled against THIS build's
+             sts2.dll; build with -p:Sts2Branch=<other> afterwards to replace it with a natively-compiled one. -->
+        <PropertyGroup>
+            <_BetaModsPath Condition="'$(Sts2Path)' != '' and '$(Sts2BetaPath)' != ''">$(ModsPath.Replace('$(Sts2Path)', '$(Sts2BetaPath)'))</_BetaModsPath>
+            <_PublicModsPath Condition="'$(Sts2Path)' != '' and '$(Sts2PublicPath)' != ''">$(ModsPath.Replace('$(Sts2Path)', '$(Sts2PublicPath)'))</_PublicModsPath>
+        </PropertyGroup>
+        <ItemGroup>
+            <_MirrorFile Include="$(TargetPath);$(ModsPath)$(ModOutputFolder)/$(ModId).pck"/>
+            <_MirrorFile Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+            <_MirrorFile Include="$(IntermediateOutputPath)$(ModId).json" Condition="'$(IsStandaloneMod)' == 'true'"/>
+            <_MirrorDir Include="$(_BetaModsPath)$(ModOutputFolder)/"
+                        Condition="'$(Sts2BetaPath)' != '' and '$(Sts2BetaPath)' != '$(Sts2Path)' and Exists('$(Sts2BetaPath)')"/>
+            <_MirrorDir Include="$(_PublicModsPath)$(ModOutputFolder)/"
+                        Condition="'$(Sts2PublicPath)' != '' and '$(Sts2PublicPath)' != '$(Sts2Path)' and Exists('$(Sts2PublicPath)')"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(_MirrorFile)" DestinationFolder="%(_MirrorDir.Identity)" Condition="'@(_MirrorDir)' != ''"/>
     </Target>
 </Project>

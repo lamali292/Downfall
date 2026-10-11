@@ -94,6 +94,7 @@
     "AUTOMATON-PHILOSOPHIZE.title": "Philosopher",
     "AUTOMATON-PIERCING_SHOT.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis.\n[gold]Améliorez[/gold] {Cards:diff()} {Cards:plural:carte|cartes} dans votre [gold]Réserve[/gold].",
     "AUTOMATON-PIERCING_SHOT.title": "Tir Perçant",
+    "AUTOMATON-RECURSIVE_STRIKE.description": "Infligez {Damage:diff()} dégâts deux fois.\n[gold]Encodez[/gold] {Cards:plural:une [gold]Frappe Centrale[/gold]|{:diff()}[gold]Frappes Centrales[/gold]}{IfUpgraded:plus()}.",
     "AUTOMATON-RECURSIVE_STRIKE.title": "Frappe Récursive",
     "AUTOMATON-REFACTOR.description": "[gold]Scrutez[/gold] {Scry:diff()} cartes.\n[gold]Épuisez[/gold] toutes les cartes Statut défaussées.\nGagnez {Block:diff()} [gold]d'Armure[/gold] pour chaque carte [gold]Épuisée[/gold].",
     "AUTOMATON-REFACTOR.title": "Remaniement",
@@ -177,5 +178,7 @@
     "AUTOMATON-SHARE.title": "Partage",
     "AUTOMATON-SHARE.description": "Lorsque vous gagnez de [gold]l'Armure[/gold] d'une Fonction, l'allié avec le moins [gold]d'Armure[/gold] gagne {SharePower:diff()} [gold]d'Armure[/gold].",
     "AUTOMATON-BLUESCREEN.title": "Écran Bleu",
-    "AUTOMATON-BLUESCREEN.description": "Donnez à un autre joueur {Block:diff()} [gold]d'Armure[/gold].\nAjoutez une [gold]Erreur[/gold] en haut de votre [gold]Pioche[/gold]."
+    "AUTOMATON-BLUESCREEN.description": "Donnez à un autre joueur {Block:diff()} [gold]d'Armure[/gold].\nAjoutez une [gold]Erreur[/gold] en haut de votre [gold]Pioche[/gold].",
+    "AUTOMATON-CORE_STRIKE.title": "Frappe Noyau",
+    "AUTOMATON-CORE_DEFEND.title": "Défense Noyau"
 }

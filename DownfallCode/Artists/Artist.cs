@@ -14,19 +14,19 @@ public abstract class Artist
     private static LocString ArtByLocString => new("artists", "ART_BY");
     private LocString Name => new("artists", $"{Id}.name");
 
-    private LocString ArtByName
+    private static LocString BetaArtByLocString => new("artists", "BETA_ART_BY");
+
+    private LocString ArtByName(bool beta)
     {
-        get
-        {
-            var text = ArtByLocString;
-            text.Add("name", Name.GetFormattedText());
-            return text;
-        }
+        var text = beta ? BetaArtByLocString : ArtByLocString;
+        text.Add("name", Name.GetFormattedText());
+        return text;
     }
 
     private Texture2D? Icon => IconPath == null ? null : ResourceLoader.Load<Texture2D>(IconPath);
     protected virtual string? IconPath => $"{Id}.png".ArtistImagePath();
-    public IHoverTip HoverTip => new ArtistHoverTip(ArtByName, Icon);
+    public IHoverTip HoverTip => GetHoverTip(false);
+    public IHoverTip GetHoverTip(bool beta) => new ArtistHoverTip(ArtByName(beta), Icon);
 
     public static T Get<T>() where T : Artist, new()
     {

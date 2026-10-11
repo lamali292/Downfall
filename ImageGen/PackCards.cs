@@ -10,8 +10,8 @@ namespace ImageGen;
 public class PackCards(string scriptDir, bool force)
     : ImagePipeline(scriptDir, ".cards_cache.json", force)
 {
-    private static readonly (int W, int H) NormalSize = (250, 190);
-    private static readonly (int W, int H) AncientSize = (250, 351);
+    private static readonly (int W, int H) NormalSize = (500, 380);
+    private static readonly (int W, int H) AncientSize = (500, 702);
 
     private static readonly string[] InputSubdirs = ["cards", "cards_beta"];
 

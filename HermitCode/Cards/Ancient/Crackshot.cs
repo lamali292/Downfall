@@ -30,8 +30,8 @@ public class Crackshot : HermitCardModel
         if (CombatState == null || cardPlay.Target == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         var unblockedDamage = 0;
-        var context = await AttackCommand.CreateContextAsync(CombatState, ctx, cardPlay);
-        var list1 = (await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+        var context = await AttackContextCompatibility.CreateContextAsync(CombatState, ctx, cardPlay);
+        var list1 = (await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
             DynamicVars.Damage.Props, this, cardPlay)).ToList();
         unblockedDamage += list1.Sum(e => e.TotalDamage + e.OverkillDamage);
         context.AddHit(list1);
@@ -39,7 +39,7 @@ public class Crackshot : HermitCardModel
         
         await HermitCmd.DeadOn(ctx, this, cardPlay, async () =>
         {
-            var list2 = (await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+            var list2 = (await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
                 DynamicVars.Damage.Props, this, cardPlay)).ToList();
             unblockedDamage += list2.Sum(e => e.TotalDamage + e.OverkillDamage);
             context.AddHit(list2);

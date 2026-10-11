@@ -5,29 +5,29 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Powers;
 
-public class SizzlePower : HexaghostPowerModel
+public class SizzlePower : HexaghostPowerModel, IModifyCardPlayResultLocation
 {
-    private bool _ignoredFirst;
-
     public SizzlePower()
     {
         WithTip(CardKeyword.Exhaust);
     }
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    
+    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocationCompatiblity cardLocation)
     {
-        if (!_ignoredFirst)
-        {
-            _ignoredFirst = true;
-            return;
-        }
+        if (card.Owner.Creature != Owner || cardLocation.PileType != PileType.Discard)
+            return cardLocation;
+        return cardLocation with { PileType = PileType.Exhaust };
+    }
 
-        var card = cardPlay.Card;
+    public async Task AfterModifyingCardPlayResultLocationCompability(CardModel card,
+        CardLocationCompatiblity cardLocation)
+    {
         if (card.Owner.Creature != Owner) return;
-        await CardCmdCompatibility.Exhaust(ctx, card);
         Flash();
         await PowerCmd.Decrement(this);
     }

@@ -8,5 +8,6 @@
     "DOWNFALL-TO_PLAY": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите разыграть.",
     "DOWNFALL-ADD_ETHEREAL": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите сделать [gold]{Amount:plural(ru):эфирной|эфирными|эфирными}[/gold]",
     "DOWNFALL-TO_RETAIN": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите [gold]оставить[/gold]",
-    "DOWNFALL-TO_OTHER_HANDS": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите добавить в [gold]руку[/gold] другого игрока."
+    "DOWNFALL-TO_OTHER_HANDS": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите добавить в [gold]руку[/gold] другого игрока.",
+    "DOWNFALL-TO_COPY": "Выберите {Amount:plural(ru):карту, которую|[blue]{}[/blue] карты, которые|[blue]{}[/blue] карт, которые} хотите [gold]скопировать[/gold]."
 }

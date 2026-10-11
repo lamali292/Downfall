@@ -64,7 +64,6 @@
     "AWAKENED-DEMON_GLYPH.title": "Dämonenglyphen",
     "AWAKENED-DESPERATE_PRAYER.description": "Erhalte {Cards:plural:eine [gold]Zeremonie[/gold]|{Cards:diff()} [gold]Zeremonien[/gold]} auf deine [gold]Hand[/gold].",
     "AWAKENED-DESPERATE_PRAYER.title": "Stoßgebet",
-    "AWAKENED-ECLIPSE_EMBRACE.description": "Immer wenn eine [gold]Leere[/gold] [gold]Erschöpft[/gold] wird, erhalte {energyPrefix:energyIcons(1)} und ziehe im nächsten Zug eine Karte.",
     "AWAKENED-ECLIPSE_EMBRACE.title": "Sonnenfinsternis",
     "AWAKENED-ENSORCELATE.description": "Erhalte {Block:diff()} [gold]Block[/gold].\nDie nächste Macht, die du spielst, kostet {energyPrefix:energyIcons(0)}.",
     "AWAKENED-ENSORCELATE.title": "Zauberformel",

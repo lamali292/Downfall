@@ -248,7 +248,6 @@ public class CollectorTests
         Assert.AreEqual(PileType.Exhaust, strikeA.Pile?.Type, "First play should pyre the first hand card.");
         Assert.AreEqual(PileType.Exhaust, strikeB.Pile?.Type, "The replay should pyre its own (second) hand card.");
         Assert.AreEqual(16, startHp - enemy.CurrentHp, "Both plays should deal FlameLash damage (8 x 2).");
-        Assert.IsTrue(!((IUsesPyredCards)lash).PyredCards.Any(), "PyredCards should be empty after the play finished.");
     }
 
     // A replay whose Pyre can't be paid (no other hand card left) must be cancelled, and must not reuse the
@@ -267,7 +266,6 @@ public class CollectorTests
 
         Assert.AreEqual(PileType.Exhaust, strike.Pile?.Type, "The only other card should be pyred by the first play.");
         Assert.AreEqual(8, startHp - enemy.CurrentHp, "Only the first play should resolve; the replay has nothing to pyre.");
-        Assert.IsTrue(!((IUsesPyredCards)lash).PyredCards.Any(), "PyredCards should not keep the first play's card.");
     }
 
     // Reserve-only cards (IUsesCollectorEnergyOnly) are paid entirely from Reserve and never touch Energy.

@@ -65,7 +65,7 @@
   "AWAKENED-DEMON_GLYPH.title": "Demon Glyph",
   "AWAKENED-DESPERATE_PRAYER.description": "Add {Cards:plural:a [gold]Ceremony[/gold]|{Cards:diff()} [gold]Ceremonies[/gold]} into your [gold]Hand[/gold].",
   "AWAKENED-DESPERATE_PRAYER.title": "Desperate Prayer",
-  "AWAKENED-ECLIPSE_EMBRACE.description": "Whenever you [gold]Exhaust[/gold] a [gold]Void[/gold], gain {energyPrefix:energyIcons(1)} and draw a card next turn.",
+  "AWAKENED-ECLIPSE_EMBRACE.description": "Whenever you [gold]Exhaust[/gold] a [gold]Void[/gold], next turn, draw a card and gain {energyPrefix:energyIcons(1)}.",
   "AWAKENED-ECLIPSE_EMBRACE.title": "Eclipse Embrace",
   "AWAKENED-ENSORCELATE.description": "Gain {Block:diff()} [gold]Block[/gold].\nThe next Power you play costs {energyPrefix:energyIcons(0)}.",
   "AWAKENED-ENSORCELATE.title": "Ensorcelate",

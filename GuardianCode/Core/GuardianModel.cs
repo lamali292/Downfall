@@ -10,6 +10,7 @@ using Guardian.GuardianCode.Powers;
 using Guardian.GuardianCode.RestSiteOptions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.RestSite;
@@ -122,7 +123,8 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
 
     internal static void InitStasisUi(Player player)
     {
-       
+        // Stasis is private information in multiplayer: other players' displays are never created.
+        if (!LocalContext.IsMe(player)) return;
 
         var combatRoom = NCombatRoom.Instance;
         if (combatRoom != null && !GuardianDisplay.HasDisplay(player))

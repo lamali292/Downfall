@@ -51,14 +51,15 @@ git clone https://github.com/lamali292/Downfall.git
 Copy `local.props.example` to `local.props` and fill in the values:
 
 - **`GodotPath`** - the `.exe` of your downloaded MegaDot / Godot
-- **`SteamLibraryPath`** - your `steamapps` folder, where Slay the Spire 2 is installed
+- **`Sts2Branch`** / **`Sts2BetaPath`** / **`Sts2PublicPath`** - the Slay the Spire 2 game folder(s); `Sts2Branch` (`beta` or `public`) picks which one is used
 - **`AssetSourcePath`** - *not needed for Path A*
 
 ```xml
 <Project>
     <PropertyGroup>
         <GodotPath>C:\...\MegaDot\MegaDot_v4.5.1_mono.exe</GodotPath>
-        <SteamLibraryPath>C:\Program Files (x86)\Steam\steamapps</SteamLibraryPath>
+        <Sts2Branch>beta</Sts2Branch>
+        <Sts2BetaPath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</Sts2BetaPath>
         <!-- AssetSourcePath is not required for Path A -->
     </PropertyGroup>
 </Project>
@@ -75,8 +76,10 @@ This builds the image atlas files and compiles the project. Add `-Clean` to wipe
 **4. Package and copy the project to the mods folder**
 
 ```bash
-dotnet publish Downfall.csproj
+build/publish-all.ps1
 ```
+
+This publishes every project (`Downfall`, one per character, and `Collector`).
 </details>
 <details>
 <summary><h3>Path B - Full setup (scenes / UI)</h3></summary>
@@ -107,14 +110,15 @@ Extract Slay the Spire 2 using [GDRE](https://github.com/GDRETools/gdsdecomp). N
 Copy `local.props.example` to `local.props` and fill in the values:
 
 - **`GodotPath`** - the `.exe` of your downloaded MegaDot / Godot
-- **`SteamLibraryPath`** - your `steamapps` folder, where Slay the Spire 2 is installed
+- **`Sts2Branch`** / **`Sts2BetaPath`** / **`Sts2PublicPath`** - the Slay the Spire 2 game folder(s); `Sts2Branch` (`beta` or `public`) picks which one is used
 - **`AssetSourcePath`** - the root folder of your extracted GDRE project
 
 ```xml
 <Project>
     <PropertyGroup>
         <GodotPath>C:\...\MegaDot\MegaDot_v4.5.1_mono.exe</GodotPath>
-        <SteamLibraryPath>C:\Program Files (x86)\Steam\steamapps</SteamLibraryPath>
+        <Sts2Branch>beta</Sts2Branch>
+        <Sts2BetaPath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</Sts2BetaPath>
         <AssetSourcePath>C:\path\to\extracted\Slay the Spire 2</AssetSourcePath>
     </PropertyGroup>
 </Project>
@@ -130,8 +134,10 @@ build/setup.ps1
 **5. Pack the assets**
 
 ```bash
-dotnet publish Downfall.csproj
+build/publish-all.ps1
 ```
+
+This publishes every project (`Downfall`, one per character, and `Collector`).
 </details>
 
 <br>
@@ -143,8 +149,12 @@ Once set up, both paths use the same commands. Depending on what you changed, yo
 | What changed | What to run | Command |
 |:-------------|:------------|:--------|
 | **New images** | Image generator | `dotnet run --project ImageGen/ImageGen.csproj` |
-| **Code only** | Compile | `dotnet build Downfall.csproj` |
-| **Assets** (e.g. localization, images) | Pack | `dotnet publish Downfall.csproj` |
+| **Code only (everything)** | Compile all | `build/build-all.ps1` |
+| **Code only (one project)** | Compile one | `dotnet build Snecko.csproj -c ExportDebug` |
+| **Assets, everything** (e.g. localization, images) | Pack all | `build/publish-all.ps1` |
+| **Assets, one project** | Pack one | `dotnet publish Snecko.csproj` |
+
+The projects are `Downfall` (core), `Automaton`, `Awakened`, `Champ`, `Guardian`, `Hermit`, `Hexaghost`, `SlimeBoss`, `Snecko` and `Collector`. Each builds its own `.dll` / `.pck`.
 
 **New images** - build them into atlas files.
 
@@ -155,11 +165,18 @@ dotnet run --project ImageGen/ImageGen.csproj
 **Code only** - code changed, assets unchanged. Much faster, ideal for quick testing.
 
 ```bash
-dotnet build Downfall.csproj
+build/build-all.ps1                          # every project
+build/build-all.ps1 -Projects Champ,Guardian # only some
+dotnet build Snecko.csproj -c ExportDebug    # a single project
 ```
 
 **Assets** - repack after changing assets (e.g. localization). This takes a while and **automatically compiles the code too**.
 
 ```bash
-dotnet publish Downfall.csproj
+build/publish-all.ps1                          # every project, Godot import runs once
+build/publish-all.ps1 -Projects Champ,Guardian # only some
+dotnet publish Snecko.csproj                   # a single project
 ```
+
+> [!TIP]
+> Use `publish-all.ps1` for shared or multi-character changes. If you only changed one character (e.g. Snecko), publishing just that project is enough.
