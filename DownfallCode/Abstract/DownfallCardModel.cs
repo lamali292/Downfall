@@ -25,11 +25,12 @@ public abstract class DownfallCardModel
         bool showInCardLibrary = true,
         bool autoAdd = true) : base(cost, type, rarity, targetType, showInCardLibrary, autoAdd)
     {
-        WithTips(e => e is DownfallCardModel { Artist: not null } card ? [card.Artist.HoverTip] : []);
+        WithTips(e => e is DownfallCardModel { Artist: not null } card ? [card.Artist.GetHoverTip(card.IsBetaArt)] : []);
     }
 
     protected virtual Artist? Artist => null;
-
+    protected virtual bool IsBetaArt => false;
+    
     protected virtual Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return Task.CompletedTask;
@@ -175,7 +176,7 @@ public abstract class DownfallCardModel
 
     protected ConstructedCardModel WithArtist<T>() where T : Artist, new()
     {
-        return WithTips(_ => [Artist.Get<T>().HoverTip]);
+        return WithTips(_ => [Artist.Get<T>().GetHoverTip(IsBetaArt)]);
     }
 
     protected ConstructedCardModel WithScry(int baseValue, int upgrade = 0)
