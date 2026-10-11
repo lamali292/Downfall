@@ -19,14 +19,19 @@ jobs:
     # For workflow_run only proceed when the Release workflow succeeded.
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    environment: release
+    # Own environment (main-only + required reviewer): the `release` environment is restricted to
+    # v* tags, and a Steam upload must need explicit approval whoever triggers it.
+    environment: steam
     permissions:
       contents: read
     steps:
       - name: Resolve tag
+        env:
+          # For a tag-push run, workflow_run.head_branch is the tag name. Passed via env, not
+          # interpolated into the script, so a hostile tag name can't inject shell.
+          TAG_INPUT: ${{ github.event.inputs.tag || github.event.workflow_run.head_branch }}
         run: |
-          # For a tag-push run, workflow_run.head_branch is the tag name.
-          TAG="${{ github.event.inputs.tag || github.event.workflow_run.head_branch }}"
+          TAG="$TAG_INPUT"
           if ! echo "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
             echo "Tag must be vX.Y.Z, got '$TAG'"; exit 1
           fi
