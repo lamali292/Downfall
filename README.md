@@ -75,8 +75,10 @@ This builds the image atlas files and compiles the project. Add `-Clean` to wipe
 **4. Package and copy the project to the mods folder**
 
 ```bash
-dotnet publish Downfall.csproj
+build/publish-all.ps1
 ```
+
+This publishes every project (`Downfall`, one per character, and `Collector`).
 </details>
 <details>
 <summary><h3>Path B - Full setup (scenes / UI)</h3></summary>
@@ -130,8 +132,10 @@ build/setup.ps1
 **5. Pack the assets**
 
 ```bash
-dotnet publish Downfall.csproj
+build/publish-all.ps1
 ```
+
+This publishes every project (`Downfall`, one per character, and `Collector`).
 </details>
 
 <br>
@@ -143,8 +147,12 @@ Once set up, both paths use the same commands. Depending on what you changed, yo
 | What changed | What to run | Command |
 |:-------------|:------------|:--------|
 | **New images** | Image generator | `dotnet run --project ImageGen/ImageGen.csproj` |
-| **Code only** | Compile | `dotnet build Downfall.csproj` |
-| **Assets** (e.g. localization, images) | Pack | `dotnet publish Downfall.csproj` |
+| **Code only (everything)** | Compile all | `build/build-all.ps1` |
+| **Code only (one project)** | Compile one | `dotnet build Snecko.csproj -c ExportDebug` |
+| **Assets, everything** (e.g. localization, images) | Pack all | `build/publish-all.ps1` |
+| **Assets, one project** | Pack one | `dotnet publish Snecko.csproj` |
+
+The projects are `Downfall` (core), `Automaton`, `Awakened`, `Champ`, `Guardian`, `Hermit`, `Hexaghost`, `SlimeBoss`, `Snecko` and `Collector`. Each builds its own `.dll` / `.pck`.
 
 **New images** - build them into atlas files.
 
@@ -155,11 +163,18 @@ dotnet run --project ImageGen/ImageGen.csproj
 **Code only** - code changed, assets unchanged. Much faster, ideal for quick testing.
 
 ```bash
-dotnet build Downfall.csproj
+build/build-all.ps1                          # every project
+build/build-all.ps1 -Projects Champ,Guardian # only some
+dotnet build Snecko.csproj -c ExportDebug    # a single project
 ```
 
 **Assets** - repack after changing assets (e.g. localization). This takes a while and **automatically compiles the code too**.
 
 ```bash
-dotnet publish Downfall.csproj
+build/publish-all.ps1                          # every project, Godot import runs once
+build/publish-all.ps1 -Projects Champ,Guardian # only some
+dotnet publish Snecko.csproj                   # a single project
 ```
+
+> [!TIP]
+> Use `publish-all.ps1` for shared or multi-character changes. If you only changed one character (e.g. Snecko), publishing just that project is enough.
