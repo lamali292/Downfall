@@ -15,6 +15,7 @@ public class RavenStrike : AwakenedCardModel
     {
         WithDamage(15, 5);
         WithKeyword(AwakenedKeyword.Chant);
+        WithTags(CardTag.Strike);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
