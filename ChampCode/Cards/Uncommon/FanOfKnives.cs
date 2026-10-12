@@ -19,9 +19,7 @@ public class FanOfKnives : ChampCardModel
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
-
-    // One AttackCommand context shared across both hits (like Recitation's Chant) so buffs like Vigor -
-    // which are consumed after one AttackCommand.Execute - apply to both hits instead of only the first.
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -33,7 +31,9 @@ public class FanOfKnives : ChampCardModel
 
         await ChampCmd.BerserkerCombo(cardPlay, async () =>
         {
-            context.AddHit(await CompatibilityCreatureCmd.Damage(ctx, targets, DynamicVars.Damage.BaseValue,
+            var remaining = CombatState.HittableEnemies.ToList();
+            if (remaining.Count == 0) return;
+            context.AddHit(await CompatibilityCreatureCmd.Damage(ctx, remaining, DynamicVars.Damage.BaseValue,
                 DynamicVars.Damage.Props, Owner.Creature, this, cardPlay));
         });
 
