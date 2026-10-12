@@ -11,11 +11,12 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KaiserCrabCard : Collectible<KaiserCrabBoss>
 {
-    public KaiserCrabCard() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.3f)
+    public KaiserCrabCard() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(14, 4);
     }
 
+    public override string CustomPortraitPath => "crab.tres".CardImageAtlasPath<Core.Collector>();
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
