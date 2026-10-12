@@ -27,6 +27,7 @@ public class MassiveSlime : SlimeModel
             return;
         }
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .Unpowered()
             .FromSlime(this)
             .TargetingAllOpponents(CombatState).Execute(ctx);
         _skipTurns = DynamicVars["Sleep"].IntValue;

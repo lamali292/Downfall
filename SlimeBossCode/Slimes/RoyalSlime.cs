@@ -22,6 +22,7 @@ public class RoyalSlime : SlimeModel
     {
         if (PetOwner.Player == null) return;
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .Unpowered()
             .WithHitCount(PetOwner.Player.SlimeCount)
             .FromSlime(this);
         attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);

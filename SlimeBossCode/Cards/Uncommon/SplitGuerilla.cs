@@ -10,7 +10,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class SplitGuerilla : SlimeBossCardModel
 {
-    public SplitGuerilla() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public SplitGuerilla() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithSlimeTip<GuerillaSlime>();

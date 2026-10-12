@@ -1,4 +1,4 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
@@ -35,7 +35,7 @@ public class MuscleSlime : SlimeModel
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this);
         var target = forcedTarget ?? GetLastAttackedEnemy();
         attack = target != null ? attack.Targeting(target) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);
@@ -48,4 +48,15 @@ public class MuscleSlime : SlimeModel
     }
 }
 
-public class MuscleSlimePotencyPower : CustomTemporaryPowerModelWrapper<MuscleSlime, PotencyPower>;
+public class MuscleSlimePotencyPower : CustomTemporaryPowerModelWrapper<MuscleSlime, PotencyPower>
+{
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
+    {
+        if (side != CombatSide.Player) return;
+
+        Flash();
+        await ApplyPowerFunc(choiceContext, Owner, -Amount, Owner, null, true);
+        await PowerCmd.Remove(this);
+    }
+}
