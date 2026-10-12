@@ -18,12 +18,14 @@ public class RoyalSlime : SlimeModel
 
     protected override string SkinName => "champ";
 
+    public override int CounterHitCount => PetOwner.Player?.SlimeCount ?? 1;
+
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         if (PetOwner.Player == null) return;
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .Unpowered()
-            .WithHitCount(PetOwner.Player.SlimeCount)
+            .WithHitCount(CounterHitCount)
             .FromSlime(this);
         attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);

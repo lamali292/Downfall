@@ -26,8 +26,10 @@ public partial class NSlimeCounter : Control
     private NCreature _creatureNode = null!;
     private SlimeModel _slime = null!;
     private TextureRect _icon = null!;
-    private MegaLabel _value = null!;
+    private MegaRichTextLabel _value = null!;
     private int? _shownValue;
+    private int _shownHits = 1;
+    private string? _shownIcon;
     private Tween? _popTween;
     private float _sinceRefresh;
 
@@ -42,8 +44,7 @@ public partial class NSlimeCounter : Control
     public override void _Ready()
     {
         _icon = GetNode<TextureRect>("%Icon");
-        _value = GetNode<MegaLabel>("%Value");
-        _icon.Texture = GD.Load<Texture2D>(_slime.CounterIconPath);
+        _value = GetNode<MegaRichTextLabel>("%Value");
         ZIndex = 2;
         Refresh();
     }
@@ -58,20 +59,50 @@ public partial class NSlimeCounter : Control
 
     private void Refresh()
     {
-        var shown = _slime.Creature.IsAlive ? _slime.CounterValue : null;
+        var alive = _slime.Creature.IsAlive;
+        var statusIcon = alive ? _slime.CounterStatusIconPath : null;
+        SetIcon(statusIcon ?? _slime.CounterIconPath);
+        if (statusIcon != null)
+        {
+            // Status phase (e.g. asleep): icon only, no number.
+            Visible = true;
+            _shownValue = null;
+            _value.Text = "";
+            PlaceInCorner();
+            return;
+        }
+
+        var shown = alive ? _slime.CounterValue : null;
         Visible = shown != null;
         if (shown is not { } value) return;
 
         var baseValue = _slime.CounterBaseValue;
         _value.Modulate = value > baseValue ? Higher : value < baseValue ? Lower : Colors.White;
-        if ((int)value != _shownValue)
+        var hits = Math.Max(1, _slime.CounterHitCount);
+        if ((int)value != _shownValue || hits != _shownHits)
         {
             var isFirst = _shownValue == null;
             _shownValue = (int)value;
-            _value.SetTextAutoSize(_shownValue.ToString()!);
+            _shownHits = hits;
+            // Mirrors intents.json FORMAT_DAMAGE_MULTI: "{Damage}[font_size=18]x{Repeat}[/font_size]".
+            _value.Text = hits > 1 ? $"{_shownValue}[font_size=18]x{hits}[/font_size]" : _shownValue.ToString()!;
             if (!isFirst) Pop();
         }
 
+        PlaceInCorner();
+    }
+
+    private void SetIcon(string path)
+    {
+        if (path == _shownIcon) return;
+        var isFirst = _shownIcon == null;
+        _shownIcon = path;
+        _icon.Texture = GD.Load<Texture2D>(path);
+        if (!isFirst) Pop();
+    }
+
+    private void PlaceInCorner()
+    {
         var hitbox = _creatureNode.Hitbox;
         GlobalPosition = hitbox.GlobalPosition + hitbox.Size - Size;
     }
