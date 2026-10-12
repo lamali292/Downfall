@@ -13,6 +13,7 @@ using Guardian.GuardianCode.Gems;
 using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Relics;
 using MegaCrit.Sts2.Core.AutoSlay;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -424,5 +425,25 @@ public class GuardianTests
         Assert.AreEqual(6, strengthAfter - strengthBefore,
             "Only the first gem on the card should be doubled by the last Temporal Refraction stack.");
         Assert.AreEqual(0, power.DisplayAmount, "The last stack should now be fully consumed.");
+    }
+
+    // Regression: Overblock's Thorns were removed at the end of the PLAYER side's turn, so enemies
+    // never got to hit them. They must last through the enemy turn.
+    [CardTest(typeof(Guardian.GuardianCode.Core.Guardian))]
+    public async Task OverblockThornsSurviveUntilEndOfEnemyTurn(TestContext ctx)
+    {
+        var creature = ctx.Player.Creature;
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        var power = await PowerCmd.Apply<OverblockBlockPowerThornsPower>(choiceCtx, creature, 3, creature, null);
+        Assert.IsTrue(power != null, "Thorns wrapper should be applied.");
+        Assert.AreEqual(3m, (decimal)creature.GetInstancedPowerAmountSum<ThornsPower>(), "Thorns granted.");
+
+        await power!.AfterSideTurnEnd(choiceCtx, CombatSide.Player, [creature]);
+        Assert.AreEqual(3m, (decimal)creature.GetInstancedPowerAmountSum<ThornsPower>(),
+            "Thorns must survive the end of the player's own turn.");
+
+        await power.AfterSideTurnEnd(choiceCtx, CombatSide.Enemy, ctx.Combat.Enemies);
+        Assert.AreEqual(0m, (decimal)creature.GetInstancedPowerAmountSum<ThornsPower>(),
+            "Thorns should be removed at the end of the enemy turn.");
     }
 }
