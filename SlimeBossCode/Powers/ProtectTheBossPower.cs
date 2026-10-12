@@ -4,12 +4,18 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 using SlimeBoss.SlimeBossCode.Extensions;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
 public class ProtectTheBossPower : SlimeBossPowerModel
 {
+    public ProtectTheBossPower()
+    {
+        WithTip(SlimeBossTip.Split);
+    }
+
     public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)
     {

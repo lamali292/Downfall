@@ -8,4 +8,5 @@ public static class SlimeBossTip
     [CustomEnum] public static StaticHoverTip Consume;
     [CustomEnum] public static StaticHoverTip Slurp;
     [CustomEnum] public static StaticHoverTip Command;
+    [CustomEnum] public static StaticHoverTip Split;
 }

@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -13,6 +13,7 @@ public class SplitCultist : SlimeBossCardModel
 {
     public SplitCultist() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
+        WithTip(SlimeBossTip.Split);
         WithSlimeTip<CultistSlime>();
         WithPower<PotencyPower>(0, 2, true);
         WithTags(SlimeBossTag.Slime);

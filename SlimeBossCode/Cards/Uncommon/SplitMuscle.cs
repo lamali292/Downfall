@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -12,6 +12,7 @@ public class SplitMuscle : SlimeBossCardModel
 {
     public SplitMuscle() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
+        WithTip(SlimeBossTip.Split);
         WithCostUpgradeBy(-1);
         WithSlimeTip<MuscleSlime>();
         WithTags(SlimeBossTag.Slime);

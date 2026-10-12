@@ -4,5 +4,7 @@
   "SLIMEBOSS-COMMAND.title": "Command",
   "SLIMEBOSS-COMMAND.description": "Trigger the effect of the specified Slimes.",
   "SLIMEBOSS-CONSUME.title": "Consume",
-  "SLIMEBOSS-CONSUME.description": "Bonus effect. If the target has [gold]Weak[/gold], remove a stack and trigger the effect."
+  "SLIMEBOSS-CONSUME.description": "Bonus effect. If the target has [gold]Weak[/gold], remove a stack and trigger the effect.",
+  "SLIMEBOSS-SPLIT.title": "Split",
+  "SLIMEBOSS-SPLIT.description": "Summon a Slime. If you already have it, it gains [gold]Potency[/gold] equal to its effect amount instead."
 }

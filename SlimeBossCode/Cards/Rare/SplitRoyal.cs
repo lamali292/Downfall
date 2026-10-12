@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -12,6 +12,7 @@ public class SplitRoyal : SlimeBossCardModel
 {
     public SplitRoyal() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
+        WithTip(SlimeBossTip.Split);
         WithCostUpgradeBy(-1);
         WithSlimeTip<RoyalSlime>();
         WithTags(SlimeBossTag.Slime);

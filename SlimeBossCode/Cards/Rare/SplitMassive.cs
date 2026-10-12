@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -12,6 +12,7 @@ public class SplitMassive : SlimeBossCardModel
 {
     public SplitMassive() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
+        WithTip(SlimeBossTip.Split);
         WithCostUpgradeBy(-1);
         WithSlimeTip<MassiveSlime>();
         WithTags(SlimeBossTag.Slime);
