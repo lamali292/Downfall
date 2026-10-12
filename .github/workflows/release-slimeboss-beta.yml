@@ -89,16 +89,21 @@ jobs:
 
       # Publishing SlimeBoss.csproj also builds its Downfall.csproj reference, but only the
       # SlimeBossBeta output folder is packaged: Downfall itself stays a separate Workshop item.
+      #
+      # Do NOT pass /p:Version, /p:AssemblyVersion or /p:FileVersion here. Command-line properties
+      # are forwarded to the referenced Downfall.csproj, so SlimeBossBeta.dll would record
+      # "needs Downfall >= $VERSION.0", and the game refuses to bind a reference to a NEWER
+      # assembly version than the installed Workshop Downfall has (ReflectionTypeLoadException:
+      # "Could not load file or assembly 'Downfall, Version=0.1.23.0'"). The default AssemblyVersion
+      # in Directory.Build.props is the OLDEST Downfall this beta supports and works with it and
+      # every newer one. The user-visible version is SlimeBoss.json (synced above).
       - name: Publish SlimeBossBeta
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
           dotnet publish SlimeBoss.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/output/mods/" \
-            /p:SkipGodotImport=true \
-            /p:Version="$VERSION" \
-            /p:AssemblyVersion="$VERSION.0" \
-            /p:FileVersion="$VERSION.0"
+            /p:SkipGodotImport=true
 
       - name: Verify mod folder
         run: |
