@@ -1,10 +1,11 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Cards.Variables;
+using Downfall.DownfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace Downfall.DownfallCode.DynamicVars;
+namespace SlimeBoss.SlimeBossCode.DynamicVars;
 
 /// <summary>
 /// <see cref="CustomCalculatedDamageVar"/> for owners that are <see cref="ICustomAbstractModel"/>s
