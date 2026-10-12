@@ -12,7 +12,7 @@ public class LegionForm : SlimeBossCardModel
 {
     public LegionForm() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Ethereal);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithPower<LegionFormPower>(1, false);
         WithTip(SlimeBossTip.Command);
     }
