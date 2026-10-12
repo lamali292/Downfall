@@ -26,7 +26,7 @@ public class EvolutionSlime : SlimeModel
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var damage = _level < 2 ? DynamicVars.Damage.BaseValue : DynamicVars["Damage2"].BaseValue;
-        var attack =  DamageCmd.Attack(damage).FromSlime(this);
+        var attack =  DamageCmd.Attack(damage).Unpowered().FromSlime(this);
         attack = _level < 3 ? forcedTarget == null ? 
             attack.TargetingRandomOpponents(CombatState) : attack.Targeting(forcedTarget) : attack.TargetingAllOpponents(CombatState);
         

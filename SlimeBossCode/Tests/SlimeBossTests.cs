@@ -3,9 +3,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Enchantments;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Basic;
 using SlimeBoss.SlimeBossCode.Cards.Rare;
 using SlimeBoss.SlimeBossCode.Cards.Uncommon;
+using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
@@ -123,5 +126,26 @@ public class SlimeBossTests
             $"MassRepurpose should transform every other hand card into Slimed, got {slimedCards.Count}.");
         Assert.IsTrue(slimedCards.All(c => c.Enchantment is Swift { Amount: 5 }),
             "Each transformed Slimed should be enchanted with Swift 5 (MassRepurpose's Adroit amount).");
+    }
+
+    // Regression guard: MuscleSlimePotencyPower never reset because BaseLib's temporary-power reset only fires
+    // when the owner is among the side's turn-end participants, and a slime pet never is. The Potency it
+    // granted therefore stacked on the slime for the whole combat.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task MuscleSlimePotencyResetsAtEndOfPlayerTurn(TestContext ctx)
+    {
+        await SlimeBossCmd.Split<MuscleSlime>(new ThrowingPlayerChoiceContext(), ctx.Player);
+        var muscle = ctx.Player.GetSlime<MuscleSlime>()!;
+        await PowerCmd.Apply<MuscleSlimePotencyPower>(new ThrowingPlayerChoiceContext(), muscle, 2, ctx.Player.Creature, null);
+        Assert.AreEqual(2, muscle.GetPower<PotencyPower>()?.Amount ?? 0, "Sanity: Potency should be granted first.");
+
+        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
+        PlayerCmd.EndTurn(ctx.Player, false);
+        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
+            await Task.Delay(100);
+
+        Assert.IsTrue(muscle.GetPower<MuscleSlimePotencyPower>() == null, "The temporary power should be removed.");
+        Assert.AreEqual(0, muscle.GetPower<PotencyPower>()?.Amount ?? 0,
+            "Potency granted by Muscle Slime should be gone after the player's turn ends.");
     }
 }

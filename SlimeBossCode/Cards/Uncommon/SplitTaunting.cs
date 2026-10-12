@@ -15,7 +15,6 @@ public class SplitTaunting : SlimeBossCardModel
 {
     public SplitTaunting() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
         WithSlimeTip<TauntingSlime>();
         WithPower<PotencyPower>(0, 2, true);
         WithTags(SlimeBossTag.Slime);

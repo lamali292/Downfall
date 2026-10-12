@@ -24,7 +24,7 @@ public class BruiserSlime : SlimeModel
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromSlime(this);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this);
         var target = forcedTarget ?? GetHighestHpOpponent();
         if (target == null) return;
         attack = PetOwner.HasPower<MafiosoPower>()

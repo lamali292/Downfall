@@ -27,7 +27,7 @@ public class CultistSlime : SlimeModel
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var damage = ((CustomModelCalculatedDamageVar)DynamicVars["Damage"]).CalculateCustom(forcedTarget);
-        var attack = DamageCmd.Attack(damage).FromSlime(this);
+        var attack = DamageCmd.Attack(damage).Unpowered().FromSlime(this);
         attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);
     }

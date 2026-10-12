@@ -13,10 +13,10 @@ namespace SlimeBoss.SlimeBossCode.Cards.Common;
 [Pool(typeof(SlimeBossCardPool))]
 public class DivideAndConquer : SlimeBossCardModel
 {
-    public DivideAndConquer() : base(1, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
+    public DivideAndConquer() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
-        WithCalculatedVar("Repeat", 0, Calc);
+        WithCalculatedVar("Repeat", 1, Calc);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
