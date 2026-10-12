@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.TestSupport;
+using Downfall.DownfallCode.Extensions;
 
 namespace Downfall.DownfallCode.Commands;
 
@@ -62,7 +63,21 @@ public class DownfallCardSelectionCmd
         int count, AbstractModel source,
         Func<CardModel, bool>? filter = null, bool optional = false)
     {
-        return CardSelectCmd.FromHand(ctx, source.Creature.Player!, Prefs(prompt, count, optional), filter, source);
+        return FromHand(ctx, source.Creature.Player!, Prefs(prompt, count, optional), source, filter);
+    }
+
+    /// <summary>
+    ///     <see cref="CardSelectCmd.FromHand" />, but returns nothing without prompting when no card in hand matches
+    ///     <paramref name="filter" />. The base game reserves a choice id and pauses the calling hook even then, which
+    ///     turns an end-of-turn hook into a network round trip for no reason and lets other hooks run at different
+    ///     points relative to it on each machine (state divergence). Use this instead of calling
+    ///     <see cref="CardSelectCmd.FromHand" /> from hooks.
+    /// </summary>
+    public static async Task<IEnumerable<CardModel>> FromHand(PlayerChoiceContext ctx, Player player,
+        CardSelectorPrefs prefs, AbstractModel source, Func<CardModel, bool>? filter = null)
+    {
+        if (!player.Hand.Any(c => filter?.Invoke(c) ?? true)) return [];
+        return await CardSelectCmd.FromHand(ctx, player, prefs, filter, source);
     }
 
     /// <summary>

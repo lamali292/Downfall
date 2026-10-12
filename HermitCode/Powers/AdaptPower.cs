@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -18,17 +19,9 @@ public sealed class AdaptPower : HermitPowerModel
         if (side != CombatSide.Player) return;
         if (Owner.Player == null) return;
         if (CombatManager.Instance.IsOverOrEnding) return;
-        var hand = PileType.Hand.GetPile(Owner.Player);
-        if (!hand.Cards.Any()) return;
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 0, Amount);
         var ctx = new BlockingPlayerChoiceContext();
-        var selected = await CardSelectCmd.FromHand(
-            ctx,
-            Owner.Player,
-            prefs,
-            null,
-            this
-        );
+        var selected = await DownfallCardSelectionCmd.FromHand(ctx, Owner.Player, prefs, this);
         foreach (var card in selected)
         {
             await CardCmdCompatibility.Exhaust(ctx, card);

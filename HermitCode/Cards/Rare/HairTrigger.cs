@@ -4,6 +4,7 @@ using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Downfall.DownfallCode.Artists;
 
 namespace Hermit.HermitCode.Cards.Rare;
 
@@ -18,6 +19,10 @@ public class HairTrigger : HermitCardModel
         WithCardTip<StrikeHermit>((e, _) => e.AddKeyword(CardKeyword.Exhaust));
     }
 
+    
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+    
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return CommonActions.ApplySelf<HairTriggerPower>(ctx, this);
