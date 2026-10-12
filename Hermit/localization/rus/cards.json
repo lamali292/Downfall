@@ -175,7 +175,6 @@
     "HERMIT-TORN_PAGE.description": "Дает {Block:diff()} [gold]защиты[/gold].\n[purple]Поражает[/purple] ВСЕ [red]Проклятия[/red] в [gold]руке[/gold] эффектом [purple]Карта-некромант[/purple].",
     "HERMIT-UNYIELDING.title": "Непреклонность",
     "HERMIT-UNYIELDING.description": "Дает {Block:diff()} [gold]защиты[/gold].\nЕсли у вас есть [gold]уязвимость[/gold], вы получаете на 50% урона меньше в этот ход.",
-    "HERMIT-DEATHWISH.title": "Жажда смерти",
     "HERMIT-DEATHWISH.description": "Соседние с [red]Проклятием[/red] карты в [gold]руке[/gold] разыгрываются [gold]В яблочко[/gold] и наносят на {DeathwishPower:diff()} урона больше.",
     "HERMIT-RUBBER_BULLET.title": "Резиновая пуля",
     "HERMIT-RUBBER_BULLET.description": "Наносит {Damage:diff()} урона.\n[gold]В яблочко[/gold]:\nПовышает свой урон на {Increase:diff()} до конца боя и перемещается в [gold]руку[/gold] другого игрока.",

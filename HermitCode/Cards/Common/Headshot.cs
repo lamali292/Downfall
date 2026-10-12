@@ -27,15 +27,15 @@ public class Headshot : HermitCardModel
     {
         if (CombatState == null || cardPlay.Target == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        var context = await AttackCommand.CreateContextAsync(CombatState, ctx, cardPlay);
-        var list1 = (await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+        var context = await AttackContextCompatibility.CreateContextAsync(CombatState, ctx, cardPlay);
+        var list1 = (await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
             DynamicVars.Damage.Props, this, cardPlay)).ToList();
         context.AddHit(list1);
         HermitSfx.PlayGun2();
         
         await HermitCmd.DeadOn(ctx, this, cardPlay, async () =>
         {
-            var list2 = (await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+            var list2 = (await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
                 DynamicVars.Damage.Props, this, cardPlay)).ToList();
             context.AddHit(list2);
             HermitSfx.PlayGun2();

@@ -172,7 +172,6 @@
     "HERMIT-TORN_PAGE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n给[gold]手牌[/gold]中的所有[red]诅咒[/red]牌[gold]附魔[/gold][purple]死灵[/purple]。",
     "HERMIT-UNYIELDING.title": "不屈",
     "HERMIT-UNYIELDING.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n如果你有[gold]易伤[/gold]，本回合中受到的伤害降低50%。",
-    "HERMIT-DEATHWISH.title": "至死方休",
     "HERMIT-DEATHWISH.description": "[red]诅咒[/red]牌相邻的牌视为[gold]精准[/gold]并额外造成{DeathwishPower:diff()}点伤害。",
     "HERMIT-RUBBER_BULLET.title": "橡胶子弹",
     "HERMIT-RUBBER_BULLET.description": "造成{Damage:diff()}点伤害。\n[gold]精准[/gold]：本场战斗中此牌伤害增加{Increase:diff()}点，然后将其移至另一名随机玩家的[gold]手牌[/gold]。",

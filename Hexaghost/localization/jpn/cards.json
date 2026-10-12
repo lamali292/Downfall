@@ -53,7 +53,7 @@
     "HEXAGHOST-FAST_FORWARD.title": "早送り",
     "HEXAGHOST-FIRESTARTER.description": "すべての敵に{Damage:diff()}ダメージを与え、[gold]ソウルバーン[/gold]{SoulBurnPower:diff()}を付与する。",
     "HEXAGHOST-FIRESTARTER.title": "着火材",
-    "HEXAGHOST-FLAMES_FROM_BEYOND.description": "[afterlife]すべての敵にソウルバーン[/afterlife]{SoulBurnPower:diff()}[afterlife]を付与する。[/afterlife](付与回数は2回)",
+    "HEXAGHOST-FLAMES_FROM_BEYOND.description": "[afterlife]すべての敵にソウルバーン[/afterlife]{SoulBurnPower:diff()}[afterlife]を付与する。[/afterlife]\n(付与回数は2回)",
     "HEXAGHOST-FLAMES_FROM_BEYOND.title": "彼方からの炎",
     "HEXAGHOST-FLARE_FLICK.description": "{Damage:diff()}ダメージを与える。\n現在のゴーストフレイムを[gold]発火[/gold]する。{IfUpgraded:show:\n[gold]前進[/gold]か[gold]後退[/gold]することができる。|}",
     "HEXAGHOST-FLARE_FLICK.title": "焔の進撃",

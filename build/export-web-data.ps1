@@ -11,7 +11,7 @@
         megadot --headless --import --quit --path sts2-exporter
         (wait a couple seconds)
         megadot --headless --export-pack "Windows Desktop" "<mods>/STS2Export/STS2Export.pck" --path sts2-exporter
-    Also requires local.props (SteamLibraryPath) same as test.ps1, and Steam running.
+    Also requires local.props (Sts2Branch + Sts2BetaPath/Sts2PublicPath) same as test.ps1, and Steam running.
 
 .EXAMPLE
     ./build/export-web-data.ps1
@@ -27,12 +27,13 @@ Set-Location $ProjectRoot
 
 if (-not (Test-Path "local.props")) { throw "local.props not found. Copy local.props.example to local.props." }
 $props = [xml](Get-Content "local.props")
-$steamLib = $props.Project.PropertyGroup.SteamLibraryPath
+. "$PSScriptRoot\get-sts2-path.ps1"
 
-$exe = Join-Path $steamLib "common\Slay the Spire 2\SlayTheSpire2.exe"
+$gameDir = Get-Sts2Path $props
+$exe = Join-Path $gameDir "SlayTheSpire2.exe"
 if (-not (Test-Path $exe)) { throw "Game executable not found: $exe" }
 
-$modsDir = Join-Path $steamLib "common\Slay the Spire 2\mods"
+$modsDir = Join-Path $gameDir "mods"
 if (-not (Test-Path (Join-Path $modsDir "STS2Export\STS2Export.dll"))) {
     throw "STS2Export is not in $modsDir. Build it first: cd ..\sts2-exporter; dotnet build STS2Export.csproj"
 }
