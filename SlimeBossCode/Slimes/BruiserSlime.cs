@@ -17,19 +17,12 @@ public class BruiserSlime : SlimeModel
 
     protected override string SkinName => "poison";
     
-    private Creature? GetHighestHpOpponent()
-    {
-        return CombatState.GetOpponentsOf(Creature).Where(e => e.IsHittable).MaxBy(e => e.CurrentHp);
-    }
-
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this);
-        var target = forcedTarget ?? GetHighestHpOpponent();
-        if (target == null) return;
         attack = PetOwner.HasPower<MafiosoPower>()
             ? attack.TargetingAllOpponents(CombatState)
-            : attack.Targeting(target);
+            : forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);
     }
 }

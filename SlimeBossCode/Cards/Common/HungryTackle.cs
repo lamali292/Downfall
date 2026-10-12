@@ -6,12 +6,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 
-namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
+namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class HungryTackle : SlimeBossCardModel
 {
-    public HungryTackle() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public HungryTackle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(9, 1);
         WithEnergy(2, 1);

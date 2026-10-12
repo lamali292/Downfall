@@ -12,9 +12,9 @@ public class ForwardTackle : SlimeBossCardModel
 {
     public ForwardTackle() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(14, 2);
+        WithDamage(10, 2);
         WithTags(SlimeBossTag.Tackle);
-        WithCommand(2, 1);
+        WithCommand(3, 1);
         WithSlimeTip<BruiserSlime>();
     }
 

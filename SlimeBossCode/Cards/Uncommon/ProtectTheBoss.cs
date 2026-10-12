@@ -12,10 +12,10 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class ProtectTheBoss : SlimeBossCardModel
 {
-    public ProtectTheBoss() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public ProtectTheBoss() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<ProtectTheBossPower>(1, false);
-        WithCostUpgradeBy(-1);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithTip(StaticHoverTip.Block);
     }
 

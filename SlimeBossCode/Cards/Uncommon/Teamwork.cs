@@ -14,7 +14,7 @@ public class Teamwork : SlimeBossCardModel
 {
     public Teamwork() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(5, 3);
+        WithBlock(5);
         WithSlimeTip<BruiserSlime>();
         WithTip(SlimeBossTip.Command);
     }
@@ -30,6 +30,6 @@ public class Teamwork : SlimeBossCardModel
         {
             await CommonActions.CardBlock(this, cardPlay);
         }
-        await SlimeBossCmd.Command<BruiserSlime>(ctx, Owner, x, this);
+        await SlimeBossCmd.Command<BruiserSlime>(ctx, Owner, IsUpgraded ? x + 1 : x, this);
     }
 }

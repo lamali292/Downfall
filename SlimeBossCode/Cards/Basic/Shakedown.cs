@@ -15,11 +15,10 @@ public class Shakedown : SlimeBossCardModel, ITranscendenceCard
 {
     public Shakedown() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
-        WithPower<ShakedownPotencyPower>(2, false);
+        WithPower<ShakedownPotencyPower>(1, 1, false);
         WithTip<PotencyPower>();
         WithSlimeTip<BruiserSlime>();
-        WithCommand(1);
+        WithCommand(2);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

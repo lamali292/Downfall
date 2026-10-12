@@ -11,7 +11,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class SpreadingSlime : SlimeBossCardModel
 {
-    public SpreadingSlime() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public SpreadingSlime() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithPower<SpreadingSlimePower>(2, 1, false);

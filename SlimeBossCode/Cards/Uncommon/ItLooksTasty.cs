@@ -1,21 +1,18 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 
-namespace SlimeBoss.SlimeBossCode.Cards.Common;
+namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class ItLooksTasty : SlimeBossCardModel
 {
-    public ItLooksTasty() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public ItLooksTasty() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(14, 4);
+        WithDamage(16, 4);
         WithTip(SlimeBossTip.Consume);
     }
 
