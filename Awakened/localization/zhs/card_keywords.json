@@ -1,3 +1,5 @@
 {
+    "AWAKENED-CHANT.title": "吟唱",
+    "AWAKENED-CHANT.description": "若打出的上一张牌是能力牌，这张牌打出后，在本场战斗中激活额外效果。",
     "AWAKENED-CHANT.card_text": "{Chanted:cond:[jitter][blue]吟唱[/blue][/jitter]|[gold]吟唱[/gold]}"
 }

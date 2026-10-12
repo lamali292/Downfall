@@ -9,7 +9,7 @@
     "CHAMP-ARENA_PREPARATION.title": "Ausrüstung",
     "CHAMP-BACKSTEP.description": "Erhalte {CalculatedBlock:diff()} [gold]Block[/gold],\nerhöht durch [gold]Elan[/gold].",
     "CHAMP-BACKSTEP.title": "Rückschritt",
-    "CHAMP-BATTLE_PLAN.description": "Erhalte {Block:diff()} [gold]Block[/gold].\n[gold]Weissage[/gold] {Scry:diff()}.\nNimm die [gold]Defensivhaltung[/gold] ein.",
+    "CHAMP-BATTLE_PLAN.description": "Erhalte {Block:diff()} [gold]Block[/gold].\n[gold]Spähe[/gold] {Scry:diff()}.\nNimm die [gold]Defensivhaltung[/gold] ein.",
     "CHAMP-BATTLE_PLAN.title": "Schlachtplan",
     "CHAMP-BERSERKERS_SHOUT.description": "Erhalte {VigorPower:diff()} [gold]Elan[/gold].\nNimm die [gold]Offensivhaltung[/gold] ein.",
     "CHAMP-BERSERKERS_SHOUT.title": "Offensivschrei",

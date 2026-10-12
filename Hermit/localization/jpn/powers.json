@@ -74,7 +74,7 @@
     "HERMIT-UNYIELDING_POWER.title": "不屈",
     "HERMIT-UNYIELDING_POWER.description": "[gold]弱体[/gold]状態の場合、このターン攻撃から受けるダメージが[blue]50%[/blue]減少する。",
     "HERMIT-UNYIELDING_POWER.smartDescription": "[gold]弱体[/gold]状態の場合、{Amount:cond:>1?[blue]{Amount}[/blue]ターンの間|このターン}、攻撃から受けるダメージが[blue]{DamageDecrease:percentLess()}%[/blue]減少する。",
-    "HERMIT-DEATHWISH_POWER.title": "死の願望",
+    "HERMIT-DEATHWISH_POWER.title": "撃て！",
     "HERMIT-DEATHWISH_POWER.description": "[red]呪い[/red]に隣接するカードは[gold]命中[/gold]とみなされ、追加でダメージを与える。",
     "HERMIT-BIG_BRUISER_POWER.title": "ビッグブルーザー",
     "HERMIT-BIG_BRUISER_POWER.description": "あなたが敵に付与した[gold]打撲[/gold]の恩恵を、すべてのプレイヤーが受ける。",

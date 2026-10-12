@@ -15,6 +15,7 @@ public class SoulStrike : AwakenedCardModel
     {
         WithDamage(4, 2);
         WithRepeat(3);
+        WithTags(CardTag.Strike);
     }
 
 

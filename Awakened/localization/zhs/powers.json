@@ -45,6 +45,8 @@
     "AWAKENED-DEMON_GLYPH_POWER.description": "当你[gold]觉醒[/gold]时，获得[gold]力量[/gold]和[gold]敏捷[/gold]。",
     "AWAKENED-DEMON_GLYPH_POWER.smartDescription": "当你[gold]觉醒[/gold]时，获得[blue]{Amount}[/blue]点[gold]力量[/gold]和[gold]敏捷[/gold]。",
     "AWAKENED-ECLIPSE_EMBRACE_POWER.title": "日蚀之拥",
+    "AWAKENED-ECLIPSE_EMBRACE_POWER.description": "每当你[gold]消耗[/gold]一张[gold]虚空[/gold]时，在下个回合抽1张牌，获得{energyPrefix:energyIcons(1)}。",
+    "AWAKENED-ECLIPSE_EMBRACE_POWER.smartDescription": "每当你[gold]消耗[/gold]一张[gold]虚空[/gold]时，在下给回合抽[blue]{Amount}[/blue]张牌，获得{Amount:energyIcons()}。",
     "AWAKENED-FERVENT_WORSHIP_POWER.title": "狂热崇拜",
     "AWAKENED-FERVENT_WORSHIP_POWER.description": "在你的回合开始时失去[gold]力量[/gold]。",
     "AWAKENED-FERVENT_WORSHIP_POWER.smartDescription": "在你的回合开始时失去[blue]{Amount}[/blue]点[gold]力量[/gold]。",

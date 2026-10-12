@@ -3,7 +3,7 @@
   "name": "Downfall",
   "author": "lamali, Blue Guy and SandTag",
   "description": "A port of Downfall 1's characters refreshed and updated for Slay The Spire 2.",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "has_pck": true,
   "has_dll": true,
   "min_game_version": "0.107.1",

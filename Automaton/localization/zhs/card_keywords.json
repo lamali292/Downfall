@@ -1,0 +1,6 @@
+{
+    "AUTOMATON-ENCODE.title": "编码",
+    "AUTOMATON-ENCODE.description": "将这张牌放入你的[gold]编码序列[/gold]。\n当[gold]编码序列[/gold]中有[blue]3[/blue]张牌时，将关键词文本[gold]编码[/gold]之上的效果描述合并为一个耗能为[blue]1[/blue]的[gold]方法[/gold]。",
+    "AUTOMATON-COMPILE.title": "编译",
+    "AUTOMATON-COMPILE.description": "当这张牌合并成[gold]方法[/gold]时，会触发后续效果。"
+}

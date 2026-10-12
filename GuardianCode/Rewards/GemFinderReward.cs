@@ -71,10 +71,7 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
         var safety = 0;
         while (Gems.Count < target && safety++ < 10_000)
         {
-            var roll = rng.NextInt(100);
-            var rarity = roll < 55 ? CardRarity.Common
-                : roll < 85 ? CardRarity.Uncommon
-                : CardRarity.Rare;
+            var rarity = RollRarity(rng);
 
             if (!gemsByRarity.TryGetValue(rarity, out var pool) || pool.Count == 0)
                 continue;
@@ -91,6 +88,14 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
 
         if (Gems.Count < target)
             Log.Error($"GemFinderReward only populated {Gems.Count}/{target} gems!");
+    }
+
+    internal static CardRarity RollRarity(MegaCrit.Sts2.Core.Random.Rng rng)
+    {
+        var roll = rng.NextInt(100);
+        return roll < 55 ? CardRarity.Common
+            : roll < 85 ? CardRarity.Uncommon
+            : CardRarity.Rare;
     }
 
     protected override async Task<bool> OnSelect()

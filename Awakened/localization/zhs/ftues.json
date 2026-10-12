@@ -1,0 +1,6 @@
+{
+    "AWAKENED-SPELLBOOK_FTUE.title": "法术书",
+    "AWAKENED-SPELLBOOK_FTUE.description": "[gold]法术书[/gold]记载着一组特定顺序的法术牌。每当你[gold]念咒[/gold]时，将下一张法术牌放入你的[gold]手牌[/gold]。\n若所有法术牌都[gold]念咒[/gold]过了，[gold]法术书[/gold]会更换一批顺序可能有所差异的法术牌。",
+    "AWAKENED-AWAKEN_FTUE.title": "觉醒进度",
+    "AWAKENED-AWAKEN_FTUE.description": "打出能力牌会增进本场战斗的[gold]觉醒[/gold]进度，一共需要[blue]7[/blue]张能力。\n当你[gold]觉醒[/gold]时，所有法术牌会被[gold]升级[/gold]。"
+}

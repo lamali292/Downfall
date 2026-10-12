@@ -15,19 +15,35 @@ namespace Downfall.DownfallCode.Data;
 
 public static class DownfallMetrics
 {
+    /// <summary>
+    ///     Assemblies whose content counts as "ours". Internal submods ship as their own dlls, so
+    ///     they register here when loaded; otherwise their cards/characters look like foreign mods
+    ///     and the run is rejected.
+    /// </summary>
+    private static readonly HashSet<Assembly> AllowedAssemblies =
+    [
+        typeof(DownfallCharacterModel).Assembly,
+        typeof(CharacterModel).Assembly
+    ];
+
+    internal static void AllowAssembly(Assembly assembly)
+    {
+        lock (AllowedAssemblies)
+        {
+            AllowedAssemblies.Add(assembly);
+        }
+    }
+
     private static readonly RunMetricsUploader<RunMetrics> Uploader = new(
         new MetricsUploaderConfig
         {
             ModName = "Downfall",
             EndpointUrl = "https://api.downfall-sts2.org/runs",
             ApiKey = BuildSecrets.MetricsApiKey,
+            RejectForeignContent = false,
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
             IsOwnCharacter = e => e is DownfallCharacterModel,
-            AllowedAssemblies = new HashSet<Assembly>
-            {
-                typeof(DownfallCharacterModel).Assembly,
-                typeof(CharacterModel).Assembly
-            },
+            AllowedAssemblies = AllowedAssemblies,
             ConfigureRequest =  req =>  
             {
                 req.Headers.Add("apikey", BuildSecrets.MetricsApiKey);
