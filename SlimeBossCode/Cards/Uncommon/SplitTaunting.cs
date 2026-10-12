@@ -8,8 +8,6 @@ using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
-// CSV row 28 names this "Taunting Slime" but its own effect text says "Split into a Leeching Slime" -
-// treated as a naming/text swap error in the source spreadsheet; the NAME column is authoritative here.
 [Pool(typeof(SlimeBossCardPool))]
 public class SplitTaunting : SlimeBossCardModel
 {

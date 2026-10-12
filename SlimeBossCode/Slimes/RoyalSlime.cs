@@ -13,7 +13,7 @@ public class RoyalSlime : SlimeModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7, DamageProps.nonCardUnpowered)
+        new DamageVar(5, DamageProps.nonCardUnpowered)
     ];
 
     protected override string SkinName => "champ";

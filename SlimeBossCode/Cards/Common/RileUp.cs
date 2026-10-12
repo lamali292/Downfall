@@ -17,7 +17,7 @@ public class RileUp : SlimeBossCardModel
 {
     public RileUp() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(6, 1);
+        WithDamage(8, 1);
         WithPower<RileUpPotencyPower>(2, 2, false);
         WithTip<PotencyPower>();
         WithSlimeTip<BruiserSlime>();
