@@ -14,6 +14,7 @@ public class SplitLeeching : SlimeBossCardModel
     {
         WithSlimeTip<LeechingSlime>();
         WithTags(SlimeBossTag.Slime);
+        WithCostUpgradeBy(-1);
     }
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
