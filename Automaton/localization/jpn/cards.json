@@ -54,7 +54,7 @@
     "AUTOMATON-FORMAT.title": "初期化",
     "AUTOMATON-FORTIFY.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n{Damage:diff()}ダメージを与える。\nカードを{Stash:diff()}枚[gold]格納[/gold]する。",
     "AUTOMATON-FORTIFY.title": "要塞化",
-    "AUTOMATON-FOR_LOOP.description": "次にカードを[gold]エンコード[/gold]する時、そのカードのコピーを{IfUpgraded:show:X+1|X}枚[gold]エンコード[/gold]する。",
+    "AUTOMATON-FOR_LOOP.description": "次にカードを[gold]エンコード[/gold]する時、そのカードのコピーを追加で{IfUpgraded:show:X+1|X}枚[gold]エンコード[/gold]する。",
     "AUTOMATON-FOR_LOOP.title": "Forループ",
     "AUTOMATON-FRAGMENT.title": "フラグメント",
     "AUTOMATON-FRONTLOAD.title": "フロントロード",
