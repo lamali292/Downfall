@@ -64,6 +64,7 @@
     "AWAKENED-DEMON_GLYPH.title": "デーモングリフ",
     "AWAKENED-DESPERATE_PRAYER.description": "[gold]セレモニー[/gold]を{Cards:diff()}枚[gold]手札[/gold]に加える。",
     "AWAKENED-DESPERATE_PRAYER.title": "必死の祈り",
+    "AWAKENED-ECLIPSE_EMBRACE.description": "[gold]虚無[/gold]を[gold]廃棄[/gold]するたび、次のターン、追加でカードを1枚引いて{energyPrefix:energyIcons(1)}を得る。",
     "AWAKENED-ECLIPSE_EMBRACE.title": "日蝕の抱擁",
     "AWAKENED-ENSORCELATE.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次にプレイするパワーのコストは{energyPrefix:energyIcons(0)}。",
     "AWAKENED-ENSORCELATE.title": "魔力付与",
