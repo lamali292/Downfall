@@ -49,4 +49,7 @@ public class OverblockBlockPower : GuardianPowerModel, IAfterGuardianModeChange
     }
 }
 
-public class OverblockBlockPowerThornsPower : CustomTemporaryPowerModelWrapper<OverblockBlockPower, ThornsPower>;
+public class OverblockBlockPowerThornsPower : CustomTemporaryPowerModelWrapper<OverblockBlockPower, ThornsPower>
+{
+    protected override bool UntilEndOfOtherSideTurn => true;
+}

@@ -162,6 +162,7 @@ public static class DownfallMainFile
                 : Assembly.LoadFrom(dllPath);
 
             ModManagerCompat.AssociateAssemblyWithMod(ModId, assembly);
+            DownfallMetrics.AllowAssembly(assembly);
 
             var mainFile = assembly.GetType(mainTypeName);
             var initialize = mainFile?.GetMethod(

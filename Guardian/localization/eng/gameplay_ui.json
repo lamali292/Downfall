@@ -1,5 +1,6 @@
 ﻿{
   "GUARDIAN-GEM": "Gem",
+  "COMBAT_REWARD_ADD_GEM": "Add [gold]{Gem}[/gold] into your [gold]Deck[/gold].",
   "COMBAT_REWARD_ADD_GEMS": "Add {Amount:plural:a [gold]Gem[/gold]|[blue]{Amount}[/blue] [gold]Gems[/gold]} into your [gold]Deck[/gold].",
   "GUARDIAN-GEM_SOCKET_SELECT": "Select a Card to socket the Gem."
 }

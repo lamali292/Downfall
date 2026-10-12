@@ -21,5 +21,7 @@ public class GildedShield : SneckoCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await CardPileCmd.Add(this, PileType.Hand);
         await MuddleCmd.Muddle(ctx, this);
+        // todo: cheap cheat fix
+        EnergyCost.SetThisTurn(EnergyCost.GetWithModifiers(CostModifiers.All));
     }
 }
