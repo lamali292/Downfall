@@ -17,7 +17,7 @@ public class SpikeSlime : SlimeModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new SlimeSecondaryVar(4)
+        new SlimeSecondaryVar(3)
     ];
 
     public override IEnumerable<IHoverTip> ExtraTips =>

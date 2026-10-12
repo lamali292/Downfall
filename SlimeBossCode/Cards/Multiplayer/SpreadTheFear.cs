@@ -16,6 +16,8 @@ public class SpreadTheFear : SlimeBossCardModel
         WithPower<SpreadTheFearPower>(1, false);
         WithTip(StaticHoverTip.Block);
         WithTip<WeakPower>();
+        WithCostUpgradeBy(-1);
+        WithKeyword(CardKeyword.Exhaust);
     }
     
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

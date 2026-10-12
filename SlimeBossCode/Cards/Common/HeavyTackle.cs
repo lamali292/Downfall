@@ -15,7 +15,7 @@ public class HeavyTackle : SlimeBossCardModel
     {
         WithKeyword(CardKeyword.Retain);
         WithTags(SlimeBossTag.Tackle);
-        WithDamage(18, 4);
+        WithDamage(18, 6);
         WithTip<Slimed>();
     }
 
