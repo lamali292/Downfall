@@ -19,6 +19,9 @@ public class MassiveSlime : SlimeModel
 
     protected override string SkinName => "greed";
 
+    public override string? CounterStatusIconPath =>
+        _skipTurns > 0 ? "res://images/packed/intents/intent_sleep.png" : null;
+
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         if (_skipTurns > 0)

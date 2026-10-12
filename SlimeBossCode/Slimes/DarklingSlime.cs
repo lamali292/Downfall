@@ -19,9 +19,11 @@ public class DarklingSlime : SlimeModel, IAfterCommand
 
     public override SlimeType SlimeType => SlimeType.Counter;
 
+    public override int CounterHitCount => SlimeAmount;
+
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().WithHitCount(SlimeAmount).FromSlime(this);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().WithHitCount(CounterHitCount).FromSlime(this);
         attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         return attack.Execute(ctx);
     }

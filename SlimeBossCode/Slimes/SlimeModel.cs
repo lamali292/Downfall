@@ -159,6 +159,15 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
         }
     }
 
+    /// <summary>
+    /// When non-null, the counter shows this icon alone (no number) instead of its usual value - for
+    /// phases where the next Command does nothing, e.g. a sleeping slime.
+    /// </summary>
+    public virtual string? CounterStatusIconPath => null;
+
+    /// <summary>How many times the counter's effect repeats per Command; shown as "damage x hits" when above 1.</summary>
+    public virtual int CounterHitCount => 1;
+
     /// <summary>The unmodified value <see cref="CounterValue"/> is compared against to colour the counter.</summary>
     public decimal CounterBaseValue => CounterVar?.BaseValue ?? 0m;
 
