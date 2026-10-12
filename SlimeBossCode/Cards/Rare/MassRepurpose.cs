@@ -25,7 +25,7 @@ public class MassRepurpose : SlimeBossCardModel
 
     private static void EnchantSlimed(Slimed slimed, CardModel card)
     {
-        DownfallCardCmd.Enchant<Swift>(slimed, card.DynamicVars.Enchantment<Adroit>().BaseValue);
+        DownfallCardCmd.Enchant<Adroit>(slimed, card.DynamicVars.Enchantment<Adroit>().BaseValue);
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
