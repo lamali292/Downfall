@@ -13,7 +13,7 @@ public class ComboTackle : SlimeBossCardModel
     public ComboTackle() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithTags(SlimeBossTag.Tackle);
-        WithDamage(10, 2);
+        WithDamage(14, 2);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

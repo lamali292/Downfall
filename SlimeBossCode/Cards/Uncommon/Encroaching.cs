@@ -11,7 +11,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class Encroaching : SlimeBossCardModel
 {
-    public Encroaching() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public Encroaching() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<EncroachingPower>(1, 1, false);
         WithTip<WeakPower>();

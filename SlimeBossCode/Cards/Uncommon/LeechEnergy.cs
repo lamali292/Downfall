@@ -1,18 +1,17 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 
-namespace SlimeBoss.SlimeBossCode.Cards.Common;
+namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class LeechEnergy : SlimeBossCardModel
 {
-    public LeechEnergy() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public LeechEnergy() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
         WithEnergy(1);

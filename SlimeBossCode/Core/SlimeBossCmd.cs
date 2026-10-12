@@ -25,7 +25,7 @@ public static class SlimeBossCmd
         return player.SlimeCreatures.Select(e => e.Monster).OfType<SlimeModel>();
     }
 
-    /// <summary>Potency granted instead of duplicating an already-summoned slime type.</summary>
+    /// <summary>Fallback Potency for a duplicate Split when the slime has no CounterVar (its damage or secondary value) to take its base effect from.</summary>
     private const int DuplicateSplitPotency = 2;
 
 
@@ -133,7 +133,8 @@ public static class SlimeBossCmd
         switch (slime.SlimeType)
         {
             case SlimeType.Single:
-                await PowerCmd.Apply<PotencyPower>(ctx, existing, DuplicateSplitPotency, player.Creature, null);
+                var baseEffect = slime.CounterVar?.BaseValue ?? DuplicateSplitPotency;
+                await PowerCmd.Apply<PotencyPower>(ctx, existing, baseEffect, player.Creature, null);
                 break;
             case SlimeType.Counter:
                 slime.SlimeAmount++;

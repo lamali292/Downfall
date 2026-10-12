@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Models.Enchantments;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Basic;
+using SlimeBoss.SlimeBossCode.Cards.Common;
 using SlimeBoss.SlimeBossCode.Cards.Rare;
 using SlimeBoss.SlimeBossCode.Cards.Uncommon;
 using SlimeBoss.SlimeBossCode.Core;
@@ -68,6 +69,37 @@ public class SlimeBossTests
 
         var amount = ctx.Player.Creature.GetPower<PotencyPower>()?.Amount ?? 0;
         Assert.AreEqual(2, amount, $"Overexert should draw and play LevelUp twice, got Potency={amount}.");
+    }
+
+    // Opening Tackle permanently lowers its own damage by 4 each play for the rest of the combat.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task OpeningTackleLosesDamageAfterEachPlay(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<OpeningTackle>();
+        Assert.AreEqual(16, (int)card.DynamicVars.Damage.BaseValue, "Opening Tackle should start at 16 damage.");
+        await ctx.PlayCard(card, ctx.Combat.HittableEnemies.First());
+        Assert.AreEqual(12, (int)card.DynamicVars.Damage.BaseValue, "Opening Tackle should drop to 12 damage after one play.");
+    }
+
+    // Heavy Tackle costs 1 less per Status played this turn, including Statuses played before it was drawn.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task HeavyTackleCostsLessPerStatusPlayedThisTurn(TestContext ctx)
+    {
+        var heavy = await ctx.AddCardToHand<HeavyTackle>();
+        Assert.AreEqual(2, heavy.EnergyCost.GetAmountToSpend(), "Heavy Tackle should cost 2 with no Status played.");
+        var slimed = await ctx.AddCardToHand<Slimed>();
+        await ctx.PlayCard(slimed);
+        Assert.AreEqual(1, heavy.EnergyCost.GetAmountToSpend(), "Heavy Tackle should cost 1 after one Status.");
+    }
+
+    // Recollect gains Block and is back in hand at the start of the next turn.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task RecollectGainsBlockAndStaysOutOfHandUntilNextTurn(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Recollect>();
+        await ctx.PlayCard(card);
+        Assert.AreEqual(6, ctx.Player.Creature.Block, "Recollect should grant 6 Block.");
+        Assert.IsTrue(card.Pile?.Type != PileType.Hand, "Recollect should leave the hand after being played.");
     }
 
     // Regression guard: Spreading Slime was previously implemented as "first Status card each turn is

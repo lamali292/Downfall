@@ -16,7 +16,7 @@ public class FormOfWall : SlimeBossCardModel
 {
     public FormOfWall() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCalculatedBlock(8, 3, Calc, BlockProps.card, 0, 1);
+        WithCalculatedBlock(10, 3, Calc, BlockProps.card, 0, 1);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)

@@ -13,16 +13,19 @@ public class FullOnAssault : SlimeBossCardModel
 {
     public FullOnAssault() : base(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
-        WithPower<FullOnAssaultPotencyPower>(2, false);
+        WithPower<FullOnAssaultPotencyPower>(1, 1, false);
         WithTip<PotencyPower>();
         WithTip(SlimeBossTip.Command);
+        WithCommand(2);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<FullOnAssaultPotencyPower>(ctx, this);
-        await SlimeBossCmd.CommandAll(ctx, Owner, this);
+        for (var i = 0; i < DynamicVars["Command"].IntValue; i++)
+        {
+            await SlimeBossCmd.CommandAll(ctx, Owner, this);
+        }
     }
 }
 

@@ -21,23 +21,10 @@ public class MuscleSlime : SlimeModel
 
     protected override string? SkinName => "attack";
 
-    // "Targets whichever enemy was attacked last during your turn" - looks up the most recent
-    // CreatureAttackedEntry made by the owner this turn and re-targets its last hit's receiver.
-    private Creature? GetLastAttackedEnemy()
-    {
-        return CombatManager.Instance.History.Entries
-            .OfType<CreatureAttackedEntry>()
-            .Where(e => e.Actor == PetOwner && e.HappenedThisTurn(CombatState))
-            .SelectMany(e => e.DamageResults)
-            .Select(e => e.Receiver)
-            .LastOrDefault(e => e.IsHittable);
-    }
-
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this);
-        var target = forcedTarget ?? GetLastAttackedEnemy();
-        attack = target != null ? attack.Targeting(target) : attack.TargetingRandomOpponents(CombatState);
+        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);
     }
     
