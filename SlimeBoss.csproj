@@ -3,7 +3,7 @@
 
     <PropertyGroup>
         <ModId>SlimeBossBeta</ModId>
-        <ModName>$(ModId)</ModName>
+        <ModName>Downfall - Slime Boss Beta</ModName>
         <AssemblyName>$(ModId)</AssemblyName>
         <PackFolders>SlimeBoss</PackFolders>
         <IsStandaloneMod>true</IsStandaloneMod>
