@@ -105,7 +105,7 @@
   "SLIMEBOSS-SPLIT_LEECHING.title": "Split: Leeching",
   "SLIMEBOSS-STRIKE_SLIME_BOSS.description": "Deal {Damage:diff()} damage.",
   "SLIMEBOSS-STRIKE_SLIME_BOSS.title": "Strike",
-  "SLIMEBOSS-TEAMWORK.description": "Gain {Block:diff()} [gold]Block[/gold] X times.\n[gold]Command[/gold] [gold]Bruiser Slime[/gold] X{IfUpgraded:show: + 1|} times.",
+  "SLIMEBOSS-TEAMWORK.description": "Gain {Block:diff()} [gold]Block[/gold] X times.\n[gold]Command[/gold] [gold]Bruiser Slime[/gold] X{IfUpgraded:show:+1|} times.",
   "SLIMEBOSS-TEAMWORK.title": "Teamwork",
   "SLIMEBOSS-TONGUE_LASH.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each [gold]Weak[/gold] on the enemy.",
   "SLIMEBOSS-TONGUE_LASH.title": "Tongue Lash",
