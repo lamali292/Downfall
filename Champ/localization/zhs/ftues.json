@@ -1,0 +1,6 @@
+{
+    "CHAMP-RULES_FTUE.title": "姿态之舞",
+    "CHAMP-RULES_FTUE.body1": "部分牌、遗物和其他效果可以使你进入[gold]姿态[/gold]。\n一共有三种[gold]姿态[/gold]，分别为[gold]战狂[/gold]、[gold]防守[/gold]、[gold]终极[/gold]。",
+    "CHAMP-RULES_FTUE.body2": "当你处于[gold]姿态[/gold]时，每打出一张[gold]技能牌[/gold]，会触发对应的[gold]技术奖励[/gold]，[gold]技术奖励[/gold]能帮助你战斗，比如获取[gold]活力[/gold]。\n[gold]技术奖励[/gold]的次数是有限的，重复进入[gold]姿态[/gold]能刷新其次数限制。",
+    "CHAMP-RULES_FTUE.body3": "处于[gold]姿态[/gold]时，你才能打出具有{:finisher()} [gold]终极技[/gold]的牌。\n打出这些牌后，会触发终结技效果，然后退出当前[gold]姿态[/gold]。"
+}

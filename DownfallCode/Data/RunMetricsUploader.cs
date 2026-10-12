@@ -60,7 +60,7 @@ public sealed class MetricsUploaderConfig
 
     /// <summary>
     ///     Optional custom envelope: (dataJson, modVersion, modName) => body.
-    ///     Defaults to {"mod_version": &lt;version&gt;, "data": &lt;dataJson&gt;}.
+    ///     Defaults to {"mod_version": &lt;version&gt;, "modded": &lt;bool&gt;, "data": &lt;dataJson&gt;}.
     /// </summary>
     public Func<string, string, string, string>? WrapPayload { get; init; }
 
@@ -122,6 +122,8 @@ public sealed class RunMetricsUploader<TPayload>
     {
         if (!ShouldUpload(run, localPlayerId)) return;
 
+        var modded = HasForeignContent(run);
+
         TPayload payload;
         if (_config.OverrideLanguageToEnglish)
         {
@@ -141,7 +143,7 @@ public sealed class RunMetricsUploader<TPayload>
         }
 
         var json = _serialize(payload);
-        _ = SendToServer(json);
+        _ = SendToServer(json, modded);
     }
 
     private bool ShouldUpload(SerializableRun run, ulong localPlayerId)
@@ -198,6 +200,12 @@ public sealed class RunMetricsUploader<TPayload>
             }
         }
 
+        if (run.Ascension is < 0 or > 10)
+        {
+            log?.Info($"[{mod}] Skipping metrics upload, ascension out of range.");
+            return false;
+        }
+
         if (_config.RejectForeignContent && HasForeignContent(run))
         {
             log?.Info($"[{mod}] Skipping metrics upload, foreign mod content detected.");
@@ -209,12 +217,12 @@ public sealed class RunMetricsUploader<TPayload>
 
     /// <summary>
     ///     True if any player's deck/relics/potions/character comes from an assembly outside
-    ///     <see cref="MetricsUploaderConfig.AllowedAssemblies" />. Note: only inspects player-facing
+    ///     <see cref="MetricsUploaderConfig.AllowedAssemblies" />. Sent as the envelope's
+    ///     <c>modded</c> field when not rejected. Note: only inspects player-facing
     ///     content, not map encounters/events.
     /// </summary>
     private bool HasForeignContent(SerializableRun run)
     {
-        if (run.Ascension is < 0 or > 10) return true;
         if (run.Acts.Any(c => !IsAllowed<ActModel>(c.Id))) return true;
         foreach (var p in run.Players)
         {
@@ -235,7 +243,7 @@ public sealed class RunMetricsUploader<TPayload>
         return model != null && _config.AllowedAssemblies.Contains(model.GetType().Assembly);
     }
 
-    private async Task SendToServer(string dataJson)
+    private async Task SendToServer(string dataJson, bool modded)
     {
         var log = _config.Logger;
         var mod = _config.ModName;
@@ -246,7 +254,7 @@ public sealed class RunMetricsUploader<TPayload>
             var version = _config.ModVersionProvider();
             var body = _config.WrapPayload is { } wrap
                 ? wrap(dataJson, version, mod)
-                : DefaultWrap(dataJson, version);
+                : DefaultWrap(dataJson, version, modded);
 
             var bytes = Encoding.UTF8.GetBytes(body);
 
@@ -283,9 +291,10 @@ public sealed class RunMetricsUploader<TPayload>
         }
     }
 
-    private static string DefaultWrap(string dataJson, string version)
+    private static string DefaultWrap(string dataJson, string version, bool modded)
     {
-        return $"{{\"mod_version\":{JsonSerializer.Serialize(version)},\"data\":{dataJson}}}";
+        return
+            $"{{\"mod_version\":{JsonSerializer.Serialize(version)},\"modded\":{(modded ? "true" : "false")},\"data\":{dataJson}}}";
     }
 
     private void ApplyDefaultHeaders(HttpRequestMessage request)

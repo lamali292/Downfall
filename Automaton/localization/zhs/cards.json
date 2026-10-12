@@ -100,6 +100,7 @@
     "AUTOMATON-PHILOSOPHIZE.title": "哲思",
     "AUTOMATON-PIERCING_SHOT.description": "对所有敌人造成{Damage:diff()}点伤害。\n[gold]升级[/gold]你[gold]暂存区[/gold]中的{Cards:diff()}张牌。",
     "AUTOMATON-PIERCING_SHOT.title": "穿透射击",
+    "AUTOMATON-RECURSIVE_STRIKE.description": "造成{Damage:diff()}点伤害两次。\n[gold]编码[/gold]{Cards:diff()}张[gold]{IfUpgraded:show:打击+|打击}[/gold]。",
     "AUTOMATON-RECURSIVE_STRIKE.title": "递归打击",
     "AUTOMATON-REFACTOR.description": "[gold]预见[/gold]{Scry:diff()}。\n[gold]消耗[/gold]所有被丢弃的状态牌。\n每[gold]消耗[/gold]一张，获得{Block:diff()}点[gold]格挡[/gold]。",
     "AUTOMATON-REFACTOR.title": "重构",
@@ -183,5 +184,7 @@
     "AUTOMATON-SHARE.title": "共享",
     "AUTOMATON-SHARE.description": "每当你从[gold]方法[/gold]中获得[gold]格挡[/gold]时，[gold]格挡[/gold]最少的盟友获得{SharePower:diff()}点[gold]格挡[/gold]。",
     "AUTOMATON-BLUESCREEN.title": "蓝屏",
-    "AUTOMATON-BLUESCREEN.description": "给予另一玩家{Block:diff()}点[gold]格挡[/gold]。\n一张[gold]错误[/gold]添加到你的[gold]抽牌堆[/gold]顶部。"
+    "AUTOMATON-BLUESCREEN.description": "给予另一玩家{Block:diff()}点[gold]格挡[/gold]。\n一张[gold]错误[/gold]添加到你的[gold]抽牌堆[/gold]顶部。",
+    "AUTOMATON-CORE_STRIKE.title": "核心打击",
+    "AUTOMATON-CORE_DEFEND.title": "核心防御"
 }

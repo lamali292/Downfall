@@ -30,6 +30,6 @@ public class TheTower : AwakenedCardModel
     {
         return CombatManager.Instance.History.Entries
             .OfType<CardGeneratedEntry>()
-            .Count(e => e.Creator != null && e.Card.Owner == card.Owner);
+            .Count(e => e.Creator == card.Owner);
     }
 }
