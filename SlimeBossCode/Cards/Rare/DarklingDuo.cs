@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -12,6 +12,7 @@ public class DarklingDuo : SlimeBossCardModel
 {
     public DarklingDuo() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
+        WithTip(SlimeBossTip.Split);
         WithVar("Count", 2, 1);
         WithSlimeTip<DarklingSlime>();
         WithTags(SlimeBossTag.Slime);

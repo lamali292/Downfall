@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,6 +19,7 @@ public class VeryMagnificentBowlerHat : SlimeBossRelicModel, IModifyDamageMultip
 {
     public VeryMagnificentBowlerHat() : base(RelicRarity.Starter)
     {
+        WithTip(SlimeBossTip.Split);
         WithTip(SlimeBossTip.Command);
         WithSlimeTip<BruiserSlime>();
     }

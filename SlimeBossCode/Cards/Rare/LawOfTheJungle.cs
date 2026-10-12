@@ -1,4 +1,4 @@
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Powers;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
@@ -16,6 +17,7 @@ public class LawOfTheJungle : SlimeBossCardModel
 {
     public LawOfTheJungle() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithTip(SlimeBossTip.Split);
         WithPower<PotencyPower>(2, 1);
         WithTip<StrengthPower>();
         WithKeyword(CardKeyword.Exhaust);

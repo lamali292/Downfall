@@ -1,9 +1,10 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Cards.Token;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Multiplayer;
 
@@ -12,6 +13,7 @@ public class Unison : SlimeBossCardModel
 {
     public Unison() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
     {
+        WithTip(SlimeBossTip.Split);
         WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Exhaust);
     }

@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Extensions;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -16,6 +17,7 @@ public class FormOfWall : SlimeBossCardModel
 {
     public FormOfWall() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithTip(SlimeBossTip.Split);
         WithCalculatedBlock(10, 3, Calc, BlockProps.card, 0, 1);
     }
 

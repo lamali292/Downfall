@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using SlimeBoss.SlimeBossCode.Slimes;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Token;
 
@@ -16,6 +17,7 @@ public abstract class SlimeCard<T>
     protected SlimeCard(bool showInCardLibrary = true, bool autoAdd = true) : base(-1, CardType.Skill, CardRarity.Token,
         TargetType.Self, showInCardLibrary, autoAdd)
     {
+        WithTip(SlimeBossTip.Split);
         WithTips(_ => [SlimeModel.SlimeTip]);
     }
 
