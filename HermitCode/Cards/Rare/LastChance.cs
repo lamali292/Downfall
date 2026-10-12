@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -17,7 +18,9 @@ public class LastChance : HermitCardModel
     protected override bool ShouldGlowGoldInternal => IsDebuffed;
 
     private bool IsDebuffed => Owner.Creature.Powers.Any(e => e.TypeForCurrentAmount == PowerType.Debuff);
-
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);

@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Commands;
+﻿using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,6 +16,9 @@ public class Burdened : HermitCardModel
         WithTip<VigorPower>();
         WithTip<Decay>();
     }
+    
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
