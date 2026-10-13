@@ -73,7 +73,7 @@
     "SNECKO-MARKED_CARD.title": "目印付きカード",
     "SNECKO-MEDUSA.description": "{Damage:diff()}ダメージを与える。\n敵がデバフを受けている場合、2回攻撃する。",
     "SNECKO-MEDUSA.title": "メデューサ",
-    "SNECKO-MESMERIZE.description": "ターン終了時まですべての敵は[gold]筋力[/gold]を{MesmerizePower:diff()}失う。\nカードを1枚[gold]泥まみれ[/gold]にする。",
+    "SNECKO-MESMERIZE.description": "ターン終了時まですべての敵は[gold]筋力[/gold]{MesmerizePower:diff()}を失う。\nカードを1枚[gold]泥まみれ[/gold]にする。",
     "SNECKO-MESMERIZE.title": "催眠",
     "SNECKO-MINT_CONDITION.description": "[gold]オーバーフロー[/gold]：[gold]筋力[/gold]{StrengthPower:diff()}を得る。",
     "SNECKO-MINT_CONDITION.title": "良好品質",

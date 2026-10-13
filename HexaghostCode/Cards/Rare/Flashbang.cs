@@ -23,6 +23,15 @@ public class Flashbang : HexaghostCardModel
 
     protected override Artist Artist => Artist.Get<GoofballMcgee>();
 
+    protected override bool ShouldGlowGoldInternal
+    {
+        get
+        {
+            var flame = HexaghostCmd.GetCurrentFlame(Owner);
+            return flame.IsIgnited || flame.AboutToIgnite(this);
+        }
+    }
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

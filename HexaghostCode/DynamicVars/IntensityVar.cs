@@ -6,10 +6,10 @@ namespace Hexaghost.HexaghostCode.DynamicVars;
 
 public class GhostflameVar(string name, decimal baseValue) : DynamicVar(name, baseValue)
 {
-    public int IntensityValue => IntValue + (_owner is GhostflameModel ghostflameModel
+    public int IntensityValue => Math.Max(0, IntValue + (_owner is GhostflameModel ghostflameModel
         ? HexaghostHook.ModifyGhostflameEffectAdditive(ghostflameModel.Owner.Creature.CombatState!,
             ghostflameModel.Owner, ghostflameModel)
-        : 0);
+        : 0));
 
     public void UpdateGhostflamePreview(
         GhostflameModel ghostflameModel,
@@ -19,7 +19,7 @@ public class GhostflameVar(string name, decimal baseValue) : DynamicVar(name, ba
         if (runGlobalHooks)
             originalDamage1 += HexaghostHook.ModifyGhostflameEffectAdditive(ghostflameModel.Owner.Creature.CombatState!,
                 ghostflameModel.Owner, ghostflameModel);
-        PreviewValue = originalDamage1;
+        PreviewValue = Math.Max(0, originalDamage1);
     }
 
     public override string ToString()
