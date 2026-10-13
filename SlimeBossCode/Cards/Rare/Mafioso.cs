@@ -12,7 +12,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class Mafioso : SlimeBossCardModel
 {
-    public Mafioso() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public Mafioso() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithCostUpgradeBy(-1);
         WithPower<MafiosoPower>(1, false);

@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using SlimeBoss.SlimeBossCode.Powers;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
@@ -22,6 +23,10 @@ public class ButcherTackle : SlimeBossCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await SlimeBossCmd.Consume(ctx, this, cardPlay,
-            _ => CommonActions.ApplySelf<ShadowStepPower>(ctx, this, 1));
+            async _ =>
+            {
+                await CommonActions.ApplySelf<ShadowStepPower>(ctx, this, 1);
+                await CommonActions.ApplySelf<SlimeDoubleDamageNextTurnPower>(ctx, this, 1);
+            });
     }
 }

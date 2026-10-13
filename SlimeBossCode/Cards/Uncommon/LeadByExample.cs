@@ -12,7 +12,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class LeadByExample : SlimeBossCardModel
 {
-    public LeadByExample() : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public LeadByExample() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<LeadByExamplePower>(1, 1, false);
         WithTip<PotencyPower>();
