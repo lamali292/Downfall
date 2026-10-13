@@ -21,6 +21,8 @@ public class LeechLife : SlimeBossCardModel
         WithTip(CardKeyword.Exhaust);
     }
 
+    public override bool CanBeGeneratedInCombat => false;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
