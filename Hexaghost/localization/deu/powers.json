@@ -59,6 +59,7 @@
     "HEXAGHOST-BROILING_FLAMES_POWER.title": "Glühende Flammen",
     "HEXAGHOST-BROILING_FLAMES_POWER.description": "In diesem Zug erhält dieser Gegner immer [gold]Seelenfeuer[/gold], wenn ein Mitspieler ihn angreift.",
     "HEXAGHOST-BROILING_FLAMES_POWER.smartDescription": "In diesem Zug erhält dieser Gegner immer [blue]{Amount}[/blue] [gold]Seelenfeuer[/gold], wenn ein Mitspieler ihn angreift.",
+    "HEXAGHOST-BROILING_FLAMES_POWER.remoteDescription": "In diesem Zug erhält dieser Gegner immer [blue]{Amount}[/blue] [gold]Seelenfeuer[/gold], wenn ein anderer Spieler als [orange]{ApplierName}[/orange] ihn angreift.",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.title": "Jenseitsgeflüster",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.description": "Immer wenn in diesem Zug eine Karte [gold]Erschöpft[/gold] wird, wende [gold]Seelenfeuer[/gold] auf den Gegner an.",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "Immer wenn in diesem Zug eine Karte [gold]Erschöpft[/gold] wird, wende [blue]{Amount}[/blue] [gold]Seelenfeuer[/gold] auf den Gegner an.",
