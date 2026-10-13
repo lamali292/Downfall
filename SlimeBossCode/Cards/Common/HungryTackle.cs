@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,8 +22,9 @@ public class HungryTackle : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var weakTargets = SlimeBossCmd.WeakTargets(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.Consume(ctx, this, cardPlay,
+        await SlimeBossCmd.Consume(ctx, this, weakTargets,
             _ => PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner));
     }
 }

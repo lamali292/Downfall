@@ -18,6 +18,11 @@ public static class SlimeBossHook
             e => e.AfterConsumeEffect(ctx, creature, attacker), MyHookUtils.HookScope.CombatRaw);
     }
 
+    public static bool TryPreventConsumeWeakRemoval(ICombatState cs, Creature target, Creature consumer)
+    {
+        return MyHookUtils.Any<IPreventConsumeWeakRemoval>(cs, e => e.TryPreventWeakRemoval(target, consumer));
+    }
+
     public static int ModifySecondarySlimeEffects(ICombatState cs, int originalAmount,
         out IEnumerable<IModifySecondarySlimeEffects> modifiers, SlimeModel slime)
     {

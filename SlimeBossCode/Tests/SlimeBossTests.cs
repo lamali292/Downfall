@@ -37,6 +37,44 @@ public class SlimeBossTests
             "Equalize's Consume should not trigger (no Block gained) when the target has no Weak.");
     }
 
+    // Consume must still trigger when the card's own attack kills the Weakened target (dead creatures lose
+    // their powers, so Weak can't be read after the attack).
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task ConsumeTriggersWhenAttackKillsWeakenedTarget(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await CreatureCmd.SetCurrentHp(enemy, 1);
+        await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(new ThrowingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
+        var tackle = await ctx.AddCardToHand<HungryTackle>();
+        var energyBefore = ctx.Player.PlayerCombatState!.Energy;
+
+        await ctx.PlayCard(tackle, enemy);
+
+        Assert.IsTrue(enemy.IsDead, "Test setup: the attack should have killed the enemy.");
+        var gained = ctx.Player.PlayerCombatState!.Energy - energyBefore + tackle.EnergyCost.GetAmountToSpend();
+        Assert.IsTrue(gained > 0, $"Hungry Tackle's Consume should grant Energy even though the Weak target died (net gain {gained}).");
+    }
+
+    // Slimy Cleaver: the first two Consumes leave Weak untouched (no remove-and-reapply), later ones remove a stack.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task SlimyCleaverLetsFirstTwoConsumesKeepWeak(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await CreatureCmd.SetCurrentHp(enemy, 9999);
+        await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(new ThrowingPlayerChoiceContext(), enemy, 3, ctx.Player.Creature, null);
+        await MegaCrit.Sts2.Core.Commands.RelicCmd.Obtain<SlimeBoss.SlimeBossCode.Relics.SlimyCleaver>(ctx.Player);
+
+        var weakAfter = new List<int>();
+        for (var i = 0; i < 3; i++)
+        {
+            await ctx.PlayCard(await ctx.AddCardToHand<HungryTackle>(), enemy);
+            weakAfter.Add(enemy.GetPower<MegaCrit.Sts2.Core.Models.Powers.WeakPower>()?.Amount ?? 0);
+        }
+
+        Assert.IsTrue(weakAfter.SequenceEqual([3, 3, 2]),
+            $"Weak after three Consumes should be 3,3,2 but was {string.Join(",", weakAfter)}.");
+    }
+
     // Regression guard: calling CardCmd.AutoPlay a second time on the same Power-card instance silently
     // no-ops (Power cards resolve to PileType.None after playing once, which the game's unplayable-checks
     // then reject on the second call). This documents that failure mode.
