@@ -10,4 +10,6 @@ public class IntensityPower : HexaghostPowerModel, IModifyGhostflameEffectAdditi
     {
         return owner.Creature == Owner ? Amount : 0;
     }
+
+    public override bool AllowNegative => true;
 }
