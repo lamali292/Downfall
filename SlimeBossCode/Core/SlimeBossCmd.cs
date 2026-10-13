@@ -2,6 +2,7 @@
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -168,6 +169,9 @@ public static class SlimeBossCmd
     /// <summary>Slimes fill a column of this height top to bottom before starting the next column.</summary>
     private const int GridHeight = 3;
 
+    /// <summary>Scale of slimes owned by another player.</summary>
+    private const float RemoteSlimeScale = 0.6f;
+
     private static Vector2 GridOrigin => new(250f, -100f);
     private static Vector2 GridCellSize => new(150f, 100f);
 
@@ -202,6 +206,16 @@ public static class SlimeBossCmd
         var slimeNode = NCombatRoom.Instance?.GetCreatureNode(pet);
         if (playerNode == null || slimeNode == null) return;
 
+        // Other players' slimes are smaller but keep the game's default pet position; only the local
+        // player's slimes use the grid.
+        if (!LocalContext.IsMe(player))
+        {
+            slimeNode.Scale = Vector2.One * RemoteSlimeScale;
+            HideHealthBar(slimeNode);
+            slimeNode.UpdateBounds(slimeNode.Visuals);
+            return;
+        }
+
         var slimes = player.Creature.Pets.Where(e => e.Monster is SlimeModel).ToList();
         var relativeOffset = SlotOffset(AssignSlot(pet, slimes));
         if (player.Creature.Side == CombatSide.Enemy) relativeOffset.X = -relativeOffset.X;
@@ -210,7 +224,8 @@ public static class SlimeBossCmd
         HideHealthBar(slimeNode);
         slimeNode.GlobalPosition = playerNode.GlobalPosition + relativeOffset;
         slimeNode.UpdateBounds(slimeNode.Visuals);
-        if (pet.Monster is SlimeModel slime) slimeNode.AddChild(NSlimeCounter.Create(slimeNode, slime));
+        // The next-Command badge (NSlimeCounter) is only shown for the local player's slimes.
+        if (pet.Monster is SlimeModel slime && LocalContext.IsMe(player)) slimeNode.AddChild(NSlimeCounter.Create(slimeNode, slime));
     }
 
     /// <summary>Height of the hidden HP bar (the power container's offset in creature_state_display.tscn).</summary>
