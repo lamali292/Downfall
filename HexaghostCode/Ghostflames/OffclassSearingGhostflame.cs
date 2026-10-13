@@ -44,7 +44,6 @@ public class OffclassSearingGhostflame : GhostflameModel
     {
         if (!TryBeginIgnite()) return;
         var soulburn = DynamicVars.GhostflameSoulburn;
-        if (soulburn <= 0) return;
         var repeat = 2 * Repeat(GhostflameRepeatType.Soulburn);
         await RepeatOnTargets(ctx, repeat, GhostflameRepeatType.Soulburn,
             targets => PowerCmd.Apply<SoulBurnPower>(ctx, targets, soulburn, Owner.Creature, null));

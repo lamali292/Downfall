@@ -44,13 +44,11 @@ public class InfernoGhostflame : GhostflameModel
         if (!TryBeginIgnite()) return;
 
         var damage = DynamicVars.GhostflameDamage;
-        if (damage > 0)
-        {
-            var hitCount = HexaghostCmd.GetIgnitedCount(Owner) * Repeat(GhostflameRepeatType.Damage);
+        var hitCount = HexaghostCmd.GetIgnitedCount(Owner) * Repeat(GhostflameRepeatType.Damage);
 
-            await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
-                targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
-        }
+        await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
+            targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
+
         if (HexaghostCmd.AllIgnited(Owner))
             await MyCommonActions.ApplySelf<IntensityPower>(ctx, this);
 

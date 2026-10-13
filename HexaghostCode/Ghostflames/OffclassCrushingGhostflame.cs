@@ -42,7 +42,6 @@ public class OffclassCrushingGhostflame : GhostflameModel
         if (!TryBeginIgnite()) return;
 
         var damage = DynamicVars.GhostflameDamage;
-        if (damage <= 0) return;
         var hitCount = 2 * Repeat(GhostflameRepeatType.Damage);
 
         await RepeatOnTargets(ctx, hitCount, GhostflameRepeatType.Damage,
