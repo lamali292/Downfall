@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +20,8 @@ public class ItLooksTasty : SlimeBossCardModel
 
     protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return SlimeBossCmd.Consume(ctx, this, cardPlay,
+        var weakTargets = SlimeBossCmd.WeakTargets(this, cardPlay);
+        return SlimeBossCmd.Consume(ctx, this, weakTargets,
             _ => CommonActions.CardAttack(this, cardPlay).Execute(ctx));
     }
 }

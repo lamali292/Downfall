@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,9 +20,10 @@ public class GrowthPunch : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var weakTargets = SlimeBossCmd.WeakTargets(this, cardPlay);
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.Consume(ctx, this, cardPlay, _ =>
+        await SlimeBossCmd.Consume(ctx, this, weakTargets, _ =>
         {
             DynamicVars.Damage.UpgradeValueBy(DynamicVars["Increase"].BaseValue);
             DynamicVars.Block.UpgradeValueBy(DynamicVars["Increase"].BaseValue);

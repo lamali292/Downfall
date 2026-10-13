@@ -1,4 +1,4 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
@@ -25,8 +25,9 @@ public class LeechLife : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var weakTargets = SlimeBossCmd.WeakTargets(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.Consume(ctx, this, cardPlay, async _ =>
+        await SlimeBossCmd.Consume(ctx, this, weakTargets, async _ =>
         {
             await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
             await CardCmdCompatibility.Exhaust(ctx, this);
