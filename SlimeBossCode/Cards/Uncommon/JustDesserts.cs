@@ -26,10 +26,11 @@ public class JustDesserts : SlimeBossCardModel
         return card.Owner.Hand.Count(e => e.Type == CardType.Status);
     }
 
-    public async Task ConsumeEffect(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, Owner);
-        var a = ((CalculatedVar)DynamicVars["Cards"]).Calculate(cardPlay.Target);
-        await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, a);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        var cards = ((CalculatedVar)DynamicVars["Cards"]).Calculate(cardPlay.Target);
+        if (cards > 0)
+            await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, cards);
     }
 }
