@@ -78,9 +78,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
     }
 
     protected IRunState RunState => Owner.RunState;
-
-    protected int Intensity => HexaghostHook.ModifyGhostflameEffectAdditive(Owner.Creature.CombatState!, Owner, this);
-
+    
     private int FlameIndex => Array.IndexOf(HexaghostCmd.GetWheel(Owner), this);
 
     public Player Owner
