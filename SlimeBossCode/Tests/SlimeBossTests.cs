@@ -116,12 +116,83 @@ public class SlimeBossTests
         var spreadingSlime = await ctx.AddCardToHand<SpreadingSlime>();
         await ctx.PlayCard(spreadingSlime);
 
-        var slimed = await ctx.AddCardToHand<Slimed>();
-        await ctx.PlayCard(slimed);
+        // Creating (not playing) a Status is what triggers it.
+        await ctx.AddCardToHand<Slimed>();
 
         var amount = bruiser.GetPower<PotencyPower>()?.Amount ?? 0;
         Assert.AreEqual(potencyBefore + 1, amount,
-            $"Spreading Slime should grant Bruiser Slime 1 Potency when a Status is played, got {amount}.");
+            $"Spreading Slime should grant Bruiser Slime 1 Potency when a Status is created, got {amount}.");
+    }
+
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task OneTwoComboReturnsToHandWhenAStatusIsPlayed(TestContext ctx)
+    {
+        var combo = await ctx.AddCardToHand<OneTwoCombo>();
+        await ctx.PlayCard(combo, ctx.Combat.HittableEnemies.First());
+        await CardPileCmd.Add(combo, PileType.Discard);
+
+        var slimed = await ctx.AddCardToHand<Slimed>();
+        await ctx.PlayCard(slimed);
+
+        Assert.IsTrue(combo.Pile?.Type == PileType.Hand, "One-Two Combo should return to hand when a Status is played.");
+    }
+
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task ViciousTackleHitsTwiceOnlyAgainstWeakEnemies(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var tackle = await ctx.AddCardToHand<ViciousTackle>();
+        var hpBefore = enemy.CurrentHp;
+        await ctx.PlayCard(tackle, enemy);
+        var single = hpBefore - enemy.CurrentHp;
+
+        await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(new ThrowingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
+        var tackle2 = await ctx.AddCardToHand<ViciousTackle>();
+        hpBefore = enemy.CurrentHp;
+        await ctx.PlayCard(tackle2, enemy);
+        var weakened = hpBefore - enemy.CurrentHp;
+
+        Assert.IsTrue(weakened >= single * 2 - 1 && weakened > single, $"Vicious Tackle should hit twice vs Weak ({single} vs {weakened}).");
+    }
+
+    private static int TotalEnemyHp(TestContext ctx) => ctx.Combat.Enemies.Sum(e => e.CurrentHp);
+
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task LeadByExampleCommandsBruiserOnFirstTargetingCardOnly(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<LeadByExample>());
+        var power = ctx.Player.Creature.GetPower<LeadByExamplePower>()!;
+        Assert.AreEqual(1, power.DisplayAmount, "Nothing targeting has been played yet.");
+
+        var hp = TotalEnemyHp(ctx);
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeSlimeBoss>(), enemy);
+        var first = hp - TotalEnemyHp(ctx);
+        Assert.AreEqual(0, power.DisplayAmount, "The first targeting card should use up the only charge.");
+
+        hp = TotalEnemyHp(ctx);
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeSlimeBoss>(), enemy);
+        var second = hp - TotalEnemyHp(ctx);
+        Assert.IsTrue(first > second, $"Only the first targeting card should Command Bruiser ({first} vs {second}).");
+    }
+
+    // History-based: a targeting card played before the power was applied this turn already counts.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task LeadByExampleCountsTargetingCardsPlayedBeforeItWasApplied(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var hp = TotalEnemyHp(ctx);
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeSlimeBoss>(), enemy);
+        var baseline = hp - TotalEnemyHp(ctx);
+        await ctx.PlayCard(await ctx.AddCardToHand<LeadByExample>());
+        var power = ctx.Player.Creature.GetPower<LeadByExamplePower>()!;
+        Assert.AreEqual(0, power.DisplayAmount, "The earlier targeting card should already count.");
+
+        hp = TotalEnemyHp(ctx);
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeSlimeBoss>(), enemy);
+        // Each attack hits 1 harder than the last in this test setup; a Bruiser Command would add its 3+ damage on top.
+        var damage = hp - TotalEnemyHp(ctx);
+        Assert.IsTrue(damage < baseline + 3, $"No Bruiser Command expected: the first card was already played ({baseline} vs {damage}).");
     }
 
     // Regression guard: Repurpose's OnPlayInternal was changed from transforming selected cards one at a
@@ -179,5 +250,19 @@ public class SlimeBossTests
         Assert.IsTrue(muscle.GetPower<MuscleSlimePotencyPower>() == null, "The temporary power should be removed.");
         Assert.AreEqual(0, muscle.GetPower<PotencyPower>()?.Amount ?? 0,
             "Potency granted by Muscle Slime should be gone after the player's turn ends.");
+    }
+
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task SlimeDoubleDamagePowerDoublesSlimeAttacks(TestContext ctx)
+    {
+        var ctxChoice = new ThrowingPlayerChoiceContext();
+        var hp = TotalEnemyHp(ctx);
+        await SlimeBossCmd.Command<BruiserSlime>(ctxChoice, ctx.Player, 1);
+        var normal = hp - TotalEnemyHp(ctx);
+
+        await PowerCmd.Apply<SlimeDoubleDamagePower>(ctxChoice, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        hp = TotalEnemyHp(ctx);
+        await SlimeBossCmd.Command<BruiserSlime>(ctxChoice, ctx.Player, 1);
+        Assert.AreEqual(normal * 2, hp - TotalEnemyHp(ctx), "Bruiser Slime should deal double damage.");
     }
 }

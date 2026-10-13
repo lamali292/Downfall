@@ -13,8 +13,8 @@ public class SpreadingSlime : SlimeBossCardModel
 {
     public SpreadingSlime() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
-        WithPower<SpreadingSlimePower>(2, 1, false);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithPower<SpreadingSlimePower>(1, false);
         WithTip<PotencyPower>();
         WithSlimeTip<BruiserSlime>();
     }

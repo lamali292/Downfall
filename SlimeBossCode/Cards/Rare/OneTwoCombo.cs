@@ -1,33 +1,23 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.Events;
-using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class OneTwoCombo : SlimeBossCardModel, IAfterCommand
+public class OneTwoCombo : SlimeBossCardModel
 {
     public OneTwoCombo() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
-    }
-
-    private async Task ReturnToHand(Player player)
-    {
-        if (player != Owner || Pile == null || Pile.Type == PileType.Hand) return;
-        await CardPileCmd.Add(this, PileType.Hand);
+        WithDamage(5, 2);
     }
     
-
-    public Task AfterCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source, bool isAutomatic)
+    public override async Task AfterCardPlayedLate(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return isAutomatic ? Task.CompletedTask : ReturnToHand(player);
+        if (cardPlay.Card.Owner == Owner && cardPlay.Card.Type == CardType.Status && Pile?.Type != PileType.Hand)
+            await CardPileCmd.Add(this, PileType.Hand);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
