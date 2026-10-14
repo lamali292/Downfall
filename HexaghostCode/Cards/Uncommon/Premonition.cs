@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
@@ -13,12 +13,14 @@ public class Premonition : HexaghostCardModel
     public Premonition() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<PremonitionPower>(1, 1, false);
+        WithVar(PremonitionPower.ExhaustKey, PremonitionPower.DefaultExhaustThreshold);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<PremonitionPower>(ctx, this);
+        var power = await CommonActions.ApplySelf<PremonitionPower>(ctx, this);
+        power?.SetExhaustThreshold(DynamicVars[PremonitionPower.ExhaustKey].IntValue);
     }
 }
