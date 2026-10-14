@@ -26,11 +26,12 @@ public sealed class DeadMansHand : HermitCardModel
             CardRarity.Uncommon => 8,
             CardRarity.Common => 7,
             CardRarity.Basic => 6,
-            CardRarity.Curse => 5,
-            CardRarity.Status => 4,
-            CardRarity.Quest => 3,
-            CardRarity.Event => 2,
-            CardRarity.Token => 1,
+            CardRarity.Token => 5,
+            CardRarity.Curse => 4,
+            CardRarity.Status => 3,
+            CardRarity.Quest => 2,
+            CardRarity.Event => 1,
+
             _ => 0
         };
     }
