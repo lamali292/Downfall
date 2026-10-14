@@ -187,8 +187,8 @@ public static class SlimeBossCmd
     /// <summary>Scale of slimes owned by another player.</summary>
     private const float RemoteSlimeScale = 0.6f;
 
-    private static Vector2 GridOrigin => new(250f, -100f);
-    private static Vector2 GridCellSize => new(150f, 100f);
+    private static Vector2 GridOrigin => new(250f, -140f);
+    private static Vector2 GridCellSize => new(150f, 90f);
 
     /// <summary>Grid slot each living slime occupies. A slot stays fixed until its slime leaves.</summary>
     private static readonly SpireField<Creature, int> SlimeSlots = new(() => UnassignedSlot);
