@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Localization;
+﻿using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
@@ -27,6 +27,7 @@ public static class HermitMainFile
 
         PostInitRegistry.Register(PostModelInit);
         BundledSubmodLocRegistry.Register(ModId);
+        CharacterOrderRegistry.Register<Core.Hermit>(0);
         VotingPoolRegistry.Register<HermitCardPool>(VotingPool.Hermit, ModId);
 
         ModPatcher.Create(ModId, Logger)

@@ -23,6 +23,7 @@ public static class SlimeBossMainFile
         ScriptRegistration.Register(typeof(SlimeBossMainFile).Assembly);
 
         BundledSubmodLocRegistry.Register(ModId);
+        CharacterOrderRegistry.Register<Core.SlimeBoss>(10);
         VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss, ModId);
         HivePowerExemptRegistry.Register<SlimeModel>();
         ModPatcher.Create(ModId, Logger)
