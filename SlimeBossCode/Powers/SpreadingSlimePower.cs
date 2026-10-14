@@ -20,7 +20,7 @@ public class SpreadingSlimePower : SlimeBossPowerModel
 
     public override Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
-        if (card.Owner.Creature != Owner || card.Type != CardType.Status) return Task.CompletedTask;
+        if (creator == null || creator.Creature != Owner || card.Type != CardType.Status) return Task.CompletedTask;
         var slime = card.Owner.GetSlime<BruiserSlime>();
         return slime == null ? Task.CompletedTask : PowerCmd.Apply<PotencyPower>(new BlockingPlayerChoiceContext(), slime, Amount, Owner, null);
     }
