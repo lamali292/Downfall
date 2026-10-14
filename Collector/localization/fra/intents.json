@@ -1,0 +1,4 @@
+{
+    "COLLECTOR-TORCHHEAD_ATTACK_INTENT.title": "Aggressif",
+    "COLLECTOR-TORCHHEAD_ATTACK_INTENT.description": "Tête de Torche a l'intention [gold]d'Attaquer[/gold] {TargetsAll:cond:TOUS les ennemis|l'ennemi avec le moins de PV} pour [blue]{Damage}[/blue] dégâts à la fin de votre tour."
+}

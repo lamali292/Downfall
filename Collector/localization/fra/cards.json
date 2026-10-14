@@ -1,6 +1,7 @@
 {
     "COLLECTOR-ARROGANCE.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nVotre prochain attaque ce tour applique également {DoomedAttackPower:diff()} de [gold]Miasme[/gold].",
     "COLLECTOR-ARROGANCE.title": "Arrogance",
+    "COLLECTOR-ASHEN_STRIKE.description": "[gold]Tête de Torche[/gold] inflige {TorchheadDamage:diff()} dégâts{TorchheadTargetsAll:cond: à TOUS les ennemis|}.\nAjoutez une {IfUpgraded:show:[gold]Suie[/gold]|[gold]Brûlure[/gold]} dans votre [gold]Main[/gold].",
     "COLLECTOR-ASHEN_STRIKE.title": "Frappe à la Chandelle",
     "COLLECTOR-BELLOW_COLLECTOR.title": "Vocifère",
     "COLLECTOR-BELLOW_COLLECTOR.description": "Appliquez autant de [gold]Miasme[/gold] que [gold]d'Armure[/gold] non-utilisée au dernier tour.{InCombat:cond:\n(Appliquez {UnusedBlock:diff()} de [gold]Miasme[/gold])|}",
@@ -10,6 +11,7 @@
     "COLLECTOR-BLACK_BINDINGS.title": "Chaînes Noires",
     "COLLECTOR-BLIGHTNING.title": "Frappe Fulgurante",
     "COLLECTOR-BLIGHTNING.description": "[gold]Attisez[/gold] de {Kindle:diff()}.\n[gold]Tête de Torche[/gold] inflige {TorchheadDamage:diff()} dégâts{TorchheadTargetsAll:cond: à TOUS les ennemis|}.\nAppliquez {MiasmaPower:diff()} de [gold]Miasme[/gold].\nPiochez {Cards:diff()} {Cards:plural:carte|cartes}.",
+    "COLLECTOR-BONFIRE.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nAu prochain tour, gagnez {ReserveNextTurnPower:reserveIcons()}.\nAjoutez une [gold]Suie[/gold] dans votre [gold]Main[/gold].",
     "COLLECTOR-BONFIRE.title": "Feu de Joie",
     "COLLECTOR-BRAIN_DRAIN.description": "L'ennemi perd {HpLoss:diff()} PV.\nLa prochaine carte Incolore que vous jouez coûte {energyPrefix:energyIcons(0)}.",
     "COLLECTOR-BRAIN_DRAIN.title": "Drain Mental",
@@ -37,6 +39,7 @@
     "COLLECTOR-DRAGONS_TROVE.description": "Mettez toutes les cartes Incolores de votre [gold]Pioche[/gold] dans votre [gold]Main[/gold].\nGagnez {Reserve:reserveIcons()}.",
     "COLLECTOR-DRAGONS_TROVE.title": "Trésor du Dragon",
     "COLLECTOR-EMBER.title": "Braise",
+    "COLLECTOR-EMBER.description": "Lorsque cette carte est [gold]Épuisée[/gold], gagnez {StrengthPower:diff()} de [gold]Force[/gold].\nÀ la fin de votre tour, si elle est dans votre [gold]Main[/gold], prenez {Damage:diff()} dégâts et remettez ceci dans votre [gold]Main[/gold].",
     "COLLECTOR-EMPOWER.description": "Au début de vos {EmpowerPower:diff()} prochains tours, ajoutez une [gold]Braise[/gold] dans votre [gold]Main[/gold] et [gold]Améliorez-la[/gold] {IfUpgraded:show:X+1|X} fois.",
     "COLLECTOR-EMPOWER.title": "Potentiel",
     "COLLECTOR-FEEL_OUR_PAIN.description": "Lorsque vous jouez une carte Incolore, TOUS les ennemis perdent {FeelMyPainPower:diff()} PV.",
@@ -53,7 +56,9 @@
     "COLLECTOR-FLASH.title": "Flash",
     "COLLECTOR-PYROCLASTIC_FLOW.description": "Piochez {Cards:diff()} cartes.\nChoisissez une des cartes piochées et [gold]Transformez-la[/gold] en [gold]Braise[/gold].",
     "COLLECTOR-PYROCLASTIC_FLOW.title": "Coulée Pyroclastique",
+    "COLLECTOR-FUEL_THE_FIRE.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nAu prochain tour, gagnez {ReserveNextTurnPower:reserveIcons()}.{IfUpgraded:show:\nAu prochain tour, piochez {DrawCardsNextTurnPower:diff()} {DrawCardsNextTurnPower:plural:carte|cartes}.|}",
     "COLLECTOR-FUEL_THE_FIRE.title": "Alimenter le Feu",
+    "COLLECTOR-GOODBYE.description": "Doublez le [gold]Miasme[/gold] de TOUS les ennemis.",
     "COLLECTOR-GOODBYE.title": "Au Revoir",
     "COLLECTOR-HOARD.description": "Piochez des cartes jusqu'à ce que vous en avez {Cards:diff()} dans votre [gold]Main[/gold].\n[gold]Retenez[/gold] votre [gold]Main[/gold] ce tour.",
     "COLLECTOR-HOARD.title": "Provisions",
@@ -136,6 +141,8 @@
     "COLLECTOR-EQUIP_SHIELD.title": "Équipement : Bouclier",
     "COLLECTOR-EQUIP_SHIELD.description": "[gold]Attisez[/gold] de {Kindle:diff()}.\nLorsque [gold]Tête de Torche[/gold] attaque, gagnez {EquipShieldPower:diff()} [gold]d'Armure[/gold].",
     "COLLECTOR-EQUIP_FURNACE.title": "Équipement : Fourneau",
+    "COLLECTOR-CHAR.title": "Char",
+    "COLLECTOR-CHAR.description": "Infligez {Damage:diff()} dégâts.\nLorsque vous piochez cette carte, un ennemi aléatoire prend {CharPower:diff()} dégâts supplémentaires de TOUTES les cartes [gold]Char[/gold].",
     "COLLECTOR-DEGRADE.title": "Dégradation",
     "COLLECTOR-DEGRADE.description": "L'ennemi perd X de [gold]Force[/gold].\nAppliquez {MiasmaPower:cond:>1?{:diff()}|}X de [gold]Miasme[/gold].",
     "COLLECTOR-COALESCENCE_FORM.title": "Forme Coalescente",
@@ -242,5 +249,7 @@
     "COLLECTOR-YOU_YOURSELF.title": "Toi-Même",
     "COLLECTOR-YOU_YOURSELF.description": "Appliquez {WeakPower:diff()} de [gold]Faiblesse[/gold].\nAppliquez {VulnerablePower:diff()} de [gold]Vulnérabilité[/gold].\nAppliquez {MiasmaPower:diff()} de [gold]Miasme[/gold].\n[gold]Attisez[/gold] de {Kindle:diff()}.",
     "COLLECTOR-SENTRY_CORE.title": "Noyau Sentinelle",
-    "COLLECTOR-SENTRY_CORE.description": "Infligez {Damage:diff()} dégâts X fois.\nAppliquez {WeakPower:diff()} de [gold]Faiblesse[/gold] X fois.\nAjoutez un [gold]Hébété[/gold] en haut de votre [gold]Pioche[/gold]."
+    "COLLECTOR-SENTRY_CORE.description": "Infligez {Damage:diff()} dégâts X fois.\nAppliquez {WeakPower:diff()} de [gold]Faiblesse[/gold] X fois.\nAjoutez un [gold]Hébété[/gold] en haut de votre [gold]Pioche[/gold].",
+    "COLLECTOR-ROTSHROOM.title": "Champi Pourri",
+    "COLLECTOR-ROTSHROOM.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nAppliquez {VulnerablePower:diff()} de [gold]Vulnérabilité[/gold]."
 }

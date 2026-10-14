@@ -155,7 +155,7 @@
     "AWAKENED-RECITATION.title": "朗唱",
     "AWAKENED-RISING_CHORUS.description": "毎ターン、最初に発動する[gold]詠唱[/gold]効果は2回発動する。",
     "AWAKENED-RISING_CHORUS.title": "高まる祈り",
-    "AWAKENED-SCHEME.description": "このターン、次にプレイする{SchemePower:diff()}枚のコスト{energyPrefix:energyIcons(1)}以下のカードをもう1回プレイする。",
+    "AWAKENED-SCHEME.description": "このターン、次にプレイする{IfUpgraded:show:{SchemePower:diff()}|}{SchemePower:cond:>1?枚の|}コスト{energyPrefix:energyIcons(1)}以下のカードをもう1回プレイする。",
     "AWAKENED-SCHEME.title": "悪だくみ",
     "AWAKENED-SCOUR.description": "{Damage:diff()}ダメージを与える。\n[gold]マナバーン[/gold]{ManaburnPower:diff()}を付与する。",
     "AWAKENED-SCOUR.title": "スカー",
