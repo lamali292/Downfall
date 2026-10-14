@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Commands;
+﻿using Downfall.DownfallCode.Commands;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Extensions;
@@ -50,7 +50,8 @@ public class InfernoGhostflame : GhostflameModel
             targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
 
         if (HexaghostCmd.AllIgnited(Owner))
-            await MyCommonActions.ApplySelf<IntensityPower>(ctx, this);
+            for (var i = 0; i < Repeat(GhostflameRepeatType.Intensity); i++)
+                await MyCommonActions.ApplySelf<IntensityPower>(ctx, this);
 
         await Cmd.Wait(0.2f);
         await HexaghostCmd.ExtinguishAllExceptThis(ctx, Owner, this);

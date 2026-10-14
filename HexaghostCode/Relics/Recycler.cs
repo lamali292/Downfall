@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -51,7 +51,7 @@ public class Recycler : HexaghostRelicModel
     {
         if (UsedThisCombat || card.Owner != Owner || !card.Keywords.Contains(CardKeyword.Ethereal) ||
             card.Type is CardType.Curse or CardType.Status) return;
-        await CardPileCmd.Add(card.CreateClone(), PileType.Hand);
+        await CardPileCmd.AddGeneratedCardToCombat(card.CreateClone(), PileType.Hand, Owner);
         UsedThisCombat = true;
         Flash();
         Status = RelicStatus.Normal;

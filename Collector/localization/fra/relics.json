@@ -21,6 +21,7 @@
     "COLLECTOR-SOUL_LIT_LAMP.description": "Lorsque vous mettez au [gold]Bûcher[/gold] une carte qui coûte {Energy:energyIcons()} ou plus, appliquez {SoulBurnPower:diff()} de [gold]Calcination[/gold] à TOUS les ennemis.",
     "COLLECTOR-SOUL_LIT_LAMP.flavor": "Une décoration macabre. Les crépitements du feu sont remplacés par des gémissements bourdonnants.",
     "COLLECTOR-THE_CONTRACT.title": "Le Contrat",
+    "COLLECTOR-THE_CONTRACT.description": "Lorsque vous le récupérez, choisissez [blue]1[/blue] [gold]carte Collectionnable[/gold] parmi [blue]{Cards:diff()}[/blue] à ajouter à votre [gold]Deck[/gold].",
     "COLLECTOR-THE_CONTRACT.flavor": "Des services de Caroline la Première.\nSignez avec votre sang.",
     "COLLECTOR-THIMBLE_HELM.title": "Heaume à Coudre",
     "COLLECTOR-THIMBLE_HELM.description": "Tatnt que [gold]Tête de Torche[/gold] est en vie, gagnez [blue]{Block:diff()}[/blue] [gold]d'Armure[/gold] supplémentaire des cartes.",

@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
@@ -23,15 +23,15 @@ public class TimeWarp : HexaghostCardModel, IWheelMoved
 
     public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent, bool autoAdvance)
+        int ghostflameIndex, bool endOfTurnAdvance)
     {
-        if (autoAdvance || Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
+        if (endOfTurnAdvance || Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
 
     public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
+        int ghostflameIndex)
     {
         if (Pile == null || player != Owner || Pile.Type != PileType.Discard) return;
         await CardPileCmd.Add(this, PileType.Hand);

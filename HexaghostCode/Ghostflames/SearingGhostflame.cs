@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Powers;
+﻿using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Extensions;
@@ -21,7 +21,7 @@ public class SearingGhostflame : GhostflameModel
     public override FireColor FireColor => FireColor.Yellow;
 
     public override AbstractIntent Intent => new MultiStatusIntent<SoulBurnPower>(
-        () => DynamicVars.GhostflameSoulburn,
+        () => DynamicVars.GhostflameSoulburnDisplayed,
         2 * Repeat(GhostflameRepeatType.Soulburn)
     );
 
