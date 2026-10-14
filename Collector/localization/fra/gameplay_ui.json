@@ -1,3 +1,5 @@
 {
-    "COLLECTIBLE_REWARD": "Ajoutez [gold]{Card}[/gold] à votre deck."
+    "COLLECTIBLE_CHOICE_REWARD": "Ajoutez une carte {IsUpgraded:cond:[gold]Collectionnable Améliorée[/gold]|[gold]Collectionnable[/gold]} dans votre deck.",
+    "COLLECTIBLE_REWARD": "Ajoutez [gold]{Card}[/gold] à votre deck.",
+    "PYRE_NO_TARGET": "Je n'ai rien d'autre à [jitter][red]Mettre au Bûcher[/red][/jitter] !"
 }
