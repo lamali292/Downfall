@@ -299,5 +299,6 @@ public enum GhostflameRepeatType
 {
     Soulburn,
     Damage,
-    Block
+    Block,
+    Intensity
 }
