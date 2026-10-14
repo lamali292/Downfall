@@ -28,6 +28,7 @@ public static class CollectorMainFile
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
 
         BundledSubmodLocRegistry.Register(ModId);
+        CharacterOrderRegistry.Register<Core.Collector>(50);
         
         FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterSerpentForm<Core.Collector>("robeback");

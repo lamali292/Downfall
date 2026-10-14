@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using BaseLib.Patches.Saves;
 using Downfall.DownfallCode;
 using Downfall.DownfallCode.Localization;
@@ -34,6 +34,7 @@ public static class GremlinsMainFile
         );
         ExtendedSaveTypes.RegisterListSaveType<GremlinSaveData>();
         BundledSubmodLocRegistry.Register(ModId);
+        CharacterOrderRegistry.Register<Core.Gremlins>(90);
         DeathHooks.RegisterInterceptor(GremlinsModel.OnDeath);
     }
    

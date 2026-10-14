@@ -1,4 +1,4 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using BaseLib.Patches.Saves;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
@@ -36,6 +36,7 @@ public static class GuardianMainFile
             new GemDescriptionSource());
 
         BundledSubmodLocRegistry.Register(ModId);
+        CharacterOrderRegistry.Register<Core.Guardian>(20);
         VotingPoolRegistry.Register<GuardianCardPool>(VotingPool.Guardian, ModId);
 
         TranscendenceHooks.OnTransformed += CopyGemsToTranscendence;

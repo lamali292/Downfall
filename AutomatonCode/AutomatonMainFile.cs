@@ -42,6 +42,7 @@ public static class AutomatonMainFile
         CardDescriptionRegistry.Register<AutomatonCardModel>(DescriptionInjectionPoint.BelowMainText,
             new CompileDescriptionSource());
         BundledSubmodLocRegistry.Register(ModId);
+        CharacterOrderRegistry.Register<Core.Automaton>(40);
         VotingPoolRegistry.Register<AutomatonCardPool>(VotingPool.Automaton, ModId);
         FormBoneRegistry.RegisterVoidForm<Core.Automaton>("chest");
         FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");
