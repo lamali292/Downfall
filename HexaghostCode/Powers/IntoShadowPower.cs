@@ -13,7 +13,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved
     
     public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent, bool autoAdvance)
+        int ghostflameIndex, bool endOfTurnAdvance)
     {
         return Task.CompletedTask;
     }
@@ -22,7 +22,7 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved
 
     public Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
+        int ghostflameIndex)
     {
         if (Owner != player.Creature) return Task.CompletedTask;
         Source = source;
