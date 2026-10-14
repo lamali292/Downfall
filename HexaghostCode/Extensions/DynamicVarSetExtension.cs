@@ -19,5 +19,9 @@ public static class DynamicVarSetExtension
 
         public int GhostflameSoulburn
             => GhostflameVarOrNull<GhostflameSoulburnVar>(vars, "Soulburn")?.IntensityValue ?? 0;
+
+        /// <summary><see cref="GhostflameSoulburn" /> as it will land on the target (Red Candle included), for intents.</summary>
+        public int GhostflameSoulburnDisplayed
+            => GhostflameVarOrNull<GhostflameSoulburnVar>(vars, "Soulburn")?.DisplayedAmount ?? 0;
     }
 }

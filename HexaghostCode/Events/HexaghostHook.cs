@@ -25,17 +25,17 @@ public static class HexaghostHook
     }
 
     public static Task AfterWheelRetract(ICombatState cs, PlayerChoiceContext ctx, Player player, AbstractModel? source,
-        GhostflameModel ghostflame, int ghostflameIndex, bool silent)
+        GhostflameModel ghostflame, int ghostflameIndex)
     {
         return HookUtils.Dispatch<IWheelMoved>(cs, ctx,
-            m => m.AfterWheelRetract(ctx, player, source, ghostflame, ghostflameIndex, silent));
+            m => m.AfterWheelRetract(ctx, player, source, ghostflame, ghostflameIndex));
     }
 
     public static Task AfterWheelAdvance(ICombatState cs, PlayerChoiceContext ctx, Player player, AbstractModel? source,
-        GhostflameModel ghostflame, int ghostflameIndex, bool silent, bool autoAdvance)
+        GhostflameModel ghostflame, int ghostflameIndex, bool endOfTurnAdvance)
     {
         return HookUtils.Dispatch<IWheelMoved>(cs, ctx,
-            m => m.AfterWheelAdvance(ctx, player, source, ghostflame, ghostflameIndex, silent, autoAdvance));
+            m => m.AfterWheelAdvance(ctx, player, source, ghostflame, ghostflameIndex, endOfTurnAdvance));
     }
 
 

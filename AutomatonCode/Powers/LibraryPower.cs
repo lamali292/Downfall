@@ -2,17 +2,16 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Automaton.AutomatonCode.Powers;
 
 public class LibraryPower : AutomatonPowerModel
 {
-    public override async Task AfterSideTurnStart(CombatSide side,
-        IReadOnlyList<Creature> participants, ICombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (!participants.Contains(Owner) || Owner.Player == null) return;
-        var player = Owner.Player;
+        if (player != Owner.Player) return;
         var choice = AutomatonCmd.GetEncodableCards(player, Amount).Select(t =>
         {
             t.SetToFreeThisTurn();

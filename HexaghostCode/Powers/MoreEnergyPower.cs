@@ -11,10 +11,8 @@ public class MoreEnergyPower : HexaghostPowerModel
         WithEnergyTip();
     }
 
-    public override async Task AfterEnergyReset(Player player)
+    public override decimal ModifyMaxEnergy(Player player, decimal amount)
     {
-        if (player.Creature != Owner) return;
-        Flash();
-        await PlayerCmd.GainEnergy(Amount, player);
+        return player != Owner.Player ? amount : amount + Amount;
     }
 }

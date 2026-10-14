@@ -13,7 +13,7 @@
     "HERMIT-SPYGLASS.description": "各ターンにプレイする[blue]3[/blue]枚目のカードは、位置に関係なく[gold]命中[/gold]効果を発動する。",
     "HERMIT-RED_SCARF.title": "赤いスカーフ",
     "HERMIT-RED_SCARF.flavor": "暖かくてふわふわだ。",
-    "HERMIT-RED_SCARF.description": "敵に新たなデバフを付与するたび、[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",
+    "HERMIT-RED_SCARF.description": "敵に付与されていないデバフを新しく付与するたび、[blue]{Block}[/blue][gold]ブロック[/gold]を得る。",
     "HERMIT-DENTED_PLATE.title": "へこんだプレート",
     "HERMIT-DENTED_PLATE.flavor": "数発の弾丸が今も内部に埋まっている。",
     "HERMIT-DENTED_PLATE.description": "HPが[blue]50%[/blue]以下の間、ターン開始時に{Energy:energyIcons()}を得てカードを[blue]{Cards}[/blue]枚引く。",

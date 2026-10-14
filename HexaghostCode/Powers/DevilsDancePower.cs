@@ -11,40 +11,38 @@ namespace Hexaghost.HexaghostCode.Powers;
 
 public class DevilsDancePower : HexaghostPowerModel, IWheelMoved
 {
-    private int UsesLeft { get; set; }
-
-    public override int DisplayAmount => UsesLeft;
+    public override int DisplayAmount => Math.Max(0, Amount - HexaghostCmd.CountWheelMovesThisTurn(Owner));
 
     public async Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent, bool autoAdvance)
+        int ghostflameIndex, bool endOfTurnAdvance)
     {
         if (player.Creature != Owner) return;
-        if (silent || autoAdvance) return;
-        if (UsesLeft  <= 0) return;
-        await CardPileCmd.Draw(ctx, player);
-        UsesLeft--;
-        InvokeDisplayAmountChanged();
+        if (endOfTurnAdvance) return;
+        await DrawIfWithinLimit(ctx, player);
     }
 
     public async Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source,
         GhostflameModel ghostflame,
-        int ghostflameIndex, bool silent)
+        int ghostflameIndex)
     {
         if (player.Creature != Owner) return;
-        if (silent) return;
-        if (UsesLeft  <= 0) return;
-        await CardPileCmd.Draw(ctx, player);
-        UsesLeft--;
-        InvokeDisplayAmountChanged();
+        await DrawIfWithinLimit(ctx, player);
     }
 
-    public override Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side,
-        IEnumerable<Creature> participants)
+    // The display counts this turn's moves, so a new turn resets it without any state change.
+    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
-        if (!participants.Contains(Owner)) return Task.CompletedTask;
-        UsesLeft = Amount;
-        InvokeDisplayAmountChanged();
+        if (participants.Contains(Owner)) InvokeDisplayAmountChanged();
         return Task.CompletedTask;
+    }
+
+    // The move that fired this hook is already in the combat history, so it counts toward the limit.
+    private async Task DrawIfWithinLimit(PlayerChoiceContext ctx, Player player)
+    {
+        if (HexaghostCmd.CountWheelMovesThisTurn(player.Creature) > Amount) return;
+        await CardPileCmd.Draw(ctx, player);
+        InvokeDisplayAmountChanged();
     }
 }
