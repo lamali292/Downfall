@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Commands;
+﻿using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
@@ -24,7 +24,7 @@ public class OffclassSearingGhostflame : GhostflameModel
     public override bool IsOffclass => true;
 
     public override AbstractIntent Intent => new MultiStatusIntent<SoulBurnPower>(
-        () => DynamicVars.GhostflameSoulburn,
+        () => DynamicVars.GhostflameSoulburnDisplayed,
         2 * Repeat(GhostflameRepeatType.Soulburn)
     );
 

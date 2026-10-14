@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.DynamicVars;
@@ -113,6 +113,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
         var locString = Description;
         var prefix = Owner.Character.CardPool.EnergyColorName;
         locString.Add("energyPrefix", prefix);
+        locString.Add("TargetsAll", TargetsAllEnemies());
         UpdateDynamicVarPreview();
         DynamicVars.AddTo(locString);
         var formatted = locString.GetFormattedText();
@@ -133,6 +134,17 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
             Id = Id.ToString(),
             IsSmart = true
         };
+    }
+
+    /// <summary>Whether a hook (Inferno Potion, ...) currently makes this flame's damage or Soulburn hit ALL enemies.</summary>
+    private bool TargetsAllEnemies()
+    {
+        var combatState = Owner.Creature.CombatState;
+        if (combatState == null) return false;
+        return (DynamicVars.Values.OfType<GhostflameDamageVar>().Any() &&
+                HexaghostHook.ShouldGhostflameTargetAll(combatState, this, GhostflameRepeatType.Damage, out _)) ||
+               (DynamicVars.Values.OfType<GhostflameSoulburnVar>().Any() &&
+                HexaghostHook.ShouldGhostflameTargetAll(combatState, this, GhostflameRepeatType.Soulburn, out _));
     }
 
     private void UpdateDynamicVarPreview()
