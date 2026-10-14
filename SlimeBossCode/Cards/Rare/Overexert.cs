@@ -16,8 +16,6 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class Overexert : SlimeBossCardModel
 {
-    private CardModel? _cardToReplay;
-
     public Overexert() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
@@ -27,30 +25,26 @@ public class Overexert : SlimeBossCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    // Overexert is itself a live combat hook listener while its own OnPlayInternal is resolving (it's
-    // still sitting in the Play pile), so it can bump just the chosen card's play count directly - no
-    // separate modifier/power needed. Calling CardCmd.AutoPlay twice on the same instance instead would
-    // silently no-op the second time for Power cards (they resolve to PileType.None after playing once,
-    // which the game's own unplayable-checks then reject).
-    public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
-    {
-        return card == _cardToReplay ? playCount + 1 : playCount;
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var x = ResolveEnergyXValue();
         var drawAmount = x + (IsUpgraded ? 1 : 0);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var drawn = await CardPileCmd.Draw(ctx, drawAmount, Owner);
 
-        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.PlaySelectionPrompt, 1);
+        // The X energy is already spent, so without this the drawn cards would show as unplayable in the picker.
+        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.PlaySelectionPrompt, 1)
+        {
+            PretendCardsCanBePlayed = true
+        };
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, c => drawn.Contains(c), this)).FirstOrDefault();
         if (card == null) return;
 
-        _cardToReplay = card;
+        // The second play uses a copy: a Power card resolves out of every pile after its first play, and the game's
+        // unplayable-checks would then reject a second AutoPlay of the same instance.
+        var dupe = card.CreateDupeCompat();
+        card.ExhaustOnNextPlay = true;
         await CardCmd.AutoPlay(ctx, card, null);
-        _cardToReplay = null;
-
-        if (card.Pile != null) await CardCmdCompatibility.Exhaust(ctx, card);
+        await CardCmd.AutoPlay(ctx, dupe, null);
     }
 }
