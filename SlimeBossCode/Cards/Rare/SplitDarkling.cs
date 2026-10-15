@@ -3,24 +3,26 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class DarklingDuo : SlimeBossCardModel
+public class SplitDarkling : SlimeBossCardModel
 {
-    public DarklingDuo() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public SplitDarkling() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithTip(SlimeBossTip.Split);
-        WithVar("Count", 2, 1);
         WithSlimeTip<DarklingSlime>();
+        WithPower<PotencyPower>(0, 2, true);
         WithTags(SlimeBossTag.Slime);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var count = DynamicVars["Count"].IntValue;
-        for (var i = 0; i < count; i++) await SlimeBossCmd.Split<DarklingSlime>(ctx, Owner);
+        var slime = await SlimeBossCmd.Split<DarklingSlime>(ctx, Owner);
+        if (slime == null) return;
+        await CommonActions.Apply<PotencyPower>(ctx, slime, this);
     }
 }
