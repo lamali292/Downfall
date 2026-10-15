@@ -46,7 +46,7 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "Suchen-Ersetzen",
     "AUTOMATON-FINE_TUNING.description": "Wähle {Cards:diff()} {Cards:plural:Karte|Karten} auf deiner [gold]Hand[/gold].\n[gold]Lagere[/gold] sie, [gold]Verbessere[/gold] sie und versieh sie mit [gold]Behalten[/gold].",
     "AUTOMATON-FINE_TUNING.title": "Feinjustierung",
-    "AUTOMATON-FLAIL.description": "[fade_in][/fade_in]Füge ALLEN Gegnern zweimal {Damage:diff()} Schaden zu.\nErhalte {ArtifactPower:diff()} [gold]Artefakt[/gold].",
+    "AUTOMATON-FLAIL.description": "Füge ALLEN Gegnern zweimal {Damage:diff()} Schaden zu.\nErhalte {ArtifactPower:diff()} [gold]Artefakt[/gold].",
     "AUTOMATON-FLAIL.title": "Verdreschen",
     "AUTOMATON-FORCE_SHIELD.description": "Erhalte {Block:diff()} [gold]Block[/gold].\nKostet {Energy:energyIcons()} weniger für jede in diesem Kampf erzeugte Karte.",
     "AUTOMATON-FORCE_SHIELD.title": "Kraftschild",

@@ -168,7 +168,7 @@
     "COLLECTOR-VEIL_OF_SMOKE.description": "このターン終了時、{VeilOfSmokePower:diff()}[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]の状態異常1枚につき、{TurnsExtra:diff()}ターン追加で持続する。",
     "COLLECTOR-REFINED_FUEL.title": "燃料精製",
     "COLLECTOR-REFINED_FUEL.description": "状態異常を[gold]火葬[/gold]した時、毎ターン{RefinedFuelPower:diff()}回まで、次のターン{Reserve:reserveIcons()}を得る。",
-    "COLLECTOR-QUENCHING_DREGS.title": "渇きを癒やす澱",
+    "COLLECTOR-QUENCHING_DREGS.title": "鎮火の残滓",
     "COLLECTOR-QUENCHING_DREGS.description": "{Damage:diff()}ダメージを与える。\nカードを{Cards:diff()}枚引く。\n[gold]手札[/gold]の状態異常1枚につき、コストが1{energyPrefix:energyIcons(1)}減少する。",
     "COLLECTOR-MISFORTUNE_COOKIES.title": "ミスフォーチュンクッキー",
     "COLLECTOR-MISFORTUNE_COOKIES.description": "対象の敵が受けているデバフ1種類につき、カードを{CardsExtra:diff()}枚引き、[gold]点火[/gold]{KindleCalcExtra:diff()}。{IsTargeting:cond:\n(カードを{Cards:diff()}枚引く。[gold]点火[/gold]{KindleCalc:diff()})|}",
