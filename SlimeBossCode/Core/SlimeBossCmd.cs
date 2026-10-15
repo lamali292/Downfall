@@ -171,16 +171,13 @@ public static class SlimeBossCmd
     }
 
 
-    /// <summary>Slimes fill a column of this height top to bottom before starting the next column.</summary>
-    private const int GridHeight = 3;
-
     /// <summary>Scale of slimes owned by another player.</summary>
-    private const float RemoteSlimeScale = 0.6f;
+    private static float RemoteSlimeScale => 0.6f;
 
-    private static Vector2 GridOrigin => new(250f, -140f);
-    private static Vector2 GridCellSize => new(150f, 110f);
+    /// <summary>Scale of the local player's slimes.</summary>
+    private static float LocalSlimeScale => 0.8f;
 
-    /// <summary>Grid slot each living slime occupies. A slot stays fixed until its slime leaves.</summary>
+    /// <summary>Slot each living slime occupies. A slot stays fixed until its slime leaves.</summary>
     private static readonly SpireField<Creature, int> SlimeSlots = new(() => UnassignedSlot);
 
     private const int UnassignedSlot = -1;
@@ -196,15 +193,21 @@ public static class SlimeBossCmd
         SlimeSlots.Set(slime, slot);
         return slot;
     }
+    
 
     private static Vector2 SlotOffset(int slot)
     {
-        var column = slot / GridHeight;
-        var row = slot % GridHeight;
-        return GridOrigin + new Vector2(column * GridCellSize.X, row * GridCellSize.Y);
+        var g = slot / 3;
+        Vector2 pos = (slot % 3) switch
+        {
+            0 => new(200f + g * 110, -150f),
+            1 => new(200f + g * 110, 50f),
+            _ => new(240f + g * 110, -50f)
+        };
+        return pos; //200f*new Vector2(MathF.Sin(1.7f-slot* 0.5f)+0.2f , MathF.Cos(1.7f-slot*0.5f)- 0.5f) ;
     }
 
-    /// <summary>Places a newly split slime in the lowest free grid slot. Existing slimes are never moved.</summary>
+    /// <summary>Places a newly split slime in the lowest free slot. Existing slimes are never moved.</summary>
     private static void PlaceNewSlime(Player player, Creature pet)
     {
         var playerNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
@@ -212,7 +215,7 @@ public static class SlimeBossCmd
         if (playerNode == null || slimeNode == null) return;
 
         // Other players' slimes are smaller but keep the game's default pet position; only the local
-        // player's slimes use the grid.
+        // player's slimes use the slots.
         if (!LocalContext.IsMe(player))
         {
             slimeNode.Scale = Vector2.One * RemoteSlimeScale;
@@ -226,6 +229,7 @@ public static class SlimeBossCmd
         var relativeOffset = SlotOffset(slot);
         if (player.Creature.Side == CombatSide.Enemy) relativeOffset.X = -relativeOffset.X;
 
+        slimeNode.Scale = Vector2.One * LocalSlimeScale;
         slimeNode.ToggleIsInteractable(true);
         HideHealthBar(slimeNode);
         slimeNode.GlobalPosition = playerNode.GlobalPosition + relativeOffset;
@@ -238,7 +242,7 @@ public static class SlimeBossCmd
     }
 
     /// <summary>
-    /// Slimes lower on the grid are drawn in front of higher ones. Reorders the slime nodes among the sibling
+    /// Slimes standing lower are drawn in front of higher ones. Reorders the slime nodes among the sibling
     /// positions they already occupy (no ZIndex: that breaks against UI), leaving other creatures untouched.
     /// </summary>
     private static void SortByRow(List<Creature> slimes, NCreature newNode)
@@ -246,7 +250,7 @@ public static class SlimeBossCmd
         var parent = newNode.GetParent();
         if (parent == null) return;
         var ordered = slimes
-            .OrderBy(e => SlimeSlots.Get(e) % GridHeight).ThenBy(e => SlimeSlots.Get(e))
+            .OrderBy(e => SlotOffset(SlimeSlots.Get(e)).Y).ThenBy(e => SlimeSlots.Get(e))
             .Select(e => NCombatRoom.Instance?.GetCreatureNode(e))
             .Where(n => n != null && n.GetParent() == parent).ToList();
         var remaining = ordered.ToHashSet();

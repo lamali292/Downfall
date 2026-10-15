@@ -9,8 +9,8 @@ namespace SlimeBoss.SlimeBossCode.Vfx;
 
 /// <summary>
 /// "Lv. X" label for slimes that level up (<see cref="SlimeModel.Level"/>). It also grows the slime's model to
-/// <see cref="SlimeModel.VisualScale"/>, so the level is visible at a glance. Sits at the slime's bottom-right corner,
-/// next to the effect counter (<see cref="NSlimeCounter"/>).
+/// <see cref="SlimeModel.VisualScale"/>, so the level is visible at a glance. Sits at the slime's bottom-left corner,
+/// opposite the effect counter (<see cref="NSlimeCounter"/>).
 /// </summary>
 public partial class NSlimeLevel : Control
 {
@@ -19,8 +19,8 @@ public partial class NSlimeLevel : Control
     private const string LocKey = "SLIMEBOSS-SLIME_LEVEL.label";
     private const float RefreshSeconds = 0.2f;
 
-    /// <summary>Where the label's top-left sits relative to the slime hitbox's bottom-right corner.</summary>
-    private static readonly Vector2 CornerOffset = new(-106f, 2f);
+    /// <summary>Where the label's top-left sits relative to the slime hitbox's bottom-left corner.</summary>
+    private static readonly Vector2 CornerOffset = new(0f, 2f);
 
     private NCreature _creatureNode = null!;
     private SlimeModel _slime = null!;
@@ -68,18 +68,32 @@ public partial class NSlimeLevel : Control
         _growTween?.Kill();
         if (isFirst)
         {
-            _creatureNode.Visuals.Scale = scale;
+            SetModelScale(scale);
             return;
         }
 
         _growTween = CreateTween();
-        _growTween.TweenProperty(_creatureNode.Visuals, "scale", scale, 0.4)
+        _growTween.TweenMethod(Callable.From<Vector2>(SetModelScale), _creatureNode.Visuals.Scale, scale, 0.4)
             .SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
+    }
+
+    /// <summary>
+    /// Scales the model and refreshes the creature's bounds, so the hitbox (and with it this label and the
+    /// effect counter, which sit on the hitbox's corner) follows the model's size.
+    /// </summary>
+    private void SetModelScale(Vector2 scale)
+    {
+        _creatureNode.Visuals.Scale = scale;
+        _creatureNode.UpdateBounds(_creatureNode.Visuals);
+        PlaceInCorner();
     }
 
     private void PlaceInCorner()
     {
         var hitbox = _creatureNode.Hitbox;
-        GlobalPosition = hitbox.GlobalPosition + hitbox.Size + CornerOffset;
+        // The slime node (and so its hitbox) can be scaled. The label moves with it but keeps its own size.
+        var scale = hitbox.GetGlobalTransform().Scale;
+        Scale = Vector2.One / scale;
+        GlobalPosition = hitbox.GlobalPosition + (new Vector2(0f, hitbox.Size.Y) + CornerOffset) * scale;
     }
 }

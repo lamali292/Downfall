@@ -10,7 +10,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 28.0
-pivot_offset = Vector2(30, 14)
 mouse_filter = 2
 script = ExtResource("1_counter")
 
