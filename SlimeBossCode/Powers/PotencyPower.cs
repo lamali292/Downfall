@@ -25,8 +25,8 @@ public class PotencyPower : SlimeBossPowerModel, IModifySlimeEffects,
         return dealer?.Monster is SlimeModel slime && AppliesTo(slime) ? Amount : 0;
     }
 
-    public int ModifySlimeEffects(int amount, SlimeModel slime)
+    public int ModifySlimeEffectsAdditive(SlimeModel slime)
     {
-        return AppliesTo(slime) ? amount + Amount : amount;
+        return AppliesTo(slime) ? Amount : 0;
     }
 }

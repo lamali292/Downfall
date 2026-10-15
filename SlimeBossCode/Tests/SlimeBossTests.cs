@@ -10,6 +10,7 @@ using SlimeBoss.SlimeBossCode.Cards.Common;
 using SlimeBoss.SlimeBossCode.Cards.Rare;
 using SlimeBoss.SlimeBossCode.Cards.Uncommon;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
@@ -358,5 +359,30 @@ public class SlimeBossTests
 
         Assert.AreEqual(6, enemy.GetPowerAmount<Downfall.DownfallCode.Powers.SoulBurnPower>(),
             "Playing a Power should Command Psychic Slime, applying 6 Soulburn.");
+    }
+
+    // (base + Potency) * double must not depend on which power was applied first, nor on whether Potency sits
+    // on the player or on the slime itself.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task SlimeEffectIsPotencyThenDoubledInEitherApplicationOrder(TestContext ctx)
+    {
+        var choice = new ThrowingPlayerChoiceContext();
+        await SlimeBossCmd.Split<ScrapSlime>(choice, ctx.Player);
+        var slimeCreature = ctx.Player.GetSlime<ScrapSlime>()!;
+        var slime = (ScrapSlime)slimeCreature.Monster;
+        var baseAmount = slime.DynamicVars.Slime.IntValue;
+
+        // Double first, then Potency on the slime itself (listed after the player's powers).
+        await PowerCmd.Apply<SlimeDoubleDamagePower>(choice, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        await PowerCmd.Apply<PotencyPower>(choice, slimeCreature, 2, ctx.Player.Creature, null);
+        Assert.AreEqual((baseAmount + 2) * 2,
+            SlimeBossHook.ModifySlimeEffects(ctx.Combat, baseAmount, out _, slime),
+            "Double applied before slime-side Potency must still be (base + Potency) * 2.");
+
+        // Potency on the player as well, applied after Double.
+        await PowerCmd.Apply<PotencyPower>(choice, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        Assert.AreEqual((baseAmount + 3) * 2,
+            SlimeBossHook.ModifySlimeEffects(ctx.Combat, baseAmount, out _, slime),
+            "Player-side Potency applied after Double must still be added before doubling.");
     }
 }

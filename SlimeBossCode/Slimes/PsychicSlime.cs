@@ -24,7 +24,7 @@ public class PsychicSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new SlimeSecondaryVar(6)
+        new SlimePowerVar<SoulBurnPower>(6)
     ];
 
     public override IEnumerable<IHoverTip> ExtraTips => [HoverTipFactory.FromPower<SoulBurnPower>()];

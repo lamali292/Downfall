@@ -177,8 +177,8 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
                         out _);
                     break;
                 case SlimeSecondaryVar snd:
-                    snd.PreviewValue =
-                        SlimeBossHook.ModifySlimeEffects(CombatState, snd.IntValue, out _, this);
+                    snd.PreviewValue = snd.ToPreviewValue(
+                        SlimeBossHook.ModifySlimeEffects(CombatState, snd.IntValue, out _, this), this);
                     break;
             }
     }

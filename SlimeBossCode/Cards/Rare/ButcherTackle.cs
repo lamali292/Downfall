@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -15,7 +14,7 @@ public class ButcherTackle : SlimeBossCardModel
     public ButcherTackle() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithTags(SlimeBossTag.Tackle);
-        WithDamage(20, 5);
+        WithDamage(20, 8);
         WithTip(SlimeBossTip.Consume);
     }
 

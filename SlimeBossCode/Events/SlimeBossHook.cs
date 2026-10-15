@@ -23,11 +23,19 @@ public static class SlimeBossHook
         return MyHookUtils.Any<IPreventConsumeWeakRemoval>(cs, e => e.TryPreventWeakRemoval(target, consumer));
     }
 
-    public static int ModifySlimeEffects(ICombatState cs, int originalAmount,
-        out IEnumerable<IModifySlimeEffects> modifiers, SlimeModel slime)
+    /// <summary>
+    /// A Slime's non-damage effect after modifiers: <c>(base + additive) * multiplicative</c>. Like damage,
+    /// every additive modifier applies before any multiplicative one, whatever order the powers were applied in.
+    /// </summary>
+    public static int ModifySlimeEffects(ICombatState cs, int originalAmount, out IEnumerable<IModifySlimeEffects> modifiers,
+        SlimeModel slime)
     {
-        return HookUtils.Modify(cs, originalAmount, (e, a) => e.ModifySlimeEffects(a, slime),
-            out modifiers);
+        var added = HookUtils.Modify<IModifySlimeEffects, int>(cs, originalAmount, (e, a) => a + e.ModifySlimeEffectsAdditive(slime),
+            out var additive);
+        var multiplied = HookUtils.Modify<IModifySlimeEffects, int>(cs, added, (e, a) => a * e.ModifySlimeEffectsMultiplicative(slime),
+            out var multiplicative);
+        modifiers = additive.Union(multiplicative);
+        return multiplied;
     }
 
     public static Task AfterSplit(ICombatState cs, PlayerChoiceContext ctx, Player player, SlimeModel slime)
