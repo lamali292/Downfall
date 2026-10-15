@@ -10,33 +10,37 @@ namespace SlimeBoss.SlimeBossCode.Slimes;
 
 public class EvolutionSlime : SlimeModel
 {
-    private const int MaxLevel = 5;
+    private const int MaxLevel = 4;
+    private const float ScalePerLevel = 0.15f;
     private int _level = 1;
-    // TODO show level and change model?
+
+    public override int? Level => _level;
+
+    // From level 2 it hits all enemies.
+    public override string CounterIconPath => _level >= 2 ? AoeAttackIconPath : base.CounterIconPath;
+
+    public override float VisualScale => 0.7f + (_level - 1) * ScalePerLevel;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(1, DamageProps.nonCardUnpowered),
-        new DamageVar("Damage2", 4,  DamageProps.nonCardUnpowered)
+        new DamageVar(4, DamageProps.nonCardUnpowered)
     ];
 
-    protected override string? SkinName => "torchhead";
-
-    public override DynamicVar CounterVar => _level < 2 ? DynamicVars.Damage : DynamicVars["Damage2"];
+    protected override string SkinName => "torchhead";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var damage = _level < 2 ? DynamicVars.Damage.BaseValue : DynamicVars["Damage2"].BaseValue;
-        var attack =  DamageCmd.Attack(damage).Unpowered().FromSlime(this);
-        attack = _level < 3 ? forcedTarget == null ? 
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this);
+        attack = _level < 2 ? forcedTarget == null ?
             attack.TargetingRandomOpponents(CombatState) : attack.Targeting(forcedTarget) : attack.TargetingAllOpponents(CombatState);
-        
+
         var result = await attack.Execute(ctx);
-        if (_level >= 4)
+        if (_level >= 3)
         {
             var dealt = result.Results.SelectMany(e => e).Sum(e => e.TotalDamage + e.OverkillDamage) / 2;
             await CreatureCmd.GainBlock(PetOwner, dealt, BlockProps.nonCardUnpowered, null);
-        };
-        if (_level >= 5)
+        }
+        if (_level >= 4)
         {
             await PowerCmd.Apply<PotencyPower>(ctx, Creature, 2, PetOwner, null);
         }
