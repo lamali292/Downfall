@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,11 +15,9 @@ public class FlameTackle : SlimeBossCardModel, IStackingUpgradeCard
     {
         WithTags(SlimeBossTag.Tackle);
         WithDamage(12);
-        WithPower<FlameTacklePower>(4, 2, false);
+        WithPower<FlameTacklePower>(5, 3, false);
     }
-
-    // "Can be Upgraded any number of times" - same pattern as Collector's Ember.
-    public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
+    
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
