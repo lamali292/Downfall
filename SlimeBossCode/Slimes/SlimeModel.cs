@@ -14,12 +14,9 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
-using Downfall.DownfallCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
-using SlimeBoss.SlimeBossCode.Vfx;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
@@ -66,25 +63,7 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
     public Player Player => PetOwner.Player ?? throw new ArgumentNullException(nameof(Player));
     protected virtual LocString Description => L10NMonsterLookup(Id.Entry + ".description");
 
-    public int SlimeAmount
-    {
-        get;
-        set
-        {
-            var old = field;
-            field = value;
-            SlimeAmountChanged(old, value);
-        }
-    } = 1;
 
-    protected virtual void SlimeAmountChanged(int oldValue, int newValue)
-    {
-        SlimeBossMainFile.Logger.Info($"Slimecount: {oldValue} -> {newValue}");
-        if (NCombatRoom.Instance?.GetCreatureNode(Creature)?.Visuals is NMultiSlimeVisuals visuals)
-            visuals.SetSlimeCount(newValue);
-    }
-
-    public virtual SlimeType SlimeType => SlimeType.Single;
     public sealed override CreatureAnimator GenerateAnimator(MegaSprite controller)
     {
         return SetupAnimationState(controller, "idle_loop", hitName: "hurt", attackName: "attack");
@@ -203,10 +182,4 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
                     break;
             }
     }
-}
-
-public enum SlimeType
-{
-    Single,
-    Counter
 }

@@ -8,7 +8,7 @@ public static class PlayerExtension
     extension(Player player)
     {
         public List<Creature> SlimeCreatures => GetSlimes(player);
-        public int SlimeCount => player.SlimeCreatures.Sum(e => (e.Monster as SlimeModel)?.SlimeAmount ?? 0);
+        public int SlimeCount => player.SlimeCreatures.Count(e => e.Monster is SlimeModel);
         public Creature? GetSlime<T>() where T : SlimeModel
         {
             return player.Creature.Pets.FirstOrDefault(e => e.Monster is T);
