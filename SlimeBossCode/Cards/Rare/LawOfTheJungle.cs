@@ -15,7 +15,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class LawOfTheJungle : SlimeBossCardModel
 {
-    public LawOfTheJungle() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public LawOfTheJungle() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithTip(SlimeBossTip.Split);
         WithPower<PotencyPower>(2, 1);
