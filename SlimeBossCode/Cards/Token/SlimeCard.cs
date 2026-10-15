@@ -51,7 +51,7 @@ public class SlimeCardMuscle : SlimeCard<MuscleSlime>;
 public class SlimeCardTaunting : SlimeCard<TauntingSlime>;
 public class SlimeCardPsychic : SlimeCard<PsychicSlime>;
 public class SlimeCardLeeching : SlimeCard<LeechingSlime>;
-public class SlimeCardSpike : SlimeCard<SpikeSlime>;
+public class SlimeCardScrap : SlimeCard<ScrapSlime>;
 public class SlimeCardCultist : SlimeCard<CultistSlime>;
 public class SlimeCardGuerilla : SlimeCard<GuerillaSlime>;
 

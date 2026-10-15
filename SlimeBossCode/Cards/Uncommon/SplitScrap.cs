@@ -9,19 +9,19 @@ using SlimeBoss.SlimeBossCode.Slimes;
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class SplitSpike : SlimeBossCardModel
+public class SplitScrap : SlimeBossCardModel
 {
-    public SplitSpike() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public SplitScrap() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(SlimeBossTip.Split);
-        WithSlimeTip<SpikeSlime>();
+        WithSlimeTip<ScrapSlime>();
         WithPower<PotencyPower>(0, 2, true);
         WithTags(SlimeBossTag.Slime);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var slime = await SlimeBossCmd.Split<SpikeSlime>(ctx, Owner);
+        var slime = await SlimeBossCmd.Split<ScrapSlime>(ctx, Owner);
         if (slime == null) return;
         await CommonActions.Apply<PotencyPower>(ctx, slime, this);
     }
