@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,7 +15,7 @@ public class Rollback : SlimeBossCardModel
 {
     public Rollback() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(3, 1);
+        WithDamage(3, 2);
         WithEnchantment<Adroit>(8, 3);
         WithCardTip<Slimed>(EnchantSlimed);
 
