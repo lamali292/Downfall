@@ -38,7 +38,7 @@ public class PsychicSlime : SlimeModel
         var target = forcedTarget ?? CombatState.GetOpponentsOf(PetOwner).Where(e => e.IsHittable).ToList()
             .OrderBy(_ => Guid.NewGuid()).FirstOrDefault();
         if (target == null) return;
-        var amount = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, DynamicVars.Slime.IntValue, out _, this);
+        var amount = SlimeBossHook.ModifySlimeEffects(CombatState, DynamicVars.Slime.IntValue, out _, this);
         SpawnFireball(target);
         // The player is the applier, so Red Candle's bonus applies.
         await PowerCmd.Apply<SoulBurnPower>(ctx, target, amount, PetOwner, null);

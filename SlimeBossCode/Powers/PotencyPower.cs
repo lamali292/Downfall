@@ -11,7 +11,7 @@ using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class PotencyPower : SlimeBossPowerModel, IModifySecondarySlimeEffects,
+public class PotencyPower : SlimeBossPowerModel, IModifySlimeEffects,
     IModifyDamageAdditive
 {
 
@@ -25,7 +25,7 @@ public class PotencyPower : SlimeBossPowerModel, IModifySecondarySlimeEffects,
         return dealer?.Monster is SlimeModel slime && AppliesTo(slime) ? Amount : 0;
     }
 
-    public int ModifySecondarySlimeEffects(int amount, SlimeModel slime)
+    public int ModifySlimeEffects(int amount, SlimeModel slime)
     {
         return AppliesTo(slime) ? amount + Amount : amount;
     }
