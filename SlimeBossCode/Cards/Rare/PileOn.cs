@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -10,7 +10,7 @@ public class PileOn : SlimeBossCardModel
 {
     public PileOn() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(5);
+        WithDamage(13);
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
 
