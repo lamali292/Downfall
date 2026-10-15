@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -11,7 +11,7 @@ public class GlopChop : SlimeBossCardModel
 {
     public GlopChop() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(10, 2);
+        WithDamage(12, 3);
         WithPower<GlopChopPower>(2, 1, false);
     }
 
