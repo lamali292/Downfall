@@ -1,35 +1,61 @@
+﻿using Downfall.DownfallCode.Powers;
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.DynamicVars;
+using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
+using SlimeBoss.SlimeBossCode.Vfx;
 
 namespace SlimeBoss.SlimeBossCode.Slimes;
 
+/// <summary>Throws a fireball applying Soulburn when Commanded, and is Commanded whenever its owner plays a Power.</summary>
 public class PsychicSlime : SlimeModel
 {
+    // Same yellow as the Searing Ghostflame, which also applies Soulburn.
+    private static readonly Color FireColor = new(1f, 0.9f, 0.1f);
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(3, DamageProps.nonCardUnpowered)
+        new SlimeSecondaryVar(6)
     ];
+
+    public override IEnumerable<IHoverTip> ExtraTips => [HoverTipFactory.FromPower<SoulBurnPower>()];
+
+    public override string CounterIconPath => "res://Downfall/images/powers/soul_burn_power.png";
 
     protected override string? SkinName => "hex";
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this);
-        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
-        await attack.Execute(ctx);
+        var target = forcedTarget ?? CombatState.GetOpponentsOf(PetOwner).Where(e => e.IsHittable).ToList()
+            .OrderBy(_ => Guid.NewGuid()).FirstOrDefault();
+        if (target == null) return;
+        var amount = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, DynamicVars.Slime.IntValue, out _, this);
+        SpawnFireball(target);
+        // The player is the applier, so Red Candle's bonus applies.
+        await PowerCmd.Apply<SoulBurnPower>(ctx, target, amount, PetOwner, null);
     }
 
-    // "Draws a card whenever you draw another Slime or Power card."
-    public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
+
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (card.Owner.Creature != PetOwner) return;
-        if (card.Type != CardType.Power) return;
-        await CardPileCmd.Draw(ctx, 1, card.Owner);
+        var card = cardPlay.Card;
+        if (card.Owner.Creature != PetOwner || card.Type != CardType.Power) return;
+        await SlimeBossCmd.Command<PsychicSlime>(new BlockingPlayerChoiceContext(), card.Owner, 1, card);
+    }
+
+    private void SpawnFireball(Creature target)
+    {
+        var from = NCombatRoom.Instance?.GetCreatureNode(Creature)?.VfxSpawnPosition ?? Vector2.Zero;
+        var to = NCombatRoom.Instance?.GetCreatureNode(target)?.VfxSpawnPosition ?? Vector2.Zero;
+        NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NSlimeFireball.Create(from, to, FireColor));
     }
 }

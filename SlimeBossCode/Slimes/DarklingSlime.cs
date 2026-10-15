@@ -17,13 +17,9 @@ public class DarklingSlime : SlimeModel, IAfterCommand
         new DamageVar(3, DamageProps.nonCardUnpowered)
     ];
 
-    public override SlimeType SlimeType => SlimeType.Counter;
-
-    public override int CounterHitCount => SlimeAmount;
-
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
-        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().WithHitCount(CounterHitCount).FromSlime(this);
+        var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this);
         attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         return attack.Execute(ctx);
     }
@@ -33,6 +29,6 @@ public class DarklingSlime : SlimeModel, IAfterCommand
         if (player.Creature != PetOwner || slime == this || slime is DarklingSlime || isAutomatic) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromSlime(this)
-            .TargetingRandomOpponents(CombatState).WithHitCount(SlimeAmount).Execute(ctx);
+            .TargetingRandomOpponents(CombatState).Execute(ctx);
     }
 }

@@ -146,19 +146,8 @@ public static class SlimeBossCmd
             return await SpawnSlime(ctx, player, slimeModel);
         }
         if (existing.Monster is not SlimeModel slime) return existing;
-        switch (slime.SlimeType)
-        {
-            case SlimeType.Single:
-                var baseEffect = slime.CounterVar?.BaseValue ?? DuplicateSplitPotency;
-                await PowerCmd.Apply<PotencyPower>(ctx, existing, baseEffect, player.Creature, null);
-                break;
-            case SlimeType.Counter:
-                slime.SlimeAmount++;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
+        var baseEffect = slime.CounterVar?.BaseValue ?? DuplicateSplitPotency;
+        await PowerCmd.Apply<PotencyPower>(ctx, existing, baseEffect, player.Creature, null);
         return existing;
     }
 
