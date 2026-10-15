@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
@@ -14,9 +14,9 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class MassRepurpose : SlimeBossCardModel
+public class Avarice : SlimeBossCardModel
 {
-    public MassRepurpose() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public Avarice() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithEnchantment<Adroit>(5, 2);
