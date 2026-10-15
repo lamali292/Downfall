@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -13,7 +13,7 @@ public class MassiveSlime : SlimeModel
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(20, DamageProps.nonCardUnpowered),
+        new DamageVar(15, DamageProps.nonCardUnpowered),
         new("Sleep", 1)
     ];
 
