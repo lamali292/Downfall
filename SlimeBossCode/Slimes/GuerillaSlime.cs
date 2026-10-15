@@ -17,6 +17,8 @@ public class GuerillaSlime : SlimeModel
     
     protected override string SkinName => "poison";
 
+    public override string CounterIconPath => AoeAttackIconPath;
+
 
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

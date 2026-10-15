@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Helpers;
+using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -177,7 +178,7 @@ public static class SlimeBossCmd
     private const float RemoteSlimeScale = 0.6f;
 
     private static Vector2 GridOrigin => new(250f, -140f);
-    private static Vector2 GridCellSize => new(150f, 90f);
+    private static Vector2 GridCellSize => new(150f, 110f);
 
     /// <summary>Grid slot each living slime occupies. A slot stays fixed until its slime leaves.</summary>
     private static readonly SpireField<Creature, int> SlimeSlots = new(() => UnassignedSlot);
@@ -221,15 +222,40 @@ public static class SlimeBossCmd
         }
 
         var slimes = player.Creature.Pets.Where(e => e.Monster is SlimeModel).ToList();
-        var relativeOffset = SlotOffset(AssignSlot(pet, slimes));
+        var slot = AssignSlot(pet, slimes);
+        var relativeOffset = SlotOffset(slot);
         if (player.Creature.Side == CombatSide.Enemy) relativeOffset.X = -relativeOffset.X;
 
         slimeNode.ToggleIsInteractable(true);
         HideHealthBar(slimeNode);
         slimeNode.GlobalPosition = playerNode.GlobalPosition + relativeOffset;
         slimeNode.UpdateBounds(slimeNode.Visuals);
+        SortByRow(slimes, slimeNode);
         // The next-Command badge (NSlimeCounter) is only shown for the local player's slimes.
-        if (pet.Monster is SlimeModel slime && LocalContext.IsMe(player)) slimeNode.AddChild(NSlimeCounter.Create(slimeNode, slime));
+        if (pet.Monster is not SlimeModel slime) return;
+        slimeNode.AddChild(NSlimeCounter.Create(slimeNode, slime));
+        if (slime.Level != null) slimeNode.AddChild(NSlimeLevel.Create(slimeNode, slime));
+    }
+
+    /// <summary>
+    /// Slimes lower on the grid are drawn in front of higher ones. Reorders the slime nodes among the sibling
+    /// positions they already occupy (no ZIndex: that breaks against UI), leaving other creatures untouched.
+    /// </summary>
+    private static void SortByRow(List<Creature> slimes, NCreature newNode)
+    {
+        var parent = newNode.GetParent();
+        if (parent == null) return;
+        var ordered = slimes
+            .OrderBy(e => SlimeSlots.Get(e) % GridHeight).ThenBy(e => SlimeSlots.Get(e))
+            .Select(e => NCombatRoom.Instance?.GetCreatureNode(e))
+            .Where(n => n != null && n.GetParent() == parent).ToList();
+        var remaining = ordered.ToHashSet();
+        foreach (var node in ordered)
+        {
+            var first = remaining.Min(n => n!.GetIndex());
+            parent.MoveChild(node, first);
+            remaining.Remove(node);
+        }
     }
 
     /// <summary>Height of the hidden HP bar (the power container's offset in creature_state_display.tscn).</summary>

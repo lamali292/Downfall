@@ -123,6 +123,9 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
     public virtual DynamicVar? CounterVar => DynamicVars.Values.FirstOrDefault(v =>
         v is DamageVar or CalculatedDamageVar or SlimeSecondaryVar);
 
+    /// <summary>The scythe intent, for attacks that hit all enemies.</summary>
+    protected const string AoeAttackIconPath = "res://images/packed/intents/attack/intent_attack_5.png";
+
     /// <summary>Icon on the corner counter; override for slimes whose main effect isn't damage.</summary>
     public virtual string CounterIconPath => "res://images/packed/intents/attack/intent_attack_1.png";
 
@@ -146,6 +149,12 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
 
     /// <summary>How many times the counter's effect repeats per Command; shown as "damage x hits" when above 1.</summary>
     public virtual int CounterHitCount => 1;
+
+    /// <summary>The slime's current level, shown next to the counter. Null for slimes that don't level up.</summary>
+    public virtual int? Level => null;
+
+    /// <summary>Scale of the slime's model; levelling slimes grow with <see cref="Level"/>.</summary>
+    public virtual float VisualScale => 1f;
 
     /// <summary>The unmodified value <see cref="CounterValue"/> is compared against to colour the counter.</summary>
     public decimal CounterBaseValue => CounterVar?.BaseValue ?? 0m;
