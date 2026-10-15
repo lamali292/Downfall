@@ -1,7 +1,8 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 
@@ -12,15 +13,15 @@ public class ShapeOfPuddle : SlimeBossCardModel
 {
     public ShapeOfPuddle() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
+        WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Exhaust);
         WithPower<IntangiblePower>(1);
-        WithPower<NoBlockPower>(3, -1, false);
-        WithTip(StaticHoverTip.Block);
+        WithVar(new MaxHpVar(2));
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<IntangiblePower>(ctx, this);
-        await CommonActions.ApplySelf<NoBlockPower>(ctx, this);
+        await CreatureCmd.LoseMaxHp(ctx, Owner.Creature, DynamicVars.MaxHp.BaseValue, true);
     }
 }
