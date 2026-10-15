@@ -1,11 +1,10 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 
@@ -16,7 +15,8 @@ public class JustDesserts : SlimeBossCardModel
 {
     public JustDesserts() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithDamage(8, 4);
+        WithDamage(5);
+        WithCostUpgradeBy(-1);
         WithCalculatedVar("Cards", 0, Calc);
         WithKeyword(CardKeyword.Exhaust);
     }
@@ -31,6 +31,6 @@ public class JustDesserts : SlimeBossCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var cards = ((CalculatedVar)DynamicVars["Cards"]).Calculate(cardPlay.Target);
         if (cards > 0)
-            await CommonActions.ApplySelf<DrawCardsNextTurnPower>(ctx, this, cards);
+            await PlayerCmd.GainEnergy(cards, Owner);
     }
 }
