@@ -149,7 +149,7 @@
   "AWAKENED-RAVEN_STRIKE.title": "Raven Strike",
   "AWAKENED-RAZOR_SHARP.description": "Add {Cards:diff()} {Cards:plural:[gold]Plume Jab[/gold]|[gold]Plume Jabs[/gold]} into your [gold]Draw Pile[/gold].\n[gold]Plume Jabs[/gold] hit {RazorSharpPower:diff()} additional {RazorSharpPower:plural:time|times}.",
   "AWAKENED-RAZOR_SHARP.title": "Razor Sharp",
-  "AWAKENED-REALITY_RIFT.description": "Put a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].\nGain 1 of 3 {IfUpgraded:show:[gold]Upgraded[/gold] |}cards from another dimension.",
+  "AWAKENED-REALITY_RIFT.description": "Add a [gold]Void[/gold] on top of your [gold]Draw Pile[/gold].\nGain 1 of 3 {IfUpgraded:show:[gold]Upgraded[/gold] |}cards from another dimension.",
   "AWAKENED-REALITY_RIFT.title": "Reality Rift",
   "AWAKENED-REBIRTH.description": "At the end of combat or the next time you would die, heal {AwakeningPower:diff()} HP, remove your [gold]Weak[/gold], [gold]Vulnerable[/gold] and [gold]Frail[/gold], then [gold]Awaken[/gold].",
   "AWAKENED-REBIRTH.title": "Rebirth",
