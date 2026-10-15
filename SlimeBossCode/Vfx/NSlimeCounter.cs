@@ -107,7 +107,10 @@ public partial class NSlimeCounter : Control
 	private void PlaceInCorner()
 	{
 		var hitbox = _creatureNode.Hitbox;
-		GlobalPosition = hitbox.GlobalPosition + hitbox.Size + CornerOffset;
+		// The slime node (and so its hitbox) can be scaled. The badge moves with it but keeps its own size.
+		var scale = hitbox.GetGlobalTransform().Scale;
+		Scale = Vector2.One / scale;
+		GlobalPosition = hitbox.GlobalPosition + (hitbox.Size + CornerOffset) * scale;
 	}
 
 	/// <summary>Brief scale-up of the effect counter around its centre, so a changed value catches the eye.</summary>
