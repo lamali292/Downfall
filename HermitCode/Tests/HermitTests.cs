@@ -421,6 +421,25 @@ public class HermitTests
         Assert.IsTrue(!HermitCmd.IsAdjacentToCurse(far), "Two away from the curse is not adjacent.");
     }
 
+    // ---- High Noon ----
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task HighNoonGivesBasicStrikesAndClonesExactlyAmountExtraPlays(TestContext ctx)
+    {
+        await PowerCmd.Apply<HighNoonPower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1,
+            ctx.Player.Creature, null);
+        var strike = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        var clone = strike.CreateClone();
+        await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, ctx.Player);
+
+        Assert.AreEqual(1, strike.GetEnchantedReplayCount(), "Basic Strike should replay once.");
+        Assert.AreEqual(1, clone.GetEnchantedReplayCount(), "A clone must not stack High Noon again.");
+        Assert.AreEqual(0, clone.BaseReplayCount, "High Noon must not write into BaseReplayCount.");
+
+        var defend = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.DefendHermit>();
+        Assert.AreEqual(0, defend.GetEnchantedReplayCount(), "Plain High Noon must not affect Defends.");
+    }
+
     // ---- Red Scarf ----
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]

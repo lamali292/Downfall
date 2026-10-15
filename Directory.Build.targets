@@ -117,6 +117,28 @@
               Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
     </Target>
 
+    <!-- Build also mirrors the dll/pdb/manifest into the other configured branch's mods folder, so building against
+         one branch (e.g. beta) still leaves the other (e.g. public) loadable. The mirrored dll was compiled against
+         THIS build's sts2.dll; build with -p:Sts2Branch=<other> to replace it with a natively-compiled one. The .pck
+         is only produced by publish and is mirrored there. -->
+    <Target Name="MirrorToOtherBranchModsOnBuild" AfterTargets="CopyToModsFolderOnBuild" DependsOnTargets="GenerateModManifest"
+            Condition="'$(Configuration)' != 'Debug'">
+        <PropertyGroup>
+            <_BuildBetaModsPath Condition="'$(Sts2Path)' != '' and '$(Sts2BetaPath)' != ''">$(ModsPath.Replace('$(Sts2Path)', '$(Sts2BetaPath)'))</_BuildBetaModsPath>
+            <_BuildPublicModsPath Condition="'$(Sts2Path)' != '' and '$(Sts2PublicPath)' != ''">$(ModsPath.Replace('$(Sts2Path)', '$(Sts2PublicPath)'))</_BuildPublicModsPath>
+        </PropertyGroup>
+        <ItemGroup>
+            <_BuildMirrorFile Include="$(TargetPath)"/>
+            <_BuildMirrorFile Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb')"/>
+            <_BuildMirrorFile Include="$(IntermediateOutputPath)$(ModId).json" Condition="'$(IsStandaloneMod)' == 'true'"/>
+            <_BuildMirrorDir Include="$(_BuildBetaModsPath)$(ModOutputFolder)/"
+                             Condition="'$(Sts2BetaPath)' != '' and '$(Sts2BetaPath)' != '$(Sts2Path)' and Exists('$(Sts2BetaPath)')"/>
+            <_BuildMirrorDir Include="$(_BuildPublicModsPath)$(ModOutputFolder)/"
+                             Condition="'$(Sts2PublicPath)' != '' and '$(Sts2PublicPath)' != '$(Sts2Path)' and Exists('$(Sts2PublicPath)')"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(_BuildMirrorFile)" DestinationFolder="%(_BuildMirrorDir.Identity)" Condition="'@(_BuildMirrorDir)' != ''" ContinueOnError="true"/>
+    </Target>
+
     <Target Name="CopyToGodotModsFolderOnBuild" AfterTargets="PostBuildEvent" DependsOnTargets="GenerateModManifest"
             Condition="'$(CopyToGodotMods)' == 'true' and '$(Configuration)' != 'Debug'">
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GodotModsPath)/$(ModOutputFolder)/"/>

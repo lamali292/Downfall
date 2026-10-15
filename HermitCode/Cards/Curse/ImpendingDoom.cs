@@ -60,7 +60,7 @@ public sealed class ImpendingDoom : HermitCardModel
             {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(child);
             }
-            await CreatureCmd.Damage(ctx, targets, DynamicVars.Damage, Owner.Creature, this, null);
+            await CompatibilityCreatureCmd.Damage(ctx, targets, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props, Owner.Creature, this, null);
         });
     }
 
