@@ -23,7 +23,9 @@ public static class SlimeBossMainFile
         ScriptRegistration.Register(typeof(SlimeBossMainFile).Assembly);
 
         BundledSubmodLocRegistry.Register(ModId);
-        CharacterOrderRegistry.Register<Core.SlimeBoss>(10);
+        // TODO enable once a Downfall release containing CharacterOrderRegistry is out; the released Downfall.dll
+        //  lacks it and the missing type would fail this whole initializer.
+        // CharacterOrderRegistry.Register<Core.SlimeBoss>(10);
         VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss, ModId);
         HivePowerExemptRegistry.Register<SlimeModel>();
         ModPatcher.Create(ModId, Logger)
