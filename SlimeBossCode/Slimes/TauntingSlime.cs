@@ -32,7 +32,7 @@ public class TauntingSlime : SlimeModel
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var original = DynamicVars.Slime.IntValue;
-        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
+        var modified = SlimeBossHook.ModifySlimeEffects(CombatState, original, out _, this);
         await CreatureCmd.GainBlock(PetOwner, modified, BlockProps.nonCardUnpowered, null);
     }
 }

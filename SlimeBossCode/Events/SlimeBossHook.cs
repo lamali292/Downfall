@@ -23,10 +23,10 @@ public static class SlimeBossHook
         return MyHookUtils.Any<IPreventConsumeWeakRemoval>(cs, e => e.TryPreventWeakRemoval(target, consumer));
     }
 
-    public static int ModifySecondarySlimeEffects(ICombatState cs, int originalAmount,
-        out IEnumerable<IModifySecondarySlimeEffects> modifiers, SlimeModel slime)
+    public static int ModifySlimeEffects(ICombatState cs, int originalAmount,
+        out IEnumerable<IModifySlimeEffects> modifiers, SlimeModel slime)
     {
-        return HookUtils.Modify(cs, originalAmount, (e, a) => e.ModifySecondarySlimeEffects(a, slime),
+        return HookUtils.Modify(cs, originalAmount, (e, a) => e.ModifySlimeEffects(a, slime),
             out modifiers);
     }
 

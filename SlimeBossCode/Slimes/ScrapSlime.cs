@@ -30,7 +30,7 @@ public class ScrapSlime : SlimeModel
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var original = DynamicVars.Slime.IntValue;
-        var modified = SlimeBossHook.ModifySecondarySlimeEffects(CombatState, original, out _, this);
+        var modified = SlimeBossHook.ModifySlimeEffects(CombatState, original, out _, this);
         return PowerCmd.Apply<ScrapSlimePower>(ctx, PetOwner, modified, Creature, null);
     }
 }
