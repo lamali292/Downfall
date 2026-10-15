@@ -251,22 +251,22 @@ public class SlimeBossTests
     }
 
     // Same batching change as Repurpose, but selecting from hand and with a different enchant amount -
-    // verify MassRepurpose transforms every other hand card.
+    // verify Avarice transforms every other hand card.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task MassRepurposeTransformsAllOtherHandCardsIntoEnchantedSlimed(TestContext ctx)
+    public async Task AvariceTransformsAllOtherHandCardsIntoEnchantedSlimed(TestContext ctx)
     {
         await ctx.ClearHand();
         await ctx.AddCardToHand<StrikeSlimeBoss>();
         await ctx.AddCardToHand<StrikeSlimeBoss>();
-        var massRepurpose = await ctx.AddCardToHand<MassRepurpose>();
+        var avarice = await ctx.AddCardToHand<Avarice>();
 
-        await ctx.PlayCard(massRepurpose);
+        await ctx.PlayCard(avarice);
 
         var slimedCards = PileType.Hand.GetPile(ctx.Player).Cards.OfType<Slimed>().ToList();
         Assert.AreEqual(2, slimedCards.Count,
-            $"MassRepurpose should transform every other hand card into Slimed, got {slimedCards.Count}.");
-        Assert.IsTrue(slimedCards.All(c => c.Enchantment is Swift { Amount: 5 }),
-            "Each transformed Slimed should be enchanted with Swift 5 (MassRepurpose's Adroit amount).");
+            $"Avarice should transform every other hand card into Slimed, got {slimedCards.Count}.");
+        Assert.IsTrue(slimedCards.All(c => c.Enchantment is Adroit { Amount: 5 }),
+            "Each transformed Slimed should be enchanted with Adroit 5 (Avarice's Adroit amount).");
     }
 
     // Regression guard: MuscleSlimePotencyPower never reset because BaseLib's temporary-power reset only fires
@@ -302,5 +302,61 @@ public class SlimeBossTests
         hp = TotalEnemyHp(ctx);
         await SlimeBossCmd.Command<BruiserSlime>(ctxChoice, ctx.Player, 1);
         Assert.AreEqual(normal * 2, hp - TotalEnemyHp(ctx), "Bruiser Slime should deal double damage.");
+    }
+    
+
+    // Liquidate converts Strength into Potency.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task LiquidateTradesStrengthForPotency(TestContext ctx)
+    {
+        var liquidate = await ctx.AddCardToHand<Liquidate>();
+
+        await ctx.PlayCard(liquidate);
+
+        Assert.AreEqual(-2, ctx.Player.Creature.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.StrengthPower>(),
+            "Liquidate should remove 2 Strength.");
+        Assert.AreEqual(2, ctx.Player.Creature.GetPowerAmount<PotencyPower>(), "Liquidate should grant 2 Potency.");
+    }
+
+    // Vanish repeats its Block once per Status in hand.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task VanishRepeatsBlockPerStatusInHand(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        await ctx.AddCardToHand<Slimed>();
+        await ctx.AddCardToHand<Slimed>();
+        var vanish = await ctx.AddCardToHand<Vanish>();
+        var before = ctx.Player.Creature.Block;
+
+        await ctx.PlayCard(vanish);
+
+        Assert.AreEqual(before + 15, ctx.Player.Creature.Block, "Vanish should gain 5 Block 3 times (2 Statuses).");
+    }
+
+    // Slime Spikes costs 0 once a Status has been played this turn.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task SlimeSpikesIsFreeAfterPlayingAStatus(TestContext ctx)
+    {
+        var spikes = await ctx.AddCardToHand<SlimeSpikes>();
+        Assert.AreEqual(1, spikes.EnergyCost.GetAmountToSpend(), "Slime Spikes should cost 1 with no Status played.");
+
+        var slimed = await ctx.AddCardToHand<Slimed>();
+        await ctx.PlayCard(slimed);
+
+        Assert.AreEqual(0, spikes.EnergyCost.GetAmountToSpend(), "Slime Spikes should cost 0 after a Status play.");
+    }
+
+    // Psychic Slime is Commanded whenever its owner plays a Power, and Commanding it applies Soulburn.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task PsychicSlimeAppliesSoulburnWhenAPowerIsPlayed(TestContext ctx)
+    {
+        await SlimeBossCmd.Split<PsychicSlime>(new ThrowingPlayerChoiceContext(), ctx.Player);
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var power = await ctx.AddCardToHand<SplitMassive>();
+
+        await ctx.PlayCard(power);
+
+        Assert.AreEqual(6, enemy.GetPowerAmount<Downfall.DownfallCode.Powers.SoulBurnPower>(),
+            "Playing a Power should Command Psychic Slime, applying 6 Soulburn.");
     }
 }

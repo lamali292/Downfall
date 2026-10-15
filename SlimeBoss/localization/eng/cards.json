@@ -132,14 +132,12 @@
   "SLIMEBOSS-SLIMY_BARRIER.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd a [gold]Slimed[/gold] into your [gold]Hand[/gold].",
   "SLIMEBOSS-VANISH.title": "Vanish",
   "SLIMEBOSS-VANISH.description": "Gain {Block:diff()} [gold]Block[/gold].\nRepeat for each Status in your [gold]Hand[/gold].{InCombat:\n(Repeats {Repeat:diff()} {Repeat:plural:time|times})|}",
-  "SLIMEBOSS-NEW_PLAN.title": "New Plan",
-  "SLIMEBOSS-NEW_PLAN.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut a card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
   "SLIMEBOSS-RILE_UP.title": "Rile Up",
   "SLIMEBOSS-RILE_UP.description": "Deal {Damage:diff()} damage.\n[gold]Bruiser Slime[/gold] gains {RileUpPotencyPower:diff()} [gold]Potency[/gold] this turn.",
   "SLIMEBOSS-SLAM.title": "Slam",
   "SLIMEBOSS-SLAM.description": "Deal {Damage:diff()} damage.\nNext turn, draw {DrawCardsNextTurnPower:diff()} {DrawCardsNextTurnPower:plural:card|cards}.",
   "SLIMEBOSS-HEAVY_TACKLE.title": "Heavy Tackle",
-  "SLIMEBOSS-HEAVY_TACKLE.description": "Deal {Damage:diff()} damage.\nCosts 1 less {energyPrefix:energyIcons(1)} for each [gold]Status[/gold] played this turn.",
+  "SLIMEBOSS-HEAVY_TACKLE.description": "Deal {Damage:diff()} damage.\nCosts 1 less {energyPrefix:energyIcons(1)} for each Status played this turn.",
   "SLIMEBOSS-ACIDIC_TACKLE.title": "Acidic Tackle",
   "SLIMEBOSS-ACIDIC_TACKLE.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Slimed[/gold] into your [gold]Hand[/gold].",
   "SLIMEBOSS-FEAR_TACTICS.title": "Fear Tactics",
@@ -204,5 +202,5 @@
   "SLIMEBOSS-LIQUIDATE.title": "Liquidate",
   "SLIMEBOSS-LIQUIDATE.description": "Lose {StrengthPower:diff()} [gold]Strength[/gold].\nGain {PotencyPower:diff()} [gold]Potency[/gold].",
   "SLIMEBOSS-SLIME_SPIKES.title": "Slime Spikes",
-  "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {SlimeSpikesPower:diff()} [gold]Thorns[/gold] this turn.\nCosts 0 if you played a Status this turn."
+  "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {SlimeSpikesPower:diff()} [gold]Thorns[/gold] this turn.\nThis card costs 0 {energyPrefix:energyIcons(1)} if you have played a Status this turn."
 }
