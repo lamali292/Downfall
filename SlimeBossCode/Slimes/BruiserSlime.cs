@@ -20,9 +20,7 @@ public class BruiserSlime : SlimeModel
     public override async Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this);
-        attack = PetOwner.HasPower<MafiosoPower>()
-            ? attack.TargetingAllOpponents(CombatState)
-            : forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
+        attack = forcedTarget != null ? attack.Targeting(forcedTarget) : attack.TargetingRandomOpponents(CombatState);
         await attack.Execute(ctx);
     }
 }
