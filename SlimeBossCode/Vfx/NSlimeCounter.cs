@@ -45,7 +45,6 @@ public partial class NSlimeCounter : Control
     {
         _icon = GetNode<TextureRect>("%Icon");
         _value = GetNode<MegaRichTextLabel>("%Value");
-        ZIndex = 2;
         Refresh();
     }
 
