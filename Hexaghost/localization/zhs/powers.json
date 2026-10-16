@@ -37,13 +37,9 @@
     "HEXAGHOST-VOLCANO_VISAGE_POWER.title": "火山面貌",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "每当你[gold]点燃[/gold]一枚[gold]鬼火[/gold]时，给予所有敌人[gold]灼魂[/gold]。",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "每当你[gold]点燃[/gold]一枚[gold]鬼火[/gold]时，给予所有敌人[blue]{Amount}[/blue]层[gold]灼魂[/gold]。",
-    "HEXAGHOST-WILDFIRE_POWER.description": "每当你给予敌人一种其尚未拥有的负面状态时，获得[gold]格挡[/gold]。",
-    "HEXAGHOST-WILDFIRE_POWER.smartDescription": "每当你给予敌人一种其尚未拥有的负面状态时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "HEXAGHOST-HERE_AND_NOW_POWER.title": "此刻",
     "HEXAGHOST-HERE_AND_NOW_POWER.description": "在你的回合结束时，[gold]熄灭[/gold]当前[gold]鬼火[/gold]。",
     "HEXAGHOST-MORE_ENERGY_POWER.title": "更多能量",
-    "HEXAGHOST-MORE_ENERGY_POWER.description": "在你的回合开始时，获得{energyPrefix:energyIcons(1)}。",
-    "HEXAGHOST-MORE_ENERGY_POWER.smartDescription": "在你的回合开始时，获得{Amount:energyIcons()}。",
     "HEXAGHOST-HERE_AND_NOW_POWER.smartDescription": "在你的回合结束时，[gold]熄灭[/gold]当前[gold]鬼火[/gold]。",
     "HEXAGHOST-RADIANT_FLAME_POWER.title": "辐能回导",
     "HEXAGHOST-RADIANT_FLAME_POWER.description": "每当你[gold]点燃[/gold]一枚[gold]鬼火[/gold]时，获得[gold]格挡[/gold]。",
@@ -66,7 +62,5 @@
     "HEXAGHOST-INFERNO_POTION_POWER.title": "炼狱",
     "HEXAGHOST-INFERNO_POTION_POWER.description": "[gold]鬼火[/gold]的[gold]灼魂[/gold]和伤害效果作用于所有敌人。",
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "[gold]鬼火[/gold]的[gold]灼魂[/gold]和伤害效果作用于所有敌人。",
-    "HEXAGHOST-PREMONITION_POWER.title": "预兆",
-    "HEXAGHOST-PREMONITION_POWER.description": "在你的回合开始时，如果上回合[gold]消耗[/gold]了至少[blue]2[/blue]张牌，额外抽牌。",
-    "HEXAGHOST-PREMONITION_POWER.smartDescription": "在你的回合开始时，如果上回合[gold]消耗[/gold]了至少[blue]2[/blue]张牌，额外抽[blue]{Amount}[/blue]张牌。"
+    "HEXAGHOST-PREMONITION_POWER.title": "预兆"
 }

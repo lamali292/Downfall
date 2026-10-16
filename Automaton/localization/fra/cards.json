@@ -46,7 +46,6 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "Trouver et Remplacer",
     "AUTOMATON-FINE_TUNING.description": "Choisissez {Cards:diff()} {Cards:plural:carte|cartes} dans votre [gold]Main[/gold].\n{Cards:plural:[gold]Réservez-la[/gold], [gold]Améliorez-la[/gold], et rendez-la|[gold]Réservez-les[/gold], [gold]Améliorez-les[/gold], et rendez-les} Retenue.",
     "AUTOMATON-FINE_TUNING.title": "Réglage Précis",
-    "AUTOMATON-FLAIL.description": "[fade_in][/fade_in] Infligez {Damage:diff()} dégâts à TOUS les ennemis deux fois.\nGagne {ArtifactPower:diff()} [gold]d'Artéfact[/gold].",
     "AUTOMATON-FLAIL.title": "Fléau",
     "AUTOMATON-FORCE_SHIELD.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nCoûte {Energy:energyIcons()} de moins pour chaque carte créée ce combat.",
     "AUTOMATON-FORCE_SHIELD.title": "Bouclier de Force",

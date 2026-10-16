@@ -74,7 +74,7 @@
     "HERMIT-UNYIELDING_POWER.title": "Unnachgiebig",
     "HERMIT-UNYIELDING_POWER.description": "Falls du [gold]Verwundbar[/gold] bist, nimm in diesem Zug [blue]50%[/blue] weniger Schaden durch Angriffe.",
     "HERMIT-UNYIELDING_POWER.smartDescription": "Falls du [gold]Verwundbar[/gold] bist, nimm {Amount:plural:in diesem Zug|für [blue]{}[/blue] Züge} [blue]{DamageDecrease:percentLess()}%[/blue] weniger Schaden durch Angriffe.",
-    "HERMIT-DEATHWISH_POWER.title": "Todeswunsch",
+    "HERMIT-DEATHWISH_POWER.title": "Feuer frei!",
     "HERMIT-DEATHWISH_POWER.description": "Karten neben [red]Flüchen[/red] gelten als [gold]Volltreffer[/gold] und fügen mehr Schaden zu.",
     "HERMIT-BIG_BRUISER_POWER.title": "Großer Raufbold",
     "HERMIT-BIG_BRUISER_POWER.description": "Alle Spieler profitieren von [gold]Prügel[/gold], das du auf Gegner anwendest.",

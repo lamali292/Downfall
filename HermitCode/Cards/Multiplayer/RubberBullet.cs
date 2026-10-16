@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Utils;
@@ -19,6 +20,10 @@ public class RubberBullet : HermitCardModel, IModifyCardPlayResultLocation
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
+    
     // Runs before this card's own effect (see CardModel.OnPlayWrapper), same as every other
     // IModifyCardPlayResultLocation redirect (Combo, Feral, Reroute, ...) - so this composes with
     // them generically instead of RubberBullet needing to know about any of them by name: if

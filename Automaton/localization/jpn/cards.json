@@ -46,7 +46,7 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "見つけて置換",
     "AUTOMATON-FINE_TUNING.description": "[gold]手札[/gold]のカードを{Cards:diff()}枚選ぶ。\nそれを[gold]格納[/gold]し、[gold]アップグレード[/gold]し、[gold]保留[/gold]を付与する。",
     "AUTOMATON-FINE_TUNING.title": "微調整",
-    "AUTOMATON-FLAIL.description": "[fade_in][/fade_in]すべての敵に{Damage:diff()}ダメージを2回与える。\n[gold]アーティファクト[/gold]{ArtifactPower:diff()}を得る。",
+    "AUTOMATON-FLAIL.description": "すべての敵に{Damage:diff()}ダメージを2回与える。\n[gold]アーティファクト[/gold]{ArtifactPower:diff()}を得る。",
     "AUTOMATON-FLAIL.title": "フレイル",
     "AUTOMATON-FORCE_SHIELD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこの戦闘中に作成したカード1枚につき、コストが{Energy:energyIcons()}減少する。",
     "AUTOMATON-FORCE_SHIELD.title": "フォースシールド",

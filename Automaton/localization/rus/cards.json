@@ -46,7 +46,7 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "Найти и заменить",
     "AUTOMATON-FINE_TUNING.description": "Выберите {Cards:diff()} {Cards:plural(ru):карту|карты|карт} в [gold]руке[/gold].\nВы [gold]улучшаете[/gold] {Cards:plural:ее|их} и кладете в [gold]Запас[/gold], {Cards:plural:она [gold]оставляется[/gold]|они [gold]оставляются[/gold]}.",
     "AUTOMATON-FINE_TUNING.title": "Тонкая настройка",
-    "AUTOMATON-FLAIL.description": "[fade_in][/fade_in]Наносит {Damage:diff()} урона ВСЕМ врагам дважды.\nДает {ArtifactPower:diff()} {ArtifactPower:plural:[gold]артефакт[/gold]|[gold]артефакта[/gold]}.",
+    "AUTOMATON-FLAIL.description": "Наносит {Damage:diff()} урона ВСЕМ врагам дважды.\nДает {ArtifactPower:diff()} {ArtifactPower:plural:[gold]артефакт[/gold]|[gold]артефакта[/gold]}.",
     "AUTOMATON-FLAIL.title": "Раскрутиться",
     "AUTOMATON-FORCE_SHIELD.description": "Дает {Block:diff()} [gold]защиты[/gold].\nСтоит на {Energy:energyIcons()} меньше за каждую созданную за бой карту.",
     "AUTOMATON-FORCE_SHIELD.title": "Защитное поле",

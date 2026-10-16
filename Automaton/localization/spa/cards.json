@@ -41,7 +41,6 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "Buscar y Reemplazar",
     "AUTOMATON-FINE_TUNING.description": "Elige {Cards:diff()} {Cards:plural:carta|cartas} de tu [gold]Mano[/gold].\n[gold]Guárdala[/gold], [gold]Mejórala[/gold] y otórgale [gold]Retener[/gold].",
     "AUTOMATON-FINE_TUNING.title": "Ajuste Fino",
-    "AUTOMATON-FLAIL.description": "[fade_in][/fade_in]Inflige {Damage:diff()} de daño a TODOS los enemigos dos veces.\nObtén {ArtifactPower:diff()} de [gold]Artefacto[/gold].",
     "AUTOMATON-FLAIL.title": "Golpe en Cadena",
     "AUTOMATON-FORCE_SHIELD.description": "Obtén {Block:diff()} de [gold]Bloqueo[/gold].\nCuesta {Energy:energyIcons()} menos por cada carta que hayas creado este combate.",
     "AUTOMATON-FORCE_SHIELD.title": "Escudo de Fuerza",

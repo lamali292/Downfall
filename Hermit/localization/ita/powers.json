@@ -68,7 +68,6 @@
     "HERMIT-UNYIELDING_POWER.title": "Inflessibile",
     "HERMIT-UNYIELDING_POWER.description": "Se sei [gold]Vulnerabile[/gold], ricevi [blue]50%[/blue] di danno in meno dagli Attacchi in questo turno.",
     "HERMIT-UNYIELDING_POWER.smartDescription": "Se sei [gold]Vulnerabile[/gold], ricevi [blue]{DamageDecrease:percentLess()}%[/blue] di danno in meno dagli Attacchi {Amount:plural:in questo turno|per [blue]{}[/blue] turni}.",
-    "HERMIT-DEATHWISH_POWER.title": "Desiderio di Morte",
     "HERMIT-BIG_BRUISER_POWER.title": "Picchiatore",
     "HERMIT-BIG_BRUISER_POWER.description": "Tutti i giocatori beneficiano della [gold]Contusione[/gold] che applichi ai nemici.",
     "HERMIT-BIG_BRUISER_POWER.smartDescription": "Tutti i giocatori beneficiano della [gold]Contusione[/gold] che applichi ai nemici.",

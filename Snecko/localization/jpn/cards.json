@@ -115,7 +115,7 @@
     "SNECKO-SHIFT.title": "シフト",
     "SNECKO-SLITHER_THROUGH.description": "{Damage:diff()}ダメージを与える。\nこのターン、[gold]手札[/gold]のすべての[gold]他クラス[/gold]カードのコストが{Energy:energyIcons()}減少する。{InCombat:cond:|\n[gold]ギフト[/gold]：アンコモン。}",
     "SNECKO-SLITHER_THROUGH.title": "するするー",
-    "SNECKO-SNAKE_EYES.description": "このターン、次にプレイする{IfUpgraded:show:{SnakeEyesPower:diff()}|}{SnakeEyesPower:cond:>1?枚の|}[gold]他クラス[/gold]カードをもう1回プレイする。{InCombat:cond:|\n[gold]ギフト[/gold]：レアのスキル。}",
+    "SNECKO-SNAKE_EYES.description": "このターン、次にプレイする{SnakeEyesPower:cond:>1?{SnakeEyesPower:diff()}枚の|}[gold]他クラス[/gold]カードをもう1回プレイする。{InCombat:cond:|\n[gold]ギフト[/gold]：レアのスキル。}",
     "SNECKO-SNAKE_EYES.title": "スネークアイ",
     "SNECKO-SNAKE_RAKE.description": "{Damage:diff()}ダメージを与える。\nカードを{Cards:diff()}枚引き、{Cards:cond:>1?それら|それ}を[gold]泥まみれ[/gold]にする。",
     "SNECKO-SNAKE_RAKE.title": "スネークレーキ",

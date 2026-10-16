@@ -1,5 +1,6 @@
 {
     "GUARDIAN-GEM": "Juwel",
+    "COMBAT_REWARD_ADD_GEM": "Nimm [gold]{Gem}[/gold] in dein [gold]Deck[/gold].",
     "COMBAT_REWARD_ADD_GEMS": "Nimm {Amount:plural:ein [gold]Juwel[/gold]|[blue]{Amount}[/blue] [gold]Juwelen[/gold]} in dein [gold]Deck[/gold].",
     "GUARDIAN-GEM_SOCKET_SELECT": "Wähle eine Karte, in die das Juwel eingesetzt werden soll."
 }
