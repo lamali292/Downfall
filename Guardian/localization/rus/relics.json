@@ -1,5 +1,6 @@
 {
     "GUARDIAN-BAALORS_LORDLY_PLATE.title": "Латный доспех Баалора",
+    "GUARDIAN-BAALORS_LORDLY_PLATE.description": "Когда вы [gold]Укрепляетесь[/gold], вы получаете [gold]Укрепление[/gold] еще [blue]{Brace:diff()}[/blue] {Brace:plural(ru):раз|раза|раз}.",
     "GUARDIAN-BAALORS_LORDLY_PLATE.flavor": "Защиты много не бывает.",
     "GUARDIAN-BOTTLED_BLACK_HOLE.title": "Закупоренная чёрная дыра",
     "GUARDIAN-BOTTLED_BLACK_HOLE.description": "При получении [gold]чарует[/gold] выбранную карту из [gold]колоды[/gold] на [purple]Темпоральность[/purple].",
