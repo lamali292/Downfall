@@ -1,7 +1,9 @@
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Config;
 using Godot;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Models;
@@ -83,3 +85,6 @@ public abstract class SlimeBossPowerModel(
 public class SlimeBossPotionPool : DownfallPotionPool<SlimeBoss>;
 
 public class SlimeBossCardPool : DownfallCardPool<SlimeBoss>;
+
+public abstract class SlimeBossPotionModel(PotionRarity potionRarity, PotionUsage potionUsage, TargetType targetType) :
+    DownfallPotionModel<SlimeBoss>(potionRarity, potionUsage, targetType);
