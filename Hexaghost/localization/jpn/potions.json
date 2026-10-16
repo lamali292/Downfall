@@ -4,5 +4,5 @@
     "HEXAGHOST-COMBUSTIVE_FLUID_POTION.title": "発火液",
     "HEXAGHOST-COMBUSTIVE_FLUID_POTION.description": "現在のゴーストフレイムを[blue]{Ignite:diff()}[/blue]回発火する。",
     "HEXAGHOST-INFERNO_POTION_POTION.title": "インフェルノポーション",
-    "HEXAGHOST-INFERNO_POTION_POTION.description": "この戦闘中、ゴーストフレイムはすべての敵にダメージと[gold]ソウルバーン[/gold]を付与するようになる。"
+    "HEXAGHOST-INFERNO_POTION_POTION.description": "この戦闘中、ゴーストフレイムのダメージと[gold]ソウルバーン[/gold]の付与がすべての敵を対象にするようになる。"
 }

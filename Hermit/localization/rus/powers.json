@@ -74,7 +74,7 @@
     "HERMIT-UNYIELDING_POWER.title": "Непреклонность",
     "HERMIT-UNYIELDING_POWER.description": "Если у вас есть [gold]уязвимость[/gold], вы получаете на [blue]50%[/blue] урона меньше в этот ход.",
     "HERMIT-UNYIELDING_POWER.smartDescription": "Если у вас есть [gold]уязвимость[/gold], вы получаете на [blue]{DamageDecrease:percentLess()}%[/blue] урона меньше {Amount:plural:в этот ход|в течение следующих [blue]{}[/blue] ходов}.",
-    "HERMIT-DEATHWISH_POWER.title": "Жажда смерти",
+    "HERMIT-DEATHWISH_POWER.title": "Открытое заявление",
     "HERMIT-DEATHWISH_POWER.description": "Соседние с [red]Проклятием[/red] карты в [gold]руке[/gold] разыгрываются [gold]В яблочко[/gold] и наносят дополнительный урон.",
     "HERMIT-BIG_BRUISER_POWER.title": "Здоровяк",
     "HERMIT-BIG_BRUISER_POWER.description": "Другие игроки также наносят дополнительный урон по врагам с [gold]Ушибами[/gold].",

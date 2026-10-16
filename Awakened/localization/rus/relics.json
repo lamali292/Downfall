@@ -25,6 +25,7 @@
     "AWAKENED-RIPPED_DOLL.description": "Вы [gold]Колдуете[/gold] в начале первых [blue]2[/blue] ходов в бою.",
     "AWAKENED-RIPPED_DOLL.flavor": "Последнее напоминание о прежнем «я». В ней все еще таится скрытая магия.",
     "AWAKENED-SHREDDED_DOLL.title": "Изорванная кукла",
+    "AWAKENED-SHREDDED_DOLL.description": "Вы [gold]Колдуете[/gold] в начале хода.\nВы начинаете бой с [blue]{RitualPower:diff()}[/blue] [gold]ритуала[/gold].",
     "AWAKENED-SHREDDED_DOLL.flavor": "Напоминание о вашей слабости, от которого вы все равно не можете отказаться.",
     "AWAKENED-TOME_OF_PORTALMANCY.title": "Фолиант Магии Порталов",
     "AWAKENED-TOME_OF_PORTALMANCY.description": "Накладывает [blue]2[/blue] [gold]Ожога маны[/gold] на ВСЕХ врагов, когда вы создаете [gold]«Бездну»[/gold].",
