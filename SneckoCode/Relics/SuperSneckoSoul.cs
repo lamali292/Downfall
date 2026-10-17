@@ -18,18 +18,13 @@ public class SuperSneckoSoul : SneckoRelicModel
     public SuperSneckoSoul() : base(RelicRarity.Starter)
     {
         WithTip(SneckoKeywords.Muddle);
-        WithCards(1);
+        WithCards(2);
     }
 
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
     {
-        if (player != Owner) return;
-        if (player.PlayerCombatState == null) return;
-        var turnNumber = player.PlayerCombatState.TurnNumber;
-        if (turnNumber == 1) await DownfallCardCmd.GiveCard<SoulRoll>(player, PileType.Hand);
-        var card = await CardPileCmd.Draw(ctx, Owner);
-        if (card == null) return;
-        await MuddleCmd.Muddle(ctx, card);
+        if (player != Owner || Owner.PlayerCombatState is not { TurnNumber: 1 }) return;
+        await DownfallCardCmd.GiveCards<SoulRoll>(player, PileType.Hand, 2, upgraded: true);
     }
 }

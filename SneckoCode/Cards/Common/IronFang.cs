@@ -9,7 +9,7 @@ namespace Snecko.SneckoCode.Cards.Common;
 [Pool(typeof(SneckoCardPool))]
 public class IronFang : SneckoCardModel
 {
-    public IronFang() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public IronFang() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithBlock(7, 2);
         WithDamage(6, 2);
