@@ -147,7 +147,6 @@
     "AWAKENED-RAVEN_STRIKE.title": "Удар ворона",
     "AWAKENED-RAZOR_SHARP.description": "Добавляет {Cards:diff()} {Cards:plural(ru):[gold]«Укол пером»[/gold]|[gold]«Укола пером»[/gold]|[gold]«Уколов пером»[/gold]} в [gold]стопку добора[/gold].\n[gold]«Уколы пером»[/gold] наносят урон еще {RazorSharpPower:diff()} {RazorSharpPower:plural(ru):раз|раза|раз}.",
     "AWAKENED-RAZOR_SHARP.title": "Словно лезвия",
-    "AWAKENED-REALITY_RIFT.description": "Добавляет [gold]«Бездну»[/gold] на верх [gold]стопки добора[/gold].\nДобавляет в руку 1 из 3 выбранных{IfUpgraded:show: [gold]улучшенных[/gold]|} карт из другого измерения.",
     "AWAKENED-REALITY_RIFT.title": "Разлом реальности",
     "AWAKENED-REBIRTH.description": "В конце боя или в следующий раз, когда вы должны погибнуть: восполняет {AwakeningPower:diff()} ОЗ, снимает всю [gold]слабость[/gold], [gold]уязвимость[/gold] и [gold]хрупкость[/gold], затем вы [gold]Пробуждаетесь[/gold].",
     "AWAKENED-REBIRTH.title": "Перерождение",

@@ -147,7 +147,6 @@
     "AWAKENED-RAVEN_STRIKE.title": "Frappe du Corbeau",
     "AWAKENED-RAZOR_SHARP.description": "Ajoutez {Cards:diff()} {Cards:plural:[gold]Jab de Plumes[/gold]|[gold]Jabs de Plumes[/gold]} dans votre [gold]Pioche[/gold].\nLes [gold]Jab de Plumes[/gold] touchent {RazorSharpPower:diff()} fois de plus.",
     "AWAKENED-RAZOR_SHARP.title": "Affûté",
-    "AWAKENED-REALITY_RIFT.description": "Placez un [gold]Néant[/gold] au-dessus de votre [gold]Pioche[/gold].\nObtenez 1 carte {IfUpgraded:show:[gold]Améliorée[/gold] |}venue d'une autre dimension parmi 3.",
     "AWAKENED-REALITY_RIFT.title": "Fracture de la Réalité",
     "AWAKENED-REBIRTH.description": "À la fin du combat ou la prochaine fois que vous devriez mourir, soignez-vous de {AwakeningPower:diff()} PV, retirez votre [gold]Faiblesse[/gold], [gold]Vulnérabilité[/gold] et [gold]Fragilité[/gold], puis [gold]Éveillez-vous[/gold].",
     "AWAKENED-REBIRTH.title": "Renaissance",
