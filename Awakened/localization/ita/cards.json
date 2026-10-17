@@ -120,7 +120,6 @@
     "AWAKENED-RAVEN_STRIKE.description": "Infliggi {Damage:diff()} di danno.",
     "AWAKENED-RAVEN_STRIKE.title": "Colpo del Corvo",
     "AWAKENED-RAZOR_SHARP.title": "Affilato come un Rasoio",
-    "AWAKENED-REALITY_RIFT.description": "Metti un [gold]Vuoto[/gold] in cima al tuo [gold]Mazzo Pesca[/gold].\nOttieni 1 di 3 {IfUpgraded:show:carte [gold]Potenziate[/gold] |}carte da un'altra dimensione.",
     "AWAKENED-REALITY_RIFT.title": "Fenditura della Realtà",
     "AWAKENED-REBIRTH.title": "Rinascita",
     "AWAKENED-RECITATION.description": "Infliggi {Damage:diff()} di danno.",
