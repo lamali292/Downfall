@@ -15,6 +15,7 @@ public class Cripple : SlimeBossCardModel
     {
         WithDamage(5, 2);
         WithPower<CripplePower>(1, 1, false);
+        WithKeyword(CardKeyword.Exhaust);
         WithTip<WeakPower>();
         WithTip(StaticHoverTip.Block);
     }

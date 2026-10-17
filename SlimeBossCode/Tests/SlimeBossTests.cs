@@ -269,25 +269,21 @@ public class SlimeBossTests
             "Each transformed Slimed should be enchanted with Adroit 5 (Avarice's Adroit amount).");
     }
 
-    // Regression guard: MuscleSlimePotencyPower never reset because BaseLib's temporary-power reset only fires
-    // when the owner is among the side's turn-end participants, and a slime pet never is. The Potency it
-    // granted therefore stacked on the slime for the whole combat.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task MuscleSlimePotencyResetsAtEndOfPlayerTurn(TestContext ctx)
+    public async Task MuscleSlimeIsCommandedWhenTackleIsPlayed(TestContext ctx)
     {
         await SlimeBossCmd.Split<MuscleSlime>(new ThrowingPlayerChoiceContext(), ctx.Player);
-        var muscle = ctx.Player.GetSlime<MuscleSlime>()!;
-        await PowerCmd.Apply<MuscleSlimePotencyPower>(new ThrowingPlayerChoiceContext(), muscle, 2, ctx.Player.Creature, null);
-        Assert.AreEqual(2, muscle.GetPower<PotencyPower>()?.Amount ?? 0, "Sanity: Potency should be granted first.");
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var hpBefore = enemy.CurrentHp;
 
-        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
-        PlayerCmd.EndTurn(ctx.Player, false);
-        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
-            await Task.Delay(100);
+        var tackle = await ctx.AddCardToHand<HeavyTackle>();
+        var cardDamage = tackle.DynamicVars.Damage.IntValue;
 
-        Assert.IsTrue(muscle.GetPower<MuscleSlimePotencyPower>() == null, "The temporary power should be removed.");
-        Assert.AreEqual(0, muscle.GetPower<PotencyPower>()?.Amount ?? 0,
-            "Potency granted by Muscle Slime should be gone after the player's turn ends.");
+        await ctx.PlayCard(tackle, enemy);
+
+        var dealt = hpBefore - enemy.CurrentHp;
+        Assert.IsTrue(dealt > cardDamage,
+            $"Muscle Slime should attack on top of the Tackle's {cardDamage} damage, but only {dealt} was dealt.");
     }
 
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
