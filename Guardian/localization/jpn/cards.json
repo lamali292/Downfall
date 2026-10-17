@@ -146,7 +146,7 @@
     "GUARDIAN-RECHARGE.title": "リチャージ",
     "GUARDIAN-RECHARGE.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]制動[/gold]{Brace:diff()}。",
     "GUARDIAN-SERRATE.title": "鋸歯",
-    "GUARDIAN-SERRATE.description": "{CalculatedDamage:diff()}ダメージを与える。\n自身に付与されている[gold]トゲ[/gold]1につき、追加で{ExtraDamage:diff()}ダメージを与える。",
+    "GUARDIAN-SERRATE.description": "{CalculatedDamage:diff()}ダメージを与える。\n自身に付与している[gold]トゲ[/gold]1につき、追加で{ExtraDamage:diff()}ダメージを与える。",
     "GUARDIAN-TEMPORAL_REFRACTION.title": "時間屈折",
     "GUARDIAN-TEMPORAL_REFRACTION.description": "毎ターン、最初に発動する[gold]ジェム[/gold]の効果が2倍になる。",
     "GUARDIAN-BRILLIANT_SCALES.title": "輝く鱗",

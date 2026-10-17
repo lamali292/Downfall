@@ -74,6 +74,7 @@
     "HERMIT-UNYIELDING_POWER.title": "Dur à Cuire",
     "HERMIT-UNYIELDING_POWER.description": "Si vous êtes [gold]Vulnérable[/gold], recevez [blue]50%[/blue] de dégâts en moins des Attaques ce tour.",
     "HERMIT-UNYIELDING_POWER.smartDescription": "Si vous êtes [gold]Vulnérable[/gold], recevez [blue]{DamageDecrease:percentLess()}%[/blue] de dégâts en moins des Attaques {Amount:plural:ce tour|pendant [blue]{}[/blue] tours}.",
+    "HERMIT-DEATHWISH_POWER.title": "Pas d'Hésitation",
     "HERMIT-DEATHWISH_POWER.description": "Les cartes adjacentes à des [red]Malédictions[/red] sont considérées comme [gold]Dans le Mille[/gold] et infligent des dégâts supplémentaires.",
     "HERMIT-BIG_BRUISER_POWER.title": "Gros Cogneur",
     "HERMIT-BIG_BRUISER_POWER.description": "Tous les joueurs bénéficient de la [gold]Contusion[/gold] que vous appliquez aux ennemis.",
