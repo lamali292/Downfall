@@ -147,7 +147,6 @@
     "AWAKENED-RAVEN_STRIKE.title": "Rabenschlag",
     "AWAKENED-RAZOR_SHARP.description": "Erhalte {Cards:diff()} {Cards:plural:[gold]Federstich[/gold]|[gold]Federstiche[/gold]} in deinen [gold]Nachziehstapel[/gold].\n[gold]Federstiche[/gold] treffen {RazorSharpPower:diff()} {RazorSharpPower:plural:Mal|Mal} öfter.",
     "AWAKENED-RAZOR_SHARP.title": "Messerscharf",
-    "AWAKENED-REALITY_RIFT.description": "Lege eine [gold]Leere[/gold] oben auf deinen [gold]Nachziehstapel[/gold].\nWähle 1 aus 3 {IfUpgraded:show:[gold]verbesserten[/gold] |}Karten aus einer anderen Dimension.",
     "AWAKENED-REALITY_RIFT.title": "Dimensionsspalte",
     "AWAKENED-REBIRTH.description": "Heile am Ende des Kampfes oder das nächste Mal, wenn du sterben würdest, {AwakeningPower:diff()} TP, entferne dein [gold]Schwach[/gold], [gold]Verwundbar[/gold] und [gold]Gebrechlich[/gold] und [gold]Erwache[/gold] dann.",
     "AWAKENED-REBIRTH.title": "Wiedergeburt",

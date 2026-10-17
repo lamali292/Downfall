@@ -1,4 +1,5 @@
 {
+    "GUARDIAN-GEM.description": "Les Gemmes peuvent être ajoutées dans des cartes avec des [gold]Cavités[/gold] ouvertes à un site de Repos.",
     "GUARDIAN-GEM.title": "Gemme",
     "GUARDIAN-VOLATILE.description": "Lorsque cette carte quitte son état de [gold]Stase[/gold], elle [gold]s'Épuise[/gold].",
     "GUARDIAN-VOLATILE.title": "Volatile"

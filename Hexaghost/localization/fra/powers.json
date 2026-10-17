@@ -42,9 +42,13 @@
     "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "Lorsque que vous [gold]Enflammez[/gold] un Feu Follet, appliquez de la [gold]Calcination[/gold] à TOUS les ennemis.",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "Lorsque que vous [gold]Enflammez[/gold] un Feu Follet, appliquez [blue]{Amount}[/blue] de [gold]Calcination[/gold] à TOUS les ennemis.",
     "HEXAGHOST-WILDFIRE_POWER.title": "Feu de l'Âme",
+    "HEXAGHOST-WILDFIRE_POWER.description": "Lorsque vous appliquez un nouveau débuff à un ennemi, gagnez de [gold]l'Armure[/gold].",
+    "HEXAGHOST-WILDFIRE_POWER.smartDescription": "Lorsque vous appliquez un nouveau débuff à un ennemi, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
     "HEXAGHOST-HERE_AND_NOW_POWER.title": "Ici et Maintenant",
     "HEXAGHOST-HERE_AND_NOW_POWER.description": "À la fin de votre tour, [gold]Éteignez[/gold] le Feu Follet actuel.",
     "HEXAGHOST-MORE_ENERGY_POWER.title": "Plus d'Énergie",
+    "HEXAGHOST-MORE_ENERGY_POWER.description": "Au début de votre tour, gagnez {energyPrefix:energyIcons(1)}.",
+    "HEXAGHOST-MORE_ENERGY_POWER.smartDescription": "Au début de votre tour, gagnez {Amount:energyIcons()}.",
     "HEXAGHOST-HERE_AND_NOW_POWER.smartDescription": "À la fin de votre tour, [gold]Éteignez[/gold] le Feu Follet actuel.",
     "HEXAGHOST-RADIANT_FLAME_POWER.title": "Flamme Radiante",
     "HEXAGHOST-RADIANT_FLAME_POWER.description": "Lorsque vous [gold]Enflammez[/gold] un Feu Follet, gagnez de [gold]l'Armure[/gold].",
@@ -68,5 +72,7 @@
     "HEXAGHOST-INFERNO_POTION_POWER.title": "Infernal",
     "HEXAGHOST-INFERNO_POTION_POWER.description": "Les Feux Follets appliquent de la [gold]Calcination[/gold] et infligent des dégâts à TOUS les ennemis pour ce combat.",
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Les Feux Follets appliquent de la [gold]Calcination[/gold] et infligent des dégâts à TOUS les ennemis pour ce combat.",
-    "HEXAGHOST-PREMONITION_POWER.title": "Prémonition"
+    "HEXAGHOST-PREMONITION_POWER.title": "Prémonition",
+    "HEXAGHOST-PREMONITION_POWER.description": "Si vous [gold]Épuisez[/gold] assez de cartes en un tour, piochez des cartes supplémentaires au début de votre prochain tour.",
+    "HEXAGHOST-PREMONITION_POWER.smartDescription": "Si vous [gold]Épuisez[/gold] [blue]{Exhaust}[/blue] cartes ou plus en un tour, piochez [blue]{Amount}[/blue] {Amount:plural:carte supplémentaire|cartes supplémentaires} au début de votre prochain tour."
 }

@@ -209,9 +209,9 @@
     "AWAKENED-ESP.description": "カードを{Cards:diff()}枚引く。",
     "AWAKENED-ESP.title": "ESP",
     "AWAKENED-CONGREGATION.title": "烏合の衆",
-    "AWAKENED-CONGREGATION.description": "すべてのプレイヤーは{Energy:energyIcons()}を得て、[gold]虚無[/gold]を1枚[gold]山札[/gold]の底に加える。",
+    "AWAKENED-CONGREGATION.description": "すべてのプレイヤーは{Energy:energyIcons()}を得る。\nすべてのプレイヤーの[gold]山札[/gold]の底に[gold]虚無[/gold]を1枚加える。",
     "AWAKENED-BLESS.title": "祝福",
     "AWAKENED-BLESS.description": "他のプレイヤー1人が[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]筋力[/gold]{StrengthLoss:diff()}を失う。",
     "AWAKENED-FEATHER_DANCE.title": "フェザーダンス",
-    "AWAKENED-FEATHER_DANCE.description": "すべてのプレイヤーは[gold]羽根撃ち[/gold]を{Cards:diff()}枚[gold]手札[/gold]に加える。"
+    "AWAKENED-FEATHER_DANCE.description": "すべてのプレイヤーの[gold]手札[/gold]に[gold]羽根撃ち[/gold]を{Cards:diff()}枚加える。"
 }
