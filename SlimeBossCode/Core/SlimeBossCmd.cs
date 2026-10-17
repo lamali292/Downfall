@@ -200,9 +200,9 @@ public static class SlimeBossCmd
         var g = slot / 3;
         Vector2 pos = (slot % 3) switch
         {
-            0 => new(200f + g * 110, -150f),
-            1 => new(200f + g * 110, 50f),
-            _ => new(240f + g * 110, -50f)
+            0 => new(220f + g * 120, -150f),
+            1 => new(220f + g * 120, 50f),
+            _ => new(260f + g * 120, -50f)
         };
         return pos; //200f*new Vector2(MathF.Sin(1.7f-slot* 0.5f)+0.2f , MathF.Cos(1.7f-slot*0.5f)- 0.5f) ;
     }
