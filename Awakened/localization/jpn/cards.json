@@ -20,7 +20,7 @@
     "AWAKENED-BLOODTHIRST.title": "血の渇き",
     "AWAKENED-BLOOD_RITE.description": "{Damage:diff()}ダメージを与える。\n[gold]セレモニー[/gold]を1枚[gold]手札[/gold]に加える。",
     "AWAKENED-BLOOD_RITE.title": "血の儀式",
-    "AWAKENED-BOOK_OF_SECRETS.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n他のすべてのプレイヤーは、あなたの次の呪文のコピーを[gold]喚起[/gold]する。",
+    "AWAKENED-BOOK_OF_SECRETS.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n他のすべてのプレイヤーに、あなたの次の呪文のコピーを[gold]喚起[/gold]する。",
     "AWAKENED-BOOK_OF_SECRETS.title": "秘密の書",
     "AWAKENED-BRAINSHOCK.description": "{Damage:diff()}ダメージを与える。\n[gold]虚無[/gold]を1枚[gold]捨て札[/gold]に加える。",
     "AWAKENED-BRAINSHOCK.title": "ブレインショック",
