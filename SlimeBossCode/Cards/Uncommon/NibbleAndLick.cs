@@ -11,9 +11,9 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class Rollback : SlimeBossCardModel
+public class NibbleAndLick : SlimeBossCardModel
 {
-    public Rollback() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public NibbleAndLick() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(3, 2);
         WithEnchantment<Adroit>(8, 3);
