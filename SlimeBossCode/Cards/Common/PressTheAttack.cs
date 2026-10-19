@@ -11,7 +11,7 @@ public class PressTheAttack : SlimeBossCardModel
 {
     public PressTheAttack() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(4, 2);
+        WithDamage(4, 1);
         WithCommand(1, 1);
         WithSlimeTip<BruiserSlime>();
     }
