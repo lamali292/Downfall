@@ -11,7 +11,6 @@ public class Recycling : SlimeBossCardModel
 {
     public Recycling() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Innate);
         WithPower<RecyclingPower>(5, 3, false);
         WithEnergyTip();
     }
