@@ -12,8 +12,8 @@ public class GoopSpray : SlimeBossCardModel
 {
     public GoopSpray() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<WeakPower>(1);
-        WithCards(1, 1);
+        WithPower<WeakPower>(1, 1);
+        WithCards(2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
