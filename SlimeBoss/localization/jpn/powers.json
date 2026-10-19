@@ -1,7 +1,7 @@
 {
     "SLIMEBOSS-GOOP_POWER.title": "汚泥",
-    "SLIMEBOSS-GOOP_POWER.description": "次の攻撃は追加ダメージを与え、[gold]泥食い[/gold]効果を発動する。",
-    "SLIMEBOSS-GOOP_POWER.smartDescription": "次の攻撃は追加で[blue]{Amount}[/blue]ダメージを与え、[gold]泥食い[/gold]効果を発動する。",
+    "SLIMEBOSS-GOOP_POWER.description": "この敵への次の攻撃は追加ダメージを与え、[gold]泥食い[/gold]効果を発動する。",
+    "SLIMEBOSS-GOOP_POWER.smartDescription": "この敵への次の攻撃は追加で[blue]{Amount}[/blue]ダメージを与え、[gold]泥食い[/gold]効果を発動する。",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "スライム浴び",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.description": "次にこの敵を攻撃した時、[gold]汚泥[/gold]が取り除かれない。",
     "SLIMEBOSS-DOUSE_IN_SLIME_POWER.smartDescription": "次に[blue]{Amount}[/blue]回この敵を攻撃した時、[gold]汚泥[/gold]が取り除かれない。",

@@ -35,7 +35,7 @@
     "SLIMEBOSS-GOOP_SPRAY.title": "ヘドロ噴射",
     "SLIMEBOSS-GROW.description": "スライムスロットを1つ失う。\n[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]敏捷[/gold]{DexterityPower:diff()}を得る。",
     "SLIMEBOSS-GROW.title": "成長",
-    "SLIMEBOSS-GROWTH_PUNCH.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n{Damage:diff()}ダメージを与える。\n[gold]泥食い[/gold]：この戦闘中、このカードの効果を{Increase:diff()}増加させる。",
+    "SLIMEBOSS-GROWTH_PUNCH.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n{Damage:diff()}ダメージを与える。\n[gold]泥食い[/gold]：この戦闘中、これらの効果が{Increase:diff()}増加する。",
     "SLIMEBOSS-GROWTH_PUNCH.title": "成長するパンチ",
     "SLIMEBOSS-HAUNTING_LICK.description": "[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。\n[gold]汚泥[/gold]{GoopPower:diff()}を付与する。{IfUpgraded:show:\nカードを1枚引く。|}",
     "SLIMEBOSS-HAUNTING_LICK.title": "舐められるトラウマ",
