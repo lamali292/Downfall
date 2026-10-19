@@ -12,10 +12,11 @@ public class ConsultPlaybookPower : SlimeBossPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner) return;
-        var cardPlaysThisTurn = CombatManager.Instance.History.CardPlaysFinished
-            .Count(e => e.Actor == Owner && e.HappenedThisTurn(CombatState));
-        
-        if (cardPlaysThisTurn > 1) return;
+        if (cardPlay.Card.Type != CardType.Attack) return;
+        var attackPlaysThisTurn = CombatManager.Instance.History.CardPlaysFinished
+            .Count(e => e.Actor == Owner && e.CardPlay.Card.Type == CardType.Attack && e.HappenedThisTurn(CombatState));
+
+        if (attackPlaysThisTurn > 1) return;
         if (!cardPlay.Card.Tags.Contains(SlimeBossTag.Tackle)) return;
         await PlayerCmd.GainEnergy(Amount, Owner.Player!);
         await CardPileCmd.Draw(ctx, Amount, Owner.Player!);
