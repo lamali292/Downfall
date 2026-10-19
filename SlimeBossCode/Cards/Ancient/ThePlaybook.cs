@@ -13,11 +13,10 @@ public class ThePlaybook : SlimeBossCardModel
     {
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithPower<ThePlaybookPower>(3, false);
-        WithEnergy(1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        (await CommonActions.ApplySelf<ThePlaybookPower>(ctx, this))?.AddEnergy(DynamicVars.Energy.IntValue);
+        await CommonActions.ApplySelf<ThePlaybookPower>(ctx, this);
     }
 }
