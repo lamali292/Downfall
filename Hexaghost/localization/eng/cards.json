@@ -1,4 +1,4 @@
-{
+﻿{
   "HEXAGHOST-ADVANCING_GUARD.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "HEXAGHOST-ADVANCING_GUARD.title": "Advancing Guard",
   "HEXAGHOST-APOCRYPHRA.title": "Apocrypha",
@@ -127,7 +127,7 @@
   "HEXAGHOST-POLTERGEIST.title": "Poltergeist",
   "HEXAGHOST-POWER_FROM_BEYOND.description": "[afterlife]Gain[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]\nNext turn, gain {Energy:energyIcons()}.",
   "HEXAGHOST-POWER_FROM_BEYOND.title": "Power from Beyond",
-  "HEXAGHOST-PREMONITION.description": "At the start of your turn, if at least 2 cards were [gold]Exhausted[/gold] during the previous turn, draw {PremonitionPower:diff()} additional {PremonitionPower:plural:card|cards}.",
+  "HEXAGHOST-PREMONITION.description": "If you [gold]Exhaust[/gold] {Exhaust} or more cards in a turn, draw {PremonitionPower:diff()} additional {PremonitionPower:plural:card|cards} at the start of your next turn.",
   "HEXAGHOST-PREMONITION.title": "Premonition",
   "HEXAGHOST-PREMONITION_CHOICE.description": "{Type}",
   "HEXAGHOST-PREMONITION_CHOICE.title": "Premonition",
@@ -186,7 +186,7 @@
   "HEXAGHOST-WHISPER_FROM_BEYOND.description": "Deal {Damage:diff()} damage.\nWhenever a card is [gold]Exhausted[/gold] this turn, apply {WhisperFromBeyondPower:diff()} [gold]Soulburn[/gold] to the enemy.",
   "HEXAGHOST-WHISPER_FROM_BEYOND.title": "Whisper from Beyond",
   "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Soulfire",
-  "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Whenever you apply a debuff to an enemy that doesn't already have it, gain {WildfirePower:diff()} [gold]Block[/gold].",
+  "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Whenever you apply a new debuff to an enemy, gain {WildfirePower:diff()} [gold]Block[/gold].",
   "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Exhaust[/gold] {Cards:diff()} cards.\nAdd a random {IfUpgraded:show:[gold]Upgraded[/gold] |}card of the opposite type into your [gold]Hand[/gold] for each Attack or Skill [gold]Exhausted[/gold].",
   "HEXAGHOST-WORTHY_SACRIFICE.title": "Worthy Sacrifice",
   "HEXAGHOST-TEMPORAL_LEAP.title": "Temporal Leap",

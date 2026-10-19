@@ -4,5 +4,5 @@
   "GUARDIAN-LIQUID_ACCELERANT.title": "Liquid Accelerant",
   "GUARDIAN-LIQUID_ACCELERANT.description": "[gold]Accelerate[/gold] until a card exits [gold]Stasis[/gold].",
   "GUARDIAN-QUANTUM_ELIXIR.title": "Quantum Elixir",
-  "GUARDIAN-QUANTUM_ELIXIR.description": "Choose [blue]1[/blue] of [blue]{Cards:diff()}[/blue] cards to place into [gold]Stasis[/gold].\nRepeat until your [gold]Stasis[/gold] slots are full."
+  "GUARDIAN-QUANTUM_ELIXIR.description": "Choose [blue]1[/blue] of [blue]{Cards:diff()}[/blue] cards to put into [gold]Stasis[/gold].\nRepeat until your [gold]Stasis[/gold] slots are full."
 }

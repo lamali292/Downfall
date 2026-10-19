@@ -186,6 +186,7 @@ public static class DownfallMainFile
 
     private static void PostModelInit()
     {
+        CharacterOrderRegistry.Apply();
         CustomTargetType.RegisterMultiTargetType(DownfallTargetType.MeAndEnemies,
             (target, player) =>
                 target is { IsAlive: true, IsPet: false, IsEnemy: true } || target == player.Creature);

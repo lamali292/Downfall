@@ -1,5 +1,5 @@
 ﻿{
-  "GUARDIAN-GEM.description": "Gems can be placed into [gold]Sockets[/gold] in cards at a Rest Site.",
+  "GUARDIAN-GEM.description": "Gems can be added to cards with open [gold]Sockets[/gold] at a Rest Site.",
   "GUARDIAN-GEM.title": "Gem",
   "GUARDIAN-VOLATILE.description": "When this card leaves [gold]Stasis[/gold], it [gold]Exhausts[/gold].",
   "GUARDIAN-VOLATILE.title": "Volatile"

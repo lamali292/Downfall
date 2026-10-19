@@ -21,12 +21,17 @@ public sealed class DeadMansHand : HermitCardModel
     {
         return rarity switch
         {
-            CardRarity.Ancient => 6,
-            CardRarity.Rare => 5,
-            CardRarity.Uncommon => 4,
-            CardRarity.Common => 3,
-            CardRarity.Basic => 2,
-            CardRarity.Curse => 1,
+            CardRarity.Ancient => 10,
+            CardRarity.Rare => 9,
+            CardRarity.Uncommon => 8,
+            CardRarity.Common => 7,
+            CardRarity.Basic => 6,
+            CardRarity.Token => 5,
+            CardRarity.Curse => 4,
+            CardRarity.Status => 3,
+            CardRarity.Quest => 2,
+            CardRarity.Event => 1,
+
             _ => 0
         };
     }

@@ -1,37 +1,24 @@
+﻿using Downfall.DownfallCode.Interfaces;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
-public sealed class HighNoonPower : HermitPowerModel
+public sealed class HighNoonPower : HermitPowerModel, IModifyCardReplayCount
 {
     private bool IsMyBasicStrike(CardModel card)
     {
-        return card.Owner.Creature == Owner &&
+        return card.Owner?.Creature == Owner &&
                card.Tags.Contains(CardTag.Strike) &&
                card.Rarity == CardRarity.Basic;
     }
 
-    public override Task AfterCardEnteredCombat(CardModel card)
+    // Derived from the live power rather than written into BaseReplayCount, so copies of a card
+    // (Juggling, Echo, ...) and cards created later get exactly Amount extra plays, never a stacked grant.
+    // Going through GetEnchantedReplayCount also makes the card text show the Replay value.
+    public int ModifyReplayCount(CardModel card, int current)
     {
-        if (!IsMyBasicStrike(card))
-            return Task.CompletedTask;
-        card.BaseReplayCount += Amount;
-        return Task.CompletedTask;
-    }
-
-    public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount,
-        Creature? applier,
-        CardModel? cardSource)
-    {
-        if (power != this) return Task.CompletedTask;
-        var cards = Owner.Player?.PlayerCombatState?.AllCards.Where(IsMyBasicStrike);
-        if (cards == null) return Task.CompletedTask;
-        foreach (var card in cards)
-            card.BaseReplayCount += (int)amount;
-        return Task.CompletedTask;
+        return IsMyBasicStrike(card) ? current + Amount : current;
     }
 }

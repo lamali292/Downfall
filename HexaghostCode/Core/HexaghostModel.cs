@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Compatibility;
+﻿using Downfall.DownfallCode.Compatibility;
 using BaseLib.Abstracts;
 using Downfall.DownfallCode.Core;
 using Hexaghost.HexaghostCode.Ghostflames;
@@ -75,7 +75,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         if (side != CombatSide.Player) return;
         foreach (var player in RunManager.Instance.DebugOnlyGetState()?.Players ?? [])
             if (HexaghostCmd.GetCurrentFlame(player).IsIgnited)
-                await HexaghostCmd.Advance(ctx, player, null, true, true);
+                await HexaghostCmd.Advance(ctx, player, null, true);
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)

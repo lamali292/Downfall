@@ -9,9 +9,8 @@ public interface IWheelMoved
 {
     Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
         int ghostflameIndex,
-        bool silent, bool autoAdvance);
+        bool endOfTurnAdvance);
 
     Task AfterWheelRetract(PlayerChoiceContext ctx, Player player, AbstractModel? source, GhostflameModel ghostflame,
-        int ghostflameIndex,
-        bool silent);
+        int ghostflameIndex);
 }

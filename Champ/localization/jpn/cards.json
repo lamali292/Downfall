@@ -7,7 +7,7 @@
     "CHAMP-ARENA_MASTERY.description": "名前に「ストライク」を含むカードを{Cards:diff()}枚プレイするたび、{Energy:energyIcons()}を得る。",
     "CHAMP-ARENA_PREPARATION.description": "[gold]手札[/gold]のカード{Cards:diff()}枚が[gold]保留[/gold]を得る。",
     "CHAMP-ARENA_PREPARATION.title": "アリーナの準備",
-    "CHAMP-BACKSTEP.description": "{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。\n[gold]活力[/gold]1につき、追加で1[gold]ブロック[/gold]を得る。",
+    "CHAMP-BACKSTEP.description": "{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。\n自身に付与している[gold]活力[/gold]1につき、追加で1[gold]ブロック[/gold]を得る。",
     "CHAMP-BACKSTEP.title": "バックステップ",
     "CHAMP-BATTLE_PLAN.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]占術[/gold]{Scry:diff()}。\n[gold]守護[/gold]スタンスに入る。",
     "CHAMP-BATTLE_PLAN.title": "戦闘プラン",

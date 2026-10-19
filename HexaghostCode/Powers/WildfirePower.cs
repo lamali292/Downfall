@@ -1,7 +1,6 @@
 ﻿using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -14,7 +13,8 @@ public class WildfirePower : HexaghostPowerModel
         decimal amount, Creature? applier,
         CardModel? cardSource)
     {
-        if (applier != Owner || power.TypeForCurrentAmount != PowerType.Debuff || power.Amount != amount) return;
+        if (applier != Owner || !power.IsNewEnemyDebuff(amount)) return;
         await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
+        Flash();
     }
 }

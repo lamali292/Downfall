@@ -21,6 +21,7 @@
     "SNECKO-SLEEVED_ACE.description": "Au début du combat, ajoutez une [gold]Carte Marquée+[/gold] dans votre [gold]Main[/gold].",
     "SNECKO-SLEEVED_ACE.flavor": "Nous sommes tous des as.",
     "SNECKO-SNAKE_CHARMERS_FLUTE.title": "Flûte de Charmeur de Serpent",
+    "SNECKO-SNAKE_CHARMERS_FLUTE.description": "Réduisez le coût maximum des cartes [gold]Confondues[/gold] de [blue]1[/blue].",
     "SNECKO-SNAKE_CHARMERS_FLUTE.flavor": "Sssssss...",
     "SNECKO-SNECKO_SOUL.title": "Âme de Geckobra",
     "SNECKO-SNECKO_SOUL.description": "Au début de chaque combat, ajoutez [gold]Lancer de l'Âme[/gold] dans votre [gold]Main[/gold].",
@@ -34,6 +35,8 @@
     "SEA_GLASS.SNECKO-SNECKO.title": "Verre prismé",
     "SNECKO-SNECKO_CHOICE.title": "Bénédiction de/du {character}",
     "SNECKO-SNECKO_CHOICE.description": "Vous pouvez désormais obtenir des cartes de/du [blue]{borrowed}[/blue] dans les récompenses des [gold]Cadeaux[/gold].",
+    "SNECKO-PRISMATIC_SNECKO.title": "Mode Prismatique",
+    "SNECKO-PRISMATIC_SNECKO.description": "Vous obtenez des récompenses de cartes [gold]Cadeau[/gold] de TOUS les personnages désormais. ",
     "SNECKO-VIPER_SKULL.title": "Crâne de Vipère",
     "SNECKO-VIPER_SKULL.description": "Au début de chaque combat, appliquez [blue]{VenomPower}[/blue] de [gold]Venin[/gold] à TOUS les ennmis."
 }

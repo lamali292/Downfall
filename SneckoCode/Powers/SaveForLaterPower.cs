@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.CustomEnums;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +28,7 @@ public class SaveForLaterPower : SneckoPowerModel
         if (player != Owner.Player || !Hook.ShouldFlush(player.Creature.CombatState, player))
             return;
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.RetainSelectionPrompt, 0, Amount);
-        var list = (await CardSelectCmd.FromHand(choiceContext, Owner.Player, prefs, RetainFilter, this)).ToList();
+        var list = (await DownfallCardSelectionCmd.FromHand(choiceContext, Owner.Player, prefs, this, RetainFilter)).ToList();
         foreach (var cardModel in list)
             cardModel.GiveSingleTurnRetain();
         await PowerCmd.Remove(this);

@@ -1,7 +1,9 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
+using Hexaghost.HexaghostCode.History;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -81,34 +83,40 @@ public static class HexaghostCmd
         return (GetCurrentIndex(player) + 1) % wheel.Length;
     }
 
-    public static async Task Advance(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false,
-        bool autoAdvance = false)
+    public static async Task Advance(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool endOfTurnAdvance = false)
     {
         if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/advance");
         await MoveTo(player, GetNextIndex(player));
+        var combatState = player.Creature.CombatState!;
+        CombatManager.Instance.History.Add(combatState,
+            new WheelAdvanceEntry(source, endOfTurnAdvance, player.Creature, combatState.RoundNumber,
+                player.Creature.Side, CombatManager.Instance.History, combatState.Players));
         await HexaghostHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source,
             GetCurrentFlame(player),
-            GetCurrentIndex(player), silent, autoAdvance);
+            GetCurrentIndex(player), endOfTurnAdvance);
     }
 
-    public static async Task Retract(PlayerChoiceContext ctx, Player player, AbstractModel? source, bool silent = false)
+    public static async Task Retract(PlayerChoiceContext ctx, Player player, AbstractModel? source)
     {
         if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/retract");
         await MoveTo(player, GetPreviousIndex(player));
+        var combatState = player.Creature.CombatState!;
+        CombatManager.Instance.History.Add(combatState,
+            new WheelRetractEntry(source, player.Creature, combatState.RoundNumber,
+                player.Creature.Side, CombatManager.Instance.History, combatState.Players));
         await HexaghostHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, source,
             GetCurrentFlame(player),
-            GetCurrentIndex(player), silent);
+            GetCurrentIndex(player));
     }
 
-    public static async Task MoveToRandom(PlayerChoiceContext ctx, Player player, bool silent = false)
+    /// <summary>How many Advances/Retracts the player performed this turn (the end-of-turn advance excluded).</summary>
+    public static int CountWheelMovesThisTurn(Creature creature)
     {
-        var wheel = GetWheel(player);
-        var current = GetCurrentIndex(player);
-        var rng = player.RunState.Rng.Niche;
-        var candidates = Enumerable.Range(0, wheel.Length).Where(i => i != current).ToArray();
-        var randomIndex = rng.NextItem(candidates);
-        await MoveTo(player, randomIndex, silent);
+        var combatState = creature.CombatState;
+        return CombatManager.Instance.History.Entries.OfType<WheelMoveEntry>()
+            .Count(e => e is not WheelAdvanceEntry { IsEndOfTurnAdvance: true } && e.Actor == creature && e.HappenedThisTurn(combatState));
     }
+    
 
     public static Task ReplaceCurrentWithRandom(Player player)
     {
@@ -130,7 +138,7 @@ public static class HexaghostCmd
     }
 
 
-    private static Task MoveTo(Player player, int index, bool silent = false)
+    private static Task MoveTo(Player player, int index)
     {
         if (player.PlayerCombatState == null) return Task.CompletedTask;
         ActivateGhostwheel(player);
@@ -138,7 +146,6 @@ public static class HexaghostCmd
         var flame = GetCurrentFlame(player);
         flame.Extinguish();
         flame.UpdateVisuals();
-        if (silent) return Task.CompletedTask;
         Refresh(player);
         return Task.CompletedTask;
     }

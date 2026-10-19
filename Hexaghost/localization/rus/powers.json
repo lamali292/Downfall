@@ -42,8 +42,8 @@
     "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "Когда вы [gold]Зажигаете[/gold] Огонек, накладывает [gold]Ожог души[/gold] на ВСЕХ врагов.",
     "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "Когда вы [gold]Зажигаете[/gold] Огонек, накладывает [blue]{Amount}[/blue] [gold]Ожога души[/gold] на ВСЕХ врагов.",
     "HEXAGHOST-WILDFIRE_POWER.title": "Духовное пламя",
-    "HEXAGHOST-WILDFIRE_POWER.description": "Дает [gold]защиту[/gold], когда вы впервые накладываете отрицательный эффект на врага без отрицательных эффектов.",
-    "HEXAGHOST-WILDFIRE_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold], когда вы впервые накладываете отрицательный эффект на врага без отрицательных эффектов.",
+    "HEXAGHOST-WILDFIRE_POWER.description": "Дает [gold]защиту[/gold], когда вы накладываете новый отрицательный эффект на врага.",
+    "HEXAGHOST-WILDFIRE_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold], когда вы впервые накладываете новый отрицательный эффект на врага.",
     "HEXAGHOST-HERE_AND_NOW_POWER.title": "Здесь и Сейчас",
     "HEXAGHOST-HERE_AND_NOW_POWER.description": "[gold]Тушит[/gold] [gold]Активный[/gold] Огонек в конце хода.",
     "HEXAGHOST-MORE_ENERGY_POWER.title": "Больше энергии",
@@ -59,6 +59,7 @@
     "HEXAGHOST-BROILING_FLAMES_POWER.title": "Обжигающее пламя",
     "HEXAGHOST-BROILING_FLAMES_POWER.description": "Это существо получает [gold]Ожог души[/gold], когда другой игрок атакует его в этом ходу.",
     "HEXAGHOST-BROILING_FLAMES_POWER.smartDescription": "Это существо получает [blue]{Amount}[/blue] [gold]Ожога души[/gold], когда другой игрок атакует его в этом ходу.",
+    "HEXAGHOST-BROILING_FLAMES_POWER.remoteDescription": "Это существо получает [blue]{Amount}[/blue] [gold]Ожога души[/gold], когда любой игрок (кроме [orange]{ApplierName}[/orange]) атакует его в этот ход.",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.title": "Шепот извне",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.description": "Накладывает [gold]Ожог души[/gold] на врага, когда [gold]сжигается[/gold] карта в этом ходу.",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "Накладывает [blue]{Amount}[/blue] [gold]Ожога души[/gold] на врага, когда [gold]сжигается[/gold] карта в этом ходу.",
@@ -72,6 +73,6 @@
     "HEXAGHOST-INFERNO_POTION_POWER.description": "Огоньки накладывают [gold]Ожог души[/gold] и наносят урон ВСЕМ врагам в этом бою.",
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Огоньки накладывают [gold]Ожог души[/gold] и наносят урон ВСЕМ врагам в этом бою.",
     "HEXAGHOST-PREMONITION_POWER.title": "Предчувствие",
-    "HEXAGHOST-PREMONITION_POWER.description": "Вы добираете [blue]1[/blue] карту в начале хода, если [gold]сожгли[/gold] не менее [blue]2[/blue] карт в предыдущем ходу.",
-    "HEXAGHOST-PREMONITION_POWER.smartDescription": "Вы добираете [blue]{Amount}[/blue] {Amount:plural(ru):карту|карты|карт} в начале хода, если [gold]сожгли[/gold] не менее [blue]2[/blue] карт в предыдущем ходу."
+    "HEXAGHOST-PREMONITION_POWER.description": "Вы добираете [blue]1[/blue] карту в начале следующего хода, если [gold]сожгли[/gold] не менее [blue]2[/blue] карт в предыдущем ходу.",
+    "HEXAGHOST-PREMONITION_POWER.smartDescription": "Вы добираете [blue]{Amount}[/blue] {Amount:plural(ru):карту|карты|карт} в начале хода, если [gold]сожгли[/gold] не менее [blue]{Exhaust}[/blue] {Exhaust:plural(ru):карты|карт|карт} в предыдущем ходу."
 }
