@@ -14,7 +14,7 @@ public class MuscleSlime : SlimeModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4,DamageProps.nonCardUnpowered)
+        new DamageVar(5,DamageProps.nonCardUnpowered)
     ];
 
     protected override string? SkinName => "attack";
