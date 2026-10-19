@@ -61,5 +61,7 @@
   "SLIMEBOSS-STRENGTH_NEXT_TURN_POWER.smartDescription": "Next turn, {Amount:cond:>0?gain [blue]{Amount}[/blue]|lose [blue]{NAmount}[/blue]} [gold]Strength[/gold].",
   "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.title": "Next Turn Slime Crush",
   "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.description": "At the start of your next turn, add [gold]Slime Crush!!![/gold] into your [gold]Hand[/gold].",
-  "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, add [gold]Slime Crush!!![/gold] into your [gold]Hand[/gold]."
+  "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, add [gold]Slime Crush!!![/gold] into your [gold]Hand[/gold].",
+  "SLIMEBOSS-THE_PLAYBOOK_POWER.title": "",
+  "SLIMEBOSS-THE_PLAYBOOK_POWER.description": ""
 }
