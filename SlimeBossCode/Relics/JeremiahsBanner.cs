@@ -12,7 +12,7 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class JeremiahsBanner : SlimeBossRelicModel
 {
-    public JeremiahsBanner() : base(RelicRarity.Uncommon)
+    public JeremiahsBanner() : base(RelicRarity.Rare)
     {
         WithTip(SlimeBossTip.Command);
         WithSlimeTip<BruiserSlime>();
