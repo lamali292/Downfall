@@ -15,7 +15,7 @@ public class Equalize : SlimeBossCardModel
 {
     public Equalize() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(12, 4);
+        WithDamage(12, 3);
         WithTip(SlimeBossTip.Consume);
         WithTip(StaticHoverTip.Block);
     }
