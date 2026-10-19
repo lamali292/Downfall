@@ -14,11 +14,11 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class SlimedTail : SlimeBossRelicModel, IAfterCommand
 {
-    public SlimedTail() : base(RelicRarity.Rare)
+    public SlimedTail() : base(RelicRarity.Uncommon)
     {
         WithTip(SlimeBossTip.Command);
         WithSlimeTip<BruiserSlime>();
-        WithBlock(3);
+        WithBlock(2);
     }
 
 
