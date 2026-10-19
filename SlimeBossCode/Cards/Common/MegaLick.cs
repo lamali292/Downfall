@@ -7,9 +7,9 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class FearTactics : SlimeBossCardModel
+public class MegaLick : SlimeBossCardModel
 {
-    public FearTactics() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+    public MegaLick() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Retain, CardKeyword.Exhaust);
         WithPower<WeakPower>(2, 1);
