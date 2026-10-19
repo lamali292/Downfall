@@ -13,7 +13,7 @@ public class ViciousTackle : SlimeBossCardModel
     public ViciousTackle() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithTags(SlimeBossTag.Tackle);
-        WithDamage(8, 2);
+        WithDamage(8, 3);
         WithTip<WeakPower>();
     }
 
