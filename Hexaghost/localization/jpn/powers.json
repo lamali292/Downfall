@@ -46,7 +46,7 @@
     "HEXAGHOST-WILDFIRE_POWER.smartDescription": "敵に付与されていないデバフを新しく付与するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "HEXAGHOST-HERE_AND_NOW_POWER.title": "今はここで",
     "HEXAGHOST-HERE_AND_NOW_POWER.description": "ターン終了時、現在のゴーストフレイムを[gold]滅却[/gold]する。",
-    "HEXAGHOST-MORE_ENERGY_POWER.title": "モアエナジー",
+    "HEXAGHOST-MORE_ENERGY_POWER.title": "エナジーをもっと",
     "HEXAGHOST-MORE_ENERGY_POWER.description": "ターン開始時、{energyPrefix:energyIcons(1)}を得る。",
     "HEXAGHOST-MORE_ENERGY_POWER.smartDescription": "ターン開始時、{Amount:energyIcons()}を得る。",
     "HEXAGHOST-HERE_AND_NOW_POWER.smartDescription": "ターン終了時、現在のゴーストフレイムを[gold]滅却[/gold]する。",
