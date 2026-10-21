@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Interfaces;
@@ -17,7 +18,9 @@ public class RefractedLight : GuardianCardModel, IGemSocketCard
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
-
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+    
     public bool GemsAffectAllPlayers => true;
 
     public int GemSlots => IsUpgraded ? 3 : 2;
