@@ -11,6 +11,7 @@ public class DownfallPatchManager
     {
         var patcher = ModPatcher.Create(DownfallMainFile.ModId, DownfallMainFile.Logger)
             .Add(typeof(ModelDbInitPatch))
+            .Add(typeof(ModelIdCacheCompletionPatch))
             .Add(typeof(CombatUiActivatePatch))
             .Add(typeof(ModifyDamageInternalPatch))
             .Add(typeof(CustomAfflictionModel.AfflictionModelOverlayPathPatch))

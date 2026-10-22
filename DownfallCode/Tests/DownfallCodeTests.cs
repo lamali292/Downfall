@@ -1,7 +1,10 @@
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 
 namespace Downfall.DownfallCode.Tests;
 
@@ -136,5 +139,30 @@ public class DownfallCodeTests
 
         Assert.IsTrue(!card.Keywords.Contains(CardKeyword.Retain),
             "EnergySpent grant should clear once the owner spends energy on any card.");
+    }
+
+    [CardTest]
+    public Task NetIdTableCompletionAppendsAMissingEntryAtItsOldId(TestContext ctx)
+    {
+        // Simulates the older-build failure where a submod's models are in ModelDb but not in the net-ID
+        // table: drop the last entry name (so every other id stays put), then let the check restore it.
+        var map = AccessTools.Field(typeof(ModelIdSerializationCache), "_entryNameToNetIdMap")
+            .GetValue(null) as Dictionary<string, int>;
+        var list = AccessTools.Field(typeof(ModelIdSerializationCache), "_netIdToEntryNameMap")
+            .GetValue(null) as List<string>;
+        Assert.IsTrue(map != null && list != null, "Sanity: the net-ID table internals should be reachable.");
+
+        var name = list![^1];
+        var id = map![name];
+        list.RemoveAt(list.Count - 1);
+        map.Remove(name);
+
+        var added = ModelIdCacheCompletionPatch.EnsureAllModelsMapped();
+
+        Assert.IsTrue(added >= 1, "The model owning the removed entry should be reported as missing.");
+        Assert.AreEqual(id, map[name], "The entry should come back at the id it had before, not shift others.");
+        Assert.AreEqual(0, ModelIdCacheCompletionPatch.EnsureAllModelsMapped(),
+            "A complete table must be left alone (second run adds nothing).");
+        return Task.CompletedTask;
     }
 }
