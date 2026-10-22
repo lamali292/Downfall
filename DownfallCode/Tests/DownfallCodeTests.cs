@@ -1,4 +1,5 @@
 using Downfall.DownfallCode.Compatibility;
+using Downfall.DownfallCode.Multiplayer;
 using Downfall.DownfallCode.Utils;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
@@ -163,6 +164,24 @@ public class DownfallCodeTests
         Assert.AreEqual(id, map[name], "The entry should come back at the id it had before, not shift others.");
         Assert.AreEqual(0, ModelIdCacheCompletionPatch.EnsureAllModelsMapped(),
             "A complete table must be left alone (second run adds nothing).");
+        return Task.CompletedTask;
+    }
+
+    [CardTest]
+    public Task DisabledCharacterMarkerRoundTripsAndIgnoresPeersWithoutOne(TestContext ctx)
+    {
+        var marker = DisabledCharacterSync.BuildMarker(["Snecko", "Hermit"]);
+        Assert.IsTrue(DisabledCharacterSync.TryParse(["Other-1.0", marker], out var parsed),
+            "A peer advertising a marker should be parsed.");
+        Assert.AreEqual("Hermit,Snecko", string.Join(",", parsed), "Parsed set should be sorted.");
+
+        Assert.IsTrue(DisabledCharacterSync.TryParse([DisabledCharacterSync.BuildMarker([])], out var none),
+            "An empty marker is still a marker.");
+        Assert.AreEqual(0, none.Count, "An empty marker means nothing is disabled.");
+
+        Assert.IsTrue(!DisabledCharacterSync.TryParse(["Other-1.0"], out _),
+            "A peer without a marker (older build) must not be compared.");
+        Assert.IsTrue(!DisabledCharacterSync.TryParse(null, out _), "A null mod list has no marker.");
         return Task.CompletedTask;
     }
 }
