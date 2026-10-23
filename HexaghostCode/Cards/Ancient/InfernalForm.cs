@@ -13,6 +13,7 @@ public class InfernalForm : HexaghostCardModel
     public InfernalForm() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithPower<InfernalFormPower>(3, 1, false);
+        WithKeywords(CardKeyword.Retain);
         WithTip<IntensityPower>();
     }
 
