@@ -1,23 +1,25 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 
-namespace Hexaghost.HexaghostCode.Cards.Uncommon;
+namespace Hexaghost.HexaghostCode.Cards.Rare;
 
 [Pool(typeof(HexaghostCardPool))]
-public class WildfireHexaghost : HexaghostCardModel
+public class Soulfire : HexaghostCardModel
 {
-    public WildfireHexaghost() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public Soulfire() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<WildfirePower>(3, 2, false);
+        WithPower<SoulfirePower>(3, 1, false);
         WithTip(StaticHoverTip.Block);
+        WithTip<SoulBurnPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<WildfirePower>(ctx, this);
+        await CommonActions.ApplySelf<SoulfirePower>(ctx, this);
     }
 }

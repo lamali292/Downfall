@@ -185,8 +185,6 @@
   "HEXAGHOST-VOLCANO_VISAGE.title": "Volcano Visage",
   "HEXAGHOST-WHISPER_FROM_BEYOND.description": "Deal {Damage:diff()} damage.\nWhenever a card is [gold]Exhausted[/gold] this turn, apply {WhisperFromBeyondPower:diff()} [gold]Soulburn[/gold] to the enemy.",
   "HEXAGHOST-WHISPER_FROM_BEYOND.title": "Whisper from Beyond",
-  "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Soulfire",
-  "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Whenever you apply a new debuff to an enemy, gain {WildfirePower:diff()} [gold]Block[/gold].",
   "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Exhaust[/gold] {Cards:diff()} cards.\nAdd a random {IfUpgraded:show:[gold]Upgraded[/gold] |}card of the opposite type into your [gold]Hand[/gold] for each Attack or Skill [gold]Exhausted[/gold].",
   "HEXAGHOST-WORTHY_SACRIFICE.title": "Worthy Sacrifice",
   "HEXAGHOST-TEMPORAL_LEAP.title": "Temporal Leap",
@@ -204,5 +202,7 @@
   "HEXAGHOST-HEATING.title": "Heating",
   "HEXAGHOST-HEATING.description": "Whenever you apply [gold]Soulburn[/gold] to an enemy, the ally with the least [gold]Block[/gold] gains {HeatingPower:diff()} [gold]Block[/gold].",
   "HEXAGHOST-LEVITATE.title": "Levitate",
-  "HEXAGHOST-LEVITATE.description": "[afterlife]Give another player[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]"
+  "HEXAGHOST-LEVITATE.description": "[afterlife]Give another player[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]",
+  "HEXAGHOST-SOULFIRE.title": "Soulfire",
+  "HEXAGHOST-SOULFIRE.description": "Whenever you apply [gold]Soulburn[/gold] with a card, gain {WildfirePower:diff()} [gold]Block[/gold]."
 }
