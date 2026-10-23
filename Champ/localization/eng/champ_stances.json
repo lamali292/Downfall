@@ -6,7 +6,7 @@
   "CHAMP-CHAMP_NO_STANCE.title": "No Stance",
   "CHAMP-CHAMP_NO_STANCE.description": "",
   "CHAMP-CHAMP_ULTIMATE_STANCE.title": "Ultimate Stance",
-  "CHAMP-CHAMP_ULTIMATE_STANCE.description": "{Infinite:cond:Whenever|The next {Charges:plural:time|[blue]{}[/blue] times}} you play a Skill, gain [blue]{BerserkerSkill}[/blue] [gold]Vigor[/gold] and [blue]{DefensiveSkill}[/blue] [gold]Counter[/gold].\nWhenever a [gold]Finisher[/gold] is triggered, gain [blue]{BerserkerFinisher}[/blue] [gold]Strength[/gold] and [blue]{DefensiveFinisher}[/blue] [gold]Block[/gold].",
+  "CHAMP-CHAMP_ULTIMATE_STANCE.description": "At the start of your turn, gain {Energy:energyIcons()} and draw [blue]{Cards}[/blue] {Cards:plural:card|cards}.\n{Infinite:cond:Whenever|The next {Charges:plural:time|[blue]{}[/blue] times}} you play a Skill, gain [blue]{BerserkerSkill}[/blue] [gold]Vigor[/gold] and [blue]{DefensiveSkill}[/blue] [gold]Counter[/gold].\nWhenever a [gold]Finisher[/gold] is triggered, gain [blue]{BerserkerFinisher}[/blue] [gold]Strength[/gold] and [blue]{DefensiveFinisher}[/blue] [gold]Block[/gold].",
   "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}: {AffectsAllPlayers:All players gain|Gain} {BerserkerFinisher} [gold]Strength[/gold] and {DefensiveFinisher} [gold]Block[/gold].",
   "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()} [gold]Finisher[/gold]",
   "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}: {AffectsAllPlayers:All players gain|Gain} {BerserkerFinisher} [gold]Strength[/gold].",
