@@ -204,5 +204,5 @@
   "HEXAGHOST-LEVITATE.title": "Levitate",
   "HEXAGHOST-LEVITATE.description": "[afterlife]Give another player[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]",
   "HEXAGHOST-SOULFIRE.title": "Soulfire",
-  "HEXAGHOST-SOULFIRE.description": "Whenever you apply [gold]Soulburn[/gold] with a card, gain {WildfirePower:diff()} [gold]Block[/gold]."
+  "HEXAGHOST-SOULFIRE.description": "Whenever you apply [gold]Soulburn[/gold] with a card, gain {SoulfirePower:diff()} [gold]Block[/gold]."
 }
