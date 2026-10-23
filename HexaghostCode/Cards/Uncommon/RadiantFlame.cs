@@ -7,12 +7,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 
-namespace Hexaghost.HexaghostCode.Cards.Rare;
+namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
 public class RadiantFlame : HexaghostCardModel
 {
-    public RadiantFlame() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public RadiantFlame() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<RadiantFlamePower>(2, 1, false);
         WithTip(StaticHoverTip.Block);
