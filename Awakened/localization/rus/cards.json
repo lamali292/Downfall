@@ -137,7 +137,7 @@
     "AWAKENED-PLUME_JAB.title": "Укол пером",
     "AWAKENED-PRIMACY.description": "Вы добираете 1 карту, когда {PrimacyPower:plural(ru):впервые|в первые {PrimacyPower:diff()} раза|в первые {PrimacyPower:diff()} раз} за ход получаете [gold]силу[/gold].",
     "AWAKENED-PRIMACY.title": "Первенство",
-    "AWAKENED-PROCESSION.description": "Вы разыгрываете выбранную карту из [gold]стопки добора[/gold].\nДобавляет [gold]«Бездну»[/gold] в [gold]стопку добора[/gold] за каждую {Energy:energyIcons(1)} ее стоимости.",
+    "AWAKENED-PROCESSION.description": "Вы разыгрываете выбранную карту из [gold]стопки добора[/gold].\nДобавляет [gold]«Бездну»[/gold] в [gold]стопку добора[/gold] за каждую {energyPrefix:energyIcons(1)} ее стоимости.",
     "AWAKENED-PROCESSION.title": "Шествие",
     "AWAKENED-PROFANE_STRIKE.description": "Наносит {Damage:diff()} урона.\nВы кладете карту из [gold]руки[/gold] на верх [gold]стопки добора[/gold].",
     "AWAKENED-PROFANE_STRIKE.title": "Оскверненный удар",
@@ -213,5 +213,5 @@
     "AWAKENED-BLESS.title": "Благословить",
     "AWAKENED-BLESS.description": "Дает другому игроку {StrengthPower:diff()} [gold]силы[/gold].\nВы теряете {StrengthLoss:diff()} [gold]силы[/gold].",
     "AWAKENED-FEATHER_DANCE.title": "Танец перьев",
-    "AWAKENED-FEATHER_DANCE.description": "ВСЕ игроки добавляют в [gold]руку[/gold] {Cards:diff()} [gold]{Cards:plural(ru):«Укол пером»|«Укола пером»|«Уколов пером»[/gold]."
+    "AWAKENED-FEATHER_DANCE.description": "ВСЕ игроки добавляют в [gold]руку[/gold] {Cards:diff()} [gold]{Cards:plural(ru):«Укол пером»|«Укола пером»|«Уколов пером»}[/gold]."
 }
