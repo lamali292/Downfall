@@ -79,10 +79,12 @@ public class DownfallPatchManager
         foreach (var patch in CardPlayLocationCompat.PatchTypes)
             patcher.Add(patch);
 
-        patcher.Add(typeof(AdvertiseDisabledCharactersPatch))
-            .Add(typeof(CaptureFailedJoinLobbyPatch))
-            .Add(typeof(CharacterMismatchPopupPatch))
-            .Add(typeof(CharacterMismatchPopupButtonsPatch));
+        // Handshake mod-list mismatch handling only exists on beta; main has no PeerVersionInfo/HandshakeFailed to hook.
+        if (GameVersion.HasHandshakeModList)
+            patcher.Add(typeof(AdvertiseDisabledCharactersPatch))
+                .Add(typeof(CaptureFailedJoinLobbyPatch))
+                .Add(typeof(CharacterMismatchPopupPatch))
+                .Add(typeof(CharacterMismatchPopupButtonsPatch));
 
         patcher.Add(typeof(IsEditorPatches));
 
