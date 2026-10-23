@@ -51,7 +51,6 @@
     "AUTOMATON-FIND_AND_REPLACE.title": "查找替换",
     "AUTOMATON-FINE_TUNING.description": "选择{Cards:diff()}张[gold]手牌[/gold]。\n将其[gold]升级[/gold]、添加[gold]保留[/gold]并[gold]暂存[/gold]。",
     "AUTOMATON-FINE_TUNING.title": "微调",
-    "AUTOMATON-FLAIL.description": "对所有敌人造成{Damage:diff()}点伤害两次。\n获得{ArtifactPower:diff()}层[gold]人工制品[/gold]。",
     "AUTOMATON-FLAIL.title": "乱击",
     "AUTOMATON-FORCE_SHIELD.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n你每生成过一张牌，这张牌的耗能减少{Energy:energyIcons()}。",
     "AUTOMATON-FORCE_SHIELD.title": "力场护盾",

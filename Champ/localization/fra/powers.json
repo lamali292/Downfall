@@ -27,8 +27,6 @@
     "CHAMP-GLADIATOR_FORM_POWER.description": "La première Attaque que vous jouez chaque tour inflige le double des dégâts.",
     "CHAMP-GLADIATOR_FORM_POWER.smartDescription": "{Amount:plural:La première Attaque|Les [blue]{}[/blue] Attaques} que vous jouez chaque tour {Amount:plural:inflige|infligent} le double des dégâts.",
     "CHAMP-GLORY_POWER.title": "Gloire",
-    "CHAMP-GLORY_POWER.description": "Au début de votre tour, si vous avez [blue]10[/blue] de [gold]Gloire[/gold] ou plus, adoptez la [gold]Pose Ultime[/gold] et piochez une carte.",
-    "CHAMP-GLORY_POWER.smartDescription": "Au début de votre tour, si vous avez [blue]10[/blue] de [gold]Gloire[/gold] ou plus, adoptez la [gold]Pose Ultime[/gold] et piochez une carte.",
     "CHAMP-HONE_BLADE_POWER.title": "Lame Affûtée",
     "CHAMP-HONE_BLADE_POWER.description": "Vos cartes [gold]\"Frappe\"[/gold] infligent des dégâts supplémentaires.",
     "CHAMP-HONE_BLADE_POWER.smartDescription": "Vos cartes [gold]\"Frappe\"[/gold] infligent [blue]{Amount}[/blue] dégâts supplémentaires.",
