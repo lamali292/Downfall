@@ -5,6 +5,7 @@
     "CHAMP-CHAMP_BERSERKER_STANCE.description": "{Infinite:cond:スキルをプレイするたび、|次の[blue]{Charges}[/blue]回、スキルをプレイするたび、}[gold]活力[/gold][blue]{BerserkerSkill}[/blue]を得る。\n[gold]フィニッシャー[/gold]が発動するたび、[gold]筋力[/gold][blue]{BerserkerFinisher}[/blue]を得る。",
     "CHAMP-CHAMP_NO_STANCE.title": "スタンスなし",
     "CHAMP-CHAMP_ULTIMATE_STANCE.title": "アルティメットスタンス",
+    "CHAMP-CHAMP_ULTIMATE_STANCE.description": "ターン開始時、{Energy:energyIcons()}を得てカードを[blue]{Cards}[/blue]枚ドローする。\n{Infinite:cond:スキルをプレイするたび、|次の[blue]{Charges}[/blue]回、スキルをプレイするたび、}[gold]活力[/gold][blue]{BerserkerSkill}[/blue]と[gold]カウンター[/gold][blue]{DefensiveSkill}[/blue]を得る。\n[gold]フィニッシャー[/gold]が発動するたび、[gold]筋力[/gold][blue]{BerserkerFinisher}[/blue]と[blue]{DefensiveFinisher}[/blue][gold]ブロック[/gold]を得る。",
     "CHAMP-CHAMP_ULTIMATE_STANCE.finisher": "{:finisher()}:{AffectsAllPlayers:すべてのプレイヤーは|}[gold]筋力[/gold]{BerserkerFinisher}と{DefensiveFinisher}[gold]ブロック[/gold]を得る。",
     "CHAMP-CHAMP_NO_STANCE.finisher": "{:finisher()}[gold]フィニッシャー[/gold]",
     "CHAMP-CHAMP_BERSERKER_STANCE.finisher": "{:finisher()}:{AffectsAllPlayers:すべてのプレイヤーは|}[gold]筋力[/gold]{BerserkerFinisher}を得る。",
