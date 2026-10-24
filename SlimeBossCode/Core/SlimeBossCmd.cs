@@ -27,6 +27,20 @@ public static class SlimeBossCmd
         return player.SlimeCreatures.Select(e => e.Monster).OfType<SlimeModel>();
     }
 
+    /// <summary>An Attack whose printed cost is 2 Energy ("[E][E] Attack"), independent of cost modifiers like The Playbook.</summary>
+    public static bool IsTwoEnergyAttack(CardModel card)
+    {
+        return card.Type == CardType.Attack && card.EnergyCost is { CostsX: false, Canonical: 2 };
+    }
+
+    /// <summary>Whether <paramref name="player"/> has played a Status card earlier this turn.</summary>
+    public static bool HasPlayedStatusThisTurn(Player player)
+    {
+        return CombatManager.Instance.History.CardPlaysFinished.Any(e =>
+            e.CardPlay.Card.Type == CardType.Status && e.CardPlay.Card.Owner == player &&
+            e.HappenedThisTurn(player.Creature.CombatState));
+    }
+
     /// <summary>Fallback Potency for a duplicate Split when the slime has no CounterVar (its damage or secondary value) to take its base effect from.</summary>
     private const int DuplicateSplitPotency = 2;
 
