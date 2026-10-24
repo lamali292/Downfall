@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -8,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 using SlimeBoss.SlimeBossCode.Core;
-using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 

@@ -3,12 +3,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
-using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;

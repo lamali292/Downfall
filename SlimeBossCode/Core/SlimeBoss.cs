@@ -1,5 +1,4 @@
 ﻿using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Characters;
