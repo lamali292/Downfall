@@ -11,10 +11,10 @@ namespace SlimeBoss.SlimeBossCode.Cards.Common;
 [Pool(typeof(SlimeBossCardPool))]
 public class HungryTackle : SlimeBossCardModel
 {
-    public HungryTackle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public HungryTackle() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(9, 1);
-        WithEnergy(2, 1);
+        WithDamage(12, 1);
+        WithEnergy(3, 1);
         WithTags(SlimeBossTag.Tackle);
         WithKeyword(CardKeyword.Exhaust);
         WithTip(SlimeBossTip.Consume);
