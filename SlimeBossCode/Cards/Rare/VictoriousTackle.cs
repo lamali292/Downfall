@@ -2,14 +2,16 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class PileOn : SlimeBossCardModel
+public class VictoriousTackle : SlimeBossCardModel
 {
-    public PileOn() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public VictoriousTackle() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
+        WithTags(SlimeBossTag.Tackle);
         WithDamage(13);
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
