@@ -5,7 +5,7 @@
   "SLIMEBOSS-PILE_ON.description": "Deal {Damage:diff()} damage.\n[gold]Command[/gold] ALL Slimes.",
   "SLIMEBOSS-COMBO_TACKLE.description": "Deal {Damage:diff()} damage.\nThe next card you play {IfUpgraded:show:|this turn }costs 1 less {energyPrefix:energyIcons(1)}.",
   "SLIMEBOSS-COMBO_TACKLE.title": "Combo Tackle",
-  "SLIMEBOSS-CONSULT_PLAYBOOK.description": "If the first Attack you play each turn contains \"Tackle\", gain {energyPrefix:energyIcons(1)} and draw 1 card.",
+  "SLIMEBOSS-CONSULT_PLAYBOOK.description": "If the first Attack you play each turn costs {energyPrefix:energyIcons(2)}, gain {energyPrefix:energyIcons(1)} and draw 1 card.",
   "SLIMEBOSS-CONSULT_PLAYBOOK.title": "Consult Playbook",
   "SLIMEBOSS-CORROSIVE_SPIT.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nTarget enemy loses {HpLoss:diff()} HP.",
   "SLIMEBOSS-CORROSIVE_SPIT.title": "Corrosive Spit",
