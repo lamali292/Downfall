@@ -318,19 +318,17 @@ public class SlimeBossTests
         Assert.AreEqual(2, ctx.Player.Creature.GetPowerAmount<PotencyPower>(), "Liquidate should grant 2 Potency.");
     }
 
-    // Vanish repeats its Block once per Status in hand.
+    // Vanish gains 2 Energy and puts a Slimed on top of the draw pile.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task VanishRepeatsBlockPerStatusInHand(TestContext ctx)
+    public async Task VanishGainsEnergyAndPutsSlimedOnDrawPile(TestContext ctx)
     {
-        await ctx.ClearHand();
-        await ctx.AddCardToHand<Slimed>();
-        await ctx.AddCardToHand<Slimed>();
         var vanish = await ctx.AddCardToHand<Vanish>();
-        var before = ctx.Player.Creature.Block;
+        var energy = ctx.Player.PlayerCombatState!.Energy;
 
         await ctx.PlayCard(vanish);
 
-        Assert.AreEqual(before + 15, ctx.Player.Creature.Block, "Vanish should gain 5 Block 3 times (2 Statuses).");
+        Assert.AreEqual(energy + 2, ctx.Player.PlayerCombatState!.Energy, "Vanish should gain 2 Energy.");
+        Assert.IsTrue(ctx.Player.PlayerCombatState!.DrawPile.Cards.First() is Slimed, "Slimed should be on top of the draw pile.");
     }
 
     // Slime Spikes grants Thorns only once a Status has been played this turn.
