@@ -11,10 +11,11 @@ using SlimeBoss.SlimeBossCode.CustomEnums;
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class Equalize : SlimeBossCardModel
+public class EqualizerTackle : SlimeBossCardModel
 {
-    public Equalize() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public EqualizerTackle() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithTags(SlimeBossTag.Tackle);
         WithDamage(12, 3);
         WithTip(SlimeBossTip.Consume);
         WithTip(StaticHoverTip.Block);

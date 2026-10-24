@@ -23,18 +23,18 @@ public class SlimeBossTests
     public IEnumerable<CardTestCase> PlaySlimeBossCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
 
     
-    // Without Weak on the target, Equalize's Consume shouldn't trigger at all - no Block gained.
+    // Without Weak on the target, Equalizer Tackle's Consume shouldn't trigger at all - no Block gained.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
     public async Task EqualizeGrantsNoBlockWithoutWeakOnTarget(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
-        var equalize = await ctx.AddCardToHand<Equalize>();
+        var equalize = await ctx.AddCardToHand<EqualizerTackle>();
         var startingBlock = ctx.Player.Creature.Block;
 
         await ctx.PlayCard(equalize, enemy);
 
         Assert.AreEqual(startingBlock, ctx.Player.Creature.Block,
-            "Equalize's Consume should not trigger (no Block gained) when the target has no Weak.");
+            "Equalizer Tackle's Consume should not trigger (no Block gained) when the target has no Weak.");
     }
 
     // Consume must still trigger when the card's own attack kills the Weakened target (dead creatures lose
