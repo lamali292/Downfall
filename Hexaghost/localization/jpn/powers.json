@@ -71,5 +71,8 @@
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "ゴーストフレイムのダメージと[gold]ソウルバーン[/gold]の付与がすべての敵を対象にする。",
     "HEXAGHOST-PREMONITION_POWER.title": "前兆",
     "HEXAGHOST-PREMONITION_POWER.description": "1ターンの間にカードを規定の枚数以上[gold]廃棄[/gold]した場合、次のターン開始時、追加でカードを引く。",
-    "HEXAGHOST-PREMONITION_POWER.smartDescription": "1ターンの間にカードを[blue]{Exhaust}[/blue]枚以上[gold]廃棄[/gold]した場合、次のターン開始時、追加でカードを[blue]{Amount}[/blue]枚引く。"
+    "HEXAGHOST-PREMONITION_POWER.smartDescription": "1ターンの間にカードを[blue]{Exhaust}[/blue]枚以上[gold]廃棄[/gold]した場合、次のターン開始時、追加でカードを[blue]{Amount}[/blue]枚引く。",
+    "HEXAGHOST-SOULFIRE_POWER.title": "ソウルファイア",
+    "HEXAGHOST-SOULFIRE_POWER.description": "カードにより[gold]ソウルバーン[/gold]を付与するたび、[gold]ブロック[/gold]を得る。",
+    "HEXAGHOST-SOULFIRE_POWER.smartDescription": "カードにより[gold]ソウルバーン[/gold]を付与するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。"
 }

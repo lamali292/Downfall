@@ -201,5 +201,7 @@
     "HEXAGHOST-HEATING.title": "加熱",
     "HEXAGHOST-HEATING.description": "[gold]ソウルバーン[/gold]を付与するたび、[gold]ブロック[/gold]が最も少ない味方が{HeatingPower:diff()}[gold]ブロック[/gold]を得る。",
     "HEXAGHOST-LEVITATE.title": "空中支援",
-    "HEXAGHOST-LEVITATE.description": "[afterlife]他のプレイヤー1人が[/afterlife]{Block:diff()}[afterlife]ブロックを得る。[/afterlife]"
+    "HEXAGHOST-LEVITATE.description": "[afterlife]他のプレイヤー1人が[/afterlife]{Block:diff()}[afterlife]ブロックを得る。[/afterlife]",
+    "HEXAGHOST-SOULFIRE.title": "ソウルファイア",
+    "HEXAGHOST-SOULFIRE.description": "カードにより[gold]ソウルバーン[/gold]を付与するたび、{SoulfirePower:diff()}[gold]ブロック[/gold]を得る。"
 }
