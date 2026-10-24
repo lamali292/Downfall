@@ -1,19 +1,19 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 
-namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
+namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class ViciousTackle : SlimeBossCardModel
 {
-    public ViciousTackle() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public ViciousTackle() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithTags(SlimeBossTag.Tackle);
-        WithDamage(8, 3);
+        WithDamage(12, 2);
         WithTip<WeakPower>();
     }
 
