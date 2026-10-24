@@ -342,6 +342,20 @@ public class SlimeBossTests
         Assert.AreEqual(0, spikes.EnergyCost.GetAmountToSpend(), "Slime Spikes should cost 0 after a Status play.");
     }
 
+    // Recklessness grants Strength per 2-Energy Attack played, and not for other costs.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task RecklessnessGrantsStrengthOnTwoEnergyAttacksOnly(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<Recklessness>());
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeSlimeBoss>(), enemy);
+        Assert.AreEqual(0, ctx.Player.Creature.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.StrengthPower>(),
+            "A 1-cost Attack should not grant Strength.");
+        await ctx.PlayCard(await ctx.AddCardToHand<HeavyTackle>(), enemy);
+        Assert.AreEqual(1, ctx.Player.Creature.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.StrengthPower>(),
+            "A 2-cost Attack should grant 1 Strength.");
+    }
+
     // Psychic Slime is Commanded whenever its owner plays a Power, and Commanding it applies Soulburn.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
     public async Task PsychicSlimeAppliesSoulburnWhenAPowerIsPlayed(TestContext ctx)

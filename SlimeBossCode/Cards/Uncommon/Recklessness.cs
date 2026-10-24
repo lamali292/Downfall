@@ -1,9 +1,10 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Powers;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -12,13 +13,13 @@ public class Recklessness : SlimeBossCardModel
 {
     public Recklessness() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<FlameTacklePower>(4, 2, false);
+        WithPower<RecklessnessPower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<FlameTacklePower>(ctx, this);
+        await CommonActions.ApplySelf<RecklessnessPower>(ctx, this);
     }
 }
