@@ -359,6 +359,27 @@ public class SlimeBossTests
             "A 2-cost Attack should grant 1 Strength.");
     }
 
+    // Split: Muscle costs 1 and grants no Potency unless upgraded.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task SplitMuscleCostsOneAndGrantsNoPotency(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<SplitMuscle>();
+        Assert.AreEqual(1, card.EnergyCost.GetAmountToSpend(), "Split: Muscle should cost 1.");
+        await ctx.PlayCard(card);
+        var slime = SlimeBossCmd.GetSlimes(ctx.Player).OfType<MuscleSlime>().First();
+        Assert.AreEqual(0, slime.Creature.GetPowerAmount<PotencyPower>(), "Base Split: Muscle grants no Potency.");
+    }
+
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task UpgradedSplitMuscleGrantsTheSlimeTwoPotency(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<SplitMuscle>();
+        CardCmd.Upgrade(card);
+        await ctx.PlayCard(card);
+        var slime = SlimeBossCmd.GetSlimes(ctx.Player).OfType<MuscleSlime>().First();
+        Assert.AreEqual(2, slime.Creature.GetPowerAmount<PotencyPower>(), "Upgraded Split: Muscle gives the slime 2 Potency.");
+    }
+
     // Psychic Slime is Commanded whenever its owner plays a Power, and Commanding it applies Soulburn.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
     public async Task PsychicSlimeAppliesSoulburnWhenAPowerIsPlayed(TestContext ctx)

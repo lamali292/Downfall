@@ -28,7 +28,7 @@ public class QuickSnack : SlimeBossCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e is not Slimed, this)).FirstOrDefault();
         if (card == null) return;
         await CardCmd.TransformTo<Slimed>(card);
     }
