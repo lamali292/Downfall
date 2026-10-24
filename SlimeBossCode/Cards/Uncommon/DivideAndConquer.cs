@@ -9,12 +9,12 @@ using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Extensions;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 
-namespace SlimeBoss.SlimeBossCode.Cards.Common;
+namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class DivideAndConquer : SlimeBossCardModel
 {
-    public DivideAndConquer() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public DivideAndConquer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithTip(SlimeBossTip.Split);
         WithDamage(4, 2);
