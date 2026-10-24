@@ -15,7 +15,7 @@ public class FlameTackle : SlimeBossCardModel, IStackingUpgradeCard
     {
         WithTags(SlimeBossTag.Tackle);
         WithDamage(12);
-        WithPower<FlameTacklePower>(5, 3, false);
+        WithPower<FlameTacklePower>(6, 2, false);
     }
     
 
