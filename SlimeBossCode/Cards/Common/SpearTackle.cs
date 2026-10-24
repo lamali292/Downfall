@@ -1,17 +1,19 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
-namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
+namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class SpearTackle : SlimeBossCardModel
 {
-    public SpearTackle() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public SpearTackle() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(6, 1);
-        WithCards(2, 1);
+        WithTags(SlimeBossTag.Tackle);
+        WithDamage(10, 5);
+        WithCards(3, 1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
