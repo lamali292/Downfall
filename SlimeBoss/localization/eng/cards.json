@@ -71,7 +71,7 @@
   "SLIMEBOSS-QUICK_SNACK.title": "Quick Snack",
   "SLIMEBOSS-RALLY_THE_TROOPS.description": "Deal {Damage:diff()} damage.\nWhenever you play a card this turn, gain {RallyTheTroopsPower:diff()} [gold]Potency[/gold] this turn.",
   "SLIMEBOSS-RALLY_THE_TROOPS.title": "Rally the Troops",
-  "SLIMEBOSS-RECKLESSNESS.description": "Cards containing \"Tackle\" deal {FlameTacklePower:diff()} additional damage.",
+  "SLIMEBOSS-RECKLESSNESS.description": "Whenever you play a {energyPrefix:energyIcons(2)} Attack, gain {RecklessnessPower:diff()} [gold]Strength[/gold].",
   "SLIMEBOSS-RECKLESSNESS.title": "Recklessness",
   "SLIMEBOSS-RECOLLECT.description": "Gain {Block:diff()} [gold]Block[/gold].\nAt the start of your next turn, return this to your [gold]Hand[/gold].",
   "SLIMEBOSS-RECOLLECT.title": "Recollect",
