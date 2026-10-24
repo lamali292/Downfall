@@ -15,7 +15,7 @@
   "SLIMEBOSS-DIVIDE_CONQUER.title": "Divide Conquer",
   "SLIMEBOSS-EQUALIZER_TACKLE.description": "Deal {Damage:diff()} damage.\n[gold]Consume[/gold] - Gain [gold]Block[/gold] equal to the damage dealt.",
   "SLIMEBOSS-EQUALIZER_TACKLE.title": "Equalizer Tackle",
-  "SLIMEBOSS-FLAME_TACKLE.description": "Deal {Damage:diff()} damage.\nCards containing \"Tackle\" deal {FlameTacklePower:diff()} additional damage this combat.",
+  "SLIMEBOSS-FLAME_TACKLE.description": "Deal {Damage:diff()} damage.\n{energyPrefix:energyIcons(2)} Attacks deal {FlameTacklePower:diff()} additional damage this combat.",
   "SLIMEBOSS-FLAME_TACKLE.title": "Flame Tackle",
   "SLIMEBOSS-FORM_OF_WALL.description": "Gain {CalculatedBlock:diff()} [gold]Block[/gold], increased by {CalculationExtra:diff()} for each [gold]Split[/gold] Slime.",
   "SLIMEBOSS-FORM_OF_WALL.title": "Form of Wall",

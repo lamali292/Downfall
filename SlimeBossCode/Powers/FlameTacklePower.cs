@@ -13,7 +13,7 @@ public class FlameTacklePower : SlimeBossPowerModel, IModifyDamageAdditive
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
-        return dealer == Owner && cardSource != null && cardSource.Tags.Contains(SlimeBossTag.Tackle) &&
+        return dealer == Owner && cardSource != null && SlimeBossCmd.IsTwoEnergyAttack(cardSource) &&
                target != dealer
             ? Amount
             : 0;
