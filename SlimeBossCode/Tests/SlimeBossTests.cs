@@ -333,17 +333,18 @@ public class SlimeBossTests
         Assert.AreEqual(before + 15, ctx.Player.Creature.Block, "Vanish should gain 5 Block 3 times (2 Statuses).");
     }
 
-    // Slime Spikes costs 0 once a Status has been played this turn.
+    // Slime Spikes grants Thorns only once a Status has been played this turn.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task SlimeSpikesIsFreeAfterPlayingAStatus(TestContext ctx)
+    public async Task SlimeSpikesGrantsThornsOnlyAfterPlayingAStatus(TestContext ctx)
     {
-        var spikes = await ctx.AddCardToHand<SlimeSpikes>();
-        Assert.AreEqual(1, spikes.EnergyCost.GetAmountToSpend(), "Slime Spikes should cost 1 with no Status played.");
+        await ctx.PlayCard(await ctx.AddCardToHand<SlimeSpikes>());
+        Assert.AreEqual(0, ctx.Player.Creature.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.ThornsPower>(),
+            "No Thorns without a Status played.");
 
-        var slimed = await ctx.AddCardToHand<Slimed>();
-        await ctx.PlayCard(slimed);
-
-        Assert.AreEqual(0, spikes.EnergyCost.GetAmountToSpend(), "Slime Spikes should cost 0 after a Status play.");
+        await ctx.PlayCard(await ctx.AddCardToHand<Slimed>());
+        await ctx.PlayCard(await ctx.AddCardToHand<SlimeSpikes>());
+        Assert.AreEqual(4, ctx.Player.Creature.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.ThornsPower>(),
+            "4 Thorns after a Status was played.");
     }
 
     // Recklessness grants Strength per 2-Energy Attack played, and not for other costs.
