@@ -119,15 +119,19 @@ public class SlimeBossTests
         Assert.AreEqual(12, (int)card.DynamicVars.Damage.BaseValue, "Glop Chop should drop to 12 damage after one play.");
     }
 
-    // Heavy Tackle costs 1 less per Status played this turn, including Statuses played before it was drawn.
+    // Heavy Tackle gains 2 Energy (the harness spends none) only if a Status was played earlier this turn.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task HeavyTackleCostsLessPerStatusPlayedThisTurn(TestContext ctx)
+    public async Task HeavyTackleGainsEnergyAfterStatusPlayedThisTurn(TestContext ctx)
     {
-        var heavy = await ctx.AddCardToHand<HeavyTackle>();
-        Assert.AreEqual(2, heavy.EnergyCost.GetAmountToSpend(), "Heavy Tackle should cost 2 with no Status played.");
-        var slimed = await ctx.AddCardToHand<Slimed>();
-        await ctx.PlayCard(slimed);
-        Assert.AreEqual(1, heavy.EnergyCost.GetAmountToSpend(), "Heavy Tackle should cost 1 after one Status.");
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var energy = ctx.Player.PlayerCombatState!.Energy;
+        await ctx.PlayCard(await ctx.AddCardToHand<HeavyTackle>(), enemy);
+        Assert.AreEqual(energy, ctx.Player.PlayerCombatState!.Energy, "Heavy Tackle without a Status should gain no Energy.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<Slimed>());
+        energy = ctx.Player.PlayerCombatState!.Energy;
+        await ctx.PlayCard(await ctx.AddCardToHand<HeavyTackle>(), enemy);
+        Assert.AreEqual(energy + 2, ctx.Player.PlayerCombatState!.Energy, "Heavy Tackle after a Status should gain 2 Energy.");
     }
 
     // Recollect gains Block and is back in hand at the start of the next turn.

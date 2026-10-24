@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using MegaCrit.Sts2.Core.Commands;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
@@ -14,26 +15,16 @@ public class HeavyTackle : SlimeBossCardModel
     public HeavyTackle() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithTags(SlimeBossTag.Tackle);
-        WithDamage(15, 5);
+        WithDamage(12, 4);
+        WithEnergy(2);
     }
+
+    protected override bool ShouldGlowGoldInternal => SlimeBossCmd.HasPlayedStatusThisTurn(Owner);
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var playedStatus = SlimeBossCmd.HasPlayedStatusThisTurn(Owner);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-    }
-
-    public override Task AfterCardEnteredCombat(CardModel card)
-    {
-        if (card != this || IsClone) return Task.CompletedTask;
-        var amount = CombatManager.Instance.History.CardPlaysFinished.Count(e =>
-            e.CardPlay.Card.Type == CardType.Status && e.CardPlay.Card.Owner == Owner && e.HappenedThisTurn(CombatState));
-        EnergyCost.AddThisTurn(-amount);
-        return Task.CompletedTask;
-    }
-
-    public override Task BeforeCardPlayed(CardPlay cardPlay)
-    {
-        if (cardPlay.Card.Owner == Owner && cardPlay.Card.Type == CardType.Status) EnergyCost.AddThisTurn(-1);
-        return Task.CompletedTask;
+        if (playedStatus) await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 }
