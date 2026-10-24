@@ -139,7 +139,7 @@
   "SLIMEBOSS-SLAM.title": "Slam",
   "SLIMEBOSS-SLAM.description": "Deal {Damage:diff()} damage.\nNext turn, draw {DrawCardsNextTurnPower:diff()} {DrawCardsNextTurnPower:plural:card|cards}.",
   "SLIMEBOSS-HEAVY_TACKLE.title": "Heavy Tackle",
-  "SLIMEBOSS-HEAVY_TACKLE.description": "Deal {Damage:diff()} damage.\nCosts 1 less {energyPrefix:energyIcons(1)} for each Status played this turn.",
+  "SLIMEBOSS-HEAVY_TACKLE.description": "Deal {Damage:diff()} damage.\nIf you have played a Status this turn, gain {Energy:energyIcons()}.",
   "SLIMEBOSS-ACIDIC_STRIKE.title": "Acidic Strike",
   "SLIMEBOSS-ACIDIC_STRIKE.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Slimed[/gold] into your [gold]Hand[/gold].",
   "SLIMEBOSS-MEGA_LICK.title": "Mega-Lick",
