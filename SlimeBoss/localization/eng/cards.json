@@ -1,4 +1,6 @@
 {
+  "SLIMEBOSS-PERFECTED_TACKLE.title": "Perfected Tackle",
+  "SLIMEBOSS-PERFECTED_TACKLE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for ALL your {energyPrefix:energyIcons(2)} Attacks.",
   "SLIMEBOSS-PILE_ON.title": "Pile On!",
   "SLIMEBOSS-PILE_ON.description": "Deal {Damage:diff()} damage.\n[gold]Command[/gold] ALL Slimes.",
   "SLIMEBOSS-COMBO_TACKLE.description": "Deal {Damage:diff()} damage.\nThe next card you play {IfUpgraded:show:|this turn }costs 1 less {energyPrefix:energyIcons(1)}.",
