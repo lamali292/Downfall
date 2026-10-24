@@ -133,7 +133,7 @@
   "SLIMEBOSS-SLIMY_BARRIER.title": "Slimy Barrier",
   "SLIMEBOSS-SLIMY_BARRIER.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd a [gold]Slimed[/gold] into your [gold]Hand[/gold].",
   "SLIMEBOSS-VANISH.title": "Vanish",
-  "SLIMEBOSS-VANISH.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain [gold]Block[/gold] an additional time for each Status in your [gold]Hand[/gold].{InCombat:\n(Gain {Block:diff()} [gold]Block[/gold]{Repeat:plural:| {:diff()} times})|}",
+  "SLIMEBOSS-VANISH.description": "Gain {Energy:energyIcons()}.\nPut a [gold]Slimed[/gold] on top of your [gold]Draw Pile[/gold].",
   "SLIMEBOSS-RILE_UP.title": "Rile Up",
   "SLIMEBOSS-RILE_UP.description": "Deal {Damage:diff()} damage.\n[gold]Bruiser Slime[/gold] gains {RileUpPotencyPower:diff()} [gold]Potency[/gold] this turn.",
   "SLIMEBOSS-SLAM.title": "Slam",
@@ -202,5 +202,5 @@
   "SLIMEBOSS-LIQUIDATE.title": "Liquidate",
   "SLIMEBOSS-LIQUIDATE.description": "Lose {StrengthPower:diff()} [gold]Strength[/gold].\nGain {PotencyPower:diff()} [gold]Potency[/gold].",
   "SLIMEBOSS-SLIME_SPIKES.title": "Slime Spikes",
-  "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {SlimeSpikesPower:diff()} [gold]Thorns[/gold] this turn.\nThis card costs 0 {energyPrefix:energyIcons(1)} if you have played a Status this turn."
+  "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you have played a Status this turn, gain {SlimeSpikesPower:diff()} [gold]Thorns[/gold] this turn."
 }
