@@ -27,8 +27,6 @@
     "CHAMP-GLADIATOR_FORM_POWER.description": "Первая Атака за ход наносит двойной урон.",
     "CHAMP-GLADIATOR_FORM_POWER.smartDescription": "{Amount:plural(ru):Первая Атака|Первые [blue]{}[/blue] Атаки|Первые [blue]{}[/blue] Атак} за ход {Amount:plural:наносит|наносят} двойной урон.",
     "CHAMP-GLORY_POWER.title": "Величие",
-    "CHAMP-GLORY_POWER.description": "Вы перейдете в [gold]Совершенную стойку[/gold] и возьмете 1 карту в начале хода, если у вас не менее [blue]10[/blue] [gold]Величия[/gold].",
-    "CHAMP-GLORY_POWER.smartDescription": "Вы перейдете в [gold]Совершенную стойку[/gold] и возьмете 1 карту в начале хода, если у вас не менее [blue]10[/blue] [gold]Величия[/gold].",
     "CHAMP-HONE_BLADE_POWER.title": "Заточенный клинок",
     "CHAMP-HONE_BLADE_POWER.description": "Ваши карты с «ударом» в названии наносят на [blue]3[/blue] урона больше.",
     "CHAMP-HONE_BLADE_POWER.smartDescription": "Ваши карты с «ударом» в названии наносят на [blue]{Amount}[/blue] урона больше.",

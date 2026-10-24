@@ -183,8 +183,6 @@
     "HEXAGHOST-VOLCANO_VISAGE.title": "Façade Volcanique",
     "HEXAGHOST-WHISPER_FROM_BEYOND.description": "Infligez {Damage:diff()} dégâts.\nChaque fois qu'une carte est [gold]Épuisée[/gold] ce tour, appliquez {WhisperFromBeyondPower:diff()} de [gold]Calcination[/gold] à l'ennemi.",
     "HEXAGHOST-WHISPER_FROM_BEYOND.title": "Murmure de l'Au-delà",
-    "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Feu de l'Âme",
-    "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Lorsque vous appliquez un nouveau débuff à un ennemi, gagnez {WildfirePower:diff()} [gold]d'Armure[/gold].",
     "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Épuisez[/gold] {Cards:diff()} cartes.\nAjoutez une carte aléatoire {IfUpgraded:show:[gold]Améliorée[/gold] |}du type opposé dans votre [gold]Main[/gold] pour chaque Attaque ou Compétence [gold]Épuisée[/gold].",
     "HEXAGHOST-WORTHY_SACRIFICE.title": "Sacrifice Méritoire",
     "HEXAGHOST-TEMPORAL_LEAP.title": "Saut Temporel",

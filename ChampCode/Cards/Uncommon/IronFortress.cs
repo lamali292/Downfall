@@ -15,7 +15,7 @@ public class IronFortress : ChampCardModel
     public IronFortress() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<DexterityPower>(2);
-        WithPower<MetallicizePower>(3);
+        WithPower<PlatingPower>(4);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithTip(StaticHoverTip.Block);
     }
@@ -25,6 +25,6 @@ public class IronFortress : ChampCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.ApplySelf<DexterityPower>(ctx, this);
-        await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
+        await CommonActions.ApplySelf<PlatingPower>(ctx, this);
     }
 }

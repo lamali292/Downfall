@@ -184,8 +184,6 @@
     "HEXAGHOST-VOLCANO_VISAGE.title": "Vulkanvisage",
     "HEXAGHOST-WHISPER_FROM_BEYOND.description": "Füge {Damage:diff()} Schaden zu.\nImmer wenn in diesem Zug eine Karte [gold]Erschöpft[/gold] wird, wende {WhisperFromBeyondPower:diff()} [gold]Seelenfeuer[/gold] auf den Gegner an.",
     "HEXAGHOST-WHISPER_FROM_BEYOND.title": "Jenseitsgeflüster",
-    "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Geisterfeuer",
-    "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Immer wenn du einen neuen Debuff auf einen Gegner anwendest, erhalte {WildfirePower:diff()} [gold]Block[/gold].",
     "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Erschöpfe[/gold] {Cards:diff()} Karten.\nErhalte für jeden Angriff oder jede Fertigkeit, die [gold]Erschöpft[/gold] wurde, eine zufällige {IfUpgraded:show:[gold]Verbesserte[/gold] |}Karte des gegenteiligen Typs auf deine [gold]Hand[/gold].",
     "HEXAGHOST-WORTHY_SACRIFICE.title": "Würdiges Opfer",
     "HEXAGHOST-TEMPORAL_LEAP.title": "Sprung in der Zeit",
@@ -203,5 +201,7 @@
     "HEXAGHOST-HEATING.title": "Erhitzen",
     "HEXAGHOST-HEATING.description": "Immer wenn du [gold]Seelenfeuer[/gold] auf einen Gegner anwendest, erhält der Verbündete mit dem wenigsten [gold]Block[/gold] {HeatingPower:diff()} zusätzlichen [gold]Block[/gold].",
     "HEXAGHOST-LEVITATE.title": "Levitieren",
-    "HEXAGHOST-LEVITATE.description": "[afterlife]Gib einem Mitspieler[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]"
+    "HEXAGHOST-LEVITATE.description": "[afterlife]Gib einem Mitspieler[/afterlife] {Block:diff()} [afterlife]Block.[/afterlife]",
+    "HEXAGHOST-SOULFIRE.title": "Seelenfeuer",
+    "HEXAGHOST-SOULFIRE.description": "Immer wenn du mit einer Karte [gold]Seelenfeuer[/gold] anwendest, erhalte {SoulfirePower:diff()} [gold]Block[/gold]."
 }

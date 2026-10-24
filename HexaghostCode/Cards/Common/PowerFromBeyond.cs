@@ -14,7 +14,7 @@ public class PowerFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
     public PowerFromBeyond() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithAfterlife();
-        WithBlock(3, 2);
+        WithBlock(3, 3);
         WithEnergy(2);
         WithPower<EnergyNextTurnPower>(2, false);
     }
