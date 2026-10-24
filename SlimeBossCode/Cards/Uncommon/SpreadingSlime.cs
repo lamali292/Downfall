@@ -1,19 +1,20 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.Powers;
 using SlimeBoss.SlimeBossCode.Slimes;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
 [Pool(typeof(SlimeBossCardPool))]
 public class SpreadingSlime : SlimeBossCardModel
 {
-    public SpreadingSlime() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public SpreadingSlime() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithCostUpgradeBy(-1);
         WithPower<SpreadingSlimePower>(1, false);
         WithTip<PotencyPower>();
         WithSlimeTip<BruiserSlime>();
