@@ -41,9 +41,6 @@
   "HEXAGHOST-VOLCANO_VISAGE_POWER.title": "Volcano Visage",
   "HEXAGHOST-VOLCANO_VISAGE_POWER.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply [gold]Soulburn[/gold] to ALL enemies.",
   "HEXAGHOST-VOLCANO_VISAGE_POWER.smartDescription": "Whenever you [gold]Ignite[/gold] a Ghostflame, apply [blue]{Amount}[/blue] [gold]Soulburn[/gold] to ALL enemies.",
-  "HEXAGHOST-WILDFIRE_POWER.title": "Soulfire",
-  "HEXAGHOST-WILDFIRE_POWER.description": "Whenever you apply a new debuff to an enemy, gain [gold]Block[/gold].",
-  "HEXAGHOST-WILDFIRE_POWER.smartDescription": "Whenever you apply a new debuff to an enemy, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
   "HEXAGHOST-HERE_AND_NOW_POWER.title": "Here and Now",
   "HEXAGHOST-HERE_AND_NOW_POWER.description": "At the end of your turn, [gold]Extinguish[/gold] the current Ghostflame.",
   "HEXAGHOST-MORE_ENERGY_POWER.title": "More Energy",
@@ -74,5 +71,8 @@
   "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat. ",
   "HEXAGHOST-PREMONITION_POWER.title": "Premonition",
   "HEXAGHOST-PREMONITION_POWER.description": "If you [gold]Exhaust[/gold] enough cards in a turn, draw additional cards at the start of your next turn.",
-  "HEXAGHOST-PREMONITION_POWER.smartDescription": "If you [gold]Exhaust[/gold] [blue]{Exhaust}[/blue] or more cards in a turn, draw [blue]{Amount}[/blue] additional {Amount:plural:card|cards} at the start of your next turn."
+  "HEXAGHOST-PREMONITION_POWER.smartDescription": "If you [gold]Exhaust[/gold] [blue]{Exhaust}[/blue] or more cards in a turn, draw [blue]{Amount}[/blue] additional {Amount:plural:card|cards} at the start of your next turn.",
+  "HEXAGHOST-SOULFIRE_POWER.title": "Soulfire",
+  "HEXAGHOST-SOULFIRE_POWER.description": "Whenever you apply [gold]Soulburn[/gold] with a card, gain [gold]Block[/gold].",
+  "HEXAGHOST-SOULFIRE_POWER.smartDescription": "Whenever you apply [gold]Soulburn[/gold] with a card, gain [blue]{Amount}[/blue] [gold]Block[/gold]."
 }

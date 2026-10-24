@@ -4,6 +4,7 @@ using Champ.ChampCode.DynamicVars;
 using Champ.ChampCode.Powers;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -24,10 +25,6 @@ public class ChampUltimateStance : ChampStanceModel
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<CounterPower>(),
-        HoverTipFactory.FromPower<VigorPower>(),
-        HoverTipFactory.FromPower<StrengthPower>(),
-        HoverTipFactory.Static(StaticHoverTip.Block),
         HoverTipFactory.Static(ChampTip.Finisher)
     ];
 
@@ -36,8 +33,20 @@ public class ChampUltimateStance : ChampStanceModel
         new BerserkerSkillVar(2),
         new DefensiveSkillVar(2),
         new BerserkerFinisherVar(1),
-        new DefensiveFinisherVar(6)
+        new DefensiveFinisherVar(6),
+        new EnergyVar(1),
+        new CardsVar(1)
     ];
+    
+    public override decimal ModifyMaxEnergy(Player player, decimal amount)
+    {
+        return player == Owner ? amount + DynamicVars.Energy.BaseValue : amount;
+    }
+
+    public override decimal ModifyHandDraw(Player player, decimal count)
+    {
+        return player == Owner ? count + DynamicVars.Cards.BaseValue : count;
+    }
 
     public override async Task SkillBonus(PlayerChoiceContext ctx)
     {

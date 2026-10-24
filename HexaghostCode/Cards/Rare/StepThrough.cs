@@ -13,7 +13,7 @@ public class StepThrough : HexaghostCardModel
 {
     public StepThrough() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(8, 3);
+        WithDamage(8, 4);
         WithTip(HexaghostTip.Ignite);
     }
 

@@ -24,8 +24,6 @@ public class ChampDefensiveStance : ChampStanceModel
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<CounterPower>(),
-        HoverTipFactory.Static(StaticHoverTip.Block),
         HoverTipFactory.Static(ChampTip.Finisher)
     ];
 

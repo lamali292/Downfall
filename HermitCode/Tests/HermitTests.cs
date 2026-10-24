@@ -37,19 +37,19 @@ public class HermitTests
     public async Task DeadOnCardPlayedFromCenterTriggers(TestContext ctx)
     {
         await ctx.ClearHand();
-        var dive = await ctx.AddCardToHand<Dive>();
-        Assert.IsTrue(HermitCmd.IsDeadOn(dive), "Dive alone in hand should be Dead On.");
-        await ctx.PlayCard(dive);
-        AutoSlayLog.Info($"[HermitTests] (plain) deadOnEntries(dive)={DeadOnEntries(dive)} plated={ctx.Player.Creature.GetPowerAmount<PlatedArmorPower>()}");
-        Assert.AreEqual(1, DeadOnEntries(dive), "Dive's Dead On should have triggered.");
-        Assert.AreEqual(1, ctx.Player.Creature.GetPowerAmount<PlatedArmorPower>(), "Plated Armor expected.");
+        var vantage = await ctx.AddCardToHand<Vantage>();
+        Assert.IsTrue(HermitCmd.IsDeadOn(vantage), "Vantage alone in hand should be Dead On.");
+        await ctx.PlayCard(vantage);
+        AutoSlayLog.Info($"[HermitTests] (plain) deadOnEntries(vantage)={DeadOnEntries(vantage)} hand={ctx.Player.Hand.Count}");
+        Assert.AreEqual(1, DeadOnEntries(vantage), "Vantage's Dead On should have triggered.");
+        Assert.AreEqual(1, ctx.Player.Hand.Count, "Vantage's Dead On should have drawn a card.");
     }
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
     public async Task CheatDeadOnTriggersSelectedCardsDeadOn(TestContext ctx)
     {
         await ctx.ClearHand();
-        var dive = await ctx.AddCardToTopOfDraw<Dive>();
+        var vantage = await ctx.AddCardToTopOfDraw<Vantage>();
         var cheat = await ctx.AddCardToHand<Cheat>();
 
         AutoSlayLog.Info($"[HermitTests] Cheat in hand dead on: {HermitCmd.IsDeadOn(cheat)}");
@@ -57,14 +57,14 @@ public class HermitTests
 
         await ctx.PlayCard(cheat);
 
-        AutoSlayLog.Info($"[HermitTests] dive pile={dive.Pile?.Type} cheatPowerLeft={ctx.Player.Creature.HasPower<CheatPower>()} " +
-                         $"deadOnEntries(dive)={DeadOnEntries(dive)} deadOnEntries(cheat)={DeadOnEntries(cheat)} " +
-                         $"plated={ctx.Player.Creature.GetPowerAmount<PlatedArmorPower>()}");
+        AutoSlayLog.Info($"[HermitTests] vantage pile={vantage.Pile?.Type} cheatPowerLeft={ctx.Player.Creature.HasPower<CheatPower>()} " +
+                         $"deadOnEntries(vantage)={DeadOnEntries(vantage)} deadOnEntries(cheat)={DeadOnEntries(cheat)} " +
+                         $"hand={ctx.Player.Hand.Count}");
 
-        Assert.IsTrue(dive.Pile?.Type == PileType.Discard, "Dive should have been auto-played by Cheat.");
-        Assert.AreEqual(1, DeadOnEntries(dive), "Dive's Dead On should have triggered exactly once.");
-        Assert.AreEqual(1, ctx.Player.Creature.GetPowerAmount<PlatedArmorPower>(),
-            "Dive's Dead On effect (Plated Armor) should have applied.");
+        Assert.IsTrue(vantage.Pile?.Type == PileType.Discard, "Vantage should have been auto-played by Cheat.");
+        Assert.AreEqual(1, DeadOnEntries(vantage), "Vantage's Dead On should have triggered exactly once.");
+        Assert.AreEqual(1, ctx.Player.Hand.Count,
+            "Vantage's Dead On effect (draw) should have applied.");
         Assert.IsTrue(!ctx.Player.Creature.HasPower<CheatPower>(), "Cheat power should be consumed.");
     }
 
@@ -72,8 +72,8 @@ public class HermitTests
     public async Task CheatNotDeadOnDoesNotTriggerSelectedCardsDeadOn(TestContext ctx)
     {
         await ctx.ClearHand();
-        var dive = await ctx.AddCardToTopOfDraw<Dive>();
-        // 3 cards, Cheat last â†’ index 2, center is index 1 â†’ not Dead On.
+        var vantage = await ctx.AddCardToTopOfDraw<Vantage>();
+        // 3 cards, Cheat last -> index 2, center is index 1 -> not Dead On.
         await ctx.AddCardToHand<Dive>();
         await ctx.AddCardToHand<Dive>();
         var cheat = await ctx.AddCardToHand<Cheat>();
@@ -81,12 +81,12 @@ public class HermitTests
 
         await ctx.PlayCard(cheat);
 
-        AutoSlayLog.Info($"[HermitTests] (not dead on) dive pile={dive.Pile?.Type} deadOnEntries(dive)={DeadOnEntries(dive)} " +
-                         $"plated={ctx.Player.Creature.GetPowerAmount<PlatedArmorPower>()}");
+        AutoSlayLog.Info($"[HermitTests] (not dead on) vantage pile={vantage.Pile?.Type} deadOnEntries(vantage)={DeadOnEntries(vantage)} " +
+                         $"hand={ctx.Player.Hand.Count}");
 
-        Assert.IsTrue(dive.Pile?.Type == PileType.Discard, "Dive should have been auto-played by Cheat.");
-        Assert.AreEqual(0, DeadOnEntries(dive), "Dive's Dead On should not trigger when Cheat wasn't Dead On.");
-        Assert.AreEqual(0, ctx.Player.Creature.GetPowerAmount<PlatedArmorPower>(), "No Plated Armor expected.");
+        Assert.IsTrue(vantage.Pile?.Type == PileType.Discard, "Vantage should have been auto-played by Cheat.");
+        Assert.AreEqual(0, DeadOnEntries(vantage), "Vantage's Dead On should not trigger when Cheat wasn't Dead On.");
+        Assert.AreEqual(2, ctx.Player.Hand.Count, "No card draw expected; only the two filler cards remain.");
     }
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
@@ -99,7 +99,7 @@ public class HermitTests
             "Tracking Shot should grant Concentration on play.");
 
         await ctx.ClearHand();
-        // 3 cards, target Dive last â†’ index 2, center is index 1 â†’ off-center by hand position.
+        // 3 cards, target Dive last -> index 2, center is index 1 -> off-center by hand position.
         await ctx.AddCardToHand<Dive>();
         await ctx.AddCardToHand<Dive>();
         var dive = await ctx.AddCardToHand<Dive>();

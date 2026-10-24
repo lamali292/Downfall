@@ -24,4 +24,37 @@ public class DownfallConfig : SimpleModConfig
     public static bool HideHexaghost { get; set; } = false;
     public static bool HideSlimeboss { get; set; } = false;
     public static bool HideSnecko { get; set; } = false;
+
+    public static bool IsDisabled(string character)
+    {
+        return character switch
+        {
+            "Automaton" => HideAutomaton,
+            "Awakened" => HideAwakened,
+            "Champ" => HideChamp,
+            "Collector" => HideCollector,
+            "Guardian" => HideGuardian,
+            "Hermit" => HideHermit,
+            "Hexaghost" => HideHexaghost,
+            "SlimeBoss" => HideSlimeboss,
+            "Snecko" => HideSnecko,
+            _ => false
+        };
+    }
+
+    public static void SetDisabled(string character, bool value)
+    {
+        switch (character)
+        {
+            case "Automaton": HideAutomaton = value; break;
+            case "Awakened": HideAwakened = value; break;
+            case "Champ": HideChamp = value; break;
+            case "Collector": HideCollector = value; break;
+            case "Guardian": HideGuardian = value; break;
+            case "Hermit": HideHermit = value; break;
+            case "Hexaghost": HideHexaghost = value; break;
+            case "SlimeBoss": HideSlimeboss = value; break;
+            case "Snecko": HideSnecko = value; break;
+        }
+    }
 }

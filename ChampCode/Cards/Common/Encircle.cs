@@ -11,9 +11,9 @@ public class Encircle : ChampCardModel
 {
     public Encircle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithDamage(6, 3);
-        WithPower<EnergyNextTurnPower>(1, false);
-        WithEnergy(1);
+        WithDamage(6, 1);
+        WithPower<EnergyNextTurnPower>(1, 1, false);
+        WithEnergy(1, 1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

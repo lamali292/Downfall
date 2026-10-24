@@ -184,8 +184,6 @@
     "HEXAGHOST-VOLCANO_VISAGE.title": "Вулканический лик",
     "HEXAGHOST-WHISPER_FROM_BEYOND.description": "Наносит {Damage:diff()} урона.\nНакладывает {WhisperFromBeyondPower:diff()} [gold]Ожога души[/gold] на врага, когда [gold]сжигается[/gold] карта в этом ходу.",
     "HEXAGHOST-WHISPER_FROM_BEYOND.title": "Шепот извне",
-    "HEXAGHOST-WILDFIRE_HEXAGHOST.title": "Духовное пламя",
-    "HEXAGHOST-WILDFIRE_HEXAGHOST.description": "Дает {WildfirePower:diff()} [gold]защиты[/gold], когда вы накладываете новый отрицательный эффект на врага.",
     "HEXAGHOST-WORTHY_SACRIFICE.description": "[gold]Сжигает[/gold] {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.\nЗа каждую [gold]сожженую[/gold] карту Атаки или Навыка, добавляет в [gold]руку[/gold] случайную{IfUpgraded:show: [gold]улучшенную[/gold]|} карту противоположного типа.",
     "HEXAGHOST-WORTHY_SACRIFICE.title": "Достойная жертва",
     "HEXAGHOST-TEMPORAL_LEAP.title": "Темпоральный рывок",

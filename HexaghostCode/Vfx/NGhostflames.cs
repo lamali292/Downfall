@@ -451,10 +451,12 @@ public partial class NGhostflames : Control
         }
 
         _intentTween?.Kill();
-        _intentTween = CreateTween().SetParallel();
+        _intentTween = null;
         for (var i = 0; i < _intents.Length; i++)
         {
             if (_intents[i] == null) continue;
+            // Created lazily: a Tween with no tweeners errors when it starts (e.g. wheels with no intents).
+            _intentTween ??= CreateTween().SetParallel();
             // Intents are private in multiplayer: only the owner sees them (the flames stay public).
             _intents[i]!.Visible = true;
             _intentTween.TweenProperty(_intents[i], "modulate:a",

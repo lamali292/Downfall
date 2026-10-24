@@ -11,9 +11,9 @@ namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 [Pool(typeof(HexaghostCardPool))]
 public class ChargedBarrage : HexaghostCardModel
 {
-    public ChargedBarrage() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public ChargedBarrage() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<SoulBurnPower>(6, 2);
+        WithPower<SoulBurnPower>(12, 4);
         WithTip(HexaghostTip.Ignite);
     }
 

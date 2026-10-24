@@ -10,6 +10,8 @@ using Automaton.AutomatonCode.Vfx;
 using BaseLib.Patches.Content;
 using Downfall.DownfallCode.Commands;
 using Godot;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,6 +23,13 @@ namespace Automaton.AutomatonCode.Core;
 
 public static class AutomatonCmd
 {
+    /// <summary>How many Functions have been generated for the player this combat (from the combat history).</summary>
+    public static int GetFunctionsCreated(Player player)
+    {
+        return CombatManager.Instance.History.Entries.OfType<CardGeneratedEntry>()
+            .Count(e => e.Card is FunctionCard && e.Creator == player);
+    }
+
     public static int GetMax(Player creature)
     {
         return creature.GetRelic<ElectromagneticCoil>() == null ? 3 : 4;

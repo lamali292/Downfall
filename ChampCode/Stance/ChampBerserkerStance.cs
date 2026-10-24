@@ -30,8 +30,6 @@ public class ChampBerserkerStance : ChampStanceModel
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<VigorPower>(),
-        HoverTipFactory.FromPower<StrengthPower>(),
         HoverTipFactory.Static(ChampTip.Finisher)
     ];
 

@@ -98,6 +98,8 @@ public static class DownfallMainFile
         FmodStudio.RegisterBank("res://Downfall/audio/Master.strings.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
         
+        Downfall.DownfallCode.Multiplayer.DisabledCharacterSync.CaptureStartupState();
+
         List<string> list = ["Automaton", "Awakened", "Champ", "SlimeBoss", "Hermit", "Guardian", "Snecko", "Hexaghost"];
 
         foreach (var se in list)
@@ -106,19 +108,7 @@ public static class DownfallMainFile
         }
     }
 
-    private static bool IsSubmodHidden(string name) => name switch
-    {
-        "Automaton" => DownfallConfig.HideAutomaton,
-        "Awakened" => DownfallConfig.HideAwakened,
-        "Champ" => DownfallConfig.HideChamp,
-        "Collector" => DownfallConfig.HideCollector,
-        "SlimeBoss" => DownfallConfig.HideSlimeboss,
-        "Hermit" => DownfallConfig.HideHermit,
-        "Guardian" => DownfallConfig.HideGuardian,
-        "Snecko" => DownfallConfig.HideSnecko,
-        "Hexaghost" => DownfallConfig.HideHexaghost,
-        _ => false
-    };
+    private static bool IsSubmodHidden(string name) => DownfallConfig.IsDisabled(name);
 
     private static void InitializeSubmod(string name)
     {

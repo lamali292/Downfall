@@ -101,7 +101,7 @@
     "SNECKO-RISKY_SWORD.title": "リスキーソード",
     "SNECKO-ROUNDABOUT_SWING.description": "{Damage:diff()}ダメージを与える。\n[gold]手札[/gold]のカードを1枚[gold]山札[/gold]の一番上に置く。\n次のターン、カードを{DrawCardsNextTurnPower:diff()}枚引く。",
     "SNECKO-ROUNDABOUT_SWING.title": "回転スイング",
-    "SNECKO-SAVE_FOR_LATER.description": "{Damage:diff()}ダメージを与える。\nターン終了時、カードを{SaveForLaterPower:diff()}枚[gold]保留[/gold]する。",
+    "SNECKO-SAVE_FOR_LATER.description": "{Damage:diff()}ダメージを与える。\nこのターン終了時、カードを{SaveForLaterPower:diff()}枚{SaveForLaterPower:cond:>1?まで|}[gold]保留[/gold]してもよい。",
     "SNECKO-SAVE_FOR_LATER.title": "また後で",
     "SNECKO-SERPENTINE_SLEUTH.description": "パワーをプレイするたび、{Energy:energyIcons()}を得る。{InCombat:cond:|\n[gold]ギフト[/gold]：レアのパワー。}",
     "SNECKO-SERPENTINE_SLEUTH.title": "蛇探偵",

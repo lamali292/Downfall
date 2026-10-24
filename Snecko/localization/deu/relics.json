@@ -27,7 +27,7 @@
     "SNECKO-SNECKO_SOUL.description": "Erhalte zu Beginn jedes Kampfes einen [gold]Seelenwürfel[/gold] auf deine [gold]Hand[/gold].",
     "SNECKO-SNECKO_SOUL.flavor": "0...3...2...2...1",
     "SNECKO-SUPER_SNECKO_SOUL.title": "Super-Sneckoseele",
-    "SNECKO-SUPER_SNECKO_SOUL.description": "Erhalte zu Beginn jedes Kampfes einen [gold]Seelenwürfel[/gold] auf deine [gold]Hand[/gold].\nZiehe zu Beginn deines Zuges eine Karte und [gold]irre[/gold] sie.",
+    "SNECKO-SUPER_SNECKO_SOUL.description": "Erhalte zu Beginn jedes Kampfes [blue]{Cards}[/blue] [gold]Seelenwürfel+[/gold] auf deine [gold]Hand[/gold].",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "Unidentifiziertes Ei",
     "SNECKO-UNIDENTIFIED_EGG.description": "Immer wenn du eine [gold]Fremde[/gold] Karte in dein [gold]Deck[/gold] nimmst, [gold]Verbessere[/gold] sie.",

@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.TestSupport;
@@ -20,6 +21,12 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
     internal static readonly PlayerField<GhostflameModel[]> Wheel = new(() => []);
     internal static readonly PlayerField<bool> Active = new(() => false);
     internal static readonly PlayerField<int> CurrentIndex = new(() => 0);
+
+    /// <summary>
+    /// Cards that already resolved their <see cref="IHasEarlyAfterlifeEffect"/> before the turn-end hooks,
+    /// so their Ethereal exhaust must not resolve it again.
+    /// </summary>
+    private static readonly HashSet<CardModel> ResolvedEarly = [];
 
 
     private static GhostflameModel[] StartingWheel(Player player)
@@ -47,6 +54,7 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
 
     public override Task BeforeCombatStart()
     {
+        ResolvedEarly.Clear();
         var state = CombatManager.Instance.DebugOnlyGetState();
         if (state == null) return Task.CompletedTask;
         foreach (var player in state.Players)
@@ -73,12 +81,39 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         IEnumerable<Creature> participants)
     {
         if (side != CombatSide.Player) return;
+        ResolvedEarly.Clear();
         foreach (var player in RunManager.Instance.DebugOnlyGetState()?.Players ?? [])
             if (HexaghostCmd.GetCurrentFlame(player).IsIgnited)
                 await HexaghostCmd.Advance(ctx, player, null, true);
     }
 
+    // Runs before every other BeforeSideTurnEnd* hook, so effects like Plating's end-of-turn payout see the result.
+    public override async Task BeforeSideTurnEndVeryEarly(PlayerChoiceContext ctx, CombatSide side,
+        IEnumerable<Creature> participants)
+    {
+        if (side != CombatSide.Player) return;
+        foreach (var player in participants.Select(c => c.Player).OfType<Player>())
+        {
+            var cards = player.Hand
+                .Where(c => c is IHasEarlyAfterlifeEffect && c.Keywords.Contains(CardKeyword.Ethereal)
+                            && Hook.ShouldEtherealTrigger(player.Creature.CombatState!, c))
+                .ToList();
+            foreach (var card in cards)
+            {
+                ResolvedEarly.Add(card);
+                await ResolveAfterlife(ctx, card, true);
+            }
+        }
+    }
+
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+    {
+        if (card is not IHasAfterlifeEffect) return;
+        if (ResolvedEarly.Remove(card)) return;
+        await ResolveAfterlife(ctx, card, causedByEthereal);
+    }
+
+    private static async Task ResolveAfterlife(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
         if (card is not IHasAfterlifeEffect afterlifeEffect) return;
         if (TestMode.IsOff) SfxCmd.Play("event:/sfx/characters/hexaghost-hexaghost/afterlife");

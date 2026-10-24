@@ -1,0 +1,8 @@
+{
+    "AWAKENED-CULTISTS_DELIGHT.title": "Услада культиста",
+    "AWAKENED-CULTISTS_DELIGHT.description": "Дает [blue]{CuriosityPower:diff()}[/blue] [gold]Любознательности[/gold].",
+    "AWAKENED-UNHOLY_WATER.title": "Нечестивая водица",
+    "AWAKENED-UNHOLY_WATER.description": "Накладывает [blue]{ManaburnPower:diff()}[/blue] [gold]Ожога маны[/gold].",
+    "AWAKENED-SACRAMENTAL_WINE.title": "Священное вино",
+    "AWAKENED-SACRAMENTAL_WINE.description": "Дает [blue]{SacramentalWinePower:diff()}[/blue] [gold]защиты[/gold], когда вы разыгрываете Талант."
+}

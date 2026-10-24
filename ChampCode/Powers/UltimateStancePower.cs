@@ -12,8 +12,13 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Champ.ChampCode.Powers;
 
-public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackType.Single), IOnChampStanceChange
+public class UltimateStancePower : ChampPowerModel, IOnChampStanceChange
 {
+    public UltimateStancePower() : base(PowerType.Buff, PowerStackType.Single)
+    {
+        WithTips(_ => [ChampModelDb.ChampStance<ChampUltimateStance>().HoverTip]);
+    }
+
     public Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,
         ChampStanceModel newStance)
     {
@@ -33,7 +38,8 @@ public class UltimateStancePower() : ChampPowerModel(PowerType.Buff, PowerStackT
     {
         await ChampModel.SetStance<ChampUltimateStance>(ctx, player);
     }
-
+    
+ 
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side,
         IEnumerable<Creature> participants)

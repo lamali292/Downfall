@@ -19,6 +19,6 @@ public sealed class HorrorPower() : HermitPowerModel(PowerType.Debuff), IShouldP
         IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
-        await PowerCmd.Apply<HorrorPower>(ctx, Owner, -1, Owner, null);
+        await PowerCmd.Decrement(this);
     }
 }

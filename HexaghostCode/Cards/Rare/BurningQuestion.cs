@@ -18,7 +18,7 @@ public class BurningQuestion : HexaghostCardModel
     public BurningQuestion() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<IntensityPower>(2, 1);
-        WithPower<MetallicizePower>(4, 2);
+        WithPower<PlatingPower>(5, 3);
         WithPower<RoyaltiesPower>(35, 10, false);
     }
 
@@ -73,7 +73,7 @@ public class BurningQuestionChoice2 : BurningQuestionChoiceBase
 {
     public BurningQuestionChoice2()
     {
-        WithPower<MetallicizePower>(4, 2);
+        WithPower<PlatingPower>(5, 3);
     }
 
     public static BurningQuestionChoice2 Create(Player owner)
@@ -84,7 +84,7 @@ public class BurningQuestionChoice2 : BurningQuestionChoiceBase
 
     public override Task OnSelect(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return CommonActions.ApplySelf<MetallicizePower>(ctx, this);
+        return CommonActions.ApplySelf<PlatingPower>(ctx, this);
     }
 }
 

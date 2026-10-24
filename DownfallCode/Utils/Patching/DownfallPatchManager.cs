@@ -11,6 +11,7 @@ public class DownfallPatchManager
     {
         var patcher = ModPatcher.Create(DownfallMainFile.ModId, DownfallMainFile.Logger)
             .Add(typeof(ModelDbInitPatch))
+            .Add(typeof(ModelIdCacheCompletionPatch))
             .Add(typeof(CombatUiActivatePatch))
             .Add(typeof(ModifyDamageInternalPatch))
             .Add(typeof(CustomAfflictionModel.AfflictionModelOverlayPathPatch))
@@ -77,6 +78,13 @@ public class DownfallPatchManager
 
         foreach (var patch in CardPlayLocationCompat.PatchTypes)
             patcher.Add(patch);
+
+        // Handshake mod-list mismatch handling only exists on beta; main has no PeerVersionInfo/HandshakeFailed to hook.
+        if (GameVersion.HasHandshakeModList)
+            patcher.Add(typeof(AdvertiseDisabledCharactersPatch))
+                .Add(typeof(CaptureFailedJoinLobbyPatch))
+                .Add(typeof(CharacterMismatchPopupPatch))
+                .Add(typeof(CharacterMismatchPopupButtonsPatch));
 
         patcher.Add(typeof(IsEditorPatches));
 
