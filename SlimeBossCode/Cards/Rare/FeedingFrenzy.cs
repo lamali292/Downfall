@@ -1,19 +1,22 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Commands.Builders;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
+using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class LeechLife : SlimeBossCardModel
+public class FeedingFrenzy : SlimeBossCardModel
 {
-    public LeechLife() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    public FeedingFrenzy() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(6, 2);
         WithHeal(6, 2);
@@ -22,6 +25,8 @@ public class LeechLife : SlimeBossCardModel
     }
 
     public override bool CanBeGeneratedInCombat => false;
+
+    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
