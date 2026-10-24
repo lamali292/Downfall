@@ -89,7 +89,7 @@
   "SLIMEBOSS-SCHLURP.title": "Schlurp",
   "SLIMEBOSS-SHAKEDOWN.description": "Gain {ShakedownPotencyPower:diff()} [gold]Potency[/gold] this turn.\n[gold]Command[/gold] [gold]Bruiser Slime[/gold]{Command:plural:| {Command:diff()} times}.",
   "SLIMEBOSS-SHAKEDOWN.title": "Shakedown",
-  "SLIMEBOSS-SHAPE_OF_PUDDLE.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold].\nLose {MaxHp:diff()} Max HP.",
+  "SLIMEBOSS-SHAPE_OF_PUDDLE.description": "Gain {IntangiblePower:diff()} [gold]Intangible[/gold].\nYou cannot gain [gold]Block[/gold] from cards for {NoBlockPower:diff()} turns.",
   "SLIMEBOSS-SHAPE_OF_PUDDLE.title": "Shape of Puddle",
   "SLIMEBOSS-SLIME_BRAWL.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\n[gold]Command[/gold] ALL Slimes to attack the targeted enemy.",
   "SLIMEBOSS-SLIME_BRAWL.title": "Slime Brawl",
