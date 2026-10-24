@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -11,7 +11,8 @@ public class SlimeBrawl : SlimeBossCardModel
 {
     public SlimeBrawl() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithPower<WeakPower>(2, 1);
+        WithCostUpgradeBy(-1);
+        WithPower<WeakPower>(2);
         WithKeyword(CardKeyword.Exhaust);
     }
 
