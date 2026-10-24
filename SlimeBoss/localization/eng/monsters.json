@@ -14,7 +14,7 @@
   "SLIMEBOSS-ROYAL_SLIME.name": "Royal Slime",
   "SLIMEBOSS-ROYAL_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage to a random enemy once for each Slime you've split into.",
   "SLIMEBOSS-MUSCLE_SLIME.name": "Muscle Slime",
-  "SLIMEBOSS-MUSCLE_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage.\nWhenever you play a card containing \"Tackle\", [gold]Command[/gold] this Slime.",
+  "SLIMEBOSS-MUSCLE_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage to a random enemy.\nWhenever you play a {energyPrefix:energyIcons(2)} Attack, [gold]Command[/gold] this Slime.",
   "SLIMEBOSS-EVOLUTION_SLIME.name": "Evolution Slime",
   "SLIMEBOSS-EVOLUTION_SLIME.description": "Evolves each time it attacks, up to 3 times.\nLvl 1: Deals [blue]{Damage:diff()}[/blue] damage.\nLvl 2: Attacks ALL enemies.\nLvl 3: Gains [gold]Block[/gold] equal to half the damage dealt.\nLvl 4: Gains [blue]2[/blue] [gold]Potency[/gold].",
   "SLIMEBOSS-DARKLING_SLIME.description": "Deals [blue]{Damage:diff()}[/blue] damage.\nAlso attacks whenever another Slime is Commanded.",
