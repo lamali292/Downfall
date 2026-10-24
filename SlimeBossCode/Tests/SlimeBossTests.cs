@@ -109,14 +109,14 @@ public class SlimeBossTests
         Assert.AreEqual(2, amount, $"Overexert should draw and play LevelUp twice, got Potency={amount}.");
     }
 
-    // Opening Tackle permanently lowers its own damage by 4 each play for the rest of the combat.
+    // Glop Chop permanently lowers its own damage by 4 each play for the rest of the combat.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task OpeningTackleLosesDamageAfterEachPlay(TestContext ctx)
+    public async Task GlopChopLosesDamageAfterEachPlay(TestContext ctx)
     {
-        var card = await ctx.AddCardToHand<OpeningTackle>();
-        Assert.AreEqual(16, (int)card.DynamicVars.Damage.BaseValue, "Opening Tackle should start at 16 damage.");
+        var card = await ctx.AddCardToHand<GlopChop>();
+        Assert.AreEqual(16, (int)card.DynamicVars.Damage.BaseValue, "Glop Chop should start at 16 damage.");
         await ctx.PlayCard(card, ctx.Combat.HittableEnemies.First());
-        Assert.AreEqual(12, (int)card.DynamicVars.Damage.BaseValue, "Opening Tackle should drop to 12 damage after one play.");
+        Assert.AreEqual(12, (int)card.DynamicVars.Damage.BaseValue, "Glop Chop should drop to 12 damage after one play.");
     }
 
     // Heavy Tackle costs 1 less per Status played this turn, including Statuses played before it was drawn.
