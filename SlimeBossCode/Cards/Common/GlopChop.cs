@@ -1,4 +1,4 @@
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,14 +9,13 @@ using SlimeBoss.SlimeBossCode.CustomEnums;
 namespace SlimeBoss.SlimeBossCode.Cards.Common;
 
 [Pool(typeof(SlimeBossCardPool))]
-public class OpeningTackle : SlimeBossCardModel
+public class GlopChop : SlimeBossCardModel
 {
     private const string DecreaseKey = "Decrease";
 
-    public OpeningTackle() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public GlopChop() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(CardKeyword.Ethereal);
-        WithTags(SlimeBossTag.Tackle);
         WithDamage(16);
         WithVar(new DynamicVar(DecreaseKey, 4).WithUpgrade(-2));
     }
