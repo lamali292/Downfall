@@ -172,7 +172,7 @@
   "SLIMEBOSS-LAW_OF_THE_JUNGLE.title": "Law of the Jungle",
   "SLIMEBOSS-LAW_OF_THE_JUNGLE.description": "Steal {PotencyPower:diff()} [gold]Potency[/gold] from ALL [gold]Split[/gold] Slimes and convert it into [gold]Strength[/gold].",
   "SLIMEBOSS-BUTCHER_TACKLE.title": "Butcher Tackle",
-  "SLIMEBOSS-BUTCHER_TACKLE.description": "Deal {Damage:diff()} damage.\n[gold]Consume[/gold] - Next turn, Attacks and Slimes deal double damage and double their other effects.",
+  "SLIMEBOSS-BUTCHER_TACKLE.description": "Deal {Damage:diff()} damage.\n[gold]Consume[/gold] - Next turn, Attacks deal double damage and Slimes double their effects.",
   "SLIMEBOSS-MITOSIS.title": "Mitosis",
   "SLIMEBOSS-MITOSIS.description": "Choose a card in your [gold]Hand[/gold].\nAdd {Copies:diff()} {Copies:plural:copy|copies} of it into your [gold]Hand[/gold].",
   "SLIMEBOSS-CRIPPLE.title": "Cripple",
