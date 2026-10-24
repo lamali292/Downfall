@@ -28,7 +28,7 @@ public class MuscleSlime : SlimeModel
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var card = cardPlay.Card;
-        if (card.Owner.Creature != PetOwner || !SlimeBossCmd.IsTwoEnergyAttack(card)) return;
+        if (card.Owner.Creature != PetOwner || !SlimeBossCmd.IsTwoEnergyAttack(card, cardPlay)) return;
         await SlimeBossCmd.Command<MuscleSlime>(ctx, card.Owner, 1, card);
     }
 }

@@ -19,7 +19,7 @@ public class PerfectedTackle : SlimeBossCardModel
 
     private static decimal CountTwoEnergyAttacks(CardModel card, Creature? _)
     {
-        return card.Owner.GetAllCombatCards.Count(SlimeBossCmd.IsTwoEnergyAttack);
+        return card.Owner.GetAllCombatCards.Count(c => SlimeBossCmd.IsTwoEnergyAttack(c));
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

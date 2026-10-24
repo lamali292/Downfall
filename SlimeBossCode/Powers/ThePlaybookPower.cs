@@ -14,7 +14,7 @@ public class ThePlaybookPower : SlimeBossPowerModel
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || !SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card)) return;
+        if (cardPlay.Card.Owner.Creature != Owner || !SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card, cardPlay)) return;
         await PlayerCmd.GainEnergy(EnergyGain, Owner.Player!);
         await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, Owner, null, cardPlay);
     }

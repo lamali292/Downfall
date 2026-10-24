@@ -11,7 +11,7 @@ public class RecklessnessPower : SlimeBossPowerModel
 {
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || !SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card)) return;
+        if (cardPlay.Card.Owner.Creature != Owner || !SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card, cardPlay)) return;
         await PowerCmd.Apply<StrengthPower>(ctx, Owner, Amount, Owner, cardPlay.Card);
     }
 }

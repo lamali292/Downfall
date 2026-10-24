@@ -380,6 +380,19 @@ public class SlimeBossTests
         Assert.AreEqual(2, slime.Creature.GetPowerAmount<PotencyPower>(), "Upgraded Split: Muscle gives the slime 2 Potency.");
     }
 
+    // "[E][E] Attack" means the Energy actually spent, like base-game Feral: a discounted 2-cost Attack doesn't count.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task DiscountedTwoCostAttackDoesNotCountAsTwoEnergyAttack(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<Recklessness>());
+        var heavy = await ctx.AddCardToHand<HeavyTackle>();
+        heavy.EnergyCost.SetThisTurn(0);
+        await ctx.PlayCard(heavy, enemy);
+        Assert.AreEqual(0, ctx.Player.Creature.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.StrengthPower>(),
+            "A free Heavy Tackle should not trigger Recklessness.");
+    }
+
     // Psychic Slime is Commanded whenever its owner plays a Power, and Commanding it applies Soulburn.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
     public async Task PsychicSlimeAppliesSoulburnWhenAPowerIsPlayed(TestContext ctx)
