@@ -192,7 +192,7 @@
   "SLIMEBOSS-SPREADING_SLIME_REMOVED.title": "",
   "SLIMEBOSS-SPREADING_SLIME_REMOVED.description": "",
   "SLIMEBOSS-THE_PLAYBOOK.title": "The Playbook",
-  "SLIMEBOSS-THE_PLAYBOOK.description": "Attacks cost 0 {energyPrefix:energyIcons(1)}.\nWhenever you play an Attack, take {ThePlaybookPower:diff()} damage.",
+  "SLIMEBOSS-THE_PLAYBOOK.description": "Whenever you play a {energyPrefix:energyIcons(2)} Attack, gain {energyPrefix:energyIcons(2)} and take {ThePlaybookPower:diff()} damage.",
   "SLIMEBOSS-SPLIT_DARKLING.title": "Split: Darkling",
   "SLIMEBOSS-SPLIT_DARKLING.description": "[gold]Split[/gold] into a [gold]Darkling Slime[/gold].{IfUpgraded:show:\n[gold]Darkling Slime[/gold] gains {PotencyPower:diff()} [gold]Potency[/gold].|}",
   "SLIMEBOSS-AVARICE.description": "[gold]Transform[/gold] any number of cards in your [gold]Hand[/gold] into [purple]Adroit {Adroit:diff()}[/purple] [gold]Slimed[/gold].",
