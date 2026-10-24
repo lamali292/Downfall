@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,21 +9,21 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
-public class Floatwork : HexaghostCardModel, IHasAfterlifeEffect
+public class Floatwork : HexaghostCardModel, IHasEarlyAfterlifeEffect
 {
     public Floatwork() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithAfterlife();
         WithPower<DexterityPower>(1, 1);
-        WithPower<MetallicizePower>(2);
+        WithPower<PlatingPower>(3);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
-        bool causedByEthereal)
+        bool causedByEthnereal)
     {
-        await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
+        await CommonActions.ApplySelf<PlatingPower>(ctx, this);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
