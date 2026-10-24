@@ -14,7 +14,7 @@ public class ShapeOfPuddle : SlimeBossCardModel
         WithCostUpgradeBy(-1);
         WithKeyword(CardKeyword.Exhaust);
         WithPower<IntangiblePower>(1);
-        WithPower<NoBlockPower>(2);
+        WithPower<NoBlockPower>(2, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
