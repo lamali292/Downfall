@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Combat;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,7 +17,7 @@ public class ConsultPlaybookPower : SlimeBossPowerModel
             .Count(e => e.Actor == Owner && e.CardPlay.Card.Type == CardType.Attack && e.HappenedThisTurn(CombatState));
 
         if (attackPlaysThisTurn > 1) return;
-        if (!cardPlay.Card.Tags.Contains(SlimeBossTag.Tackle)) return;
+        if (!SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card)) return;
         await PlayerCmd.GainEnergy(Amount, Owner.Player!);
         await CardPileCmd.Draw(ctx, Amount, Owner.Player!);
     }
