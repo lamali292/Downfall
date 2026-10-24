@@ -67,7 +67,7 @@
   "SLIMEBOSS-PRESS_THE_ATTACK.title": "Press the Attack",
   "SLIMEBOSS-PROTECT_THE_BOSS.description": "At the end of your turn, gain [gold]Block[/gold] equal to the number of [gold]Split[/gold] Slimes.",
   "SLIMEBOSS-PROTECT_THE_BOSS.title": "Protect the Boss",
-  "SLIMEBOSS-QUICK_SNACK.description": "[gold]Exhaust[/gold] a card.\nIf it was a [gold]Slimed[/gold], draw {Cards:diff()} cards.",
+  "SLIMEBOSS-QUICK_SNACK.description": "Gain {Block:diff()} [gold]Block[/gold].\nTransform a card in your [gold]Hand[/gold] into [gold]Slimed[/gold].",
   "SLIMEBOSS-QUICK_SNACK.title": "Quick Snack",
   "SLIMEBOSS-RALLY_THE_TROOPS.description": "Deal {Damage:diff()} damage.\nWhenever you play a card this turn, gain {RallyTheTroopsPower:diff()} [gold]Potency[/gold] this turn.",
   "SLIMEBOSS-RALLY_THE_TROOPS.title": "Rally the Troops",

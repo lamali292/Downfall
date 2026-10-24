@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Compatibility;
@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 using SlimeBoss.SlimeBossCode.Core;
+using SlimeBoss.SlimeBossCode.CustomEnums;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 
@@ -16,8 +17,8 @@ public class QuickSnack : SlimeBossCardModel
 {
     public QuickSnack() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCards(2, 1);
-        WithKeyword(CardKeyword.Exhaust);
+        WithKeyword(CardKeyword.Retain);
+        WithBlock(3, 3);
         WithTip<Slimed>();
     }
 
@@ -25,11 +26,10 @@ public class QuickSnack : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
+        await CommonActions.CardBlock(this, cardPlay);
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
         if (card == null) return;
-        var wasSlimed = card is Slimed;
-        await CardCmdCompatibility.Exhaust(ctx, card);
-        if (wasSlimed) await CommonActions.Draw(this, ctx);
+        await CardCmd.TransformTo<Slimed>(card);
     }
 }
