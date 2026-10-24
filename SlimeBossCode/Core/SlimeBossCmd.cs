@@ -26,10 +26,16 @@ public static class SlimeBossCmd
         return player.SlimeCreatures.Select(e => e.Monster).OfType<SlimeModel>();
     }
 
-    /// <summary>An Attack whose printed cost is 2 Energy ("[E][E] Attack"), independent of cost modifiers like The Playbook.</summary>
-    public static bool IsTwoEnergyAttack(CardModel card)
+    /// <summary>
+    /// An Attack that costs 2 Energy ("[E][E] Attack"), worded and measured like the base game's "0[E] Attack" (Feral):
+    /// with a <paramref name="cardPlay"/> it is the Energy actually spent on that play, otherwise the card's current cost.
+    /// X-cost cards never count.
+    /// </summary>
+    public static bool IsTwoEnergyAttack(CardModel card, CardPlay? cardPlay = null)
     {
-        return card.Type == CardType.Attack && card.EnergyCost is { CostsX: false, Canonical: 2 };
+        if (card.Type != CardType.Attack || card.EnergyCost.CostsX) return false;
+        var cost = cardPlay != null ? cardPlay.Resources.EnergyValue : card.EnergyCost.GetResolved();
+        return cost == 2;
     }
 
     /// <summary>Whether <paramref name="player"/> has played a Status card earlier this turn.</summary>

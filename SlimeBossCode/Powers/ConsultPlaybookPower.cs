@@ -16,7 +16,7 @@ public class ConsultPlaybookPower : SlimeBossPowerModel
             .Count(e => e.Actor == Owner && e.CardPlay.Card.Type == CardType.Attack && e.HappenedThisTurn(CombatState));
 
         if (attackPlaysThisTurn > 1) return;
-        if (!SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card)) return;
+        if (!SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card, cardPlay)) return;
         await PlayerCmd.GainEnergy(Amount, Owner.Player!);
         await CardPileCmd.Draw(ctx, Amount, Owner.Player!);
     }
