@@ -4,26 +4,19 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.Core;
+using MegaCrit.Sts2.Core.Commands;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-// "(Innate.) Attacks cost 0 [E]. Whenever you play an Attack, take 3 damage."
+// "Whenever you play a 2 Energy Attack, gain 2 Energy and take 3 damage."
 public class ThePlaybookPower : SlimeBossPowerModel
 {
-    public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
-    {
-        if (card.Owner.Creature != Owner || card.Type != CardType.Attack)
-        {
-            modifiedCost = originalCost;
-            return false;
-        }
-        modifiedCost = 0m;
-        return true;
-    }
+    private const int EnergyGain = 2;
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Type != CardType.Attack) return;
+        if (cardPlay.Card.Owner.Creature != Owner || !SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card)) return;
+        await PlayerCmd.GainEnergy(EnergyGain, Owner.Player!);
         await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, Owner, null, cardPlay);
     }
 }

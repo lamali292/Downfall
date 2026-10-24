@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -11,7 +11,7 @@ public class ThePlaybook : SlimeBossCardModel
 {
     public ThePlaybook() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithCostUpgradeBy(-1);
         WithPower<ThePlaybookPower>(3, false);
     }
 
