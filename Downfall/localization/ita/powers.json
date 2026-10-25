@@ -1,11 +1,7 @@
 {
-    "DOWNFALL-METALLICIZE_POWER.description": "Alla fine del tuo turno, ottieni [gold]Blocco[/gold].",
-    "DOWNFALL-METALLICIZE_POWER.smartDescription": "Alla fine del tuo turno, ottieni [blue]{Amount}[/blue] [gold]Blocco[/gold].",
-    "DOWNFALL-METALLICIZE_POWER.title": "Metallizzare",
-    "DOWNFALL-PLATED_ARMOR_POWER.title": "Armatura Placcata",
-    "DOWNFALL-PLATED_ARMOR_POWER.description": "Alla fine del tuo turno, ottieni [gold]Blocco[/gold]. Ricevere danno da attacco non bloccato riduce [gold]Armatura Placcata[/gold] di [blue]1[/blue].",
-    "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "Alla fine del tuo turno, ottieni [blue]{Amount}[/blue] [gold]Blocco[/gold]. Ricevere danno da attacco non bloccato riduce [gold]Armatura Placcata[/gold] di [blue]1[/blue].",
     "DOWNFALL-SOUL_BURN_POWER.title": "Ustione dell'Anima",
     "DOWNFALL-SOUL_BURN_POWER.description": "Tra [blue]3[/blue] turni, questo nemico perde PS all'inizio del suo turno, poi [gold]Ustione dell'Anima[/gold] viene rimosso.",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "Tra [blue]{Turns}[/blue] {Turns:plural:turno|turni}, questo nemico perde [blue]{Amount}[/blue] PS all'inizio del suo turno, poi [gold]Ustione dell'Anima[/gold] viene rimosso."
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "Tra [blue]{Turns}[/blue] {Turns:plural:turno|turni}, questo nemico perde [blue]{Amount}[/blue] PS all'inizio del suo turno, poi [gold]Ustione dell'Anima[/gold] viene rimosso.",
+    "DOWNFALL-METALLICIZE_POWER.title": "Metallizzare",
+    "DOWNFALL-METALLICIZE_POWER.description": "Alla fine del tuo turno, ottieni [gold]Blocco[/gold]."
 }
