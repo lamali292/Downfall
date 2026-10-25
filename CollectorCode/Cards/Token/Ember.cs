@@ -36,23 +36,18 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
         bool causedByEthereal)
     {
         if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            await CommonActions.ApplySelf<StrengthPower>(ctx, this);
-        }
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
     
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
+        // idk if this early return fixes the mp bug, hopefully it will
+        if (CombatState == null || !Owner.Creature.IsAlive) return;
 
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i){
-            var instance = NCombatRoom.Instance;
-            instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
-            SfxCmd.Play("event:/sfx/characters/attack_fire");
-            GiveSingleTurnRetain();
-            await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
-		}
+        var instance = NCombatRoom.Instance;
+        instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
+        SfxCmd.Play("event:/sfx/characters/attack_fire");
+        GiveSingleTurnRetain();
+        await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
     }
 }

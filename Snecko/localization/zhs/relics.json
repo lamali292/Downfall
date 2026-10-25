@@ -21,12 +21,12 @@
     "SNECKO-SLEEVED_ACE.description": "在每场战斗开始时，将一张[gold]记号牌+[/gold]加入你的[gold]手牌[/gold]。",
     "SNECKO-SLEEVED_ACE.flavor": "我也出A。",
     "SNECKO-SNAKE_CHARMERS_FLUTE.title": "蛇笛",
+    "SNECKO-SNAKE_CHARMERS_FLUTE.description": "[gold]混淆[/gold]的最大耗能值减少[blue]1[/blue]。",
     "SNECKO-SNAKE_CHARMERS_FLUTE.flavor": "嘶嘶嘶嘶嘶……",
     "SNECKO-SNECKO_SOUL.title": "异蛇之魂",
     "SNECKO-SNECKO_SOUL.description": "在每场战斗开始时，将一张[gold]灵魂骰掷[/gold]加入你的[gold]手牌[/gold]。",
     "SNECKO-SNECKO_SOUL.flavor": "0……3……2……2……1",
     "SNECKO-SUPER_SNECKO_SOUL.title": "超级蛇魂",
-    "SNECKO-SUPER_SNECKO_SOUL.description": "每场战斗回合开始时，获得一张[gold]灵魂骰掷[/gold]。\n在你的回合开始时，抽1张牌并将其[gold]混淆[/gold]。",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "未知之蛋",
     "SNECKO-UNIDENTIFIED_EGG.description": "每当你将一张[gold]异色[/gold]牌加入你的[gold]牌组[/gold]时，将其[gold]升级[/gold]。",
@@ -34,6 +34,8 @@
     "SEA_GLASS.SNECKO-SNECKO.title": "多彩玻璃",
     "SNECKO-SNECKO_CHOICE.title": "{character}的祝福",
     "SNECKO-SNECKO_CHOICE.description": "你现在会在[gold]赠礼[/gold]中获得[blue]{borrowed}[/blue]的卡牌。",
+    "SNECKO-PRISMATIC_SNECKO.title": "棱彩模式",
+    "SNECKO-PRISMATIC_SNECKO.description": "你现在会在[gold]赠礼[/gold]中获得所有角色的卡牌。",
     "SNECKO-VIPER_SKULL.title": "毒蛇头骨",
     "SNECKO-VIPER_SKULL.description": "在每场战斗开始时，给予所有敌人[blue]{VenomPower}[/blue]层[gold]剧毒[/gold]。"
 }

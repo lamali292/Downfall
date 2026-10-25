@@ -10,7 +10,7 @@ namespace Awakened.AwakenedCode.Cards.Uncommon;
 [Pool(typeof(AwakenedCardPool))]
 public class WaveOfMiasma : AwakenedCardModel
 {
-    public WaveOfMiasma() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public WaveOfMiasma() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
         WithBlock(12, 3);
         WithPower<ManaburnPower>(4, 2);

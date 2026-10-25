@@ -342,4 +342,22 @@ public class AutomatonTests
         Assert.AreEqual("Compile", new LocString("card_keywords", "AUTOMATON-COMPILE.title").GetFormattedText(),
             "Compile keyword title loc.");
     }
+
+    // Flail scales with the number of Functions compiled this combat.
+    [CardTest(typeof(Automaton.AutomatonCode.Core.Automaton))]
+    public async Task FlailDealsDamagePerFunctionCreated(TestContext ctx)
+    {
+        var choiceCtx = new BlockingPlayerChoiceContext();
+        for (var i = 0; i < AutomatonCmd.GetMax(ctx.Player); i++)
+            await AutomatonCmd.EncodeCard<OilSpill>(ctx.Player, choiceCtx);
+        Assert.AreEqual(1, AutomatonCmd.GetFunctionsCreated(ctx.Player), "One Function should be counted.");
+        var flail = await ctx.AddCardToHand<Flail>();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var hpBefore = enemy.CurrentHp;
+
+        await ctx.PlayCard(flail);
+
+        Assert.AreEqual(flail.DynamicVars["ExtraDamage"].IntValue, hpBefore - enemy.CurrentHp,
+            "Flail should deal its per-Function damage once for the one Function created.");
+    }
 }

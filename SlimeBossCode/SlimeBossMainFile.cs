@@ -1,4 +1,5 @@
-﻿using Downfall.DownfallCode.Localization;
+﻿using Downfall.DownfallCode.Data;
+using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
@@ -24,12 +25,16 @@ public static class SlimeBossMainFile
         BundledSubmodLocRegistry.Register(ModId);
         CharacterOrderRegistry.Register<Core.SlimeBoss>(10);
         VotingPoolRegistry.Register<Core.SlimeBossCardPool>(VotingPool.Slimeboss, ModId);
+        DownfallMetrics.AllowAssembly(typeof(SlimeBossMainFile).Assembly);
+        
         HivePowerExemptRegistry.Register<SlimeModel>();
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(SlimeDeathPatches))
             .Add(typeof(SlimeHoverTipPatch))
             .PatchAll();
 
+      
+        
         FormBoneRegistry.RegisterVoidForm<Core.SlimeBoss>("hat");
         FormBoneRegistry.RegisterSerpentForm<Core.SlimeBoss>("hat");
         FormBoneRegistry.RegisterReaperForm<Core.SlimeBoss>("hat");

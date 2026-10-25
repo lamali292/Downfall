@@ -26,6 +26,11 @@ public static class GameVersion
     public static readonly bool HasResolveTurnEndCardEffects =
         AccessTools.Method(typeof(CombatManager), "ResolveTurnEndCardEffects") != null;
 
+    /// <summary>Beta-branch-only: the handshake carries a mod list (PeerVersionInfo.otherMods) and
+    /// NetClientGameService.HandshakeFailed exists. Main has neither, so the disabled-character handshake sync can't hook in.</summary>
+    public static readonly bool HasHandshakeModList =
+        AccessTools.TypeByName("MegaCrit.Sts2.Core.Multiplayer.PeerVersionInfo") != null;
+
     // CardPileAddResult.targetPile was removed on some builds; cardAdded.Pile?.Type covers the same
     // info except for the "tried to add to a full hand, got sent to discard" edge case.
     private static readonly FieldInfo? CardPileAddResultTargetPileField =

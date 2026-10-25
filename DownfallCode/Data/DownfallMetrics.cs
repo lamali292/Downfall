@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Debug;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Platform;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs.History;
@@ -26,7 +27,7 @@ public static class DownfallMetrics
         typeof(CharacterModel).Assembly
     ];
 
-    internal static void AllowAssembly(Assembly assembly)
+    public static void AllowAssembly(Assembly assembly)
     {
         lock (AllowedAssemblies)
         {
@@ -42,7 +43,7 @@ public static class DownfallMetrics
             ApiKey = BuildSecrets.MetricsApiKey,
             RejectForeignContent = false,
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
-            IsOwnCharacter = e => e is DownfallCharacterModel,
+            IsOwnCharacter = e => e is DownfallCharacterModel or Ironclad or Defect or Silent or Necrobinder or Regent,
             AllowedAssemblies = AllowedAssemblies,
             ConfigureRequest =  req =>  
             {

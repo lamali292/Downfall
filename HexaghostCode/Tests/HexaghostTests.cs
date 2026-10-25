@@ -202,4 +202,50 @@ public class HexaghostTests
         Assert.IsTrue(soulBurn != null, "Cauterize should apply Soul Burn.");
         Assert.AreEqual(dealt, soulBurn!.Amount, "Soul Burn should equal the HP lost (block/vulnerable-free target).");
     }
+
+    // Cmd.Wait no-ops in tests, so poll on Task.Delay to let the enemy-turn state machine reach our next turn.
+    private static async Task EndTurnAndWaitForNextTurn(TestContext ctx)
+    {
+        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
+        PlayerCmd.EndTurn(ctx.Player, false);
+        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
+            await Task.Delay(100);
+        Assert.IsTrue(ctx.Player.PlayerCombatState!.TurnNumber > startingTurn, "Next turn should have started.");
+    }
+
+    // Ethereal exhaust at turn end runs after Plating's payout, so Floatwork resolves early (IHasEarlyAfterlifeEffect)
+    // and must apply Plating exactly once: 3 now, 2 after next turn's decay.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task FloatworkEtherealExhaustAtTurnEndAppliesPlatingOnce(TestContext ctx)
+    {
+        await ctx.AddCardToHand<Floatwork>();
+
+        await EndTurnAndWaitForNextTurn(ctx);
+
+        Assert.AreEqual(2, ctx.Player.Creature.GetPowerAmount<PlatingPower>(),
+            "Plating should be applied once (3) and decay once (-1) by the next turn.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task FloatworkEtherealExhaustAtTurnEndStacksOnExistingPlating(TestContext ctx)
+    {
+        var creature = ctx.Player.Creature;
+        await PowerCmd.Apply<PlatingPower>(new BlockingPlayerChoiceContext(), creature, 1, creature, null);
+        await ctx.AddCardToHand<Floatwork>();
+
+        await EndTurnAndWaitForNextTurn(ctx);
+
+        Assert.AreEqual(3, creature.GetPowerAmount<PlatingPower>(), "1 + 3 Plating, minus 1 decay.");
+    }
+
+    // A non-turn-end exhaust is not early-resolved and must still trigger Afterlife.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task FloatworkExhaustedMidTurnAppliesPlating(TestContext ctx)
+    {
+        var card = await ctx.AddCardToHand<Floatwork>();
+
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, false);
+
+        Assert.AreEqual(3, ctx.Player.Creature.GetPowerAmount<PlatingPower>(), "Afterlife should apply 3 Plating.");
+    }
 }

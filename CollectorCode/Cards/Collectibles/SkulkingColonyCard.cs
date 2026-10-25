@@ -2,11 +2,12 @@
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Patches;
-using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Encounters;
+using MegaCrit.Sts2.Core.Models.Powers;
+
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class SkulkingColonyCard : Collectible<SkulkingColonyElite>, ISkipReplayOnSelfExhaust
@@ -16,7 +17,8 @@ public class SkulkingColonyCard : Collectible<SkulkingColonyElite>, ISkipReplayO
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithPower<PlatedArmorPower>(4, 2);
+        // todo: we do plating now. idk if thats good conversion of numbers.
+        WithPower<PlatingPower>(5, 3);
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
@@ -25,7 +27,7 @@ public class SkulkingColonyCard : Collectible<SkulkingColonyElite>, ISkipReplayO
         var playCount = await GeneratePlayCount(CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
-            await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
+            await CommonActions.ApplySelf<PlatingPower>(ctx, this);
         }
     }
 }

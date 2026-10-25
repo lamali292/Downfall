@@ -6,6 +6,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -78,6 +79,8 @@ public static class TorchheadCmd
         var combatState = torchhead.CombatState;
         if (combatState == null) return;
         torchhead.PrepareForNextTurn(combatState.Players.Select(p => p.Creature));
+        var intents = NCombatRoom.Instance?.GetCreatureNode(torchhead)?.IntentContainer;
+        intents?.Visible = torchhead.PetOwner == null || LocalContext.IsMe(torchhead.PetOwner);
     }
 
     private const float TorchheadMinScale = 1f;
