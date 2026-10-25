@@ -1,9 +1,5 @@
 {
-    "DOWNFALL-METALLICIZE_POWER.description": "내 턴이 끝날 때, [gold]방어도[/gold]를 얻습니다.",
-    "DOWNFALL-METALLICIZE_POWER.smartDescription": "내 턴이 끝날 때, [blue]{Amount}[/blue]의 [gold]방어도[/gold]를 얻습니다.",
+    "DOWNFALL-SOUL_BURN_POWER.title": "영혼 화상",
     "DOWNFALL-METALLICIZE_POWER.title": "금속화",
-    "DOWNFALL-PLATED_ARMOR_POWER.title": "판금 갑옷",
-    "DOWNFALL-PLATED_ARMOR_POWER.description": "내 턴이 끝날 때, [gold]방어도[/gold]를 얻습니다. 막히지 않은 공격 피해를 받으면 [gold]판금[/gold] 수치가 [blue]1[/blue] 감소합니다.",
-    "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "내 턴이 끝날 때, [blue]{Amount}[/blue]의 [gold]방어도[/gold]를 얻습니다. 막히지 않은 공격 피해를 받으면 [gold]판금[/gold] 수치가 [blue]1[/blue] 감소합니다.",
-    "DOWNFALL-SOUL_BURN_POWER.title": "영혼 화상"
+    "DOWNFALL-METALLICIZE_POWER.description": "내 턴이 끝날 때, [gold]방어도[/gold]를 얻습니다."
 }

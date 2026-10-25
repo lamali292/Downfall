@@ -1,11 +1,7 @@
 {
-    "DOWNFALL-METALLICIZE_POWER.description": "Дает [gold]защиту[/gold] в конце хода.",
-    "DOWNFALL-METALLICIZE_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold] в конце хода.",
-    "DOWNFALL-METALLICIZE_POWER.title": "Металлизация",
-    "DOWNFALL-PLATED_ARMOR_POWER.title": "Пластинчатая броня",
-    "DOWNFALL-PLATED_ARMOR_POWER.description": "Дает [gold]защиту[/gold] в конце хода. Эффект понижается на [blue]1[/blue] при потере ОЗ от Атак.",
-    "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold] в конце хода. Эффект понижается на [blue]1[/blue] при потере ОЗ от Атак.",
     "DOWNFALL-SOUL_BURN_POWER.title": "Ожог души",
     "DOWNFALL-SOUL_BURN_POWER.description": "Через [blue]3[/blue] хода это существо теряет ОЗ, затем эффект сбрасывается.",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "{Turns:plural(ru):В начале следующего хода|Через [blue]{}[/blue] хода|Через [blue]{}[/blue] ходов} это существо теряет [blue]{Amount}[/blue] ОЗ, затем эффект сбрасывается."
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "{Turns:plural(ru):В начале следующего хода|Через [blue]{}[/blue] хода|Через [blue]{}[/blue] ходов} это существо теряет [blue]{Amount}[/blue] ОЗ, затем эффект сбрасывается.",
+    "DOWNFALL-METALLICIZE_POWER.title": "Металлизация",
+    "DOWNFALL-METALLICIZE_POWER.description": "Дает [gold]защиту[/gold] в конце хода."
 }
