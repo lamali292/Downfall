@@ -18,9 +18,8 @@ public class LawOfTheJungle : SlimeBossCardModel
     public LawOfTheJungle() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithTip(SlimeBossTip.Split);
-        WithPower<PotencyPower>(2, 1);
+        WithPower<PotencyPower>(2);
         WithPower<StrengthPower>(2, 1);
-        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
