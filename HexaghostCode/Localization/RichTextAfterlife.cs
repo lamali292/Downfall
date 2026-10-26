@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Downfall.DownfallCode.Config;
+using Godot;
 using MegaCrit.Sts2.Core.RichTextTags;
 
 namespace Hexaghost.HexaghostCode.Localization;
@@ -9,7 +10,7 @@ public partial class RichTextAfterlife : AbstractMegaRichTextEffect
 
     public override bool _ProcessCustomFX(CharFXTransform charFx)
     {
-        charFx.Color = new Color("#78D1A0");
+        charFx.Color = DownfallConfig.AfterlifeColor;
         return true;
     }
 }

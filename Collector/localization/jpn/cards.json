@@ -4,7 +4,7 @@
     "COLLECTOR-ASHEN_STRIKE.description": "[gold]トーチヘッド[/gold]が{TorchheadTargetsAll:cond:すべての敵に|}{TorchheadDamage:diff()}ダメージを与える。\n{IfUpgraded:show:[gold]燃え殻[/gold]|[gold]火傷[/gold]}を1枚[gold]手札[/gold]に加える。",
     "COLLECTOR-ASHEN_STRIKE.title": "キャンドルストライク",
     "COLLECTOR-BELLOW_COLLECTOR.title": "吹き荒れる風",
-    "COLLECTOR-BELLOW_COLLECTOR.description": "前のターンに使わなかった[gold]ブロック[/gold]に等しい[gold]瘴気[/gold]を付与する。{InCombat:cond:\n（[gold]瘴気[/gold]{UnusedBlock:diff()}を付与）|}",
+    "COLLECTOR-BELLOW_COLLECTOR.description": "前のターンに使わなかった[gold]ブロック[/gold]に等しい[gold]瘴気[/gold]を付与する。{InCombat:cond:\n([gold]瘴気[/gold]{UnusedBlock:diff()}を付与)|}",
     "COLLECTOR-BILLOW.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n次のターン、[gold]吹き荒れる風[/gold]を1枚[gold]手札[/gold]に加える。",
     "COLLECTOR-BILLOW.title": "波立つマント",
     "COLLECTOR-BLACK_BINDINGS.description": "[gold]脱力[/gold]{WeakPower:diff()}を付与する。\n敵が受けているデバフ1種類につき、[gold]瘴気[/gold]{MiasmaExtra:diff()}を付与する。",
