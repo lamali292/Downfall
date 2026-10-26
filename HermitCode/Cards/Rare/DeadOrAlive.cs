@@ -12,7 +12,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class DeadOrAlive : HermitCardModel
 {
-    private const int MonsterGoldAmount = 15;
+    private const int MonsterGoldAmount = 20;
     private const int EliteGoldAmount = 40;
     private const int BossGoldAmount = 100;
 
