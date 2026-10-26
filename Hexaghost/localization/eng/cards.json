@@ -77,7 +77,7 @@
   "HEXAGHOST-GHOST_SHIELD.title": "Ghost Shield",
   "HEXAGHOST-GIFTS_FROM_BEYOND.description": "At the start of your turn, add a random [gold]Afterlife[/gold] card into your [gold]Hand[/gold].",
   "HEXAGHOST-GIFTS_FROM_BEYOND.title": "Gifts from Beyond",
-  "HEXAGHOST-HAUNTED_HAND.description": "[afterlife]Draw {Cards:diff()} cards.[/afterlife]",
+  "HEXAGHOST-HAUNTED_HAND.description": "[afterlife]Draw[/afterlife] {Cards:diff()} [afterlife]cards.[/afterlife]",
   "HEXAGHOST-HAUNTED_HAND.title": "Haunted Hand",
   "HEXAGHOST-HAUNTING_ECHO.description": "Deal {Damage:diff()} damage.\nIf the current Ghostflame is [gold]Ignited[/gold], [gold]Ignite[/gold] it again.",
   "HEXAGHOST-HAUNTING_ECHO.title": "Haunting Echo",
