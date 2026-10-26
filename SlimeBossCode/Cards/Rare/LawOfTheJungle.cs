@@ -19,18 +19,15 @@ public class LawOfTheJungle : SlimeBossCardModel
     {
         WithTip(SlimeBossTip.Split);
         WithPower<PotencyPower>(2, 1);
-        WithTip<StrengthPower>();
+        WithPower<StrengthPower>(2, 1);
         WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var stealAmount = DynamicVars.Power<PotencyPower>().IntValue;
-        foreach (var slime in Owner.SlimeCreatures)
-        {
-            var potency = slime.GetPowerAmount<PotencyPower>();
-            await PowerCmd.Apply<PotencyPower>(ctx, slime, -potency, Owner.Creature, this);
-            await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, potency, Owner.Creature, this);
-        }
+        await PowerCmd.Apply<PotencyPower>(ctx, Owner.SlimeCreatures, 
+            -DynamicVars.Power<PotencyPower>().BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, 
+            Owner.SlimeCreatures.Count*DynamicVars.Power<StrengthPower>().BaseValue, Owner.Creature, this);
     }
 }

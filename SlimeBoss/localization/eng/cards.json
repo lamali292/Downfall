@@ -170,7 +170,7 @@
   "SLIMEBOSS-LEGION_FORM.description": "At the start of your turn, [gold]Command[/gold] ALL Slimes.",
   "SLIMEBOSS-REPLICATION.select": "Choose a Power to play",
   "SLIMEBOSS-LAW_OF_THE_JUNGLE.title": "Law of the Jungle",
-  "SLIMEBOSS-LAW_OF_THE_JUNGLE.description": "Steal {PotencyPower:diff()} [gold]Potency[/gold] from ALL [gold]Split[/gold] Slimes and convert it into [gold]Strength[/gold].",
+  "SLIMEBOSS-LAW_OF_THE_JUNGLE.description": "ALL your Slimes lose {PotencyPower:diff()} [gold]Potency[/gold].\nGain {StrengthPower:diff()} [gold]Strength[/gold] for each of your Slimes.",
   "SLIMEBOSS-BUTCHER_TACKLE.title": "Butcher Tackle",
   "SLIMEBOSS-BUTCHER_TACKLE.description": "Deal {Damage:diff()} damage.\n[gold]Consume[/gold] - Next turn, Attacks deal double damage and Slimes double their effects.",
   "SLIMEBOSS-MITOSIS.title": "Mitosis",
