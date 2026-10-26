@@ -36,7 +36,7 @@ public static class GuardianMainFile
             new GemDescriptionSource());
 
         BundledSubmodLocRegistry.Register(ModId);
-        CharacterOrderRegistry.Register<Core.Guardian>(20);
+        CharacterOrderRegistry.Register<Core.Guardian>(40);
         VotingPoolRegistry.Register<GuardianCardPool>(VotingPool.Guardian, ModId);
 
         TranscendenceHooks.OnTransformed += CopyGemsToTranscendence;

@@ -1,3 +1,15 @@
 ﻿{
-  "DOWNFALL-PLAQUE": "{original} | {type}"
+  "DOWNFALL-PLAQUE": "{original} | {type}",
+  "DOWNFALL-FILTER_RARITY_COMMON": "Common",
+  "DOWNFALL-FILTER_RARITY_RARE": "Rare",
+  "DOWNFALL-FILTER_RARITY_SHOP": "Shop",
+  "DOWNFALL-FILTER_RARITY_STARTER": "Starter",
+  "DOWNFALL-FILTER_RARITY_UNCOMMON": "Uncommon",
+  "DOWNFALL-LIBRARY_SINGLEPLAYER_CARDS": "Singleplayer Cards",
+  "DOWNFALL-POTION_POOL_OTHER": "Any other potions.",
+  "DOWNFALL-POTION_POOL_SHARED": "Potions shared by every character.",
+  "DOWNFALL-POTION_POOL_SPECIAL": "Potions obtained from events or created by other means.",
+  "DOWNFALL-RELIC_POOL_EVENT": "Relics obtained through events.",
+  "DOWNFALL-RELIC_POOL_OTHER": "Any other relics.",
+  "DOWNFALL-RELIC_POOL_SHARED": "Relics shared by every character."
 }

@@ -34,7 +34,7 @@ public static class HexaghostMainFile
         HexaghostSubscriber.Subscribe();
 
         BundledSubmodLocRegistry.Register(ModId);
-        CharacterOrderRegistry.Register<Core.Hexaghost>(30);
+        CharacterOrderRegistry.Register<Core.Hexaghost>(60);
         VotingPoolRegistry.Register<HexaghostCardPool>(VotingPool.Hexaghost, ModId);
 
         ModPatcher.Create(ModId, Logger)

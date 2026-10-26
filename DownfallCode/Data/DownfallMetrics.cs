@@ -27,7 +27,7 @@ public static class DownfallMetrics
         typeof(CharacterModel).Assembly
     ];
 
-    internal static void AllowAssembly(Assembly assembly)
+    public static void AllowAssembly(Assembly assembly)
     {
         lock (AllowedAssemblies)
         {

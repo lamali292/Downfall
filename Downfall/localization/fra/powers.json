@@ -1,11 +1,7 @@
 {
-    "DOWNFALL-METALLICIZE_POWER.description": "À la fin de votre tour, gagnez de [gold]l'Armure[/gold].",
-    "DOWNFALL-METALLICIZE_POWER.smartDescription": "À la fin de votre tour, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold].",
-    "DOWNFALL-METALLICIZE_POWER.title": "Métallisation",
-    "DOWNFALL-PLATED_ARMOR_POWER.title": "Armure Plaquée",
-    "DOWNFALL-PLATED_ARMOR_POWER.description": "À la fin de votre tour, gagnez de [gold]l'Armure[/gold]. Recevoir des dégâts d'attaque non bloqués réduit [gold]l'Armure Plaquée[/gold] de [blue]1[/blue].",
-    "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "À la fin de votre tour, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold]. Recevoir des dégâts d'attaque non bloqués réduit [gold]l'Armure Plaquée[/gold] de [blue]1[/blue].",
     "DOWNFALL-SOUL_BURN_POWER.title": "Brûlure",
     "DOWNFALL-SOUL_BURN_POWER.description": "Dans [blue]3[/blue] tours, cet ennemi perd des PV au début de son tour, puis la [gold]Brûlure[/gold] est retirée.",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "Dans [blue]{Turns}[/blue] {Turns:plural:tour|tours}, cet ennemi perd [blue]{Amount}[/blue] PV au début de son tour, puis la [gold]Brûlure[/gold] est retirée."
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "Dans [blue]{Turns}[/blue] {Turns:plural:tour|tours}, cet ennemi perd [blue]{Amount}[/blue] PV au début de son tour, puis la [gold]Brûlure[/gold] est retirée.",
+    "DOWNFALL-METALLICIZE_POWER.title": "Métallisation",
+    "DOWNFALL-METALLICIZE_POWER.description": "À la fin de votre tour, gagnez de [gold]l'Armure[/gold]."
 }

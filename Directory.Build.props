@@ -163,6 +163,8 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NPlayerHand.RefreshLayout"/>
 
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary.UpdateCardPoolFilter"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary.UpdateFilter"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.PotionLab.NLabPotionHolder._model"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._lastHoveredControl"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._miscPoolFilter"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary.NCardLibrary._poolFilters"/>

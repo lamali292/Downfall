@@ -1,11 +1,7 @@
 {
-    "DOWNFALL-METALLICIZE_POWER.description": "在你的回合结束时，获得[gold]格挡[/gold]。",
-    "DOWNFALL-METALLICIZE_POWER.smartDescription": "在你的回合结束时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
-    "DOWNFALL-METALLICIZE_POWER.title": "金属化",
-    "DOWNFALL-PLATED_ARMOR_POWER.title": "多层护甲",
-    "DOWNFALL-PLATED_ARMOR_POWER.description": "在你的回合结束时，获得[gold]格挡[/gold]。受到未被格挡的攻击伤害会失去[blue]1[/blue]层[gold]多层护甲[/gold]。",
-    "DOWNFALL-PLATED_ARMOR_POWER.smartDescription": "在你的回合结束时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。受到未被格挡的攻击伤害会失去[blue]1[/blue]层[gold]多层护甲[/gold]。",
     "DOWNFALL-SOUL_BURN_POWER.title": "灼魂",
     "DOWNFALL-SOUL_BURN_POWER.description": "在你的[blue]3[/blue]个回合后，该敌人在它们的回合开始时失去生命值，然后移除所有[gold]灼魂[/gold]层数。",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "在你的[blue]{Turns}[/blue]个回合后，该敌人在它们的回合开始时失去[blue]{Amount}[/blue]点生命值，然后移除所有[gold]灼魂[/gold]层数。"
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "在你的[blue]{Turns}[/blue]个回合后，该敌人在它们的回合开始时失去[blue]{Amount}[/blue]点生命值，然后移除所有[gold]灼魂[/gold]层数。",
+    "DOWNFALL-METALLICIZE_POWER.title": "金属化",
+    "DOWNFALL-METALLICIZE_POWER.description": "在你的回合结束时，获得[gold]格挡[/gold]。"
 }

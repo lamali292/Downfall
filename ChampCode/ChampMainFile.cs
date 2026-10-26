@@ -33,7 +33,7 @@ public static class ChampMainFile
         ChampSubscriber.Subscribe();
 
         BundledSubmodLocRegistry.Register(ModId);
-        CharacterOrderRegistry.Register<Core.Champ>(60);
+        CharacterOrderRegistry.Register<Core.Champ>(10);
         VotingPoolRegistry.Register<ChampCardPool>(VotingPool.Champ, ModId);
 
         FormBoneRegistry.RegisterVoidForm<Core.Champ>("Head");

@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://DownfallCode/Nodes/NCollectionFilterPanel.cs" id="1_panel"]
+[ext_resource type="Script" path="res://src/Core/Nodes/CommonUi/NSearchBar.cs" id="2_search"]
+[ext_resource type="FontVariation" path="res://themes/kreon_regular_shared.tres" id="3_font"]
+[ext_resource type="Script" path="res://src/Core/Nodes/GodotExtensions/NMegaLineEdit.cs" id="4_edit"]
+[ext_resource type="Script" path="res://src/Core/Nodes/Screens/CardLibrary/NClearSearchButton.cs" id="5_clear"]
+[ext_resource type="Texture2D" path="res://images/atlases/compressed.sprites/back_button_x.tres" id="6_x"]
+
+[node name="CollectionFilterPanel" type="Control"]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 288.0
+grow_vertical = 2
+script = ExtResource("1_panel")
+
+[node name="Panel" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(288, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.182, 0.2604, 0.28, 0.501961)
+
+[node name="Shadow" type="ColorRect" parent="Panel"]
+show_behind_parent = true
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.2346, 0.325947, 0.34, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 364
+
+[node name="TopVBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SearchBar" type="Control" parent="MarginContainer/TopVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+script = ExtResource("2_search")
+
+[node name="TextArea" type="LineEdit" parent="MarginContainer/TopVBox/SearchBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../ClearButton")
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 24
+placeholder_text = "NOT_SET"
+script = ExtResource("4_edit")
+
+[node name="ClearButton" type="Control" parent="MarginContainer/TopVBox/SearchBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("5_clear")
+
+[node name="Image" type="TextureRect" parent="MarginContainer/TopVBox/SearchBar/ClearButton"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(24, 24)
+mouse_filter = 2
+texture = ExtResource("6_x")
+expand_mode = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/TopVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="MarginContainer/TopVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Filters" type="VBoxContainer" parent="MarginContainer/TopVBox/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12

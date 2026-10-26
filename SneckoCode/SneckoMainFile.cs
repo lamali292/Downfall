@@ -21,7 +21,7 @@ public static class SneckoMainFile
         ScriptRegistration.Register(typeof(SneckoMainFile).Assembly);
         
         BundledSubmodLocRegistry.Register(ModId);
-        CharacterOrderRegistry.Register<Core.Snecko>(80);
+        CharacterOrderRegistry.Register<Core.Snecko>(70);
         MuddleListenerRegistry.Register("IntoTheSpireverse.IntoTheSpireverseCode.Utils");
         VotingPoolRegistry.Register<SneckoCardPool>(VotingPool.Snecko, ModId);
 
