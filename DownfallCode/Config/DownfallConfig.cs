@@ -25,6 +25,11 @@ public class DownfallConfig : SimpleModConfig
     public static bool HideSlimeboss { get; set; } = false;
     public static bool HideSnecko { get; set; } = false;
 
+    
+    [ConfigSection("Internal")]
+    public static bool EnableCompendiumTools { get; set; } = false;
+
+    
     public static bool IsDisabled(string character)
     {
         return character switch

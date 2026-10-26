@@ -1,6 +1,7 @@
 ﻿{
   "DOWNFALL.mod_title": "Downfall",
   "DOWNFALL-UI.title": "UI",
+  "DOWNFALL-INTERNAL.title": "Internal",
   "DOWNFALL-SYNC.title": "Sync",
   "DOWNFALL-HIDE_SECTION.title": "Disable Characters",
   "DOWNFALL-CHARACTER_MISMATCH.title": "Downfall Mismatch",
@@ -47,6 +48,8 @@
   "DOWNFALL-HIDE_SNECKO.title": "Disable Snecko",
   "DOWNFALL-HIDE_SNECKO.hover.desc": "Disables Snecko entirely. It will not be loaded, and will not appear anywhere. Requires a restart to take effect.",
   
+  "DOWNFALL-ENABLE_COMPENDIUM_TOOLS.title": "Compendium Search Tools",
+  "DOWNFALL-ENABLE_COMPENDIUM_TOOLS.hover.desc": "Internal tooling for finding content while developing Downfall: a search and character/rarity filter sidebar on the relic collection and potion lab, and a Singleplayer Cards tickbox in the card library. Not needed for normal play. Takes effect the next time those screens open.",
   "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.title": "Show Art Submission Button",
   "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.hover.desc": "Shows or hides the \"Downfall Art Submission\" button on the main menu.",
 

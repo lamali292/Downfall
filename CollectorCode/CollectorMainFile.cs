@@ -1,5 +1,6 @@
 ﻿using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Patches;
+using Downfall.DownfallCode.Data;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -28,7 +29,8 @@ public static class CollectorMainFile
         HivePowerExemptRegistry.Register<TorchheadMonsterModel>();
 
         BundledSubmodLocRegistry.Register(ModId);
-        CharacterOrderRegistry.Register<Core.Collector>(50);
+        CharacterOrderRegistry.Register<Core.Collector>(30);
+        DownfallMetrics.AllowAssembly(typeof(CollectorMainFile).Assembly);
         
         FormBoneRegistry.RegisterVoidForm<Core.Collector>("robeback");
         FormBoneRegistry.RegisterSerpentForm<Core.Collector>("robeback");
@@ -36,7 +38,7 @@ public static class CollectorMainFile
         FormBoneRegistry.RegisterEchoForm<Core.Collector>("robeback");
         VotingPoolRegistry.Register<CollectorCardPool>(VotingPool.Collector, ModId);
         HarmonyLib.Harmony.DEBUG = true;
-        
+     
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(AddMyPoolFilterPatch))
             .Add(typeof(NDamageNumVfxOverkillPatch))
