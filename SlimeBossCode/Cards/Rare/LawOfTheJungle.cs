@@ -28,7 +28,7 @@ public class LawOfTheJungle : SlimeBossCardModel
         var stealAmount = DynamicVars.Power<PotencyPower>().IntValue;
         foreach (var slime in Owner.SlimeCreatures)
         {
-            var potency = Math.Min(slime.GetPowerAmount<PotencyPower>(), stealAmount);
+            var potency = slime.GetPowerAmount<PotencyPower>();
             await PowerCmd.Apply<PotencyPower>(ctx, slime, -potency, Owner.Creature, this);
             await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, potency, Owner.Creature, this);
         }
