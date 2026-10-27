@@ -6,7 +6,7 @@
   "HEXAGHOST-LIBRA.description": "Your [gold]Strikes[/gold] and [gold]Defends[/gold] count towards the progression of [gold]Crushing[/gold] and [gold]Searing Ghostflames[/gold].",
   "HEXAGHOST-LIBRA.flavor": "Balance in all things.",
   "HEXAGHOST-MARK_OF_THE_ETHER.title": "Mark of the Ether",
-  "HEXAGHOST-MARK_OF_THE_ETHER.description": "The first time you [gold]Ignite[/gold] a Ghostflame each turn, gain [blue]{Block}[/blue] [gold]Block[/gold].",
+  "HEXAGHOST-MARK_OF_THE_ETHER.description": "Whenever you [gold]Ignite[/gold] a Ghostflame, gain [blue]{Block}[/blue] [gold]Block[/gold].",
   "HEXAGHOST-MARK_OF_THE_ETHER.flavor": "Let's see if we can do... better.",
   "HEXAGHOST-OLEXAS_SHIELD.title": "Olexa's Shield",
   "HEXAGHOST-OLEXAS_SHIELD.description": "Powers are counted towards the progression of [gold]Searing[/gold] and [gold]Crushing Ghostflames[/gold].",

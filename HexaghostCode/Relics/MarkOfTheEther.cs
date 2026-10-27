@@ -2,9 +2,7 @@ using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,28 +15,15 @@ public class MarkOfTheEther : HexaghostRelicModel, IAfterGhostflameIgnited
 {
     public MarkOfTheEther() : base(RelicRarity.Starter)
     {
-        WithBlock(8);
+        WithBlock(4);
         WithTip(HexaghostTip.Ignite);
     }
     
-    private bool UsedThisTurn { get; set; }
     
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)
     {
-        if (player != Owner || UsedThisTurn) return;
-        UsedThisTurn = true;
+        if (player != Owner) return;
         Flash();
-        Status = RelicStatus.Normal;
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue, BlockProps.nonCardUnpowered, null, true);
-    }
-    
-    public override Task AfterSideTurnStart(CombatSide side,
-        IReadOnlyList<Creature> participants,
-        ICombatState combatState)
-    {
-        if (side != Owner.Creature.Side) return Task.CompletedTask;
-        Status = RelicStatus.Active;
-        UsedThisTurn = false;
-        return Task.CompletedTask;
     }
 }

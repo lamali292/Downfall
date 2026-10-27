@@ -17,7 +17,6 @@ public class AphoticFount : AwakenedCardModel
         WithPower<AphoticFountPower>(1, 1, false);
         WithTip<PlatingPower>();
         WithTip<Cryostasis>();
-        WithTip(CardKeyword.Exhaust);
         WithConjure();
     }
 
