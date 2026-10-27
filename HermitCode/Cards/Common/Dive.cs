@@ -13,7 +13,8 @@ public sealed class Dive : HermitCardModel
     public Dive() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(8, 2);
-        WithPower<PlatedArmorPower>(1, 1);
+        WithPower<PlatedArmorPower>(2, 1);
+        WithKeyword(CardKeyword.Exhaust);
         WithDeadOn();
     }
 
