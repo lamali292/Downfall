@@ -20,20 +20,16 @@ public class SwordOfFrostPower : CollectorPowerModel
 
     public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
-        if (creator != null && creator.Creature == Owner)
-        {
-            if (card is Burn || card is Ember)
-            {
-                if (CombatManager.Instance.History.Entries.OfType<CardGeneratedEntry>().Count(
-                        (Func<CardGeneratedEntry, bool>)(e =>
-                            e.HappenedThisTurn(card.CombatState) && e.Actor == card.Owner.Creature &&
-                            (e.Card is Burn || e.Card is Ember))) == 1)
-                {
-                    Flash();
-                    await CardCmd.Exhaust(new ThrowingPlayerChoiceContext(), card);
-                    await CardPileCmd.Draw(new ThrowingPlayerChoiceContext(), Amount, creator);
-                }
-            }
-        }
+        if (creator == null || creator.Creature != Owner) return;
+
+        if (card is not (Burn or Ember)) return;
+        if (CombatManager.Instance.History.Entries.OfType<CardGeneratedEntry>().Count(
+                e =>
+                    e.HappenedThisTurn(CombatState) && e.Actor == Owner &&
+                    e.Card is Burn or Ember) != 1) return;
+
+        Flash();
+        await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card);
+        await CardPileCmd.Draw(new BlockingPlayerChoiceContext(), Amount, creator);
     }
 }

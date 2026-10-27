@@ -409,4 +409,20 @@ public class SneckoTests
         Assert.AreEqual(2, hand.Count, $"Hand should still hold two cards, got {hand.Count}.");
         Assert.IsTrue(hand.All(c => c.IsUpgraded || !c.IsUpgradable), "Shapeshift+ should upgrade the replacements.");
     }
+
+    // Dice Boulder grows its Block each play; a downgrade rebuilds the card's vars from the canonical card and
+    // used to wipe that growth (same as base game's Rampage, which restores it in AfterDowngraded).
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task DiceBoulderKeepsItsGrowthAfterDowngrade(TestContext ctx)
+    {
+        var boulder = await ctx.AddCardToHand<DiceBoulder>();
+        var start = boulder.DynamicVars.Block.BaseValue;
+        await ctx.PlayCard(boulder);
+        var grown = boulder.DynamicVars.Block.BaseValue;
+        Assert.IsTrue(grown > start, "Playing Dice Boulder should raise its Block.");
+
+        boulder.DowngradeInternal();
+
+        Assert.AreEqual(grown, boulder.DynamicVars.Block.BaseValue, "A downgrade must not wipe Dice Boulder's growth.");
+    }
 }
