@@ -7,8 +7,13 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Relics;
 
-public sealed class Horseshoe() : HermitRelicModel(RelicRarity.Rare)
+public sealed class Horseshoe : HermitRelicModel
 {
+    public Horseshoe() : base(RelicRarity.Rare)
+    {
+        WithStrikeTip();
+    }
+
     public override Task BeforeAttack(AttackCommand command)
     {
         if (command.Attacker != Owner.Creature) return Task.CompletedTask;

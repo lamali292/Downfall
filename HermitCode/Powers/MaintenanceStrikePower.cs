@@ -9,6 +9,11 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class MaintenanceStrikePower : HermitPowerModel, IModifyDamageAdditive
 {
+    public MaintenanceStrikePower()
+    {
+        WithStrikeTip();
+    }
+
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
