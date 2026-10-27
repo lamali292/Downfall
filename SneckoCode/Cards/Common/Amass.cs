@@ -18,7 +18,7 @@ public class Amass : SneckoCardModel
 
     private static decimal Calc(CardModel card, Creature? creature)
     {
-        return card.Owner.Hand.Sum(e => e.EnergyCost.GetResolved());
+        return card.Owner.Hand.Where(e => e != card && !e.EnergyCost.CostsX).Sum(e => e.EnergyCost.GetAmountToSpend());
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

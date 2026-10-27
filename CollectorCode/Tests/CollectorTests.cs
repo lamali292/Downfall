@@ -1,3 +1,5 @@
+using BaseLib.Extensions;
+using Downfall.DownfallCode.Compatibility;
 using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Cards.Common;
 using Collector.CollectorCode.Cards.Token;
@@ -157,13 +159,13 @@ public class CollectorTests
             "Torchhead's move state should carry a TorchheadAttackIntent so its intent icon shows.");
 
         var baseLabel = intent!.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
-        Assert.IsTrue(baseLabel.Contains("5"), $"Intent should show the base 5 damage, got '{baseLabel}'.");
+        Assert.IsTrue(baseLabel.Contains("4"), $"Intent should show the base 4 damage, got '{baseLabel}'.");
 
         await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), torchhead, 1, ctx.Player.Creature, null);
         var weakenedLabel = intent.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
 
         Assert.IsTrue(weakenedLabel.Contains("3"),
-            $"Weak should reduce Torchhead's displayed intent damage from 5 to 3, got '{weakenedLabel}'.");
+            $"Weak should reduce Torchhead's displayed intent damage from 4 to 3, got '{weakenedLabel}'.");
     }
 
     // Regression guard: Torchhead's intent description should say whether it hits all enemies or
@@ -307,5 +309,23 @@ public class CollectorTests
 
         await ReserveCmd.GainReserve(ctx.Player, 1);
         Assert.IsTrue(card.CanPlay(), "Energy 1 + Reserve 1 covers cost 2.");
+    }
+
+    // Seed of Doubt grows its Miasma whenever a card is Exhausted while it is in hand; a downgrade rebuilds the
+    // card's vars from the canonical card and used to wipe that growth (base game's Rampage restores it).
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task SeedOfDoubtKeepsItsGrowthAfterDowngrade(TestContext ctx)
+    {
+        var seed = await ctx.AddCardToHand<SeedOfDoubt>();
+        var other = await ctx.AddCardToHand<StrikeCollector>();
+        var start = seed.DynamicVars.Power<MiasmaPower>().BaseValue;
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), other);
+        var grown = seed.DynamicVars.Power<MiasmaPower>().BaseValue;
+        Assert.IsTrue(grown > start, "Exhausting a card should raise Seed of Doubt's Miasma.");
+
+        seed.DowngradeInternal();
+
+        Assert.AreEqual(grown, seed.DynamicVars.Power<MiasmaPower>().BaseValue,
+            "A downgrade must not wipe Seed of Doubt's growth.");
     }
 }

@@ -14,7 +14,7 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
 
     {
         WithTip(CardKeyword.Unplayable);
-        WithDamage(50, 16);
+        WithHpLoss(50, 16);
         WithKeyword(CardKeyword.Retain);
         WithKeyword(CardKeyword.Exhaust);
     }
@@ -32,9 +32,8 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        const ValueProp unblockableDamage = ValueProp.Unblockable | ValueProp.Move;
         //It's not jank it's just a prop to ignore block.
-        await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
-            unblockableDamage, Owner.Creature, this, cardPlay);
+        await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.HpLoss.BaseValue,
+            DamageProps.cardHpLoss, Owner.Creature, this, cardPlay);
     }
 }

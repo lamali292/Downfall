@@ -21,6 +21,17 @@ public class SeedOfDoubt : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
+    /// Required so the growth survives a downgrade (the game rebuilds the dynamic vars), same as Rampage.
+    private decimal ExtraMiasma
+    {
+        get;
+        set
+        {
+            AssertMutable();
+            field = value;
+        }
+    }
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
@@ -30,6 +41,13 @@ public class SeedOfDoubt : CollectorCardModel
     {
         if (card.Owner != Owner || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
         DynamicVars.Power<MiasmaPower>().BaseValue += DynamicVars["Increase"].BaseValue;
+        ExtraMiasma += DynamicVars["Increase"].BaseValue;
         return Task.CompletedTask;
+    }
+
+    protected override void AfterDowngraded()
+    {
+        base.AfterDowngraded();
+        DynamicVars.Power<MiasmaPower>().BaseValue += ExtraMiasma;
     }
 }

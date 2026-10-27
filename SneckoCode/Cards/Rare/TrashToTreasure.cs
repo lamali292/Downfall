@@ -25,7 +25,7 @@ public class TrashToTreasure : SneckoCardModel
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs,
             e => e != this, this)).FirstOrDefault();
         if (card == null) return;
-        var cost = card.EnergyCost.GetResolved();
+        var cost = card.EnergyCost.GetAmountToSpend();
         await CardCmdCompatibility.Exhaust(ctx, card);
         await PlayerCmd.GainEnergy(cost, Owner);
     }
