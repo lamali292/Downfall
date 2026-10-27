@@ -7,7 +7,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class Wrath : Ruina2Card
 {
-    public Wrath() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies, "WRATH_ELITE")
+    public Wrath() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies, "WRATH_ELITE", 0.45f)
     {
         WithDamage(8, 2);
         WithRepeat(2);

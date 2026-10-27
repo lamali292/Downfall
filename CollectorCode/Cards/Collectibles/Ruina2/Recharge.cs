@@ -7,7 +7,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class Recharge : Ruina2Card
 {
-    public Recharge() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, "HELPERS_ELITE")
+    public Recharge() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, "HELPERS_ELITE", 0.63f)
     {
         WithCostUpgradeBy(-1);
         WithPower<RechargePower>(1, false);

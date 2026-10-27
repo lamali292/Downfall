@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class EternallyLitLamp : Ruina2Card
 {
-    public EternallyLitLamp() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, "BIG_BIRD_ELITE")
+    public EternallyLitLamp() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, "BIG_BIRD_ELITE", 0.61f)
     {
         WithCostUpgradeBy(-1);
         WithTip<StrengthPower>();

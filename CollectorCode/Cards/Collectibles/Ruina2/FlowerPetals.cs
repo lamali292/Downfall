@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class FlowerPetals : Ruina2Card
 {
-    public FlowerPetals() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, "ALRIUNE_ELITE")
+    public FlowerPetals() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, "ALRIUNE_ELITE", 0.3f)
     {
         WithPower<MiasmaPower>(6, 2);
         WithPower<WeakPower>(1, 1);

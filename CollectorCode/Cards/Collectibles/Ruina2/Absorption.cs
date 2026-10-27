@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class Absorption : Ruina2Card
 {
-    public Absorption() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, "MOUNTAIN_ELITE")
+    public Absorption() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, "MOUNTAIN_ELITE", 0.56f)
     {
         WithDamage(8, 3);
         WithHeal(4, 2);

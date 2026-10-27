@@ -7,7 +7,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class RoadWalkedTogether : Ruina2Card
 {
-    public RoadWalkedTogether() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, "ROAD_HOME_ELITE")
+    public RoadWalkedTogether() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, "ROAD_HOME_ELITE", 0.84f)
     {
         WithBlock(12, 3);
         WithPower<RoadWalkedTogetherPower>(2,1, false);

@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class Friend : Ruina2Card
 {
-    public Friend() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, "LAETITIA_ELITE")
+    public Friend() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, "LAETITIA_ELITE", 0.4f)
     {
         WithKindle(11, 3);
         WithKeyword(CardKeyword.Exhaust);
