@@ -18,14 +18,9 @@ public class Float : HexaghostCardModel
     public Float() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         WithCards(1);
-        WithKeyword(HexaghostKeyword.Advance, UpgradeType.Remove);
-        WithTips(e => e.IsUpgraded
-            ?
-            [
-                HoverTipFactory.FromKeyword(HexaghostKeyword.Retract),
-                HoverTipFactory.FromKeyword(HexaghostKeyword.Advance)
-            ]
-            : []);
+        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithTip(HexaghostKeyword.Retract);
+        WithTip(HexaghostKeyword.Advance);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();

@@ -16,7 +16,7 @@ public class Floatwork : HexaghostCardModel, IHasAfterlifeEffect
     {
         WithAfterlife();
         WithPower<DexterityPower>(1, 1);
-        WithPower<MetallicizePower>(2);
+        WithPower<PlatedArmorPower>(2);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
@@ -24,7 +24,7 @@ public class Floatwork : HexaghostCardModel, IHasAfterlifeEffect
     public async Task AfterlifeEffect(PlayerChoiceContext ctx, CardPlay? cardPlay, bool wasExhausted,
         bool causedByEthereal)
     {
-        await CommonActions.ApplySelf<MetallicizePower>(ctx, this);
+        await CommonActions.ApplySelf<PlatedArmorPower>(ctx, this);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

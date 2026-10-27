@@ -12,7 +12,7 @@ public class Kindle : HexaghostCardModel
 {
     public Kindle() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
-        WithBlock(2, 3);
+        WithBlock(3, 3);
         WithTip(HexaghostTip.Ignite);
     }
 
