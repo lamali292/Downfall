@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Rooms;
@@ -121,7 +122,6 @@ public abstract class Collectible(
             {
                 _ = new Creature(monster, CombatSide.Enemy, "hi");
                 monster.SetupSkins(visuals.SpineBody, skeleton);
-                monster.OnPhobiaModeToggled(SaveManager.Instance.PrefsSave.PhobiaMode, visuals.SpineBody, skeleton);
                 //visuals.SpineAnimation.SetAnimation("attack", true);
             }
             catch (InvalidOperationException e)
@@ -129,9 +129,14 @@ public abstract class Collectible(
                 Console.WriteLine(e);
                 throw;
             }
-          
+
         }
-        
+
+        visuals.UpdatePhobiaMode(monster);
+        var onPhobiaToggled = Callable.From(() => visuals.UpdatePhobiaMode(monster));
+        NGame.Instance?.Connect(NGame.SignalName.PhobiaModeToggled, onPhobiaToggled);
+        visuals.TreeExiting += () => NGame.Instance?.Disconnect(NGame.SignalName.PhobiaModeToggled, onPhobiaToggled);
+
         foreach (var node in visuals.GetChildrenRecursive<Control>())
             node.MouseFilter = Control.MouseFilterEnum.Ignore;
         
