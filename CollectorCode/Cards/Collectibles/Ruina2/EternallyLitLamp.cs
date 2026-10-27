@@ -2,12 +2,14 @@
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class EternallyLitLamp : Ruina2Card
 {
+    protected override MonsterModel? OverlayMonster => GetEncounterModel()?.AllPossibleMonsters.LastOrDefault();
     public EternallyLitLamp() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, "BIG_BIRD_ELITE", 0.61f)
     {
         WithCostUpgradeBy(-1);

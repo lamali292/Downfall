@@ -8,6 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class Friend : Ruina2Card
 {
+    protected override MonsterModel? OverlayMonster => GetEncounterModel()?.AllPossibleMonsters.LastOrDefault();
     public Friend() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, "LAETITIA_ELITE", 0.4f)
     {
         WithKindle(11, 3);
