@@ -1,4 +1,3 @@
-using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
 using Godot;
@@ -7,7 +6,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace Awakened.AwakenedCode.Cards.Token;

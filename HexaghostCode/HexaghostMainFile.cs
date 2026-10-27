@@ -8,7 +8,6 @@ using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
 using Hexaghost.HexaghostCode.Localization;
 using Hexaghost.HexaghostCode.Patches;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;

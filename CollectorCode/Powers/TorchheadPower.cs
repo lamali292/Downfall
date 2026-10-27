@@ -17,7 +17,7 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
 
     public TorchheadPower() : base(PowerType.Buff, PowerStackType.Single)
     {
-        WithTorchheadDamage(5);
+        WithTorchheadDamage(4);
     }
     
     

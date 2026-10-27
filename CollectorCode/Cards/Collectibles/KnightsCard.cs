@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class KnightsCard : Collectible<KnightsElite>
 {
-    public KnightsCard() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.4f)
+    public KnightsCard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.4f)
     {
         WithPower<MachineLearningPower>(2, false);
         WithPower<KnightsCardPower>(1, false);

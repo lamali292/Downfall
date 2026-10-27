@@ -7,14 +7,14 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
 
-namespace Collector.CollectorCode.Cards.Rare;
+namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
 public class EquipFurnace : CollectorCardModel
 {
-    public EquipFurnace() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public EquipFurnace() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKindle( 5, 1);
+        WithKindle( 4, 2);
         WithPower<EquipFurnacePower>(1, 1, false);
         //WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);

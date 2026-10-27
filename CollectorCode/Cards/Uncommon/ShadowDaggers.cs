@@ -1,11 +1,11 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
@@ -19,6 +19,7 @@ public class ShadowDaggers : CollectorCardModel
         WithTorchheadDamage(5, 3);
         WithCalculatedVar("CalculatedHits", 0, Calc);
         WithKeyword(CardKeyword.Exhaust);
+        WithTip(CollectorKeyword.Torchhead);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -34,11 +35,17 @@ public class ShadowDaggers : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (Owner.IsTorchheadMissing) return;//If no Torchhead, do not run.
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
         for (var i = 0; i < hits; i++)
         {
-           await (TorchheadCmd.TorchheadAttack(this, cardPlay)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+            if (Owner.IsTorchheadAlive)
+            {
+                await (TorchheadCmd.TorchheadAttack(this, cardPlay)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+            }
+            else
+            {
+                await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+            }
         }
 
     }

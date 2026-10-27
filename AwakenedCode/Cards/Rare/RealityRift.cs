@@ -37,6 +37,7 @@ public class RealityRift : AwakenedCardModel
         ModelDb.Card<TheEncyclopedia>()
     ];
 
+    public override bool CanBeGeneratedInCombat => false;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
