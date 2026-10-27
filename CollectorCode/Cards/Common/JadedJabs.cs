@@ -17,7 +17,7 @@ public class JadedJabs : CollectorCardModel
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithTip(CollectorTip.Pyred);
-        WithDamage(13, 2);
+        WithDamage(11, 3);
         WithTip<LuckyWick>();
     }
 

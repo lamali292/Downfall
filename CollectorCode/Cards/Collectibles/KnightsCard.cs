@@ -14,6 +14,7 @@ public class KnightsCard : Collectible<KnightsElite>
     {
         WithPower<MachineLearningPower>(2, false);
         WithPower<KnightsCardPower>(1, false);
+        WithKeyword(CardKeyword.Ethereal);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 

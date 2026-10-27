@@ -26,8 +26,7 @@ public class KrampianCoal : CollectorRelicModel, IAfterCardPyred
     {
         if (pyred.Type is CardType.Curse or CardType.Status)
         {
-            var willUpgrade = pyred.Type == CardType.Curse;
-            await DownfallCardCmd.GiveCard<LuckyWick>(Owner, PileType.Hand, upgraded: willUpgrade);
+            await DownfallCardCmd.GiveCard<LuckyWick>(Owner, PileType.Hand);
             Flash();
         }
     }

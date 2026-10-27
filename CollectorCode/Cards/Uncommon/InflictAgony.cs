@@ -15,7 +15,7 @@ public class InflictAgony : CollectorCardModel
 {
     public InflictAgony() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithTorchheadDamage(17, 2);
+        WithTorchheadDamage(15, 1);
         WithVar("Power", 1, 1);
         WithTip<WeakPower>();
         WithTip<VulnerablePower>();

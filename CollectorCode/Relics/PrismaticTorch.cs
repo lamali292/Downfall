@@ -18,7 +18,7 @@ public class PrismaticTorch : CollectorRelicModel
     private bool active;
     public PrismaticTorch() : base(RelicRarity.Starter)
     {
-        WithKindle(7);
+        WithKindle(6);
         active = true;
     }
 

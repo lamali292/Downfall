@@ -19,7 +19,8 @@ public class SunbloomKindling : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(6, 4);
+        WithKeyword(CardKeyword.Retain);
+        WithKindle(3, 1);
         WithCards(2);
         WithCardTip<Ember>(WithPreviewModifiers);
         WithEnchantment<Spiral>();

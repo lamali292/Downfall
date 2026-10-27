@@ -17,7 +17,7 @@ public class TerrorEelCard
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(6, 3);
+        WithKindle(5, 3);
         WithPower<VulnerablePower>(3, 6);
     }
     

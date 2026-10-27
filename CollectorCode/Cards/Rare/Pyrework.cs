@@ -12,7 +12,8 @@ public class Pyrework : CollectorCardModel
 {
     public Pyrework() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<PyreworkPower>(1, 1, false);
+        WithCostUpgradeBy(-1);
+        WithPower<PyreworkPower>(1, false);
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
         WithTip(CollectorKeyword.Torchhead);

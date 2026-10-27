@@ -13,7 +13,7 @@ public class LagavulinMatriarchCard : Collectible<LagavulinMatriarchBoss>
     public LagavulinMatriarchCard() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self, 0.91f)
     {
         WithPower<LagavulinMatriarchCardPower>(3, false);
-        WithPower<PlatedArmorPower>(4, 1);
+        WithPower<PlatedArmorPower>(3, 2);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

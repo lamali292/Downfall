@@ -9,10 +9,9 @@ namespace Collector.CollectorCode.Cards.Multiplayer;
 [Pool(typeof(CollectorCardPool))]
 public class GreenpyreEnchantment : CollectorCardModel
 {
-    public GreenpyreEnchantment() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.AnyAlly)
+    public GreenpyreEnchantment() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.AnyAlly)
     {
-        WithCostUpgradeBy(-1);
-        WithPower<GreenpyreEnchantmentPower>(1, false);
+        WithPower<GreenpyreEnchantmentPower>(1, 1, false);
         WithTip<MiasmaPower>();
     }
     

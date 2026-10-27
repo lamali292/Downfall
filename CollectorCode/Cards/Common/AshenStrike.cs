@@ -15,9 +15,11 @@ namespace Collector.CollectorCode.Cards.Common;
 public class AshenStrike : CollectorCardModel
 {
     // rename
-    public AshenStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+    public AshenStrike() : base(0, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
-        WithTorchheadDamage(14, 2);
+        WithTorchheadDamage(5, 2);
+        WithCards(2);
+        WithRepeat(2);
         WithUpgradeChangingCardTip<Burn, Ember>();
         WithTags(CardTag.Strike);
         WithTip(CollectorKeyword.Torchhead);
@@ -31,15 +33,18 @@ public class AshenStrike : CollectorCardModel
     {
         if (Owner.IsTorchheadAlive)
         {
-        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+            for (var v = 0; v > DynamicVars.Repeat.IntValue; v++)
+            {
+                await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+            }
         }
         else
         {
             await TorchheadCmd.Kindle(ctx, Owner, 1, this);
         }
         if (IsUpgraded)
-            await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
+            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         else 
-            await DownfallCardCmd.GiveCard<Burn>(Owner, PileType.Hand);
+            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
     }
 }

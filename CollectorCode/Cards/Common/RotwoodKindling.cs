@@ -18,7 +18,6 @@ public class RotwoodKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle( 1);
         WithUpgradingCardTip<Rotshroom>();
     }
 

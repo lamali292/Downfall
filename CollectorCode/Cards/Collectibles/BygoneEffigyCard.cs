@@ -10,9 +10,10 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class BygoneEffigyCard : Collectible<BygoneEffigyElite>
 {
-    public BygoneEffigyCard() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.12f)
+    public BygoneEffigyCard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, 0.12f)
     {
-        WithVar("Power", 2, 1);
+        WithCostUpgradeBy(-1);
+        WithVar("Power", 2);
         WithPower<BygoneEffigyCardPower>(2, false);
         WithReserveTip();
         WithTip<StrengthPower>();
