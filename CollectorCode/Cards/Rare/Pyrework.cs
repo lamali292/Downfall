@@ -4,7 +4,6 @@ using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -16,6 +15,7 @@ public class Pyrework : CollectorCardModel
         WithPower<PyreworkPower>(1, 1, false);
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
+        WithTip(CollectorKeyword.Torchhead);
         WithTorchheadDamage(5);
     }
     

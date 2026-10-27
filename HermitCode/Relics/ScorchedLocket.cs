@@ -21,8 +21,7 @@ public sealed class ScorchedLocket : HermitRelicModel
         WithCardTip<MementoCard>((card, _) => EnchantSeething(card));
         WithTip<Seething>();
     }
-
-
+    
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {
