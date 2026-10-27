@@ -63,7 +63,7 @@
   "HEXAGHOST-FLASHBANG.description": "Deal {Damage:diff()} damage.\nIf the current Ghostflame is [gold]Ignited[/gold], apply {WeakPower:diff()} [gold]Weak[/gold] and the target enemy loses {FlashbangPower:diff()} [gold]Strength[/gold] this turn.",
   "HEXAGHOST-FLEETING_FLARE.description": "[gold]Ignite[/gold] the current Ghostflame, then [gold]Extinguish[/gold] it.",
   "HEXAGHOST-FLEETING_FLARE.title": "Fleeting Flare",
-  "HEXAGHOST-FLOAT.description": "Draw a card.{IfUpgraded:show:\nYou may choose to [gold]Advance[/gold] or [gold]Retract[/gold].|}",
+  "HEXAGHOST-FLOAT.description": "Draw a card.\nYou may choose to [gold]Advance[/gold] or [gold]Retract[/gold].",
   "HEXAGHOST-FLOAT.title": "Float",
   "HEXAGHOST-FLOATWORK.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\n[afterlife]Gain[/afterlife] {MetallicizePower:diff()} [afterlife]Metallicize.[/afterlife]",
   "HEXAGHOST-FLOATWORK.title": "Floatwork",
