@@ -83,7 +83,7 @@ public abstract class Collectible(
 
     public Control CreateAdditionalOverlay()
     {
-        var monster = EncounterModel?.AllPossibleMonsters.FirstOrDefault()?.ToMutable();
+        var monster = OverlayMonster?.ToMutable();
         var container = new Control { Name = OverlayNodeName, MouseFilter = Control.MouseFilterEnum.Ignore };
         if (monster ==  null) return container;
         var visuals = monster.CreateVisuals();
@@ -95,6 +95,12 @@ public abstract class Collectible(
     }
 
     public string OverlayNodeName => "DownfallMonsterOverlay";
+
+    /// <summary>
+    /// The monster shown in the card overlay. Defaults to the first monster of the encounter;
+    /// override to pick a different one (e.g. <c>EncounterModel?.AllPossibleMonsters.ElementAtOrDefault(1)</c>).
+    /// </summary>
+    protected virtual MonsterModel? OverlayMonster => EncounterModel?.AllPossibleMonsters.FirstOrDefault();
 
     public abstract EncounterModel? GetEncounterModel();
     private EncounterModel? EncounterModel => GetEncounterModel();
