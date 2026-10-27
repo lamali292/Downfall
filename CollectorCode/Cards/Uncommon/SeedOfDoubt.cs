@@ -14,9 +14,9 @@ public class SeedOfDoubt : CollectorCardModel
 {
     public SeedOfDoubt() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<MiasmaPower>(3);
+        WithPower<MiasmaPower>(3, 3);
         WithTip(CardKeyword.Exhaust);
-        WithVar("Increase", 1, 1);
+        WithVar("Increase", 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -15,8 +15,8 @@ public class Roast : CollectorCardModel
     public Roast() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
-        WithDamage(7, 4);
-        WithCardTip<Soot>();
+        WithDamage(10, 4);
+        WithUpgradeChangingCardTip<Burn, Soot>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -26,6 +26,13 @@ public class Roast : CollectorCardModel
     {
         if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
+        if (IsUpgraded)
+        {
+            await DownfallCardCmd.GiveCards<Soot>(Owner, PileType.Hand, 1);
+        }
+        else
+        {
+            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, 1);
+        }
     }
 }

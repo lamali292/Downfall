@@ -11,8 +11,8 @@ public class InevitableDemise : CollectorCardModel
 {
     public InevitableDemise() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(9, 3);
-        WithPower<InevitableDemisePower>(1, false);
+        WithDamage(5, 2);
+        WithPower<InevitableDemisePower>(1, 1, false);
         WithTip<MiasmaPower>();
     }
 

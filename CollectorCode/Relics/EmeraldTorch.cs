@@ -17,7 +17,7 @@ public class EmeraldTorch : CollectorRelicModel
     private bool active;
     public EmeraldTorch() : base(RelicRarity.Starter)
     {
-        WithKindle(3);
+        WithKindle(2);
         active = true;
     }
     

@@ -25,7 +25,7 @@ public class SoulFyshCard : Collectible<SoulFyshBoss>
         if (card.Pile?.Type is not (PileType.Hand or PileType.Play))
             return false;
         if (card != this) return false;
-        modifiedCost -= Owner.Hand.Count(e => e.Keywords.Contains(CardKeyword.Unplayable));
+        modifiedCost -= (Owner.Hand.Count(e => e.Keywords.Contains(CardKeyword.Unplayable))*2);
         return true;
     }
 

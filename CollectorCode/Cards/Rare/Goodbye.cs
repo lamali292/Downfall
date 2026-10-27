@@ -30,7 +30,14 @@ public class Goodbye : CollectorCardModel
             var powerAmount = e.GetPowerAmount<MiasmaPower>();
             if (powerAmount <= 0)
                 continue;
-            await PowerCmd.Apply<MiasmaPower>(ctx, e, powerAmount, Owner.Creature, this);
+            if (IsUpgraded)
+            {
+                await PowerCmd.Apply<MiasmaPower>(ctx, e, (powerAmount*2), Owner.Creature, this);
+            }
+            else
+            {
+                await PowerCmd.Apply<MiasmaPower>(ctx, e, powerAmount, Owner.Creature, this);
+            }
         }
     }
 }

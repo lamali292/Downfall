@@ -14,7 +14,8 @@ public class FeelOurPain : CollectorCardModel
 {
     public FeelOurPain() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<FeelMyPainPower>(5, 3, false);
+        WithPower<FeelMyPainPower>(5, false);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithTip(CollectorTip.Pyred);
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);

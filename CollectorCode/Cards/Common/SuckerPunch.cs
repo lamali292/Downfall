@@ -12,7 +12,7 @@ public class SuckerPunch : CollectorCardModel
 {
     public SuckerPunch() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(13, 3);
+        WithDamage(12, 2);
         WithPower<WeakPower>(2, 1);
     }
 

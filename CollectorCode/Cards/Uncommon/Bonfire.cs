@@ -15,11 +15,10 @@ public class Bonfire : CollectorCardModel
 {
     public Bonfire() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CollectorKeyword.Pyre);
         WithBlock(13, 4);
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
-        WithCardTip<Soot>();
+        WithUpgradeChangingCardTip<Burn, Soot>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -30,6 +29,13 @@ public class Bonfire : CollectorCardModel
         if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
-        await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
+        if (IsUpgraded)
+        {
+            await DownfallCardCmd.GiveCards<Soot>(Owner, PileType.Hand, 1);
+        }
+        else
+        {
+            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, 1);
+        }
     }
 }
