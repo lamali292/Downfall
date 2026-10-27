@@ -17,12 +17,10 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
 
     public TorchheadPower() : base(PowerType.Buff, PowerStackType.Single)
     {
-        WithTorchheadDamage(4);
+        WithTorchheadDamage(3);
     }
     
-    
     public override bool ShouldPlayVfx => false;
-
     
     public void AddDumbVariablesToPowerDescription(LocString description)
     {
@@ -30,7 +28,6 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
         var shouldTargetAll = IsMutable && Owner.PetOwner != null && CollectorHook.ShouldTorchheadTargetAll(Owner.PetOwner, out _);
         description.Add("TorchheadTargetsAll", shouldTargetAll);
     }
-    
     
     public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
