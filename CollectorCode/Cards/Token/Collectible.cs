@@ -103,7 +103,7 @@ public abstract class Collectible(
     protected virtual MonsterModel? OverlayMonster => EncounterModel?.AllPossibleMonsters.FirstOrDefault();
 
     public abstract EncounterModel? GetEncounterModel();
-    private EncounterModel? EncounterModel => GetEncounterModel();
+    protected EncounterModel? EncounterModel => GetEncounterModel();
 
     public float HueShift => h;
     public float Saturation => s;
