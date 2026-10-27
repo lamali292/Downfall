@@ -29,14 +29,7 @@ public class AshenStrike : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (Owner.IsTorchheadAlive)
-        {
-        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
-        }
-        else
-        {
-            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
-        }
+        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
         if (IsUpgraded)
             await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand);
         else 

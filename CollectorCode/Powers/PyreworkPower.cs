@@ -21,33 +21,11 @@ public class PyreworkPower : CollectorPowerModel, IAddDumbVariablesToPowerDescri
         WithTip(CollectorKeyword.Torchhead);
     }
 
-    /*
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || !(cardPlay.Card.Keywords.Contains(CollectorKeyword.Pyre) || cardPlay.Card.Keywords.Contains(CollectorKeyword.Megapyre))) return;
-    }
-    */
-    
-    public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
-    {
-        if (pyred.Owner.Creature == Owner && pyred.Type is CardType.Status)
-        {
-            for (var v = 0; v < Amount; v++)
-            {
-                if (Owner.Player != null && Owner.Player!.IsTorchheadAlive)
-                {
-                    await TorchheadCmd.TorchheadAttack(this).ExecuteIfPresent(ctx);
-                }
-                else if (Owner.Player != null)
-                {
-                    await TorchheadCmd.Kindle(ctx, Owner.Player!, 1, this);
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
+        if (pyred.Owner.Creature != Owner || pyred.Type is not CardType.Status || Owner.Player == null) return;
+        for (var v = 0; v < Amount; v++)
+            await TorchheadCmd.AttackOrKindle(ctx, this);
     }
     
     public void AddDumbVariablesToPowerDescription(LocString description)
