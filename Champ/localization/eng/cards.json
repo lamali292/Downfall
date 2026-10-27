@@ -99,7 +99,7 @@
   "CHAMP-IMPROVISING.title": "Improvising",
   "CHAMP-INSPIRATION.description": "Enter a [gold]Stance[/gold] you aren't in.",
   "CHAMP-INSPIRATION.title": "Inspiration",
-  "CHAMP-IRON_FORTRESS.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nGain {MetallicizePower:diff()} [gold]Metallicize[/gold].",
+  "CHAMP-IRON_FORTRESS.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nGain {PlatingPower:diff()} [gold]Plating[/gold].",
   "CHAMP-IRON_FORTRESS.title": "Iron Fortress",
   "CHAMP-KILLING_SPREE.title": "Killing Spree",
   "CHAMP-KILLING_SPREE.description": "[gold]Stances[/gold] no longer have a cap on [gold]Skill Bonuses[/gold].\nTrigger your current [gold]Stance[/gold]'s [gold]Skill Bonus[/gold] {Skill:diff()} times.",

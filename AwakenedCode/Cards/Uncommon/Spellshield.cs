@@ -13,7 +13,6 @@ public class Spellshield : AwakenedCardModel
 {
     public Spellshield() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        //Todo: replace this card.
         WithTip(CardKeyword.Retain);
         WithTip(StaticHoverTip.Block);
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);

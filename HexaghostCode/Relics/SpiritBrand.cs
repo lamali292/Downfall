@@ -21,7 +21,8 @@ public class SpiritBrand : HexaghostRelicModel, IAfterGhostflameIgnited
         WithTip(HexaghostTip.Ignite);
         WithBlock(3);
     }
-    
+
+
     private bool UsedThisTurn { get; set; }
 
     public async Task AfterGhostflameIgnited(PlayerChoiceContext ctx, Player player, GhostflameModel flame, int index)

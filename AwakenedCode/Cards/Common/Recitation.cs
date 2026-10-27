@@ -15,7 +15,7 @@ public class Recitation : AwakenedCardModel
 {
     public Recitation() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(7, 3);
+        WithDamage(6, 2);
         WithKeyword(AwakenedKeyword.Chant);
     }
 
