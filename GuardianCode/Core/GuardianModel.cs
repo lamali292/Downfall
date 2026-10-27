@@ -1,4 +1,4 @@
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Core;
 using Guardian.GuardianCode.Cards.Abstract;
@@ -82,7 +82,10 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         // than waiting for the next GetEffectiveStasisCount caller to notice.
         if (PendingStasisRedirect[card.Owner] == card) PendingStasisRedirect[card.Owner] = null;
 
-        if (card.Pile != null && card.Pile.Type != GuardianPile.Stasis) return Task.CompletedTask;
+        // Only a card entering or leaving Stasis changes what the display shows. Leaving has to be handled
+        // here: InitStasisUi no longer rebuilds the display on every query, which used to mask a stale slot.
+        var enteredStasis = card.Pile == null || card.Pile.Type == GuardianPile.Stasis;
+        if (!enteredStasis && oldPileType != GuardianPile.Stasis) return Task.CompletedTask;
         GuardianDisplay.Refresh(card.Owner);
         return Task.CompletedTask;
     }
@@ -126,10 +129,14 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
         // Stasis is private information in multiplayer: other players' displays are never created.
         if (!LocalContext.IsMe(player)) return;
 
+        // This is on the query path (GetOrInitStasis -> GetEffectiveStasisCount -> CanPutIntoStasis), so it must
+        // not rebuild an existing display: Refresh recreates an NCard for every stasis card, and a clone loop
+        // like High Frequency's calls this several times per iteration. Everything that changes stasis (slot
+        // count, counters, pile moves, ticking) refreshes explicitly; only a brand-new display needs filling.
         var combatRoom = NCombatRoom.Instance;
-        if (combatRoom != null && !GuardianDisplay.HasDisplay(player))
-            GuardianDisplay.SetupGuardianUi(combatRoom, player);
+        if (combatRoom == null || GuardianDisplay.HasDisplay(player)) return;
 
+        GuardianDisplay.SetupGuardianUi(combatRoom, player);
         GuardianDisplay.Refresh(player);
     }
 
