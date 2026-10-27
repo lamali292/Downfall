@@ -280,7 +280,7 @@
   "COLLECTOR-ROAD_WALKED_TOGETHER.title": "Road Walked Together",
   "COLLECTOR-ROAD_WALKED_TOGETHER.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Torchhead[/gold]'s attacks deal {RoadWalkedTogetherPower:diff()} additional damage.",
   "COLLECTOR-ETERNALLY_LIT_LAMP.title": "Eternally Lit Lamp",
-  "COLLECTOR-ETERNALLY_LIT_LAMP.description": "Whenever [gold]Torchhead[/gold] attacks, the enemy loses {EternallyLitLampPower:diff()} [gold]Strength[/gold] this turn",
+  "COLLECTOR-ETERNALLY_LIT_LAMP.description": "Whenever [gold]Torchhead[/gold] attacks, the enemy loses {EternallyLitLampPower:diff()} [gold]Strength[/gold] this turn.",
   "COLLECTOR-SWORD_OF_FROST.title": "Sword of Frost",
   "COLLECTOR-SWORD_OF_FROST.description": "The first time you create a [gold]Burn[/gold] or [gold]Ember[/gold] each turn, [gold]Exhaust[/gold] it and draw {SwordOfFrostPower:diff()} {SwordOfFrostPower:plural:card|cards}.",
   "COLLECTOR-NOSTALGIC_SOUND.title": "A Nostalgic Sound",
