@@ -1,6 +1,8 @@
 ﻿using SlimeBoss.SlimeBossCode.Extensions;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using SlimeBoss.SlimeBossCode.Core;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -26,6 +28,13 @@ public class ScrapSlime : SlimeModel
     public override string CounterIconPath => "res://images/powers/thorns_power.png";
 
     protected override string SkinName => "scrap";
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var card = cardPlay.Card;
+        if (card.Owner.Creature != PetOwner || card.Type != CardType.Status) return;
+        await SlimeBossCmd.Command<ScrapSlime>(ctx, card.Owner, 1, card);
+    }
 
     public override Task Command(PlayerChoiceContext ctx, Creature? forcedTarget = null)
     {

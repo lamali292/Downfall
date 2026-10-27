@@ -23,5 +23,5 @@
   "SLIMEBOSS-TAUNTING_SLIME.name": "Taunting Slime",
   "SLIMEBOSS-TAUNTING_SLIME.description": "Grants [blue]{Slime:diff()}[/blue] [gold]Block[/gold].",
   "SLIMEBOSS-SCRAP_SLIME.name": "Scrap Slime",
-  "SLIMEBOSS-SCRAP_SLIME.description": "Grants [blue]{Slime:diff()}[/blue] [gold]Thorns[/gold] for a turn."
+  "SLIMEBOSS-SCRAP_SLIME.description": "Grants [blue]{Slime:diff()}[/blue] [gold]Thorns[/gold] for a turn.\nWhenever you play a [gold]Status[/gold], [gold]Command[/gold] this Slime."
 }
