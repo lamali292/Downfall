@@ -19,7 +19,7 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
     public TwinSlam() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(7);
-        WithUpgradingCardTip<SecondSlam>();
+        WithUpgradingCardTip<SecondSlam>(Action);
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
