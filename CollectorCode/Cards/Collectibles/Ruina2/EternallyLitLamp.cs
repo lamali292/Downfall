@@ -9,7 +9,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class EternallyLitLamp : Ruina2Card
 {
-    protected override MonsterModel? OverlayMonster => GetEncounterModel()?.AllPossibleMonsters.LastOrDefault();
+    protected override MonsterModel? OverlayMonster => EncounterModel?.AllPossibleMonsters.LastOrDefault();
     public EternallyLitLamp() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, "BIG_BIRD_ELITE", 0.61f)
     {
         WithCostUpgradeBy(-1);

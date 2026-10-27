@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class SwordOfFrost : Ruina2Card
 {
-    protected override MonsterModel? OverlayMonster => GetEncounterModel()?.AllPossibleMonsters.LastOrDefault();
+    protected override MonsterModel? OverlayMonster => EncounterModel?.AllPossibleMonsters.LastOrDefault();
     public SwordOfFrost() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, "SNOW_QUEEN_ELITE")
     {
         WithTip<Burn>();

@@ -8,7 +8,7 @@ namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class RoadWalkedTogether : Ruina2Card
 {
-    protected override MonsterModel? OverlayMonster => GetEncounterModel()?.AllPossibleMonsters.LastOrDefault();
+    protected override MonsterModel? OverlayMonster => EncounterModel?.AllPossibleMonsters.LastOrDefault();
     public RoadWalkedTogether() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, "ROAD_HOME_ELITE", 0.84f)
     {
         WithBlock(12, 3);
