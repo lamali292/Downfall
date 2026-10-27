@@ -7,6 +7,11 @@ namespace Hermit.HermitCode.Powers;
 
 public class HighNoonDefendPower : HermitPowerModel, IModifyCardReplayCount
 {
+    public HighNoonDefendPower()
+    {
+        WithDefendTip();
+    }
+
     private bool IsMyBasicDefend(CardModel card)
     {
         return card.Owner?.Creature == Owner &&

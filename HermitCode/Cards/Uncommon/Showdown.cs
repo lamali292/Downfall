@@ -11,6 +11,7 @@ public sealed class Showdown : HermitCardModel
 {
     public Showdown() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
+        WithStrikeTip();
         WithDamage(9, 3);
     }
 

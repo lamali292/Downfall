@@ -19,7 +19,7 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
     public TwinSlam() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(7);
-        WithUpgradingCardTip<SecondSlam>(Action);
+        WithUpgradingCardTip<SecondSlam>();
     }
 
     protected override Artist Artist => Artist.Get<AlexMdle>();
@@ -38,7 +38,6 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
         if (card.Enchantment == null) return;
         var enchantment = (EnchantmentModel)card.Enchantment.MutableClone();
         CardCmd.Enchant(enchantment, secondSlam, enchantment.Amount);
-        NCard.FindOnTable(secondSlam)?.ReloadOverlay();
     }
 
     private void Action(SecondSlam secondSlam)
