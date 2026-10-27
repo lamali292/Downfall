@@ -11,18 +11,16 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class SplitScrap : SlimeBossCardModel
 {
-    public SplitScrap() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public SplitScrap() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithTip(SlimeBossTip.Split);
         WithSlimeTip<ScrapSlime>();
-        WithPower<PotencyPower>(0, 2, true);
+        WithCostUpgradeBy(-1);
         WithTags(SlimeBossTag.Slime);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var slime = await SlimeBossCmd.Split<ScrapSlime>(ctx, Owner);
-        if (slime == null) return;
-        await CommonActions.Apply<PotencyPower>(ctx, slime, this);
+        await SlimeBossCmd.Split<ScrapSlime>(ctx, Owner);
     }
 }
