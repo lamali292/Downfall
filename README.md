@@ -68,4 +68,4 @@ Use `-Projects Champ,Guardian` with either script to limit it to some projects. 
 
 ## Editing scenes or UI in Godot
 
-See the [full setup guide](https://github.com/lamali292/Downfall/wiki/Full-Setup) in the wiki.
+See the [scene editing setup guide](https://github.com/lamali292/Downfall/wiki/Setup:-Editing-Scenes) in the wiki.
