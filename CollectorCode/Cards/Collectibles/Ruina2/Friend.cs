@@ -21,7 +21,7 @@ public class Friend : Ruina2Card
         var card = ModelDb.GetByIdOrNull<CardModel>(id);
         if (card != null && CombatState != null)
         {
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard(card, card.Owner), PileType.Discard, card.Owner));
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard(card, Owner), PileType.Discard, Owner));
         }
     }
 }

@@ -10,7 +10,7 @@ public class RoadWalkedTogether : Ruina2Card
     public RoadWalkedTogether() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, "ROAD_HOME_ELITE")
     {
         WithBlock(12, 3);
-        WithPower<RoadWalkedTogetherPower>(2, 3);
+        WithPower<RoadWalkedTogetherPower>(2, 3, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

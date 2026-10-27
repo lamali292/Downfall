@@ -26,7 +26,7 @@ public class Wrath : Ruina2Card
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
         DamageVar damage = DynamicVars.Damage;
         damage.BaseValue = damage.BaseValue + DynamicVars["Increase"].BaseValue;
         ExtraDamageFromPlays += DynamicVars["Increase"].BaseValue;
