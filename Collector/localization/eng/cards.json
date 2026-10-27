@@ -284,7 +284,7 @@
   "COLLECTOR-SWORD_OF_FROST.title": "Sword of Frost",
   "COLLECTOR-SWORD_OF_FROST.description": "The first time you create a [gold]Burn[/gold] or [gold]Ember[/gold] each turn, [gold]Exhaust[/gold] it and draw {SwordOfFrostPower:diff()} {SwordOfFrostPower:plural:card|cards}.",
   "COLLECTOR-NOSTALGIC_SOUND.title": "A Nostalgic Sound",
-  "COLLECTOR-NOSTALGIC_SOUND.description": "Deal {Damage:diff()} damage to ALL enemies.\nThis card's cost is decreased by your {:reserveIcons(1)}.",
+  "COLLECTOR-NOSTALGIC_SOUND.description": "Deal {Damage:diff()} damage to ALL enemies.\nCosts 1 less {energyPrefix:energyIcons(1)} for each {:reserveIcons(1)} you have.",
   "COLLECTOR-ROTSHROOM.title": "Rotshroom",
   "COLLECTOR-ROTSHROOM.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
   "COLLECTOR-SLAG_TEAM.title": "Slag Team",
