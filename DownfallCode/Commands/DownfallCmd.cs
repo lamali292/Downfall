@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
@@ -32,6 +33,16 @@ public class DownfallCmd
     public static bool TargetsEnemy(CardModel card, Creature? target)
     {
         return card.MyGetTargets(target).Any(c => c.Side == CombatSide.Enemy);
+    }
+
+    /// <summary>
+    ///     The Basic card with <paramref name="tag"/> (Strike/Defend) from the player's own character pool.
+    /// </summary>
+    public static CardModel? GetStarterCard(Player? player, CardTag tag)
+    {
+        return player?.Character.CardPool
+                   .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
+                   .FirstOrDefault(c => c.Tags.Contains(tag) && c.Rarity == CardRarity.Basic);
     }
 
     public static bool IsDebuffed(Creature? creature)

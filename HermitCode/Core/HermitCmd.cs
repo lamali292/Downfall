@@ -1,4 +1,8 @@
-﻿using Hermit.HermitCode.CustomEnums;
+﻿using Downfall.DownfallCode.Commands;
+using Hermit.HermitCode.Cards.Basic;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.HoverTips;
+using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Patches;
@@ -13,6 +17,13 @@ namespace Hermit.HermitCode.Core;
 
 public static class HermitCmd
 {
+    
+    public static IHoverTip StarterTip(Player? owner, CardTag tag)
+    {
+        CardModel fallback = tag == CardTag.Strike ? ModelDb.Card<StrikeHermit>() : ModelDb.Card<DefendHermit>();
+        if (owner == null || owner.Character is Hermit) return HoverTipFactory.FromCard(fallback);
+        return HoverTipFactory.FromCard(DownfallCmd.GetStarterCard(owner, tag) ?? fallback);
+    }
 
     public static Task Concentrate(PlayerChoiceContext ctx, AbstractModel model, int amount = 1)
     {

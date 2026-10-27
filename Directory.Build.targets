@@ -151,6 +151,10 @@
 
     <Target Name="GodotPublish" AfterTargets="Publish"
             Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+        <!-- ModsPath is derived from Sts2Path; an empty one (e.g. local.props still on the removed SteamLibraryPath)
+             would pack to "/mods/..." and fail inside Godot with only "exited with code 1". CI sets ModsPath explicitly. -->
+        <Error Condition="'$(Sts2Path)' == '' and '$(ModsPath)' == '/mods/'"
+               Text="Sts2Path is empty, so the mod would be packed to '/mods/'. Set Sts2Branch plus Sts2BetaPath / Sts2PublicPath (the full 'Slay the Spire 2' game folder) in local.props - SteamLibraryPath is no longer read. See local.props.example."/>
         <Message Text="--- PACKING $(ModId) RELEASE: '$(PackFolders)' ---" Importance="high"/>
         <ItemGroup>
             <_PackFolderList Remove="@(_PackFolderList)"/>
