@@ -12,6 +12,7 @@ public sealed class Maintenance : HermitCardModel
 {
     public Maintenance() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithStrikeTip();
         WithPower<MaintenanceStrikePower>(3, 1, false);
         WithPower<DexterityPower>(1, 1);
     }

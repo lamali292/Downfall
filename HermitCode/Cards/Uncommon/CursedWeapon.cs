@@ -21,7 +21,7 @@ public sealed class CursedWeapon : HermitCardModel
         WithCostUpgradeBy(-1);
         WithDamage(CurrentDamage);
         WithKeyword(CardKeyword.Exhaust);
-        WithHpLoss(2);
+        WithHpLoss(1);
         WithVar(IncreaseKey, 1);
     }
 

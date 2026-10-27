@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Nodes;
+﻿using Downfall.DownfallCode.Nodes;
 using Godot;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.addons.mega_text;
@@ -14,6 +14,12 @@ public partial class NStasisSlot : Control
     private NCustomCardHolder? _holder;
 
     private Control? _visualParent;
+
+    /// <summary>The card this slot is currently showing, if any.</summary>
+    public CardModel? Card { get; private set; }
+
+    public NCustomCardHolder? Holder => _holder;
+
     public Vector2 CardAnchorGlobal => GetGlobalTransform().Origin + Size * GetGlobalTransform().Scale / 2f;
 
     private static float CardScale => 0.15f;
@@ -38,6 +44,7 @@ public partial class NStasisSlot : Control
 
         _holder = NCustomCardHolder.Create(cardNode, CardScale, BigCardScale);
         if (_holder == null) return null;
+        Card = cardNode.Model;
 
         _visualParent!.AddChild(_holder);
         if (cardNode.Model != null)
@@ -67,10 +74,23 @@ public partial class NStasisSlot : Control
         }
     }
 
+    /// <summary>
+    ///     True when this slot already shows <paramref name="model" /> (or nothing, for null) with a live node.
+    ///     A freed, queued-for-deletion or pool-recycled node counts as not showing it.
+    /// </summary>
+    public bool IsShowing(CardModel? model)
+    {
+        if (model == null) return _holder == null;
+        return Card == model
+               && _holder != null && IsInstanceValid(_holder) && !_holder.IsQueuedForDeletion()
+               && _holder.CardNode is { } node && IsInstanceValid(node) && node.Model == model;
+    }
+
     public void ClearCard()
     {
         _holder?.QueueFree();
         _holder = null;
+        Card = null;
         if (!IsInstanceValid(_count)) return;
         _count!.Visible = false;
     }

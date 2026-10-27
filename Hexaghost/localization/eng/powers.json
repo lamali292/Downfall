@@ -70,8 +70,8 @@
   "HEXAGHOST-INFERNO_POTION_POWER.description": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat.",
   "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Ghostflames apply [gold]Soulburn[/gold] and deal damage to ALL enemies this combat. ",
   "HEXAGHOST-PREMONITION_POWER.title": "Premonition",
-  "HEXAGHOST-PREMONITION_POWER.description": "If you [gold]Exhaust[/gold] enough cards in a turn, draw additional cards at the start of your next turn.",
-  "HEXAGHOST-PREMONITION_POWER.smartDescription": "If you [gold]Exhaust[/gold] [blue]{Exhaust}[/blue] or more cards in a turn, draw [blue]{Amount}[/blue] additional {Amount:plural:card|cards} at the start of your next turn.",
+  "HEXAGHOST-PREMONITION_POWER.description": "Whenever an [gold]Ethereal[/gold] card is [gold]Exhausted[/gold], gain [gold]Strength[/gold].",
+  "HEXAGHOST-PREMONITION_POWER.smartDescription": "Whenever an [gold]Ethereal[/gold] card is [gold]Exhausted[/gold], gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
   "HEXAGHOST-SOULFIRE_POWER.title": "Soulfire",
   "HEXAGHOST-SOULFIRE_POWER.description": "Whenever you apply [gold]Soulburn[/gold] with a card, gain [gold]Block[/gold].",
   "HEXAGHOST-SOULFIRE_POWER.smartDescription": "Whenever you apply [gold]Soulburn[/gold] with a card, gain [blue]{Amount}[/blue] [gold]Block[/gold]."

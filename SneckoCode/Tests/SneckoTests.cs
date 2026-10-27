@@ -138,6 +138,18 @@ public class SneckoTests
         Assert.IsTrue(added[0].IsUpgraded, "Silver Crucible should upgrade the card obtained through a Gift.");
     }
 
+    // Reported soft-lock: a Gift whose filter leaves fewer than 3 candidates (e.g. Toxic Bite's common debuffs with
+    // few borrowed characters) made CardFactory.CreateForReward throw. It must now just offer what exists.
+    [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]
+    public async Task GiftWithNoCandidatesDoesNotThrow(TestContext ctx)
+    {
+        var before = PileType.Deck.GetPile(ctx.Player).Cards.ToList();
+        await SneckoCmd.GetGift(ctx.Player, new Gift { MinCost = 99 });
+        var added = PileType.Deck.GetPile(ctx.Player).Cards.Except(before).ToList();
+
+        Assert.AreEqual(0, added.Count, "A Gift with no matching cards should add nothing and not throw.");
+    }
+
     // Regression guard: without a reward-modifying relic in play, Gift shouldn't upgrade cards
     // on its own (the CardReward plumbing must not force an upgrade by itself).
     [CardTest(typeof(Snecko.SneckoCode.Core.Snecko))]

@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Nodes;
+﻿using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
@@ -102,50 +102,70 @@ public partial class NGuardianDisplay : Control
             _slots[i].UpdateCounterDisplay(sequence[i]);
     }
 
+    /// <summary>
+    ///     Brings the slots in line with the stasis pile. Called from every place that touches stasis
+    ///     (slot count, counters, pile moves, ticking), often several times for one change, so it only
+    ///     rebuilds the slots whose card actually changed; an unchanged slot just refreshes its visuals.
+    /// </summary>
     public void Refresh()
     {
         if (_trackedPlayer == null) return;
 
         var sequence = _trackedPlayer.StasisPile.ToList();
         _currentMax = GuardianCmd.GetMaxStasisSlots(_trackedPlayer);
-
-        ReleaseAllCards();
-        foreach (var slot in _slots)
-            slot.ClearCard();
         EnsureSlotCount(_currentMax);
+
+        var rebuilt = false;
         for (var i = 0; i < _slots.Count; i++)
         {
             var slot = _slots[i];
             slot.Visible = i < _currentMax;
-            if (i >= _currentMax || i >= sequence.Count) continue;
+            var wanted = i < _currentMax && i < sequence.Count ? sequence[i] : null;
 
-            var model = sequence[i];
-            var cardNode = NCard.Create(model);
-            if (cardNode == null) continue;
-
-            var holder = slot.SetCard(cardNode);
-            if (holder == null)
+            if (slot.IsShowing(wanted))
             {
-                cardNode.QueueFree();
+                slot.Holder?.CardNode?.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
                 continue;
             }
 
-            holder.SetClickable(true);
-            WireInspect(holder);
-
-            cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
-            FindOnTablePatch.Register(model, cardNode);
-            _cardHolders.Add(holder);
+            rebuilt = true;
+            if (slot.Holder != null) ReleaseHolder(slot.Holder);
+            slot.ClearCard();
+            if (wanted != null) ShowCard(slot, wanted);
         }
 
-        DownfallControllerNav.WireChain(_cardHolders, true, true);
-        if (_creatureHitbox != null)
-            DownfallControllerNav.LinkAbove(_cardHolders, _creatureHitbox);
+        _cardHolders.Clear();
+        _cardHolders.AddRange(_slots.Select(s => s.Holder).Where(h => h != null && IsInstanceValid(h))!);
+
+        if (rebuilt)
+        {
+            DownfallControllerNav.WireChain(_cardHolders, true, true);
+            if (_creatureHitbox != null)
+                DownfallControllerNav.LinkAbove(_cardHolders, _creatureHitbox);
+        }
 
         ApplyWidthCap(_currentMax);
         RefreshCounters();
     }
 
+    private void ShowCard(NStasisSlot slot, CardModel model)
+    {
+        var cardNode = NCard.Create(model);
+        if (cardNode == null) return;
+
+        var holder = slot.SetCard(cardNode);
+        if (holder == null)
+        {
+            cardNode.QueueFree();
+            return;
+        }
+
+        holder.SetClickable(true);
+        WireInspect(holder);
+
+        cardNode.UpdateVisuals(PileType.Hand, CardPreviewMode.Normal);
+        FindOnTablePatch.Register(model, cardNode);
+    }
     private void ApplyWidthCap(int visibleCount)
     {
         if (_slotContainer == null) return;

@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -27,8 +28,15 @@ public class MakeshiftBlade : SneckoCardModel, IHasGift
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (cardPlay.Target?.Powers.Count(ShouldCountPower) >=
-            DynamicVars["Debuffs"].IntValue) await CommonActions.Draw(this, ctx);
+        if (cardPlay.Target != null && HasEnoughDebuffs(cardPlay.Target)) await CommonActions.Draw(this, ctx);
+    }
+
+    protected override bool ShouldGlowGoldInternal =>
+        CombatState?.HittableEnemies.Any(HasEnoughDebuffs) ?? false;
+
+    private bool HasEnoughDebuffs(Creature creature)
+    {
+        return creature.Powers.Count(ShouldCountPower) >= DynamicVars["Debuffs"].IntValue;
     }
 
     private static bool ShouldCountPower(PowerModel power)

@@ -38,7 +38,6 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
         if (card.Enchantment == null) return;
         var enchantment = (EnchantmentModel)card.Enchantment.MutableClone();
         CardCmd.Enchant(enchantment, secondSlam, enchantment.Amount);
-        NCard.FindOnTable(secondSlam)?.ReloadOverlay();
     }
 
     private void Action(SecondSlam secondSlam)
