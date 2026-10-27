@@ -25,17 +25,16 @@ $ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path $PSScriptRoot -Parent
 Set-Location $ProjectRoot
 
-if (-not (Test-Path "local.props")) { throw "local.props not found. Copy local.props.example to local.props." }
-$props = [xml](Get-Content "local.props")
-. "$PSScriptRoot\get-sts2-path.ps1"
+. (Join-Path $PSScriptRoot "common.ps1")
+$props = Get-LocalProps
 
 $gameDir = Get-Sts2Path $props
-$exe = Join-Path $gameDir "SlayTheSpire2.exe"
+$exe = Get-Sts2ExePath $gameDir
 if (-not (Test-Path $exe)) { throw "Game executable not found: $exe" }
 
-$modsDir = Join-Path $gameDir "mods"
-if (-not (Test-Path (Join-Path $modsDir "STS2Export\STS2Export.dll"))) {
-    throw "STS2Export is not in $modsDir. Build it first: cd ..\sts2-exporter; dotnet build STS2Export.csproj"
+$modsDir = Get-Sts2ModsDir $gameDir
+if (-not (Test-Path (Join-Path $modsDir (Join-Path "STS2Export" "STS2Export.dll")))) {
+    throw "STS2Export is not in $modsDir. Build it first: cd ../sts2-exporter; dotnet build STS2Export.csproj"
 }
 
 if (-not $NoBuild) {
@@ -45,7 +44,7 @@ if (-not $NoBuild) {
 }
 
 $webRoot = Join-Path (Split-Path $ProjectRoot -Parent) "DownfallWeb"
-$outDir = Join-Path $webRoot "data\game-export"
+$outDir = Join-Path $webRoot (Join-Path "data" "game-export")
 if (Test-Path $outDir) { Remove-Item $outDir -Recurse -Force }
 New-Item -ItemType Directory -Path $outDir -Force | Out-Null
 
@@ -63,9 +62,9 @@ finally {
     Remove-Item Env:STS2EXPORT_AUTO_RUN, Env:STS2EXPORT_OUTPUT -ErrorAction SilentlyContinue
 }
 
-$itemsFile = Join-Path $outDir "Downfall\items.json"
+$itemsFile = Join-Path $outDir (Join-Path "Downfall" "items.json")
 if (-not (Test-Path $itemsFile)) {
-    $log = Join-Path $env:APPDATA "SlayTheSpire2\logs\godot.log"
+    $log = Get-Sts2LogPath
     throw "No export was written (game exit code $($proc.ExitCode)). Check $log"
 }
 
