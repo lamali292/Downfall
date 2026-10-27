@@ -56,6 +56,7 @@ public class DownfallPatchManager
             .Add(typeof(InvokeSilentDisplayAmountChangedPatch))
             //.Add(typeof(EnchantmentModelCanEnchantCardVeto))
             .Add(typeof(CardCmdTransformTransformHook))
+            .Add(typeof(AfterPowerAmountChangedLateHook))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(MainMenuButtonsPatch))
             .Add(typeof(MainMenuButtonsVisibilityPatch))

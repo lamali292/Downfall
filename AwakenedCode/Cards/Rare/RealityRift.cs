@@ -37,8 +37,6 @@ public class RealityRift : AwakenedCardModel
         ModelDb.Card<TheEncyclopedia>()
     ];
 
-    public override bool CanBeGeneratedInCombat => false;
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Top, animationTime: 0.2f);

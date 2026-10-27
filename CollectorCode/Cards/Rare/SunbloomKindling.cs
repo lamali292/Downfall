@@ -4,11 +4,10 @@ using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Enchantments;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -19,28 +18,10 @@ public class SunbloomKindling : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKeyword(CardKeyword.Retain);
-        WithKindle(3, 1);
+        WithKindle(5, 3);
+        WithPower<StrengthPower>(2);
         WithCards(2);
-        WithCardTip<Ember>(WithPreviewModifiers);
-        WithEnchantment<Spiral>();
-    }
-
-    private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
-    {
-        var val = 0;
-        if (cardModel.IsUpgraded) val = 1;
-        WithEnchantments(ember, val);
-    }
-
-    private static void WithEnchantments(Ember ember, int ups)
-    {
-        if (ups > 0)
-        {
-            CardCmd.Upgrade(ember);
-        }
-
-        DownfallCardCmd.Enchant<Spiral>(ember, 1);
+        WithUpgradingCardTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -50,12 +31,12 @@ public class SunbloomKindling : CollectorCardModel
     {
         if (card != this) return;
         var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var v = 0; v < playCount; ++v)
+        for (var i = 0; i < playCount; ++i)
         {
             await TorchheadCmd.Kindle(ctx, this);
+            await CommonActions.ApplySelf<StrengthPower>(ctx, this);
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
-                CardPilePosition.Bottom, IsUpgraded,
-                action: ember => DownfallCardCmd.Enchant<Spiral>(ember, 1));
+                CardPilePosition.Bottom, IsUpgraded);
         }
     }
 }
