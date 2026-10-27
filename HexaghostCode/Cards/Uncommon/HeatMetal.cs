@@ -13,9 +13,9 @@ public class HeatMetal : HexaghostCardModel
 {
     public HeatMetal() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(4, 1);
-        WithPower<SoulBurnPower>(4, 1);
-        WithPower<VulnerablePower>(1, 1);
+        WithDamage(4, 2);
+        WithPower<SoulBurnPower>(4, 2);
+        WithPower<VulnerablePower>(2);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

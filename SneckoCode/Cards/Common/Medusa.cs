@@ -14,6 +14,9 @@ public class Medusa : SneckoCardModel
         WithDamage(6, 2);
     }
 
+    protected override bool ShouldGlowGoldInternal =>
+        CombatState?.HittableEnemies.Any(DownfallCmd.IsDebuffed) ?? false;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var hitCount = DownfallCmd.IsDebuffed(cardPlay.Target) ? 2 : 1;

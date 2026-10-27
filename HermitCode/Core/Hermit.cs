@@ -65,11 +65,35 @@ public class HermitRelicPool : DownfallRelicPool<Hermit>;
 
 [Pool(typeof(HermitRelicPool))]
 public abstract class HermitRelicModel(RelicRarity rarity, bool autoAdd = true)
-    : DownfallRelicModel<Hermit>(rarity, autoAdd);
+    : DownfallRelicModel<Hermit>(rarity, autoAdd)
+{
+    protected ConstructedRelicModel WithStrikeTip()
+    {
+        return WithTips(relic => [HermitCmd.StarterTip(relic.IsMutable ? relic.Owner : null, CardTag.Strike)]);
+    }
+
+    protected ConstructedRelicModel WithDefendTip()
+    {
+        return WithTips(relic => [HermitCmd.StarterTip(relic.IsMutable ? relic.Owner : null, CardTag.Defend)]);
+    }
+}
+
 
 public abstract class HermitPowerModel(
     PowerType powerType = PowerType.Buff,
-    PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Hermit>(powerType, powerStackType);
+    PowerStackType powerStackType = PowerStackType.Counter) : DownfallPowerModel<Hermit>(powerType, powerStackType)
+{
+    protected ConstructedPowerModel WithStrikeTip()
+    {
+        return WithTips(power => [HermitCmd.StarterTip(power.IsMutable ? power.Owner?.Player : null, CardTag.Strike)]);
+    }
+
+    protected ConstructedPowerModel WithDefendTip()
+    {
+        return WithTips(power => [HermitCmd.StarterTip(power.IsMutable ? power.Owner?.Player : null, CardTag.Defend)]);
+    }
+}
+
 
 public class HermitPotionPool : DownfallPotionPool<Hermit>;
 

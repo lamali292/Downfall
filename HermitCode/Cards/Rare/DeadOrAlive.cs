@@ -12,7 +12,7 @@ namespace Hermit.HermitCode.Cards.Rare;
 
 public sealed class DeadOrAlive : HermitCardModel
 {
-    private const int MonsterGoldAmount = 15;
+    private const int MonsterGoldAmount = 20;
     private const int EliteGoldAmount = 40;
     private const int BossGoldAmount = 100;
 
@@ -34,9 +34,9 @@ public sealed class DeadOrAlive : HermitCardModel
     {
         var times = ResolveEnergyXValue();
         // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
+        var shouldTriggerFatal = play.Target?.Powers.All(p => p.ShouldOwnerDeathTriggerFatal()) ?? false;
         var command = await CommonActions.CardAttack(this, play, times).WithHermitBluntLightHitFx()
             .Execute(ctx);
-        var shouldTriggerFatal = play.Target!.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
         var wasTargetKilled = command.Results.SelectMany(e => e).Any(e => e.WasTargetKilled);
         if (!wasTargetKilled || !shouldTriggerFatal) return;
         var currentRoom = Owner.Creature.CombatState?.RunState.CurrentRoom;

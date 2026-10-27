@@ -25,9 +25,8 @@ $ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path $PSScriptRoot -Parent
 Set-Location $ProjectRoot
 
-if (-not (Test-Path "local.props")) { throw "local.props not found. Copy local.props.example to local.props." }
-$props = [xml](Get-Content "local.props")
-. "$PSScriptRoot\get-sts2-path.ps1"
+. (Join-Path $PSScriptRoot "common.ps1")
+$props = Get-LocalProps
 
 # Every project that ships in the test setup, in build order.
 $projects = "Downfall", "SlimeBoss", "Automaton", "Hermit", "Awakened", "Champ", "Guardian", "Snecko", "Hexaghost", "Collector"
@@ -49,18 +48,17 @@ if (-not $NoBuild) {
 # Returns $true when every test passed (all other output goes to the host, so the return value stays a single bool).
 function Invoke-BranchTests([string]$BranchName) {
     $gameDir = Get-Sts2Path $props $BranchName
-    $exe = Join-Path $gameDir "SlayTheSpire2.exe"
+    $exe = Get-Sts2ExePath $gameDir
     if (-not (Test-Path $exe)) { throw "Game executable not found: $exe" }
 
     if ($BranchName -ne $BuildBranch) {
         # The mod is compiled once, against $BuildBranch, and must run unchanged on every branch.
-        $src = Join-Path (Get-Sts2Path $props $BuildBranch) "mods"
+        $src = Get-Sts2ModsDir (Get-Sts2Path $props $BuildBranch)
         Write-Host "=== [$BranchName] Syncing $BuildBranch-compiled mods from $src ===" -ForegroundColor Cyan
-        robocopy $src (Join-Path $gameDir "mods") /MIR /NFL /NDL /NJH /NJS /NP | Out-Null
-        if ($LASTEXITCODE -ge 8) { throw "robocopy failed ($LASTEXITCODE) syncing mods to $BranchName" }
+        Sync-Directory $src (Get-Sts2ModsDir $gameDir)
     }
 
-    $outFile = Join-Path $env:TEMP "downfall_tests_$BranchName.json"
+    $outFile = Join-Path (Get-TempDir) "downfall_tests_$BranchName.json"
     Remove-Item $outFile -ErrorAction SilentlyContinue
 
     $env:DOWNFALL_RUN_TESTS   = "1"
@@ -79,7 +77,7 @@ function Invoke-BranchTests([string]$BranchName) {
     }
 
     if (-not (Test-Path $outFile)) {
-        $log = Join-Path $env:APPDATA "SlayTheSpire2\logs\godot.log"
+        $log = Get-Sts2LogPath
         throw "No result file was written for $BranchName (game exit code $($proc.ExitCode)). Check $log"
     }
 

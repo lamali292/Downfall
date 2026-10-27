@@ -12,6 +12,8 @@ param(
 $ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path $PSScriptRoot -Parent
 Set-Location $ProjectRoot
+. (Join-Path $PSScriptRoot "common.ps1")
+if (Test-Path "local.props") { $null = Get-LocalProps }
 
 if ($Configuration -eq "Debug" -and ($Projects.Count -ne 1 -or $Projects[0] -ne "Downfall")) {
     Write-Host "NOTE: Debug only makes sense for Downfall itself (the Godot editor-host assembly) - restricting to it." -ForegroundColor Yellow

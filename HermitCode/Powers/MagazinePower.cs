@@ -14,6 +14,8 @@ public class MagazinePower : HermitPowerModel,
 {
     public MagazinePower()
     {
+        WithStrikeTip();
+        WithDefendTip();
         WithTip(CardKeyword.Retain);
     }
 

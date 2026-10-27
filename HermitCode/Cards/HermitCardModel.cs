@@ -24,5 +24,17 @@ public abstract class HermitCardModel(
         return this;
     }
 
+    protected ConstructedCardModel WithStrikeTip()
+    {
+        return WithTips(card => [HermitCmd.StarterTip(card.IsMutable ? card.Owner : null, CardTag.Strike)]);
+    }
+
+    protected ConstructedCardModel WithDefendTip(bool onlyWhenUpgraded = false)
+    {
+        return WithTips(card => onlyWhenUpgraded && !card.IsUpgraded
+            ? []
+            : [HermitCmd.StarterTip(card.IsMutable ? card.Owner : null, CardTag.Defend)]);
+    }
+
     protected override bool ShouldGlowGoldInternal => HermitCmd.HasActiveDeadOnEffect(this);
 }

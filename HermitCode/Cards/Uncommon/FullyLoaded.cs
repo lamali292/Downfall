@@ -10,6 +10,8 @@ public sealed class FullyLoaded : HermitCardModel
 {
     public FullyLoaded() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        WithStrikeTip();
+        WithDefendTip();
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }

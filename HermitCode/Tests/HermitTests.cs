@@ -16,6 +16,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.AutoSlay;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
@@ -32,6 +33,21 @@ public class HermitTests
     private static int DeadOnEntries(CardModel card) =>
         CombatManager.Instance.History.Entries.OfType<DeadOnEntry>().Count(e => e.CardPlay?.Card == card);
     
+
+    // The test combat is a normal fight, so a kill with Dead or Alive must grant the Monster bounty (20 gold).
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task DeadOrAliveGrantsMonsterGoldOnKill(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await CreatureCmd.SetCurrentHp(enemy, 1);
+        var card = await ctx.AddCardToHand<DeadOrAlive>();
+
+        var goldBefore = ctx.Player.Gold;
+        await ctx.PlayCard(card, enemy);
+
+        Assert.AreEqual(20, ctx.Player.Gold - goldBefore, "Killing with Dead or Alive should grant the Monster bounty.");
+    }
 
     [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
     public async Task DeadOnCardPlayedFromCenterTriggers(TestContext ctx)

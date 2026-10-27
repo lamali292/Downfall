@@ -1,11 +1,11 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
@@ -16,6 +16,7 @@ public class ForgeContract : CollectorCardModel
     {
         WithDamage(6, 2);
         WithTorchheadDamage(6, 2);
+        WithTip(CollectorKeyword.Torchhead);
     }
     
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
@@ -26,6 +27,13 @@ public class ForgeContract : CollectorCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await Cmd.CustomScaledWait(0.1f, 0.3f);
-        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+            if (Owner.IsTorchheadAlive)
+            {
+                await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+            }
+            else
+            {
+                await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+            }
     }
 }

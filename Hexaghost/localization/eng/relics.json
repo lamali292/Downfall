@@ -12,7 +12,7 @@
   "HEXAGHOST-OLEXAS_SHIELD.description": "Powers are counted towards the progression of [gold]Searing[/gold] and [gold]Crushing Ghostflames[/gold].",
   "HEXAGHOST-OLEXAS_SHIELD.flavor": "Protection on-demand.",
   "HEXAGHOST-RECYCLER.title": "Recycler",
-  "HEXAGHOST-RECYCLER.description": "The first time a non-Status, non-Curse [gold]Ethereal[/gold] card is [gold]Exhausted[/gold] each combat, add a copy to your [gold]Hand[/gold].",
+  "HEXAGHOST-RECYCLER.description": "The first time an [gold]Afterlife[/gold] card is [gold]Exhausted[/gold] by [gold]Ethereal[/gold] each combat, add a copy of it into your [gold]Hand[/gold].",
   "HEXAGHOST-RECYCLER.flavor": "One day, it shall be recycled too.",
   "HEXAGHOST-RED_CANDLE.title": "Red Candle",
   "HEXAGHOST-RED_CANDLE.description": "Whenever you apply [gold]Soulburn[/gold], apply [blue]2[/blue] additional [gold]Soulburn[/gold].",

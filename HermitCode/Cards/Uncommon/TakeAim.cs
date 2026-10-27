@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,7 +12,7 @@ public sealed class TakeAim : HermitCardModel
 {
     public TakeAim() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(HermitKeywords.Concentrate, UpgradeType.Add);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
         WithTip(HermitKeywords.Concentrate);
         WithPower<TakeAimPower>(1, false);
     }
@@ -24,7 +23,5 @@ public sealed class TakeAim : HermitCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.ApplySelf<TakeAimPower>(ctx, this);
-        if (IsUpgraded)
-            await HermitCmd.Concentrate(ctx, this);
     }
 }

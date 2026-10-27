@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -12,21 +13,20 @@ namespace Hexaghost.HexaghostCode.Relics;
 [Pool(typeof(HexaghostRelicPool))]
 public class Recycler : HexaghostRelicModel
 {
-    private bool _usedThisCombat;
-
     public Recycler() : base(RelicRarity.Uncommon)
     {
+        WithTip(HexaghostKeyword.Afterlife);
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
     }
 
     private bool UsedThisCombat
     {
-        get => _usedThisCombat;
+        get;
         set
         {
             AssertMutable();
-            _usedThisCombat = value;
+            field = value;
         }
     }
 
@@ -49,9 +49,11 @@ public class Recycler : HexaghostRelicModel
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
         bool causedByEthereal)
     {
-        if (UsedThisCombat || card.Owner != Owner || !card.Keywords.Contains(CardKeyword.Ethereal) ||
-            card.Type is CardType.Curse or CardType.Status) return;
-        await CardPileCmd.AddGeneratedCardToCombat(card.CreateClone(), PileType.Hand, Owner);
+        if (UsedThisCombat || !causedByEthereal || card.Owner != Owner ||
+            !card.Keywords.Contains(HexaghostKeyword.Afterlife)) return;
+        var clone = card.CreateClone();
+        clone.GiveSingleTurnRetain();
+        await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, Owner);
         UsedThisCombat = true;
         Flash();
         Status = RelicStatus.Normal;

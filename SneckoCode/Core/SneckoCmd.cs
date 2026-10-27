@@ -38,6 +38,11 @@ public static class SneckoCmd
     public static async Task GetGift(Player player, Gift gift, int amount = 3)
     {
         var options = SneckoModel.GetRewardOptions(player, gift.Matches);
+        // CardFactory.CreateForReward throws when it runs out of distinct candidates, which would hang the game
+        // inside this hook: offer fewer cards when the filter leaves fewer than `amount`, none when it leaves nothing.
+        amount = Math.Min(amount, options.GetPossibleCards(player).Select(c => c.Id).Distinct().Count());
+        if (amount <= 0) return;
+
         var cards = CardFactory.CreateForReward(player, amount, options).Select(e => e.Card).ToList();
         if (gift.IsUpgraded)
             foreach (var card in cards)

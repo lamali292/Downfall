@@ -7,6 +7,11 @@ namespace Hermit.HermitCode.Powers;
 
 public sealed class HighNoonPower : HermitPowerModel, IModifyCardReplayCount
 {
+    public HighNoonPower()
+    {
+        WithStrikeTip();
+    }
+
     private bool IsMyBasicStrike(CardModel card)
     {
         return card.Owner?.Creature == Owner &&

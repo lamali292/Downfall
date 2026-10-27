@@ -11,6 +11,8 @@ public class Magazine : HermitCardModel
 {
     public Magazine() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
+        WithStrikeTip();
+        WithDefendTip();
         WithPower<MagazinePower>(6, false);
         WithCostUpgradeBy(-1);
         WithTip(CardKeyword.Retain);

@@ -8,25 +8,25 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
-namespace Collector.CollectorCode.Cards.Uncommon;
+namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
 public class Empower : CollectorCardModel
 {
-    public Empower() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public Empower() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<EmpowerPower>(2, false);
+        WithPower<EmpowerPower>(3, false);
         WithCardTip<Ember>();
         WithCardTip<Ember>(WithPreviewModifiers);
     }
     
-    private static void WithPreviewModifiers(Ember defend, CardModel cardModel)
+    private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
     {
         var val = cardModel is { IsMutable: true, _owner: not null }
             ? cardModel.Owner.PlayerCombatState?.Energy ?? 0
             : 3;
         if (cardModel.IsUpgraded) val += 1;
-        WithModifiers(defend, val);
+        WithModifiers(ember, val);
     }
     
     private static void WithModifiers(Ember ember, int ups)

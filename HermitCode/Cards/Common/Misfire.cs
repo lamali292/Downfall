@@ -10,9 +10,9 @@ namespace Hermit.HermitCode.Cards.Common;
 
 public sealed class Misfire : HermitCardModel
 {
-    public Misfire() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public Misfire() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(13, 4);
+        WithDamage(11, 3);
         WithTip<Clumsy>();
     }
 

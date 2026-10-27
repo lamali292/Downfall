@@ -10,6 +10,7 @@ public class Technique : HermitCardModel
 {
     public Technique() : base(1, CardType.Power, CardRarity.Rare, TargetType.AllAllies)
     {
+        WithStrikeTip();
         WithPower<MaintenanceStrikePower>(5, 2, false);
     }
 

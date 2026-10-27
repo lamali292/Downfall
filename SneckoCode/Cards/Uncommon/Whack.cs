@@ -15,13 +15,14 @@ public class Whack : SneckoCardModel
     {
         WithDamage(8, 2);
         WithEnergy(2);
-        WithTip(StaticHoverTip.Block);
     }
+    
+    public override bool GainsBlock => true;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var a = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var damage = a.Results.SelectMany(e => e).Sum(e => e.TotalDamage);
+        var damage = a.Results.SelectMany(e => e).Sum(e => e.TotalDamage + e.OverkillDamage);
         if (EnergyCost.GetResolved() == DynamicVars.Energy.IntValue) return;
         await CreatureCmd.GainBlock(Owner.Creature, damage, BlockProps.card, cardPlay);
     }

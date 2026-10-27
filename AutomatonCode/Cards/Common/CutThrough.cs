@@ -13,7 +13,7 @@ public class CutThrough : AutomatonCardModel
 {
     public CutThrough() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
+        WithDamage(8, 2);
         WithScry(1, 1);
         WithTip(AutomatonTip.Stash);
     }
