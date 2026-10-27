@@ -25,7 +25,7 @@ public class EternallyLitLampPower : CollectorPowerModel
         Creature target,
         CardModel? cardSource)
     {
-        if (dealer != null && dealer.Monster is TorchheadMonsterModel && props.IsPoweredAttack())
+        if (dealer != null && dealer.Monster is TorchheadMonsterModel && dealer.PetOwner != null && dealer.PetOwner.Creature == Owner && props.IsPoweredAttack())
         {
             await PowerCmd.Apply<EternallyLitLampPowerStrengthDownPower>(choiceContext, target, Amount, Owner, null);
         }
