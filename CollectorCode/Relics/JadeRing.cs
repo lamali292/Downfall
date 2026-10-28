@@ -7,9 +7,9 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class JadeRing() : CollectorRelicModel(RelicRarity.Rare), IModifyCollectorMiasmaIncrement
+public class JadeRing() : CollectorRelicModel(RelicRarity.Rare), IModifyCollectorBlisterIncrement
 {
-    public int ModifyCollectorMiasmaIncrement(Creature creature, int current)
+    public int ModifyCollectorBlisterIncrement(Creature creature, int current)
     {
         
         var uniqueDebuffs = creature.Powers

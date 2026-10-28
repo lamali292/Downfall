@@ -16,7 +16,7 @@ public class Degrade : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         
-        WithPower<MiasmaPower>(1, 1);
+        WithPower<BlisterPower>(1, 1);
         WithPower<StrengthPower>(1);
     }
 
@@ -28,10 +28,10 @@ public class Degrade : CollectorCardModel
         if (cardPlay.Target == null) return;
         var x = ResolveEnergyXValue();
         var strength = -DynamicVars.Strength.BaseValue * x;
-        var miasma = DynamicVars.Power<MiasmaPower>().BaseValue * x;
+        var blister = DynamicVars.Power<BlisterPower>().BaseValue * x;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<StrengthPower>(ctx, cardPlay.Target, strength, Owner.Creature, this);
-        await PowerCmd.Apply<MiasmaPower>(ctx, cardPlay.Target, miasma, Owner.Creature, this);
+        await PowerCmd.Apply<BlisterPower>(ctx, cardPlay.Target, blister, Owner.Creature, this);
         
         
     }

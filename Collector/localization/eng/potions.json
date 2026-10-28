@@ -1,8 +1,8 @@
 {
   "COLLECTOR-BOTTLED_ROPE.title": "Bottled Rope",
-  "COLLECTOR-BOTTLED_ROPE.description": "Apply [blue]{WeakPower}[/blue] [gold]Weak[/gold].\nApply [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold].\nApply [blue]{MiasmaPower}[/blue] [gold]Miasma[/gold].",
+  "COLLECTOR-BOTTLED_ROPE.description": "Apply [blue]{WeakPower}[/blue] [gold]Weak[/gold].\nApply [blue]{VulnerablePower}[/blue] [gold]Vulnerable[/gold].\nApply [blue]{BlisterPower}[/blue] [gold]Blister[/gold].",
   "COLLECTOR-LAMP_OIL.title": "Lamp Oil",
   "COLLECTOR-LAMP_OIL.description": "[gold]Kindle[/gold] [blue]{Kindle}[/blue].",
   "COLLECTOR-SMOKE_BOMB.title": "Smoke Bomb",
-  "COLLECTOR-SMOKE_BOMB.description": "Apply [blue]{MiasmaPower}[/blue] [gold]Miasma[/gold] to ALL enemies."
+  "COLLECTOR-SMOKE_BOMB.description": "Apply [blue]{BlisterPower}[/blue] [gold]Blister[/gold] to ALL enemies."
 }

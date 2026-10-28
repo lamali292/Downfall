@@ -15,14 +15,14 @@ public class SmokeBomb : CollectorPotionModel
 {
     public SmokeBomb() : base(PotionRarity.Uncommon, PotionUsage.CombatOnly, TargetType.AllEnemies)
     {
-        WithPower<MiasmaPower>(8);
+        WithPower<BlisterPower>(8);
     }
 
     protected override Artist Artist => Artist.Get<Fulgur>();
     
     protected override async Task OnUse(PlayerChoiceContext ctx, Creature? target)
     {
-        await MyCommonActions.Apply<MiasmaPower>(ctx, this, Owner.Creature.CombatState?.HittableEnemies);
+        await MyCommonActions.Apply<BlisterPower>(ctx, this, Owner.Creature.CombatState?.HittableEnemies);
     }
    
 }

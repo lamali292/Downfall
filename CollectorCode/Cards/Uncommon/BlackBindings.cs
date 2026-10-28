@@ -18,8 +18,8 @@ public class BlackBindings : CollectorCardModel
     public BlackBindings() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithPower<WeakPower>(2);
-        WithCalculatedVar("Miasma", 0, 2, Calc, 0, 1);
-        WithTip<MiasmaPower>();
+        WithCalculatedVar("Blister", 0, 2, Calc, 0, 1);
+        WithTip<BlisterPower>();
     }
 
     private static decimal Calc(CardModel card, Creature? creature)
@@ -41,7 +41,7 @@ public class BlackBindings : CollectorCardModel
     {
         if (cardPlay.Target == null) return;
         await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this);
-        var value = ((CalculatedVar)DynamicVars["Miasma"]).Calculate(cardPlay.Target);
-        await CommonActions.Apply<MiasmaPower>(ctx, cardPlay.Target, this, value);
+        var value = ((CalculatedVar)DynamicVars["Blister"]).Calculate(cardPlay.Target);
+        await CommonActions.Apply<BlisterPower>(ctx, cardPlay.Target, this, value);
     }
 }

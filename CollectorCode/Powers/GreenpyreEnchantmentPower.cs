@@ -11,7 +11,7 @@ public class GreenpyreEnchantmentPower : CollectorPowerModel
 {
     public GreenpyreEnchantmentPower()
     {
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
     
     public override async Task AfterDamageGiven(
@@ -24,7 +24,7 @@ public class GreenpyreEnchantmentPower : CollectorPowerModel
     {
         if (dealer != Owner || !props.IsPoweredAttack() || result.UnblockedDamage <= 0)
             return;
-        await PowerCmd.Apply<MiasmaPower>(choiceContext, target, Amount, Owner, null);
+        await PowerCmd.Apply<BlisterPower>(choiceContext, target, Amount, Owner, null);
         Flash();
     }
 }

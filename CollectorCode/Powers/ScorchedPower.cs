@@ -11,7 +11,7 @@ public class ScorchedPower : CollectorPowerModel
 {
     public ScorchedPower() : base(PowerType.Debuff)
     {
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
     
     
@@ -19,6 +19,6 @@ public class ScorchedPower : CollectorPowerModel
         IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
-        await PowerCmd.Apply<MiasmaPower>(ctx, Owner, Amount, Applier, null);
+        await PowerCmd.Apply<BlisterPower>(ctx, Owner, Amount, Applier, null);
     }
 }

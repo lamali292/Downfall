@@ -21,7 +21,7 @@ public class Extricate : CollectorCardModel
 
     private static decimal Calc(CardModel arg1, Creature? creature)
     {
-        return creature?.GetPowerAmount<MiasmaPower>() ?? 0;
+        return creature?.GetPowerAmount<BlisterPower>() ?? 0;
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

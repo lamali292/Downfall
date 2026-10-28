@@ -17,7 +17,7 @@ public class Hellfire : CollectorCardModel
         WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorTip.Pyred);
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<MiasmaPower>(5, 3);
+        WithPower<BlisterPower>(5, 3);
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -27,7 +27,7 @@ public class Hellfire : CollectorCardModel
         if (pyred.Count == 0) return;
         for (var i = 0; i < pyred.Count; i++)
         {
-            await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+            await CommonActions.Apply<BlisterPower>(ctx, this, cardPlay);
         }
     }
 

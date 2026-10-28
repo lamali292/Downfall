@@ -10,7 +10,7 @@ public class FlowerPetals : Ruina2Card
 {
     public FlowerPetals() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, "ALRIUNE_ELITE", 0.3f)
     {
-        WithPower<MiasmaPower>(6, 2);
+        WithPower<BlisterPower>(6, 2);
         WithPower<WeakPower>(1, 1);
         WithPower<VulnerablePower>(1, 1);
         WithKeyword(CardKeyword.Exhaust);
@@ -18,7 +18,7 @@ public class FlowerPetals : Ruina2Card
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<BlisterPower>(ctx, this, cardPlay);
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
     }

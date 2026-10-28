@@ -13,7 +13,7 @@ public class YouYourself : ActsFromThePastCard
     {
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
-        WithPower<MiasmaPower>(1);
+        WithPower<BlisterPower>(1);
         WithKindle(1);
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }
@@ -22,7 +22,7 @@ public class YouYourself : ActsFromThePastCard
     {
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<BlisterPower>(ctx, this, cardPlay);
         await TorchheadCmd.Kindle(ctx, this);
     }
 }

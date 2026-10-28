@@ -17,7 +17,7 @@ public class ItMattersNot : CollectorCardModel
         WithBlock(12, 4);
         WithTip<VulnerablePower>();
         WithTip<WeakPower>();
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
         WithVar("ItMattersNot", 1);
     }
 
@@ -31,7 +31,7 @@ public class ItMattersNot : CollectorCardModel
         await PowerCmd.Apply<WeakPower>(ctx, a, 1, Owner.Creature, this);
         var b = CombatState.HittableEnemies.Where(e => e.HasPower<VulnerablePower>());
         await PowerCmd.Apply<VulnerablePower>(ctx, b, 1, Owner.Creature, this);
-        var c = CombatState.HittableEnemies.Where(e => e.HasPower<MiasmaPower>());
-        await PowerCmd.Apply<MiasmaPower>(ctx, c, 1, Owner.Creature, this);
+        var c = CombatState.HittableEnemies.Where(e => e.HasPower<BlisterPower>());
+        await PowerCmd.Apply<BlisterPower>(ctx, c, 1, Owner.Creature, this);
     }
 }

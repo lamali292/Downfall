@@ -13,7 +13,7 @@ public class InevitableDemise : CollectorCardModel
     {
         WithDamage(5, 2);
         WithPower<InevitableDemisePower>(1, 1, false);
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

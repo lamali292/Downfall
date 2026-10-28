@@ -354,16 +354,16 @@ public class CollectorTests
             "With EquipAxe, the card description should say ALL enemies.");
     }
 
-    // Regression guard: InevitableDemisePower's IModifyCollectorMiasmaIncrement only ever gets
-    // consulted from inside MiasmaPower's own end-of-turn trigger, which never runs without an
-    // existing Miasma instance - so the debuff used to do nothing at all against an enemy with no
-    // Miasma yet. It should grant a single stack directly instead.
+    // Regression guard: InevitableDemisePower's IModifyCollectorBlisterIncrement only ever gets
+    // consulted from inside BlisterPower's own end-of-turn trigger, which never runs without an
+    // existing Blister instance - so the debuff used to do nothing at all against an enemy with no
+    // Blister yet. It should grant a single stack directly instead.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task InevitableDemiseGrantsMiasmaWhenTargetHasNone(TestContext ctx)
+    public async Task InevitableDemiseGrantsBlisterWhenTargetHasNone(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
         await PowerCmd.Apply<InevitableDemisePower>(new BlockingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
-        Assert.IsTrue(!enemy.HasPower<MiasmaPower>(), "Setup: enemy should start without Miasma.");
+        Assert.IsTrue(!enemy.HasPower<BlisterPower>(), "Setup: enemy should start without Blister.");
 
         // Cmd.Wait is a no-op under TestMode, so it never yields back to the engine's frame loop
         // that drives the enemy-turn state machine - poll on the turn counter (a real Task.Delay
@@ -373,10 +373,10 @@ public class CollectorTests
         for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
             await Task.Delay(100);
 
-        Assert.IsTrue(enemy.HasPower<MiasmaPower>(),
-            "InevitableDemise should grant Miasma when the enemy has none, instead of doing nothing.");
-        Assert.AreEqual(1, enemy.GetInstancedPowerAmountSum<MiasmaPower>(),
-            "Should grant exactly 1 Miasma as a fallback.");
+        Assert.IsTrue(enemy.HasPower<BlisterPower>(),
+            "InevitableDemise should grant Blister when the enemy has none, instead of doing nothing.");
+        Assert.AreEqual(1, enemy.GetInstancedPowerAmountSum<BlisterPower>(),
+            "Should grant exactly 1 Blister as a fallback.");
     }
 
     // Regression guard for Pyre state on replayed plays: cards pyre inline in their own OnPlayInternal
@@ -460,21 +460,21 @@ public class CollectorTests
         Assert.IsTrue(card.CanPlay(), "Energy 1 + Reserve 1 covers cost 2.");
     }
 
-    // Seed of Doubt grows its Miasma whenever a card is Exhausted while it is in hand; a downgrade rebuilds the
+    // Seed of Doubt grows its Blister whenever a card is Exhausted while it is in hand; a downgrade rebuilds the
     // card's vars from the canonical card and used to wipe that growth (base game's Rampage restores it).
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task SeedOfDoubtKeepsItsGrowthAfterDowngrade(TestContext ctx)
     {
         var seed = await ctx.AddCardToHand<SeedOfDoubt>();
         var other = await ctx.AddCardToHand<StrikeCollector>();
-        var start = seed.DynamicVars.Power<MiasmaPower>().BaseValue;
+        var start = seed.DynamicVars.Power<BlisterPower>().BaseValue;
         await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), other);
-        var grown = seed.DynamicVars.Power<MiasmaPower>().BaseValue;
-        Assert.IsTrue(grown > start, "Exhausting a card should raise Seed of Doubt's Miasma.");
+        var grown = seed.DynamicVars.Power<BlisterPower>().BaseValue;
+        Assert.IsTrue(grown > start, "Exhausting a card should raise Seed of Doubt's Blister.");
 
         seed.DowngradeInternal();
 
-        Assert.AreEqual(grown, seed.DynamicVars.Power<MiasmaPower>().BaseValue,
+        Assert.AreEqual(grown, seed.DynamicVars.Power<BlisterPower>().BaseValue,
             "A downgrade must not wipe Seed of Doubt's growth.");
     }
 }

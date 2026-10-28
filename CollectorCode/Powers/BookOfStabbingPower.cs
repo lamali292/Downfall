@@ -11,7 +11,7 @@ public class BookOfStabbingPower : CollectorPowerModel
 {
     public BookOfStabbingPower()
     {
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
     
     public override async Task AfterDamageGiven(
@@ -25,6 +25,6 @@ public class BookOfStabbingPower : CollectorPowerModel
      
         if (dealer == null || dealer != Owner && dealer.PetOwner?.Creature != Owner || !props.IsPoweredAttack() || result.UnblockedDamage <= 0)
             return;
-        await PowerCmd.Apply<MiasmaPower>(choiceContext, target, Amount, Owner, null);
+        await PowerCmd.Apply<BlisterPower>(choiceContext, target, Amount, Owner, null);
     }
 }

@@ -14,7 +14,7 @@ public class WaterfallGiantCardPower : CollectorPowerModel
     
     public WaterfallGiantCardPower()
     {
-        WithPower<MiasmaPower>(0);
+        WithPower<BlisterPower>(0);
     }
     
     
@@ -34,13 +34,13 @@ public class WaterfallGiantCardPower : CollectorPowerModel
         else
         {
             Flash();
-            await MyCommonActions.Apply<MiasmaPower>(ctx, this, CombatState.HittableEnemies);
+            await MyCommonActions.Apply<BlisterPower>(ctx, this, CombatState.HittableEnemies);
             await PowerCmd.Remove(this);
         }
     }
     
-    public void SetMiasma(decimal baseValue)
+    public void SetBlister(decimal baseValue)
     {
-        DynamicVars.Power<MiasmaPower>().BaseValue = baseValue;
+        DynamicVars.Power<BlisterPower>().BaseValue = baseValue;
     }
 }

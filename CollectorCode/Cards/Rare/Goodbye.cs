@@ -14,7 +14,7 @@ public class Goodbye : CollectorCardModel
     public Goodbye() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
@@ -27,16 +27,16 @@ public class Goodbye : CollectorCardModel
         var enemies = CombatState.HittableEnemies;
         foreach (var e in enemies)
         {
-            var powerAmount = e.GetPowerAmount<MiasmaPower>();
+            var powerAmount = e.GetPowerAmount<BlisterPower>();
             if (powerAmount <= 0)
                 continue;
             if (IsUpgraded)
             {
-                await PowerCmd.Apply<MiasmaPower>(ctx, e, (powerAmount*2), Owner.Creature, this);
+                await PowerCmd.Apply<BlisterPower>(ctx, e, (powerAmount*2), Owner.Creature, this);
             }
             else
             {
-                await PowerCmd.Apply<MiasmaPower>(ctx, e, powerAmount, Owner.Creature, this);
+                await PowerCmd.Apply<BlisterPower>(ctx, e, powerAmount, Owner.Creature, this);
             }
         }
     }

@@ -13,7 +13,7 @@ public class BookOfStabbing : ActsFromThePastCard
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithPower<BookOfStabbingPower>(1, false);
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -20,7 +20,7 @@ public class YouAreMine : CollectorCardModel
         WithPower<WeakPower>(3, 2);
         WithPower<FrailPower>(3, 2);
         WithPower<VulnerablePower>(3, 2);
-        WithPower<MiasmaPower>(3, 2);
+        WithPower<BlisterPower>(3, 2);
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
     }
 
@@ -35,6 +35,6 @@ public class YouAreMine : CollectorCardModel
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<FrailPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<BlisterPower>(ctx, this, cardPlay);
     }
 }

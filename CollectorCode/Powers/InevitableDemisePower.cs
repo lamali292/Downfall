@@ -8,9 +8,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Collector.CollectorCode.Powers;
 
-public class InevitableDemisePower() : CollectorPowerModel(PowerType.Debuff), IModifyCollectorMiasmaIncrement
+public class InevitableDemisePower() : CollectorPowerModel(PowerType.Debuff), IModifyCollectorBlisterIncrement
 {
-    public int ModifyCollectorMiasmaIncrement(Creature creature, int current)
+    public int ModifyCollectorBlisterIncrement(Creature creature, int current)
     {
         return creature == Owner ? current + Amount : current;
     }
@@ -21,7 +21,7 @@ public class InevitableDemisePower() : CollectorPowerModel(PowerType.Debuff), IM
         IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner)) return;
-        if (Owner.HasPower<MiasmaPower>()) return;
-        await PowerCmd.Apply<MiasmaPower>(choiceContext, Owner, Amount, Owner, null);
+        if (Owner.HasPower<BlisterPower>()) return;
+        await PowerCmd.Apply<BlisterPower>(choiceContext, Owner, Amount, Owner, null);
     }
 }

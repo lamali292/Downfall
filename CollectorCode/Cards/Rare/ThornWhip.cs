@@ -14,7 +14,7 @@ public class ThornWhip : CollectorCardModel
     public ThornWhip() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
         WithDamage(5, 2);
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -24,7 +24,7 @@ public class ThornWhip : CollectorCardModel
         var a = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         foreach (var damageResult in a.Results.SelectMany(e=>e).Where(e=>e.Receiver.IsHittable))
         {
-            await PowerCmd.Apply<MiasmaPower>(ctx, damageResult.Receiver, damageResult.UnblockedDamage, Owner.Creature,
+            await PowerCmd.Apply<BlisterPower>(ctx, damageResult.Receiver, damageResult.UnblockedDamage, Owner.Creature,
                 this);
         }
     }

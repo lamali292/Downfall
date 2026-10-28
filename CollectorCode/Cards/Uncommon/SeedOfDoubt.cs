@@ -14,7 +14,7 @@ public class SeedOfDoubt : CollectorCardModel
 {
     public SeedOfDoubt() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<MiasmaPower>(3, 3);
+        WithPower<BlisterPower>(3, 3);
         WithTip(CardKeyword.Exhaust);
         WithVar("Increase", 1);
     }
@@ -22,7 +22,7 @@ public class SeedOfDoubt : CollectorCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
     /// Required so the growth survives a downgrade (the game rebuilds the dynamic vars), same as Rampage.
-    private decimal ExtraMiasma
+    private decimal ExtraBlister
     {
         get;
         set
@@ -34,20 +34,20 @@ public class SeedOfDoubt : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<BlisterPower>(ctx, this, cardPlay);
     }
     
     public override Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
         if (card.Owner != Owner || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
-        DynamicVars.Power<MiasmaPower>().BaseValue += DynamicVars["Increase"].BaseValue;
-        ExtraMiasma += DynamicVars["Increase"].BaseValue;
+        DynamicVars.Power<BlisterPower>().BaseValue += DynamicVars["Increase"].BaseValue;
+        ExtraBlister += DynamicVars["Increase"].BaseValue;
         return Task.CompletedTask;
     }
 
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
-        DynamicVars.Power<MiasmaPower>().BaseValue += ExtraMiasma;
+        DynamicVars.Power<BlisterPower>().BaseValue += ExtraBlister;
     }
 }

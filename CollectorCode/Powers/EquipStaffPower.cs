@@ -10,7 +10,7 @@ public class EquipStaffPower : CollectorPowerModel
 {
     public EquipStaffPower()
     {
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
     
     public override async Task AfterAttack(PlayerChoiceContext ctx, AttackCommand command)
@@ -19,7 +19,7 @@ public class EquipStaffPower : CollectorPowerModel
         foreach (var damageResult in command.Results.SelectMany(e => e))
         {
             Flash();
-            await PowerCmd.Apply<MiasmaPower>(ctx, damageResult.Receiver, Amount, Owner, null);
+            await PowerCmd.Apply<BlisterPower>(ctx, damageResult.Receiver, Amount, Owner, null);
         }
     }
 }

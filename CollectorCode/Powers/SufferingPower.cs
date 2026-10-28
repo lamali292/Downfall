@@ -10,7 +10,7 @@ public class SufferingPower : CollectorPowerModel
 {
     public SufferingPower()
     {
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
     
     
@@ -18,7 +18,7 @@ public class SufferingPower : CollectorPowerModel
         Creature? applier,
         CardModel? cardSource)
     {
-        if (applier != Owner || power is MiasmaPower || power.Owner == Owner) return;
-        await PowerCmd.Apply<MiasmaPower>(ctx, power.Owner, Amount, Owner, null);
+        if (applier != Owner || power is BlisterPower || power.Owner == Owner) return;
+        await PowerCmd.Apply<BlisterPower>(ctx, power.Owner, Amount, Owner, null);
     }
 }

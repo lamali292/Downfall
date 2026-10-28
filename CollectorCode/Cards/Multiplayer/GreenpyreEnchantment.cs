@@ -12,7 +12,7 @@ public class GreenpyreEnchantment : CollectorCardModel
     public GreenpyreEnchantment() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.AnyAlly)
     {
         WithPower<GreenpyreEnchantmentPower>(1, 1, false);
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
     
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;

@@ -15,7 +15,7 @@ public class EquipStaff : CollectorCardModel
     {
         WithKindle(6, 2);
         WithPower<EquipStaffPower>(2, 1, false);
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
     protected override Artist Artist => Artist.Get<Opal>();
     

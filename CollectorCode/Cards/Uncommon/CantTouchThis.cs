@@ -14,7 +14,7 @@ public class CantTouchThis : CollectorCardModel
     public CantTouchThis() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<CantTouchThisPower>(1, 1, false);
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

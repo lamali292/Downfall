@@ -19,7 +19,7 @@ public class InflictAgony : CollectorCardModel
         WithVar("Power", 1, 1);
         WithTip<WeakPower>();
         WithTip<VulnerablePower>();
-        WithTip<MiasmaPower>();
+        WithTip<BlisterPower>();
         WithTip(CollectorKeyword.Torchhead);
     }
 
@@ -37,9 +37,9 @@ public class InflictAgony : CollectorCardModel
         {
             await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this, amount);
         }
-        if (!cardPlay.Target!.HasPower<MiasmaPower>())
+        if (!cardPlay.Target!.HasPower<BlisterPower>())
         {
-            await CommonActions.Apply<MiasmaPower>(ctx, cardPlay.Target, this, amount);
+            await CommonActions.Apply<BlisterPower>(ctx, cardPlay.Target, this, amount);
         }
     }
 }

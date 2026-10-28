@@ -16,12 +16,12 @@ public class CantTouchThisPower : CollectorPowerModel
             if (commandResult.Receiver != Owner) continue;
             if (commandResult.WasFullyBlocked)
             {
-                await PowerCmd.Apply<MiasmaPower>(ctx,command.Attacker, Amount, Owner, null);
+                await PowerCmd.Apply<BlisterPower>(ctx,command.Attacker, Amount, Owner, null);
             }
         }
         */
         var list = command.Results.SelectMany(r => r).Where(r => r.Receiver == Owner).ToList();
         if (list.Count != 0 && list.All(r => r.WasFullyBlocked))
-            await PowerCmd.Apply<MiasmaPower>(ctx, command.Attacker, Amount, Owner, null);
+            await PowerCmd.Apply<BlisterPower>(ctx, command.Attacker, Amount, Owner, null);
     }
 }

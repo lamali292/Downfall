@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Powers;
 
-public class MiasmaPower() : CollectorPowerModel(PowerType.Debuff)
+public class BlisterPower() : CollectorPowerModel(PowerType.Debuff)
 {
     public override IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(HealthBarForecastContext ctx)
     {
@@ -36,13 +36,13 @@ public class MiasmaPower() : CollectorPowerModel(PowerType.Debuff)
 
     private async Task Trigger(PlayerChoiceContext ctx)
     {
-        var stacks = CollectorHook.ModifyCollectorMiasmaIncrement(Owner.CombatState!, Owner, 0);
+        var stacks = CollectorHook.ModifyCollectorBlisterIncrement(Owner.CombatState!, Owner, 0);
         await CreatureCmd.Damage(
             new BlockingPlayerChoiceContext(), Owner, Amount,
             DamageProps.nonCardUnpowered, null, null);
         
         if (Owner.IsAlive && stacks > 0)
-            await PowerCmd.Apply<MiasmaPower>(ctx, Owner, stacks, Owner, null);
+            await PowerCmd.Apply<BlisterPower>(ctx, Owner, stacks, Owner, null);
     }
     
 }

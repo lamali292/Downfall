@@ -16,7 +16,7 @@ public class Blightning : CollectorCardModel
     public Blightning() : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithTorchheadDamage(9, 2);
-        WithPower<MiasmaPower>(3, 1);
+        WithPower<BlisterPower>(3, 1);
         WithCards(2);
         WithKeyword(CardKeyword.Exhaust);
         WithTags(CardTag.Strike);
@@ -29,7 +29,7 @@ public class Blightning : CollectorCardModel
     {
         if (cardPlay.Target == null) return;
         await TorchheadCmd.Attack(ctx, this, cardPlay);
-        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<BlisterPower>(ctx, this, cardPlay);
         await CommonActions.Draw(this, ctx);
 
     }

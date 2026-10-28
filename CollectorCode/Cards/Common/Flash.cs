@@ -13,7 +13,7 @@ public class Flash : CollectorCardModel
 {
     public Flash() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<MiasmaPower>(4, 2);
+        WithPower<BlisterPower>(4, 2);
         WithKeyword(CollectorKeyword.Pyre);
     }
 
@@ -23,6 +23,6 @@ public class Flash : CollectorCardModel
     {
         if (cardPlay.Target == null) return;
         if (await PyreCmd.Pyre(ctx, this) == null) return;
-        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<BlisterPower>(ctx, this, cardPlay);
     }
 }

@@ -18,7 +18,7 @@ public class BottledRope : CollectorPotionModel
     {
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
-        WithPower<MiasmaPower>(4);
+        WithPower<BlisterPower>(4);
     }
     
     protected override Artist Artist => Artist.Get<Fulgur>();
@@ -27,6 +27,6 @@ public class BottledRope : CollectorPotionModel
     {
         await MyCommonActions.Apply<WeakPower>(ctx, this, target);
         await MyCommonActions.Apply<VulnerablePower>(ctx, this, target);
-        await MyCommonActions.Apply<MiasmaPower>(ctx, this, target);
+        await MyCommonActions.Apply<BlisterPower>(ctx, this, target);
     }
 }

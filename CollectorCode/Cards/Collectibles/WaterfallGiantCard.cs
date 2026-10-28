@@ -17,7 +17,7 @@ public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
     {
         
         WithPower<WaterfallGiantCardPower>(3, false);
-        WithPower<MiasmaPower>(40, 10);
+        WithPower<BlisterPower>(40, 10);
         WithKindle(6, 3);
         WithKeyword(CollectorKeyword.Smolder);
     }
@@ -25,7 +25,7 @@ public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
     protected override async Task OnSmolder(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
-        (await CommonActions.ApplySelf<WaterfallGiantCardPower>(ctx, this))?.SetMiasma(DynamicVars.Power<MiasmaPower>().BaseValue);
+        (await CommonActions.ApplySelf<WaterfallGiantCardPower>(ctx, this))?.SetBlister(DynamicVars.Power<BlisterPower>().BaseValue);
     }
 
 }
