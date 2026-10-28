@@ -1,4 +1,4 @@
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using Downfall.DownfallCode.Compatibility;
 using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Cards.Common;
@@ -127,11 +127,10 @@ public class CollectorTests
             "AutoPlay should still play (and deal damage from) a card the player can't afford, since it's a free play.");
     }
 
-    // Regression guard for ReturnToHandAfterTurnEndPatch: the game hardcodes moving a HasTurnEndInHandEffect
-    // card to Discard once its turn-end effect resolves (CombatManager.ResolveTurnEndCardEffects), so without
-    // the patch Ember would end its turn in Discard instead of Hand despite implementing IReturnsToHandAfterTurnEnd.
+    // Ember is a plain end-of-turn damage Status like Burn: it must not hang around in Hand (that used to need
+    // a custom return-to-hand patch and a long card text), it cycles through the deck instead.
     [CardTest]
-    public async Task EmberReturnsToHandInsteadOfDiscardAfterTurnEnd(TestContext ctx)
+    public async Task EmberIsDiscardedAfterTurnEndAndStillDealsSelfDamage(TestContext ctx)
     {
         var ember = await ctx.AddCardToHand<Ember>();
         var startingHp = ctx.Player.Creature.CurrentHp;
@@ -139,12 +138,11 @@ public class CollectorTests
         PlayerCmd.EndTurn(ctx.Player, false);
         await Cmd.Wait(1f);
 
-        Assert.AreEqual(PileType.Hand, ember.Pile?.Type,
-            "Ember should return to Hand after its turn-end effect, not be discarded.");
+        Assert.IsTrue(ember.Pile?.Type != PileType.Hand,
+            "Ember should be discarded at turn end like any Status, not kept in Hand.");
         Assert.IsTrue(ctx.Player.Creature.CurrentHp < startingHp,
             "Ember's turn-end effect should still deal its self-damage.");
     }
-    
 
     // Regression guard: Torchhead's intent description should say whether it hits all enemies or
     // just the lowest-HP one (CollectorHook.ShouldTorchheadTargetAll), since that's a real gameplay

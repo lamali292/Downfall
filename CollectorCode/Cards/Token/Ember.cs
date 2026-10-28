@@ -18,7 +18,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Collector.CollectorCode.Cards.Token;
 
 [Pool(typeof(StatusCardPool))]
-public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAfterTurnEnd
+public class Ember : CollectorCardModel, IStackingUpgradeCard
 {
     
     public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
@@ -26,7 +26,7 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
         WithKeyword(CardKeyword.Unplayable);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
-        WithVar(new DamageVar(2, DamageProps.cardUnpowered).WithUpgrade(1));
+        WithVar(new DamageVar(2, DamageProps.cardUnpowered));
     }
     public override bool HasTurnEndInHandEffect => true;
     public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
@@ -47,7 +47,6 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
         var instance = NCombatRoom.Instance;
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
-        GiveSingleTurnRetain();
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
     }
 }
