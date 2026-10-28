@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
@@ -21,7 +21,6 @@ public class CantTouchThis : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DexterityPower>(ctx, this);
         await CommonActions.ApplySelf<CantTouchThisPower>(ctx, this);
     }
 }
