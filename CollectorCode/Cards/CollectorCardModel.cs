@@ -7,8 +7,10 @@ using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Abstract;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Cards;
@@ -43,6 +45,47 @@ public abstract class CollectorCardModel
     {
         description.Add("TorchheadTargetsAll", ShouldTorcheadTargetAll);
         base.AddExtraArgsToDescription(description);
+    }
+
+    private bool IsFlicker => Keywords.Contains(CollectorKeyword.Flicker);
+
+    /// <summary>
+    ///     Set when this Flicker card moved from the Play pile straight into Exhaust, i.e. its own play exhausted it
+    ///     (it has the Exhaust keyword). That exhaust must not count as "something else exhausted me", or the effect
+    ///     would trigger twice. Uses the pile-change hook rather than the result-pile method so it works on every
+    ///     supported game version.
+    /// </summary>
+    private bool _exhaustedByOwnPlay;
+
+    /// <summary>
+    ///     The effect of a Flicker card. It runs when the card is played and when anything else Exhausts it (Pyre,
+    ///     Ethereal, ...), like Sly does for discards. Flicker cards implement their effect here instead of in
+    ///     <see cref="OnPlayInternal">OnPlayInternal</see>/<c>AfterCardExhausted</c>.
+    /// </summary>
+    protected virtual Task OnFlicker(PlayerChoiceContext ctx) => Task.CompletedTask;
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        if (IsFlicker) await OnFlicker(ctx);
+    }
+
+    public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
+    {
+        if (card == this && IsFlicker) _exhaustedByOwnPlay = oldPileType == PileType.Play && Pile?.Type == PileType.Exhaust;
+        return base.AfterCardChangedPiles(card, oldPileType, clonedBy);
+    }
+
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+    {
+        if (card != this || !IsFlicker || CombatState == null) return;
+        if (_exhaustedByOwnPlay)
+        {
+            _exhaustedByOwnPlay = false;
+            return;
+        }
+
+        var playCount = await GeneratePlayCount(CombatState, null);
+        for (var i = 0; i < playCount; ++i) await OnFlicker(ctx);
     }
 
     protected override bool IsPlayable => !IsBlockedByMissingPyreTarget;

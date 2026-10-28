@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
@@ -26,17 +26,11 @@ public class SunbloomKindling : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
-        bool causedByEthereal)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            await TorchheadCmd.Kindle(ctx, this);
-            await CommonActions.ApplySelf<StrengthPower>(ctx, this);
-            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
-                CardPilePosition.Bottom, IsUpgraded);
-        }
+        await TorchheadCmd.Kindle(ctx, this);
+        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
+            CardPilePosition.Bottom, IsUpgraded);
     }
 }

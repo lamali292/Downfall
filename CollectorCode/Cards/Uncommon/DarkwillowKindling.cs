@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Patches;
@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class DarkwillowKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
+public class DarkwillowKindling : CollectorCardModel
 {
     public DarkwillowKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -25,15 +25,9 @@ public class DarkwillowKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
-        bool causedByEthereal)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            await TorchheadCmd.Kindle(ctx, this);
-            await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
-        }
+        await TorchheadCmd.Kindle(ctx, this);
+        await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
     }
 }

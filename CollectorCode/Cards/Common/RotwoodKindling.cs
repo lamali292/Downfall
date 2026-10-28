@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class RotwoodKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
+public class RotwoodKindling : CollectorCardModel
 {
     public RotwoodKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
@@ -23,14 +23,8 @@ public class RotwoodKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
-        bool causedByEthereal)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            await DownfallCardCmd.GiveCard<Rotshroom>(Owner, PileType.Hand, upgraded: IsUpgraded);
-        }
+        await DownfallCardCmd.GiveCard<Rotshroom>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
 }

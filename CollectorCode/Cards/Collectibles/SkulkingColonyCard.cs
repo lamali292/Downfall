@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Collectibles;
 
-public class SkulkingColonyCard : Collectible<SkulkingColonyElite>, ISkipReplayOnSelfExhaust
+public class SkulkingColonyCard : Collectible<SkulkingColonyElite>
 {
     public SkulkingColonyCard() : base(5, CardType.Status, CardRarity.Uncommon, TargetType.Self, 0.3f)
 	
@@ -21,13 +21,8 @@ public class SkulkingColonyCard : Collectible<SkulkingColonyElite>, ISkipReplayO
         WithPower<PlatingPower>(5, 3);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            await CommonActions.ApplySelf<PlatingPower>(ctx, this);
-        }
+        await CommonActions.ApplySelf<PlatingPower>(ctx, this);
     }
 }

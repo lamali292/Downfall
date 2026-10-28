@@ -43,7 +43,6 @@ public static class CollectorMainFile
             .Add(typeof(AddMyPoolFilterPatch))
             .Add(typeof(NDamageNumVfxOverkillPatch))
             .Add(typeof(NMultiplayerPlayerStatePatch))
-            .Add(typeof(OnPlayWrapperPlayCountPatch))
             .Add(typeof(ReserveSpendPatch))
             .Add(typeof(ReserveAffordabilityPatch))
             .Add(typeof(ReserveCounterPatch))

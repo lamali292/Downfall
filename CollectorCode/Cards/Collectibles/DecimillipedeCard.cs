@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Collectibles;
 
-public class DecimillipedeCard : Collectible<DecimillipedeElite>, ISkipReplayOnSelfExhaust
+public class DecimillipedeCard : Collectible<DecimillipedeElite>
 {
     public DecimillipedeCard() : base(5, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.66f)
     {
@@ -21,15 +21,10 @@ public class DecimillipedeCard : Collectible<DecimillipedeElite>, ISkipReplayOnS
         WithKeyword(CollectorKeyword.Flicker);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            await TorchheadCmd.Kindle(ctx, this);
-            var block = await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
-            await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this, block);
-        }
+        await TorchheadCmd.Kindle(ctx, this);
+        var block = await DownfallCreatureCmd.GainBlock(Owner.Creature, this);
+        await CommonActions.ApplySelf<BlockNextTurnPower>(ctx, this, block);
     }
 }

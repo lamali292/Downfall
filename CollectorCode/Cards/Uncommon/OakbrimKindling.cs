@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Patches;
@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
-public class OakbrimKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
+public class OakbrimKindling : CollectorCardModel
 {
     public OakbrimKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
@@ -23,14 +23,9 @@ public class OakbrimKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            await TorchheadCmd.Kindle(ctx, this);
-            await CommonActions.Draw(this, ctx);
-        }
+        await TorchheadCmd.Kindle(ctx, this);
+        await CommonActions.Draw(this, ctx);
     }
 }

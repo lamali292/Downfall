@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Encounters;
 namespace Collector.CollectorCode.Cards.Collectibles;
 
-public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>, ISkipReplayOnSelfExhaust
+public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
 {
     public WaterfallGiantCard() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self, 0.88f)
     {
@@ -21,16 +21,9 @@ public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>, ISkipReplayOn
         WithKeyword(CollectorKeyword.Flicker);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
-        bool causedByEthereal)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            (await CommonActions.ApplySelf<WaterfallGiantCardPower>(ctx, this))?.SetMiasma(DynamicVars.Power<MiasmaPower>().BaseValue);
-        }
+        (await CommonActions.ApplySelf<WaterfallGiantCardPower>(ctx, this))?.SetMiasma(DynamicVars.Power<MiasmaPower>().BaseValue);
     }
 
-    //protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay) {}
 }

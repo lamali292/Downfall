@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
-public class BramblesparKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
+public class BramblesparKindling : CollectorCardModel
 {
     public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
@@ -32,15 +32,9 @@ public class BramblesparKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
     protected override Artist Artist => Artist.Get<Opal>();
 
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
-        bool causedByEthereal)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
-        var playCount = await GeneratePlayCount(CombatState!, null);
-        for (var i = 0; i < playCount; ++i)
-        {
-            await TorchheadCmd.Kindle(choiceContext, this);
-            await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
-        }
+        await TorchheadCmd.Kindle(ctx, this);
+        await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
     }
 }

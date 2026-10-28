@@ -144,6 +144,32 @@ public class CollectorTests
             "Ember's turn-end effect should still deal its self-damage.");
     }
 
+    // Flicker cards run their effect when played AND when something else exhausts them. RotwoodKindling has the
+    // Exhaust keyword, so playing it also exhausts it: that exhaust must not trigger the effect a second time.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task FlickerCardTriggersOnceWhenPlayed(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<RotwoodKindling>();
+
+        await ctx.PlayCard(card);
+
+        Assert.AreEqual(1, ctx.Player.PlayerCombatState!.Hand.Cards.Count(c => c is Rotshroom),
+            "Playing a Flicker card should trigger its effect exactly once, even though playing it also exhausts it.");
+    }
+
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task FlickerCardTriggersWhenExhaustedByAnotherEffect(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<RotwoodKindling>();
+
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card);
+
+        Assert.AreEqual(1, ctx.Player.PlayerCombatState!.Hand.Cards.Count(c => c is Rotshroom),
+            "A Flicker card exhausted by something else (not played) should still trigger its effect.");
+    }
+
     // Regression guard: Torchhead's intent description should say whether it hits all enemies or
     // just the lowest-HP one (CollectorHook.ShouldTorchheadTargetAll), since that's a real gameplay
     // difference (e.g. EquipAxePower) that was previously invisible in the intent tooltip.
