@@ -290,6 +290,38 @@ public class CollectorTests
             "A Kindling card revives Torchhead before attacking, so it should still show the full damage.");
     }
 
+    // Torchhead attacks the enemy the card was played on, not just the enemy with the least HP.
+    // (Needs two enemies to tell the two apart, so it does nothing in a one-enemy fight.)
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadAttacksTheCardsTarget(TestContext ctx)
+    {
+        var enemies = ctx.Combat.HittableEnemies.OrderBy(e => e.CurrentHp).ToList();
+        if (enemies.Count < 2) return;
+        var lowest = enemies.First();
+        var chosen = enemies.Last();
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<ForgeContract>();
+        var lowestHp = lowest.CurrentHp;
+
+        await ctx.PlayCard(card, chosen);
+
+        Assert.AreEqual(lowestHp, lowest.CurrentHp,
+            "Torchhead should hit the targeted enemy, not the enemy with the least HP.");
+    }
+
+    // With Equip Axe, Torchhead hits ALL enemies, so a Torchhead attack card must stop asking for a target.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadAttackCardTargetsAllEnemiesWhileTorchheadTargetsAll(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<ForgeContract>();
+        Assert.AreEqual(TargetType.AnyEnemy, card.TargetType, "Without Equip Axe the card asks for a target.");
+
+        await PowerCmd.Apply<EquipAxePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        Assert.AreEqual(TargetType.AllEnemies, card.TargetType, "With Equip Axe the card should target all enemies.");
+    }
+
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public Task CollectorStartsCombatWithTorchhead(TestContext ctx)
     {

@@ -35,6 +35,16 @@ public abstract class CollectorCardModel
     }
     
     
+    /// <summary>
+    ///     A Torchhead attack card asks for a target (Torchhead hits what you pick), but while Torchhead targets ALL
+    ///     enemies (Equip Axe) the pick would mean nothing, so the card stops asking and targets all enemies.
+    /// </summary>
+    public override TargetType TargetType =>
+        base.TargetType == TargetType.AnyEnemy && _owner != null && IsMutable && ShouldTorcheadTargetAll
+        && DynamicVars.ContainsKey("TorchheadDamage")
+            ? TargetType.AllEnemies
+            : base.TargetType;
+
     protected bool ShouldTorcheadTargetAll => _owner != null && CollectorHook.ShouldTorchheadTargetAll(_owner, out _);
     
     /// <summary>
