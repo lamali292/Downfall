@@ -332,37 +332,40 @@ public class CollectorTests
         Assert.IsTrue(enemy.HasPower<WeakPower>(), "Inflict Agony should still apply its debuffs under Equip Axe.");
     }
 
-    // Blister: each hit that deals attack damage also makes the enemy lose its amount in HP (ignoring Block), then
-    // it drops by 1. Two hits, two triggers, even through Block.
+    // Blister ticks once per turn: the owner loses its amount in HP (ignoring Block), then it drops by 1.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task BlisterTriggersPerHitIgnoresBlockAndDecays(TestContext ctx)
-    {
-        var enemy = ctx.Combat.HittableEnemies.First();
-        var player = ctx.Player.Creature;
-        var noContext = new BlockingPlayerChoiceContext();
-        await PowerCmd.Apply<BlisterPower>(noContext, enemy, 3, player, null);
-        await CreatureCmd.GainBlock(enemy, 50, BlockProps.nonCardUnpowered, null);
-
-        var hp = enemy.CurrentHp;
-        await CompatibilityCreatureCmd.Damage(noContext, enemy, 4, ValueProp.Move, player, null, null);
-        Assert.AreEqual(hp - 3, enemy.CurrentHp, "A fully blocked hit should still cost the Blister amount in HP.");
-        Assert.AreEqual(2, enemy.GetPowerAmount<BlisterPower>(), "Blister should drop by 1 after triggering.");
-
-        await CompatibilityCreatureCmd.Damage(noContext, enemy, 4, ValueProp.Move, player, null, null);
-        Assert.AreEqual(hp - 3 - 2, enemy.CurrentHp, "The second hit should trigger with the reduced amount.");
-        Assert.AreEqual(1, enemy.GetPowerAmount<BlisterPower>(), "Blister should drop again.");
-    }
-
-    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task BlisterIgnoresDamageThatIsNotAnAttackHit(TestContext ctx)
+    public async Task BlisterTicksOncePerTriggerIgnoresBlockAndDecays(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
         var noContext = new BlockingPlayerChoiceContext();
         await PowerCmd.Apply<BlisterPower>(noContext, enemy, 3, ctx.Player.Creature, null);
+        await CreatureCmd.GainBlock(enemy, 50, BlockProps.nonCardUnpowered, null);
+        var blister = enemy.GetPower<BlisterPower>()!;
 
-        await CompatibilityCreatureCmd.Damage(noContext, enemy, 4, ValueProp.Unblockable | ValueProp.Unpowered, null, null, null);
+        var hp = enemy.CurrentHp;
+        await blister.Trigger();
+        Assert.AreEqual(hp - 3, enemy.CurrentHp, "Blister should cost its amount in HP even through Block.");
+        Assert.AreEqual(2, enemy.GetPowerAmount<BlisterPower>(), "Blister should drop by 1 after ticking.");
 
-        Assert.AreEqual(3, enemy.GetPowerAmount<BlisterPower>(), "Non-attack damage should not trigger Blister.");
+        await blister.Trigger();
+        Assert.AreEqual(hp - 3 - 2, enemy.CurrentHp, "The next tick should use the reduced amount.");
+        Assert.AreEqual(1, enemy.GetPowerAmount<BlisterPower>(), "Blister should drop again.");
+    }
+
+    // Blister only ticks on the turn timer; being hit does nothing extra.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task BlisterDoesNotTriggerWhenTheOwnerIsHit(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var noContext = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<BlisterPower>(noContext, enemy, 3, ctx.Player.Creature, null);
+        await CreatureCmd.GainBlock(enemy, 50, BlockProps.nonCardUnpowered, null);
+        var hp = enemy.CurrentHp;
+
+        await CompatibilityCreatureCmd.Damage(noContext, enemy, 4, ValueProp.Move, ctx.Player.Creature, null, null);
+
+        Assert.AreEqual(3, enemy.GetPowerAmount<BlisterPower>(), "A hit should not trigger or decay Blister.");
+        Assert.AreEqual(hp, enemy.CurrentHp, "A fully blocked hit should cost no HP; only the tick does.");
     }
 
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
