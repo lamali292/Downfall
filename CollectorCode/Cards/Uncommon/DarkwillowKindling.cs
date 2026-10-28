@@ -16,7 +16,7 @@ public class DarkwillowKindling : CollectorCardModel
     public DarkwillowKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
-        WithKeyword(CollectorKeyword.Flicker);
+        WithKeyword(CollectorKeyword.Smolder);
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
         WithKindle(3, 3);
@@ -24,7 +24,7 @@ public class DarkwillowKindling : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnFlicker(PlayerChoiceContext ctx)
+    protected override async Task OnSmolder(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);

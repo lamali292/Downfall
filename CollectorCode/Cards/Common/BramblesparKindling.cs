@@ -17,7 +17,7 @@ public class BramblesparKindling : CollectorCardModel
 {
     public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKeyword(CollectorKeyword.Flicker);
+        WithKeyword(CollectorKeyword.Smolder);
         WithKindle(3, 1);
         WithTorchheadDamage(6, 3);
         WithTip(CollectorKeyword.Torchhead);
@@ -26,7 +26,7 @@ public class BramblesparKindling : CollectorCardModel
     protected override Artist Artist => Artist.Get<Opal>();
 
 
-    protected override async Task OnFlicker(PlayerChoiceContext ctx)
+    protected override async Task OnSmolder(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
         await TorchheadCmd.Attack(ctx, this);

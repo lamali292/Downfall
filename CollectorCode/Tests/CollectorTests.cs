@@ -146,12 +146,12 @@ public class CollectorTests
             "Ember's turn-end effect should still deal its self-damage.");
     }
 
-    // Flicker cards run their effect when played AND when something else exhausts them. RotwoodKindling applies
+    // Smolder cards run their effect when played AND when something else exhausts them. RotwoodKindling applies
     // Weak, which stacks, so the applied amount shows how many times the effect triggered.
     private static int WeakOn(Creature enemy) => enemy.GetPower<WeakPower>()?.Amount ?? 0;
 
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task FlickerCardTriggersOnceWhenPlayed(TestContext ctx)
+    public async Task SmolderCardTriggersOnceWhenPlayed(TestContext ctx)
     {
         await ctx.ClearHand();
         var enemy = ctx.Combat.HittableEnemies.First();
@@ -159,13 +159,13 @@ public class CollectorTests
 
         await ctx.PlayCard(card);
 
-        Assert.AreEqual(1, WeakOn(enemy), "Playing a Flicker card should trigger its effect exactly once.");
+        Assert.AreEqual(1, WeakOn(enemy), "Playing a Smolder card should trigger its effect exactly once.");
     }
 
-    // Regression guard: a Flicker card that gets the Exhaust keyword from some other effect is played and then
+    // Regression guard: a Smolder card that gets the Exhaust keyword from some other effect is played and then
     // exhausted by that very play; the exhaust must not trigger the effect a second time.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task FlickerCardGrantedExhaustDoesNotDoubleTrigger(TestContext ctx)
+    public async Task SmolderCardGrantedExhaustDoesNotDoubleTrigger(TestContext ctx)
     {
         await ctx.ClearHand();
         var enemy = ctx.Combat.HittableEnemies.First();
@@ -174,11 +174,11 @@ public class CollectorTests
 
         await ctx.PlayCard(card);
 
-        Assert.AreEqual(1, WeakOn(enemy), "Exhausting a Flicker card by playing it must not trigger it twice.");
+        Assert.AreEqual(1, WeakOn(enemy), "Exhausting a Smolder card by playing it must not trigger it twice.");
     }
 
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task FlickerCardTriggersWhenExhaustedByAnotherEffect(TestContext ctx)
+    public async Task SmolderCardTriggersWhenExhaustedByAnotherEffect(TestContext ctx)
     {
         await ctx.ClearHand();
         var enemy = ctx.Combat.HittableEnemies.First();
@@ -186,23 +186,23 @@ public class CollectorTests
 
         await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card);
 
-        Assert.AreEqual(1, WeakOn(enemy), "A Flicker card exhausted by something else (not played) should trigger.");
+        Assert.AreEqual(1, WeakOn(enemy), "A Smolder card exhausted by something else (not played) should trigger.");
     }
 
-    // Every Flicker card is a Kindling: it Kindles Torchhead and costs 3.
+    // Every Smolder card is a Kindling: it Kindles Torchhead and costs 3.
     [CardTest]
-    public Task EveryFlickerCardIsAKindling(TestContext ctx)
+    public Task EverySmolderCardIsAKindling(TestContext ctx)
     {
-        var flickerCards = typeof(CollectorCardModel).Assembly.GetTypes()
+        var smolderCards = typeof(CollectorCardModel).Assembly.GetTypes()
             .Where(t => t.IsSubclassOf(typeof(CollectorCardModel)) && !t.IsAbstract)
             .Select(t => ModelDb.GetById<CardModel>(ModelDb.GetId(t)))
-            .Where(c => c.CanonicalKeywords.Contains(CollectorKeyword.Flicker))
+            .Where(c => c.CanonicalKeywords.Contains(CollectorKeyword.Smolder))
             .ToList();
 
-        Assert.IsTrue(flickerCards.Count > 0, "Setup: expected to find Flicker cards.");
-        foreach (var card in flickerCards)
+        Assert.IsTrue(smolderCards.Count > 0, "Setup: expected to find Smolder cards.");
+        foreach (var card in smolderCards)
         {
-            Assert.IsTrue(card.DynamicVars.ContainsKey("Kindle"), $"{card.Id.Entry} has Flicker but does not Kindle.");
+            Assert.IsTrue(card.DynamicVars.ContainsKey("Kindle"), $"{card.Id.Entry} has Smolder but does not Kindle.");
             Assert.AreEqual(3, card.EnergyCost.Canonical, $"{card.Id.Entry} is a Kindling and should cost 3.");
         }
 
