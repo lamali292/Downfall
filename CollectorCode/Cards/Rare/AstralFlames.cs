@@ -1,36 +1,32 @@
-﻿using BaseLib.Utils;
+﻿using Collector.CollectorCode.CustomEnums;
+using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Powers;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
 [Pool(typeof(CollectorCardPool))]
 public class AstralFlames : CollectorCardModel
 {
-    public AstralFlames() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public AstralFlames() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithBlock(10, 2);
-        WithVar("Increase", 3, 1);
-        WithEnergyTip();
-        WithKeyword(CardKeyword.Exhaust);
+        WithKindle(5, 2);
+        WithPower<AstralFlamesPower>(3, 1, false);
+        WithTip(CollectorKeyword.Torchhead);
     }
+
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
-        var card = (await DownfallCardSelectionCmd.MulitPileSelect(ctx, Owner, prefs, null, PileType.Hand, PileType.Discard, PileType.Draw)).FirstOrDefault();
-        var block = DynamicVars.Block.IntValue;
-        if (card != null)
-        {
-            block += card.EnergyCost.GetResolved() * DynamicVars["Increase"].IntValue;
-            await CardCmdCompatibility.Exhaust(ctx, card);
-        }
-        await CreatureCmd.GainBlock(Owner.Creature, block, DynamicVars.Block.Props, cardPlay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await TorchheadCmd.Kindle(ctx, this);
+        await CommonActions.ApplySelf<AstralFlamesPower>(ctx, this);
     }
-
 }

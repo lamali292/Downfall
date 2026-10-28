@@ -13,18 +13,10 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class AshesToAshes : CollectorCardModel
 {
-    public AshesToAshes() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public AshesToAshes() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<AshesToAshesPower>(1, 1, false);
+        WithPower<AshesToAshesPower>(4, 2, false);
         WithTip<Ember>();
-        WithCardTip<Ember>(WithPreviewModifiers);
-    }
-    
-    private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
-    {
-        var val = 1;
-        if (cardModel.IsUpgraded) val += 1;
-        for (var i = 0; i< val; i++) CardCmd.Upgrade(ember);
     }
     
 

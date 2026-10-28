@@ -20,7 +20,6 @@ public class EquipFurnace : CollectorCardModel
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
         WithTip<Ember>();
         WithTip<Burn>();
-        WithTip<Soot>();
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -1,37 +1,36 @@
-﻿using Collector.CollectorCode.Core;
+﻿using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Powers;
 
+/// <summary>Kindled Ash: the first card you Exhaust each turn leaves an Ember in your Discard Pile.</summary>
 public class KarmaPower : CollectorPowerModel
 {
+    private bool _usedThisTurn;
+
     public KarmaPower()
     {
-        WithVar("Debuffs", 2);
-        WithTip(StaticHoverTip.Block);
+        WithTip<Ember>();
     }
 
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
-        if (side != Owner.Side) return;
-        var unique = DynamicVars["Debuffs"].IntValue;
-        var a = CombatState.HittableEnemies.Count(e => e.Powers.Count(ShouldCountPower) >= unique);
-        for (var i = 0; i < a; i++)
-        {
-            await CreatureCmd.GainBlock(Owner, Amount, BlockProps.nonCardUnpowered, null);
-        }
+        // Embers are excluded so exhausting the Ember it just made can't chain.
+        if (_usedThisTurn || card is Ember || card.Owner.Creature != Owner) return;
+        _usedThisTurn = true;
+        Flash();
+        await DownfallCardCmd.GiveCards<Ember>(card.Owner, PileType.Discard, Amount);
     }
-    
 
-    private static bool ShouldCountPower(PowerModel power)
+    public override Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
-        return power.TypeForCurrentAmount == PowerType.Debuff && power is not ITemporaryPower;
+        if (side == Owner.Side) _usedThisTurn = false;
+        return Task.CompletedTask;
     }
 }

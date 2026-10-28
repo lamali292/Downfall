@@ -189,6 +189,111 @@ public class CollectorTests
         Assert.AreEqual(1, WeakOn(enemy), "A Smolder card exhausted by something else (not played) should trigger.");
     }
 
+    // Deflagration: exhausting an Ember hurts every enemy, exhausting anything else does not.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task DeflagrationDamagesAllEnemiesOnlyWhenAnEmberIsExhausted(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var noContext = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<AshesToAshesPower>(noContext, ctx.Player.Creature, 4, ctx.Player.Creature, null);
+        var enemies = ctx.Combat.HittableEnemies.ToList();
+        var before = enemies.Select(e => e.CurrentHp).ToList();
+
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
+        Assert.IsTrue(enemies.Select(e => e.CurrentHp).SequenceEqual(before), "Exhausting a non-Ember should not trigger Deflagration.");
+
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Ember>());
+        for (var i = 0; i < enemies.Count; i++)
+            Assert.AreEqual(before[i] - 4, enemies[i].CurrentHp, "Exhausting an Ember should deal Deflagration's amount to every enemy.");
+    }
+
+    private static int Count<T>(IEnumerable<CardModel> pile) where T : CardModel => pile.Count(c => c is T);
+
+    // Ashen Alchemy: an Exhausted Burn leaves an Ember in Hand; an Exhausted Ember does not chain.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task AshenAlchemyTurnsAnExhaustedBurnIntoAnEmber(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var noContext = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<EmpowerPower>(noContext, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Ember>());
+        Assert.AreEqual(0, Count<Ember>(ctx.Player.Hand), "Exhausting an Ember should not make another one.");
+
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
+        Assert.AreEqual(1, Count<Ember>(ctx.Player.Hand), "Exhausting a Burn should add an Ember to Hand.");
+    }
+
+    // Equip: Bellows: each Exhausted card makes Torchhead hit for the power's amount (halved while downed).
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task EquipBellowsMakesTorchheadStrikeForEveryExhaust(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var noContext = new BlockingPlayerChoiceContext();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var torchhead = await TorchheadCmd.Kindle(noContext, ctx.Player, 10, null);
+        await PowerCmd.Apply<AstralFlamesPower>(noContext, ctx.Player.Creature, 4, ctx.Player.Creature, null);
+
+        var start = enemy.CurrentHp;
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
+        Assert.AreEqual(8, start - enemy.CurrentHp, "Each Exhausted card should make Torchhead deal the power's amount.");
+
+        await CreatureCmd.Kill(torchhead);
+        start = enemy.CurrentHp;
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
+        Assert.AreEqual(2, start - enemy.CurrentHp, "A downed Torchhead should still strike, for half damage.");
+    }
+
+    // Kindled Ash: only the first Exhaust each turn pays out, and Embers don't count.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task KindledAshPaysOutOncePerTurnAndIgnoresEmbers(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var noContext = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<KarmaPower>(noContext, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        var discard = ctx.Player.PlayerCombatState!.DiscardPile.Cards;
+
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Ember>());
+        Assert.AreEqual(0, Count<Ember>(discard), "Exhausting an Ember should not trigger Kindled Ash.");
+
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
+        Assert.AreEqual(1, Count<Ember>(discard), "Only the first Exhaust each turn should add an Ember.");
+    }
+
+    // Embers upgrade once, like any other card (Empower used to stack upgrades).
+    [CardTest]
+    public Task EmberCanOnlyBeUpgradedOnce(TestContext ctx)
+    {
+        var ember = ctx.Combat.CreateCard<Ember>(ctx.Player);
+        CardCmd.Upgrade(ember);
+        CardCmd.Upgrade(ember);
+        Assert.AreEqual(1, ember.CurrentUpgradeLevel, "An Ember should not stack upgrades.");
+        return Task.CompletedTask;
+    }
+
+    // Cursed Wail hits every enemy, with no debuff-count condition.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task CursedWailWeakensEveryEnemy(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<CursedWail>();
+        await ctx.PlayCard(card);
+        foreach (var enemy in ctx.Combat.HittableEnemies)
+            Assert.IsTrue((enemy.GetPower<StrengthPower>()?.Amount ?? 0) < 0, "Every enemy should lose Strength, debuffs or not.");
+    }
+
+    // The starting deck needs a Torchhead attack so the pet does something from turn one.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public Task StartingDeckContainsATorchheadAttack(TestContext ctx)
+    {
+        var deck = ModelDb.Character<Collector.CollectorCode.Core.Collector>().StartingDeck;
+        Assert.IsTrue(deck.Any(c => c.DynamicVars.ContainsKey("TorchheadDamage") && c.Type == CardType.Attack),
+            "The Collector's starting deck should include a Torchhead attack.");
+        return Task.CompletedTask;
+    }
+
     // Every Smolder card is a Kindling: it Kindles Torchhead and costs 3.
     [CardTest]
     public Task EverySmolderCardIsAKindling(TestContext ctx)

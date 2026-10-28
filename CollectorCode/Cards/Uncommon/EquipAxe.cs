@@ -14,7 +14,7 @@ public class EquipAxe : CollectorCardModel
     public EquipAxe() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithKindle(5, 2);
-        WithPower<EquipAxePower>(1, 1, false);
+        WithPower<EquipAxePower>(1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

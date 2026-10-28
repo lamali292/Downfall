@@ -1,4 +1,6 @@
-﻿using BaseLib.Utils;
+﻿using Collector.CollectorCode.CustomEnums;
+using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Commands;
@@ -8,6 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using Collector.CollectorCode.Powers;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
@@ -15,30 +18,17 @@ public class CastIron : CollectorCardModel
 {
     public CastIron() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithCards(2);
-        WithKeyword(CardKeyword.Exhaust);
-        WithUpgradeChangingCardTip<Burn, Ember>();
-        WithCalculatedVar("KindleCalc", 0, 4, Calc, 1);
-        WithKindle(4, 1); // only for the tip
+        WithKeyword(CollectorKeyword.Pyre);
+        WithCostUpgradeBy(-1);
+        WithCardTip<Ember>();
     }
 
-    private static decimal Calc(CardModel card, Creature? arg2)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        return card.Owner.Hand.Count(e => e.Type == CardType.Status);
+        var pyred = await PyreCmd.Pyre(ctx, this);
+        if (pyred == null) return;
+        var embers = pyred.EnergyCost.GetAmountToSpend();
+        if (embers > 0)
+            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Draw, embers, CardPilePosition.Random);
     }
-    
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)//Todo: Finish this later
-    {
-        if (IsUpgraded)
-        {
-            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
-        }
-        else
-        {
-            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
-        }
-        var repeat = (int)((CalculatedVar)DynamicVars["KindleCalc"]).Calculate(null);
-        await TorchheadCmd.Kindle(ctx,Owner, repeat, this);
-    }
-
 }

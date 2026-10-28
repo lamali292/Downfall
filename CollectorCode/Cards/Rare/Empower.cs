@@ -1,3 +1,5 @@
+﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Models.Cards;
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
@@ -15,34 +17,17 @@ public class Empower : CollectorCardModel
 {
     public Empower() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<EmpowerPower>(3, false);
+        WithPower<EmpowerPower>(1, false);
+        WithCardTip<Burn>();
         WithCardTip<Ember>();
-        WithCardTip<Ember>(WithPreviewModifiers);
+        WithCostUpgradeBy(-1);
     }
-    
-    private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
-    {
-        var val = cardModel is { IsMutable: true, _owner: not null }
-            ? cardModel.Owner.PlayerCombatState?.Energy ?? 0
-            : 3;
-        if (cardModel.IsUpgraded) val += 1;
-        WithModifiers(ember, val);
-    }
-    
-    private static void WithModifiers(Ember ember, int ups)
-    {
-        DownfallCardCmd.ForceUpgrade(ember, ups);
-    }
-    
-    protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override bool HasEnergyCostX => true;
+    protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var amount = ResolveEnergyXValue();
-        if (IsUpgraded) amount++;
-        var a = await CommonActions.ApplySelf<EmpowerPower>(ctx, this);
-        a?.SetCards(amount);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CommonActions.ApplySelf<EmpowerPower>(ctx, this);
     }
 }

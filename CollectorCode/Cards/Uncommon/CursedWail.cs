@@ -1,4 +1,4 @@
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Abstract;
@@ -29,15 +29,9 @@ public class CursedWail : CollectorCardModel
         if (CombatState == null) return;
         
         var amount = -DynamicVars.Power<StrengthPower>().IntValue;
-        var enemies = CombatState.HittableEnemies.Where(e => e.Powers.Count(ShouldCountPower) >= 3);
-        await PowerCmd.Apply<StrengthPower>(ctx, enemies, amount, Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(ctx, CombatState.HittableEnemies, amount, Owner.Creature, this);
         
         await CommonActions.Apply<CursedWailPower>(ctx, this, cardPlay);
-    }
-    
-    private static bool ShouldCountPower(PowerModel power)
-    {
-        return power.TypeForCurrentAmount == PowerType.Debuff && power is not ITemporaryPower;
     }
 }
 

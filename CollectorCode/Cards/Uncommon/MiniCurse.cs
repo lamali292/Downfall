@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
@@ -18,7 +18,7 @@ public class MiniCurse : CollectorCardModel
         WithKeyword(CollectorKeyword.Pyre);
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
-        WithCardTip<Soot>();
+        WithCardTip<Burn>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -30,6 +30,6 @@ public class MiniCurse : CollectorCardModel
         if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
+        await DownfallCardCmd.GiveCard<Burn>(Owner, PileType.Discard);
     }
 }

@@ -18,9 +18,7 @@ public class AshenStrike : CollectorCardModel
     public AshenStrike() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithTorchheadDamage(5, 2);
-        WithCards(2);
         WithRepeat(2);
-        WithUpgradeChangingCardTip<Burn, Ember>();
         WithTags(CardTag.Strike);
         WithTip(CollectorKeyword.Torchhead);
     }
@@ -37,9 +35,5 @@ public class AshenStrike : CollectorCardModel
     {
         for (var v = 0; v < DynamicVars.Repeat.IntValue; v++)
             await TorchheadCmd.Attack(ctx, this, cardPlay);
-        if (IsUpgraded)
-            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
-        else 
-            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
     }
 }

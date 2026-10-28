@@ -18,7 +18,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Collector.CollectorCode.Cards.Token;
 
 [Pool(typeof(StatusCardPool))]
-public class Ember : CollectorCardModel, IStackingUpgradeCard
+public class Ember : CollectorCardModel
 {
     
     public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
@@ -29,7 +29,6 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard
         WithVar(new DamageVar(2, DamageProps.cardUnpowered));
     }
     public override bool HasTurnEndInHandEffect => true;
-    public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
     protected override Artist Artist => Artist.Get<Opal>();
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,

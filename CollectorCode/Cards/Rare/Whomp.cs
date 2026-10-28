@@ -15,8 +15,7 @@ public class Whomp : CollectorCardModel
 {
     public Whomp() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(14, 3);
-        WithKindle(11, 3);
+        WithDamage(21, 4);
         WithUpgradeChangingCardTip<Burn, Ember>(null, (e, _) => CardCmd.Upgrade(e));
         WithKeyword(CardKeyword.Exhaust);
     }
@@ -26,7 +25,6 @@ public class Whomp : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await TorchheadCmd.Kindle(ctx, this);
         if (IsUpgraded)
             await DownfallCardCmd.GiveCard<Ember>(Owner, PileType.Hand, upgraded: true);
         else 

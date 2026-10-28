@@ -1,3 +1,4 @@
+﻿using Collector.CollectorCode.Cards.Token;
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
@@ -18,7 +19,7 @@ public class Bonfire : CollectorCardModel
         WithBlock(13, 4);
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
-        WithUpgradeChangingCardTip<Burn, Soot>();
+        WithUpgradeChangingCardTip<Burn, Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -30,12 +31,8 @@ public class Bonfire : CollectorCardModel
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         if (IsUpgraded)
-        {
-            await DownfallCardCmd.GiveCards<Soot>(Owner, PileType.Hand, 1);
-        }
+            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Discard, 1);
         else
-        {
-            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, 1);
-        }
+            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Discard, 1);
     }
 }

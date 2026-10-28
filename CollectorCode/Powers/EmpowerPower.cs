@@ -1,50 +1,26 @@
 ﻿using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Downfall.DownfallCode.Commands;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Collector.CollectorCode.Powers;
 
+/// <summary>Ashen Alchemy: a Burn that gets Exhausted turns into an Ember.</summary>
 public class EmpowerPower : CollectorPowerModel
 {
     public EmpowerPower()
     {
-        WithCards(0);
-        WithCardTip<Ember>(Upgrade);
+        WithTip<Burn>();
+        WithTip<Ember>();
     }
 
-    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
-    protected override int? SecondAmount => DynamicVars.Cards.IntValue;
-    
-    public void SetCards(int amount)
+    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
-        DynamicVars.Cards.BaseValue = amount;
-        this.InvokeSilentDisplayAmountChanged();
-    }
-    
-    private void Upgrade(Ember obj) => Upgrade(obj, this);
-    private static void Upgrade(Ember obj, PowerModel power)
-    {
-        for (var i = 0; i < power.DynamicVars.Cards.BaseValue; i++)
-        {
-            CardCmd.Upgrade(obj);
-        }
-    }
-    
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext ctx, ICombatState combatState)
-    {
-        if (player.Creature != Owner) return;
-        await DownfallCardCmd.GiveCard<Ember>(player, PileType.Hand, action: Upgrade);
-        //await MyCommonActions.ApplySelf<StrengthPower>(ctx, this);
+        if (card is not Burn || card.Owner.Creature != Owner) return;
         Flash();
-        await PowerCmd.Decrement(this);
+        await DownfallCardCmd.GiveCards<Ember>(card.Owner, PileType.Hand, Amount);
     }
-
-  
 }
