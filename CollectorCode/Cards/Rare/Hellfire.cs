@@ -17,7 +17,7 @@ public class Hellfire : CollectorCardModel
         WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorTip.Pyred);
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<BlisterPower>(1, 1);
+        WithPower<BlisterPower>(2, 1);
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

@@ -10,7 +10,7 @@ public class TaskmasterWhip : ActsFromThePastCard
     public TaskmasterWhip() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, "SLAVERS_ELITE")
     {
         WithDamage(10, 2);
-        WithPower<BlisterPower>(3, 1);
+        WithPower<BlisterPower>(5, 2);
         WithKeyword(CardKeyword.Exhaust);
     }
 

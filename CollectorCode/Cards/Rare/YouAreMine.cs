@@ -20,7 +20,7 @@ public class YouAreMine : CollectorCardModel
         WithPower<WeakPower>(3, 2);
         WithPower<FrailPower>(3, 2);
         WithPower<VulnerablePower>(3, 2);
-        WithPower<BlisterPower>(3, 1);
+        WithPower<BlisterPower>(6, 2);
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
     }
 

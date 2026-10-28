@@ -13,7 +13,7 @@ public class YouYourself : ActsFromThePastCard
     {
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
-        WithPower<BlisterPower>(1);
+        WithPower<BlisterPower>(3);
         WithKindle(1);
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
     }

@@ -15,7 +15,7 @@ public class SmokeBomb : CollectorPotionModel
 {
     public SmokeBomb() : base(PotionRarity.Uncommon, PotionUsage.CombatOnly, TargetType.AllEnemies)
     {
-        WithPower<BlisterPower>(5);
+        WithPower<BlisterPower>(6);
     }
 
     protected override Artist Artist => Artist.Get<Fulgur>();

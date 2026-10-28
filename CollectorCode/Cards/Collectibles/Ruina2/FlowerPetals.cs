@@ -10,7 +10,7 @@ public class FlowerPetals : Ruina2Card
 {
     public FlowerPetals() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies, "ALRIUNE_ELITE", 0.3f)
     {
-        WithPower<BlisterPower>(3, 1);
+        WithPower<BlisterPower>(5, 2);
         WithPower<WeakPower>(1, 1);
         WithPower<VulnerablePower>(1, 1);
         WithKeyword(CardKeyword.Exhaust);

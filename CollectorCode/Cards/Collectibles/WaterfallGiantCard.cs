@@ -17,7 +17,7 @@ public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
     {
         
         WithPower<WaterfallGiantCardPower>(3, false);
-        WithPower<BlisterPower>(6, 2);
+        WithPower<BlisterPower>(9, 3);
         WithKindle(6, 3);
         WithKeyword(CollectorKeyword.Smolder);
     }

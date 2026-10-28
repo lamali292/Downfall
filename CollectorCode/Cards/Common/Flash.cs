@@ -13,7 +13,7 @@ public class Flash : CollectorCardModel
 {
     public Flash() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithPower<BlisterPower>(4, 1);
+        WithPower<BlisterPower>(5, 2);
         WithKeyword(CollectorKeyword.Pyre);
     }
 
