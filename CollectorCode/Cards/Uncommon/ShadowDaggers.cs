@@ -14,7 +14,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class ShadowDaggers : CollectorCardModel
 {
-    public ShadowDaggers() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public ShadowDaggers() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
         WithTorchheadDamage(5, 3);
         WithCalculatedVar("CalculatedHits", 0, Calc);
@@ -32,19 +32,16 @@ public class ShadowDaggers : CollectorCardModel
         return card.Owner.DeckPile.Count(c => c.VisualCardPool.IsColorless);
     }
 
-    /// <summary>Torchhead hits what you pick; while it targets ALL enemies (Equip Axe) there is nothing to pick.</summary>
+    /// <summary>Every hit picks a random enemy; with Equip Axe every hit lands on ALL enemies instead.</summary>
     public override TargetType TargetType => _owner != null && IsMutable && ShouldTorcheadTargetAll
         ? TargetType.AllEnemies
-        : TargetType.AnyEnemy;
+        : TargetType.RandomEnemy;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
-        for (var i = 0; i < hits; i++)
-        {
-            // when torchead can get vigor, this needs to be changed
-            await TorchheadCmd.Attack(ctx, this, cardPlay, attack => attack.WithHitFx("vfx/vfx_attack_slash"));
-        }
-
+        if (hits <= 0) return;
+        // one attack with a hit count: Equip: Staff / Shield trigger once, not once per hit
+        await TorchheadCmd.TorchheadAttack(this, cardPlay, hits, true).ExecuteIfPresent(ctx);
     }
 }

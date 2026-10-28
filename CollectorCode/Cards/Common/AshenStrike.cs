@@ -33,7 +33,6 @@ public class AshenStrike : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        for (var v = 0; v < DynamicVars.Repeat.IntValue; v++)
-            await TorchheadCmd.Attack(ctx, this, cardPlay);
+        await TorchheadCmd.TorchheadAttack(this, cardPlay, DynamicVars.Repeat.IntValue, true).ExecuteIfPresent(ctx);
     }
 }

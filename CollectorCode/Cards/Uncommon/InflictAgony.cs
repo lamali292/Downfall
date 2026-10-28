@@ -27,7 +27,7 @@ public class InflictAgony : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await TorchheadCmd.Attack(ctx, this, cardPlay);
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         var amount = DynamicVars["Power"].IntValue;
         if (!cardPlay.Target!.HasPower<WeakPower>())
         {

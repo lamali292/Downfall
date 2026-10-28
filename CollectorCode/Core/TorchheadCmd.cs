@@ -17,12 +17,15 @@ namespace Collector.CollectorCode.Core;
 
 public static class TorchheadCmd
 {
-    public static AttackCommand? TorchheadAttack(AbstractModel model, CardPlay? cardplay = null)
+    public static AttackCommand? TorchheadAttack(AbstractModel model, CardPlay? cardplay = null, int hitCount = 1,
+        bool randomTarget = false)
     {
-        return TorchheadAttack(model.Player, model.DynamicVars.TorchheadDamage.IntValue, model as CardModel, cardplay);
+        return TorchheadAttack(model.Player, model.DynamicVars.TorchheadDamage.IntValue, model as CardModel, cardplay,
+            hitCount, randomTarget);
     }
     
-    public static AttackCommand? TorchheadAttack(Player player, int damage, CardModel? card = null, CardPlay? cardplay = null)
+    public static AttackCommand? TorchheadAttack(Player player, int damage, CardModel? card = null,
+        CardPlay? cardplay = null, int hitCount = 1, bool randomTarget = false)
     {
         var shouldTargetAll = CollectorHook.ShouldTorchheadTargetAll(player, out _);
         if (player.Creature.CombatState == null || player.Torchhead?.Monster is not TorchheadMonsterModel torchhead)
@@ -31,10 +34,16 @@ public static class TorchheadCmd
         }
         var attack = DamageCmd.Attack(DamageFor(player, damage))
             .FromTorchhead(torchhead, card, cardplay)
+            .WithHitCount(hitCount)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3");
         if (shouldTargetAll)
         {
             return attack.TargetingAllOpponents(player.Creature.CombatState);
+        }
+
+        if (randomTarget)
+        {
+            return attack.TargetingRandomOpponents(player.Creature.CombatState);
         }
 
         var enemies = player.Creature.CombatState.HittableEnemies.ToList();
@@ -47,21 +56,8 @@ public static class TorchheadCmd
     }
 
     /// <summary>A downed Torchhead (0 HP) deals half damage, never less than 1.</summary>
-    public static int DamageFor(Player player, int baseDamage) =>
+    private static int DamageFor(Player player, int baseDamage) =>
         player.IsTorchheadDowned ? Math.Max(1, baseDamage / 2) : baseDamage;
-
-    /// <summary>
-    ///     Commands Torchhead to attack. <paramref name="configure" /> adjusts the attack (e.g. its hit effect).
-    ///     Torchhead attacks even while downed (see <see cref="DownedTorchheadAttackPatch" />), so a Torchhead
-    ///     card is never wasted; it only deals less.
-    /// </summary>
-    public static async Task Attack(PlayerChoiceContext ctx, AbstractModel source,
-        CardPlay? cardPlay = null, Func<AttackCommand, AttackCommand>? configure = null)
-    {
-        var attack = TorchheadAttack(source, cardPlay);
-        if (attack != null && configure != null) attack = configure(attack);
-        await attack.ExecuteIfPresent(ctx);
-    }
 
     public static Task<Creature> Kindle(
         PlayerChoiceContext ctx,

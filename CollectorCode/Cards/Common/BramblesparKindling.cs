@@ -2,6 +2,7 @@
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Patches;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
@@ -34,6 +35,6 @@ public class BramblesparKindling : CollectorCardModel
     protected override async Task OnSmolder(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
-        await TorchheadCmd.Attack(ctx, this);
+        await TorchheadCmd.TorchheadAttack(this).ExecuteIfPresent(ctx);
     }
 }

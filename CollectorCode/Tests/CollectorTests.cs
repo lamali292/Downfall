@@ -10,6 +10,7 @@ using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
+using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.Tests;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -305,6 +306,45 @@ public class CollectorTests
 
         await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Ember>());
         Assert.AreEqual(2, strength(), "Exhausting an Ember should grant its Strength.");
+    }
+
+    // Darkstorm: drawing an Embered Kindling draws a card; other cards don't.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task DarkstormDrawsACardWhenAnEmberIsDrawn(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var noContext = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<DarkstormPower>(noContext, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+
+        await DownfallCardCmd.GiveCard<Ember>(ctx.Player, PileType.Draw, CardPilePosition.Top);
+        await CardPileCmd.Draw(noContext, 1, ctx.Player);
+        Assert.AreEqual(2, ctx.Player.Hand.Count, "Drawing an Ember should draw one more card.");
+
+        await ctx.ClearHand();
+        await DownfallCardCmd.GiveCard<Burn>(ctx.Player, PileType.Draw, CardPilePosition.Top);
+        await CardPileCmd.Draw(noContext, 1, ctx.Player);
+        Assert.AreEqual(1, ctx.Player.Hand.Count, "Drawing a non-Ember should not draw more.");
+    }
+
+    // One Torchhead attack with a hit count: the hits land on random enemies, or every hit on ALL enemies under
+    // Equip: Axe. Total damage = damage * hits (* enemies for ALL).
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadHitCountSpreadsRandomHitsAndStillHitsAllWithAxe(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var noContext = new BlockingPlayerChoiceContext();
+        await TorchheadCmd.Kindle(noContext, ctx.Player, 10, null);
+        var enemies = ctx.Combat.HittableEnemies.ToList();
+        int Total() => enemies.Sum(e => e.CurrentHp);
+
+        var start = Total();
+        await TorchheadCmd.TorchheadAttack(ctx.Player, 3, hitCount: 4, randomTarget: true)!.Execute(noContext);
+        Assert.AreEqual(12, start - Total(), "A 4-hit random attack for 3 should deal 12 in total.");
+
+        await PowerCmd.Apply<EquipAxePower>(noContext, ctx.Player.Creature, 1, ctx.Player.Creature, null);
+        start = Total();
+        await TorchheadCmd.TorchheadAttack(ctx.Player, 3, hitCount: 4, randomTarget: true)!.Execute(noContext);
+        Assert.AreEqual(12 * enemies.Count, start - Total(), "With Equip: Axe every hit should land on ALL enemies.");
     }
 
     // Every Smolder card is a Kindling: it Kindles Torchhead and costs 3.

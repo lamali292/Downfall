@@ -1,3 +1,5 @@
+﻿using MegaCrit.Sts2.Core.Commands;
+using Collector.CollectorCode.Powers;
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
@@ -11,18 +13,18 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Darkstorm : CollectorCardModel
 {
-    public Darkstorm() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public Darkstorm() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Ethereal);
-        WithUpgradingCardTip<Blightning>();
+        WithPower<DarkstormPower>(1, false);
+        WithCardTip<Ember>();
+        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Hand, upgraded:IsUpgraded);
-        await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Draw, CardPilePosition.Random, upgraded:IsUpgraded);
-        await DownfallCardCmd.GiveCard<Blightning>(Owner, PileType.Discard, upgraded:IsUpgraded);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CommonActions.ApplySelf<DarkstormPower>(ctx, this);
     }
 }

@@ -2,6 +2,7 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.Extensions;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
@@ -30,7 +31,7 @@ public class Fireball : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await TorchheadCmd.Attack(ctx, this, cardPlay, attack => attack.WithHitFx("vfx/vfx_molten_fist", tmpSfx: "blunt_attack.mp3"));
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         if (IsUpgraded)
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, 1);
         else

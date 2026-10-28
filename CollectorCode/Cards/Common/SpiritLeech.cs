@@ -29,7 +29,7 @@ public class SpiritLeech : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await TorchheadCmd.Attack(ctx, this, cardPlay);
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
     }
 }

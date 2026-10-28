@@ -24,8 +24,7 @@ public class PyreworkPower : CollectorPowerModel, IAddDumbVariablesToPowerDescri
 public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         if (pyred.Owner.Creature != Owner || pyred.Type is not CardType.Status || Owner.Player == null) return;
-        for (var v = 0; v < Amount; v++)
-            await TorchheadCmd.Attack(ctx, this);
+        await TorchheadCmd.TorchheadAttack(this, null, Amount, true).ExecuteIfPresent(ctx);
     }
     
     public void AddDumbVariablesToPowerDescription(LocString description)

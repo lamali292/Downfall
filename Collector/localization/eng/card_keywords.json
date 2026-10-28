@@ -5,6 +5,6 @@
   "COLLECTOR-MEGAPYRE.title": "Megapyre",
   "COLLECTOR-SMOLDER.description": "This card's effects activate when it is played and when it is [gold]Exhausted[/gold].",
   "COLLECTOR-SMOLDER.title": "Smolder",
-  "COLLECTOR-TORCHHEAD.description": "The [gold]Torchhead[/gold] attacks the card's target (or ALL enemies) when a card commands it to. At 0 HP it is down and deals half damage until [gold]Kindled[/gold] again.",
+  "COLLECTOR-TORCHHEAD.description": "Deals half damage while at 0 HP, until [gold]Kindled[/gold] again.",
   "COLLECTOR-TORCHHEAD.title": "Torchhead"
 }

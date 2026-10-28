@@ -29,9 +29,6 @@ public class ScorchingRay : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var amount = ResolveEnergyXValue();
-        for (var v = 0; v < amount; v++)
-        {
-            await TorchheadCmd.Attack(ctx, this, cardPlay);
-        }
+        await TorchheadCmd.TorchheadAttack(this, cardPlay, amount).ExecuteIfPresent(ctx);
     }
 }

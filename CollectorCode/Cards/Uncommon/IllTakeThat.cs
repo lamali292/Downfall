@@ -36,6 +36,6 @@ public class IllTakeThat : CollectorCardModel
             await CompatibilityCreatureCmd.LoseBlock(ctx, cardPlay.Target, stolenBlock, cardPlay.Card.Owner.Creature);
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, BlockProps.cardUnpowered, cardPlay);
         }
-        await TorchheadCmd.Attack(ctx, this, cardPlay);
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
     }
 }
