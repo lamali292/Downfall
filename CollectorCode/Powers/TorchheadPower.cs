@@ -29,6 +29,16 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
         description.Add("TorchheadTargetsAll", shouldTargetAll);
     }
     
+    /// <summary>Torchhead absorbs the unblocked attack damage meant for its owner while it is alive.</summary>
+    public override Creature ModifyUnblockedDamageTarget(
+        Creature target,
+        decimal _,
+        ValueProp props,
+        Creature? __)
+    {
+        return target != Owner.PetOwner?.Creature || Owner.IsDead || !props.IsPoweredAttack() ? target : Owner;
+    }
+
     /// <summary>This is so Osty won't receive powers while it is dead</summary>
     public override bool ShouldAllowHitting(Creature creature) => creature.IsAlive;
 

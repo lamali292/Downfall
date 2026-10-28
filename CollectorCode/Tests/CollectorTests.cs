@@ -19,6 +19,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Tests;
 
@@ -206,6 +207,28 @@ public class CollectorTests
         }
 
         return Task.CompletedTask;
+    }
+
+    // Torchhead soaks the unblocked attack damage aimed at its owner while it is alive, and stops once it is down.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadAbsorbsUnblockedDamageUntilDowned(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var player = ctx.Player.Creature;
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+
+        var playerHp = player.CurrentHp;
+        var torchheadHp = torchhead.CurrentHp;
+        await CreatureCmd.Damage(new BlockingPlayerChoiceContext(), player, 3, ValueProp.Move, enemy);
+
+        Assert.AreEqual(playerHp, player.CurrentHp, "A living Torchhead should absorb the damage meant for its owner.");
+        Assert.IsTrue(torchhead.CurrentHp < torchheadHp, "The absorbed damage should land on Torchhead.");
+
+        await CreatureCmd.Kill(torchhead);
+        playerHp = player.CurrentHp;
+        await CreatureCmd.Damage(new BlockingPlayerChoiceContext(), player, 3, ValueProp.Move, enemy);
+
+        Assert.AreEqual(playerHp - 3, player.CurrentHp, "A downed Torchhead no longer absorbs damage.");
     }
 
     // A downed (0 HP) Torchhead stays in combat and keeps attacking when commanded, at half damage. The game's
