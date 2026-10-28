@@ -21,12 +21,12 @@ public class NostalgicSound : Ruina2Card
     
     public override bool TryModifyEnergyCostInCombat(
         CardModel card,
-        Decimal originalCost,
-        out Decimal modifiedCost)
+        decimal originalCost,
+        out decimal modifiedCost)
     {
         if (card == this)
         {
-            if (card.Owner.PlayerCombatState != null && card.Owner.PlayerCombatState.Reserve > 0)
+            if (card.Owner.PlayerCombatState is { Reserve: > 0 })
             {
                 modifiedCost = originalCost - card.Owner.PlayerCombatState.Reserve;
                 return true;

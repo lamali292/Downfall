@@ -15,10 +15,7 @@ public class InevitableDemisePower() : CollectorPowerModel(PowerType.Debuff), IM
         return creature == Owner ? current + Amount : current;
     }
 
-    // ModifyCollectorMiasmaIncrement only ever gets consulted from inside MiasmaPower's own
-    // end-of-turn trigger - with no Miasma on the owner yet, that trigger never runs, so the
-    // increase-Miasma-by-X debuff would otherwise do nothing until something else applies Miasma
-    // first. Grant a single stack directly instead, so it's never a dead debuff.
+
     public override async Task AfterSideTurnEnd(
         PlayerChoiceContext choiceContext,
         CombatSide side,

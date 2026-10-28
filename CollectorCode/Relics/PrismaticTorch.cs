@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Relics;
@@ -15,11 +14,9 @@ namespace Collector.CollectorCode.Relics;
 public class PrismaticTorch : CollectorRelicModel
 {
     
-    private bool active;
     public PrismaticTorch() : base(RelicRarity.Starter)
     {
         WithKindle(6);
-        active = true;
     }
 
     public override async Task BeforeHandDraw(
@@ -36,23 +33,10 @@ public class PrismaticTorch : CollectorRelicModel
     public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions,
         CardCreationOptions creationOptions)
     {
-        if (!active) return false;
         if (Owner != player) return false;
-        var findFirst = CollectorRewardsCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions, card => CardCmd.Upgrade(card));
-        if (findFirst)
-        {
-            active = false;
-            Flash();
-        }
-        else
-        {
-            return false;
-        }
-        return findFirst;
+        if (!CollectorRewardsCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions, card => CardCmd.Upgrade(card))) return false;
+        Flash();
+        return true;
     }
     
-    public override async Task AfterRoomEntered(AbstractRoom room)
-    {
-        active = true;
-    }
 }

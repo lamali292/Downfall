@@ -1,6 +1,7 @@
 ﻿using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
+using Collector.CollectorCode.Relics;
 using Downfall.DownfallCode.Commands;
 using Godot;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -20,6 +21,42 @@ public static class TorchheadCmd
     public static AttackCommand? TorchheadAttack(AbstractModel model, CardPlay? cardplay = null)
     {
         return TorchheadAttack(model.Player, model.DynamicVars.TorchheadDamage.IntValue, model as CardModel, cardplay);
+    }
+    
+    private static int currentKindleHPWhenMissing(Player p)
+    //This feature being a variable is actually quite useful as I had been trying to think of a blocked chakra rework for quite a while.
+    //And this new idea is more healthy than a writ of reserves.
+    //I don't think this feature will need expansion so it's probably fine to be hardcoded, I cant see this being used again for a power or potion.
+    {
+        foreach (var r in p.Relics)
+        {
+            if (r is BlockedChakra)
+            {
+                return 6;
+            }
+        }
+        return 1;
+    }
+    
+    
+    /// <summary>
+    ///     Torchhead attacks if it is alive; otherwise it is kindled back with <see cref="KindleHpWhenMissing" /> HP
+    ///     instead, so a Torchhead card is never wasted. <paramref name="configure" /> adjusts the attack
+    ///     (e.g. its hit effect) and is only applied when the attack happens.
+    /// </summary>
+    public static async Task AttackOrKindle(PlayerChoiceContext ctx, AbstractModel source,
+        CardPlay? cardPlay = null, Func<AttackCommand, AttackCommand>? configure = null)
+    {
+        var player = source.Player;
+        if (!player.IsTorchheadAlive)
+        {
+            await Kindle(ctx, player, currentKindleHPWhenMissing(player), source);
+            return;
+        }
+
+        var attack = TorchheadAttack(source, cardPlay);
+        if (attack != null && configure != null) attack = configure(attack);
+        await attack.ExecuteIfPresent(ctx);
     }
     
     public static AttackCommand? TorchheadAttack(Player player, int damage, CardModel? card = null, CardPlay? cardplay = null)

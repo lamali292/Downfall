@@ -31,14 +31,14 @@ public static class CollectorRewardsCmd
     
     public static bool TryAddCollectiblesReward(RelicModel relic, Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions, Action<CardModel>? action = null)
     {
+        // actual white star fix
         if (creationOptions.Source != CardCreationSource.Encounter
             || !creationOptions.Flags.HasFlag(CardCreationFlags.IsCardReward)
+            || !creationOptions.Flags.HasFlag(CardCreationFlags.IsFromCombat)
             )
             return false;
-        // maybe add || !creationOptions.Flags.HasFlag(CardCreationFlags.IsFromCombat) back
         if (player.RunState.CurrentRoom is not CombatRoom { RoomType: RoomType.Elite or RoomType.Boss } room)
             return false;
-
         var encounterId = room.Encounter.Id;
         var pool = ModelDb.CardPool<CollectibleCardPool>().AllCards.ToList();
         // get our collectibles

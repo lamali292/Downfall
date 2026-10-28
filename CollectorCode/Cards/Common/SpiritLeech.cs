@@ -26,11 +26,7 @@ public class SpiritLeech : CollectorCardModel
     {
         if (Owner.IsTorchheadAlive)
         {
-        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
-        }
-        else
-        {
-            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
         }
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
     }

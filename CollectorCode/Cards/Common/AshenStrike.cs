@@ -35,12 +35,8 @@ public class AshenStrike : CollectorCardModel
         {
             for (var v = 0; v > DynamicVars.Repeat.IntValue; v++)
             {
-                await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+                await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
             }
-        }
-        else
-        {
-            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
         }
         if (IsUpgraded)
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
