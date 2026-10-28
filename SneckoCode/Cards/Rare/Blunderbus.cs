@@ -20,7 +20,7 @@ public class Blunderbus : SneckoCardModel
 
     private static decimal ExpensiveCardsInHand(CardModel card, Creature? _)
     {
-        return card.Owner.Hand.Count(e => e != card && !e.EnergyCost.CostsX  && e.EnergyCost.GetAmountToSpend() >= card.DynamicVars.Energy.BaseValue);
+        return card.Owner.Hand.Count(e => e != card && e.EnergyCost.GetResolved() >= card.DynamicVars.Energy.BaseValue);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

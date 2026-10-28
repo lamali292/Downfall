@@ -30,7 +30,7 @@ public sealed class ItchyTrigger : HermitCardModel
         await HermitCmd.DeadOn(ctx, this, play, () =>
         {
             var candidates = Owner.Hand
-                .Where(c => c.EnergyCost.GetWithModifiers(CostModifiers.None)  > 0 && !c.EnergyCost.CostsX)
+                .Where(c => c.EnergyCost.GetWithModifiers(CostModifiers.None) > 0)
                 .ToList();
 
             if (candidates.Count <= 0) return Task.CompletedTask;

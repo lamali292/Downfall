@@ -29,7 +29,14 @@ public class Blightning : CollectorCardModel
     {
         if (cardPlay.Target == null) return;
         await TorchheadCmd.Kindle(ctx, this);
-        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        if (Owner.IsTorchheadAlive)
+        {
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        }
+        else
+        {
+            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+        }
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Draw(this, ctx);
 

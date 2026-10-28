@@ -30,7 +30,7 @@ public class Sssharing : SneckoCardModel
             var pool = SneckoModel.GetCombatSneckoCards(Owner, amount, player)
                 .ToList();
             foreach (var card in pool) card.SetToFreeThisTurn();
-            await CardPileCmd.AddGeneratedCardsToCombat(pool, PileType.Hand, Owner);
+            await CardPileCmd.Add(pool, PileType.Hand);
         }
     }
 }

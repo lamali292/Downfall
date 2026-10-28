@@ -1,5 +1,5 @@
 {
-  "SNECKO-AMASS.description": "Gain {CalculatedBlock:diff()} [gold]Block[/gold].\nGains additional [gold]Block[/gold] equal to the total {energyPrefix:energyIcons(1)} cost of other cards in your [gold]Hand[/gold].",
+  "SNECKO-AMASS.description": "Gain {CalculatedBlock:diff()} [gold]Block[/gold].\nGains additional [gold]Block[/gold] equal to the total {energyPrefix:energyIcons(1)} cost of your [gold]Hand[/gold].",
   "SNECKO-AMASS.title": "Amass",
   "SNECKO-BEHOLD.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]: Add {Cards:diff()} [gold]Shivs[/gold] into your [gold]Hand[/gold].",
   "SNECKO-BEHOLD.title": "Behold!",
@@ -7,7 +7,7 @@
   "SNECKO-BELITTLE.title": "Belittle",
   "SNECKO-BEYOND_ARMOR.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut {Cards:diff()} random [gold]Offclass[/gold] {Cards:plural:card|cards} from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].{InCombat:cond:|\n[gold]Gift[/gold]: Common.}",
   "SNECKO-BEYOND_ARMOR.title": "Beyond Armor",
-  "SNECKO-BLUNDERBUS.description": "Deal {Damage:diff()} damage to ALL enemies.\nRepeat for each other card in your [gold]Hand[/gold] that costs {Energy:energyIcons()} or more.{InCombat:cond:\n(Hits {Hits:diff()} {Hits:plural:time|times})|}",
+  "SNECKO-BLUNDERBUS.description": "Deal {Damage:diff()} damage to ALL enemies.\nRepeat for each card in [gold]Hand[/gold] that costs {Energy:energyIcons()} or more.{InCombat:cond:\n(Hits {Hits:diff()} {Hits:plural:time|times})|}",
   "SNECKO-BLUNDERBUS.title": "Blunderbus",
   "SNECKO-BLUNDER_GUARD.description": "Whenever you play a card that costs {energyPrefix:energyIcons(3)} or more, gain {BlunderGuardPower:diff()} [gold]Block[/gold] and {BlunderGuardTwoPower:diff()} [gold]Strength[/gold].",
   "SNECKO-BLUNDER_GUARD.title": "Blunder Guard",
@@ -27,7 +27,7 @@
   "SNECKO-DECEPTION.title": "Deception",
   "SNECKO-DEFEND_SNECKO.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "SNECKO-DEFEND_SNECKO.title": "Defend",
-  "SNECKO-DEFENSIVE_FLAIR.description": "Gain {CalculatedBlock:diff()} [gold]Block[/gold].\nGains {CalculationExtra:diff()} additional [gold]Block[/gold] for each other [gold]Offclass[/gold] card in your [gold]Hand[/gold].{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon.}",
+  "SNECKO-DEFENSIVE_FLAIR.description": "Gain {CalculatedBlock:diff()} [gold]Block[/gold],\nincreased by {CalculationExtra:diff()} for each [gold]Offclass[/gold] card in your [gold]Hand[/gold].{InCombat:cond:|\n[gold]Gift[/gold]: Uncommon.}",
   "SNECKO-DEFENSIVE_FLAIR.title": "Defensive Flair",
   "SNECKO-DICE_BLOCK.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Overflow[/gold]: Gain {Block:diff()} [gold]Block[/gold] again.",
   "SNECKO-DICE_BLOCK.title": "Dice Block",
@@ -65,7 +65,7 @@
   "SNECKO-LATCH_ON.title": "Latch On",
   "SNECKO-LIL_GUARDIAN.description": "Gain {Block:diff()} [gold]Block[/gold].\nWhenever you play a card that costs {Energy:energyIcons()} or more, play this from your [gold]Hand[/gold].",
   "SNECKO-LIL_GUARDIAN.title": "Lil' Guardian",
-  "SNECKO-LUCKY_BREAK.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:plural:a card|{Cards:diff()} cards} for each other card in your [gold]Hand[/gold] that costs {Energy:energyIcons()} or more.{InCombat:cond:\n(Draws {Draws:diff()} {Draws:plural:card|cards})|}",
+  "SNECKO-LUCKY_BREAK.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:plural:a card|{Cards:diff()} cards} for each card in your [gold]Hand[/gold] that costs {Energy:energyIcons()} or more.",
   "SNECKO-LUCKY_BREAK.title": "Lucky Break",
   "SNECKO-MAKESHIFT_BLADE.description": "Deal {Damage:diff()} damage.\nIf the target has at least {Debuffs:diff()} debuffs, draw {Cards:diff()} cards.{InCombat:cond:|\n[gold]Gift[/gold]: Debuff.}",
   "SNECKO-MAKESHIFT_BLADE.title": "Makeshift Blade",
@@ -121,7 +121,7 @@
   "SNECKO-SNAKE_RAKE.title": "Snake Rake",
   "SNECKO-SNEK_BITE.description": "Deal {Damage:diff()} damage.\n[gold]Muddle[/gold] {Muddle:diff()} {Muddle:plural:card|cards}.",
   "SNECKO-SNEK_BITE.title": "Snek Bite",
-  "SNECKO-SOUL_DRAW.description": "Add {Cards:diff()} random [gold]Offclass[/gold] cards into your [gold]Hand[/gold].\nThey gain [gold]Retain[/gold].",
+  "SNECKO-SOUL_DRAW.description": "Add {Cards:diff()} random [gold]Offclass[/gold] cards into your [gold]Hand[/gold].\nThey gain [gold]Retain[/gold]. ",
   "SNECKO-SOUL_DRAW.title": "Soul Draw",
   "SNECKO-SOUL_EXCHANGE.description": "[gold]Muddle[/gold] your [gold]Hand[/gold].",
   "SNECKO-SOUL_EXCHANGE.title": "Soul Exchange",
@@ -134,7 +134,7 @@
   "SNECKO-THROWING_CARDS.description": "The next X{IfUpgraded:show:+1|} times you play an [gold]Offclass[/gold] card, deal {ThrowingCardsPower:diff()} damage to a random enemy and draw a card.",
   "SNECKO-THROWING_CARDS.title": "Throwing Cards",
   "SNECKO-TOOTH_AND_CLAW.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Shiv{IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold] for each unique color in your [gold]Hand[/gold].{InCombat:cond:\n(Adds {Shivs:diff()} {Shivs:plural:Shiv|Shivs})|\n[gold]Gift[/gold]: Uncommon.}",
-  "SNECKO-TOOTH_AND_CLAW.title": "Tooth and Claw",
+  "SNECKO-TOOTH_AND_CLAW.title": "Tooth And Claw",
   "SNECKO-TRASH_CAN.description": "At the end of your turn, you may [gold]Exhaust[/gold] a card.",
   "SNECKO-TRASH_CAN.title": "Trash Can",
   "SNECKO-TRASH_TO_TREASURE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Exhaust[/gold] a card.\nGain {energyPrefix:energyIcons(1)} equal to its cost.",
@@ -190,5 +190,5 @@
   "SNECKO-MUDDY.title": "Muddy",
   "SNECKO-MUDDY.description": "Choose another player.\nAt the start of their next turn, they draw {DrawCardsNextTurnPower:diff()} additional cards and [gold]Muddle[/gold] their [gold]Hand[/gold].",
   "SNECKO-VENOMOLOGY.title": "Venomology",
-  "SNECKO-VENOMOLOGY.description": "This turn, whenever another player applies a debuff beside [gold]Venom[/gold] to this enemy, they apply {VenomologyPower:diff()} [gold]Venom[/gold] to it."
+  "SNECKO-VENOMOLOGY.description": "This turn, whenever another player debuffs this enemy, they apply {VenomologyPower:diff()} [gold]Venom[/gold] to them."
 }

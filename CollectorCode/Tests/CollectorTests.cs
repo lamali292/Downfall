@@ -142,6 +142,7 @@ public class CollectorTests
         Assert.IsTrue(ctx.Player.Creature.CurrentHp < startingHp,
             "Ember's turn-end effect should still deal its self-damage.");
     }
+
     // Regression guard: Torchhead's intent description should say whether it hits all enemies or
     // just the lowest-HP one (CollectorHook.ShouldTorchheadTargetAll), since that's a real gameplay
     // difference (e.g. EquipAxePower) that was previously invisible in the intent tooltip.

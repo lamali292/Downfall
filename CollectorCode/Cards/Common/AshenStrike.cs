@@ -31,10 +31,17 @@ public class AshenStrike : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        // Repeat only applies while Torchhead is alive; a missing one is just kindled back once.
-        var hits = Owner.IsTorchheadAlive ? DynamicVars.Repeat.IntValue : 1;
-        for (var v = 0; v < hits; v++)
-            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        if (Owner.IsTorchheadAlive)
+        {
+            for (var v = 0; v > DynamicVars.Repeat.IntValue; v++)
+            {
+                await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+            }
+        }
+        else
+        {
+            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+        }
         if (IsUpgraded)
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         else 

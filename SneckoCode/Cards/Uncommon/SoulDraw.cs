@@ -23,6 +23,6 @@ public class SoulDraw : SneckoCardModel
     {
         var mutableCards = SneckoModel.GetCombatSneckoCards(Owner, DynamicVars.Cards.IntValue).ToList();
         mutableCards.ForEach(card => card.AddKeyword(CardKeyword.Retain));
-        await CardPileCmd.AddGeneratedCardsToCombat(mutableCards, PileType.Hand, Owner);
+        await CardPileCmd.Add(mutableCards, PileType.Hand);
     }
 }

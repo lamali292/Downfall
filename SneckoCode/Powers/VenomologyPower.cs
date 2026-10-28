@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Events;
-using MegaCrit.Sts2.Core.Combat;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -9,7 +8,7 @@ using Snecko.SneckoCode.Core;
 
 namespace Snecko.SneckoCode.Powers;
 
-public class VenomologyPower : SneckoPowerModel, IAfterPowerAmountChangedLate
+public class VenomologyPower : SneckoPowerModel
 {
     public VenomologyPower() : base(PowerType.Debuff)
     {
@@ -17,15 +16,14 @@ public class VenomologyPower : SneckoPowerModel, IAfterPowerAmountChangedLate
     }
 
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-    
-    public async Task AfterPowerAmountChangedLate(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
+
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext ctx, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)
     {
-        // Venom is what we produce: reacting to it would let several Venomology instances trigger each other forever.
-        if (power is VenomPower || power.Owner != Owner || applier == Applier || applier?.Player == null || power.GetDownfallTypeForAmount(amount) != PowerType.Debuff) return;
+        if (power.Owner != Owner || applier == Applier || applier?.Player == null || power.GetDownfallTypeForAmount(amount) != PowerType.Debuff) return;
         await Cmd.Wait(0.1f);
         Flash();
-        await PowerCmd.Apply<VenomPower>(ctx, Owner, Amount, Applier, null);
+        await PowerCmd.Apply<VenomPower>(ctx, Owner, Amount, Owner, null);
       
     }
 
