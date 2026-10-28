@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace Collector.CollectorCode.Relics;
@@ -13,9 +14,11 @@ namespace Collector.CollectorCode.Relics;
 [Pool(typeof(CollectorRelicPool))]
 public class EmeraldTorch : CollectorRelicModel
 {
+    private bool active;
     public EmeraldTorch() : base(RelicRarity.Starter)
     {
         WithKindle(2);
+        active = true;
     }
     
     public override RelicModel GetUpgradeReplacement()
@@ -35,10 +38,25 @@ public class EmeraldTorch : CollectorRelicModel
     
     public override bool TryModifyCardRewardOptions(Player player, List<CardCreationResult> cardRewardOptions, CardCreationOptions creationOptions)
     {
+        //reverted some code to fix white star bug.
+        if (!active) return false;
         if (Owner != player) return false;
-        if (!CollectorRewardsCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions)) return false;
-        Flash();
-        return true;
+        var findFirst = CollectorRewardsCmd.TryAddCollectiblesReward(this, player, cardRewardOptions, creationOptions);
+        if (findFirst)
+        {
+            active = false;
+            Flash();   
+        }
+        else
+        {
+            return false;
+        }
+        return findFirst;
+    }
+
+    public override async Task AfterRoomEntered(AbstractRoom room)
+    {
+        active = true;
     }
 
 }

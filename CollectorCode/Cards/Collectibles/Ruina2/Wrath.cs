@@ -14,7 +14,7 @@ public class Wrath : Ruina2Card
         WithVar("Increase", 4, 1);
     }
 
-    private decimal ExtraDamageFromPlays
+    public Decimal ExtraDamageFromPlays
     {
         get;
         set
@@ -27,13 +27,15 @@ public class Wrath : Ruina2Card
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
-        DynamicVars.Damage.BaseValue += DynamicVars["Increase"].BaseValue;
+        DamageVar damage = DynamicVars.Damage;
+        damage.BaseValue = damage.BaseValue + DynamicVars["Increase"].BaseValue;
         ExtraDamageFromPlays += DynamicVars["Increase"].BaseValue;
     }
     
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
-        DynamicVars.Damage.BaseValue += ExtraDamageFromPlays;
+        DamageVar damage = DynamicVars.Damage;
+        damage.BaseValue = damage.BaseValue + ExtraDamageFromPlays;
     }
 }

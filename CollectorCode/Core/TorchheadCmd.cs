@@ -41,28 +41,6 @@ public static class TorchheadCmd
         return target == null ? null: attack.Targeting(target);
     }
 
-    private const int KindleHpWhenMissing = 1;
-
-    /// <summary>
-    ///     Torchhead attacks if it is alive; otherwise it is kindled back with <see cref="KindleHpWhenMissing" /> HP
-    ///     instead, so a Torchhead card is never wasted. <paramref name="configure" /> adjusts the attack
-    ///     (e.g. its hit effect) and is only applied when the attack happens.
-    /// </summary>
-    public static async Task AttackOrKindle(PlayerChoiceContext ctx, AbstractModel source,
-        CardPlay? cardPlay = null, Func<AttackCommand, AttackCommand>? configure = null)
-    {
-        var player = source.Player;
-        if (!player.IsTorchheadAlive)
-        {
-            await Kindle(ctx, player, KindleHpWhenMissing, source);
-            return;
-        }
-
-        var attack = TorchheadAttack(source, cardPlay);
-        if (attack != null && configure != null) attack = configure(attack);
-        await attack.ExecuteIfPresent(ctx);
-    }
-
     public static Task<Creature> Kindle(
         PlayerChoiceContext ctx,
         AbstractModel source)

@@ -28,7 +28,14 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        if (Owner.IsTorchheadAlive)
+        {
+        await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+        }
+        else
+        {
+            await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+        }
     }
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)

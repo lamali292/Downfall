@@ -27,6 +27,13 @@ public class ForgeContract : CollectorCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await Cmd.CustomScaledWait(0.1f, 0.3f);
-            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+            if (Owner.IsTorchheadAlive)
+            {
+                await TorchheadCmd.TorchheadAttack(this, cardPlay).ExecuteIfPresent(ctx);
+            }
+            else
+            {
+                await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+            }
     }
 }

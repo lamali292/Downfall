@@ -15,28 +15,10 @@ public class DiceBoulder : SneckoCardModel
         WithEnergy(1);
     }
 
-    /// Required so the growth survives a downgrade (the game rebuilds the dynamic vars), same as Rampage.
-    private decimal ExtraBlock
-    {
-        get;
-        set
-        {
-            AssertMutable();
-            field = value;
-        }
-    }
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardBlock(this, cardPlay);
         DynamicVars.Block.BaseValue += DynamicVars["Increase"].BaseValue;
-        ExtraBlock += DynamicVars["Increase"].BaseValue;
         EnergyCost.AddThisCombat(DynamicVars.Energy.IntValue);
-    }
-
-    protected override void AfterDowngraded()
-    {
-        base.AfterDowngraded();
-        DynamicVars.Block.BaseValue += ExtraBlock;
     }
 }

@@ -38,8 +38,14 @@ public class ShadowDaggers : CollectorCardModel
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
         for (var i = 0; i < hits; i++)
         {
-            // when torchead can get vigor, this needs to be changed
-            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay, attack => attack.WithHitFx("vfx/vfx_attack_slash"));
+            if (Owner.IsTorchheadAlive)
+            {
+                await (TorchheadCmd.TorchheadAttack(this, cardPlay)?.WithHitFx("vfx/vfx_attack_slash")).ExecuteIfPresent(ctx);
+            }
+            else
+            {
+                await TorchheadCmd.Kindle(ctx, Owner, 1, this);
+            }
         }
 
     }
