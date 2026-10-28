@@ -9,12 +9,6 @@ namespace Collector.CollectorCode.Events;
 
 public static class CollectorHook
 {
-    public static int ModifyCollectorBlisterIncrement(ICombatState cs, Creature creature, int baseAmount)
-    {
-        return HookUtils.Aggregate<IModifyCollectorBlisterIncrement, int>(cs, baseAmount,
-            (m, current) => m.ModifyCollectorBlisterIncrement(creature, current));
-    }
-
     public static Task AfterCardPyred(ICombatState cs, PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
         return HookUtils.Dispatch<IAfterCardPyred>(cs, ctx, m => m.AfterCardPyred(ctx, card, pyred));

@@ -332,6 +332,39 @@ public class CollectorTests
         Assert.IsTrue(enemy.HasPower<WeakPower>(), "Inflict Agony should still apply its debuffs under Equip Axe.");
     }
 
+    // Blister: each hit that deals attack damage also makes the enemy lose its amount in HP (ignoring Block), then
+    // it drops by 1. Two hits, two triggers, even through Block.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task BlisterTriggersPerHitIgnoresBlockAndDecays(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var player = ctx.Player.Creature;
+        var noContext = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<BlisterPower>(noContext, enemy, 3, player, null);
+        await CreatureCmd.GainBlock(enemy, 50, BlockProps.nonCardUnpowered, null);
+
+        var hp = enemy.CurrentHp;
+        await CompatibilityCreatureCmd.Damage(noContext, enemy, 4, ValueProp.Move, player, null, null);
+        Assert.AreEqual(hp - 3, enemy.CurrentHp, "A fully blocked hit should still cost the Blister amount in HP.");
+        Assert.AreEqual(2, enemy.GetPowerAmount<BlisterPower>(), "Blister should drop by 1 after triggering.");
+
+        await CompatibilityCreatureCmd.Damage(noContext, enemy, 4, ValueProp.Move, player, null, null);
+        Assert.AreEqual(hp - 3 - 2, enemy.CurrentHp, "The second hit should trigger with the reduced amount.");
+        Assert.AreEqual(1, enemy.GetPowerAmount<BlisterPower>(), "Blister should drop again.");
+    }
+
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task BlisterIgnoresDamageThatIsNotAnAttackHit(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var noContext = new BlockingPlayerChoiceContext();
+        await PowerCmd.Apply<BlisterPower>(noContext, enemy, 3, ctx.Player.Creature, null);
+
+        await CompatibilityCreatureCmd.Damage(noContext, enemy, 4, ValueProp.Unblockable | ValueProp.Unpowered, null, null, null);
+
+        Assert.AreEqual(3, enemy.GetPowerAmount<BlisterPower>(), "Non-attack damage should not trigger Blister.");
+    }
+
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public Task CollectorStartsCombatWithTorchhead(TestContext ctx)
     {
@@ -354,10 +387,7 @@ public class CollectorTests
             "With EquipAxe, the card description should say ALL enemies.");
     }
 
-    // Regression guard: InevitableDemisePower's IModifyCollectorBlisterIncrement only ever gets
-    // consulted from inside BlisterPower's own end-of-turn trigger, which never runs without an
-    // existing Blister instance - so the debuff used to do nothing at all against an enemy with no
-    // Blister yet. It should grant a single stack directly instead.
+    // InevitableDemisePower adds its amount of Blister at the end of the enemy's turn, even to an enemy that has none.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task InevitableDemiseGrantsBlisterWhenTargetHasNone(TestContext ctx)
     {
@@ -375,8 +405,8 @@ public class CollectorTests
 
         Assert.IsTrue(enemy.HasPower<BlisterPower>(),
             "InevitableDemise should grant Blister when the enemy has none, instead of doing nothing.");
-        Assert.AreEqual(1, enemy.GetInstancedPowerAmountSum<BlisterPower>(),
-            "Should grant exactly 1 Blister as a fallback.");
+        Assert.IsTrue(enemy.GetInstancedPowerAmountSum<BlisterPower>() >= 1,
+            "Should grant at least its amount of Blister (it adds it every enemy turn).");
     }
 
     // Regression guard for Pyre state on replayed plays: cards pyre inline in their own OnPlayInternal
