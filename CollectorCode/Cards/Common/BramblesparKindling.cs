@@ -15,7 +15,7 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class BramblesparKindling : CollectorCardModel
 {
-    public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public BramblesparKindling() : base(3, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
     {
         WithKeyword(CollectorKeyword.Smolder);
         WithKindle(3, 1);
