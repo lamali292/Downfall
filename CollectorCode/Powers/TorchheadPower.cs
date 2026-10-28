@@ -29,26 +29,6 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
         description.Add("TorchheadTargetsAll", shouldTargetAll);
     }
     
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
-    {
-        var petOwner = Owner.PetOwner;
-        var creature = petOwner?.Creature;
-        if (petOwner == null || creature == null || !participants.Contains(creature)) return;
-        await TorchheadCmd.TorchheadAttack(petOwner,  DynamicVars.TorchheadDamage.IntValue).ExecuteIfPresent(ctx);
-
-        if (Owner.IsAlive)
-            TorchheadCmd.RefreshTorchheadIntent(Owner);
-    }
-    
-    public override Creature ModifyUnblockedDamageTarget(
-        Creature target,
-        decimal _,
-        ValueProp props,
-        Creature? __)
-    {
-        return target != Owner.PetOwner?.Creature || Owner.IsDead || !props.IsPoweredAttack() ? target : Owner;
-    }
-
     /// <summary>This is so Osty won't receive powers while it is dead</summary>
     public override bool ShouldAllowHitting(Creature creature) => creature.IsAlive;
 

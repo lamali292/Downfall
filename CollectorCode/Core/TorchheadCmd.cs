@@ -85,24 +85,8 @@ public static class TorchheadCmd
         AbstractModel? source)
     {
         var torchhead = await PetSummonCmd.Summon<TorchheadMonsterModel, TorchheadPower>(ctx, summoner, hp, source);
-        RefreshTorchheadIntent(torchhead);
         RefreshTorchheadScale(torchhead);
         return torchhead;
-    }
-
-    /// <summary>
-    /// Torchhead never runs a real monster turn (it's summoned mid-combat, and its attack fires
-    /// from TorchheadPower.AfterSideTurnEnd instead), so its move is never rolled by the normal
-    /// enemy turn loop and its intent icon would stay blank. Call this whenever the pet is summoned
-    /// or its damage may have changed, so the shown value stays accurate.
-    /// </summary>
-    public static void RefreshTorchheadIntent(Creature torchhead)
-    {
-        var combatState = torchhead.CombatState;
-        if (combatState == null) return;
-        torchhead.PrepareForNextTurn(combatState.Players.Select(p => p.Creature));
-        var intents = NCombatRoom.Instance?.GetCreatureNode(torchhead)?.IntentContainer;
-        intents?.Visible = torchhead.PetOwner == null || LocalContext.IsMe(torchhead.PetOwner);
     }
 
     private const float TorchheadMinScale = 1f;

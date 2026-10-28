@@ -8,7 +8,6 @@ using Collector.CollectorCode.Cards.Uncommon;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
-using Collector.CollectorCode.Intents;
 using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Tests;
@@ -207,28 +206,6 @@ public class CollectorTests
         }
 
         return Task.CompletedTask;
-    }
-
-    // Regression guard: Torchhead's intent description should say whether it hits all enemies or
-    // just the lowest-HP one (CollectorHook.ShouldTorchheadTargetAll), since that's a real gameplay
-    // difference (e.g. EquipAxePower) that was previously invisible in the intent tooltip.
-    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task TorchheadIntentDescriptionReflectsTargetingMode(TestContext ctx)
-    {
-        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
-        var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
-        Assert.IsTrue(intent != null, "Torchhead's move state should carry a TorchheadAttackIntent.");
-
-        var targets = ctx.Combat.Players.Select(p => p.Creature).ToList();
-        var singleTargetDescription = intent!.GetHoverTip(targets, torchhead).Description;
-        Assert.IsTrue(singleTargetDescription.Contains("least HP"),
-            $"Without EquipAxe, Torchhead should target the enemy with the least HP, got '{singleTargetDescription}'.");
-
-        await PowerCmd.Apply<EquipAxePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
-        var allTargetsDescription = intent.GetHoverTip(targets, torchhead).Description;
-
-        Assert.IsTrue(allTargetsDescription.Contains("ALL enemies"),
-            $"With EquipAxe, Torchhead should target all enemies, got '{allTargetsDescription}'.");
     }
 
     // Regression guard: CollectorCardModel injects "TorchheadTargetsAll" for every Collector card, so a

@@ -1,7 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using BaseLib.Abstracts;
-using Collector.CollectorCode.Intents;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
@@ -38,7 +37,7 @@ public class TorchheadMonsterModel : CustomMonsterModel
     
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
-        var initialState = new MoveState("NOTHING_MOVE", _ => Task.CompletedTask, new TorchheadAttackIntent());
+        var initialState = new MoveState("NOTHING_MOVE", _ => Task.CompletedTask);
         initialState.FollowUpState = initialState;
         return new MonsterMoveStateMachine([initialState], initialState);
     }
