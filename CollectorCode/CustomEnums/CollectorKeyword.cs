@@ -12,7 +12,7 @@ public class CollectorKeyword
     public static CardKeyword Megapyre;
     
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
-    public static CardKeyword Flicker;
+    public static CardKeyword Ignite;
     
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Torchhead;

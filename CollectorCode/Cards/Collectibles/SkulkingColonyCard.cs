@@ -15,13 +15,13 @@ public class SkulkingColonyCard : Collectible<SkulkingColonyElite>
 {
     public SkulkingColonyCard() : base(3, CardType.Status, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
-        WithKeyword(CollectorKeyword.Flicker);
+        WithKeyword(CollectorKeyword.Ignite);
         // todo: we do plating now. idk if thats good conversion of numbers.
         WithKindle(5, 2);
         WithPower<PlatingPower>(5, 3);
     }
 
-    protected override async Task OnFlicker(PlayerChoiceContext ctx)
+    protected override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
         await CommonActions.ApplySelf<PlatingPower>(ctx, this);

@@ -13,14 +13,14 @@ public class SunbloomKindling : CollectorCardModel
 {
     public SunbloomKindling() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CollectorKeyword.Flicker);
+        WithKeyword(CollectorKeyword.Ignite);
         WithKindle(5, 3);
         WithPower<StrengthPower>(2);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnFlicker(PlayerChoiceContext ctx)
+    protected override async Task OnIgnite(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);

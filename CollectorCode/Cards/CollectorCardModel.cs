@@ -47,10 +47,10 @@ public abstract class CollectorCardModel
         base.AddExtraArgsToDescription(description);
     }
 
-    private bool IsFlicker => Keywords.Contains(CollectorKeyword.Flicker);
+    private bool IsIgnite => Keywords.Contains(CollectorKeyword.Ignite);
 
     /// <summary>
-    ///     Set when this Flicker card moved from the Play pile straight into Exhaust, i.e. its own play exhausted it
+    ///     Set when this Ignite card moved from the Play pile straight into Exhaust, i.e. its own play exhausted it
     ///     (it has the Exhaust keyword). That exhaust must not count as "something else exhausted me", or the effect
     ///     would trigger twice. Uses the pile-change hook rather than the result-pile method so it works on every
     ///     supported game version.
@@ -58,26 +58,26 @@ public abstract class CollectorCardModel
     private bool _exhaustedByOwnPlay;
 
     /// <summary>
-    ///     The effect of a Flicker card. It runs when the card is played and when anything else Exhausts it (Pyre,
-    ///     Ethereal, ...), like Sly does for discards. Flicker cards implement their effect here instead of in
+    ///     The effect of an Ignite card. It runs when the card is played and when anything else Exhausts it (Pyre,
+    ///     Ethereal, ...), like Sly does for discards. Ignite cards implement their effect here instead of in
     ///     <see cref="OnPlayInternal">OnPlayInternal</see>/<c>AfterCardExhausted</c>.
     /// </summary>
-    protected virtual Task OnFlicker(PlayerChoiceContext ctx) => Task.CompletedTask;
+    protected virtual Task OnIgnite(PlayerChoiceContext ctx) => Task.CompletedTask;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (IsFlicker) await OnFlicker(ctx);
+        if (IsIgnite) await OnIgnite(ctx);
     }
 
     public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
     {
-        if (card == this && IsFlicker) _exhaustedByOwnPlay = oldPileType == PileType.Play && Pile?.Type == PileType.Exhaust;
+        if (card == this && IsIgnite) _exhaustedByOwnPlay = oldPileType == PileType.Play && Pile?.Type == PileType.Exhaust;
         return base.AfterCardChangedPiles(card, oldPileType, clonedBy);
     }
 
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
     {
-        if (card != this || !IsFlicker || CombatState == null) return;
+        if (card != this || !IsIgnite || CombatState == null) return;
         if (_exhaustedByOwnPlay)
         {
             _exhaustedByOwnPlay = false;
@@ -85,7 +85,7 @@ public abstract class CollectorCardModel
         }
 
         var playCount = await GeneratePlayCount(CombatState, null);
-        for (var i = 0; i < playCount; ++i) await OnFlicker(ctx);
+        for (var i = 0; i < playCount; ++i) await OnIgnite(ctx);
     }
 
     protected override bool IsPlayable => !IsBlockedByMissingPyreTarget;
