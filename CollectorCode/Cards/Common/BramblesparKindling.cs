@@ -15,11 +15,12 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class BramblesparKindling : CollectorCardModel
 {
-    public BramblesparKindling() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
+        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(3, 1);
-        WithTorchheadDamage(6, 3);
+        WithKindle(5, 2);
+        WithTorchheadDamage(10, 4);
         WithTip(CollectorKeyword.Torchhead);
     }
 

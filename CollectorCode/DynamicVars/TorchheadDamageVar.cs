@@ -36,7 +36,7 @@ public class TorchheadDamageVar : DynamicVar
     private decimal BaseDamageFor(Player? owner, CardModel? card = null)
     {
         var revivesFirst = card != null && card.DynamicVars.ContainsKey("Kindle");
-        return owner != null && owner.IsTorchheadDowned && !revivesFirst
+        return owner is { IsTorchheadDowned: true } && !revivesFirst
             ? Math.Max(1, Math.Floor(BaseValue / 2))
             : BaseValue;
     }

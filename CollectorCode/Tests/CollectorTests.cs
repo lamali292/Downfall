@@ -189,7 +189,7 @@ public class CollectorTests
         Assert.AreEqual(1, WeakOn(enemy), "A Flicker card exhausted by something else (not played) should trigger.");
     }
 
-    // Every Flicker card is a Kindling: it Kindles Torchhead and costs at most 3.
+    // Every Flicker card is a Kindling: it Kindles Torchhead, costs 3 and is used up (Exhaust, or a Power).
     [CardTest]
     public Task EveryFlickerCardIsAKindling(TestContext ctx)
     {
@@ -203,7 +203,9 @@ public class CollectorTests
         foreach (var card in flickerCards)
         {
             Assert.IsTrue(card.DynamicVars.ContainsKey("Kindle"), $"{card.Id.Entry} has Flicker but does not Kindle.");
-            Assert.IsTrue(card.EnergyCost.Canonical <= 3, $"{card.Id.Entry} is a Kindling and should cost at most 3.");
+            Assert.AreEqual(3, card.EnergyCost.Canonical, $"{card.Id.Entry} is a Kindling and should cost 3.");
+            Assert.IsTrue(card.Type == CardType.Power || card.CanonicalKeywords.Contains(CardKeyword.Exhaust),
+                $"{card.Id.Entry} is a Kindling and should be exhausted.");
         }
 
         return Task.CompletedTask;

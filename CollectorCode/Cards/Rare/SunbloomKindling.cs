@@ -1,12 +1,9 @@
 ﻿using BaseLib.Utils;
-using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Rare;
@@ -14,9 +11,8 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class SunbloomKindling : CollectorCardModel
 {
-    public SunbloomKindling() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public SunbloomKindling() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
         WithKindle(5, 3);
         WithPower<StrengthPower>(2);

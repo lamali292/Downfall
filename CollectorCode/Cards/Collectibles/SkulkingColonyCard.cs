@@ -14,7 +14,6 @@ namespace Collector.CollectorCode.Cards.Collectibles;
 public class SkulkingColonyCard : Collectible<SkulkingColonyElite>
 {
     public SkulkingColonyCard() : base(3, CardType.Status, CardRarity.Uncommon, TargetType.Self, 0.3f)
-	
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
