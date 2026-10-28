@@ -1,14 +1,13 @@
 ﻿using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
-using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Powers;
 
+/// <summary>Deflagration: the Strength an Embered Kindling grants is raised. Using the game's power-gain hook
+/// also puts the bonus into the Ember's card preview.</summary>
 public class AshesToAshesPower : CollectorPowerModel
 {
     public AshesToAshesPower()
@@ -16,11 +15,9 @@ public class AshesToAshesPower : CollectorPowerModel
         WithTip<Ember>();
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+    public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount,
+        Creature? target, CardModel? cardSource)
     {
-        if (card is not Ember || card.Owner.Creature != Owner) return;
-        Flash();
-        foreach (var enemy in CombatState.HittableEnemies.ToList())
-            await CompatibilityCreatureCmd.Damage(ctx, enemy, Amount, DamageProps.nonCardHpLoss, Owner, null, null);
+        return power is StrengthPower && cardSource is Ember && giver == Owner ? Amount : 0;
     }
 }

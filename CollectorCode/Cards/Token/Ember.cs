@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using Collector.CollectorCode.CustomEnums;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
@@ -21,9 +22,9 @@ namespace Collector.CollectorCode.Cards.Token;
 public class Ember : CollectorCardModel
 {
     
-    public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
+    public Ember() : base(3, CardType.Status, CardRarity.Status, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Unplayable);
+        WithKeyword(CollectorKeyword.Smolder);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
         WithVar(new DamageVar(2, DamageProps.cardUnpowered));
@@ -31,13 +32,11 @@ public class Ember : CollectorCardModel
     public override bool HasTurnEndInHandEffect => true;
     protected override Artist Artist => Artist.Get<Opal>();
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
-        bool causedByEthereal)
+    protected override async Task OnSmolder(PlayerChoiceContext ctx)
     {
-        if (card != this) return;
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
     }
-    
+
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         // idk if this early return fixes the mp bug, hopefully it will

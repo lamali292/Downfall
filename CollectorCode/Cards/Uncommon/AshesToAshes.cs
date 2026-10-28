@@ -15,7 +15,7 @@ public class AshesToAshes : CollectorCardModel
 {
     public AshesToAshes() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<AshesToAshesPower>(4, 2, false);
+        WithPower<AshesToAshesPower>(1, 1, false);
         WithTip<Ember>();
     }
     

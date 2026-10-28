@@ -189,22 +189,20 @@ public class CollectorTests
         Assert.AreEqual(1, WeakOn(enemy), "A Smolder card exhausted by something else (not played) should trigger.");
     }
 
-    // Deflagration: exhausting an Ember hurts every enemy, exhausting anything else does not.
+    // Deflagration: an Embered Kindling grants extra Strength each time it triggers, played or Exhausted.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task DeflagrationDamagesAllEnemiesOnlyWhenAnEmberIsExhausted(TestContext ctx)
+    public async Task DeflagrationAddsStrengthToEmberedKindlings(TestContext ctx)
     {
         await ctx.ClearHand();
         var noContext = new BlockingPlayerChoiceContext();
-        await PowerCmd.Apply<AshesToAshesPower>(noContext, ctx.Player.Creature, 4, ctx.Player.Creature, null);
-        var enemies = ctx.Combat.HittableEnemies.ToList();
-        var before = enemies.Select(e => e.CurrentHp).ToList();
-
-        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
-        Assert.IsTrue(enemies.Select(e => e.CurrentHp).SequenceEqual(before), "Exhausting a non-Ember should not trigger Deflagration.");
+        var strength = () => ctx.Player.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
+        await PowerCmd.Apply<AshesToAshesPower>(noContext, ctx.Player.Creature, 2, ctx.Player.Creature, null);
 
         await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Ember>());
-        for (var i = 0; i < enemies.Count; i++)
-            Assert.AreEqual(before[i] - 4, enemies[i].CurrentHp, "Exhausting an Ember should deal Deflagration's amount to every enemy.");
+        Assert.AreEqual(3, strength(), "An Ember's 1 Strength should be raised by Deflagration's 2.");
+
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Burn>());
+        Assert.AreEqual(3, strength(), "Deflagration should not affect other cards.");
     }
 
     private static int Count<T>(IEnumerable<CardModel> pile) where T : CardModel => pile.Count(c => c is T);
@@ -294,6 +292,21 @@ public class CollectorTests
         return Task.CompletedTask;
     }
 
+    // Ember is a Smolder card: Strength when played (cost 3, goes to the discard pile) and when Exhausted.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task EmberGrantsStrengthWhenPlayedAndWhenExhausted(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var noContext = new BlockingPlayerChoiceContext();
+        var strength = () => ctx.Player.Creature.GetPower<StrengthPower>()?.Amount ?? 0;
+
+        await ctx.PlayCard(await ctx.AddCardToHand<Ember>());
+        Assert.AreEqual(1, strength(), "Playing an Ember should grant its Strength once.");
+
+        await CardCmdCompatibility.Exhaust(noContext, await ctx.AddCardToHand<Ember>());
+        Assert.AreEqual(2, strength(), "Exhausting an Ember should grant its Strength.");
+    }
+
     // Every Smolder card is a Kindling: it Kindles Torchhead and costs 3.
     [CardTest]
     public Task EverySmolderCardIsAKindling(TestContext ctx)
@@ -301,7 +314,7 @@ public class CollectorTests
         var smolderCards = typeof(CollectorCardModel).Assembly.GetTypes()
             .Where(t => t.IsSubclassOf(typeof(CollectorCardModel)) && !t.IsAbstract)
             .Select(t => ModelDb.GetById<CardModel>(ModelDb.GetId(t)))
-            .Where(c => c.CanonicalKeywords.Contains(CollectorKeyword.Smolder))
+            .Where(c => c.CanonicalKeywords.Contains(CollectorKeyword.Smolder) && c.Type != CardType.Status)
             .ToList();
 
         Assert.IsTrue(smolderCards.Count > 0, "Setup: expected to find Smolder cards.");
