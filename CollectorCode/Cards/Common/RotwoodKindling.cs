@@ -17,10 +17,9 @@ public class RotwoodKindling : CollectorCardModel
 {
     public RotwoodKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(6, 2);
-        WithPower<WeakPower>(2, 1);
+        WithKindle(3, 2);
+        WithPower<WeakPower>(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -17,10 +17,9 @@ public class BramblesparKindling : CollectorCardModel
 {
     public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(5, 2);
-        WithTorchheadDamage(10, 4);
+        WithKindle(3, 1);
+        WithTorchheadDamage(6, 3);
         WithTip(CollectorKeyword.Torchhead);
     }
 

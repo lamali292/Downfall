@@ -15,7 +15,6 @@ public class TerrorEelCard
 {
     public TerrorEelCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
         WithKindle(5, 3);
         WithPower<VulnerablePower>(3, 6);

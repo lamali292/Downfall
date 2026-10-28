@@ -15,7 +15,6 @@ public class SkulkingColonyCard : Collectible<SkulkingColonyElite>
 {
     public SkulkingColonyCard() : base(3, CardType.Status, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
         // todo: we do plating now. idk if thats good conversion of numbers.
         WithKindle(5, 2);

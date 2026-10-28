@@ -16,9 +16,8 @@ public class DarkwillowKindling : CollectorCardModel
     public DarkwillowKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithPower<ReserveNextTurnPower>(2, false);
+        WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
         WithKindle(3, 3);
     }

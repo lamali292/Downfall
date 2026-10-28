@@ -17,7 +17,6 @@ public class DecimillipedeCard : Collectible<DecimillipedeElite>
     {
         WithKindle(4, 1);
         WithBlock(5, 2);
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
     }
 

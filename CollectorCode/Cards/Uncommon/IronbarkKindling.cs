@@ -15,9 +15,8 @@ public class IronbarkKindling : CollectorCardModel
 {
     public IronbarkKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithBlock(5, 2);
+        WithBlock(4, 2);
         WithKindle(4, 1);
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }

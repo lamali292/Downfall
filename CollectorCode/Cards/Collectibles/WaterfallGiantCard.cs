@@ -19,7 +19,6 @@ public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
         WithPower<WaterfallGiantCardPower>(3, false);
         WithPower<MiasmaPower>(40, 10);
         WithKindle(6, 3);
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
     }
 
