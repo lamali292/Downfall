@@ -1,7 +1,5 @@
 {
     "DOWNFALL-SOUL_BURN_POWER.title": "Seelenfeuer",
     "DOWNFALL-SOUL_BURN_POWER.description": "In [blue]3[/blue] Zügen verliert dieser Gegner zu Beginn seines Zuges TP, dann wird [gold]Seelenfeuer[/gold] entfernt.",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "In [blue]{Turns}[/blue] {Turns:plural:Zug|Zügen} verliert dieser Gegner zu Beginn seines Zuges [blue]{Amount}[/blue] TP, dann wird [gold]Seelenfeuer[/gold] entfernt.",
-    "DOWNFALL-METALLICIZE_POWER.title": "Metallisieren",
-    "DOWNFALL-METALLICIZE_POWER.description": "Erhalte immer am Ende deines Zuges [gold]Block[/gold]."
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "In [blue]{Turns}[/blue] {Turns:plural:Zug|Zügen} verliert dieser Gegner zu Beginn seines Zuges [blue]{Amount}[/blue] TP, dann wird [gold]Seelenfeuer[/gold] entfernt."
 }

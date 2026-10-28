@@ -1,6 +1,6 @@
 {
     "SNECKO-LOADED_DIE.title": "注料骰子",
-    "SNECKO-LOADED_DIE.description": "每当你[gold]混淆[/gold]一张牌时，获得等量于其变化后耗能点[gold]格挡[/gold]。",
+    "SNECKO-LOADED_DIE.description": "每当你[gold]混淆[/gold]一张牌时，获得等于其变化后耗能值的[gold]格挡[/gold]。",
     "SNECKO-LOADED_DIE.flavor": "灌了奶酪。",
     "SNECKO-LUCKY_HORSESHOE.title": "幸运马蹄",
     "SNECKO-LUCKY_HORSESHOE.description": "拾起时，从[blue]3[/blue]个角色中选择[blue]1[/blue]个，获得来自该角色的[blue]3[/blue]组[gold]升级过的[/gold][gold]罕见[/gold]牌奖励和[blue]2[/blue]组[gold]稀有[/gold]牌奖励。每次战斗结束后，额外掉落一组该角色的卡牌奖励。",
@@ -27,6 +27,7 @@
     "SNECKO-SNECKO_SOUL.description": "在每场战斗开始时，将一张[gold]灵魂骰掷[/gold]加入你的[gold]手牌[/gold]。",
     "SNECKO-SNECKO_SOUL.flavor": "0……3……2……2……1",
     "SNECKO-SUPER_SNECKO_SOUL.title": "超级蛇魂",
+    "SNECKO-SUPER_SNECKO_SOUL.description": "在每场战斗开始时，将[blue]{Cards}[/blue]张[gold]灵魂骰掷+[/gold]加入你的[gold]手牌[/gold]。",
     "SNECKO-SUPER_SNECKO_SOUL.flavor": "3120231321230320",
     "SNECKO-UNIDENTIFIED_EGG.title": "未知之蛋",
     "SNECKO-UNIDENTIFIED_EGG.description": "每当你将一张[gold]异色[/gold]牌加入你的[gold]牌组[/gold]时，将其[gold]升级[/gold]。",
