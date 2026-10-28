@@ -3,7 +3,6 @@ using Collector.CollectorCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-
 namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class NostalgicSound : Ruina2Card

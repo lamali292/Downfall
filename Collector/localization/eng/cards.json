@@ -268,7 +268,7 @@
   "COLLECTOR-SENTRY_CORE.title": "Sentry Core",
   "COLLECTOR-SENTRY_CORE.description": "Deal {Damage:diff()} damage X times. \nApply {WeakPower:diff()} [gold]Weak[/gold] X times.\nAdd a [gold]Dazed[/gold] on top of your [gold]Draw Pile[/gold].",
   "COLLECTOR-FLOWER_PETALS.title": "Flower Petals",
-  "COLLECTOR-FLOWER_PETALS.description": "Apply {MiasmaPower:diff()} [gold]Miasma[/gold], {WeakPower:diff()} [gold]Weak[/gold] and {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
+  "COLLECTOR-FLOWER_PETALS.description": "Apply {MiasmaPower:diff()} [gold]Miasma[/gold] and {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies.",
   "COLLECTOR-RECHARGE.title": "Recharge",
   "COLLECTOR-RECHARGE.description": "If you do not play any Attacks during your turn, gain {RechargePower:reserveIcons()} next turn.",
   "COLLECTOR-FRIEND.title": "Friend",

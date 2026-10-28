@@ -1,8 +1,6 @@
 ﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-
 namespace Collector.CollectorCode.Cards.Collectibles.Ruina2;
 
 public class Wrath : Ruina2Card

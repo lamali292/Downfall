@@ -8,7 +8,6 @@ using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
-
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
@@ -30,14 +29,14 @@ public class AshenStrike : CollectorCardModel
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
-    {
-        if (Owner.IsTorchheadAlive)
+    { 
+        // Repeat only applies while Torchhead is alive; a missing one is just kindled back once.
+        var hits = Owner.IsTorchheadAlive ? DynamicVars.Repeat.IntValue : 1;
+        for (var v = 0; v < hits; v++)
         {
-            for (var v = 0; v > DynamicVars.Repeat.IntValue; v++)
-            {
-                await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
-            }
+            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
         }
+
         if (IsUpgraded)
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         else 

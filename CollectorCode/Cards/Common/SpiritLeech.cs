@@ -24,10 +24,7 @@ public class SpiritLeech : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (Owner.IsTorchheadAlive)
-        {
-            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
-        }
+        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
     }
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
