@@ -29,6 +29,6 @@ public class BramblesparKindling : CollectorCardModel
     protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
-        await TorchheadCmd.AttackOrKindle(ctx, this);
+        await TorchheadCmd.Attack(ctx, this);
     }
 }

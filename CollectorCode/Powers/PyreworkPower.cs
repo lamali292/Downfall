@@ -1,4 +1,4 @@
-using BaseLib.Patches.Localization;
+﻿using BaseLib.Patches.Localization;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
@@ -25,7 +25,7 @@ public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardMo
     {
         if (pyred.Owner.Creature != Owner || pyred.Type is not CardType.Status || Owner.Player == null) return;
         for (var v = 0; v < Amount; v++)
-            await TorchheadCmd.AttackOrKindle(ctx, this);
+            await TorchheadCmd.Attack(ctx, this);
     }
     
     public void AddDumbVariablesToPowerDescription(LocString description)

@@ -41,6 +41,7 @@ public static class CollectorMainFile
      
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(AddMyPoolFilterPatch))
+            .Add(typeof(DownedTorchheadAttackPatch))
             .Add(typeof(NDamageNumVfxOverkillPatch))
             .Add(typeof(NMultiplayerPlayerStatePatch))
             .Add(typeof(ReserveSpendPatch))

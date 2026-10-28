@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
@@ -24,7 +24,6 @@ public class ShadowDaggers : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
     
-    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 
     
     
@@ -39,7 +38,7 @@ public class ShadowDaggers : CollectorCardModel
         for (var i = 0; i < hits; i++)
         {
             // when torchead can get vigor, this needs to be changed
-            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay, attack => attack.WithHitFx("vfx/vfx_attack_slash"));
+            await TorchheadCmd.Attack(ctx, this, cardPlay, attack => attack.WithHitFx("vfx/vfx_attack_slash"));
         }
 
     }

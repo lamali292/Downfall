@@ -208,6 +208,52 @@ public class CollectorTests
         return Task.CompletedTask;
     }
 
+    // A downed (0 HP) Torchhead stays in combat and keeps attacking when commanded, at half damage. The game's
+    // AttackCommand/CreatureCmd.Damage refuse a dead attacker, so DownedTorchheadAttackPatch has to allow it.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task DownedTorchheadAttacksForHalfDamage(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+
+        var startHp = enemy.CurrentHp;
+        await TorchheadCmd.TorchheadAttack(ctx.Player, 4)!.Execute(new BlockingPlayerChoiceContext());
+        var aliveDamage = startHp - enemy.CurrentHp;
+        Assert.AreEqual(4, aliveDamage, "A living Torchhead should deal its full damage.");
+
+        await CreatureCmd.Kill(torchhead);
+        Assert.IsTrue(ctx.Player.IsTorchheadDowned, "Setup: Torchhead should be downed at 0 HP.");
+
+        startHp = enemy.CurrentHp;
+        await TorchheadCmd.TorchheadAttack(ctx.Player, 4)!.Execute(new BlockingPlayerChoiceContext());
+        Assert.AreEqual(2, startHp - enemy.CurrentHp, "A downed Torchhead should still attack, for half damage.");
+    }
+
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task DownedTorchheadHalvesTheDamageShownOnCards(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<ForgeContract>();
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var damage = card.DynamicVars.TorchheadDamage;
+
+        damage.UpdateCardPreview(card, CardPreviewMode.None, null, false);
+        var alivePreview = damage.PreviewValue;
+
+        await CreatureCmd.Kill(torchhead);
+        damage.UpdateCardPreview(card, CardPreviewMode.None, null, false);
+
+        Assert.AreEqual(Math.Floor(alivePreview / 2), damage.PreviewValue,
+            "While Torchhead is down, the card should show half the Torchhead damage.");
+    }
+
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public Task CollectorStartsCombatWithTorchhead(TestContext ctx)
+    {
+        Assert.IsTrue(ctx.Player.Torchhead != null, "A Collector should start combat with Torchhead summoned.");
+        return Task.CompletedTask;
+    }
+
     // Regression guard: CollectorCardModel injects "TorchheadTargetsAll" for every Collector card, so a
     // Torchhead-attack card's text flips to "to ALL enemies" once EquipAxe is active without per-card overrides.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]

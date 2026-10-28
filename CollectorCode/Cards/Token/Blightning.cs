@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
@@ -28,7 +28,7 @@ public class Blightning : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
-        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        await TorchheadCmd.Attack(ctx, this, cardPlay);
         await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
         await CommonActions.Draw(this, ctx);
 

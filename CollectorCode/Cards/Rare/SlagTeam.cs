@@ -24,11 +24,10 @@ public class SlagTeam : CollectorCardModel, IAfterCardPyred
         WithTip(CollectorKeyword.Torchhead);
     }
     
-    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        await TorchheadCmd.Attack(ctx, this, cardPlay);
     }
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)

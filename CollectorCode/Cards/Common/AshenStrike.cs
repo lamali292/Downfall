@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
@@ -27,14 +27,11 @@ public class AshenStrike : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
     
-    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        // Repeat only applies while Torchhead is alive; a missing one is just kindled back once.
-        var hits = Owner.IsTorchheadAlive ? DynamicVars.Repeat.IntValue : 1;
-        for (var v = 0; v < hits; v++)
-            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        for (var v = 0; v < DynamicVars.Repeat.IntValue; v++)
+            await TorchheadCmd.Attack(ctx, this, cardPlay);
         if (IsUpgraded)
             await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
         else 

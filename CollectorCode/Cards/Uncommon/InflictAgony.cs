@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
@@ -27,7 +27,7 @@ public class InflictAgony : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        await TorchheadCmd.Attack(ctx, this, cardPlay);
         var amount = DynamicVars["Power"].IntValue;
         if (!cardPlay.Target!.HasPower<WeakPower>())
         {
@@ -42,5 +42,4 @@ public class InflictAgony : CollectorCardModel
             await CommonActions.Apply<MiasmaPower>(ctx, cardPlay.Target, this, amount);
         }
     }
-    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 }

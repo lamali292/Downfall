@@ -1,5 +1,7 @@
 ﻿using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
+using Collector.CollectorCode.Patches;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Commands;
 using Godot;
@@ -29,7 +31,7 @@ public static class TorchheadCmd
         {
             return null;
         }
-        var attack = DamageCmd.Attack(damage)
+        var attack = DamageCmd.Attack(DamageFor(player, damage))
             .FromTorchhead(torchhead, card, cardplay)
             .WithHitFx("vfx/vfx_attack_blunt", tmpSfx: "blunt_attack.mp3");
         if (shouldTargetAll)
@@ -41,23 +43,18 @@ public static class TorchheadCmd
         return target == null ? null: attack.Targeting(target);
     }
 
-    private const int KindleHpWhenMissing = 1;
+    /// <summary>A downed Torchhead (0 HP) deals half damage, never less than 1.</summary>
+    public static int DamageFor(Player player, int baseDamage) =>
+        player.IsTorchheadDowned ? Math.Max(1, baseDamage / 2) : baseDamage;
 
     /// <summary>
-    ///     Torchhead attacks if it is alive; otherwise it is kindled back with <see cref="KindleHpWhenMissing" /> HP
-    ///     instead, so a Torchhead card is never wasted. <paramref name="configure" /> adjusts the attack
-    ///     (e.g. its hit effect) and is only applied when the attack happens.
+    ///     Commands Torchhead to attack. <paramref name="configure" /> adjusts the attack (e.g. its hit effect).
+    ///     Torchhead attacks even while downed (see <see cref="DownedTorchheadAttackPatch" />), so a Torchhead
+    ///     card is never wasted; it only deals less.
     /// </summary>
-    public static async Task AttackOrKindle(PlayerChoiceContext ctx, AbstractModel source,
+    public static async Task Attack(PlayerChoiceContext ctx, AbstractModel source,
         CardPlay? cardPlay = null, Func<AttackCommand, AttackCommand>? configure = null)
     {
-        var player = source.Player;
-        if (!player.IsTorchheadAlive)
-        {
-            await Kindle(ctx, player, KindleHpWhenMissing, source);
-            return;
-        }
-
         var attack = TorchheadAttack(source, cardPlay);
         if (attack != null && configure != null) attack = configure(attack);
         await attack.ExecuteIfPresent(ctx);

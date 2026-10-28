@@ -1,4 +1,4 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Extensions;
@@ -26,7 +26,6 @@ public class IllTakeThat : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
     
-    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
@@ -37,6 +36,6 @@ public class IllTakeThat : CollectorCardModel
             await CompatibilityCreatureCmd.LoseBlock(ctx, cardPlay.Target, stolenBlock, cardPlay.Card.Owner.Creature);
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, BlockProps.cardUnpowered, cardPlay);
         }
-        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        await TorchheadCmd.Attack(ctx, this, cardPlay);
     }
 }

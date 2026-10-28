@@ -19,7 +19,6 @@ public class ForgeContract : CollectorCardModel
         WithTip(CollectorKeyword.Torchhead);
     }
     
-    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 
     protected override Artist Artist => Artist.Get<Opal>();
     
@@ -27,6 +26,6 @@ public class ForgeContract : CollectorCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         await Cmd.CustomScaledWait(0.1f, 0.3f);
-            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+            await TorchheadCmd.Attack(ctx, this, cardPlay);
     }
 }

@@ -2,6 +2,7 @@
 using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -27,17 +28,22 @@ public class TorchheadDamageVar : DynamicVar
     }
     
     
+    /// <summary>The base damage as it will actually be dealt: halved while Torchhead is downed, so cards show it.</summary>
+    private decimal BaseDamageFor(Player? owner) =>
+        owner != null && owner.IsTorchheadDowned ? Math.Max(1, Math.Floor(BaseValue / 2)) : BaseValue;
+
     public void UpdatePowerPreview(
         PowerModel power,
         CardPreviewMode previewMode,
         Creature? target,
         bool runGlobalHooks)
     {
-        var originalDamage1 = BaseValue;
+        var baseDamage = BaseDamageFor(power.Owner.PetOwner);
+        var originalDamage1 = baseDamage;
         if (runGlobalHooks)
         {
             var combatState = power.CombatState;
-            originalDamage1 =  CompatibilityHook.ModifyDamage(combatState.RunState, combatState, target, power.Owner.PetOwner?.Torchhead, BaseValue, Props, null, null, ModifyDamageHookType.All, previewMode, out _);
+            originalDamage1 =  CompatibilityHook.ModifyDamage(combatState.RunState, combatState, target, power.Owner.PetOwner?.Torchhead, baseDamage, Props, null, null, ModifyDamageHookType.All, previewMode, out _);
         }
         PreviewValue = originalDamage1;
     }
@@ -48,7 +54,8 @@ public class TorchheadDamageVar : DynamicVar
         Creature? target,
         bool runGlobalHooks)
     {
-        var originalDamage1 = BaseValue;
+        var baseDamage = BaseDamageFor(card.Owner);
+        var originalDamage1 = baseDamage;
         var enchantment = card.Enchantment;
         if (enchantment != null)
         {
@@ -60,7 +67,7 @@ public class TorchheadDamageVar : DynamicVar
         if (runGlobalHooks)
         {
             var combatState = card.CombatState ?? card.Owner.Creature.CombatState;
-            originalDamage1 = CompatibilityHook.ModifyDamage(card.Owner.RunState, combatState, target, card.Owner.Torchhead, BaseValue, Props, card, null, ModifyDamageHookType.All, previewMode, out _);
+            originalDamage1 = CompatibilityHook.ModifyDamage(card.Owner.RunState, combatState, target, card.Owner.Torchhead, baseDamage, Props, card, null, ModifyDamageHookType.All, previewMode, out _);
         }
         PreviewValue = originalDamage1;
     }
