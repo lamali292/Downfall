@@ -15,7 +15,6 @@ public class AshesOfCalamity : CollectorCardModel
     {
         WithKeyword(CardKeyword.Ethereal);
         WithCalculatedBlock(9, 3, CalcBlock, BlockProps.card, 3, 0);
-        WithVar("Increase", 3, 1);
     }
     
     private static decimal CalcBlock(CardModel card, Creature? creature)

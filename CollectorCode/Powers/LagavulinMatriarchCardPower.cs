@@ -22,7 +22,7 @@ public class LagavulinMatriarchCardPower : CollectorPowerModel
         DynamicVars.Power<PlatingPower>().BaseValue = baseValue;
     }
 
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task BeforeSideTurnEndVeryEarly(PlayerChoiceContext ctx, CombatSide side, IEnumerable<Creature> participants)
     {
         if (!participants.Contains(Owner)) return;
         Flash();
