@@ -17,10 +17,10 @@ public class DecimillipedeCard : Collectible<DecimillipedeElite>
     {
         WithKindle(4, 1);
         WithBlock(5, 2);
-        WithKeyword(CollectorKeyword.Ignite);
+        WithKeyword(CollectorKeyword.Flicker);
     }
 
-    protected override async Task OnIgnite(PlayerChoiceContext ctx)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
         var block = await DownfallCreatureCmd.GainBlock(Owner.Creature, this);

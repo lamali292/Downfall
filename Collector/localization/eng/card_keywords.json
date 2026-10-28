@@ -3,8 +3,8 @@
   "COLLECTOR-PYRE.title": "Pyre",
   "COLLECTOR-MEGAPYRE.description": "Requires [gold]Exhausting[/gold] ALL cards in your [gold]Hand[/gold] to be played.",
   "COLLECTOR-MEGAPYRE.title": "Megapyre",
-  "COLLECTOR-IGNITE.description": "This card's effects activate when it is played and when it is [gold]Exhausted[/gold].",
-  "COLLECTOR-IGNITE.title": "Ignite",
+  "COLLECTOR-FLICKER.description": "This card's effects activate when it is played and when it is [gold]Exhausted[/gold].",
+  "COLLECTOR-FLICKER.title": "Flicker",
   "COLLECTOR-TORCHHEAD.description": "The [gold]Torchhead[/gold] attacks only when a card commands it to. At 0 HP it is down and deals half damage until [gold]Kindled[/gold] again.",
   "COLLECTOR-TORCHHEAD.title": "Torchhead"
 }

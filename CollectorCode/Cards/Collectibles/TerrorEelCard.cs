@@ -15,12 +15,12 @@ public class TerrorEelCard
 {
     public TerrorEelCard() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self, 0.3f)
     {
-        WithKeyword(CollectorKeyword.Ignite);
+        WithKeyword(CollectorKeyword.Flicker);
         WithKindle(5, 3);
         WithPower<VulnerablePower>(3, 6);
     }
     
-    protected override async Task OnIgnite(PlayerChoiceContext ctx)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
         await CommonActions.Apply<VulnerablePower>(ctx, CombatState!.HittableEnemies, this);

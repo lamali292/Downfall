@@ -17,14 +17,14 @@ public class RotwoodKindling : CollectorCardModel
 {
     public RotwoodKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKeyword(CollectorKeyword.Ignite);
+        WithKeyword(CollectorKeyword.Flicker);
         WithKindle(3, 2);
         WithPower<WeakPower>(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override async Task OnIgnite(PlayerChoiceContext ctx)
+    protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
         await CommonActions.Apply<WeakPower>(ctx, CombatState!.HittableEnemies, this);
