@@ -27,6 +27,8 @@ public class IllTakeThat : CollectorCardModel
     protected override Artist Artist => Artist.Get<Opal>();
     
 
+    protected override bool NeedsTargetBesidesTorchhead => true;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;

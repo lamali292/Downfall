@@ -309,17 +309,27 @@ public class CollectorTests
             "Torchhead should hit the targeted enemy, not the enemy with the least HP.");
     }
 
-    // With Equip Axe, Torchhead hits ALL enemies, so a Torchhead attack card must stop asking for a target.
+    // With Equip Axe, Torchhead hits ALL enemies, so a card that only commands Torchhead must stop asking for a
+    // target. A card that also needs the picked target (Inflict Agony applies debuffs to it) keeps asking, and
+    // must still play with Equip Axe active.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
-    public async Task TorchheadAttackCardTargetsAllEnemiesWhileTorchheadTargetsAll(TestContext ctx)
+    public async Task TorchheadAttackCardTargetTypeUnderEquipAxe(TestContext ctx)
     {
         await ctx.ClearHand();
-        var card = await ctx.AddCardToHand<ForgeContract>();
-        Assert.AreEqual(TargetType.AnyEnemy, card.TargetType, "Without Equip Axe the card asks for a target.");
+        var torchheadOnly = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Common.AshenStrike>();
+        var needsTarget = await ctx.AddCardToHand<InflictAgony>();
+        Assert.AreEqual(TargetType.AnyEnemy, torchheadOnly.TargetType, "Without Equip Axe the card asks for a target.");
 
         await PowerCmd.Apply<EquipAxePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
 
-        Assert.AreEqual(TargetType.AllEnemies, card.TargetType, "With Equip Axe the card should target all enemies.");
+        Assert.AreEqual(TargetType.AllEnemies, torchheadOnly.TargetType,
+            "A card that only commands Torchhead should target all enemies under Equip Axe.");
+        Assert.AreEqual(TargetType.AnyEnemy, needsTarget.TargetType,
+            "A card that also uses the picked target must keep asking for one.");
+
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(needsTarget, enemy);
+        Assert.IsTrue(enemy.HasPower<WeakPower>(), "Inflict Agony should still apply its debuffs under Equip Axe.");
     }
 
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]

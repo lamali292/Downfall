@@ -36,12 +36,19 @@ public abstract class CollectorCardModel
     
     
     /// <summary>
+    ///     True for a Torchhead attack card that also does something to the picked target itself (deals damage,
+    ///     steals Block, applies debuffs, ...). Such a card keeps asking for a target even while Torchhead targets all.
+    /// </summary>
+    protected virtual bool NeedsTargetBesidesTorchhead => false;
+
+    /// <summary>
     ///     A Torchhead attack card asks for a target (Torchhead hits what you pick), but while Torchhead targets ALL
-    ///     enemies (Equip Axe) the pick would mean nothing, so the card stops asking and targets all enemies.
+    ///     enemies (Equip Axe) the pick would mean nothing, so a card that only commands Torchhead stops asking and
+    ///     targets all enemies.
     /// </summary>
     public override TargetType TargetType =>
         base.TargetType == TargetType.AnyEnemy && _owner != null && IsMutable && ShouldTorcheadTargetAll
-        && DynamicVars.ContainsKey("TorchheadDamage")
+        && !NeedsTargetBesidesTorchhead && DynamicVars.ContainsKey("TorchheadDamage")
             ? TargetType.AllEnemies
             : base.TargetType;
 
