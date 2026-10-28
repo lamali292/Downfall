@@ -23,6 +23,11 @@ public class BramblesparKindling : CollectorCardModel
         WithTip(CollectorKeyword.Torchhead);
     }
 
+    /// <summary>Torchhead hits what you pick; while it targets ALL enemies (Equip Axe) there is nothing to pick.</summary>
+    public override TargetType TargetType => _owner != null && IsMutable && ShouldTorcheadTargetAll
+        ? TargetType.AllEnemies
+        : TargetType.AnyEnemy;
+
     protected override Artist Artist => Artist.Get<Opal>();
 
 

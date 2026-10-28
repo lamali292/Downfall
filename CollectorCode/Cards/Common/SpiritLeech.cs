@@ -22,6 +22,11 @@ public class SpiritLeech : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
 
+    /// <summary>Torchhead hits what you pick; while it targets ALL enemies (Equip Axe) there is nothing to pick.</summary>
+    public override TargetType TargetType => _owner != null && IsMutable && ShouldTorcheadTargetAll
+        ? TargetType.AllEnemies
+        : TargetType.AnyEnemy;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await TorchheadCmd.Attack(ctx, this, cardPlay);

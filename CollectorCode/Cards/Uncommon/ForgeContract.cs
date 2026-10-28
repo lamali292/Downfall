@@ -22,8 +22,6 @@ public class ForgeContract : CollectorCardModel
 
     protected override Artist Artist => Artist.Get<Opal>();
     
-    protected override bool NeedsTargetBesidesTorchhead => true;
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);

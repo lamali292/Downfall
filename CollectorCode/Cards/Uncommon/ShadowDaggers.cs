@@ -32,6 +32,11 @@ public class ShadowDaggers : CollectorCardModel
         return card.Owner.DeckPile.Count(c => c.VisualCardPool.IsColorless);
     }
 
+    /// <summary>Torchhead hits what you pick; while it targets ALL enemies (Equip Axe) there is nothing to pick.</summary>
+    public override TargetType TargetType => _owner != null && IsMutable && ShouldTorcheadTargetAll
+        ? TargetType.AllEnemies
+        : TargetType.AnyEnemy;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var hits = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
