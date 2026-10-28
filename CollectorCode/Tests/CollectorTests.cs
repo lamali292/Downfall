@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using Downfall.DownfallCode.Compatibility;
+using Collector.CollectorCode.Cards;
 using Collector.CollectorCode.Cards.Basic;
 using Collector.CollectorCode.Cards.Common;
 using Collector.CollectorCode.Cards.Token;
@@ -186,6 +187,26 @@ public class CollectorTests
         await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card);
 
         Assert.AreEqual(1, WeakOn(enemy), "A Flicker card exhausted by something else (not played) should trigger.");
+    }
+
+    // Every Flicker card is a Kindling: it Kindles Torchhead and costs at most 3.
+    [CardTest]
+    public Task EveryFlickerCardIsAKindling(TestContext ctx)
+    {
+        var flickerCards = typeof(CollectorCardModel).Assembly.GetTypes()
+            .Where(t => t.IsSubclassOf(typeof(CollectorCardModel)) && !t.IsAbstract)
+            .Select(t => ModelDb.GetById<CardModel>(ModelDb.GetId(t)))
+            .Where(c => c.CanonicalKeywords.Contains(CollectorKeyword.Flicker))
+            .ToList();
+
+        Assert.IsTrue(flickerCards.Count > 0, "Setup: expected to find Flicker cards.");
+        foreach (var card in flickerCards)
+        {
+            Assert.IsTrue(card.DynamicVars.ContainsKey("Kindle"), $"{card.Id.Entry} has Flicker but does not Kindle.");
+            Assert.IsTrue(card.EnergyCost.Canonical <= 3, $"{card.Id.Entry} is a Kindling and should cost at most 3.");
+        }
+
+        return Task.CompletedTask;
     }
 
     // Regression guard: Torchhead's intent description should say whether it hits all enemies or

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Encounters;
+using Collector.CollectorCode.Core;
 namespace Collector.CollectorCode.Cards.Collectibles;
 
 public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
@@ -17,12 +18,14 @@ public class WaterfallGiantCard : Collectible<WaterfallGiantBoss>
         
         WithPower<WaterfallGiantCardPower>(3, false);
         WithPower<MiasmaPower>(40, 10);
+        WithKindle(6, 3);
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
     }
 
     protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
+        await TorchheadCmd.Kindle(ctx, this);
         (await CommonActions.ApplySelf<WaterfallGiantCardPower>(ctx, this))?.SetMiasma(DynamicVars.Power<MiasmaPower>().BaseValue);
     }
 
