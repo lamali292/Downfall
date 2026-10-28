@@ -22,7 +22,7 @@ public class InfestedPrismCardPower : CollectorPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.Type != CardType.Skill) return;
-        if (!Owner.IsPlayer || Owner.Player!.IsTorchheadMissing)
+        if (Owner.Player == null || Owner.Player.IsTorchheadMissing)
         {
             return;
         }
