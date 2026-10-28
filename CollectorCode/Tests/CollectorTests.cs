@@ -270,6 +270,26 @@ public class CollectorTests
             "While Torchhead is down, the card should show half the Torchhead damage.");
     }
 
+    // Regression guard: a card that Kindles before it attacks revives Torchhead first, so its text must show the
+    // full (alive) damage even while Torchhead is down - otherwise it shows the halved number and deals more.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task KindlingCardShowsFullTorchheadDamageWhileTorchheadIsDown(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<BramblesparKindling>();
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var damage = card.DynamicVars.TorchheadDamage;
+
+        damage.UpdateCardPreview(card, CardPreviewMode.None, null, false);
+        var aliveShown = damage.PreviewValue;
+
+        await CreatureCmd.Kill(torchhead);
+        damage.UpdateCardPreview(card, CardPreviewMode.None, null, false);
+
+        Assert.AreEqual(aliveShown, damage.PreviewValue,
+            "A Kindling card revives Torchhead before attacking, so it should still show the full damage.");
+    }
+
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public Task CollectorStartsCombatWithTorchhead(TestContext ctx)
     {

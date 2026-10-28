@@ -28,9 +28,18 @@ public class TorchheadDamageVar : DynamicVar
     }
     
     
-    /// <summary>The base damage as it will actually be dealt: halved while Torchhead is downed, so cards show it.</summary>
-    private decimal BaseDamageFor(Player? owner) =>
-        owner != null && owner.IsTorchheadDowned ? Math.Max(1, Math.Floor(BaseValue / 2)) : BaseValue;
+    /// <summary>
+    ///     The base damage as it will actually be dealt: halved while Torchhead is downed, so cards show it. A card
+    ///     that Kindles (has a Kindle var) revives Torchhead before it attacks, so it shows the full number even
+    ///     while Torchhead is down.
+    /// </summary>
+    private decimal BaseDamageFor(Player? owner, CardModel? card = null)
+    {
+        var revivesFirst = card != null && card.DynamicVars.ContainsKey("Kindle");
+        return owner != null && owner.IsTorchheadDowned && !revivesFirst
+            ? Math.Max(1, Math.Floor(BaseValue / 2))
+            : BaseValue;
+    }
 
     public void UpdatePowerPreview(
         PowerModel power,
@@ -54,7 +63,7 @@ public class TorchheadDamageVar : DynamicVar
         Creature? target,
         bool runGlobalHooks)
     {
-        var baseDamage = BaseDamageFor(card.Owner);
+        var baseDamage = BaseDamageFor(card.Owner, card);
         var originalDamage1 = baseDamage;
         var enchantment = card.Enchantment;
         if (enchantment != null)
