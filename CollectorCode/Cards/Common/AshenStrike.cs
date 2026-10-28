@@ -15,7 +15,7 @@ namespace Collector.CollectorCode.Cards.Common;
 public class AshenStrike : CollectorCardModel
 {
     // rename
-    public AshenStrike() : base(0, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+    public AshenStrike() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithTorchheadDamage(5, 2);
         WithCards(2);

@@ -12,7 +12,7 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class SpiritLeech : CollectorCardModel
 {
-    public SpiritLeech() : base(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+    public SpiritLeech() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithTorchheadDamage(14, 6);//Yes these numbers are balanced.
         WithPower<ReserveNextTurnPower>(1, false);

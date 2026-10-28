@@ -14,7 +14,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class ShadowDaggers : CollectorCardModel
 {
-    public ShadowDaggers() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+    public ShadowDaggers() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithTorchheadDamage(5, 3);
         WithCalculatedVar("CalculatedHits", 0, Calc);

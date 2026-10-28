@@ -1,14 +1,12 @@
 ﻿using Collector.CollectorCode.Events;
 using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Patches;
-using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Commands;
 using Godot;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -39,8 +37,13 @@ public static class TorchheadCmd
             return attack.TargetingAllOpponents(player.Creature.CombatState);
         }
 
-        var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
-        return target == null ? null: attack.Targeting(target);
+        var enemies = player.Creature.CombatState.HittableEnemies.ToList();
+        // Torchhead hits the enemy the card was played on; with no card target (a Smolder trigger, a power) it
+        // falls back to the enemy with the least HP.
+        var target = cardplay?.Target is { IsAlive: true } chosen && enemies.Contains(chosen)
+            ? chosen
+            : enemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
+        return target == null ? null : attack.Targeting(target);
     }
 
     /// <summary>A downed Torchhead (0 HP) deals half damage, never less than 1.</summary>

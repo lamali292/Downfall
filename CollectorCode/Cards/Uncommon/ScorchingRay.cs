@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class ScorchingRay : CollectorCardModel
 {
-    public ScorchingRay() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+    public ScorchingRay() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithTorchheadDamage(10, 4);
         WithTip(CollectorKeyword.Torchhead);
