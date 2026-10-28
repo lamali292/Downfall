@@ -13,7 +13,7 @@ public class FingerOfDeath : CollectorCardModel, IUsesCollectorEnergyOnly
 {
     public FingerOfDeath() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
-        WithPower<BlisterPower>(12, 3);
+        WithPower<BlisterPower>(6, 2);
         WithReserveTip();
     }
 
