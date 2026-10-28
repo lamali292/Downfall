@@ -14,7 +14,7 @@ public class SeedOfDoubt : CollectorCardModel
 {
     public SeedOfDoubt() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithPower<BlisterPower>(3, 3);
+        WithPower<BlisterPower>(3, 1);
         WithTip(CardKeyword.Exhaust);
         WithVar("Increase", 1);
     }
