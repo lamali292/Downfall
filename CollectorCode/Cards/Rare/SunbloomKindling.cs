@@ -14,14 +14,12 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class SunbloomKindling : CollectorCardModel
 {
-    public SunbloomKindling() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public SunbloomKindling() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
         WithKindle(5, 3);
         WithPower<StrengthPower>(2);
-        WithCards(2);
-        WithUpgradingCardTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -30,7 +28,5 @@ public class SunbloomKindling : CollectorCardModel
     {
         await TorchheadCmd.Kindle(ctx, this);
         await CommonActions.ApplySelf<StrengthPower>(ctx, this);
-        await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
-            CardPilePosition.Bottom, IsUpgraded);
     }
 }

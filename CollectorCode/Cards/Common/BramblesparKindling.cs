@@ -15,18 +15,12 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class BramblesparKindling : CollectorCardModel
 {
-    public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public BramblesparKindling() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(2, 1);
-        WithTip(new TooltipSource(card =>
-        {
-            var beam = ModelDb.GetById<BurningStrike>(ModelDb.Card<BurningStrike>().Id).ToMutable();
-            if (card.IsUpgraded) beam.UpgradeInternal();
-            return HoverTipFactory.FromCard(beam);
-        }));
-        //WithKeyword(CardKeyword.Unplayable);
+        WithKindle(3, 1);
+        WithTorchheadDamage(6, 3);
+        WithTip(CollectorKeyword.Torchhead);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -35,6 +29,6 @@ public class BramblesparKindling : CollectorCardModel
     protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
         await TorchheadCmd.Kindle(ctx, this);
-        await DownfallCardCmd.GiveCard<BurningStrike>(Owner, PileType.Hand, upgraded: IsUpgraded);
+        await TorchheadCmd.AttackOrKindle(ctx, this);
     }
 }

@@ -8,23 +8,25 @@ using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Uncommon;
 
 [Pool(typeof(CollectorCardPool))]
 public class RotwoodKindling : CollectorCardModel
 {
-    public RotwoodKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public RotwoodKindling() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithUpgradingCardTip<Rotshroom>();
+        WithKindle(3, 2);
+        WithPower<WeakPower>(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnFlicker(PlayerChoiceContext ctx)
     {
-        await DownfallCardCmd.GiveCard<Rotshroom>(Owner, PileType.Hand, upgraded: IsUpgraded);
+        await TorchheadCmd.Kindle(ctx, this);
+        await CommonActions.Apply<WeakPower>(ctx, CombatState!.HittableEnemies, this);
     }
 }

@@ -13,14 +13,13 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class DarkwillowKindling : CollectorCardModel
 {
-    public DarkwillowKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public DarkwillowKindling() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);
-        WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithPower<ReserveNextTurnPower>(2, false);
+        WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
-        WithKindle(1,3);
+        WithKindle(3, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

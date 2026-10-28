@@ -13,6 +13,7 @@ using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Tests;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
@@ -144,30 +145,47 @@ public class CollectorTests
             "Ember's turn-end effect should still deal its self-damage.");
     }
 
-    // Flicker cards run their effect when played AND when something else exhausts them. RotwoodKindling has the
-    // Exhaust keyword, so playing it also exhausts it: that exhaust must not trigger the effect a second time.
+    // Flicker cards run their effect when played AND when something else exhausts them. RotwoodKindling applies
+    // Weak, which stacks, so the applied amount shows how many times the effect triggered.
+    private static int WeakOn(Creature enemy) => enemy.GetPower<WeakPower>()?.Amount ?? 0;
+
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task FlickerCardTriggersOnceWhenPlayed(TestContext ctx)
     {
         await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
         var card = await ctx.AddCardToHand<RotwoodKindling>();
 
         await ctx.PlayCard(card);
 
-        Assert.AreEqual(1, ctx.Player.PlayerCombatState!.Hand.Cards.Count(c => c is Rotshroom),
-            "Playing a Flicker card should trigger its effect exactly once, even though playing it also exhausts it.");
+        Assert.AreEqual(1, WeakOn(enemy), "Playing a Flicker card should trigger its effect exactly once.");
+    }
+
+    // Regression guard: a Flicker card that gets the Exhaust keyword from some other effect is played and then
+    // exhausted by that very play; the exhaust must not trigger the effect a second time.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task FlickerCardGrantedExhaustDoesNotDoubleTrigger(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var card = await ctx.AddCardToHand<RotwoodKindling>();
+        CardCmd.ApplyKeyword(card, CardKeyword.Exhaust);
+
+        await ctx.PlayCard(card);
+
+        Assert.AreEqual(1, WeakOn(enemy), "Exhausting a Flicker card by playing it must not trigger it twice.");
     }
 
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task FlickerCardTriggersWhenExhaustedByAnotherEffect(TestContext ctx)
     {
         await ctx.ClearHand();
+        var enemy = ctx.Combat.HittableEnemies.First();
         var card = await ctx.AddCardToHand<RotwoodKindling>();
 
         await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card);
 
-        Assert.AreEqual(1, ctx.Player.PlayerCombatState!.Hand.Cards.Count(c => c is Rotshroom),
-            "A Flicker card exhausted by something else (not played) should still trigger its effect.");
+        Assert.AreEqual(1, WeakOn(enemy), "A Flicker card exhausted by something else (not played) should trigger.");
     }
 
     // Regression guard: Torchhead's intent description should say whether it hits all enemies or

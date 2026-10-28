@@ -12,13 +12,11 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class OakbrimKindling : CollectorCardModel
 {
-    public OakbrimKindling() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public OakbrimKindling() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithTip(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKeyword(CardKeyword.Exhaust);
-        WithCards(2, 1);
-        WithKindle(2, 1);
+        WithCards(2);
+        WithKindle(2, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
