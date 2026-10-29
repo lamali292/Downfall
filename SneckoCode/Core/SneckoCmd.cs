@@ -49,9 +49,10 @@ public static class SneckoCmd
                 card.UpgradeInternal();
         
         var cardReward = new CardReward(cards, CardCreationSource.Other, player, options);
-        await RewardsCmd.OfferCustom(player, [cardReward]);
-
-        if (cardReward.SuccessfullySelected && gift.Gold is > 0) await PlayerCmd.GainGold(gift.Gold.Value, player);
+        // Gold is its own reward so it can be taken without picking a card (and vice versa).
+        List<Reward> rewards = [cardReward];
+        if (gift.Gold is > 0) rewards.Add(new GoldReward(gift.Gold.Value, player));
+        await RewardsCmd.OfferCustom(player, rewards);
     }
 }
 
