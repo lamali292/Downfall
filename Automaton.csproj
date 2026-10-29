@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project="$(MSBuildThisFileDirectory)local.props" Condition="Exists('$(MSBuildThisFileDirectory)local.props')"/>
-    
+
     <PropertyGroup>
         <ModId>Automaton</ModId>
         <ModName>$(ModId)</ModName>
@@ -8,7 +8,7 @@
         <PackFolders>Automaton</PackFolders>
         <!-- <IsStandaloneMod>true</IsStandaloneMod> -->
     </PropertyGroup>
-    
+
     <ItemGroup>
         <ProjectReference Include="Downfall.csproj"/>
     </ItemGroup>

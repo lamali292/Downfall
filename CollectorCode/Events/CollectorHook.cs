@@ -27,4 +27,3 @@ public static class CollectorHook
         return false;
     }
 }
-

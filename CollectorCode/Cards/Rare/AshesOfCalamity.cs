@@ -14,9 +14,9 @@ public class AshesOfCalamity : CollectorCardModel
     public AshesOfCalamity() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Ethereal);
-        WithCalculatedBlock(9, 3, CalcBlock, BlockProps.card, 3, 0);
+        WithCalculatedBlock(9, 3, CalcBlock, BlockProps.card, 3);
     }
-    
+
     private static decimal CalcBlock(CardModel card, Creature? creature)
     {
         return card.Owner.PlayerCombatState?.AllCards.Count(c => c.Type == CardType.Status) ?? 0;
@@ -26,7 +26,4 @@ public class AshesOfCalamity : CollectorCardModel
     {
         await CommonActions.CardBlock(this, cardPlay);
     }
-    
-   
-
 }

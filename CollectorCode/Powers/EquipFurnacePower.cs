@@ -21,25 +21,25 @@ public class EquipFurnacePower : CollectorPowerModel, IModifyDamageAdditive
         WithVars(MakeCalculatedDamage("Damage", 0, Calc).ToArray());
     }
 
+    public override int DisplayAmount => (int)Calc(this, null);
+
+    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+        CardModel? cardSource, CardPlay? cardPlay)
+    {
+        var torchhead = Owner.Player?.Torchhead;
+        if (torchhead == null || torchhead != dealer) return 0;
+        return ((CustomCalculatedDamageVar)DynamicVars["Damage"]).CalculateCustom(target);
+    }
+
     private static decimal Calc(PowerModel arg1, Creature? arg2)
     {
         return arg1.Amount * arg1.Owner.Player?.ExhaustPile.Count(e => e is Burn or Ember) ?? 0;
     }
-
-    public override int DisplayAmount => (int) Calc(this, null);
 
     public override Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
         if (card is not (Burn or Ember) || card.Owner.Creature != Owner) return Task.CompletedTask;
         InvokeDisplayAmountChanged();
         return Task.CompletedTask;
-    }
-    
-    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource, CardPlay? cardPlay)
-    {
-        var torchhead =  Owner.Player?.Torchhead;
-        if (torchhead == null || torchhead != dealer) return 0;
-        return ((CustomCalculatedDamageVar)DynamicVars["Damage"]).CalculateCustom(target);
     }
 }

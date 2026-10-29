@@ -36,7 +36,7 @@ public class SeedOfDoubt : CollectorCardModel
     {
         await CommonActions.Apply<BlisterPower>(ctx, this, cardPlay);
     }
-    
+
     public override Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
         if (card.Owner != Owner || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;

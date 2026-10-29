@@ -25,8 +25,8 @@ public class TakeFlight : AwakenedCardModel
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CommonActions.CardBlock(this, cardPlay);
-        await ChantCmd.Chant( cardPlay, () =>
+        await ChantCmd.Chant(cardPlay, () =>
             CommonActions.ApplySelf<BlurPower>(ctx, this, 1)
-            );
+        );
     }
 }
