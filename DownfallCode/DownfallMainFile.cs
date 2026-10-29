@@ -50,6 +50,7 @@ public static class DownfallMainFile
 
         NCustomCardHolder.InitPool();
         ModManager.OnMetricsUpload += DownfallMetrics.OnMetricsUpload;
+        WorkshopPlaytime.Register();
 
         CardTitleHooks.Register((card, title) =>
         {
