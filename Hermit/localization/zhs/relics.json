@@ -7,7 +7,7 @@
     "HERMIT-RYE_STALK.description": "在你的[blue]第四[/blue]回合开始时，获得[blue]{RuggedPower:diff()}[/blue]层[gold]坚固[/gold]。",
     "HERMIT-HORSESHOE.title": "马蹄铁",
     "HERMIT-HORSESHOE.flavor": "幸运符。某人肯定会想念它的。",
-    "HERMIT-HORSESHOE.description": "[gold]打击[/gold]现在会攻击所有敌人。",
+    "HERMIT-HORSESHOE.description": "[gold]打击[/gold]现在会命中所有敌人。",
     "HERMIT-SPYGLASS.title": "望远镜",
     "HERMIT-SPYGLASS.flavor": "凯瑟琳·海芬的财产。",
     "HERMIT-SPYGLASS.description": "你在每回合打出的第[blue]3[/blue]张牌必定触发[gold]精准[/gold]。",
@@ -40,6 +40,6 @@
     "HERMIT-BROKEN_TOOTH.description": "每当你击败精英敌人时，回复[green]{Heal}[/green]点生命并获得[blue]{Gold}[/blue]金币。",
     "SEA_GLASS.HERMIT-HERMIT.title": "流浪者玻璃",
     "HERMIT-SCORCHED_LOCKET.title": "熏黑小盒",
-    "HERMIT-SCORCHED_LOCKET.description": "在每场战斗开始时，将一张附有[purple]怒火[/purple]的[gold]纪念品[/gold]加入你的[gold]手牌[/gold]。",
+    "HERMIT-SCORCHED_LOCKET.description": "在每场战斗开始时，将一张[purple]怒火[/purple][gold]纪念品[/gold]加入你的[gold]手牌[/gold]。",
     "HERMIT-SCORCHED_LOCKET.flavor": "火焰自内而外。火焰腾起黑烟。火焰永不停息。"
 }
