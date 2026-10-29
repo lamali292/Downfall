@@ -190,5 +190,5 @@
   "SNECKO-MUDDY.title": "Muddy",
   "SNECKO-MUDDY.description": "Choose another player.\nAt the start of their next turn, they draw {DrawCardsNextTurnPower:diff()} additional cards and [gold]Muddle[/gold] their [gold]Hand[/gold].",
   "SNECKO-VENOMOLOGY.title": "Venomology",
-  "SNECKO-VENOMOLOGY.description": "This turn, whenever another player applies a debuff beside [gold]Venom[/gold] to this enemy, they apply {VenomologyPower:diff()} [gold]Venom[/gold] to it."
+  "SNECKO-VENOMOLOGY.description": "Choose another player.\nWhenever their Attacks deal unblocked damage this turn, they apply {VenomologyPower:diff()} [gold]Venom[/gold]."
 }
