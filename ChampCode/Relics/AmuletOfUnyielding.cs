@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Saves.Runs;
@@ -27,7 +28,19 @@ public class AmuletOfUnyielding : ChampRelicModel
 
     public override bool ShowCounter => true;
 
-    public override int DisplayAmount => VigorProgress;
+    public override int DisplayAmount => IsActivating ? VigorThreshold : VigorProgress;
+
+    private bool IsActivating
+    {
+        get;
+        set
+        {
+            AssertMutable();
+            field = value;
+            InvokeDisplayAmountChanged();
+        }
+    }
+
     private int VigorThreshold => DynamicVars.Power<VigorPower>().IntValue;
     private int StrengthMult => DynamicVars.Power<StrengthPower>().IntValue;
 
@@ -42,8 +55,17 @@ public class AmuletOfUnyielding : ChampRelicModel
         if (thresholdsCrossed > 0)
         {
             VigorProgress -= thresholdsCrossed * VigorThreshold;
+            _ = TaskHelper.RunSafely(DoActivateVisuals());
             await PowerCmd.Apply<StrengthPower>(ctx, Owner.Creature, thresholdsCrossed * StrengthMult, Owner.Creature, null);
         }
         InvokeDisplayAmountChanged();
+    }
+
+    private async Task DoActivateVisuals()
+    {
+        IsActivating = true;
+        Flash();
+        await Cmd.Wait(1f);
+        IsActivating = false;
     }
 }
