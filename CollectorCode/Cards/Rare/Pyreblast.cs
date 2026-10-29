@@ -20,10 +20,11 @@ public class Pyreblast : CollectorCardModel, IAfterCardPyred
         WithTip(CollectorKeyword.Pyre);
         WithTip(CardKeyword.Exhaust);
     }
-    
+
     public Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (card.Owner.Creature != Owner.Creature || pyred.Type is not (CardType.Status or CardType.Curse) || Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
+        if (card.Owner.Creature != Owner.Creature || pyred.Type is not (CardType.Status or CardType.Curse) ||
+            Pile is not { Type: PileType.Hand }) return Task.CompletedTask;
         EnergyCost.AddThisCombat(-DynamicVars.Energy.IntValue);
         return Task.CompletedTask;
     }
@@ -32,6 +33,4 @@ public class Pyreblast : CollectorCardModel, IAfterCardPyred
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
-
-  
 }

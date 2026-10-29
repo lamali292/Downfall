@@ -4,18 +4,21 @@ using MegaCrit.Sts2.Core.Localization;
 namespace Downfall.DownfallCode.Voting;
 
 /// <summary>
-/// Shared look-and-feel for the voting feature's popups - a plain Button
-/// with a hand-drawn StyleBoxFlat instead of a borrowed game texture. This
-/// avoids both the odd fixed "flag" shape of the base game's confirm/cancel
-/// button art and the shared-resource hover bug that art carried (every
-/// instance of that button lit up together on hover, since its outline
-/// material wasn't marked resource_local_to_scene).
+///     Shared look-and-feel for the voting feature's popups - a plain Button
+///     with a hand-drawn StyleBoxFlat instead of a borrowed game texture. This
+///     avoids both the odd fixed "flag" shape of the base game's confirm/cancel
+///     button art and the shared-resource hover bug that art carried (every
+///     instance of that button lit up together on hover, since its outline
+///     material wasn't marked resource_local_to_scene).
 /// </summary>
 public static class VotingUi
 {
     private const string LocTable = "voting_ui";
 
-    public static string Loc(string key) => new LocString(LocTable, key).GetFormattedText();
+    public static string Loc(string key)
+    {
+        return new LocString(LocTable, key).GetFormattedText();
+    }
 
     public static string Loc(string key, params (string Name, object Value)[] vars)
     {
@@ -47,14 +50,15 @@ public static class VotingUi
         button.AddThemeStyleboxOverride("hover", MakeButtonStyle(bg.Lerp(accent, 0.25f), accent, 2));
         button.AddThemeStyleboxOverride("pressed", MakeButtonStyle(bg.Lerp(Colors.Black, 0.3f), accent, 2));
         button.AddThemeStyleboxOverride("focus", MakeButtonStyle(bg.Lerp(accent, 0.25f), accent, 3));
-        button.AddThemeStyleboxOverride("disabled", MakeButtonStyle(bg.Lerp(Colors.Black, 0.4f), accent.Lerp(Colors.Black, 0.5f), 2));
+        button.AddThemeStyleboxOverride("disabled",
+            MakeButtonStyle(bg.Lerp(Colors.Black, 0.4f), accent.Lerp(Colors.Black, 0.5f), 2));
     }
 
     /// <summary>
-    /// A toggleable variant of <see cref="StyleActionButton"/> - same panel
-    /// look, but with a distinct "pressed and staying pressed" style so it
-    /// reads as a selectable chip (report reasons, filters) rather than a
-    /// one-shot action.
+    ///     A toggleable variant of <see cref="StyleActionButton" /> - same panel
+    ///     look, but with a distinct "pressed and staying pressed" style so it
+    ///     reads as a selectable chip (report reasons, filters) rather than a
+    ///     one-shot action.
     /// </summary>
     public static void StyleToggleButton(Button button)
     {
@@ -93,7 +97,7 @@ public static class VotingUi
             ContentMarginLeft = 18,
             ContentMarginRight = 18,
             ContentMarginTop = 8,
-            ContentMarginBottom = 8,
+            ContentMarginBottom = 8
         };
     }
 
@@ -107,8 +111,8 @@ public static class VotingUi
     }
 
     /// <summary>
-    /// Opens the operating system's own file picker rather than Godot's
-    /// built-in in-engine FileDialog control, where available.
+    ///     Opens the operating system's own file picker rather than Godot's
+    ///     built-in in-engine FileDialog control, where available.
     /// </summary>
     public static void PickImageFile(Node owner, Action<string> onSelected)
     {
@@ -134,7 +138,7 @@ public static class VotingUi
         {
             Title = Loc("DOWNFALL-VOTING.choose_image_dialog_title"),
             FileMode = FileDialog.FileModeEnum.OpenFile,
-            Access = FileDialog.AccessEnum.Filesystem,
+            Access = FileDialog.AccessEnum.Filesystem
         };
         dialog.AddFilter("*.png,*.jpg,*.jpeg,*.webp", "Images");
 

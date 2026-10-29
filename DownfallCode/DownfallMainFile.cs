@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.Loader;
 using BaseLib.Config;
 using BaseLib.Patches.Features;
@@ -7,10 +6,12 @@ using BaseLib.Patches.Saves;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Audio;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Data;
 using Downfall.DownfallCode.Localization;
+using Downfall.DownfallCode.Multiplayer;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
@@ -59,9 +60,8 @@ public static class DownfallMainFile
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();
         });
-        
-        
-        
+
+
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Art Voting", // fallback if the loc table entry is somehow missing
@@ -69,10 +69,7 @@ public static class DownfallMainFile
             IsVisible = () => DownfallConfig.ShowArtSubmissionButton,
             SubmenuType = typeof(NArtVotingScreen),
             CreateSubmenu = NArtVotingScreen.Create,
-            OnPress = stack =>
-            {
-                stack?.PushSubmenuType<NArtVotingScreen>();
-            }
+            OnPress = stack => { stack?.PushSubmenuType<NArtVotingScreen>(); }
         });
 
         // mention downfall sts1 credits somewhere
@@ -97,18 +94,19 @@ public static class DownfallMainFile
         //FmodStudioDeferredBankRegistration.RegisterBank("res://Downfall/audio/Master.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Master.strings.bank");
         FmodStudio.RegisterBank("res://Downfall/audio/Downfall.bank");
-        
-        Downfall.DownfallCode.Multiplayer.DisabledCharacterSync.CaptureStartupState();
 
-        List<string> list = ["Automaton", "Awakened", "Champ", "SlimeBoss", "Hermit", "Guardian", "Snecko", "Hexaghost"];
+        DisabledCharacterSync.CaptureStartupState();
 
-        foreach (var se in list)
-        {
-            InitializeSubmod(se);
-        }
+        List<string> list =
+            ["Automaton", "Awakened", "Champ", "SlimeBoss", "Hermit", "Guardian", "Snecko", "Hexaghost"];
+
+        foreach (var se in list) InitializeSubmod(se);
     }
 
-    private static bool IsSubmodHidden(string name) => DownfallConfig.IsDisabled(name);
+    private static bool IsSubmodHidden(string name)
+    {
+        return DownfallConfig.IsDisabled(name);
+    }
 
     private static void InitializeSubmod(string name)
     {
@@ -122,7 +120,7 @@ public static class DownfallMainFile
             InitializeSubmod(name,
                 $"{name}.{name}Code.{name}MainFile");
     }
-    
+
     private static void InitializeSubmod(string name, string mainTypeName)
     {
         try
