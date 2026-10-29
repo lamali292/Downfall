@@ -80,7 +80,7 @@
     "GUARDIAN-REPULSOR_GUARDIAN.description": "每回合你第一次抽到状态或[red]诅咒[/red]牌时，将其[gold]消耗[/gold]并抽1张牌。",
     "GUARDIAN-REPULSOR_GUARDIAN.title": "反冲协议",
     "GUARDIAN-REROUTE.description": "造成{Damage:diff()}点伤害。\n[gold]凝滞[/gold]你本回合打出的下一张牌。",
-    "GUARDIAN-REROUTE.title": "偏转",
+    "GUARDIAN-REROUTE.title": "重导",
     "GUARDIAN-RESILIENT_PLATE.description": "[gold]提防[/gold]{Brace:diff()}。\n[gold]抛光[/gold]{Polish:diff()}。",
     "GUARDIAN-RESILIENT_PLATE.title": "坚韧外壳",
     "GUARDIAN-REVENGE_PROTOCOL.description": "每当你进入[gold]防御模式[/gold]时，获得{RevengeProtocolPower:diff()}点[gold]力量[/gold]。\n在你的回合开始时，[gold]提防[/gold]{BracingPower:diff()}。",

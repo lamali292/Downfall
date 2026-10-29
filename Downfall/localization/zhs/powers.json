@@ -1,7 +1,5 @@
 {
     "DOWNFALL-SOUL_BURN_POWER.title": "灼魂",
     "DOWNFALL-SOUL_BURN_POWER.description": "在你的[blue]3[/blue]个回合后，该敌人在它们的回合开始时失去生命值，然后移除所有[gold]灼魂[/gold]层数。",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "在你的[blue]{Turns}[/blue]个回合后，该敌人在它们的回合开始时失去[blue]{Amount}[/blue]点生命值，然后移除所有[gold]灼魂[/gold]层数。",
-    "DOWNFALL-METALLICIZE_POWER.title": "金属化",
-    "DOWNFALL-METALLICIZE_POWER.description": "在你的回合结束时，获得[gold]格挡[/gold]。"
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "在你的[blue]{Turns}[/blue]个回合后，该敌人在它们的回合开始时失去[blue]{Amount}[/blue]点生命值，然后移除所有[gold]灼魂[/gold]层数。"
 }

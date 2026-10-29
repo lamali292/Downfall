@@ -1,5 +1,6 @@
 {
     "ART_BY": "插画师：{name}",
+    "BETA_ART_BY": "测试风格美术：来自{name}",
     "DOWNFALL-ALEX_MDLE.name": "AlexMdle",
     "DOWNFALL-CLAUDE27_A.name": "claude27a",
     "DOWNFALL-DAWNABLES_AWAKENED.name": "DawnablesAwakened",
@@ -19,5 +20,6 @@
     "DOWNFALL-HERMITFAN69.name": "HermitFan69",
     "DOWNFALL-BUKIE.name": "Bukie",
     "DOWNFALL-FRESHBONE.name": "FreshBone",
-    "DOWNFALL-CHIMEDRAGON.name": "Chimedragon"
+    "DOWNFALL-CHIMEDRAGON.name": "Chimedragon",
+    "DOWNFALL-SUSHI_NIGIRI.name": "すしにぎり"
 }
