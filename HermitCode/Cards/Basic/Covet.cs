@@ -30,9 +30,11 @@ public sealed class Covet : HermitCardModel
             null,
             this
         )).ToList();
-        await CardCmd.Discard(ctx, selected);
-        foreach (var card in selected.Where(e => e.Type == CardType.Curse))
-            await CardCmdCompatibility.Exhaust(ctx, card);
+        var curses = selected.Where(e => e.Type == CardType.Curse).ToList();
+        var discarded = selected.Except(curses).ToList();
+        if (discarded.Count > 0) await CardCmd.Discard(ctx, discarded);
+        foreach (var curse in curses)
+            await CardCmdCompatibility.Exhaust(ctx, curse);
         await CommonActions.Draw(this, ctx);
     }
 }
