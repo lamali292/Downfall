@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Collector.CollectorCode.Powers;
 
-public class RoadWalkedTogetherPower() : CollectorPowerModel, IModifyDamageAdditive
+public class RoadWalkedTogetherPower : CollectorPowerModel, IModifyDamageAdditive
 {
     public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)

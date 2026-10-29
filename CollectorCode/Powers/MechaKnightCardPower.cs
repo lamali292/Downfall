@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+
 namespace Collector.CollectorCode.Powers;
 
 public class MechaKnightCardPower : CollectorPowerModel, IAfterCardPyred
@@ -25,7 +26,7 @@ public class MechaKnightCardPower : CollectorPowerModel, IAfterCardPyred
         for (var i = 0; i < Amount; ++i)
         {
             var orb = OrbModel.GetRandomOrb(player.RunState.Rng.CombatOrbGeneration).ToMutable();
-            await OrbCmd.Channel(ctx,orb, player);
+            await OrbCmd.Channel(ctx, orb, player);
         }
     }
 }

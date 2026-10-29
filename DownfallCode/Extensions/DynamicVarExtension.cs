@@ -15,10 +15,8 @@ public static class DynamicVarExtension
         {
             return var is CalculatedVar calculatedVar ? calculatedVar.Calculate(target) : 0;
         }
-
-
     }
-    
+
     extension<T>(T source) where T : DynamicVar
     {
         public T WithMyTooltip(
@@ -38,7 +36,7 @@ public static class DynamicVarExtension
                         : key + ".description");
                 title.Add(locVar);
                 description.Add(locVar);
-                return (IHoverTip)new HoverTip(title, description);
+                return new HoverTip(title, description);
             });
             return source;
         }

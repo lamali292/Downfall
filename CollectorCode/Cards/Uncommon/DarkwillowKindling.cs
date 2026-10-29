@@ -20,7 +20,7 @@ public class DarkwillowKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
         WithKeyword(CollectorKeyword.Flicker);
         WithPower<ReserveNextTurnPower>(2, false);
         WithReserveTip();
-        WithKindle(1,3);
+        WithKindle(1, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

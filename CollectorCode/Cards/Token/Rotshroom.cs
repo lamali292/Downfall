@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Collector.CollectorCode.Cards.Token;
 
-
 [Pool(typeof(TokenCardPool))]
 public class Rotshroom : CollectorCardModel
 {

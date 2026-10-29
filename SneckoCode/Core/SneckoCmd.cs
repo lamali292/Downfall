@@ -47,7 +47,7 @@ public static class SneckoCmd
         if (gift.IsUpgraded)
             foreach (var card in cards)
                 card.UpgradeInternal();
-        
+
         var cardReward = new CardReward(cards, CardCreationSource.Other, player, options);
         // Gold is its own reward so it can be taken without picking a card (and vice versa).
         List<Reward> rewards = [cardReward];

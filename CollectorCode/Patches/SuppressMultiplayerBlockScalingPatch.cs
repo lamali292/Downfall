@@ -11,7 +11,7 @@ namespace Collector.CollectorCode.Patches;
 [HarmonyPatch(typeof(MultiplayerScalingModel), nameof(MultiplayerScalingModel.ModifyBlockMultiplicative))]
 public static class SuppressMultiplayerBlockScalingPatch
 {
-    static bool Prefix(ref decimal __result)
+    private static bool Prefix(ref decimal __result)
     {
         if (!MultiplayerBlockScaling.IsSuppressed) return true;
         __result = 1m;

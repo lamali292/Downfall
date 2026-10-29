@@ -3,9 +3,9 @@ using MegaCrit.Sts2.Core.Models;
 namespace Downfall.DownfallCode.Voting;
 
 /// <summary>
-/// One of the current player's own art submissions, for the self-service
-/// "My Submissions" panel - lets them see review status and withdraw
-/// something they uploaded, without needing the moderation admin panel.
+///     One of the current player's own art submissions, for the self-service
+///     "My Submissions" panel - lets them see review status and withdraw
+///     something they uploaded, without needing the moderation admin panel.
 /// </summary>
 public record MySubmission
 {
