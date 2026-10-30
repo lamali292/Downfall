@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,6 +14,8 @@ public class Goodbye : CollectorCardModel
 {
     public Goodbye() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
     {
+        WithKeyword(CollectorKeyword.Megapyre);
+        WithTip(CollectorTip.Pyred);
         WithKeyword(CardKeyword.Exhaust);
         WithTip<MiasmaPower>();
     }
@@ -23,6 +26,7 @@ public class Goodbye : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
+        if ((await PyreCmd.MegaPyre(ctx, this)).Count == 0) return;
         var enemies = CombatState.HittableEnemies;
         foreach (var e in enemies)
         {
