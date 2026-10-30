@@ -306,4 +306,27 @@ public class CollectorTests
         Assert.AreEqual(grown, seed.DynamicVars.Power<MiasmaPower>().BaseValue,
             "A downgrade must not wipe Seed of Doubt's growth.");
     }
+
+    // Regression guard: Torchhead auto-attacks from TorchheadPower.AfterSideTurnEnd instead of acting
+    // through the normal monster move state machine, so its NextMove is never rolled by the enemy turn
+    // loop unless TorchheadCmd.RefreshTorchheadIntent does it manually - without that call, the intent
+    // icon stays blank. Also checks the displayed value is post-power (Weak), not just the base amount.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadIntentShowsCurrentAndPowerModifiedDamage(TestContext ctx)
+    {
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+
+        var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
+        Assert.IsTrue(intent != null,
+            "Torchhead's move state should carry a TorchheadAttackIntent so its intent icon shows.");
+
+        var baseLabel = intent!.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
+        Assert.IsTrue(baseLabel.Contains("4"), $"Intent should show the base 4 damage, got '{baseLabel}'.");
+
+        await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), torchhead, 1, ctx.Player.Creature, null);
+        var weakenedLabel = intent.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
+
+        Assert.IsTrue(weakenedLabel.Contains("3"),
+            $"Weak should reduce Torchhead's displayed intent damage from 4 to 3, got '{weakenedLabel}'.");
+    }
 }
