@@ -3,7 +3,7 @@ using BaseLib.Cards;
 using Collector.CollectorCode.Cards.Token;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Factories;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -23,7 +23,8 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
                && card is { CanonicalStarCost: -1, CanBeGeneratedInCombat: true } 
                &&  !card.Keywords.Contains(CardKeyword.Unplayable)
                &&  !card.Keywords.Contains(BaseLibKeywords.Purge) 
-               &&  !card.Keywords.Contains(CardKeyword.Eternal);
+               &&  !card.Keywords.Contains(CardKeyword.Eternal)
+               &&  card.Rarity != CardRarity.Basic;
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -34,10 +35,19 @@ public class KnowledgeDemonCard : Collectible<KnowledgeDemonBoss>
             .Append(ModelDb.CardPool<CurseCardPool>())
             .Append(ModelDb.CardPool<StatusCardPool>())
             .Append(ModelDb.CardPool<TokenCardPool>())
+            .Append(ModelDb.CardPool<EventCardPool>())
             .SelectMany(cardPoolModel => cardPoolModel.AllCards.Where(IsCardWeWant));
 
-        var list = CardFactory.GetDistinctForCombat(Owner, pool, 
-            DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardGeneration).ToList();
+        // CardFactory.GetDistinctForCombat drops Ancient and Event cards, which this card wants to roll, so it picks
+        // by hand and only applies the single/multiplayer constraint the factory would.
+        var multiplayer = Owner.RunState.Players.Count > 1;
+        var forbidden = multiplayer ? CardMultiplayerConstraint.SingleplayerOnly : CardMultiplayerConstraint.MultiplayerOnly;
+        var list = pool
+            .Where(c => c.MultiplayerConstraint != forbidden)
+            .Distinct()
+            .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardGeneration)
+            .Select(c => Owner.Creature.CombatState!.CreateCard(c, Owner))
+            .ToList();
         foreach (var card in list)
         {
             CardCmd.Upgrade(card);
