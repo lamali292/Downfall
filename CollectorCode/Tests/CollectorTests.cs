@@ -29,6 +29,11 @@ public class CollectorTests
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public IEnumerable<CardTestCase> PlayCollectorCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
 
+    // Collectibles live in CollectibleCardPool, not the character's pool, so PlayCollectorCards never reaches them.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public IEnumerable<CardTestCase> PlayCollectibleCards(CharacterModel character) =>
+        AllCardsTest.PlayAllCards(ModelDb.CardPool<CollectibleCardPool>().AllCards);
+
     // Reserve conversion is for X-energy cards only; an X-star card pays its (numeric) energy cost normally.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task XStarCardDoesNotConvertReserve(TestContext ctx)
