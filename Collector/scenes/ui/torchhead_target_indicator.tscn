@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 ]
+
+[ext_resource type="Script" path="res://CollectorCode/Vfx/NTorchheadTargetIndicator.cs" id="1_ttind"]
+[ext_resource type="Texture2D" path="res://Collector/images/ui/torchhead_target_indicator.png" id="2_ttind"]
+
+[node name="TorchheadTargetIndicator" type="TextureRect"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 44.8
+offset_bottom = 44.8
+pivot_offset = Vector2(22.4, 22.4)
+mouse_filter = 2
+texture = ExtResource("2_ttind")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_ttind")
