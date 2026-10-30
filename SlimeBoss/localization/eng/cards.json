@@ -200,7 +200,7 @@
   "SLIMEBOSS-SPLIT_SCRAP.title": "Split: Scrap",
   "SLIMEBOSS-SPLIT_SCRAP.description": "[gold]Split[/gold] into a [gold]Scrap Slime[/gold].",
   "SLIMEBOSS-LIQUIDATE.title": "Liquidate",
-  "SLIMEBOSS-LIQUIDATE.description": "Lose {StrengthPower:diff()} [gold]Strength[/gold].\nGain {PotencyPower:diff()} [gold]Potency[/gold].",
+  "SLIMEBOSS-LIQUIDATE.description": "Lose {StrengthPower:inverseDiff()} [gold]Strength[/gold].\nGain {PotencyPower:diff()} [gold]Potency[/gold].",
   "SLIMEBOSS-SLIME_SPIKES.title": "Slime Spikes",
   "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you have played a Status this turn, gain {SlimeSpikesPower:diff()} [gold]Thorns[/gold] this turn."
 }
