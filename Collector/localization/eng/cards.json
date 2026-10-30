@@ -190,7 +190,7 @@
   "COLLECTOR-BYRDONIS_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {StrengthPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-BYGONE_EFFIGY_CARD.description": "At the end of {BygoneEffigyCardPower:inverseDiff()} turns, gain {Power:reserveIcons()} and {Power:diff()} [gold]Strength[/gold].",
   "COLLECTOR-PHROG_PARASITE_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Infection[/gold] into your [gold]Hand[/gold]. ",
-  "COLLECTOR-CEREMONIAL_BEAST_CARD.description": "Gain {CalculationExtra:diff()} [gold]Block[/gold] for each {energyPrefix:energyIcons(1)} and {:reserveIcons(1)} you have.\nThe next card you play ends your turn.{InCombat:cond:\n(Gain {CalculatedBlock:diff()} [gold]Block[/gold])|}",
+  "COLLECTOR-CEREMONIAL_BEAST_CARD.description": "Gain [gold]Strength[/gold] equal to your {energyPrefix:energyIcons(1)}{IfUpgraded:show: and {:reserveIcons(1)}|}.\nThe next card you play ends your turn.{InCombat:cond:\n(Gain {StrengthCalc:diff()} [gold]Strength[/gold])|}",
   "COLLECTOR-KIN_PRIEST_CARD.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nRepeat for each enemy with [gold]Weak[/gold].{IsTargeting:cond:\n(Hits {Hits:preview()} {Hits:pplural:time|times})|}",
   "COLLECTOR-ENTOMANCER_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
   "COLLECTOR-THE_INSATIABLE_CARD.description": "Whenever a card is [gold]Pyred[/gold] that costs {energyPrefix:energyIcons(2)} or more, [gold]Kindle[/gold] {TheInsatiableCardPower:diff()}.",
