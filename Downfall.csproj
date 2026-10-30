@@ -22,7 +22,7 @@
     <PropertyGroup>
         <PackFolders>Downfall</PackFolders>
     </PropertyGroup>
-    
+
     <ItemGroup Condition="!$(DefineConstants.Contains('TOOLS'))">
         <Compile Include="DownfallCode/**/*.cs"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
@@ -30,7 +30,7 @@
     <ItemGroup>
         <AdditionalFiles Include="Downfall/**/*"/>
     </ItemGroup>
-    
+
     <ItemGroup Condition="$(DefineConstants.Contains('TOOLS'))">
         <Compile Include="editor/**/*.cs"/>
         <None Include="editor/**" Exclude="editor/**/*.cs"/>
@@ -63,7 +63,7 @@
         <Copy SourceFiles="@(_BaseLibMirrorFile)" DestinationFolder="%(_BaseLibMirrorDir.Identity)" Condition="'@(_BaseLibMirrorDir)' != ''"/>
     </Target>
     <Import Project="addons/sentry/dotnet/Sentry.Godot.props" Condition="Exists('addons/sentry/dotnet/Sentry.Godot.props')"/>
-    
+
     <ItemGroup>
         <PackageReference Remove="Sentry"/>
     </ItemGroup>

@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageGen", "ImageGen\ImageG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimeBoss", "SlimeBoss.csproj", "{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collector", "Collector.csproj", "{402CEB14-F5CD-44F6-B998-39E39DB39537}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermit", "Hermit.csproj", "{E5F803D0-4D57-450B-8D44-3313EA2FE052}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automaton", "Automaton.csproj", "{F7AA8AFB-DDAF-4898-AC72-B88D14857365}"
@@ -113,12 +111,6 @@ Global
 		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{E31EC8AD-A313-488A-83D4-C73AFD4D0A5C}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-		{402CEB14-F5CD-44F6-B998-39E39DB39537}.Debug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{402CEB14-F5CD-44F6-B998-39E39DB39537}.Debug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{402CEB14-F5CD-44F6-B998-39E39DB39537}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{402CEB14-F5CD-44F6-B998-39E39DB39537}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{402CEB14-F5CD-44F6-B998-39E39DB39537}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{402CEB14-F5CD-44F6-B998-39E39DB39537}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 		{E5F803D0-4D57-450B-8D44-3313EA2FE052}.Debug|Any CPU.ActiveCfg = ExportDebug|Any CPU
 		{E5F803D0-4D57-450B-8D44-3313EA2FE052}.Debug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{E5F803D0-4D57-450B-8D44-3313EA2FE052}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU

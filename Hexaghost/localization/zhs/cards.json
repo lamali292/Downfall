@@ -200,5 +200,7 @@
     "HEXAGHOST-HEATING.title": "温养",
     "HEXAGHOST-HEATING.description": "每当你给予[gold]灼魂[/gold]时，[gold]格挡[/gold]值最少的盟友获得{HeatingPower:diff()}点[gold]格挡[/gold]。",
     "HEXAGHOST-LEVITATE.title": "升空",
-    "HEXAGHOST-LEVITATE.description": "[afterlife]给予另一玩家[/afterlife]{Block:diff()}[afterlife]点格挡。[/afterlife]"
+    "HEXAGHOST-LEVITATE.description": "[afterlife]给予另一玩家[/afterlife]{Block:diff()}[afterlife]点格挡。[/afterlife]",
+    "HEXAGHOST-SOULFIRE.title": "燃魂",
+    "HEXAGHOST-SOULFIRE.description": "每当你给予[gold]灼魂[/gold]时，获得{SoulfirePower:diff()}点[gold]格挡[/gold]。"
 }

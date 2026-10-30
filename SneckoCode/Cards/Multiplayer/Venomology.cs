@@ -9,9 +9,9 @@ namespace Snecko.SneckoCode.Cards.Multiplayer;
 [Pool(typeof(SneckoCardPool))]
 public class Venomology : SneckoCardModel
 {
-    public Venomology() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public Venomology() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyAlly)
     {
-        WithPower<VenomologyPower>(3);
+        WithPower<VenomologyPower>(3, false);
         WithKeyword(CardKeyword.Exhaust, UpgradeType.Remove);
         WithTip<VenomPower>();
     }

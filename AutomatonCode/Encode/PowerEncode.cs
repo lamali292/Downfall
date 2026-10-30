@@ -1,6 +1,5 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Powers;
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

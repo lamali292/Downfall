@@ -15,7 +15,7 @@
         <BaseIntermediateOutputPath>.godot\mono\temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
         <IntermediateOutputPath>.godot\mono\temp\obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <LangVersion>14</LangVersion>
@@ -37,7 +37,7 @@
 
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <AssemblyVersion>0.1.23.0</AssemblyVersion>
         <FileVersion>0.1.23.0</FileVersion>
@@ -56,7 +56,7 @@
         <DebugType>none</DebugType>
         <PathMap>$(AppOutputBase)=.\</PathMap>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
         <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>

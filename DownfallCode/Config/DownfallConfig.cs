@@ -45,7 +45,6 @@ public class DownfallConfig : SimpleModConfig
     public static bool HideAutomaton { get; set; } = false;
     public static bool HideAwakened { get; set; } = false;
     public static bool HideChamp { get; set; } = false;
-    public static bool HideCollector { get; set; } = false;
     //public static bool HideGremlins { get; set; } = false;
     public static bool HideGuardian { get; set; } = false;
     public static bool HideHermit { get; set; } = false;
@@ -65,7 +64,6 @@ public class DownfallConfig : SimpleModConfig
             "Automaton" => HideAutomaton,
             "Awakened" => HideAwakened,
             "Champ" => HideChamp,
-            "Collector" => HideCollector,
             "Guardian" => HideGuardian,
             "Hermit" => HideHermit,
             "Hexaghost" => HideHexaghost,
@@ -82,7 +80,6 @@ public class DownfallConfig : SimpleModConfig
             case "Automaton": HideAutomaton = value; break;
             case "Awakened": HideAwakened = value; break;
             case "Champ": HideChamp = value; break;
-            case "Collector": HideCollector = value; break;
             case "Guardian": HideGuardian = value; break;
             case "Hermit": HideHermit = value; break;
             case "Hexaghost": HideHexaghost = value; break;

@@ -11,6 +11,7 @@ using Hermit.HermitCode.History;
 using Hermit.HermitCode.Powers;
 using Hermit.HermitCode.Relics;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -435,6 +436,38 @@ public class HermitTests
         Assert.IsTrue(HermitCmd.IsAdjacentToCurse(left), "Left neighbour of a curse is adjacent.");
         Assert.IsTrue(HermitCmd.IsAdjacentToCurse(right), "Right neighbour of a curse is adjacent.");
         Assert.IsTrue(!HermitCmd.IsAdjacentToCurse(far), "Two away from the curse is not adjacent.");
+    }
+
+    // ---- Covet ----
+    // The test selector always picks the first card in hand, so the card to be selected goes in first.
+
+    private static int DiscardedEntries(CardModel card) =>
+        CombatManager.Instance.History.Entries.OfType<CardDiscardedEntry>().Count(e => e.Card == card);
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task CovetExhaustsCurseInsteadOfDiscardingIt(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var curse = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Curse.ImpendingDoom>();
+        var covet = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.Covet>();
+
+        await ctx.PlayCard(covet);
+
+        Assert.AreEqual(PileType.Exhaust, curse.Pile?.Type, "A Curse chosen for Covet should be Exhausted.");
+        Assert.AreEqual(0, DiscardedEntries(curse), "A Curse must be Exhausted instead of discarded, not both.");
+    }
+
+    [CardTest(typeof(Hermit.HermitCode.Core.Hermit))]
+    public async Task CovetDiscardsNonCurse(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var strike = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.StrikeHermit>();
+        var covet = await ctx.AddCardToHand<Hermit.HermitCode.Cards.Basic.Covet>();
+
+        await ctx.PlayCard(covet);
+
+        Assert.AreEqual(PileType.Discard, strike.Pile?.Type, "A non-Curse chosen for Covet should be discarded.");
+        Assert.AreEqual(1, DiscardedEntries(strike), "Discarding a non-Curse should record a discard.");
     }
 
     // ---- High Noon ----

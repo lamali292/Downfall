@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 ]
+[gd_scene load_steps=19 format=3 ]
 
 [ext_resource type="Script" path="res://src/Core/Nodes/Rooms/NRestSiteRoom.cs" id="1_grc5d"]
 [ext_resource type="PackedScene" path="res://scenes/rest_site/overgrowth_rest_site.tscn" id="2_5wy61"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://addons/mega_text/MegaRichTextLabel.cs" id="5_rmow8"]
 [ext_resource type="PackedScene" path="res://Hexaghost/scenes/character/rest_site.tscn" id="6_jl133"]
 [ext_resource type="PackedScene" path="res://scenes/ui/proceed_button.tscn" id="6_rlolg"]
-[ext_resource type="PackedScene" path="res://Collector/scenes/character/rest_site.tscn" id="6_vby3d"]
 [ext_resource type="PackedScene" path="res://SlimeBoss/scenes/character/rest_site.tscn" id="7_f3lhg"]
 [ext_resource type="PackedScene" path="res://Hermit/scenes/character/rest_site.tscn" id="10_jl133"]
 
@@ -126,10 +125,6 @@ scale = Vector2(0.76, -0.76)
 visible = false
 scale = Vector2(-0.76, 0.76)
 
-[node name="Collector" parent="BgContainer/Character_4" instance=ExtResource("6_vby3d")]
-visible = false
-scale = Vector2(-0.76, 0.76)
-
 [node name="Hermit" parent="BgContainer/Character_4" instance=ExtResource("10_jl133")]
 visible = false
 scale = Vector2(-1, 1)
@@ -161,9 +156,6 @@ visible = false
 visible = false
 
 [node name="Champ" parent="BgContainer/Character_1" instance=ExtResource("3_5wy61")]
-
-[node name="Collector" parent="BgContainer/Character_1" instance=ExtResource("6_vby3d")]
-visible = false
 
 [node name="Guardian" parent="BgContainer/Character_1" instance=ExtResource("5_6jpnq")]
 visible = false
