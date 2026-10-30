@@ -13,7 +13,7 @@ public class DoubleTrouble : CollectorCardModel
     public DoubleTrouble() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(3, 4);
-        WithPower<DoubleTroublePower>(1, false);
+        WithPower<DoubleTroublePower>(1, 1, false);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

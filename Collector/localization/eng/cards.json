@@ -35,7 +35,7 @@
   "COLLECTOR-DEATHMARK.title": "Deathmark",
   "COLLECTOR-DEFEND_COLLECTOR.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "COLLECTOR-DEFEND_COLLECTOR.title": "Defend",
-  "COLLECTOR-DOUBLE_TROUBLE.description": "Gain {Block:diff()} [gold]Block[/gold].\nThis turn, your next Colorless card is played an extra time.",
+  "COLLECTOR-DOUBLE_TROUBLE.description": "Gain {Block:diff()} [gold]Block[/gold].\nThis turn, your next {DoubleTroublePower:plural:Colorless card is|{:diff()} Colorless cards are} played an extra time.",
   "COLLECTOR-DOUBLE_TROUBLE.title": "Double Trouble",
   "COLLECTOR-DRAGONS_TROVE.description": "Put all Colorless cards from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].\nGain {Reserve:reserveIcons()}.",
   "COLLECTOR-DRAGONS_TROVE.title": "Dragon's Trove",
