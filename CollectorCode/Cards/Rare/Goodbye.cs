@@ -15,7 +15,6 @@ public class Goodbye : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithTip<MiasmaPower>();
-        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
