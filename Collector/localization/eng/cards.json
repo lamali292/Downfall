@@ -65,7 +65,7 @@
   "COLLECTOR-HOARD.title": "Hoard",
   "COLLECTOR-HOARDERS_STRIKE.description": "Deal {Damage:diff()} damage.\nIf the [gold]Pyred[/gold] card was Colorless, play it.",
   "COLLECTOR-HOARDERS_STRIKE.title": "Hoarder's Strike",
-  "COLLECTOR-ILL_TAKE_THAT.description": "Steal up to {IllTakeThat:diff()} [gold]Block[/gold] from the enemy.\n[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.",
+  "COLLECTOR-ILL_TAKE_THAT.description": "Steal up to {IllTakeThat:diff()} [gold]Block[/gold] from the enemy.\nDeal {Damage:diff()} damage.",
   "COLLECTOR-ILL_TAKE_THAT.title": "I'll Take That",
   "COLLECTOR-INEVITABLE_DEMISE.description": "Deal {Damage:diff()} damage.\nThis enemy's [gold]Miasma[/gold] increases by {InevitableDemisePower:diff()} each turn.",
   "COLLECTOR-INEVITABLE_DEMISE.title": "Inevitable Demise",
