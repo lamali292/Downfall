@@ -7,14 +7,26 @@ on:
 
 jobs:
   download:
-    name: Download Translations
+    name: Download Translations (${{ matrix.ref }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Everything that lives on develop (develop has no Collector, so it is skipped there).
+          - ref: develop
+            only_mods: ""
+          # Collector's own branch only gets Collector's strings.
+          - ref: collector
+            only_mods: Collector
     environment: PARATRANZ_ENV
     runs-on: ubuntu-latest
     env:
       PARATRANZ_API_KEY: ${{ secrets.PARATRANZ_API_KEY }}
+      PARA_ONLY_MODS: ${{ matrix.only_mods }}
     steps:
       - uses: actions/checkout@v5
         with:
+          ref: ${{ matrix.ref }}
           ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
 
       - name: Set up Python
