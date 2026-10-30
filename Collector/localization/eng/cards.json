@@ -101,7 +101,7 @@
   "COLLECTOR-ROAST.title": "Roast",
   "COLLECTOR-ROTWOOD_KINDLING.description": "Add a [gold]Rotshroom{IfUpgraded:show:+|}[/gold] into your [gold]Hand[/gold].",
   "COLLECTOR-ROTWOOD_KINDLING.title": "Rotwood Kindling",
-  "COLLECTOR-SCORCHING_RAY.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|} X times.",
+  "COLLECTOR-SCORCHING_RAY.description": "Deal {Damage:diff()} damage to a random enemy X times.",
   "COLLECTOR-SCORCHING_RAY.title": "Scorching Ray",
   "COLLECTOR-SEED_OF_DOUBT.description": "Apply {MiasmaPower:diff()} [gold]Miasma[/gold].\nWhenever a card is [gold]Exhausted[/gold] while this is in [gold]Hand[/gold], increase its [gold]Miasma[/gold] by {Increase:diff()}.",
   "COLLECTOR-SEED_OF_DOUBT.title": "Seed of Doubt",
