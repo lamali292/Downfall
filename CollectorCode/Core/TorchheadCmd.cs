@@ -37,8 +37,15 @@ public static class TorchheadCmd
             return attack.TargetingAllOpponents(player.Creature.CombatState);
         }
 
-        var target = player.Creature.CombatState?.HittableEnemies.OrderBy(e => e.CurrentHp).FirstOrDefault();
-        return target == null ? null: attack.Targeting(target);
+        // Torchhead keeps attacking the enemy its owner hit last; with none, it picks the lowest-HP enemy and sticks to it.
+        var hittable = player.Creature.CombatState.HittableEnemies;
+        var power = player.Torchhead?.GetPower<TorchheadPower>();
+        var target = power?.LastHitTarget is { } last && hittable.Contains(last)
+            ? last
+            : hittable.OrderBy(e => e.CurrentHp).FirstOrDefault();
+        if (target == null) return null;
+        power?.SetLastHitTarget(target);
+        return attack.Targeting(target);
     }
 
     private const int KindleHpWhenMissing = 1;

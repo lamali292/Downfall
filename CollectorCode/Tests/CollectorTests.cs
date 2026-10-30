@@ -158,8 +158,8 @@ public class CollectorTests
 
         var targets = ctx.Combat.Players.Select(p => p.Creature).ToList();
         var singleTargetDescription = intent!.GetHoverTip(targets, torchhead).Description;
-        Assert.IsTrue(singleTargetDescription.Contains("least HP"),
-            $"Without EquipAxe, Torchhead should target the enemy with the least HP, got '{singleTargetDescription}'.");
+        Assert.IsTrue(singleTargetDescription.Contains("last hit"),
+            $"Without EquipAxe, Torchhead should target the enemy you last hit, got '{singleTargetDescription}'.");
 
         await PowerCmd.Apply<EquipAxePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
         var allTargetsDescription = intent.GetHoverTip(targets, torchhead).Description;
@@ -328,5 +328,41 @@ public class CollectorTests
 
         Assert.IsTrue(weakenedLabel.Contains("3"),
             $"Weak should reduce Torchhead's displayed intent damage from 4 to 3, got '{weakenedLabel}'.");
+    }
+
+    // Torchhead only auto-attacks at the end of the turn when its owner dealt damage that turn.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadDoesNotAutoAttackWithoutDealingDamage(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var startingHp = enemy.CurrentHp;
+
+        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
+        PlayerCmd.EndTurn(ctx.Player, false);
+        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
+            await Task.Delay(100);
+
+        Assert.AreEqual(startingHp, enemy.CurrentHp,
+            "Torchhead should not attack at the end of a turn in which its owner dealt no damage.");
+    }
+
+    // After the owner hits an enemy, Torchhead attacks that enemy at the end of the turn.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadAutoAttacksTheEnemyLastHit(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var strike = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Basic.StrikeCollector>();
+        await ctx.PlayCard(strike, enemy);
+        var hpAfterStrike = enemy.CurrentHp;
+
+        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
+        PlayerCmd.EndTurn(ctx.Player, false);
+        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
+            await Task.Delay(100);
+
+        Assert.IsTrue(enemy.CurrentHp < hpAfterStrike,
+            "Torchhead should attack the enemy its owner last hit when the owner dealt damage this turn.");
     }
 }
