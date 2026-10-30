@@ -129,7 +129,7 @@
   "COLLECTOR-SUNBLOOM_KINDLING.title": "Sunbloom Kindling",
   "COLLECTOR-THORN_WHIP.description": "Deal {Damage:diff()} damage to ALL enemies.\nApply [gold]Miasma[/gold] equal to unblocked damage dealt.",
   "COLLECTOR-THORN_WHIP.title": "Thorn Whip",
-  "COLLECTOR-TORCHBEARER.description": "[gold]Kindle[/gold] {Kindle:diff()}.",
+  "COLLECTOR-TORCHBEARER.description": "[gold]Kindle[/gold] {Kindle:diff()}.\n[gold]Torchhead[/gold] attacks.",
   "COLLECTOR-TORCHBEARER.title": "Torchbearer",
   "COLLECTOR-VOID_ARMOR.description": "{Multiplayer:You and ALL enemies gain|EVERYONE gains} {Block:diff()} [gold]Block[/gold].\n[gold]Block[/gold] is not removed at the start of {Multiplayer:your or any enemy's|EVERYONE's} next turn.",
   "COLLECTOR-VOID_ARMOR.title": "Void Armor",
