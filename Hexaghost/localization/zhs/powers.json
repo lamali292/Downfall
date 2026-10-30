@@ -56,6 +56,7 @@
     "HEXAGHOST-BROILING_FLAMES_POWER.title": "炙热烈焰",
     "HEXAGHOST-BROILING_FLAMES_POWER.description": "本回合，每当另一名玩家攻击该敌人时，使其获得[gold]灼魂[/gold]。",
     "HEXAGHOST-BROILING_FLAMES_POWER.smartDescription": "本回合，每当另一名玩家攻击该敌人时，使其获得[blue]{Amount}[/blue]层[gold]灼魂[/gold]。",
+    "HEXAGHOST-BROILING_FLAMES_POWER.remoteDescription": "本回合，每当除了[orange]{ApplierName}[/orange]的另一名玩家攻击该敌人时，其获得[blue]{Amount}[/blue]层[gold]灼魂[/gold]。",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.title": "彼岸之语",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.description": "本回合此后每[gold]消耗[/gold]一张牌，给予该敌人[gold]灼魂[/gold]。",
     "HEXAGHOST-WHISPER_FROM_BEYOND_POWER.smartDescription": "本回合此后每[gold]消耗[/gold]一张牌，给予该敌人[blue]{Amount}[/blue]层[gold]灼魂[/gold]。",
@@ -68,5 +69,10 @@
     "HEXAGHOST-INFERNO_POTION_POWER.title": "炼狱",
     "HEXAGHOST-INFERNO_POTION_POWER.description": "[gold]鬼火[/gold]的[gold]灼魂[/gold]和伤害效果作用于所有敌人。",
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "[gold]鬼火[/gold]的[gold]灼魂[/gold]和伤害效果作用于所有敌人。",
-    "HEXAGHOST-PREMONITION_POWER.title": "预兆"
+    "HEXAGHOST-PREMONITION_POWER.title": "预兆",
+    "HEXAGHOST-PREMONITION_POWER.description": "如果你在一回合内[gold]消耗[/gold]了足够的牌，在你的下个回合开始时额外抽牌。",
+    "HEXAGHOST-PREMONITION_POWER.smartDescription": "如果你在一回合内[gold]消耗[/gold]了[blue]{Exhaust}[/blue]张牌，在你的下个回合开始时，额外抽[blue]{Amount}[/blue]张牌。",
+    "HEXAGHOST-SOULFIRE_POWER.title": "燃魂",
+    "HEXAGHOST-SOULFIRE_POWER.description": "每当你给予[gold]灼魂[/gold]时，获得[gold]格挡[/gold]。",
+    "HEXAGHOST-SOULFIRE_POWER.smartDescription": "每当你给予[gold]灼魂[/gold]时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。"
 }

@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using Snecko.SneckoCode.Core;
 using Snecko.SneckoCode.CustomEnums;
 using Snecko.SneckoCode.Events;
@@ -29,10 +29,10 @@ public class RingOfTheSnek : SneckoRelicModel, IAfterOverflowEffect
         WithTip(SneckoKeywords.Overflow);
     }
 
-    public override bool ShowCounter => CombatManager.Instance.IsInProgress;
+    public override bool ShowCounter => true;
 
     public override int DisplayAmount =>
-        !IsActivating ? OverflowEffectsPlayed % DynamicVars.Cards.IntValue : DynamicVars.Cards.IntValue;
+        !IsActivating ? OverflowEffectsPlayed : DynamicVars.Cards.IntValue;
 
 
     private bool IsActivating
@@ -46,13 +46,16 @@ public class RingOfTheSnek : SneckoRelicModel, IAfterOverflowEffect
         }
     }
 
-    private int OverflowEffectsPlayed
+    // Carries over between combats and through save/load, like the relic counter in Downfall 1.
+    [SavedProperty]
+    // ReSharper disable once MemberCanBePrivate.Global
+    public int OverflowEffectsPlayed
     {
         get;
-        set
+        private set
         {
             AssertMutable();
-            field = value;
+            field = value % DynamicVars.Cards.IntValue;
             UpdateDisplay();
         }
     }
@@ -62,8 +65,7 @@ public class RingOfTheSnek : SneckoRelicModel, IAfterOverflowEffect
         if (cardPlay.Card.Owner != Owner || !CombatManager.Instance.IsInProgress ||
             Owner.Creature.CombatState == null) return;
         OverflowEffectsPlayed++;
-        var intValue = DynamicVars.Cards.IntValue;
-        if (OverflowEffectsPlayed % intValue != 0) return;
+        if (OverflowEffectsPlayed != 0) return;
         _ = TaskHelper.RunSafely(DoActivateVisuals());
         var target = Owner.RunState.Rng.CombatTargets.NextItem(Owner.Creature.CombatState.HittableEnemies);
         if (target == null) return;
@@ -80,18 +82,10 @@ public class RingOfTheSnek : SneckoRelicModel, IAfterOverflowEffect
         }
         else
         {
-            var intValue = DynamicVars.Cards.IntValue;
-            Status = OverflowEffectsPlayed % intValue == intValue - 1 ? RelicStatus.Active : RelicStatus.Normal;
+            Status = OverflowEffectsPlayed == DynamicVars.Cards.IntValue - 1 ? RelicStatus.Active : RelicStatus.Normal;
         }
 
         InvokeDisplayAmountChanged();
-    }
-
-    public override Task BeforeCombatStart()
-    {
-        OverflowEffectsPlayed = 0;
-        Status = RelicStatus.Normal;
-        return Task.CompletedTask;
     }
 
     private async Task DoActivateVisuals()
@@ -100,12 +94,5 @@ public class RingOfTheSnek : SneckoRelicModel, IAfterOverflowEffect
         Flash();
         await Cmd.Wait(1f);
         IsActivating = false;
-    }
-
-    public override Task AfterCombatEnd(CombatRoom _)
-    {
-        Status = RelicStatus.Normal;
-        IsActivating = false;
-        return Task.CompletedTask;
     }
 }

@@ -10,12 +10,18 @@ public partial class NDownfallComboFtue : NFtue
 {
     private int _remaining;
 
-    public void PrepareSimultaneous(int count) => _remaining = count;
+    public void PrepareSimultaneous(int count)
+    {
+        _remaining = count;
+    }
 
     public void ReleaseSimultaneous()
     {
         if (--_remaining <= 0) CloseFtue();
     }
 
-    public void Finish() => CloseFtue();
+    public void Finish()
+    {
+        CloseFtue();
+    }
 }

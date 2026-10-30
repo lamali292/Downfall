@@ -8,5 +8,6 @@
     "DOWNFALL-TO_PLAY": "选择[blue]{Amount}[/blue]张牌来打出。",
     "DOWNFALL-ADD_ETHEREAL": "选择[blue]{Amount}[/blue]张牌来添加[gold]虚无[/gold]。",
     "DOWNFALL-TO_RETAIN": "选择[blue]{Amount}[/blue]张牌来[gold]保留[/gold]。",
-    "DOWNFALL-TO_OTHER_HANDS": "选择[blue]{Amount}[/blue]张牌来加入另一位玩家的[gold]手牌[/gold]。"
+    "DOWNFALL-TO_OTHER_HANDS": "选择[blue]{Amount}[/blue]张牌来加入另一位玩家的[gold]手牌[/gold]。",
+    "DOWNFALL-TO_COPY": "选择{Amount:}张牌来[gold]复制[/gold]。"
 }

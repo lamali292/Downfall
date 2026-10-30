@@ -2,15 +2,12 @@
 using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Localization;
-using Automaton.AutomatonCode.Piles;
-using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -55,5 +52,4 @@ public static class AutomatonMainFile
     {
         CardPlayLocationCompat.RegisterInitialLocationFilter(EncodeOutcome.HideFromDiscard);
     }
-    
 }

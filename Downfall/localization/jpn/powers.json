@@ -1,7 +1,5 @@
 {
     "DOWNFALL-SOUL_BURN_POWER.title": "ソウルバーン",
     "DOWNFALL-SOUL_BURN_POWER.description": "[blue]3[/blue]ターン後の敵のターン開始時、HPを失う。",
-    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "[blue]{Turns}[/blue]ターン後の敵のターン開始時、HPを[blue]{Amount}[/blue]失う。",
-    "DOWNFALL-METALLICIZE_POWER.title": "金属化",
-    "DOWNFALL-METALLICIZE_POWER.description": "ターン終了時、[gold]ブロック[/gold]を得る。"
+    "DOWNFALL-SOUL_BURN_POWER.smartDescription": "[blue]{Turns}[/blue]ターン後の敵のターン開始時、HPを[blue]{Amount}[/blue]失う。"
 }

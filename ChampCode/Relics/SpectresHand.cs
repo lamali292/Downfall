@@ -19,6 +19,8 @@ public class SpectresHand : ChampRelicModel, IOnChampStanceChange
     public SpectresHand() : base(RelicRarity.Rare)
     {
         WithTip(DownfallKeyword.Echo);
+        WithTip<StrikeChamp>();
+        WithTip<DefendChamp>();
     }
 
     public async Task OnChampStanceChange(PlayerChoiceContext ctx, Player player, ChampStanceModel oldStance,

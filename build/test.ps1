@@ -29,7 +29,7 @@ Set-Location $ProjectRoot
 $props = Get-LocalProps
 
 # Every project that ships in the test setup, in build order.
-$projects = "Downfall", "SlimeBoss", "Automaton", "Hermit", "Awakened", "Champ", "Guardian", "Snecko", "Hexaghost", "Collector"
+$projects = "Downfall", "SlimeBoss", "Automaton", "Hermit", "Awakened", "Champ", "Guardian", "Snecko", "Hexaghost"
 
 # The branch the mod is compiled against. Other branches get a copy of these build outputs.
 $BuildBranch = "beta"

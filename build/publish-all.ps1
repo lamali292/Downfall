@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Publishes Downfall + every internal submod + Collector in one go, importing Godot
+    Publishes Downfall + every internal submod in one go, importing Godot
     resources exactly once up front instead of once per project (each project's own
     GodotImport target would otherwise redundantly re-import the whole shared Godot project
     on every `dotnet publish`).
@@ -18,7 +18,7 @@
 #>
 param(
     [string]$Configuration = "Release",
-    [string[]]$Projects = @("Downfall", "Automaton", "Awakened", "Champ", "Guardian", "Hermit", "Hexaghost", "SlimeBoss", "Snecko", "Collector"),
+    [string[]]$Projects = @("Downfall", "Automaton", "Awakened", "Champ", "Guardian", "Hermit", "Hexaghost", "SlimeBoss", "Snecko"),
     [switch]$SkipImport
 )
 $ErrorActionPreference = "Stop"

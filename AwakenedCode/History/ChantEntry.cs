@@ -14,6 +14,7 @@ public class ChantEntry(
     : CombatHistoryEntry(cardPlay.Card.Owner.Creature, roundNumber, currentSide, history, players)
 {
     public CardPlay CardPlay { get; set; } = cardPlay;
+
     public override string Description =>
         $"{Actor.Player?.Character.Id.Entry} started chanting {CardPlay.Card.Id.Entry}";
 }

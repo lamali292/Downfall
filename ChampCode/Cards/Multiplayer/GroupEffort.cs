@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Interfaces;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
@@ -16,6 +17,8 @@ public class GroupEffort : ChampCardModel
     }
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
 
     public override FinisherDescriptor Finisher => new(AffectsAllPlayers: true);
 

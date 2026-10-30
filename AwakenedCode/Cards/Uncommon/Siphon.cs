@@ -30,7 +30,8 @@ public class Siphon : AwakenedCardModel
         {
             if (cardPlay.Target == null) return;
             await CommonActions.ApplySelf<SiphonPower>(ctx, this);
-            await CommonActions.Apply<SiphonPower>(ctx, cardPlay.Target, this, -DynamicVars.Power<SiphonPower>().BaseValue);
+            await CommonActions.Apply<SiphonPower>(ctx, cardPlay.Target, this,
+                -DynamicVars.Power<SiphonPower>().BaseValue);
         });
     }
 }
