@@ -193,7 +193,7 @@
   "COLLECTOR-CEREMONIAL_BEAST_CARD.description": "Gain [gold]Strength[/gold] equal to your {energyPrefix:energyIcons(1)}{IfUpgraded:show: and {:reserveIcons(1)}|}.\nThe next card you play ends your turn.{InCombat:cond:\n(Gain {StrengthCalc:diff()} [gold]Strength[/gold])|}",
   "COLLECTOR-KIN_PRIEST_CARD.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nRepeat for each enemy with [gold]Weak[/gold].{IsTargeting:cond:\n(Hits {Hits:preview()} {Hits:pplural:time|times})|}",
   "COLLECTOR-ENTOMANCER_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
-  "COLLECTOR-THE_INSATIABLE_CARD.description": "Whenever a card is [gold]Pyred[/gold] that costs {energyPrefix:energyIcons(2)} or more, [gold]Kindle[/gold] {TheInsatiableCardPower:diff()}.",
+  "COLLECTOR-THE_INSATIABLE_CARD.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {CalculationExtra:diff()} additional damage for each Status and Curse card in your [gold]Exhaust Pile[/gold].",
   "COLLECTOR-KNOWLEDGE_DEMON_CARD.description": "Choose 1 of {Cards:diff()} [gold]Upgraded[/gold] cards of ANY Color into your [gold]Hand[/gold].\n{IfUpgraded:show:It's free to play this turn.|Reduce its cost by 1 this turn.}",
   "COLLECTOR-KAISER_CRAB_CARD.description": "Deal {Damage:diff()} damage.\nPlay {IfUpgraded:show:an|a random} Attack in your [gold]Hand[/gold].",
   "COLLECTOR-MECHA_KNIGHT_CARD.description": "Gain {OrbSlots:diff()} Orb slots.\nWhenever a card is [gold]Pyred[/gold], [gold]Channel[/gold] {MechaKnightCardPower:diff()} random {MechaKnightCardPower:plural:Orb|Orbs}.",
