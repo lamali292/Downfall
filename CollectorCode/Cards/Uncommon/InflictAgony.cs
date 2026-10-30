@@ -15,11 +15,10 @@ public class InflictAgony : CollectorCardModel
 {
     public InflictAgony() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithTorchheadDamage(15, 1);
-        WithVar("Power", 1, 1);
-        WithTip<WeakPower>();
-        WithTip<VulnerablePower>();
-        WithTip<MiasmaPower>();
+        WithTorchheadDamage(11, 1);
+        WithPower<WeakPower>(1, 1);
+        WithPower<VulnerablePower>(1, 1);
+        WithPower<MiasmaPower>(1, 1);
         WithTip(CollectorKeyword.Torchhead);
     }
 
@@ -28,19 +27,9 @@ public class InflictAgony : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
-        var amount = DynamicVars["Power"].IntValue;
-        if (!cardPlay.Target!.HasPower<WeakPower>())
-        {
-            await CommonActions.Apply<WeakPower>(ctx, cardPlay.Target, this, amount);
-        }
-        if (!cardPlay.Target!.HasPower<VulnerablePower>())
-        {
-            await CommonActions.Apply<VulnerablePower>(ctx, cardPlay.Target, this, amount);
-        }
-        if (!cardPlay.Target!.HasPower<MiasmaPower>())
-        {
-            await CommonActions.Apply<MiasmaPower>(ctx, cardPlay.Target, this, amount);
-        }
+        await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
+        await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
     }
     protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
 }

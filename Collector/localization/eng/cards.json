@@ -69,7 +69,7 @@
   "COLLECTOR-ILL_TAKE_THAT.title": "I'll Take That",
   "COLLECTOR-INEVITABLE_DEMISE.description": "Deal {Damage:diff()} damage.\nThis enemy's [gold]Miasma[/gold] increases by {InevitableDemisePower:diff()} each turn.",
   "COLLECTOR-INEVITABLE_DEMISE.title": "Inevitable Demise",
-  "COLLECTOR-INFLICT_AGONY.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nApply {Power:diff()} [gold]Weak[/gold], [gold]Vulnerable[/gold] and [gold]Miasma[/gold] if the enemy doesn't already have them.",
+  "COLLECTOR-INFLICT_AGONY.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nApply {WeakPower:diff()} [gold]Weak[/gold], {VulnerablePower:diff()} [gold]Vulnerable[/gold] and {MiasmaPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-INFLICT_AGONY.title": "Inflict Agony",
   "COLLECTOR-IRONBARK_KINDLING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nGain {Block:diff()} [gold]Block[/gold].",
   "COLLECTOR-IRONBARK_KINDLING.title": "Ironbark Kindling",
