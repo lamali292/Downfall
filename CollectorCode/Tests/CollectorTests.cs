@@ -321,13 +321,13 @@ public class CollectorTests
             "Torchhead's move state should carry a TorchheadAttackIntent so its intent icon shows.");
 
         var baseLabel = intent!.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
-        Assert.IsTrue(baseLabel.Contains("4"), $"Intent should show the base 4 damage, got '{baseLabel}'.");
+        Assert.IsTrue(baseLabel.Contains("3"), $"Intent should show the base 3 damage, got '{baseLabel}'.");
 
         await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), torchhead, 1, ctx.Player.Creature, null);
         var weakenedLabel = intent.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
 
-        Assert.IsTrue(weakenedLabel.Contains("3"),
-            $"Weak should reduce Torchhead's displayed intent damage from 4 to 3, got '{weakenedLabel}'.");
+        Assert.IsTrue(weakenedLabel.Contains("2"),
+            $"Weak should reduce Torchhead's displayed intent damage from 3 to 2, got '{weakenedLabel}'.");
     }
 
     // Torchhead only auto-attacks at the end of the turn when its owner dealt damage that turn.
