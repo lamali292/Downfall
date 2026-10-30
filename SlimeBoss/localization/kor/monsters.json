@@ -1,17 +1,7 @@
 {
-    "SLIMEBOSS-BRONZE_SLIME.name": "청동 슬라임",
     "SLIMEBOSS-CULTIST_SLIME.name": "이교도 슬라임",
     "SLIMEBOSS-DARKLING_SLIME.name": "다크링 슬라임",
-    "SLIMEBOSS-GREED_SLIME.name": "탐욕덩어리 슬라임",
-    "SLIMEBOSS-SCRAP_SLIME.name": "고철 슬라임",
-    "SLIMEBOSS-TORCHHEAD_SLIME.name": "횃불 머리 슬라임",
     "SLIMEBOSS-GUERILLA_SLIME.name": "특공대 슬라임",
-    "SLIMEBOSS-LEECHING_SLIME.name": "거머리 슬라임",
     "SLIMEBOSS-BRUISER_SLIME.name": "싸움꾼 슬라임",
-    "SLIMEBOSS-MIRE_SLIME.name": "진흙탕 슬라임",
-    "SLIMEBOSS-GHOSTFLAME_SLIME.name": "유령불 슬라임",
-    "SLIMEBOSS-INSULTING_SLIME.name": "모욕하는 슬라임",
-    "SLIMEBOSS-ANCIENT_SLIME.name": "고대 슬라임",
-    "SLIMEBOSS-SPIKY_SLIME.name": "뾰족 슬라임",
-    "SLIMEBOSS-TIME_SLIME.name": "시간 슬라임"
+    "SLIMEBOSS-LEECHING_SLIME.name": "거머리 슬라임"
 }
