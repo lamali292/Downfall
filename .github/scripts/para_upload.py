@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 import paratranz_client
+import para_branch
 from pydantic import ValidationError
 
 CONFIG_PATH = Path(".github/configs/paratranz.json")
@@ -59,7 +60,7 @@ async def main():
         d for d in Path(".").iterdir()
         if d.is_dir()
         and d.name.lower() not in EXCLUDED_REPOS
-        and (d / "localization" / "eng").is_dir()
+        and para_branch.is_wanted(d.name)
     )
     if not repos:
         print("No mod directories with localization/eng/ found.")
@@ -90,7 +91,7 @@ async def main():
             for repo in repos:
                 eng_dir = repo / "localization" / "eng"
                 for json_file in sorted(eng_dir.glob("*.json")):
-                    file_path = f"{repo.name}/localization/{lang_code}/{json_file.name}"
+                    file_path = f"{para_branch.remote_mod(repo.name)}/localization/{lang_code}/{json_file.name}"
                     jobs.append((file_path, json_file))
 
             total = len(jobs)
