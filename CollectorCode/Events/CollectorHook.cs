@@ -20,6 +20,15 @@ public static class CollectorHook
         return HookUtils.Dispatch<IAfterCardPyred>(cs, ctx, m => m.AfterCardPyred(ctx, card, pyred));
     }
 
+    public static int ModifyTorchheadRekindle(Player player, int baseAmount)
+    {
+        var combatState = player.Creature.CombatState;
+        return combatState == null
+            ? baseAmount
+            : HookUtils.Aggregate<IModifyTorchheadRekindle, int>(combatState, baseAmount,
+                (m, current) => m.ModifyTorchheadRekindle(player, current));
+    }
+
     public static bool ShouldExhaustPyred(CardModel card, CardModel pyred)
     {
         return HookUtils.All<IShouldExhaustPyred>(card.CombatState!, e => e.ShouldExhaustPyred(card, pyred));

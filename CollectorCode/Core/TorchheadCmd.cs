@@ -61,7 +61,7 @@ public static class TorchheadCmd
         var player = source.Player;
         if (!player.IsTorchheadAlive)
         {
-            await Kindle(ctx, player, KindleHpWhenMissing, source);
+            await Kindle(ctx, player, CollectorHook.ModifyTorchheadRekindle(player, KindleHpWhenMissing), source);
             return;
         }
 
