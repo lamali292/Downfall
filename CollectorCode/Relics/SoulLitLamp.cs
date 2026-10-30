@@ -1,9 +1,6 @@
-using BaseLib.Extensions;
 using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
-using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Events;
-using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -13,25 +10,17 @@ using MegaCrit.Sts2.Core.Models;
 namespace Collector.CollectorCode.Relics;
 
 [Pool(typeof(CollectorRelicPool))]
-public class SoulLitLamp : CollectorRelicModel, IAfterCardPyred
+public class SoulLitLamp : CollectorRelicModel
 {
     public SoulLitLamp() : base(RelicRarity.Uncommon)
     {
-        WithPower<SoulBurnPower>(3);
-        WithTip(CollectorKeyword.Pyre);
+        WithCardTip<Ember>();
     }
 
-    public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
+    public override async Task AfterCardDrawn(PlayerChoiceContext ctx, CardModel card, bool fromHandDraw)
     {
-        if (pyred.Type == CardType.Status)
-        {
-            await PowerCmd.Apply<SoulBurnPower>(ctx,
-                card.CombatState!.HittableEnemies,
-                DynamicVars.Power<SoulBurnPower>().BaseValue,
-                Owner.Creature,
-                null,
-                false);
-            Flash();
-        }
+        if (card.Owner != Owner || card.Type is not (CardType.Status or CardType.Curse) || card is Ember) return;
+        Flash();
+        await CardCmd.TransformTo<Ember>(card);
     }
 }
