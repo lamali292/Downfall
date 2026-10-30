@@ -1,14 +1,9 @@
 {
-    "SLIMEBOSS-GOOP_POWER.title": "Babeado",
-    "SLIMEBOSS-DOUSE_IN_SLIME_POWER.title": "Empapado en Baba",
     "SLIMEBOSS-OOZE_BATH_POWER.title": "Baño de Baba",
-    "SLIMEBOSS-SLIMY_TONGUE_POWER.title": "Lengua Babosa",
     "SLIMEBOSS-POTENCY_POWER.title": "Potencia",
     "SLIMEBOSS-GOOP_ARMOR_POWER.title": "Armadura de Baba",
     "SLIMEBOSS-RECYCLING_POWER.title": "Reciclaje",
-    "SLIMEBOSS-GLUTTONY_POWER.title": "Glotonería",
-    "SLIMEBOSS-OVEREXERT_POWER.title": "Exceso de esfuerzo",
     "SLIMEBOSS-PROTECT_THE_BOSS_POWER.title": "Proteger al Jefe",
-    "SLIMEBOSS-DUPLICATED_FORM_POWER.title": "Forma Duplicada",
-    "SLIMEBOSS-MINION_MASTER_POWER.title": "Maestro de Esbirros"
+    "SLIMEBOSS-MINION_MASTER_POWER.title": "Maestro de Esbirros",
+    "SLIMEBOSS-GLUTTONY_POWER.title": "Glotonería"
 }
