@@ -27,7 +27,7 @@
   "COLLECTOR-COLLECTIBLE.title": "Collectible",
   "COLLECTOR-CURSED_WAIL.description": "Enemies with 3 or more unique debuffs lose {StrengthPower:diff()} [gold]Strength[/gold]. \nALL enemies lose {CursedWailPower:diff()} [gold]Strength[/gold] this turn.",
   "COLLECTOR-CURSED_WAIL.title": "Cursed Wail",
-  "COLLECTOR-DARKSTORM.description": "Add a [gold]Blightning{IfUpgraded:plus()}[/gold] into your [gold]Hand[/gold], [gold]Draw Pile[/gold] and [gold]Discard Pile[/gold].",
+  "COLLECTOR-DARKSTORM.description": "Add a [gold]Blightning Strike{IfUpgraded:plus()}[/gold] into your [gold]Hand[/gold], [gold]Draw Pile[/gold] and [gold]Discard Pile[/gold].",
   "COLLECTOR-DARKSTORM.title": "Darkstorm",
   "COLLECTOR-DARKWILLOW_KINDLING.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nGain {ReserveNextTurnPower:reserveIcons()} next turn.",
   "COLLECTOR-DARKWILLOW_KINDLING.title": "Darkwillow Kindling",
