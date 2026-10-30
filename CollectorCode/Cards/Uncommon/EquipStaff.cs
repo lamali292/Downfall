@@ -13,7 +13,7 @@ public class EquipStaff : CollectorCardModel
 {
     public EquipStaff() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKindle(6, 2);
+        WithKindle(5, 2);
         WithPower<EquipStaffPower>(2, 1, false);
         WithTip<MiasmaPower>();
     }
