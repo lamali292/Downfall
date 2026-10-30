@@ -5,6 +5,7 @@ using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Events;
 using Downfall.DownfallCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -17,13 +18,12 @@ public class SoulLitLamp : CollectorRelicModel, IAfterCardPyred
     public SoulLitLamp() : base(RelicRarity.Uncommon)
     {
         WithPower<SoulBurnPower>(3);
-        WithEnergy(2);
         WithTip(CollectorKeyword.Pyre);
     }
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)
     {
-        if (pyred.EnergyCost.GetAmountToSpend() >= DynamicVars.Energy.BaseValue)
+        if (pyred.Type == CardType.Status)
         {
             await PowerCmd.Apply<SoulBurnPower>(ctx,
                 card.CombatState!.HittableEnemies,

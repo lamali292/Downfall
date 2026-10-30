@@ -18,7 +18,7 @@
   "COLLECTOR-PRISMATIC_TORCH.description": "At the start of combat [gold]Kindle[/gold] [blue]{Kindle:diff()}[/blue].\nAfter each [gold]Elite[/gold] and [gold]Boss[/gold], an [gold]Upgraded[/gold] [gold]Collectible[/gold] card appears in your card reward.",
   "COLLECTOR-PRISMATIC_TORCH.flavor": "The ever-changing flames reflect fortune's favor.",
   "COLLECTOR-SOUL_LIT_LAMP.title": "Soul-lit Lamp",
-  "COLLECTOR-SOUL_LIT_LAMP.description": "Whenever you [gold]Pyre[/gold] a card that costs {Energy:energyIcons()} or more, apply {SoulBurnPower:diff()} [gold]Soulburn[/gold] to ALL enemies.",
+  "COLLECTOR-SOUL_LIT_LAMP.description": "Whenever you [gold]Pyre[/gold] a Status card, apply {SoulBurnPower:diff()} [gold]Soulburn[/gold] to ALL enemies.",
   "COLLECTOR-SOUL_LIT_LAMP.flavor": "A ghoulish decoration. The crackles of fire are replaced by buzzing wails.",
   "COLLECTOR-THE_CONTRACT.title": "The Contract",
   "COLLECTOR-THE_CONTRACT.description": "Upon pickup, choose [blue]1[/blue] of [blue]{Cards:diff()}[/blue] [gold]Upgraded[/gold] [gold]Collectible Cards[/gold] to add to your [gold]Deck[/gold].",
