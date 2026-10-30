@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
@@ -24,6 +25,7 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
     public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
         WithKeyword(CardKeyword.Unplayable);
+        WithKeyword(CollectorKeyword.Flicker);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
         WithVar(new DamageVar(2, DamageProps.cardUnpowered).WithUpgrade(1));
