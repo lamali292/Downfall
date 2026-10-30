@@ -204,7 +204,7 @@
   "COLLECTOR-BIDING_BLAST.description": "Deal {Damage:diff()} damage.\nIf {:reserveIcons(1)} was spent to play this card, add [gold]Retain[/gold] to a card in your [gold]Hand[/gold].",
   "COLLECTOR-QUEEN_CARD.description": "At the start of your turn, gain {Energy:energyIcons()}.\nThe first {ChainsOfBindingPower:diff()} cards drawn each turn are Afflicted with [gold]Bound[/gold].",
   "COLLECTOR-SOUL_NEXUS_CARD.description": "Deal {Damage:diff()} damage.\n[gold]Vulnerable[/gold] and [gold]Weak[/gold] are twice as effective against the enemy for the next {DebilitatePower:diff()} turns. ",
-  "COLLECTOR-TEST_SUBJECT_CARD.description": "When you play a Skill, gain {TestSubjectCardPower:diff()} [gold]Strength[/gold].",
+  "COLLECTOR-TEST_SUBJECT_CARD.description": "Whenever you play a Skill, gain {TestSubjectCardPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-HEAT_WAVE.title": "Heat Wave",
   "COLLECTOR-HEAT_WAVE.description": "Deal {Damage:diff()} damage to ALL enemies.\nAdd an [gold]Ember[/gold] into your [gold]Hand.[/gold]",
   "COLLECTOR-COLLECTION_BOUNTY.title": "Collection Bounty",
