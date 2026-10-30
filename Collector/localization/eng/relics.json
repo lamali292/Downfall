@@ -24,7 +24,7 @@
   "COLLECTOR-THE_CONTRACT.description": "Upon pickup, choose [blue]1[/blue] of [blue]{Cards:diff()}[/blue] [gold]Upgraded[/gold] [gold]Collectible Cards[/gold] to add to your [gold]Deck[/gold].",
   "COLLECTOR-THE_CONTRACT.flavor": "Services from Carolina I.\nSign in blood.",
   "COLLECTOR-THIMBLE_HELM.title": "Thimble Helm",
-  "COLLECTOR-THIMBLE_HELM.description": "While [gold]Torchhead[/gold] is alive, gain [blue]{Block:diff()}[/blue] additional [gold]Block[/gold] from cards.",
+  "COLLECTOR-THIMBLE_HELM.description": "[gold]Torchhead[/gold] deals [blue]{TorchheadBonus:diff()}[/blue] more damage.",
   "COLLECTOR-THIMBLE_HELM.flavor": "Worn by the Spire's miniest heroes.",
   "SEA_GLASS.COLLECTOR-COLLECTOR.title": "Greed Glass"
 }
