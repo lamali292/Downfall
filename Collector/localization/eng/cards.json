@@ -83,7 +83,7 @@
   "COLLECTOR-LANTERN_FLARE.title": "Lantern Flare",
   "COLLECTOR-LUCKY_WICK.title": "Lucky Wick",
   "COLLECTOR-LUCKY_WICK.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage.",
-  "COLLECTOR-MINI_CURSE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold]{IfUpgraded:show: to ALL enemies|}.\nAdd a [gold]Soot[/gold] into your [gold]Hand[/gold].",
+  "COLLECTOR-MINI_CURSE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold]{IfUpgraded:show: to ALL enemies|}.\n[gold]Transform[/gold] a card in your [gold]Hand[/gold] into {IfUpgraded:show:an [gold]Ember[/gold]|a [gold]Burn[/gold]}.",
   "COLLECTOR-MINI_CURSE.title": "Mini-Curse",
   "COLLECTOR-MISDIRECT.description": "Next turn, gain {ReserveNextTurnPower:reserveIcons()}.",
   "COLLECTOR-MISDIRECT.title": "Misdirect",

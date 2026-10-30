@@ -1,8 +1,11 @@
 using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -15,10 +18,9 @@ public class MiniCurse : CollectorCardModel
 {
     public MiniCurse() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKeyword(CollectorKeyword.Pyre);
         WithPower<WeakPower>(1);
         WithPower<VulnerablePower>(1);
-        WithCardTip<Soot>();
+        WithUpgradeChangingCardTip<Burn, Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -27,9 +29,14 @@ public class MiniCurse : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        await DownfallCardCmd.GiveCard<Soot>(Owner, PileType.Hand);
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
+        var selected = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e != this, this)).FirstOrDefault();
+        if (selected == null) return;
+        if (IsUpgraded)
+            await CardCmd.TransformTo<Ember>(selected);
+        else
+            await CardCmd.TransformTo<Burn>(selected);
     }
 }
