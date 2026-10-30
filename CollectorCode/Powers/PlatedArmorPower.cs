@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -10,6 +11,11 @@ namespace Collector.CollectorCode.Powers;
 
 public class PlatedArmorPower : CollectorPowerModel
 {
+    public PlatedArmorPower()
+    {
+        WithTip(StaticHoverTip.Block);
+    }
+
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target,
         DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
