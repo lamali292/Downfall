@@ -15,7 +15,7 @@ public class Bonfire : CollectorCardModel
 {
     public Bonfire() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(13, 4);
+        WithBlock(13, 3);
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
         WithUpgradeChangingCardTip<Burn, Soot>();
