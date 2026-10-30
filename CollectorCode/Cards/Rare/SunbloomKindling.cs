@@ -1,14 +1,16 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Patches;
+using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Enchantments;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Collector.CollectorCode.Cards.Rare;
 
@@ -21,26 +23,8 @@ public class SunbloomKindling : CollectorCardModel
         WithKeyword(CollectorKeyword.Flicker);
         WithKeyword(CardKeyword.Retain);
         WithKindle(3, 1);
-        WithCards(2);
-        WithCardTip<Ember>(WithPreviewModifiers);
-        WithEnchantment<Spiral>();
-    }
-
-    private static void WithPreviewModifiers(Ember ember, CardModel cardModel)
-    {
-        var val = 0;
-        if (cardModel.IsUpgraded) val = 1;
-        WithEnchantments(ember, val);
-    }
-
-    private static void WithEnchantments(Ember ember, int ups)
-    {
-        if (ups > 0)
-        {
-            CardCmd.Upgrade(ember);
-        }
-
-        DownfallCardCmd.Enchant<Spiral>(ember, 1);
+        WithPower<ReserveNextTurnPower>(2, false);
+        WithReserveTip();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
@@ -53,9 +37,7 @@ public class SunbloomKindling : CollectorCardModel
         for (var i = 0; i < playCount; ++i)
         {
             await TorchheadCmd.Kindle(ctx, this);
-            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue,
-                CardPilePosition.Bottom, IsUpgraded,
-                action: ember => DownfallCardCmd.Enchant<Spiral>(ember, 1));
+            await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         }
     }
 }
