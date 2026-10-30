@@ -13,15 +13,16 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class Wildfire : CollectorCardModel
 {
-    public Wildfire() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public Wildfire() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(7, 3);
+        WithDamage(4, 2);
         WithCalculatedVar("Hits", 1, RepeatCalc);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
     
-    private static decimal RepeatCalc(CardModel card, Creature? creature) => creature?.Powers.Count(ShouldCountPower) >= 2 ? 1 : 0;
+    private static decimal RepeatCalc(CardModel card, Creature? creature) =>
+        creature?.Powers.Where(ShouldCountPower).Select(power => power.Id).Distinct().Count() ?? 0;
     
     private static bool ShouldCountPower(PowerModel power)
     {
