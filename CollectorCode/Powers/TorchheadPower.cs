@@ -32,7 +32,14 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
     public void SetLastHitTarget(Creature target) => _target = target;
 
     /// <summary>At the end of the turn Torchhead only attacks if its owner dealt damage that turn and has a living target.</summary>
-    public bool ShouldAutoAttack => _dealtDamageThisTurn && LastHitTarget != null;
+    public bool ShouldAutoAttack => _dealtDamageThisTurn && AttackTarget != null;
+
+    /// <summary>An enemy marked as a priority target (lowest HP first) if there is one, otherwise the enemy last hit.</summary>
+    public Creature? AttackTarget =>
+        Owner.CombatState?.HittableEnemies
+            .Where(enemy => enemy.Powers.Any(power => power is IPrioritizesTorchheadTarget))
+            .OrderBy(enemy => enemy.CurrentHp)
+            .FirstOrDefault() ?? LastHitTarget;
 
     public override async Task AfterDamageGiven(PlayerChoiceContext ctx, Creature? dealer, DamageResult result,
         ValueProp props, Creature target, CardModel? cardSource)

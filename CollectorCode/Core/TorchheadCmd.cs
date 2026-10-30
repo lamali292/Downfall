@@ -40,7 +40,7 @@ public static class TorchheadCmd
         // Torchhead keeps attacking the enemy its owner hit last; with none, it picks the lowest-HP enemy and sticks to it.
         var hittable = player.Creature.CombatState.HittableEnemies;
         var power = player.Torchhead?.GetPower<TorchheadPower>();
-        var target = power?.LastHitTarget is { } last && hittable.Contains(last)
+        var target = power?.AttackTarget is { } last && hittable.Contains(last)
             ? last
             : hittable.OrderBy(e => e.CurrentHp).FirstOrDefault();
         if (target == null) return null;

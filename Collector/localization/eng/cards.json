@@ -135,7 +135,7 @@
   "COLLECTOR-VOID_ARMOR.title": "Void Armor",
   "COLLECTOR-WHIRLING_FLAME.description": "Deal {Damage:diff()} damage to ALL enemies.\nPut a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold].",
   "COLLECTOR-WHIRLING_FLAME.title": "Whirling Flame",
-  "COLLECTOR-WHOMP.description": "Deal {Damage:diff()} damage.\n[gold]Kindle[/gold] {Kindle:diff()}.\nAdd {IfUpgraded:show:an [gold]Ember+[/gold]|a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
+  "COLLECTOR-WHOMP.description": "Deal {Damage:diff()} damage.\nThe enemy takes double damage from [gold]Torchhead[/gold], and [gold]Torchhead[/gold] targets it first.",
   "COLLECTOR-WHOMP.title": "Whomp",
   "COLLECTOR-WILDFIRE.description": "Deal {Damage:diff()} damage.\nHits again for each unique debuff the enemy has.{IsTargeting:cond:\n(Hits {Hits:preview()} {Hits:pplural:time|times})|}",
   "COLLECTOR-WILDFIRE.title": "Wildfire",
