@@ -287,6 +287,6 @@
   "COLLECTOR-NOSTALGIC_SOUND.description": "Deal {Damage:diff()} damage to ALL enemies.\nCosts 1 less {energyPrefix:energyIcons(1)} for each {:reserveIcons(1)} you have.",
   "COLLECTOR-ROTSHROOM.title": "Rotshroom",
   "COLLECTOR-ROTSHROOM.description": "Gain {Block:diff()} [gold]Block[/gold].\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold].",
-  "COLLECTOR-SLAG_TEAM.title": "Slag Team",
-  "COLLECTOR-SLAG_TEAM.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}.\nWhenever an [gold]Ember[/gold] is [gold]Pyred[/gold], return this to your [gold]Hand[/gold]."
+  "COLLECTOR-SLAG_TEAM.title": "Particle Pummel",
+  "COLLECTOR-SLAG_TEAM.description": "Deal {Damage:diff()} damage.\nWhen you [gold]Pyre[/gold] an [gold]Ember[/gold], put this into your [gold]Hand[/gold]."
 }
