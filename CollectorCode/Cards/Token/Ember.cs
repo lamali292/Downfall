@@ -26,6 +26,7 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
     {
         WithKeyword(CardKeyword.Unplayable);
         WithKeyword(CollectorKeyword.Flicker);
+        WithKeyword(CardKeyword.Retain);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
         WithVar(new DamageVar(2, DamageProps.cardUnpowered).WithUpgrade(1));
@@ -49,7 +50,6 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
         var instance = NCombatRoom.Instance;
         instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
         SfxCmd.Play("event:/sfx/characters/attack_fire");
-        GiveSingleTurnRetain();
         await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
     }
 }
