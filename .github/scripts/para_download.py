@@ -10,16 +10,7 @@ with open(".github/configs/paratranz.json", encoding="utf-8") as f:
     config = json.load(f)
 
 
-# Comma-separated mod directories to restrict a run to (e.g. "Collector"). Empty = every mod
-# whose localization/eng folder exists in this checkout, so a branch that lacks a mod
-# (develop has no Collector) never gets a stray directory for it.
-ONLY_MODS = {m.strip().lower() for m in os.environ.get("PARA_ONLY_MODS", "").split(",") if m.strip()}
-
-
-def is_wanted_mod(mod_name):
-    if ONLY_MODS and mod_name.lower() not in ONLY_MODS:
-        return False
-    return (Path(mod_name) / "localization" / "eng").is_dir()
+import para_branch
 
 
 def get_api_key(lang_code):
@@ -86,11 +77,11 @@ def process_file(project_id, file_id, paratranz_path, token, index, total):
         print(f"  [{index}/{total}] Skip (unexpected path): {paratranz_path}")
         return 0
 
-    mod_name = parts[0]
+    mod_name = para_branch.local_mod(parts[0])
     lang_code = parts[2]
     filename = parts[3]
 
-    if not is_wanted_mod(mod_name):
+    if mod_name is None or not para_branch.is_wanted(mod_name):
         return 0
 
     translated_dict = {}

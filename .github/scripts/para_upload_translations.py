@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 import paratranz_client
+import para_branch
 
 CONFIG_PATH = Path(".github/configs/paratranz.json")
 with open(CONFIG_PATH, encoding="utf-8") as f:
@@ -64,7 +65,7 @@ async def main():
         d for d in Path(".").iterdir()
         if d.is_dir()
         and d.name.lower() not in EXCLUDED_REPOS
-        and (d / "localization" / "eng").is_dir()
+        and para_branch.is_wanted(d.name)
     )
 
     if not repos:
@@ -101,7 +102,7 @@ async def main():
                 continue
 
             for json_file in sorted(lang_dir.glob("*.json")):
-                file_path = f"{repo.name}/localization/{LANG_CODE}/{json_file.name}"
+                file_path = f"{para_branch.remote_mod(repo.name)}/localization/{LANG_CODE}/{json_file.name}"
                 tasks.append(upload_with_limit(file_path, json_file))
 
         if not tasks:
