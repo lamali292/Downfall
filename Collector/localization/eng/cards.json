@@ -95,7 +95,7 @@
   "COLLECTOR-OMEN.title": "Omen",
   "COLLECTOR-PYREWORK.description": "Whenever you [gold]Pyre[/gold] a Status card, [gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|}{IfUpgraded:show: twice|}.",
   "COLLECTOR-PYREWORK.title": "Pyrework",
-  "COLLECTOR-RECEIVE_TRIBUTE.description": "Choose 1 of {Cards:diff()} random [gold]Collectable[/gold] cards to add into your [gold]Hand[/gold].\n[gold]Enchant[/gold] it with [purple]Steady[/purple]{IfUpgraded:show: and [gold]Upgrade[/gold] it|}.",
+  "COLLECTOR-RECEIVE_TRIBUTE.description": "Choose 1 of {Cards:diff()} random [gold]Collectible[/gold] cards to add into your [gold]Hand[/gold].\n[gold]Enchant[/gold] it with [purple]Steady[/purple]{IfUpgraded:show: and [gold]Upgrade[/gold] it|}.",
   "COLLECTOR-RECEIVE_TRIBUTE.title": "Receive Tribute",
   "COLLECTOR-ROAST.description": "Deal {Damage:diff()} damage.\nAdd {IfUpgraded:show:a [gold]Soot[/gold]|a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
   "COLLECTOR-ROAST.title": "Roast",
