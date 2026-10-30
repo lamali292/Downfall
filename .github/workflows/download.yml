@@ -18,6 +18,10 @@ jobs:
           # Collector's own branch only gets Collector's strings.
           - ref: collector
             only_mods: Collector
+          # SlimeBoss beta: the branch's own paratranz-branch.json maps SlimeBoss to the
+          # SlimeBossBeta folder, so the live SlimeBoss translations are never touched.
+          - ref: Slimeboss
+            only_mods: ""
     environment: PARATRANZ_ENV
     runs-on: ubuntu-latest
     env:
