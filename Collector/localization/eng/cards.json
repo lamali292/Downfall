@@ -186,7 +186,7 @@
   "COLLECTOR-TERROR_EEL_CARD.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nApply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.",
   "COLLECTOR-SOUL_FYSH_CARD.description": "Enemy loses {HpLoss:diff()} HP.\nCosts 2 less {energyPrefix:energyIcons(2)} for each [gold]Unplayable[/gold] card in your [gold]Hand[/gold].",
   "COLLECTOR-PHANTASMAL_GARDENER_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nDeal {Damage:diff()} damage {Repeat:diff()} times. ",
-  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD.description": "At the end of your {LagavulinMatriarchCardPower:plural:turn|next {:diff()} turns}, gain {PlatingPower:diff()} [gold]Plating[/gold].",
+  "COLLECTOR-LAGAVULIN_MATRIARCH_CARD.description": "At the end of your {LagavulinMatriarchCardPower:plural:turn|next {:diff()} turns}, gain {PlatedArmorPower:diff()} [gold]Plated Armor[/gold].",
   "COLLECTOR-BYRDONIS_CARD.description": "Deal {Damage:diff()} damage {Repeat:diff()} times. \nGain {StrengthPower:diff()} [gold]Strength[/gold].",
   "COLLECTOR-BYGONE_EFFIGY_CARD.description": "At the end of {BygoneEffigyCardPower:inverseDiff()} turns, gain {Power:reserveIcons()} and {Power:diff()} [gold]Strength[/gold].",
   "COLLECTOR-PHROG_PARASITE_CARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd an [gold]Infection[/gold] into your [gold]Hand[/gold]. ",
