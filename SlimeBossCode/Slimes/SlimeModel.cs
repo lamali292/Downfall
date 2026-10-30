@@ -13,6 +13,8 @@ using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
@@ -76,6 +78,8 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
             var description = Description;
             UpdatePreviewValues();
             DynamicVars.AddTo(description);
+            var pool = Creature.PetOwner?.Character.CardPool ?? ModelDb.CardPool<ColorlessCardPool>();
+            description.Add("energyPrefix", pool.EnergyColorName);
             return description;
         }
     }
