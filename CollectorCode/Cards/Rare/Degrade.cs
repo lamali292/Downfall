@@ -12,27 +12,15 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Degrade : CollectorCardModel
 {
-    public Degrade() : base(0, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public Degrade() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Exhaust);
-        
-        WithPower<MiasmaPower>(1, 1);
-        WithPower<StrengthPower>(1);
+        WithCostUpgradeBy(-1);
+        WithPower<FirewallPower>(2, false);
     }
-
-    protected override bool HasEnergyCostX => true;
-    
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Target == null) return;
-        var x = ResolveEnergyXValue();
-        var strength = -DynamicVars.Strength.BaseValue * x;
-        var miasma = DynamicVars.Power<MiasmaPower>().BaseValue * x;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<StrengthPower>(ctx, cardPlay.Target, strength, Owner.Creature, this);
-        await PowerCmd.Apply<MiasmaPower>(ctx, cardPlay.Target, miasma, Owner.Creature, this);
-        
-        
+        await CommonActions.ApplySelf<FirewallPower>(ctx, this);
     }
 }
