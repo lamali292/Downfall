@@ -142,7 +142,7 @@
   "COLLECTOR-FIREBALL.title": "Fireball",
   "COLLECTOR-FIREBALL.description": "Deal {Damage:diff()} damage.\nAdd {IfUpgraded:show:an [gold]Ember[/gold]|a [gold]Burn[/gold]} into your [gold]Hand[/gold].",
   "COLLECTOR-CAST_IRON.title": "Cast Iron",
-  "COLLECTOR-CAST_IRON.description": "Add {Cards:diff()} {IfUpgraded:show:[gold]Embers[/gold]|[gold]Burns[/gold]} into your [gold]Hand[/gold].\n[gold]Kindle[/gold] {KindleCalcExtra:diff()} for each Status card in your [gold]Hand[/gold].",
+  "COLLECTOR-CAST_IRON.description": "Deal {Damage:diff()} damage.\n[gold]Kindle[/gold] {KindleCalcExtra:diff()} for each Status card in your [gold]Hand[/gold].",
   "COLLECTOR-YOU_ARE_MINE.title": "YOU ARE MINE!!!",
   "COLLECTOR-YOU_ARE_MINE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold], [gold]Frail[/gold], [gold]Vulnerable[/gold] and [gold]Miasma[/gold] to ALL enemies.",
   "COLLECTOR-PYREBLAST.title": "Pyreblast",
