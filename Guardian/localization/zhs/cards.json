@@ -47,6 +47,7 @@
     "GUARDIAN-GIGA_BEAM.title": "极巨光束",
     "GUARDIAN-GUARDIAN_WHIRL.description": "对所有敌人造成{Damage:diff()}点伤害两次。\n如果你有至少{Threshold:diff()}点[gold]格挡[/gold]，重复一次。",
     "GUARDIAN-GUARDIAN_WHIRL.title": "守护者旋风",
+    "GUARDIAN-HARDEN.description": "获得{PlatingPower:diff()}层[gold]覆甲[/gold]。\n[gold]滴答[/gold]：获得{ThornsPower:diff()}点[gold]荆棘[/gold]。",
     "GUARDIAN-HARDEN.title": "装甲协议",
     "GUARDIAN-INCINERATE.description": "造成{Damage:diff()}点伤害。\n[gold]加速[/gold]{IfUpgraded:show:[gold]两次[/gold]|}。",
     "GUARDIAN-INCINERATE.title": "焚烧",

@@ -1,3 +1,9 @@
 {
-    "DOWNFALL-PLAQUE": "{original} | {type}"
+    "DOWNFALL-PLAQUE": "{original} | {type}",
+    "DOWNFALL-FILTER_RARITY_COMMON": "普通",
+    "DOWNFALL-FILTER_RARITY_RARE": "稀有",
+    "DOWNFALL-FILTER_RARITY_SHOP": "商店",
+    "DOWNFALL-FILTER_RARITY_STARTER": "初始",
+    "DOWNFALL-FILTER_RARITY_UNCOMMON": "罕见",
+    "DOWNFALL-LIBRARY_SINGLEPLAYER_CARDS": "单人模式卡牌"
 }
