@@ -1,8 +1,11 @@
 using BaseLib.Utils;
+using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,23 +26,33 @@ public class ItMattersNot : CollectorCardModel
         WithVar("ItMattersNot", 1);
     }
 
-    private static decimal Calc(CardModel card, Creature? creature)
-    {
-        if (card is ItMattersNot usesPyredCards)
-        {
-            return usesPyredCards.PyredCard?.EnergyCost.GetAmountToSpend() ?? 0;
-        }
-        return 0;
-    }
-
     protected override Artist Artist => Artist.Get<Opal>();
 
+    private int _passCost = 0;
     private CardModel? PyredCard { get; set; }
+    
+    private void Upgrade(Ember obj) => Upgrade(obj, _passCost);
 
+    private static void Upgrade(Ember obj, int times)
+    {
+        for (var i = 0; i < times; i++)
+        {
+            CardCmd.Upgrade(obj);
+        }
+    }
+    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
+        if (PyredCard != null && PyredCard.EnergyCost.GetAmountToSpend() > 0)
+        {
+            _passCost = PyredCard.EnergyCost.GetAmountToSpend();
+            await DownfallCardCmd.GiveCard<Ember>(cardPlay.Player, PileType.Hand, action: Upgrade);
+        }
+        else
+        {
+            await DownfallCardCmd.GiveCard<Ember>(cardPlay.Player, PileType.Hand);
+        }
         await CommonActions.CardBlock(this, cardPlay);
-        
     }
 }
