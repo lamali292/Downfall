@@ -1,8 +1,27 @@
 {
     "SLIMEBOSS-CULTIST_SLIME.name": "カルティストスライム",
+    "SLIMEBOSS-SLIME_LEVEL.label": "Lv. {Level}",
     "SLIMEBOSS-DARKLING_SLIME.name": "ダークリングスライム",
     "SLIMEBOSS-GUERILLA_SLIME.name": "ゲリラスライム",
     "SLIMEBOSS-BRUISER_SLIME.name": "ブルーザースライム",
     "SLIMEBOSS-GUERILLA_SLIME.description": "すべての敵に[blue]{Damage:diff()}[/blue]ダメージを与える。",
-    "SLIMEBOSS-LEECHING_SLIME.name": "リーチングスライム"
+    "SLIMEBOSS-BRUISER_SLIME.description": "ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与える。",
+    "SLIMEBOSS-CULTIST_SLIME.description": "ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与える。\nこの戦闘中にプレイしたパワー1枚につき追加ダメージを与える。",
+    "SLIMEBOSS-PSYCHIC_SLIME.name": "サイキックスライム",
+    "SLIMEBOSS-PSYCHIC_SLIME.description": "[gold]ソウルバーン[/gold][blue]{Slime:diff()}[/blue]を付与する。\nパワーをプレイするたび、このスライムに1回[gold]命令[/gold]する。",
+    "SLIMEBOSS-MASSIVE_SLIME.name": "マッシブスライム",
+    "SLIMEBOSS-MASSIVE_SLIME.description": "すべての敵に[blue]{Damage:diff()}[/blue]ダメージを与える。\n攻撃後、[blue]{Sleep:diff()}[/blue]ターンの間眠りにつく。",
+    "SLIMEBOSS-ROYAL_SLIME.name": "ロイヤルスライム",
+    "SLIMEBOSS-ROYAL_SLIME.description": "分裂しているスライム1体につき、ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与える。",
+    "SLIMEBOSS-MUSCLE_SLIME.name": "マッスルスライム",
+    "SLIMEBOSS-MUSCLE_SLIME.description": "ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与える。\nコスト{energyPrefix:energyIcons(2)}のアタックをプレイするたび、このスライムに1回[gold]命令[/gold]する。",
+    "SLIMEBOSS-EVOLUTION_SLIME.name": "エボリューションスライム",
+    "SLIMEBOSS-EVOLUTION_SLIME.description": "攻撃するたび、3回までレベルが上がる。\nLv1：[blue]{Damage:diff()}[/blue]ダメージを与える。\nLv2：すべての敵にダメージを与える。\nLv3：与えたダメージの半分に等しい[gold]ブロック[/gold]を得る。\nLv4：[gold]潜在[/gold][blue]2[/blue]を得る。",
+    "SLIMEBOSS-DARKLING_SLIME.description": "ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与える。\n他のスライムが[gold]命令[/gold]されるたび、このスライムも攻撃する。",
+    "SLIMEBOSS-LEECHING_SLIME.name": "リーチングスライム",
+    "SLIMEBOSS-LEECHING_SLIME.description": "ランダムな敵に[blue]{Damage:diff()}[/blue]ダメージを与える。\n[gold]脱力[/gold][blue]{WeakPower:diff()}[/blue]を付与する。",
+    "SLIMEBOSS-TAUNTING_SLIME.name": "タウントスライム",
+    "SLIMEBOSS-TAUNTING_SLIME.description": "[blue]{Slime:diff()}[/blue][gold]ブロック[/gold]を得る。",
+    "SLIMEBOSS-SCRAP_SLIME.name": "スクラップスライム",
+    "SLIMEBOSS-SCRAP_SLIME.description": "ターン終了時まで[gold]トゲ[/gold][blue]{Slime:diff()}[/blue]を得る。\n状態異常をプレイするたび、このスライムに1回[gold]命令[/gold]する。"
 }

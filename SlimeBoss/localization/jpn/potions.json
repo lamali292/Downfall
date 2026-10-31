@@ -1,4 +1,8 @@
 {
+    "SLIMEBOSS-COMMANDING_ORDERS.title": "絶対的号令",
+    "SLIMEBOSS-COMMANDING_ORDERS.description": "[gold]分裂[/gold]しているすべてのスライムに2回[gold]命令[/gold]する。",
+    "SLIMEBOSS-RALLYING_OOZE.title": "奮起のウーズ",
     "SLIMEBOSS-RALLYING_OOZE.description": "[gold]潜在[/gold][blue]{PotencyPower}[/blue]を得る。",
+    "SLIMEBOSS-SLUDGE_BOTTLE.title": "スラッジボトル",
     "SLIMEBOSS-SLUDGE_BOTTLE.description": "すべての敵に[gold]脱力[/gold][blue]{WeakPower}[/blue]を付与する。 "
 }
