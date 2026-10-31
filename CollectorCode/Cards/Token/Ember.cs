@@ -22,14 +22,14 @@ namespace Collector.CollectorCode.Cards.Token;
 public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAfterTurnEnd
 {
     
-    public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
+    public Ember() : base(1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Unplayable);
-        WithKeyword(CollectorKeyword.Flicker);
+        //WithKeyword(CardKeyword.Unplayable);
+        //WithKeyword(CollectorKeyword.Flicker);
         WithKeyword(CardKeyword.Retain);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
-        WithVar(new DamageVar(2, DamageProps.cardUnpowered).WithUpgrade(1));
+        WithVar(new DamageVar(2, DamageProps.cardUnpowered).WithUpgrade(2));
     }
     public override bool HasTurnEndInHandEffect => true;
     public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;

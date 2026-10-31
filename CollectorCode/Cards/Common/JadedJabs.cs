@@ -13,11 +13,11 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class JadedJabs : CollectorCardModel
 {
-    public JadedJabs() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    public JadedJabs() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Pyre);
         WithTip(CollectorTip.Pyred);
-        WithDamage(11, 3);
+        WithDamage(12, 5);
         WithTip<LuckyWick>();
     }
 

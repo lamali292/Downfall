@@ -13,10 +13,10 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Degrade : CollectorCardModel
 {
-    public Degrade() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public Degrade() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithCostUpgradeBy(-1);
-        WithPower<FirewallPower>(2, false);
+        WithKeyword(CardKeyword.Innate, UpgradeType.Add);
+        WithPower<FirewallPower>(1, false);
         WithTip(StaticHoverTip.Block);
     }
 

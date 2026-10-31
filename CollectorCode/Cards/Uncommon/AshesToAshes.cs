@@ -13,10 +13,12 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class AshesToAshes : CollectorCardModel
 {
-    public AshesToAshes() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    public AshesToAshes() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<AshesToAshesPower>(1, 1, false);
         WithTip(CardKeyword.Exhaust);
+        WithUpgradedCardTip<Ember>();
+        WithCardTip<Ember>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

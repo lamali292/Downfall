@@ -12,10 +12,10 @@ namespace Collector.CollectorCode.Cards.Common;
 public class Char : CollectorCardModel
 {
     
-    public Char() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public Char() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(5, 2);
-        WithPower<CharPower>(5, 2, false);
+        WithDamage(4, 2);
+        WithPower<CharPower>(4, 2, false);
         WithKeyword(CollectorKeyword.Pyre);
     }
 

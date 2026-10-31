@@ -13,7 +13,7 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Hellfire : CollectorCardModel
 {
-    public Hellfire() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public Hellfire() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorTip.Pyred);

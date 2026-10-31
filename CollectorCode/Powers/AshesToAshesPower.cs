@@ -1,4 +1,6 @@
-﻿using Collector.CollectorCode.Core;
+﻿using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Core;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -9,10 +11,12 @@ namespace Collector.CollectorCode.Powers;
 
 public class AshesToAshesPower : CollectorPowerModel
 {
-    public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card, bool causedByEthereal)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
-        if (card.Owner.Creature != Owner || card.Type != CardType.Status) return;
-        Flash();
-        await CardPileCmd.Draw(ctx, Amount, card.Owner);
+        if (creator == null || creator.Creature != Owner || card.Type != CardType.Status) return;
+        if (card is Ember)
+        {
+            DownfallCardCmd.ForceUpgrade(card, Amount);
+        }
     }
 }
