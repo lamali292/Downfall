@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Extensions;
 using Collector.CollectorCode.Interfaces;
 using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -12,12 +13,12 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class Hellfire : CollectorCardModel
 {
-    public Hellfire() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    public Hellfire() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorTip.Pyred);
         WithKeyword(CardKeyword.Exhaust);
-        WithPower<MiasmaPower>(5, 3);
+        WithTorchheadDamage(5, 3);
     }
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
@@ -27,7 +28,7 @@ public class Hellfire : CollectorCardModel
         if (pyred.Count == 0) return;
         for (var i = 0; i < pyred.Count; i++)
         {
-            await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay, attack => attack.WithHitFx("vfx/vfx_attack_slash"));
         }
     }
 

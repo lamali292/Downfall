@@ -29,6 +29,11 @@ public class CollectorTests
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public IEnumerable<CardTestCase> PlayCollectorCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
 
+    // Collectibles live in CollectibleCardPool, not the character's pool, so PlayCollectorCards never reaches them.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public IEnumerable<CardTestCase> PlayCollectibleCards(CharacterModel character) =>
+        AllCardsTest.PlayAllCards(ModelDb.CardPool<CollectibleCardPool>().AllCards);
+
     // Reserve conversion is for X-energy cards only; an X-star card pays its (numeric) energy cost normally.
     [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
     public async Task XStarCardDoesNotConvertReserve(TestContext ctx)
@@ -158,8 +163,8 @@ public class CollectorTests
 
         var targets = ctx.Combat.Players.Select(p => p.Creature).ToList();
         var singleTargetDescription = intent!.GetHoverTip(targets, torchhead).Description;
-        Assert.IsTrue(singleTargetDescription.Contains("least HP"),
-            $"Without EquipAxe, Torchhead should target the enemy with the least HP, got '{singleTargetDescription}'.");
+        Assert.IsTrue(singleTargetDescription.Contains("last hit"),
+            $"Without EquipAxe, Torchhead should target the enemy you last hit, got '{singleTargetDescription}'.");
 
         await PowerCmd.Apply<EquipAxePower>(new BlockingPlayerChoiceContext(), ctx.Player.Creature, 1, ctx.Player.Creature, null);
         var allTargetsDescription = intent.GetHoverTip(targets, torchhead).Description;
@@ -305,5 +310,64 @@ public class CollectorTests
 
         Assert.AreEqual(grown, seed.DynamicVars.Power<MiasmaPower>().BaseValue,
             "A downgrade must not wipe Seed of Doubt's growth.");
+    }
+
+    // Regression guard: Torchhead auto-attacks from TorchheadPower.AfterSideTurnEnd instead of acting
+    // through the normal monster move state machine, so its NextMove is never rolled by the enemy turn
+    // loop unless TorchheadCmd.RefreshTorchheadIntent does it manually - without that call, the intent
+    // icon stays blank. Also checks the displayed value is post-power (Weak), not just the base amount.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadIntentShowsCurrentAndPowerModifiedDamage(TestContext ctx)
+    {
+        var torchhead = await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+
+        var intent = torchhead.Monster?.NextMove.Intents.FirstOrDefault() as TorchheadAttackIntent;
+        Assert.IsTrue(intent != null,
+            "Torchhead's move state should carry a TorchheadAttackIntent so its intent icon shows.");
+
+        var baseLabel = intent!.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
+        Assert.IsTrue(baseLabel.Contains("3"), $"Intent should show the base 3 damage, got '{baseLabel}'.");
+
+        await PowerCmd.Apply<WeakPower>(new BlockingPlayerChoiceContext(), torchhead, 1, ctx.Player.Creature, null);
+        var weakenedLabel = intent.GetIntentLabel(ctx.Combat.Players.Select(p => p.Creature), torchhead).GetFormattedText();
+
+        Assert.IsTrue(weakenedLabel.Contains("2"),
+            $"Weak should reduce Torchhead's displayed intent damage from 3 to 2, got '{weakenedLabel}'.");
+    }
+
+    // Torchhead only auto-attacks at the end of the turn when its owner dealt damage that turn.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadDoesNotAutoAttackWithoutDealingDamage(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var startingHp = enemy.CurrentHp;
+
+        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
+        PlayerCmd.EndTurn(ctx.Player, false);
+        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
+            await Task.Delay(100);
+
+        Assert.AreEqual(startingHp, enemy.CurrentHp,
+            "Torchhead should not attack at the end of a turn in which its owner dealt no damage.");
+    }
+
+    // After the owner hits an enemy, Torchhead attacks that enemy at the end of the turn.
+    [CardTest(typeof(Collector.CollectorCode.Core.Collector))]
+    public async Task TorchheadAutoAttacksTheEnemyLastHit(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await TorchheadCmd.Kindle(new BlockingPlayerChoiceContext(), ctx.Player, 10, null);
+        var strike = await ctx.AddCardToHand<Collector.CollectorCode.Cards.Basic.StrikeCollector>();
+        await ctx.PlayCard(strike, enemy);
+        var hpAfterStrike = enemy.CurrentHp;
+
+        var startingTurn = ctx.Player.PlayerCombatState!.TurnNumber;
+        PlayerCmd.EndTurn(ctx.Player, false);
+        for (var i = 0; i < 50 && ctx.Player.PlayerCombatState!.TurnNumber == startingTurn; i++)
+            await Task.Delay(100);
+
+        Assert.IsTrue(enemy.CurrentHp < hpAfterStrike,
+            "Torchhead should attack the enemy its owner last hit when the owner dealt damage this turn.");
     }
 }

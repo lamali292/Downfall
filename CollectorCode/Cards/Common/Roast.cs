@@ -14,7 +14,6 @@ public class Roast : CollectorCardModel
 {
     public Roast() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithKeyword(CollectorKeyword.Pyre);
         WithDamage(10, 4);
         WithUpgradeChangingCardTip<Burn, Soot>();
     }
@@ -24,7 +23,6 @@ public class Roast : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (await PyreCmd.Pyre(ctx, this) == null) return;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (IsUpgraded)
         {

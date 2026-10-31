@@ -15,19 +15,15 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class IllTakeThat : CollectorCardModel
 {
-    public IllTakeThat() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public IllTakeThat() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithVar("IllTakeThat", 10, 4);
-        WithTorchheadDamage(10, 4);
-        //WithDamage(10, 4);
+        WithDamage(10, 4);
         WithTip(StaticHoverTip.Block);
-        WithTip(CollectorKeyword.Torchhead);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
     
-    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
-
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
@@ -37,6 +33,6 @@ public class IllTakeThat : CollectorCardModel
             await CompatibilityCreatureCmd.LoseBlock(ctx, cardPlay.Target, stolenBlock, cardPlay.Card.Owner.Creature);
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, BlockProps.cardUnpowered, cardPlay);
         }
-        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

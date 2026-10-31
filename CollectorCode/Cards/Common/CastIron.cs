@@ -13,13 +13,12 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class CastIron : CollectorCardModel
 {
-    public CastIron() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public CastIron() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithCards(2);
+        WithDamage(4, 2);
         WithKeyword(CardKeyword.Exhaust);
-        WithUpgradeChangingCardTip<Burn, Ember>();
-        WithCalculatedVar("KindleCalc", 0, 4, Calc, 1);
-        WithKindle(4, 1); // only for the tip
+        WithCalculatedVar("KindleCalc", 0, 1, Calc, 0, 1);
+        WithKindle(2, 1); // only for the tip
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
@@ -27,18 +26,13 @@ public class CastIron : CollectorCardModel
         return card.Owner.Hand.Count(e => e.Type == CardType.Status);
     }
     
-    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)//Todo: Finish this later
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (IsUpgraded)
-        {
-            await DownfallCardCmd.GiveCards<Ember>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
-        }
-        else
-        {
-            await DownfallCardCmd.GiveCards<Burn>(Owner, PileType.Hand, DynamicVars.Cards.IntValue);
-        }
-        var repeat = (int)((CalculatedVar)DynamicVars["KindleCalc"]).Calculate(null);
-        await TorchheadCmd.Kindle(ctx,Owner, repeat, this);
+        var count = Owner.Hand.Count(e => e.Type == CardType.Status);
+        var kindle = (int)((CalculatedVar)DynamicVars["KindleCalc"]).Calculate(null);
+        await CommonActions.CardAttack(this, cardPlay, count).Execute(ctx);
+        if (kindle > 0)
+            await TorchheadCmd.Kindle(ctx, Owner, kindle, this);
     }
 
 }

@@ -15,11 +15,11 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class BramblesparKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
 {
-    public BramblesparKindling() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public BramblesparKindling() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(2, 1);
+        WithKindle(2);
         WithTip(new TooltipSource(card =>
         {
             var beam = ModelDb.GetById<BurningStrike>(ModelDb.Card<BurningStrike>().Id).ToMutable();

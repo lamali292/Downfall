@@ -10,7 +10,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class Soulforge : CollectorCardModel
 {
-    public Soulforge() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public Soulforge() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         //WithKeyword(CollectorKeyword.Pyre);
         WithKeyword(CardKeyword.Exhaust);

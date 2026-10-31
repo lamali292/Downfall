@@ -14,7 +14,7 @@ public class EquipFurnace : CollectorCardModel
 {
     public EquipFurnace() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithKindle( 4, 2);
+        WithKindle(3, 2);
         WithPower<EquipFurnacePower>(1, 1, false);
         //WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         //WithKeyword(CardKeyword.Retain, UpgradeType.Add);

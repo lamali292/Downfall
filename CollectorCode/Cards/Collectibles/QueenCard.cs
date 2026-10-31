@@ -17,7 +17,7 @@ public class QueenCard : Collectible<QueenBoss>
     {
         WithKeyword(CollectorKeyword.Megapyre);
         WithTip(CollectorTip.Pyred);
-        WithKeyword(CardKeyword.Exhaust);
+        WithTip(CardKeyword.Exhaust);
         WithCostUpgradeBy(-1);
         WithEnergy(3);
         WithPower<ChainsOfBindingPower>(3, -1, false);

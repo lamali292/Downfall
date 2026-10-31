@@ -10,9 +10,12 @@ namespace Downfall.DownfallCode.Tests;
 public class AllCardsTest
 {
  
-    public static IEnumerable<CardTestCase> PlayAllCards(CharacterModel character)
+    public static IEnumerable<CardTestCase> PlayAllCards(CharacterModel character) =>
+        PlayAllCards(character.CardPool.AllCards);
+
+    public static IEnumerable<CardTestCase> PlayAllCards(IEnumerable<CardModel> cards)
     {
-        return character.CardPool.AllCards.Select(model => new CardTestCase(model.GetType().Name, async ctx =>
+        return cards.Select(model => new CardTestCase(model.GetType().Name, async ctx =>
         {
             TestMainFile.Logger.Info($"CardTestCase : {model.Title}");
             // combat is already fresh (runner called FreshCombat); relics already granted once.

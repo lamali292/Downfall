@@ -3,7 +3,7 @@
   "name": "Downfall - Collector",
   "author": "lamali, Blue Guy and SandTag",
   "description": "The Collector, a Downfall character still in development. Standalone addon - requires the core Downfall mod.",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "has_pck": true,
   "has_dll": true,
   "min_game_version": "0.107.1",

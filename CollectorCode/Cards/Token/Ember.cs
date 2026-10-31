@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
+using Collector.CollectorCode.CustomEnums;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Interfaces;
@@ -21,12 +22,12 @@ namespace Collector.CollectorCode.Cards.Token;
 public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAfterTurnEnd
 {
     
-    public Ember() : base(-1, CardType.Status, CardRarity.Status, TargetType.Self)
+    public Ember() : base(1, CardType.Status, CardRarity.Status, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Unplayable);
+        WithKeyword(CardKeyword.Retain);
         WithTip(CardKeyword.Exhaust);
         WithPower<StrengthPower>(1, 1);
-        WithVar(new DamageVar(2, DamageProps.cardUnpowered).WithUpgrade(1));
+        WithVar(new DamageVar(2, DamageProps.cardUnpowered).WithUpgrade(2));
     }
     public override bool HasTurnEndInHandEffect => true;
     public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
@@ -35,19 +36,26 @@ public class Ember : CollectorCardModel, IStackingUpgradeCard, IReturnsToHandAft
     public override async Task AfterCardExhausted(PlayerChoiceContext ctx, CardModel card,
         bool causedByEthereal)
     {
-        if (card != this) return;
-        await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            if (card != this) return;
+            await CommonActions.ApplySelf<StrengthPower>(ctx, this);
+        }
     }
-    
+
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         // idk if this early return fixes the mp bug, hopefully it will
         if (CombatState == null || !Owner.Creature.IsAlive) return;
-
         var instance = NCombatRoom.Instance;
-        instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
-        SfxCmd.Play("event:/sfx/characters/attack_fire");
-        GiveSingleTurnRetain();
-        await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue, DamageProps.cardUnpowered, this, null);
+        var playCount = await GeneratePlayCount(CombatState!, null);
+        for (var i = 0; i < playCount; ++i)
+        {
+            instance?.CombatVfxContainer.AddChildSafely(NGroundFireVfx.Create(Owner.Creature));
+            SfxCmd.Play("event:/sfx/characters/attack_fire");
+            await CompatibilityCreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.Damage.IntValue,
+                DamageProps.cardUnpowered, this, null);
+        }
     }
 }

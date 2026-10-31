@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
@@ -13,6 +14,7 @@ public class Deathmark : CollectorCardModel
 {
     public Deathmark() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
+        WithKeyword(CollectorKeyword.Pyre);
         WithDamage(7, 2);
     }
 
@@ -21,6 +23,7 @@ public class Deathmark : CollectorCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (cardPlay.Target == null) return;
+        if (await PyreCmd.Pyre(ctx, this) == null) return;
         var attack = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var damage = 2 * attack.Results.SelectMany(r => r).Sum(e => e.UnblockedDamage);
         await PowerCmd.Apply<DeathmarkedPower>(ctx, cardPlay.Target, damage, Owner.Creature, this);
