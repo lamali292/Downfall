@@ -3,8 +3,6 @@
     "SNECKO-VENOM_POWER.description": "Lorsqu'un débuff autre que du [gold]Venin[/gold] est appliqué, perdez des PV.",
     "SNECKO-VENOM_POWER.smartDescription": "Lorsqu'un débuff autre que du [gold]Venin[/gold] est appliqué, perdez [blue]{Amount}[/blue] PV.",
     "SNECKO-SAVE_FOR_LATER_POWER.title": "Sous le Coude",
-    "SNECKO-SAVE_FOR_LATER_POWER.description": "À la fin de votre tour, [gold]Retenez[/gold] une carte.",
-    "SNECKO-SAVE_FOR_LATER_POWER.smartDescription": "À la fin de votre tour, [gold]Retenez[/gold] [blue]{Amount}[/blue] {Amount:plural:carte|cartes}.",
     "SNECKO-BLUNDER_GUARD_POWER.title": "Garde Improvisée",
     "SNECKO-BLUNDER_GUARD_POWER.description": "Lorsque vous jouez une carte qui coûte {energyPrefix:energyIcons(3)} ou plus, gagnez de [gold]l'Armure[/gold] et de la [gold]Force[/gold].",
     "SNECKO-BLUNDER_GUARD_POWER.smartDescription": "Lorsque vous jouez une carte qui coûte {Energy:energyIcons()} ou plus, gagnez [blue]{Amount}[/blue] [gold]d'Armure[/gold] et [blue]{StrengthPower}[/blue] de [gold]Force[/gold].",
@@ -74,8 +72,5 @@
     "SNECKO-MUDDY_POWER.title": "Brouillage",
     "SNECKO-MUDDY_POWER.description": "Au début de votre prochain tour, [gold]Confondez[/gold] votre [gold]Main[/gold].",
     "SNECKO-VENOMOLOGY_POWER.title": "Venimologie",
-    "SNECKO-VENOMOLOGY_POWER.description": "Ce tour, lorsqu'un autre joueur applique un débuff sur cet ennemi, celui-ci gagne du [gold]Venin[/gold].",
-    "SNECKO-VENOMOLOGY_POWER.smartDescription": "Ce tour, lorsqu'un autre joueur applique un débuff sur cet ennemi, celui-ci gagne [blue]{Amount}[/blue] de [gold]Venin[/gold].",
-    "SNECKO-VENOMOLOGY_POWER.remoteDescription": "Ce tour, lorsque vous appliquez un débuff sur cet ennemi, celui-ci gagne [blue]{Amount}[/blue] de [gold]Venin[/gold].",
     "SNECKO-MUDDY_POWER.smartDescription": "Au début de {Amount:plural:votre prochain tour| vos [blue]{}[/blue] prochains tours}, [gold]Confondez[/gold] votre [gold]Main[/gold]."
 }

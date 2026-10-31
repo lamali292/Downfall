@@ -1,6 +1,7 @@
 {
     "DOWNFALL.mod_title": "Downfall",
     "DOWNFALL-UI.title": "UI",
+    "DOWNFALL-INTERNAL.title": "内部的",
     "DOWNFALL-SYNC.title": "同期",
     "DOWNFALL-HIDE_SECTION.title": "キャラクターの無効化",
     "DOWNFALL-CHARACTER_MISMATCH.title": "Downfallの設定に不整合があります",
@@ -36,8 +37,13 @@
     "DOWNFALL-HIDE_SLIMEBOSS.hover.desc": "スライムボスを完全に無効化します。スライムボスの要素はゲームに読み込まれず、一切出現しなくなります。この設定を有効化するには再起動が必要です。",
     "DOWNFALL-HIDE_SNECKO.title": "スネッコを無効化",
     "DOWNFALL-HIDE_SNECKO.hover.desc": "スネッコを完全に無効化します。スネッコの要素はゲームに読み込まれず、一切出現しなくなります。この設定を有効化するには再起動が必要です。",
+    "DOWNFALL-ENABLE_COMPENDIUM_TOOLS.title": "便覧検索ツール",
+    "DOWNFALL-ENABLE_COMPENDIUM_TOOLS.hover.desc": "『Downfall』開発時にコンテンツを探すための内部ツールです。「レリック一覧」および「ポーションラボ」に検索機能とキャラクター／レアリティによる絞り込みサイドバーが追加され、「カードライブラリ」に「シングルプレイ用」のチェックボックスが追加されます。通常のプレイには不要な機能です。設定は、該当する画面を次に開いた際に反映されます。",
     "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.title": "アート投稿ボタンを表示",
     "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.hover.desc": "メインメニューに「Downfallアート投稿」ボタンを表示する。",
+    "DOWNFALL-AFTERLIFE_COLOR.title": "死後のテキスト色",
+    "DOWNFALL-RESET_COLOR.title": "リセット",
+    "DOWNFALL-AFTERLIFE_COLOR.hover.desc": "死後カードのキーワードとテキストの色。",
     "DOWNFALL-UPLOAD_METRICS.title": "ゲームプレイデータの送信(Downfall)",
     "DOWNFALL-UPLOAD_METRICS.hover.desc": "バグ修正やModのゲームバランス調整のため、Downfallキャラクターのプレイ時のみ、ゲームプレイのデータがDownfall制作者に送信されます。\n\n個人を特定する情報が収集されることは一切ありません。",
     "DOWNFALL-VOTING_SCREEN.ROW_TITLE": "投票"

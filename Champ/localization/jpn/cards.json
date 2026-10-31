@@ -98,7 +98,7 @@
     "CHAMP-IMPROVISING.title": "即興",
     "CHAMP-INSPIRATION.description": "現在と別の[gold]スタンス[/gold]に入る。",
     "CHAMP-INSPIRATION.title": "閃き",
-    "CHAMP-IRON_FORTRESS.description": "[gold]敏捷[/gold]{DexterityPower:diff()}を得る。\n[gold]金属化[/gold]{MetallicizePower:diff()}を得る。",
+    "CHAMP-IRON_FORTRESS.description": "[gold]敏捷[/gold]{DexterityPower:diff()}を得る。\n[gold]プレート[/gold]{PlatingPower:diff()}を得る。",
     "CHAMP-IRON_FORTRESS.title": "鋼鉄の要塞",
     "CHAMP-KILLING_SPREE.title": "キリングスプリー",
     "CHAMP-KILLING_SPREE.description": "[gold]スタンス[/gold]による[gold]スキルボーナス[/gold]の回数上限がなくなる。\n現在の[gold]スタンス[/gold]の[gold]スキルボーナス[/gold]を{Skill:diff()}回発動する。",

@@ -3,8 +3,6 @@
     "SNECKO-VENOM_POWER.description": "[gold]뱀독[/gold] 이외의 디버프가 적용될 때, 체력을 잃습니다.",
     "SNECKO-VENOM_POWER.smartDescription": "[gold]뱀독[/gold] 이외의 디버프가 적용될 때, [blue]{Amount}[/blue]의 체력을 잃습니다.",
     "SNECKO-SAVE_FOR_LATER_POWER.title": "아껴두기",
-    "SNECKO-SAVE_FOR_LATER_POWER.description": "내 턴이 끝날 때, 카드를 [gold]보존[/gold]합니다.",
-    "SNECKO-SAVE_FOR_LATER_POWER.smartDescription": "내 턴이 끝날 때, [blue]{Amount}[/blue]{Amount:plural:장의 카드를|장의 카드를} [gold]보존[/gold]합니다.",
     "SNECKO-CHEAP_STOCK_POWER.title": "싸구려 재고",
     "SNECKO-OVERWHELMING_POWER.title": "압도적인 힘으로",
     "SNECKO-OVERWHELMING_POWER.description": "매 턴 처음으로 [gold]타직업[/gold] 카드를 사용할 때, 카드를 1장 뽑습니다.",
