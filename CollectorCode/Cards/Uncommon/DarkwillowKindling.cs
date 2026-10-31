@@ -21,7 +21,8 @@ public class DarkwillowKindling : CollectorCardModel, ISkipReplayOnSelfExhaust
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKindle(1, 3);
+        WithKeyword(CardKeyword.Retain);
+        WithKindle(2, 1);
         WithCards(2);
         WithCardTip<Ember>(WithPreviewModifiers);
         WithEnchantment<Spiral>();

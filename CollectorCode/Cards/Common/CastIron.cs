@@ -28,8 +28,9 @@ public class CastIron : CollectorCardModel
     
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        var count = Owner.Hand.Count(e => e.Type == CardType.Status);
         var kindle = (int)((CalculatedVar)DynamicVars["KindleCalc"]).Calculate(null);
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, count).Execute(ctx);
         if (kindle > 0)
             await TorchheadCmd.Kindle(ctx, Owner, kindle, this);
     }

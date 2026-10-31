@@ -21,8 +21,7 @@ public class SunbloomKindling : CollectorCardModel
     {
         WithKeyword(CardKeyword.Exhaust);
         WithKeyword(CollectorKeyword.Flicker);
-        WithKeyword(CardKeyword.Retain);
-        WithKindle(3, 1);
+        WithKindle(1, 3);
         WithPower<ReserveNextTurnPower>(2, false);
         WithReserveTip();
     }

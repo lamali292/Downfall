@@ -1,37 +1,45 @@
 using BaseLib.Utils;
 using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
 using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
 public class ItMattersNot : CollectorCardModel
 {
-    public ItMattersNot() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public ItMattersNot() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(11, 4);
+        WithKeyword(CollectorKeyword.Pyre);
+        WithBlock(9, 3);
         WithTip<VulnerablePower>();
         WithTip<WeakPower>();
         WithTip<MiasmaPower>();
         WithVar("ItMattersNot", 1);
     }
 
+    private static decimal Calc(CardModel card, Creature? creature)
+    {
+        if (card is ItMattersNot usesPyredCards)
+        {
+            return usesPyredCards.PyredCard?.EnergyCost.GetAmountToSpend() ?? 0;
+        }
+        return 0;
+    }
+
     protected override Artist Artist => Artist.Get<Opal>();
+
+    private CardModel? PyredCard { get; set; }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await CommonActions.CardBlock(this, cardPlay);
-        var a = CombatState.HittableEnemies.Where(e => e.HasPower<WeakPower>());
-        await PowerCmd.Apply<WeakPower>(ctx, a, 1, Owner.Creature, this);
-        var b = CombatState.HittableEnemies.Where(e => e.HasPower<VulnerablePower>());
-        await PowerCmd.Apply<VulnerablePower>(ctx, b, 1, Owner.Creature, this);
-        var c = CombatState.HittableEnemies.Where(e => e.HasPower<MiasmaPower>());
-        await PowerCmd.Apply<MiasmaPower>(ctx, c, 1, Owner.Creature, this);
+        
     }
 }
