@@ -15,9 +15,9 @@ public class CastIron : CollectorCardModel
 {
     public CastIron() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithDamage(3, 2);
+        WithDamage(4, 2);
         WithKeyword(CardKeyword.Exhaust);
-        WithCalculatedVar("KindleCalc", 0, 2, Calc, 0, 1);
+        WithCalculatedVar("KindleCalc", 0, 1, Calc, 0, 1);
         WithKindle(2, 1); // only for the tip
     }
 
