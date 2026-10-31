@@ -1,5 +1,5 @@
 {
-  "COLLECTOR-ARROGANCE.description": "Gain {Block:diff()} [gold]Block[/gold].\nYour next Attack this turn also applies {DoomedAttackPower:diff()} [gold]Miasma[/gold].",
+  "COLLECTOR-ARROGANCE.description": "Gain {Block:diff()} [gold]Block[/gold].\nYour next Attack also applies {DoomedAttackPower:diff()} [gold]Miasma[/gold].",
   "COLLECTOR-ARROGANCE.title": "Arrogance",
   "COLLECTOR-ASHEN_STRIKE.description": "[gold]Torchhead[/gold] deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|} twice.\nAdd {Cards:diff()} {IfUpgraded:show:[gold]Embers[/gold]|[gold]Burns[/gold]} into your [gold]Hand[/gold].",
   "COLLECTOR-ASHEN_STRIKE.title": "Candle Strike",
