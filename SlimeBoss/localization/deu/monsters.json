@@ -4,5 +4,7 @@
     "SLIMEBOSS-GUERILLA_SLIME.name": "Minischleim",
     "SLIMEBOSS-BRUISER_SLIME.name": "Kampfschleim",
     "SLIMEBOSS-GUERILLA_SLIME.description": "Füge ALLEN Gegnern [blue]{Damage:diff()}[/blue] Schaden zu.",
+    "SLIMEBOSS-MASSIVE_SLIME.description": "Fügt ALLEN Gegnern [blue]{Damage:diff()}[/blue] Schaden zu.\nGeht nach dem Angriff für [blue]{Sleep:diff()}[/blue] {Sleep:plural:Zug|Züge} schlafen.",
+    "SLIMEBOSS-MUSCLE_SLIME.name": "Muskelschleim",
     "SLIMEBOSS-LEECHING_SLIME.name": "Beschützerschleim"
 }

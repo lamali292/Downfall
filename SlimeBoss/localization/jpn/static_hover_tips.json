@@ -1,5 +1,7 @@
 {
-    "SLIMEBOSS-SLURP.title": "啜る",
     "SLIMEBOSS-COMMAND.title": "命令",
-    "SLIMEBOSS-CONSUME.title": "泥食い"
+    "SLIMEBOSS-COMMAND.description": "指定したスライムの効果を発動する。",
+    "SLIMEBOSS-CONSUME.title": "泥食い",
+    "SLIMEBOSS-CONSUME.description": "追加効果。対象が[gold]脱力[/gold]を受けている場合、それを1スタック取り除いて効果が発動する。",
+    "SLIMEBOSS-SPLIT.title": "分裂"
 }
