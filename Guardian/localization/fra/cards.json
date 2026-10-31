@@ -47,7 +47,6 @@
     "GUARDIAN-GIGA_BEAM.title": "Ultralaser",
     "GUARDIAN-GUARDIAN_WHIRL.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis deux fois.\nSi vous avez {Threshold:diff()} or more [gold]d'Armure[/gold] ou plus, infligez ces dégâts deux fois supplémentaires.",
     "GUARDIAN-GUARDIAN_WHIRL.title": "Tourbillon du Gardien",
-    "GUARDIAN-HARDEN.description": "Gagnez {MetallicizePower:diff()} de [gold]Métallisation[/gold].",
     "GUARDIAN-HARDEN.title": "Durcissement",
     "GUARDIAN-INCINERATE.description": "Infligez {Damage:diff()} dégâts.\n[gold]Accélérez[/gold]{IfUpgraded:show:[gold] deux fois[/gold]|}.",
     "GUARDIAN-INCINERATE.title": "Incinération",

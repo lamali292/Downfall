@@ -46,7 +46,6 @@
     "GUARDIAN-STASIS_ENGINE_POWER.smartDescription": "Erhalte {Amount:energyIcons()} und ziehe [blue]{Amount}[/blue] {Amount:plural:Karte|Karten}, wenn du in einem Zug die [blue]3.[/blue] 0{energyPrefix:energyIcons(1)}-Karte spielst.",
     "GUARDIAN-TIME_SIFTER_POWER.title": "Zeitsieb",
     "GUARDIAN-TIME_SIFTER_POWER.description": "[gold]Beschleunige[/gold] immer zu Beginn deines Zuges.",
-    "GUARDIAN-TIME_SIFTER_POWER.smartDescription": "[gold]Beschleunige[/gold] immer zu Beginn deines Zuges{Amount:plural:| [blue]{Amount}[/blue] Mal}.",
     "GUARDIAN-SHARP_HIDE_POWER.title": "Scharfe Haut",
     "GUARDIAN-SHARP_HIDE_POWER.description": "Erhalte zu Beginn deines Zuges für diesen Zug [gold]Stacheln[/gold].",
     "GUARDIAN-SHARP_HIDE_POWER.smartDescription": "Erhalte zu Beginn deines Zuges für diesen Zug [blue]{Amount}[/blue] [gold]Stacheln[/gold].",

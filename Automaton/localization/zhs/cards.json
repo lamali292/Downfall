@@ -82,7 +82,7 @@
     "AUTOMATON-ITS_A_FEATURE.description": "每当你抽到一张状态或[red]诅咒[/red]牌时，获得{ItsAFeaturePower:diff()}点临时[gold]力量[/gold]和[gold]敏捷[/gold]。",
     "AUTOMATON-ITS_A_FEATURE.title": "此为特性",
     "AUTOMATON-LIBRARY.description": "在回合开始时，将一张随机[gold]编码[/gold]牌加入你的[gold]手牌[/gold]。\n其在一回合内可以免费打出。",
-    "AUTOMATON-LIBRARY.title": "数据库",
+    "AUTOMATON-LIBRARY.title": "库",
     "AUTOMATON-MAX_OUTPUT.description": "抽{Cards:diff()}张牌。\n在你的回合开始时，[gold]暂存[/gold]一张[gold]错误[/gold]。",
     "AUTOMATON-MAX_OUTPUT.title": "极限功率",
     "AUTOMATON-MERGE_CONFLICT.description": "造成{Damage:diff()}点伤害。\n下一次生成[gold]方法[/gold]时会额外生成一张。",

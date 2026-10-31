@@ -1,3 +1,15 @@
 {
-    "DOWNFALL-PLAQUE": "{original}|{type}"
+    "DOWNFALL-PLAQUE": "{original}|{type}",
+    "DOWNFALL-FILTER_RARITY_COMMON": "コモン",
+    "DOWNFALL-FILTER_RARITY_RARE": "レア",
+    "DOWNFALL-FILTER_RARITY_SHOP": "ショップ",
+    "DOWNFALL-FILTER_RARITY_STARTER": "スターター",
+    "DOWNFALL-FILTER_RARITY_UNCOMMON": "アンコモン",
+    "DOWNFALL-LIBRARY_SINGLEPLAYER_CARDS": "シングルプレイ用",
+    "DOWNFALL-POTION_POOL_OTHER": "その他のポーション。",
+    "DOWNFALL-POTION_POOL_SHARED": "すべてのキャラクターで共有されるポーション。",
+    "DOWNFALL-POTION_POOL_SPECIAL": "イベントやその他の手段によって入手可能なポーション。",
+    "DOWNFALL-RELIC_POOL_EVENT": "イベントを通じてのみ入手できるレリック。",
+    "DOWNFALL-RELIC_POOL_OTHER": "その他のレリック。",
+    "DOWNFALL-RELIC_POOL_SHARED": "すべてのキャラクターで共有されるレリック。"
 }

@@ -37,7 +37,6 @@
     "GUARDIAN-STASIS_ENGINE_POWER.smartDescription": "Ottieni {Amount:energyIcons()} e pesca [blue]{Amount}[/blue] {Amount:plural:carta|carte} ogni volta che giochi la [blue]3ª[/blue] carta da 0{energyPrefix:energyIcons(1)} in un singolo turno.",
     "GUARDIAN-TIME_SIFTER_POWER.title": "Setaccio Temporale",
     "GUARDIAN-TIME_SIFTER_POWER.description": "All'inizio del tuo turno, [gold]Accelera[/gold].",
-    "GUARDIAN-TIME_SIFTER_POWER.smartDescription": "All'inizio del tuo turno, [gold]Accelera[/gold] {Amount:plural:| [blue]{Amount}[/blue] volte}.",
     "GUARDIAN-SHARP_HIDE_POWER.title": "Pelle Affilata",
     "GUARDIAN-SHARP_HIDE_POWER.description": "All'inizio del tuo turno, ottieni [gold]Spine[/gold] in questo turno.",
     "GUARDIAN-SHARP_HIDE_POWER.smartDescription": "All'inizio del tuo turno, ottieni [blue]{Amount}[/blue] [gold]Spine[/gold] in questo turno.",
