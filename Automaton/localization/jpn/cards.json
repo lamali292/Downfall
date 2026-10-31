@@ -154,7 +154,7 @@
     "AUTOMATON-PUNCH_TICKET.title": "パンチチケット",
     "AUTOMATON-PUNCH_TICKET.description": "{Damage:diff()}ダメージを与える。\n[gold]脱力[/gold]{WeakPower:diff()}を付与する。\n[gold]エラー[/gold]を1枚[gold]手札[/gold]に加える。",
     "AUTOMATON-CRASHOUT.title": "デバッグ",
-    "AUTOMATON-CRASHOUT.description": "状態異常カードをプレイするたび、ランダムな敵に{CrashoutPower:diff()}ダメージを与える。",
+    "AUTOMATON-CRASHOUT.description": "状態異常をプレイするたび、ランダムな敵に{CrashoutPower:diff()}ダメージを与える。",
     "AUTOMATON-CONVERT.title": "コンバート",
     "AUTOMATON-CONVERT.description": "{Damage:diff()}ダメージを与える。\n[gold]格納オーブ[/gold]のランダムな状態異常を1枚、[gold]{IfUpgraded:show:燃料+|燃料}[/gold]に[gold]変化[/gold]させる。",
     "AUTOMATON-PROTO_SHIELD.title": "プロトシールド",

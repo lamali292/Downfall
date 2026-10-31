@@ -3,8 +3,6 @@
     "SNECKO-VENOM_POWER.description": "When a debuff beside [gold]Veleno[/gold] is applied, lose HP. ",
     "SNECKO-VENOM_POWER.smartDescription": "When a debuff beside [gold]Veleno[/gold] is applied, lose [blue]{Amount}[/blue] HP. ",
     "SNECKO-SAVE_FOR_LATER_POWER.title": "Serba per Dopo",
-    "SNECKO-SAVE_FOR_LATER_POWER.description": "Alla fine del tuo turno, [gold]Conserva[/gold] a card.",
-    "SNECKO-SAVE_FOR_LATER_POWER.smartDescription": "Alla fine del tuo turno, [gold]Conserva[/gold] [blue]{Amount}[/blue] {Amount:plural:card|cards}.",
     "SNECKO-CHEAP_STOCK_POWER.title": "Provvista Economica",
     "SNECKO-OVERWHELMING_POWER.title": "Travolgente",
     "SNECKO-OVERWHELMING_POWER.description": "The first time you play an [gold]FuoriClasse[/gold] card each turn, pesca una carta.",

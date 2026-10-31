@@ -47,7 +47,6 @@
     "GUARDIAN-GIGA_BEAM.title": "Гига-луч",
     "GUARDIAN-GUARDIAN_WHIRL.description": "Наносит {Damage:diff()} урона ВСЕМ врагам дважды.\nЕсли у вас не менее {Threshold:diff()} [gold]защиты[/gold], наносит урон еще 2 раза.",
     "GUARDIAN-GUARDIAN_WHIRL.title": "Вихрь Стража",
-    "GUARDIAN-HARDEN.description": "Дает {MetallicizePower:diff()} [gold]Металлизации[/gold].",
     "GUARDIAN-HARDEN.title": "Затвердевание",
     "GUARDIAN-INCINERATE.description": "Наносит {Damage:diff()} урона.\nДает [gold]Разгон[/gold]{IfUpgraded:show: дважды|}.",
     "GUARDIAN-INCINERATE.title": "Поджечь",
