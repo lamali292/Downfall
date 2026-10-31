@@ -37,7 +37,6 @@
     "GUARDIAN-STASIS_ENGINE_POWER.smartDescription": "한 턴에 비용이 0인 카드를 [blue]3번째[/blue] 낼 때 {Amount:energyIcons()}을 얻고 카드를 [blue]{Amount}[/blue]장 뽑습니다.",
     "GUARDIAN-TIME_SIFTER_POWER.title": "시간 선별기",
     "GUARDIAN-TIME_SIFTER_POWER.description": "턴 시작 시, [gold]가속[/gold]합니다.",
-    "GUARDIAN-TIME_SIFTER_POWER.smartDescription": "턴 시작 시, [gold]가속[/gold] {Amount:plural:| [blue]{Amount}[/blue]번 합니다.}",
     "GUARDIAN-SHARP_HIDE_POWER.title": "날카로운 가죽",
     "GUARDIAN-SHARP_HIDE_POWER.description": "턴 시작 시, 이번 턴에 [gold]가시[/gold]를 얻습니다.",
     "GUARDIAN-SHARP_HIDE_POWER.smartDescription": "턴 시작 시, 이번 턴에 [blue]{Amount}[/blue] [gold]가시[/gold]를 얻습니다.",

@@ -83,7 +83,6 @@
     "CHAMP-IMPROVISING.title": "임기응변",
     "CHAMP-INSPIRATION.description": "현재 상태가 아닌 다른 [gold]태세[/gold]에 진입합니다.",
     "CHAMP-INSPIRATION.title": "영감",
-    "CHAMP-IRON_FORTRESS.description": "{DexterityPower:diff()} [gold]민첩[/gold]을 얻습니다.\n매 턴이 끝날 때마다, {MetallicizePower:diff()} [gold]방어도[/gold]를 얻습니다.",
     "CHAMP-IRON_FORTRESS.title": "난공불락",
     "CHAMP-KILLING_SPREE.title": "연속 처치!!!",
     "CHAMP-KILLING_SPREE.description": "[gold]태세[/gold]들의 [gold]스킬 보너스[/gold] 상한선이 사라집니다.\n현재 [gold]태세[/gold]의 [gold]스킬 보너스[/gold]를 {Skill:diff()}번 발동시킵니다.",

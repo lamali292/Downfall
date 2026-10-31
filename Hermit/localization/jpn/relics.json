@@ -7,7 +7,7 @@
     "HERMIT-RYE_STALK.description": "[blue]4[/blue]ターン目の開始時、[gold]堅牢[/gold][blue]{RuggedPower:diff()}[/blue]を得る。",
     "HERMIT-HORSESHOE.title": "蹄鉄",
     "HERMIT-HORSESHOE.flavor": "幸運のお守り。誰かがこれを失くして困っているだろう。",
-    "HERMIT-HORSESHOE.description": "[gold]基本[/gold][gold]ストライク[/gold]はすべての敵にダメージを与えるようになる。",
+    "HERMIT-HORSESHOE.description": "[gold]ストライク[/gold]がすべての敵にダメージを与えるようになる。",
     "HERMIT-SPYGLASS.title": "スパイグラス",
     "HERMIT-SPYGLASS.flavor": "ケスティン・ハイフィンの所有物。",
     "HERMIT-SPYGLASS.description": "各ターンにプレイする[blue]3[/blue]枚目のカードは、位置に関係なく[gold]デッド-オン[/gold]効果を発動する。",

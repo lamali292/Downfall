@@ -70,8 +70,6 @@
     "HEXAGHOST-INFERNO_POTION_POWER.description": "Geisterflammen wenden in diesem Kampf [gold]Seelenfeuer[/gold] an und fügen ALLEN Gegnern Schaden zu.",
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Geisterflammen wenden in diesem Kampf [gold]Seelenfeuer[/gold] an und fügen ALLEN Gegnern Schaden zu.",
     "HEXAGHOST-PREMONITION_POWER.title": "Vorahnung",
-    "HEXAGHOST-PREMONITION_POWER.description": "Falls du in einem Zug genug Karten [gold]Erschöpfst[/gold], ziehe zu Beginn deines nächsten Zuges zusätzliche Karten.",
-    "HEXAGHOST-PREMONITION_POWER.smartDescription": "Falls du in einem Zug [blue]{Exhaust}[/blue] oder mehr Karten [gold]Erschöpfst[/gold], ziehe zu Beginn deines nächsten Zuges [blue]{Amount}[/blue] zusätzliche {Amount:plural:Karte|Karten}.",
     "HEXAGHOST-SOULFIRE_POWER.title": "Seelenfeuer",
     "HEXAGHOST-SOULFIRE_POWER.description": "Immer wenn du mit einer Karte [gold]Seelenfeuer[/gold] anwendest, erhalte [gold]Block[/gold].",
     "HEXAGHOST-SOULFIRE_POWER.smartDescription": "Immer wenn du mit einer Karte [gold]Seelenfeuer[/gold] anwendest, erhalte [blue]{Amount}[/blue] [gold]Block[/gold]."

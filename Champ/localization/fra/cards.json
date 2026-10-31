@@ -98,7 +98,6 @@
     "CHAMP-IMPROVISING.title": "Improvisation",
     "CHAMP-INSPIRATION.description": "Adoptez une [gold]Pose[/gold] dans laquelle vous n'êtes pas.",
     "CHAMP-INSPIRATION.title": "Inspiration",
-    "CHAMP-IRON_FORTRESS.description": "Gagnez {DexterityPower:diff()} de [gold]Dextérité[/gold].\nGagnez {MetallicizePower:diff()} de [gold]Métallisation[/gold].",
     "CHAMP-IRON_FORTRESS.title": "Forteresse d'acier",
     "CHAMP-KILLING_SPREE.title": "Vague de Meurtres",
     "CHAMP-KILLING_SPREE.description": "Les [gold]Poses[/gold] n'ont plus de plafond sur les [gold]Bonus de Compétences[/gold].\nDéclenchez le [gold]Bonus de Compétence[/gold] de votre [gold]Pose[/gold] {Skill:diff()} fois.",

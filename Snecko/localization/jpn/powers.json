@@ -74,8 +74,7 @@
     "SNECKO-MUDDY_POWER.title": "泥んこ",
     "SNECKO-MUDDY_POWER.description": "次のターン開始時、[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。",
     "SNECKO-VENOMOLOGY_POWER.title": "毒液学",
-    "SNECKO-VENOMOLOGY_POWER.description": "このターン、この敵は他のプレイヤーにデバフを付与されるたび、[gold]猛毒[/gold]を得る。",
-    "SNECKO-VENOMOLOGY_POWER.smartDescription": "このターン、この敵は他のプレイヤーにデバフを付与されるたび、[gold]猛毒[/gold][blue]{Amount}[/blue]を得る。",
-    "SNECKO-VENOMOLOGY_POWER.remoteDescription": "このターン、この敵はあなたにデバフを付与されるたび、[gold]猛毒[/gold][blue]{Amount}[/blue]を得る。",
+    "SNECKO-VENOMOLOGY_POWER.description": "アタックでブロックされずにダメージを与えるたび、[gold]猛毒[/gold]を付与する。",
+    "SNECKO-VENOMOLOGY_POWER.smartDescription": "アタックでブロックされずにダメージを与えるたび、[gold]猛毒[/gold][blue]{Amount}[/blue]を付与する。",
     "SNECKO-MUDDY_POWER.smartDescription": "{Amount:cond:>1?次の[blue]{Amount}[/blue]ターンの開始時|次のターン開始時}、[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。"
 }
