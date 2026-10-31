@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Extensions;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,6 +19,9 @@ public class Convert : AutomatonCardModel
     }
 
     protected override bool ShouldGlowGoldInternal => Owner.StashPile.Any(e => e.Type == CardType.Status);
+
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
