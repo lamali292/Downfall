@@ -11,14 +11,15 @@ public class InevitableDemise : CollectorCardModel
 {
     public InevitableDemise() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(5, 2);
-        WithPower<InevitableDemisePower>(1, 1, false);
-        WithTip<MiasmaPower>();
+        WithDamage(3);
+        WithPower<MiasmaPower>(1, 1, false);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await CommonActions.Apply<InevitableDemisePower>(ctx, this, cardPlay);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        await CommonActions.Apply<MiasmaPower>(ctx, this, cardPlay);
     }
 }

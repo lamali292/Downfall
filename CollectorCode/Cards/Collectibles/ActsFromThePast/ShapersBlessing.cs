@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Collector.CollectorCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -10,7 +11,7 @@ public class ShapersBlessing : ActsFromThePastCard
     public ShapersBlessing() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self, "DONU_AND_DECA_BOSS")
     {
         WithPower<StrengthPower>(2, 1);
-        WithPower<PlatingPower>(4, 2);
+        WithPower<PlatedArmorPower>(4, 1);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

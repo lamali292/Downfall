@@ -11,21 +11,18 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class DragonsTrove : CollectorCardModel
 {
-    public DragonsTrove() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public DragonsTrove() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CollectorKeyword.Pyre);
+        WithKeyword(CardKeyword.Ethereal);
+        WithGold(40, 20);
         WithReserve(1);
-        WithKeyword(CardKeyword.Exhaust);
-        WithCostUpgradeBy(-1);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (await PyreCmd.Pyre(ctx, this) == null) return;
-        var cards = Owner.DrawPile.Where(e => e.VisualCardPool.IsColorless);
-        await CardPileCmd.Add(cards, PileType.Hand);
+        await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
         await ReserveCmd.GainReserve(this);
     }
 }

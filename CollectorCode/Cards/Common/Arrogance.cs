@@ -10,11 +10,11 @@ namespace Collector.CollectorCode.Cards.Common;
 [Pool(typeof(CollectorCardPool))]
 public class Arrogance : CollectorCardModel
 {
-    public Arrogance() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public Arrogance() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithPower<DoomedAttackPower>(3, 1, false);
+        WithPower<DoomedAttackPower>(4, 2, false);
         WithTip<MiasmaPower>();
-        WithBlock(7, 2);
+        WithBlock(9, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

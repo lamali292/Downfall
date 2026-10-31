@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -21,7 +22,19 @@ public abstract class ConstructedPotionModel(PotionRarity potionRarity, PotionUs
     protected sealed override IEnumerable<DynamicVar> CanonicalVars => _newDynamicVars;
 
     public sealed override IEnumerable<IHoverTip> ExtraHoverTips => _hoverTips.Select(tip => tip.Tip(this))
-        .Concat(_multiHoverTips.SelectMany<Func<PotionModel, IEnumerable<IHoverTip>>, IHoverTip>(mt => mt(this)));
+        .Concat(_multiHoverTips.SelectMany<Func<PotionModel, IEnumerable<IHoverTip>>, IHoverTip>(mt => mt(this)))
+        .Concat(DynamicVarTips());
+
+    /// <summary>
+    ///     Tips registered on this potion's dynamic vars (e.g. <c>KindleVar</c>'s). BaseLib's ExtraTooltips patch adds
+    ///     these for cards, relics and powers, but not for potions.
+    /// </summary>
+    private IEnumerable<IHoverTip> DynamicVarTips()
+    {
+        return DynamicVars.Values
+            .Select(dynVar => DynamicVarExtensions.DynamicVarTips[dynVar]?.Invoke(dynVar))
+            .OfType<IHoverTip>();
+    }
 
 
     protected ConstructedPotionModel WithVars(params DynamicVar[] vars)

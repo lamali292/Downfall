@@ -12,7 +12,7 @@ public class BurningStrike : CollectorCardModel
     public BurningStrike() : base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
     {
         WithTags(CardTag.Strike);
-        WithDamage(11, 3);
+        WithDamage(12, 2);
         WithCards(2);
     }
 

@@ -15,7 +15,8 @@ public class Bonfire : CollectorCardModel
 {
     public Bonfire() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(13, 4);
+        WithKeyword(CollectorKeyword.Pyre);
+        WithBlock(13, 3);
         WithPower<ReserveNextTurnPower>(1, false);
         WithReserveTip();
         WithUpgradeChangingCardTip<Burn, Soot>();
@@ -26,7 +27,9 @@ public class Bonfire : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         if (await PyreCmd.Pyre(ctx, this) == null) return;
+        
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.ApplySelf<ReserveNextTurnPower>(ctx, this);
         if (IsUpgraded)

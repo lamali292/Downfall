@@ -14,21 +14,16 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class SlagTeam : CollectorCardModel, IAfterCardPyred
 {
-    public SlagTeam() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+    public SlagTeam() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithTorchheadDamage(7, 3);
-        WithTip(CollectorTip.Pyred);
-        WithTip(CollectorKeyword.Pyre);
+        WithDamage(5, 3);
         WithTip(CardKeyword.Exhaust);
         WithCardTip<Ember>();
-        WithTip(CollectorKeyword.Torchhead);
     }
-    
-    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
-    
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 
     public async Task AfterCardPyred(PlayerChoiceContext ctx, CardModel card, CardModel pyred)

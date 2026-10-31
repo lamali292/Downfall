@@ -18,7 +18,6 @@ public class KrampianCoal : CollectorRelicModel, IAfterCardPyred
     {
         WithTip(CollectorKeyword.Pyre);
         WithTip<LuckyWick>();
-        WithUpgradedCardTip<LuckyWick>();
 
     }
     

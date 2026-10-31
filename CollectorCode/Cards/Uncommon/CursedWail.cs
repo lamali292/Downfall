@@ -17,8 +17,8 @@ public class CursedWail : CollectorCardModel
 {
     public CursedWail() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
-        WithPower<CursedWailPower>(8, 5, false);
-        WithPower<StrengthPower>(1, 1);
+        WithPower<StrengthPower>(2, 1);
+        WithPower<CursedWailPower>(3, 1, false);
         WithKeywords(CardKeyword.Exhaust);
     }
 
@@ -29,10 +29,11 @@ public class CursedWail : CollectorCardModel
         if (CombatState == null) return;
         
         var amount = -DynamicVars.Power<StrengthPower>().IntValue;
+        var amount2 = -DynamicVars.Power<CursedWailPower>().IntValue;
         var enemies = CombatState.HittableEnemies.Where(e => e.Powers.Count(ShouldCountPower) >= 3);
-        await PowerCmd.Apply<StrengthPower>(ctx, enemies, amount, Owner.Creature, this);
-        
-        await CommonActions.Apply<CursedWailPower>(ctx, this, cardPlay);
+        var enumerable = enemies.ToList();
+        await PowerCmd.Apply<StrengthPower>(ctx, enumerable, amount, Owner.Creature, this);
+        await PowerCmd.Apply<CursedWailPower>(ctx, enumerable, amount2, Owner.Creature, this);
     }
     
     private static bool ShouldCountPower(PowerModel power)

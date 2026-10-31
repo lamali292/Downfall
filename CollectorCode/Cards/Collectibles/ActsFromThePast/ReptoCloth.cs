@@ -12,7 +12,7 @@ public class ReptoCloth : ActsFromThePastCard
 {
     public ReptoCloth() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, "REPTOMANCER_ELITE")
     {
-        WithKindle(6, 1);
+        WithKindle(5, 1);
         WithTip<PoisonPower>();
         WithPower<EquipDaggerPower>(1, 1, false);
     }

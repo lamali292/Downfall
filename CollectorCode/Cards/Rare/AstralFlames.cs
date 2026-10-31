@@ -12,26 +12,20 @@ namespace Collector.CollectorCode.Cards.Rare;
 [Pool(typeof(CollectorCardPool))]
 public class AstralFlames : CollectorCardModel
 {
-    public AstralFlames() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public AstralFlames() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithBlock(10, 2);
-        WithVar("Increase", 3, 1);
-        WithEnergyTip();
-        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
-        var card = (await DownfallCardSelectionCmd.MulitPileSelect(ctx, Owner, prefs, null, PileType.Hand,
-            PileType.Discard, PileType.Draw)).FirstOrDefault();
-        var block = DynamicVars.Block.IntValue;
+        // The Discard Pile is only a valid source once upgraded.
+        PileType[] piles = IsUpgraded ? [PileType.Hand, PileType.Discard, PileType.Draw] : [PileType.Hand, PileType.Draw];
+        var card = (await DownfallCardSelectionCmd.MulitPileSelect(ctx, Owner, prefs, _ => true, piles)).FirstOrDefault();
         if (card != null)
-        {
-            block += card.EnergyCost.GetResolved() * DynamicVars["Increase"].IntValue;
             await CardCmdCompatibility.Exhaust(ctx, card);
-        }
 
-        await CreatureCmd.GainBlock(Owner.Creature, block, DynamicVars.Block.Props, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue, DynamicVars.Block.Props, cardPlay);
     }
 }

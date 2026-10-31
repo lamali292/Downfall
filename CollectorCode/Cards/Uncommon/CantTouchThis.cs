@@ -13,7 +13,7 @@ public class CantTouchThis : CollectorCardModel
 {
     public CantTouchThis() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
-        WithPower<CantTouchThisPower>(1, 1, false);
+        WithPower<CantTouchThisPower>(2, 1, false);
         WithTip<MiasmaPower>();
     }
 
@@ -21,7 +21,6 @@ public class CantTouchThis : CollectorCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.ApplySelf<DexterityPower>(ctx, this);
         await CommonActions.ApplySelf<CantTouchThisPower>(ctx, this);
     }
 }

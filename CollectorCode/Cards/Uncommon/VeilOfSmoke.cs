@@ -14,7 +14,7 @@ namespace Collector.CollectorCode.Cards.Uncommon;
 [Pool(typeof(CollectorCardPool))]
 public class VeilOfSmoke : CollectorCardModel
 {
-    public VeilOfSmoke() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public VeilOfSmoke() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithPower<VeilOfSmokePower>(6, 2, false);
         WithTip(StaticHoverTip.Block);

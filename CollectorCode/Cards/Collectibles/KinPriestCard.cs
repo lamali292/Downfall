@@ -1,8 +1,13 @@
 ﻿using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
+using Collector.CollectorCode.Core;
+using Collector.CollectorCode.CustomEnums;
+using Collector.CollectorCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Encounters;
 using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Collectibles;
@@ -11,28 +16,22 @@ public class KinPriestCard : Collectible<TheKinBoss>
 {
     public KinPriestCard() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, 0.786f)
     {
-        WithDamage(14, 4);
-        WithPower<WeakPower>(3);
-        WithPower<VulnerablePower>(3);
+        WithTorchheadDamage(8, 3);
+        WithCalculatedVar("Hits", 1, Calc);
+        WithTip(CollectorKeyword.Torchhead);
+        WithTip<WeakPower>();
     }
 
-    private bool EvenTurn => _owner == null || (Owner.PlayerCombatState?.TurnNumber ?? 0) % 2 == 0;
-    
+    /// <summary>Torchhead attacks once, plus once more for each enemy with Weak.</summary>
+    private static decimal Calc(CardModel card, Creature? creature) =>
+        card.CombatState?.HittableEnemies.Count(enemy => enemy.HasPower<WeakPower>()) ?? 0;
+
+    protected override bool ShouldGlowRedInternal => Owner.IsTorchheadMissing;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (EvenTurn)
-        {
-            await CommonActions.Apply<VulnerablePower>(ctx, this, cardPlay);
-        }
-        else
-        {
-            await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
-        }
-    }
-
-    protected override void AddExtraArgsToDescription(LocString description)
-    {
-        description.Add("EvenTurn", EvenTurn);
+        var hits = (int)((CalculatedVar)DynamicVars["Hits"]).Calculate(null);
+        for (var i = 0; i < hits; i++)
+            await TorchheadCmd.AttackOrKindle(ctx, this, cardPlay);
     }
 }
