@@ -18,7 +18,7 @@ public class TorchheadPower : CollectorPowerModel, IAddDumbVariablesToPowerDescr
 
     public TorchheadPower() : base(PowerType.Buff, PowerStackType.Single)
     {
-        WithTorchheadDamage(3);
+        WithTorchheadDamage(4);
     }
     
     public override bool ShouldPlayVfx => false;

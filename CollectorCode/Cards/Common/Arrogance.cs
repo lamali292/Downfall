@@ -14,7 +14,7 @@ public class Arrogance : CollectorCardModel
     {
         WithPower<DoomedAttackPower>(4, 2, false);
         WithTip<MiasmaPower>();
-        WithBlock(8, 3);
+        WithBlock(9, 3);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

@@ -2,15 +2,12 @@ using BaseLib.Utils;
 using Collector.CollectorCode.Cards.Token;
 using Collector.CollectorCode.Core;
 using Collector.CollectorCode.CustomEnums;
-using Collector.CollectorCode.Powers;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 namespace Collector.CollectorCode.Cards.Common;
 
 [Pool(typeof(CollectorCardPool))]
@@ -19,11 +16,9 @@ public class ItMattersNot : CollectorCardModel
     public ItMattersNot() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CollectorKeyword.Pyre);
-        WithBlock(9, 3);
-        WithTip<VulnerablePower>();
-        WithTip<WeakPower>();
-        WithTip<MiasmaPower>();
-        WithVar("ItMattersNot", 1);
+        WithBlock(10, 4);
+        WithCardTip<Ember>();
+        WithUpgradedCardTip<Ember>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
