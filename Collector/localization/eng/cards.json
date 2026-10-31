@@ -148,7 +148,7 @@
   "COLLECTOR-PYREBLAST.title": "Pyreblast",
   "COLLECTOR-PYREBLAST.description": "Deal {Damage:diff()} damage.\nWhile this card is in your Hand, costs {Energy:energyIcons()} less for each Status or [red]Curse[/red] [gold]Pyred[/gold].",
   "COLLECTOR-HELLFIRE.title": "Hellfire",
-  "COLLECTOR-HELLFIRE.description": "Apply {MiasmaPower:diff()} [gold]Miasma[/gold] for each [gold]Pyred[/gold] card.",
+  "COLLECTOR-HELLFIRE.description": "[gold]Torchhead [/gold]deals {TorchheadDamage:diff()} damage{TorchheadTargetsAll:cond: to ALL enemies|} for each card[gold] Pyred[/gold].",
   "COLLECTOR-EQUIP_SHIELD.title": "Equip: Shield",
   "COLLECTOR-EQUIP_SHIELD.description": "[gold]Kindle[/gold] {Kindle:diff()}.\nWhenever [gold]Torchhead[/gold] attacks, gain {EquipShieldPower:diff()} [gold]Block[/gold].",
   "COLLECTOR-EQUIP_FURNACE.title": "Equip: Furnace",
