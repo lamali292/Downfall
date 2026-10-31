@@ -192,7 +192,7 @@
     "COLLECTOR-CEREMONIAL_BEAST_CARD.description": "每有1{energyPrefix:energyIcons(1)}或1{:reserveIcons(1)}，就获得{CalculationExtra:diff()}点[gold]格挡[/gold]。\n你下一次打出牌时，结束你的回合。{InCombat:cond:\n（获得{CalculatedBlock:diff()}点[gold]格挡[/gold]）|}",
     "COLLECTOR-KIN_PRIEST_CARD.description": "造成{Damage:diff()}点伤害。\n若为奇数回合，给予{WeakPower:diff()}层[gold]虚弱[/gold]。\n若为偶数回合，给予{VulnerablePower:diff()}层[gold]易伤[/gold]。{InCombat:cond:\n（给予{EvenTurn:cond:{VulnerablePower:diff()}层[gold]易伤[/gold]|{WeakPower:diff()}层[gold]虚弱[/gold]）}|}",
     "COLLECTOR-ENTOMANCER_CARD.description": "造成{Damage:diff()}点伤害{Repeat:diff()}次。",
-    "COLLECTOR-THE_INSATIABLE_CARD.description": "每当你[gold]焰葬[/gold]一张耗能不低于{energyPrefix:energyIcons(2)}卡牌时，[gold]点灯[/gold]{TheInsatiableCardPower:diff()}。",
+    "COLLECTOR-THE_INSATIABLE_CARD.description": "每当你[gold]焰葬[/gold]一张耗能不低于{energyPrefix:energyIcons(2)}牌时，[gold]点灯[/gold]{TheInsatiableCardPower:diff()}。",
     "COLLECTOR-KNOWLEDGE_DEMON_CARD.description": "从{Cards:diff()}张[gold]升级过的[/gold]随机颜色的牌中选择一张加入你的[gold]手牌[/gold]。\n{IfUpgraded:show:这张牌在本回合免费打出|这张牌在本回合内耗能减少1}。",
     "COLLECTOR-KAISER_CRAB_CARD.description": "造成{Damage:diff()}点伤害。\n{IfUpgraded:show:|随机}打出你[gold]手牌[/gold]中一张攻击牌。",
     "COLLECTOR-MECHA_KNIGHT_CARD.description": "获得{OrbSlots:diff()}个充能球栏位。\n每当你[gold]焰葬[/gold]一张牌时，[gold]生成[/gold]{MechaKnightCardPower:diff()}个随机充能球。",

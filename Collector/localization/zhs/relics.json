@@ -21,6 +21,7 @@
     "COLLECTOR-SOUL_LIT_LAMP.description": "每当你[gold]焰葬[/gold]一张耗能不低于{Energy:energyIcons()}的卡牌时，给予所有敌人{SoulBurnPower:diff()}层[gold]灼魂[/gold]。",
     "COLLECTOR-SOUL_LIT_LAMP.flavor": "一件十分阴间的装饰品，从内部传来的不是燃料的燃爆声，而是嘈杂的哀嚎。",
     "COLLECTOR-THE_CONTRACT.title": "交易契约",
+    "COLLECTOR-THE_CONTRACT.description": "拾起时，将[blue]1[/blue]张[blue]{Cards:diff()}[/blue]升级过的[gold]藏品牌[/gold]加入到你的[gold]牌组[/gold]。",
     "COLLECTOR-THE_CONTRACT.flavor": "以血落成。",
     "COLLECTOR-THIMBLE_HELM.title": "顶针帽",
     "COLLECTOR-THIMBLE_HELM.description": "当[gold]火炬头[/gold]存活时，你从卡牌获得的[gold]格挡[/gold]增加[blue]{Block:diff()}[/blue]点。",
