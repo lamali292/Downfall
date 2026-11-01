@@ -50,10 +50,13 @@ public class PackCards(string scriptDir, bool force)
             }
         }
 
-        charCache["normal"] = PackGroup($"{charId}_normal", normalEntries, outDir, resBase, "card_atlas", NormalSize,
-            charCache["normal"]?.AsObject() ?? new JsonObject());
-        charCache["ancient"] = PackGroup($"{charId}_ancient", ancientEntries, outDir, resBase, "card_ancient_atlas",
-            AncientSize, charCache["ancient"]?.AsObject() ?? new JsonObject());
+        // Both groups write their .tres into the same card_atlas.sprites folder. A card whose art changed aspect
+        // ratio moves between groups, so a group must not delete the .tres of a stem the other group now owns.
+        var allStems = normalEntries.Concat(ancientEntries).Select(e => e.Stem).ToHashSet();
+        charCache["normal"] = PackGroup($"{charId}_normal", normalEntries, allStems, outDir, resBase, "card_atlas",
+            NormalSize, charCache["normal"]?.AsObject() ?? new JsonObject());
+        charCache["ancient"] = PackGroup($"{charId}_ancient", ancientEntries, allStems, outDir, resBase,
+            "card_ancient_atlas", AncientSize, charCache["ancient"]?.AsObject() ?? new JsonObject());
 
         foreach (var list in new[] { normalEntries, ancientEntries })
             foreach (var (_, img, _) in list)
@@ -65,6 +68,7 @@ public class PackCards(string scriptDir, bool force)
     private JsonObject PackGroup(
         string groupId,
         List<(string Stem, Image<Rgb24> Img, string Hash)> entries,
+        IReadOnlySet<string> allStems,
         string outDir, string resBase, string atlasBase,
         (int W, int H) cardSize, JsonObject groupCache)
     {
@@ -96,10 +100,11 @@ public class PackCards(string scriptDir, bool force)
             }
 
         var removed = groupCache.Select(kv => kv.Key).Except(entryMap.Keys).ToHashSet();
+        var removedTres = removed.Except(allStems).ToList();
 
         if (slotMap.Count == 0)
         {
-            foreach (var stem in removed)
+            foreach (var stem in removedTres)
             {
                 var p = Path.Join(outDir, "card_atlas.sprites", $"{stem}.tres");
                 if (!File.Exists(p)) continue;
@@ -163,7 +168,7 @@ public class PackCards(string scriptDir, bool force)
             tresWritten++;
         }
 
-        foreach (var stem in removed)
+        foreach (var stem in removedTres)
         {
             var p = Path.Join(tresDir, $"{stem}.tres");
             if (!File.Exists(p)) continue;

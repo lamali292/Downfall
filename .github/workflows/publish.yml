@@ -80,17 +80,10 @@ jobs:
             */images/powers
             */images/relics
             */images/enchantments
-          key: atlases-${{ hashFiles('ImageGen/images/**/*.png') }}
-          restore-keys: atlases-
-
-      # Skipped entirely on a pck cache hit — see "Cache packed mod output" above.
-      - name: Cache Godot import results
-        if: steps.cache-pck.outputs.cache-hit != 'true'
-        uses: actions/cache@v4
-        with:
-          path: .godot/imported
-          key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
-          restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
+          # ImageGen's own code is part of the key prefix: its incremental cache only tracks input image
+          # hashes, so outputs from an older ImageGen must never be reused after the packer changes.
+          key: atlases-${{ hashFiles('ImageGen/**/*.cs') }}-${{ hashFiles('ImageGen/images/**/*.png') }}
+          restore-keys: atlases-${{ hashFiles('ImageGen/**/*.cs') }}-
 
       # cache-engine is itself skipped on a pck cache hit (see above), leaving its
       # cache-hit output empty/falsy — so these must also check cache-pck directly,
@@ -120,6 +113,17 @@ jobs:
       - name: Build image atlases
         if: steps.cache-pck.outputs.cache-hit != 'true'
         run: dotnet run --project ImageGen -c Release
+
+      # Must come AFTER "Build image atlases": hashFiles is evaluated when this step runs, and before
+      # ImageGen the atlas PNGs on disk are still the restored (possibly outdated) ones.
+      # Skipped entirely on a pck cache hit — see "Cache packed mod output" above.
+      - name: Cache Godot import results
+        if: steps.cache-pck.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: .godot/imported
+          key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
+          restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
 
       # First cold import often exits non-zero while bootstrapping .godot/ — run twice.
       # With a warm import cache this step only re-imports changed assets.
