@@ -43,7 +43,6 @@
     "GUARDIAN-GIGA_BEAM.title": "Giga Raggio",
     "GUARDIAN-GUARDIAN_WHIRL.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici due volte.\nSe hai {Threshold:diff()} o più [gold]Blocco[/gold], infliggi danno altre 2 volte.",
     "GUARDIAN-GUARDIAN_WHIRL.title": "Vortice del Guardiano",
-    "GUARDIAN-HARDEN.description": "Ottieni {MetallicizePower:diff()} [gold]Metallizzazione[/gold].",
     "GUARDIAN-HARDEN.title": "Indurisci",
     "GUARDIAN-INCINERATE.description": "Infliggi {Damage:diff()} di danno.\n[gold]Accelera[/gold]{IfUpgraded:show:[gold] due volte[/gold]|}.",
     "GUARDIAN-INCINERATE.title": "Incenerisci",

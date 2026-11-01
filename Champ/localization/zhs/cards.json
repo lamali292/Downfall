@@ -98,7 +98,7 @@
     "CHAMP-IMPROVISING.title": "触类旁通",
     "CHAMP-INSPIRATION.description": "进入相反[gold]姿态[/gold]。",
     "CHAMP-INSPIRATION.title": "灵感",
-    "CHAMP-IRON_FORTRESS.description": "获得{DexterityPower:diff()}点[gold]敏捷[/gold]。\n获得{MetallicizePower:diff()}层[gold]金属化[/gold]。",
+    "CHAMP-IRON_FORTRESS.description": "获得{DexterityPower:diff()}点[gold]敏捷[/gold]。\n获得{PlatingPower:diff()}层[gold]覆甲[/gold]。",
     "CHAMP-IRON_FORTRESS.title": "钢铁要塞",
     "CHAMP-KILLING_SPREE.title": "杀戮狂欢",
     "CHAMP-KILLING_SPREE.description": "[gold]姿态[/gold]的[gold]技术奖励[/gold]没有上限。\n触发当前[gold]姿态[/gold]的[gold]技术奖励[/gold]{Skill:diff()}次。",

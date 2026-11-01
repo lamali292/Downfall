@@ -3,8 +3,6 @@
     "SNECKO-VENOM_POWER.description": "Immer wenn ein anderer Debuff als [gold]Toxin[/gold] angewendet wird, verliere TP.",
     "SNECKO-VENOM_POWER.smartDescription": "Immer wenn ein anderer Debuff als [gold]Toxin[/gold] angewendet wird, verliere [blue]{Amount}[/blue] TP.",
     "SNECKO-SAVE_FOR_LATER_POWER.title": "Übriglassen",
-    "SNECKO-SAVE_FOR_LATER_POWER.description": "[gold]Behalte[/gold] am Ende deines Zuges eine Karte.",
-    "SNECKO-SAVE_FOR_LATER_POWER.smartDescription": "[gold]Behalte[/gold] am Ende deines Zuges [blue]{Amount}[/blue] {Amount:plural:Karte|Karten}.",
     "SNECKO-BLUNDER_GUARD_POWER.title": "Schwere Geschütze",
     "SNECKO-BLUNDER_GUARD_POWER.description": "Immer wenn du eine Karte spielst, die {energyPrefix:energyIcons(3)} oder mehr kostet, erhalte [gold]Block[/gold] und [gold]Stärke[/gold].",
     "SNECKO-BLUNDER_GUARD_POWER.smartDescription": "Immer wenn du eine Karte spielst, die {Energy:energyIcons()} oder mehr kostet, erhalte [blue]{Amount}[/blue] [gold]Block[/gold] und [blue]{StrengthPower}[/blue] [gold]Stärke[/gold].",
@@ -74,8 +72,5 @@
     "SNECKO-MUDDY_POWER.title": "Matschig",
     "SNECKO-MUDDY_POWER.description": "Zu Beginn deines nächsten Zuges [gold]irre[/gold] deine [gold]Hand[/gold].",
     "SNECKO-VENOMOLOGY_POWER.title": "Toxinologie",
-    "SNECKO-VENOMOLOGY_POWER.description": "Immer wenn ein Mitspieler in diesem Zug einen Debuff auf diesen Gegner anwendet, erhält er [gold]Toxin[/gold].",
-    "SNECKO-VENOMOLOGY_POWER.smartDescription": "Immer wenn ein Mitspieler in diesem Zug einen Debuff auf diesen Gegner anwendet, erhält er [blue]{Amount}[/blue] [gold]Toxin[/gold].",
-    "SNECKO-VENOMOLOGY_POWER.remoteDescription": "Immer wenn du in diesem Zug einen Debuff auf diesen Gegner anwendest, erhält er [blue]{Amount}[/blue] [gold]Toxin[/gold].",
     "SNECKO-MUDDY_POWER.smartDescription": "Zu Beginn {Amount:plural:deines nächsten Zuges|deiner nächsten [blue]{}[/blue] Züge} [gold]irre[/gold] deine [gold]Hand[/gold]."
 }

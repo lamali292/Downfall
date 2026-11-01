@@ -3,8 +3,6 @@
     "SNECKO-VENOM_POWER.description": "每当其获得[gold]剧毒[/gold]以外的负面状态时，使其失去生命。",
     "SNECKO-VENOM_POWER.smartDescription": "每当其获得[gold]剧毒[/gold]以外的负面状态时，失去[blue]{Amount}[/blue]点生命。",
     "SNECKO-SAVE_FOR_LATER_POWER.title": "保留待用",
-    "SNECKO-SAVE_FOR_LATER_POWER.description": "在你的回合结束时，[gold]保留[/gold]至多一张牌。",
-    "SNECKO-SAVE_FOR_LATER_POWER.smartDescription": "在你的回合结束时，[gold]保留[/gold]至多[blue]{Amount}[/blue]张牌。",
     "SNECKO-BLUNDER_GUARD_POWER.title": "枪火掩护",
     "SNECKO-BLUNDER_GUARD_POWER.description": "每当你打出一张耗能不低于{energyPrefix:energyIcons(3)}的牌时，获得[gold]格挡[/gold]和[gold]力量[/gold]。",
     "SNECKO-BLUNDER_GUARD_POWER.smartDescription": "每当你打出一张耗能不低于{Energy:energyIcons()}的牌时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]和[blue]{StrengthPower}[/blue]点[gold]力量[/gold]。",
@@ -74,8 +72,5 @@
     "SNECKO-MUDDY_POWER.title": "泥泞",
     "SNECKO-MUDDY_POWER.description": "在下个回合开始时，[gold]混淆[/gold]你的[gold]手牌[/gold]。",
     "SNECKO-VENOMOLOGY_POWER.title": "毒液学",
-    "SNECKO-VENOMOLOGY_POWER.description": "本回合内，每当其他玩家给予该敌人负面状态，其额外获得[gold]剧毒[/gold]。",
-    "SNECKO-VENOMOLOGY_POWER.smartDescription": "本回合内，每当其他玩家给予该敌人负面状态，其额外获得[blue]{Amount}[/blue]层[gold]剧毒[/gold]。",
-    "SNECKO-VENOMOLOGY_POWER.remoteDescription": "本回合内，每当你玩家给予该敌人负面状态，其额外获得[blue]{Amount}[/blue]层[gold]剧毒[/gold]。",
     "SNECKO-MUDDY_POWER.smartDescription": "在你的下{Amount:plural:回合|[blue]{}[/blue]回合}开始时，[gold]混淆[/gold]你的[gold]手牌[/gold]。"
 }
