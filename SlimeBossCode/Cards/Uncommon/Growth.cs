@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -15,8 +14,6 @@ public class Growth : SlimeBossCardModel
         WithBlock(6, 3);
         WithPower<GrowthPower>(2, 1, false);
     }
-
-    protected override Artist Artist => Artist.Get<Thelethargicweirdo>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
