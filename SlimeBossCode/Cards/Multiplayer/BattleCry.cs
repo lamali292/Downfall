@@ -9,7 +9,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Multiplayer;
 [Pool(typeof(Core.SlimeBossCardPool))]
 public class BattleCry : SlimeBossCardModel
 {
-    public BattleCry() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
+    public BattleCry() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
     {
         WithPower<BattleCryStrengthPower>(2, 1, false);
         WithTip<StrengthPower>();
