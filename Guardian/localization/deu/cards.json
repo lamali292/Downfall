@@ -47,7 +47,6 @@
     "GUARDIAN-GIGA_BEAM.title": "Gigastrahl",
     "GUARDIAN-GUARDIAN_WHIRL.description": "Füge ALLEN Gegnern zweimal {Damage:diff()} Schaden zu.\nFalls du {Threshold:diff()} oder mehr [gold]Block[/gold] hast, füge noch 2 Mal Schaden zu.",
     "GUARDIAN-GUARDIAN_WHIRL.title": "Wächter-Wirbel",
-    "GUARDIAN-HARDEN.description": "Erhalte {MetallicizePower:diff()} [gold]Metallisieren[/gold].",
     "GUARDIAN-HARDEN.title": "Erhärten",
     "GUARDIAN-INCINERATE.description": "Füge {Damage:diff()} Schaden zu.\n[gold]Beschleunige[/gold]{IfUpgraded:show:[gold] zweimal[/gold]|}.",
     "GUARDIAN-INCINERATE.title": "Veraschen",

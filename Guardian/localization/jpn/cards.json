@@ -47,7 +47,7 @@
     "GUARDIAN-GIGA_BEAM.title": "ギガビーム",
     "GUARDIAN-GUARDIAN_WHIRL.description": "すべての敵に{Damage:diff()}ダメージを2回与える。\n[gold]ブロック[/gold]値が{Threshold:diff()}以上の場合、追加で2回攻撃する。",
     "GUARDIAN-GUARDIAN_WHIRL.title": "旋風刃",
-    "GUARDIAN-HARDEN.description": "[gold]金属化[/gold]{MetallicizePower:diff()}を得る。",
+    "GUARDIAN-HARDEN.description": "[gold]プレート[/gold]{PlatingPower:diff()}を得る。\n[gold]ティック[/gold]：[gold]トゲ[/gold]{ThornsPower:diff()}を得る。",
     "GUARDIAN-HARDEN.title": "硬化",
     "GUARDIAN-INCINERATE.description": "{Damage:diff()}ダメージを与える。\n{IfUpgraded:show:2|1}回[gold]加速[/gold]する。",
     "GUARDIAN-INCINERATE.title": "焼き払う",

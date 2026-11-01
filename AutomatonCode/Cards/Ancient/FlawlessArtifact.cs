@@ -1,6 +1,7 @@
 ﻿using Automaton.AutomatonCode.Cards.Token;
 using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,6 +18,9 @@ public class FlawlessArtifact : AutomatonCardModel
         WithUpgradingCardTip<Separator>();
         WithUpgradingCardTip<Terminator>();
     }
+
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
