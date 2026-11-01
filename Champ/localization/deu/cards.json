@@ -98,7 +98,7 @@
     "CHAMP-IMPROVISING.title": "Improvisation",
     "CHAMP-INSPIRATION.description": "Nimm eine [gold]Haltung[/gold] ein, in der du nicht bist.",
     "CHAMP-INSPIRATION.title": "Inspiration",
-    "CHAMP-IRON_FORTRESS.description": "Erhalte {DexterityPower:diff()} [gold]Geschicklichkeit[/gold].\nErhalte {MetallicizePower:diff()} [gold]Metallisieren[/gold].",
+    "CHAMP-IRON_FORTRESS.description": "Erhalte {DexterityPower:diff()} [gold]Geschicklichkeit[/gold].\nErhalte {PlatingPower:diff()} [gold]Panzerung[/gold].",
     "CHAMP-IRON_FORTRESS.title": "Eiserne Festung",
     "CHAMP-KILLING_SPREE.title": "Blutrausch",
     "CHAMP-KILLING_SPREE.description": "[gold]Haltungen[/gold] haben keine Obergrenze mehr für [gold]Fertigkeitsboni[/gold].\nLöse den [gold]Fertigkeitsbonus[/gold] deiner aktuellen [gold]Haltung[/gold] {Skill:diff()} Mal aus.",

@@ -46,7 +46,6 @@
     "GUARDIAN-STASIS_ENGINE_POWER.smartDescription": "Gagnez {energyPrefix:energyIcons(1)} et piochez [blue]{Amount}[/blue] {Amount:plural:carte|cartes} lorsque vous jouez la [blue]3ème[/blue] carte coûtant 0{energyPrefix:energyIcons(1)} en un seul tour.",
     "GUARDIAN-TIME_SIFTER_POWER.title": "Tamis Temporel",
     "GUARDIAN-TIME_SIFTER_POWER.description": "Au début de votre tour, [gold]Accélérez[/gold].",
-    "GUARDIAN-TIME_SIFTER_POWER.smartDescription": "Au début de votre tour, [gold]Accélérez[/gold] {Amount:plural:| [blue]{Amount}[/blue] fois}.",
     "GUARDIAN-SHARP_HIDE_POWER.title": "Carapace Acérée",
     "GUARDIAN-SHARP_HIDE_POWER.description": "Au début de votre tour, gagnez des [gold]Épines[/gold] pour ce tour.",
     "GUARDIAN-SHARP_HIDE_POWER.smartDescription": "Au début de votre tour, gagnez [blue]{Amount}[/blue] [gold]d'Épines[/gold] pour ce tour.",

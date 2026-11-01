@@ -84,7 +84,6 @@
     "CHAMP-IMPROVISING.title": "Improvvisare",
     "CHAMP-INSPIRATION.description": "Entra in una [gold]Posa[/gold] in cui non sei.",
     "CHAMP-INSPIRATION.title": "Ispirazione",
-    "CHAMP-IRON_FORTRESS.description": "Ottieni {DexterityPower:diff()} [gold]Destrezza[/gold].\nOttieni {MetallicizePower:diff()} [gold]Metallizzazione[/gold].",
     "CHAMP-IRON_FORTRESS.title": "Fortezza di Ferro",
     "CHAMP-KILLING_SPREE.title": "Follia Omicida",
     "CHAMP-KILLING_SPREE.description": "Le [gold]Pose[/gold] non hanno più un limite ai [gold]Bonus Abilità[/gold].\nInnesca il [gold]Bonus Abilità[/gold] della tua [gold]Posa[/gold] attuale {Skill:diff()} volte.",
