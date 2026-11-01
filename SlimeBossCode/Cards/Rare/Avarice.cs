@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Enchantments;
 using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Cards.Rare;
@@ -16,18 +13,13 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class Avarice : SlimeBossCardModel
 {
-    public Avarice() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public Avarice() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
-        WithEnchantment<Adroit>(5, 2);
-        WithCardTip<Slimed>(EnchantSlimed);
+        WithBlock(7, 2);
+        WithTip<Slimed>();
     }
 
-    private static void EnchantSlimed(Slimed slimed, CardModel card)
-    {
-        DownfallCardCmd.Enchant<Adroit>(slimed, card.DynamicVars.Enchantment<Adroit>().BaseValue);
-    }
-    
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var cards = await DownfallCardSelectionCmd.SelectFromHand(ctx,
@@ -35,11 +27,14 @@ public class Avarice : SlimeBossCardModel
         var transformations = new List<CardTransformation>();
         foreach (var card in cards)
         {
-            var slimed = CombatState?.CreateCard<Slimed>( Owner);
+            var slimed = CombatState?.CreateCard<Slimed>(Owner);
             if (slimed == null) continue;
-            EnchantSlimed(slimed, this);
             transformations.Add(new CardTransformation(card, slimed));
         }
+        if (transformations.Count == 0) return;
+
         await CardCmd.Transform(transformations, null);
+        for (var i = 0; i < transformations.Count; i++)
+            await CommonActions.CardBlock(this, cardPlay);
     }
 }
