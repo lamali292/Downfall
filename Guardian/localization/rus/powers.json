@@ -46,6 +46,7 @@
     "GUARDIAN-STASIS_ENGINE_POWER.smartDescription": "Вы получаете {Amount:energyIcons()} и добираете [blue]{Amount}[/blue] {Amount:plural(ru):карту|карты|карт}, когда разыгрываете [blue]3-ью[/blue] карту стоимостью {energyPrefix:energyIcons(0)} за ход.",
     "GUARDIAN-TIME_SIFTER_POWER.title": "Просеиватель времени",
     "GUARDIAN-TIME_SIFTER_POWER.description": "Дает [gold]Разгон[/gold] в начале хода.",
+    "GUARDIAN-TIME_SIFTER_POWER.smartDescription": "Дает [gold]Разгон[/gold] {Amount:plural(ru):[blue]{}[/blue] раз|[blue]{}[/blue] раза|[blue]{}[/blue] раз} в начале хода.",
     "GUARDIAN-SHARP_HIDE_POWER.title": "Острая оболочка",
     "GUARDIAN-SHARP_HIDE_POWER.description": "В начале хода, дает [blue]1[/blue] [gold]шипов[/gold] на один ход.",
     "GUARDIAN-SHARP_HIDE_POWER.smartDescription": "В начале хода, дает [blue]{Amount}[/blue] [gold]шипов[/gold] на один ход.",
