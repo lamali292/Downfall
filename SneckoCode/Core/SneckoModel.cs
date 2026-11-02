@@ -1,6 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
-using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
@@ -16,11 +15,11 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
     public static IEnumerable<CharacterModel> GetSneckoCharacterModels(Player player)
     {
-        // Each ISneckoPoolSupplier (SneckoChoice, PrismaticSnecko, ...) contributes the character
+        // Each of this player's ISneckoPoolSupplier relics contributes the character
         // pool(s) it grants - usually one, but Prismatic Snecko contributes every character at once.
-        return MyHookUtils.Collect<ISneckoPoolSupplier, IEnumerable<CharacterModel>>(null,
-                supplier => supplier.AddSneckoChars(), MyHookUtils.HookScope.Run, player.RunState)
-            .SelectMany(c => c)
+        return player.Relics
+            .OfType<ISneckoPoolSupplier>()
+            .SelectMany(supplier => supplier.AddSneckoChars())
             .Distinct();
     }
 
