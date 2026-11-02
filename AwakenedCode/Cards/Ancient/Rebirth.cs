@@ -23,7 +23,7 @@ public class Rebirth : AwakenedCardModel
     
     public override bool CanBeGeneratedInCombat => false;
 
-    protected override Artist Artist => Artist.Get<Opal>();
+    protected override Artist Artist => Artist.Get<Chimedragon>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
