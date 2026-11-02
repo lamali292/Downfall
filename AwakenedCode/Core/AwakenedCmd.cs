@@ -53,16 +53,25 @@ public static class AwakenedCmd
         return !player.Creature.Powers.Any(p => p is BurnoutPower);
     }
 
+    /// <summary>
+    /// The spell this player would conjure next. Initializes the spellbook on demand, since only the Awakened
+    /// character gets it at combat start - any other character playing an Awakened card must not read it raw.
+    /// </summary>
+    public static CardModel? GetNextSpell(Player player)
+    {
+        InitSpellbook(player);
+        var spellbook = GetSpellbook(player);
+        if (spellbook.NextSpell == null) spellbook.SetNextSpell(player);
+        return spellbook.NextSpell;
+    }
+
     public static async Task<CardModel?> Conjure(
         Player player)
     {
         if (!CanConjure(player)) return null;
-        InitSpellbook(player);
-        var spellbook = GetSpellbook(player);
-        while (spellbook.NextSpell == null) spellbook.SetNextSpell(player);
-        var spell = spellbook.NextSpell;
+        var spell = GetNextSpell(player);
         if (spell == null) return null;
-        return await ConjureSpell(player, spell, spellbook);
+        return await ConjureSpell(player, spell, GetSpellbook(player));
     }
 
     public static async Task<CardModel?> ConjureSelected(
