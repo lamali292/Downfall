@@ -49,6 +49,8 @@ public class DownfallPatchManager
             .Add(typeof(NewRunPatch))
             .Add(typeof(DeathInterceptPatch))
             .Add(typeof(CustomPowerIconPatch))
+            .Add(typeof(RelicPullFromFrontPlayerFilterPatch))
+            .Add(typeof(RelicPullFromBackPlayerFilterPatch))
             .Add(typeof(CardOverlayPatches))
             .Add(typeof(CreatureNavigationLinkPatch))
             .Add(typeof(FindExistingInstanceForStackingPatch))

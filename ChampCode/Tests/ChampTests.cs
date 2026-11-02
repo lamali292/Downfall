@@ -2,7 +2,10 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models;
 using Champ.ChampCode.Cards.Basic;
 using Champ.ChampCode.Cards.Uncommon;
+using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Enchantments;
+using Champ.ChampCode.Relics;
+using Downfall.DownfallCode.Interfaces;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Powers;
 using Downfall.DownfallCode.Tests;
@@ -227,5 +230,39 @@ public class ChampTests
         Assert.AreEqual(before + x, FinisherEntryCount(), "Steel Edge should resolve its Finisher X times.");
         Assert.IsTrue(ctx.Player.ChampStance is Champ.ChampCode.Stance.ChampNoStance,
             "Steel Edge should clear the stance.");
+    }
+
+    // Signature Finisher enchants a deck card on pickup, so it must only be offered when the deck has an enchantable Finisher.
+    [CardTest(typeof(Champ.ChampCode.Core.Champ))]
+    public async Task SignatureFinisherRelicOnlyAllowedForAPlayerWithAnEnchantableFinisher(TestContext ctx)
+    {
+        var deck = PileType.Deck.GetPile(ctx.Player);
+        foreach (var card in deck.Cards.Where(c => c.Tags.Contains(ChampTag.Finisher)).ToList())
+            deck.RemoveInternal(card);
+        var relic = (IRelicAllowedForPlayer)ModelDb.Relic<SignatureFinisher>();
+
+        Assert.IsTrue(!relic.IsAllowedForPlayer(ctx.Player), "No Finisher in the deck, so nothing to enchant.");
+
+        var finisher = ctx.Player.RunState.CreateCard<Execute>(ctx.Player);
+        await CardPileCmd.Add(finisher, PileType.Deck);
+
+        Assert.IsTrue(relic.IsAllowedForPlayer(ctx.Player), "A Finisher in the deck can be enchanted.");
+    }
+
+    // The pull patch must keep the relic out of the rolls while the player has no enchantable Finisher.
+    [CardTest(typeof(Champ.ChampCode.Core.Champ))]
+    public Task SignatureFinisherIsNeverPulledWithoutAnEnchantableFinisher(TestContext ctx)
+    {
+        var deck = PileType.Deck.GetPile(ctx.Player);
+        foreach (var card in deck.Cards.Where(c => c.Tags.Contains(ChampTag.Finisher)).ToList())
+            deck.RemoveInternal(card);
+
+        for (var i = 0; i < 100; i++)
+        {
+            var relic = MegaCrit.Sts2.Core.Factories.RelicFactory.PullNextRelicFromFront(ctx.Player,
+                MegaCrit.Sts2.Core.Entities.Relics.RelicRarity.Rare);
+            Assert.IsTrue(relic is not SignatureFinisher, "Signature Finisher was rolled without an enchantable Finisher.");
+        }
+        return Task.CompletedTask;
     }
 }
