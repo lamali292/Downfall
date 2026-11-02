@@ -17,6 +17,8 @@ public class FountainPower : SneckoPowerModel, IAfterOverflowEffect
 
     public async Task AfterOverflowEffect(PlayerChoiceContext ctx, CardPlay cardPlay, CardModel card)
     {
+        if (card.Owner.Creature != Owner) return;
+
         var randomEnemy = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (randomEnemy == null) return;
         await PowerCmd.Apply<VenomPower>(ctx, randomEnemy, Amount, Owner, null);
