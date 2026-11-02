@@ -16,6 +16,7 @@ public class StokeTheFire : HexaghostCardModel
 	{
 		WithBlock(7, 3);
 		WithTip(HexaghostTip.Ignite);
+		WithCalculatedVar("Ignited", 0, static (card, _) => HexaghostCmd.GetIgnitedCount(card.Owner));
 	}
 
 	protected override Artist Artist => Artist.Get<CartesianCanvas>();
@@ -23,7 +24,7 @@ public class StokeTheFire : HexaghostCardModel
 	protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
 	{
 		await CommonActions.CardBlock(this, cardPlay);
-		var ignitedCount = HexaghostCmd.GetIgnitedCount(Owner);
+		var ignitedCount = (int)DynamicVars["Ignited"].Calculate(cardPlay.Target);
 		if (ignitedCount == 0 || CombatState == null) return;
 		var randomHandCards =
 			Owner.Hand.Where(e => e.IsUpgradable)

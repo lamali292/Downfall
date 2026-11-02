@@ -248,4 +248,23 @@ public class HexaghostTests
 
         Assert.AreEqual(3, ctx.Player.Creature.GetPowerAmount<PlatingPower>(), "Afterlife should apply 3 Plating.");
     }
+
+    // Flames ignite after the card resolves, so a card sees only the flames that were already ignited when it was
+    // played, and the displayed (calculated) count must equal what it actually uses.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task DividerCountsOnlyFlamesIgnitedBeforeItIsPlayed(TestContext ctx)
+    {
+        var wheel = HexaghostCmd.GetWheel(ctx.Player);
+        wheel[1].IsIgnited = true;
+        var current = HexaghostCmd.GetCurrentFlame(ctx.Player);
+        current.SetIgniteProgress();
+        var divider = await ctx.AddCardToHand<Divider>();
+
+        Assert.AreEqual(1m, divider.DynamicVars["Hits"].Calculate(null), "Only the already ignited flame counts.");
+
+        await ctx.PlayCard(divider, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(current.IsIgnited, "The flame should ignite after the card resolved.");
+        Assert.AreEqual(2, HexaghostCmd.GetIgnitedCount(ctx.Player), "Both flames are ignited after the play.");
+    }
 }

@@ -50,7 +50,7 @@ public class BolsteringGhostflame : GhostflameModel
         }
     }
 
-    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return TriggerOnCardType(ctx, cardPlay, CardType.Power);
     }

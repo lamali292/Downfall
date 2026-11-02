@@ -15,13 +15,14 @@ public class ChargedBarrage : HexaghostCardModel
     {
         WithPower<SoulBurnPower>(12, 4);
         WithTip(HexaghostTip.Ignite);
+        WithCalculatedVar("Ignited", 0, static (card, _) => HexaghostCmd.GetIgnitedCount(card.Owner));
     }
 
     protected override Artist Artist => Artist.Get<Inmo>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var count = HexaghostCmd.GetIgnitedCount(Owner);
+        var count = (int)DynamicVars["Ignited"].Calculate(cardPlay.Target);
 
         var scale = 0.8f;
         for (var i = 0; i < count; i++)

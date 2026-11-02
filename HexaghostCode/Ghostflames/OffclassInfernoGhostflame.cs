@@ -7,6 +7,7 @@ using Hexaghost.HexaghostCode.Ghostflames.Intents;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -62,15 +63,15 @@ public class OffclassInfernoGhostflame : GhostflameModel
         return Task.CompletedTask;
     }
 
-    protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (!IsActive || card.Owner != Owner || !DownfallCmd.IsOffclass(card)) return;
-        if (!TryProgress(amount)) return;
+        if (!IsActive || cardPlay.Card.Owner != Owner || !DownfallCmd.IsOffclass(cardPlay.Card)) return;
+        if (!TryProgress(cardPlay.Resources.EnergySpent)) return;
         await Ignite(ctx);
     }
 
     public override bool AboutToIgnite(CardModel card)
     {
-        return DownfallCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= card.EnergyCost.GetResolved();
+        return DownfallCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= card.EnergyCost.GetAmountToSpend();
     }
 }

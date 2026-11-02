@@ -25,6 +25,13 @@ $ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path $PSScriptRoot -Parent
 Set-Location $ProjectRoot
 
+# The game exe is launched directly but still needs the Steam client for its API; without it the game
+# fails to start and no result file is written, so bail out before spending time on builds.
+if (-not (Get-Process -Name steam -ErrorAction SilentlyContinue)) {
+    Write-Host "Steam is not running - start Steam and re-run the tests." -ForegroundColor Red
+    exit 1
+}
+
 . (Join-Path $PSScriptRoot "common.ps1")
 $props = Get-LocalProps
 
