@@ -18,7 +18,8 @@ public class AncientConstruct : GuardianCardModel
         WithCostUpgradeBy(-1);
     }
 
-    protected override Artist Artist => Artist.Get<AlexMdle>();
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
