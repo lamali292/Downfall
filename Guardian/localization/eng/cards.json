@@ -51,7 +51,7 @@
   "GUARDIAN-HARDEN.title": "Harden",
   "GUARDIAN-INCINERATE.description": "Deal {Damage:diff()} damage.\n[gold]Accelerate[/gold]{IfUpgraded:show:[gold] twice[/gold]|}.",
   "GUARDIAN-INCINERATE.title": "Incinerate",
-  "GUARDIAN-LASER_TURRET.description": "Deal {Damage:diff()} damage.\nPlace this into [gold]Stasis[/gold].\n[gold]Stasis[/gold] lasts 4 turns.\n[gold]Tick[/gold]: Deal {Damage:diff()} damage to a random enemy.",
+  "GUARDIAN-LASER_TURRET.description": "Deal {Damage:diff()} damage.\nPlace this into [gold]Stasis[/gold].\n[gold]Stasis[/gold] lasts 4 turns.\n[gold]Tick[/gold]: Deal {TickDamage:diff()} damage to a random enemy.",
   "GUARDIAN-LASER_TURRET.title": "Laser Turret",
   "GUARDIAN-MULTI_BEAM.description": "Deal {Damage:diff()} damage to ALL enemies X times.\n[gold]Stasis[/gold] lasts 3 turns.\n[gold]Tick[/gold]: Increase this card's damage by {Increase:diff()}.",
   "GUARDIAN-MULTI_BEAM.title": "Multi-Beam",
