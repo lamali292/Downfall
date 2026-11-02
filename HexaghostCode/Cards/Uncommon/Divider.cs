@@ -28,7 +28,7 @@ public class Divider : HexaghostCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var count =  (int)DynamicVars["Hits"].Calculate(cardPlay.Target);
+        var count = (int)DynamicVars["Hits"].Calculate(cardPlay.Target);
         if (count == 0) return;
         await CommonActions.CardAttack(this, cardPlay, count).Execute(ctx);
     }

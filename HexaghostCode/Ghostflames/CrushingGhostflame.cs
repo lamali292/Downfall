@@ -40,7 +40,7 @@ public class CrushingGhostflame : GhostflameModel
             targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
     }
 
-    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return TriggerOnCardType(ctx, cardPlay, CardType.Skill);
     }

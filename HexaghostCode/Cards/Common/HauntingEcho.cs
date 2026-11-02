@@ -16,14 +16,7 @@ public class HauntingEcho : HexaghostCardModel
         WithTip(HexaghostTip.Ignite);
     }
 
-    protected override bool ShouldGlowGoldInternal
-    {
-        get
-        {
-            var a = HexaghostCmd.GetCurrentFlame(Owner);
-            return a.IsIgnited || a.AboutToIgnite(this);
-        }
-    }
+    protected override bool ShouldGlowGoldInternal => HexaghostCmd.IsIgnited(Owner);
 
     protected override Artist Artist => Artist.Get<Inmo>();
 

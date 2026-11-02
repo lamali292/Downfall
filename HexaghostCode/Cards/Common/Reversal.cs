@@ -17,14 +17,7 @@ public class Reversal : HexaghostCardModel
         WithTip(HexaghostTip.Extinguish);
     }
 
-    protected override bool ShouldGlowGoldInternal
-    {
-        get
-        {
-            var a = HexaghostCmd.GetCurrentFlame(Owner);
-            return a.IsIgnited || a.AboutToIgnite(this);
-        }
-    }
+    protected override bool ShouldGlowGoldInternal => HexaghostCmd.IsIgnited(Owner);
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

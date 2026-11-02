@@ -49,7 +49,7 @@ public class OffclassSearingGhostflame : GhostflameModel
             targets => PowerCmd.Apply<SoulBurnPower>(ctx, targets, soulburn, Owner.Creature, null));
     }
 
-    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         return TriggerOnCardType(ctx, cardPlay, CardType.Attack, DownfallCmd.IsOffclass);
     }
