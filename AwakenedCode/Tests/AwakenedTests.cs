@@ -235,4 +235,15 @@ public class AwakenedTests
             "Byrd's Eye should conjure a spell into hand even when the spellbook started empty " +
             "(hand count should stay the same: -1 for playing Byrd's Eye, +1 for the conjured spell).");
     }
+
+    // Reported in multiplayer: a Snecko player played the borrowed Book of Secrets and nobody received a spell.
+    // Only the Awakened character gets its spellbook initialized at combat start, and the card read
+    // NextSpell straight off the (empty) spellbook, so it silently did nothing for every other character.
+    [CardTest(typeof(MegaCrit.Sts2.Core.Models.Characters.Ironclad))]
+    public Task OffclassPlayerHasNextSpellWithoutAwakenedSetup(TestContext ctx)
+    {
+        Assert.IsTrue(AwakenedCmd.GetNextSpell(ctx.Player) != null,
+            "A non-Awakened player must still get a next spell (Book of Secrets, Inscribe, ...).");
+        return Task.CompletedTask;
+    }
 }
