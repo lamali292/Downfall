@@ -17,9 +17,9 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
     {
         // Each of this player's ISneckoPoolSupplier relics contributes the character
         // pool(s) it grants - usually one, but Prismatic Snecko contributes every character at once.
-        return player.Relics
-            .OfType<ISneckoPoolSupplier>()
-            .SelectMany(supplier => supplier.AddSneckoChars())
+        return MyHookUtils.Collect<ISneckoPoolSupplier, IEnumerable<CharacterModel>>(null,
+                supplier => supplier.AddSneckoChars(player), MyHookUtils.HookScope.Run, player.RunState)
+            .SelectMany(c => c)
             .Distinct();
     }
 

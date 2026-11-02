@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -21,9 +22,9 @@ public class PrismaticSnecko : SneckoRelicModel, ISneckoPoolSupplier
         WithTips(_ => [HoverTipFactory.Static(SneckoTip.Gift)]);
     }
 
-    public IEnumerable<CharacterModel> AddSneckoChars()
+    public IEnumerable<CharacterModel> AddSneckoChars(Player player)
     {
-        return ModelDb.AllCharacters.Where(c => c != Owner.Character);
+        return player == Owner ? ModelDb.AllCharacters.Where(c => c != Owner.Character) : [];
     }
 
     // Worth a full selection's-worth of picks on its own - see ISneckoPoolSupplier.ActEntryWeight.
