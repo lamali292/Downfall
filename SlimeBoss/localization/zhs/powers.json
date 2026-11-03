@@ -3,6 +3,8 @@
     "SLIMEBOSS-FLAME_TACKLE_POWER.title": "烈焰冲撞",
     "SLIMEBOSS-POTENCY_POWER.title": "潜能",
     "SLIMEBOSS-GOOP_ARMOR_POWER.title": "黏质装甲",
+    "SLIMEBOSS-GOOP_ARMOR_POWER.description": "每当你打出一张状态牌时，获得点[gold]格挡[/gold]。",
+    "SLIMEBOSS-GOOP_ARMOR_POWER.smartDescription": "每当你打出一张状态牌时，获得[blue]{Amount}[/blue]点[gold]格挡[/gold]。",
     "SLIMEBOSS-RECYCLING_POWER.title": "回收利用",
     "SLIMEBOSS-PROTECT_THE_BOSS_POWER.title": "保护老大",
     "SLIMEBOSS-LEAD_BY_EXAMPLE_POWER.title": "身先士卒",
@@ -15,5 +17,17 @@
     "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.title": "下回合史莱姆粉碎！！！",
     "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.description": "在下个回合开始时，将[gold]史莱姆粉碎！！！[/gold]加入你的[gold]手牌[/gold]。",
     "SLIMEBOSS-SLIME_CRUSH_NEXT_TURN_POWER.smartDescription": "在下个回合开始时，将[gold]史莱姆粉碎！！！[/gold]加入你的[gold]手牌[/gold]。",
-    "SLIMEBOSS-GLUTTONY_POWER.title": "暴食"
+    "SLIMEBOSS-ENCROACHING_POWER.title": "蚕食",
+    "SLIMEBOSS-OPENING_TACKLE_POWER.title": "开幕冲撞",
+    "SLIMEBOSS-OPENING_TACKLE_SLIME_BOOST_POWER.title": "开幕冲撞",
+    "SLIMEBOSS-CONSULT_PLAYBOOK_POWER.title": "查阅战术",
+    "SLIMEBOSS-CRIPPLE_POWER.title": "致残",
+    "SLIMEBOSS-GROUP_TACTICS_POWER.title": "群体战术",
+    "SLIMEBOSS-LEGION_FORM_POWER.title": "军团形态",
+    "SLIMEBOSS-SPREAD_THE_FEAR_POWER.title": "散布恐慌",
+    "SLIMEBOSS-GLUTTONY_POWER.title": "暴食",
+    "SLIMEBOSS-GROWTH_POWER.title": "生长",
+    "SLIMEBOSS-THE_PLAYBOOK_POWER.title": "兵法",
+    "SLIMEBOSS-COMBO_TACKLE_POWER.title": "连续冲撞",
+    "SLIMEBOSS-COMBO_TACKLE_PLUS_POWER.title": "连续冲撞"
 }

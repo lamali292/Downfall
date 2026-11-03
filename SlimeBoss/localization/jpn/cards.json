@@ -55,7 +55,7 @@
     "SLIMEBOSS-OOZE_BATH.title": "ヘドロ風呂",
     "SLIMEBOSS-OPENING_TACKLE.description": "{Damage:diff()}ダメージを与える。\n次の{OpeningTacklePower:diff()}枚の状態異常はコストを支払わずにプレイできる。",
     "SLIMEBOSS-OPENING_TACKLE.title": "開幕タックル",
-    "SLIMEBOSS-OVEREXERT.description": "カードを{IfUpgraded:show:X+1|X}枚引く。\n引いたカードを1枚選ぶ。それを2回プレイし、[gold]廃棄[/gold]する。",
+    "SLIMEBOSS-OVEREXERT.description": "カードを{IfUpgraded:show:X+1|X}枚引く。\nこの方法で引いたカードを1枚選ぶ。それを2回プレイし、[gold]廃棄[/gold]する。",
     "SLIMEBOSS-OVEREXERT.title": "過剰行使",
     "SLIMEBOSS-VICTORIOUS_TACKLE.description": "{Damage:diff()}ダメージを与える。\nすべてのスライムに1回[gold]命令[/gold]する。",
     "SLIMEBOSS-VICTORIOUS_TACKLE.title": "勝利のタックル",
