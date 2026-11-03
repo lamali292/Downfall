@@ -1,10 +1,13 @@
 {
+    "SLIMEBOSS-GELATINOUS_CUBE.title": "胶质立方体",
     "SLIMEBOSS-JEREMIAHS_BANNER.title": "陆军旗",
     "SLIMEBOSS-JEREMIAHS_BANNER.flavor": "你和你的史莱姆大军。",
+    "SLIMEBOSS-PAPER_HAT.title": "纸帽",
     "SLIMEBOSS-PROTECTIVE_GEAR.title": "碰撞护具",
     "SLIMEBOSS-PROTECTIVE_GEAR.flavor": "进攻是最好的防御。",
     "SLIMEBOSS-SLIMED_TAIL.title": "黏质断尾",
     "SLIMEBOSS-SLIMED_TAIL.flavor": "一条完全由黏液包裹的断尾，战斗时可以用来迷惑敌人。",
+    "SLIMEBOSS-SLIMY_CLEAVER.title": "黏糊剁肉刀",
     "SLIMEBOSS-STONE_OF_NOMAKK.title": "诺马克石",
     "SLIMEBOSS-STONE_OF_NOMAKK.description": "在每场战斗开始时，获得[blue]{PotencyPower}[/blue]点[gold]潜能[/gold]。",
     "SLIMEBOSS-STONE_OF_NOMAKK.flavor": "当你把它拿给你的史莱姆帮众看时，它们似乎会开始跳舞。",
