@@ -1,4 +1,5 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +15,9 @@ public class BaubleBurst : GuardianCardModel, IGemSocketCard
         WithDamage(7);
         WithRepeat(3);
     }
+
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
 
     public int GemSlots => IsUpgraded ? 2 : 1;
     public int GemReplayCount => 3;
