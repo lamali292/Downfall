@@ -4,5 +4,5 @@
     "AWAKENED-UNHOLY_WATER.title": "不浄の水",
     "AWAKENED-UNHOLY_WATER.description": "[gold]マナバーン[/gold][blue]{ManaburnPower:diff()}[/blue]を付与する。",
     "AWAKENED-SACRAMENTAL_WINE.title": "聖餐用ワイン",
-    "AWAKENED-SACRAMENTAL_WINE.description": "パワーをプレイするたび、[blue]{SacramentalWinePower:diff()}[/blue][gold]ブロック[/gold]を得る。"
+    "AWAKENED-SACRAMENTAL_WINE.description": "この戦闘中、パワーをプレイするたび、[blue]{SacramentalWinePower:diff()}[/blue][gold]ブロック[/gold]を得る。"
 }

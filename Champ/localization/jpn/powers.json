@@ -52,7 +52,7 @@
     "CHAMP-PARRYING_POWER.smartDescription": "このターン中に[gold]カウンター[/gold]が消費された場合、[gold]リポスト[/gold]は[gold]リプレイ[/gold][blue]{Amount}[/blue]を得る。",
     "CHAMP-PROTECTIVE_AURA_POWER.title": "プロテクトオーラ",
     "CHAMP-PROTECTIVE_AURA_POWER.description": "[gold]守護のフィニッシャー[/gold]から追加で[gold]ブロック[/gold]を得る。",
-    "CHAMP-PROTECTIVE_AURA_POWER.smartDescription": "[gold]守護のフィニッシャー[/gold]から追加で{Amount}[gold]ブロック[/gold]を得る。",
+    "CHAMP-PROTECTIVE_AURA_POWER.smartDescription": "[gold]守護のフィニッシャー[/gold]から追加で[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.title": "ストライクジーニアス+",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.description": "ターン開始時、[gold]アップグレード[/gold]済みの名前に「ストライク」を含むランダムな[gold]反響[/gold]カードを1枚[gold]手札[/gold]に加える。\nこのターン、それはコストを支払わずにプレイできる。 ",
     "CHAMP-STRIKE_OF_GENIUS_PLUS_POWER.smartDescription": "ターン開始時、[gold]アップグレード[/gold]済みの名前に「ストライク」を含むランダムな[gold]反響[/gold]カードを[blue]{Amount}[/blue]枚[gold]手札[/gold]に加える。このターン、{Amount:cond:>1?それら|それ}はコストを支払わずにプレイできる。",
