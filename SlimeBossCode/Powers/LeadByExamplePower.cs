@@ -7,7 +7,7 @@ using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class LeadByExamplePower : SlimeBossPowerModel, IHasSecondAmount
+public class LeadByExamplePower : SlimeBossPowerModel
 {
     private int CardPlayCount => CombatManager.Instance.History.CardPlaysFinished
         .Count(e =>
