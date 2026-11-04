@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class StasisEnginePower : GuardianPowerModel, IHasSecondAmount
+public class StasisEnginePower : GuardianPowerModel
 {
     private int _triggers;
 
