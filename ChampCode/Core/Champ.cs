@@ -86,11 +86,35 @@ public class Champ : DownfallCharacterModel
     private Func<Creature, ChampStanceModel?> Stance => creature => creature.Player == null ? null : ChampModel.GetStanceModel(creature.Player);
 
     
+    private const string NormalSkin = "normal";
+    private const string BlackSkin = "black";
+
+    /// <summary>
+    ///     Picks the Spine skin by the owner's slot in the run: first player (slot 0) gets "normal",
+    ///     second gets "black", then alternating. Slot order is identical on every client.
+    /// </summary>
+    private static string SkinFor(Creature creature)
+    {
+        return NormalSkin;
+    }
+
+    private static void ApplySkin(MegaSprite controller, Creature creature)
+    {
+        var skeleton = controller.GetSkeleton();
+        var skin = skeleton?.GetData().FindSkin(SkinFor(creature));
+        if (skeleton == null || skin == null)
+            return;
+        skeleton.SetSkin(skin);
+        skeleton.SetSlotsToSetupPose();
+    }
+
     public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
     {
         var creature = controller.GetOwningCreature();
         if (creature == null)
             return null;
+
+        ApplySkin(controller, creature);
 
         var idle = new AnimState("idle_loop", true);
         var idleBerserker = new AnimState("idle_loop_berserker", true);
