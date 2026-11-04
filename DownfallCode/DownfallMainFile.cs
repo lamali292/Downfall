@@ -62,6 +62,7 @@ public static class DownfallMainFile
         });
 
 
+        /*
         MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
         {
             Label = "Art Voting", // fallback if the loc table entry is somehow missing
@@ -70,7 +71,7 @@ public static class DownfallMainFile
             SubmenuType = typeof(NArtVotingScreen),
             CreateSubmenu = NArtVotingScreen.Create,
             OnPress = stack => { stack?.PushSubmenuType<NArtVotingScreen>(); }
-        });
+        });*/
 
         // mention downfall sts1 credits somewhere
         ModCredits.Register(ModId,

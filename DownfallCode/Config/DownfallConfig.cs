@@ -10,8 +10,8 @@ namespace Downfall.DownfallCode.Config;
 [ConfigHoverTipsByDefault]
 public class DownfallConfig : SimpleModConfig
 {
-    [ConfigSection("UI")]
-    public static bool ShowArtSubmissionButton { get; set; } = true;
+    //[ConfigSection("UI")]
+    //public static bool ShowArtSubmissionButton { get; set; } = true;
 
     [ConfigColorPicker(EditAlpha = false)]
     public static Color AfterlifeColor { get; set; } = new("#78D1A0");
