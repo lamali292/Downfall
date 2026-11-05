@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +15,9 @@ public class Shapeshift : SneckoCardModel
     {
         WithTip(DownfallTip.Offclass);
     }
+
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
