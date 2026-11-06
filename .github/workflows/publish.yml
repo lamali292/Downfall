@@ -26,7 +26,7 @@ jobs:
 
       # Guard against stale build artifacts (nothing generated should be in git).
       - name: Clean stale build artifacts
-        run: rm -rf .godot obj bin
+        run: rm -rf mod/.godot mod/obj mod/bin
 
       - uses: actions/setup-dotnet@v4
         with:
@@ -37,7 +37,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: output/mods
-          key: pck-${{ env.MEGADOT_VERSION }}-default-${{ hashFiles('ImageGen/**', 'Downfall/**', 'Automaton/**', 'Awakened/**', 'Champ/**', 'Guardian/**', 'Hermit/**', 'Hexaghost/**', 'SlimeBoss/**', 'Snecko/**') }}
+          key: pck-${{ env.MEGADOT_VERSION }}-default-${{ hashFiles('ImageGen/**', 'mod/Downfall/**', 'mod/Automaton/**', 'mod/Awakened/**', 'mod/Champ/**', 'mod/Guardian/**', 'mod/Hermit/**', 'mod/Hexaghost/**', 'mod/SlimeBoss/**', 'mod/Snecko/**') }}
 
       # ---- Caches: skip re-downloading / re-restoring / re-importing when nothing changed ----
       # Skipped entirely on a pck cache hit — the engine is only needed to run the atlas/import
@@ -76,10 +76,10 @@ jobs:
             ImageGen/.relics_cache.json
             ImageGen/.potions_cache.json
             ImageGen/.enchantments_cache.json
-            */images/atlases
-            */images/powers
-            */images/relics
-            */images/enchantments
+            mod/*/images/atlases
+            mod/*/images/powers
+            mod/*/images/relics
+            mod/*/images/enchantments
           # ImageGen's own code is part of the key prefix: its incremental cache only tracks input image
           # hashes, so outputs from an older ImageGen must never be reused after the packer changes.
           key: atlases-${{ hashFiles('ImageGen/**/*.cs') }}-${{ hashFiles('ImageGen/images/**/*.png') }}
@@ -104,7 +104,7 @@ jobs:
           unzip -q megadot.zip -d megadot
           chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
-          unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+          unzip -oq spine-godot.zip -d "${{ github.workspace }}/mod"
 
       # Generate the texture atlases BEFORE Godot imports them.
       # No --repack: that flag forces a full rebuild by wiping the cache
@@ -121,7 +121,7 @@ jobs:
         if: steps.cache-pck.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
-          path: .godot/imported
+          path: mod/.godot/imported
           key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
           restore-keys: godot-import-${{ env.MEGADOT_VERSION }}-
 
@@ -131,8 +131,8 @@ jobs:
       - name: Import Godot resources
         if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
-          "$GODOT_PATH" --headless --audio-driver Dummy --import || true
-          "$GODOT_PATH" --headless --audio-driver Dummy --import
+          "$GODOT_PATH" --headless --audio-driver Dummy --path mod --import || true
+          "$GODOT_PATH" --headless --audio-driver Dummy --path mod --import
 
       # Assets/localization changed (or the pck cache was empty/evicted): run the full
       # pipeline, which also repacks the .pck.
@@ -140,7 +140,7 @@ jobs:
         if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
-          dotnet publish Downfall.csproj -c Release \
+          dotnet publish mod/Downfall.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/output/mods/" \
             /p:SkipGodotImport=true
@@ -149,7 +149,7 @@ jobs:
         if: steps.cache-pck.outputs.cache-hit != 'true'
         run: |
           for proj in Automaton Awakened Champ Guardian Hermit Hexaghost SlimeBoss Snecko; do
-            dotnet publish "$proj.csproj" -c Release \
+            dotnet publish "mod/$proj.csproj" -c Release \
               /p:GodotPath="$GODOT_PATH" \
               /p:ModsPath="${{ github.workspace }}/output/mods/" \
               /p:SkipGodotImport=true
@@ -161,7 +161,7 @@ jobs:
         if: steps.cache-pck.outputs.cache-hit == 'true'
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
-          dotnet build Downfall.csproj -c Release \
+          dotnet build mod/Downfall.csproj -c Release \
             /p:ModsPath="${{ github.workspace }}/output/mods/"
 
       # Same eight internal submods as above, code-only path - see that step's comment.
@@ -169,7 +169,7 @@ jobs:
         if: steps.cache-pck.outputs.cache-hit == 'true'
         run: |
           for proj in Automaton Awakened Champ Guardian Hermit Hexaghost SlimeBoss Snecko; do
-            dotnet build "$proj.csproj" -c Release \
+            dotnet build "mod/$proj.csproj" -c Release \
               /p:ModsPath="${{ github.workspace }}/output/mods/"
           done
 

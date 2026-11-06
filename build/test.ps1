@@ -22,7 +22,7 @@ param(
     [int]$TimeoutMinutes = 5
 )
 $ErrorActionPreference = "Stop"
-$ProjectRoot = Split-Path $PSScriptRoot -Parent
+$ProjectRoot = Join-Path (Split-Path $PSScriptRoot -Parent) "mod"   # the Godot project (project.godot, csprojs, local.props) lives in mod/
 Set-Location $ProjectRoot
 
 # The game exe is launched directly but still needs the Steam client for its API; without it the game
