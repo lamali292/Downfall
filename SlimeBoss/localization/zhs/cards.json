@@ -1,6 +1,7 @@
 {
     "SLIMEBOSS-PERFECTED_TACKLE.title": "完美冲撞",
     "SLIMEBOSS-PILE_ON.title": "群起攻之！",
+    "SLIMEBOSS-PILE_ON.description": "造成{Damage:diff()}点伤害。\n[gold]命令[/gold]所有史莱姆。",
     "SLIMEBOSS-COMBO_TACKLE.title": "连续冲撞",
     "SLIMEBOSS-CONSULT_PLAYBOOK.title": "查阅战术",
     "SLIMEBOSS-CORROSIVE_SPIT.title": "腐蚀喷吐",
@@ -34,6 +35,7 @@
     "SLIMEBOSS-OOZE_BATH.title": "黏浆浴",
     "SLIMEBOSS-OPENING_TACKLE.title": "开幕冲撞",
     "SLIMEBOSS-OVEREXERT.title": "超负荷",
+    "SLIMEBOSS-VICTORIOUS_TACKLE.description": "造成{Damage:diff()}点伤害。\n[gold]命令[/gold]所有史莱姆。",
     "SLIMEBOSS-VICTORIOUS_TACKLE.title": "胜利冲撞",
     "SLIMEBOSS-PREPARE.title": "准备",
     "SLIMEBOSS-PREPARE_CRUSH.title": "准备：粉碎",
@@ -67,6 +69,7 @@
     "SLIMEBOSS-SPLIT_LEECHING.title": "分裂：水蛭",
     "SLIMEBOSS-STRIKE_SLIME_BOSS.description": "造成{Damage:diff()}点伤害。",
     "SLIMEBOSS-STRIKE_SLIME_BOSS.title": "打击",
+    "SLIMEBOSS-TEAMWORK.description": "获得{Block:diff()}点[gold]格挡[/gold]X次。\n[gold]命令[/gold][gold]好斗史莱姆[/gold]X次。",
     "SLIMEBOSS-TEAMWORK.title": "沆瀣一气",
     "SLIMEBOSS-TONGUE_LASH.title": "舌鞭",
     "SLIMEBOSS-VICIOUS_TACKLE.description": "造成{Damage:diff()}点伤害。\n如果该敌人有[gold]虚弱[/gold]状态，则攻击两次。",
