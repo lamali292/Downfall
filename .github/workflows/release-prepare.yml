@@ -27,7 +27,7 @@ jobs:
 
       - name: Bump versions, commit and tag
         run: |
-          CURRENT=$(grep -oE '<Version>[0-9]+\.[0-9]+\.[0-9]+</Version>' Directory.Build.props | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          CURRENT=$(grep -oE '<Version>[0-9]+\.[0-9]+\.[0-9]+</Version>' mod/Directory.Build.props | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
           if [ -n "${{ inputs.version }}" ]; then
             VERSION="${{ inputs.version }}"
           else
@@ -40,24 +40,24 @@ jobs:
           if git rev-parse -q --verify "refs/tags/v$VERSION" > /dev/null; then
             echo "Tag v$VERSION already exists"; exit 1
           fi
-          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+' Directory.Build.props | sed 's/<BaseLibVersion>//')
+          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+' mod/Directory.Build.props | sed 's/<BaseLibVersion>//')
 
-          perl -0pi -e "s/<Version>\d+\.\d+\.\d+<\/Version>/<Version>$VERSION<\/Version>/" Directory.Build.props
-          perl -0pi -e "s/<AssemblyVersion>\d+\.\d+\.\d+\.\d+<\/AssemblyVersion>/<AssemblyVersion>$VERSION.0<\/AssemblyVersion>/" Directory.Build.props
-          perl -0pi -e "s/<FileVersion>\d+\.\d+\.\d+\.\d+<\/FileVersion>/<FileVersion>$VERSION.0<\/FileVersion>/" Directory.Build.props
-          perl -0pi -e "s/(\"version\"\s*:\s*\")\d+\.\d+\.\d+(\")/\${1}$VERSION\${2}/" Downfall.json
+          perl -0pi -e "s/<Version>\d+\.\d+\.\d+<\/Version>/<Version>$VERSION<\/Version>/" mod/Directory.Build.props
+          perl -0pi -e "s/<AssemblyVersion>\d+\.\d+\.\d+\.\d+<\/AssemblyVersion>/<AssemblyVersion>$VERSION.0<\/AssemblyVersion>/" mod/Directory.Build.props
+          perl -0pi -e "s/<FileVersion>\d+\.\d+\.\d+\.\d+<\/FileVersion>/<FileVersion>$VERSION.0<\/FileVersion>/" mod/Directory.Build.props
+          perl -0pi -e "s/(\"version\"\s*:\s*\")\d+\.\d+\.\d+(\")/\${1}$VERSION\${2}/" mod/Downfall.json
           GV="${{ inputs.game_version }}"
           if [ -n "$GV" ]; then
             GV="${GV#v}"
-            perl -0pi -e "s/(\"min_game_version\"\s*:\s*\")[^\"]+(\")/\${1}$GV\${2}/" Downfall.json
+            perl -0pi -e "s/(\"min_game_version\"\s*:\s*\")[^\"]+(\")/\${1}$GV\${2}/" mod/Downfall.json
           fi
           # CAVEAT (from release.ps1): NuGet BaseLib version may differ from the in-game BaseLib
           # mod version the loader checks — remove this line if they don't match.
-          perl -0pi -e "s/(\"id\"\s*:\s*\"BaseLib\"\s*,\s*\"min_version\"\s*:\s*\")[^\"]+(\")/\${1}$BASELIB\${2}/" Downfall.json
+          perl -0pi -e "s/(\"id\"\s*:\s*\"BaseLib\"\s*,\s*\"min_version\"\s*:\s*\")[^\"]+(\")/\${1}$BASELIB\${2}/" mod/Downfall.json
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Directory.Build.props Downfall.json
+          git add mod/Directory.Build.props mod/Downfall.json
           git commit -m "Release v$VERSION"
 
           # Annotated tag carries the steam toggle forward — release.yml has no inputs context.

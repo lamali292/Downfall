@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Clean stale build artifacts
-        run: rm -rf .godot obj bin
+        run: rm -rf mod/.godot mod/obj mod/bin
 
       - name: Set version from tag
         run: |
@@ -66,26 +66,26 @@ jobs:
           unzip -q megadot.zip -d megadot
           chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
-          unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+          unzip -oq spine-godot.zip -d "${{ github.workspace }}/mod"
 
       - name: Sync manifest version
         run: |
-          sed -i -E 's/("version"[[:space:]]*:[[:space:]]*")[0-9]+\.[0-9]+\.[0-9]+(")/\1'"$VERSION"'\2/' Downfall.json
-          grep '"version"' Downfall.json
+          sed -i -E 's/("version"[[:space:]]*:[[:space:]]*")[0-9]+\.[0-9]+\.[0-9]+(")/\1'"$VERSION"'\2/' mod/Downfall.json
+          grep '"version"' mod/Downfall.json
 
       - name: Build image atlases
         run: dotnet run --project ImageGen -c Release
 
       - name: Import Godot resources
         run: |
-          "$GODOT_PATH" --headless --audio-driver Dummy --import || true
-          "$GODOT_PATH" --headless --audio-driver Dummy --import
+          "$GODOT_PATH" --headless --audio-driver Dummy --path mod --import || true
+          "$GODOT_PATH" --headless --audio-driver Dummy --path mod --import
 
       - name: Inject metrics key
         env:
           METRICS_API_KEY: ${{ secrets.METRICS_API_KEY }}
         run: |
-          cat > DownfallCode/Data/BuildSecrets.cs <<EOF
+          cat > mod/DownfallCode/Data/BuildSecrets.cs <<EOF
           namespace Downfall.DownfallCode.Data;
           internal static class BuildSecrets { public const string? MetricsApiKey = "$METRICS_API_KEY"; }
           EOF
@@ -93,7 +93,7 @@ jobs:
       - name: Publish
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
-          dotnet publish Downfall.csproj -c Release \
+          dotnet publish mod/Downfall.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/output/mods/" \
             /p:SkipGodotImport=true \
@@ -113,7 +113,7 @@ jobs:
       - name: Publish internal submods
         run: |
           for proj in Automaton Awakened Champ Guardian Hermit Hexaghost SlimeBoss Snecko; do
-            dotnet publish "$proj.csproj" -c Release \
+            dotnet publish "mod/$proj.csproj" -c Release \
               /p:GodotPath="$GODOT_PATH" \
               /p:ModsPath="${{ github.workspace }}/output/mods/" \
               /p:SkipGodotImport=true \
@@ -135,8 +135,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          MIN_GAME=$(grep -oE '"min_game_version"[[:space:]]*:[[:space:]]*"[^"]+"' Downfall.json | sed -E 's/.*"([^"]+)"$/\1/' || true)
-          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+</BaseLibVersion>' Directory.Build.props | sed -E 's/<\/?BaseLibVersion>//g' || true)
+          MIN_GAME=$(grep -oE '"min_game_version"[[:space:]]*:[[:space:]]*"[^"]+"' mod/Downfall.json | sed -E 's/.*"([^"]+)"$/\1/' || true)
+          BASELIB=$(grep -oE '<BaseLibVersion>[^<]+</BaseLibVersion>' mod/Directory.Build.props | sed -E 's/<\/?BaseLibVersion>//g' || true)
           {
             echo "Works with Slay the Spire 2 version ${MIN_GAME:-unknown} or newer."
             echo "Requires BaseLib ${BASELIB:-unknown} (not included — install it separately)."

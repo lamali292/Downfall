@@ -160,7 +160,7 @@
             <_PackFolderList Remove="@(_PackFolderList)"/>
             <_PackFolderList Include="$(PackFolders)"/>
         </ItemGroup>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s build/pack_mod.gd -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; @(_PackFolderList, ' ')"
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --audio-driver Dummy --path &quot;$(MSBuildProjectDirectory)&quot; -s &quot;$(MSBuildThisFileDirectory)../build/pack_mod.gd&quot; -- &quot;$(ModsPath)$(ModOutputFolder)/$(ModId).pck&quot; @(_PackFolderList, ' ')"
               EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1;Configuration=$(Configuration)"
               IgnoreExitCode="false" IgnoreStandardErrorWarningFormat="true"/>
         <Copy SourceFiles="$(ModsPath)$(ModOutputFolder)/$(ModId).pck"

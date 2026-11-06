@@ -61,8 +61,8 @@ On Linux/macOS prefix with `pwsh`. The first run takes several minutes. Expect m
 | What changed | Command |
 |:-------------|:--------|
 | **Images** | `dotnet run --project ImageGen/ImageGen.csproj` |
-| **Code only** | `build/build-all.ps1` or `dotnet build Snecko.csproj -c ExportDebug` |
-| **Assets or localization** | `build/publish-all.ps1` or `dotnet publish Snecko.csproj -c ExportDebug` |
+| **Code only** | `build/build-all.ps1` or `dotnet build mod/Snecko.csproj -c ExportDebug` |
+| **Assets or localization** | `build/publish-all.ps1` or `dotnet publish mod/Snecko.csproj -c ExportDebug` |
 
 Use `-Projects Champ,Guardian` with either script to limit it to some projects. The projects are `Downfall`, `Automaton`, `Awakened`, `Champ`, `Guardian`, `Hermit`, `Hexaghost`, `SlimeBoss` and `Snecko`; each builds its own `.dll` / `.pck`.
 
