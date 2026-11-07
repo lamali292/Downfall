@@ -23,11 +23,14 @@
     "SLIMEBOSS-CONSULT_PLAYBOOK_POWER.title": "查阅战术",
     "SLIMEBOSS-CRIPPLE_POWER.title": "致残",
     "SLIMEBOSS-GROUP_TACTICS_POWER.title": "群体战术",
+    "SLIMEBOSS-GROUP_TACTICS_POWER.description": "所有玩家在其回合开始时额外抽1张牌。",
     "SLIMEBOSS-LEGION_FORM_POWER.title": "军团形态",
     "SLIMEBOSS-SPREAD_THE_FEAR_POWER.title": "散布恐慌",
     "SLIMEBOSS-GLUTTONY_POWER.title": "暴食",
     "SLIMEBOSS-GROWTH_POWER.title": "生长",
     "SLIMEBOSS-THE_PLAYBOOK_POWER.title": "兵法",
+    "SLIMEBOSS-THE_PLAYBOOK_POWER.description": "每当你打出一张耗能为{energyPrefix:energyIcons(2)}的攻击牌，获得{energyPrefix:energyIcons(2)}并受到点伤害。",
+    "SLIMEBOSS-THE_PLAYBOOK_POWER.smartDescription": "每当你打出一张耗能为{energyPrefix:energyIcons(2)}的攻击牌，获得{energyPrefix:energyIcons(2)}并受到[blue]{Amount}[/blue]点伤害。",
     "SLIMEBOSS-COMBO_TACKLE_POWER.title": "连续冲撞",
     "SLIMEBOSS-COMBO_TACKLE_PLUS_POWER.title": "连续冲撞"
 }
