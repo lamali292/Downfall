@@ -68,7 +68,7 @@
     "HERMIT-MEMENTO_CARD.title": "メメント",
     "HERMIT-MEMENTO_CARD.description": "{Multiplayer:自身とすべての敵|全員}に[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。",
     "HERMIT-SHORT_FUSE.title": "ショートヒューズ",
-    "HERMIT-SHORT_FUSE.description": "{Damage:diff()}ダメージを与える。\nこのターンにプレイした[gold]スターター[/gold]カード1枚につき、コストが{energyPrefix:energyIcons(1)}減少する。",
+    "HERMIT-SHORT_FUSE.description": "{Damage:diff()}ダメージを与える。\nこのターンにプレイしたスターターカード1枚につき、コストが{energyPrefix:energyIcons(1)}減少する。",
     "HERMIT-GRUDGE.title": "グラッジ",
     "HERMIT-GRUDGE.description": "すべての敵に{CalculatedDamage:diff()}ダメージを与える。\nすべての[red]呪い[/red]1枚につき、追加で{ExtraDamage:diff()}ダメージを与える。",
     "HERMIT-SPITE.title": "執念深い",
