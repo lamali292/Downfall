@@ -1,6 +1,8 @@
 {
     "SLIMEBOSS-OOZE_BATH_POWER.title": "黏浆浴",
     "SLIMEBOSS-FLAME_TACKLE_POWER.title": "烈焰冲撞",
+    "SLIMEBOSS-FLAME_TACKLE_POWER.description": "耗能为{energyPrefix:energyIcons(2)}的攻击牌造成额外伤害。",
+    "SLIMEBOSS-FLAME_TACKLE_POWER.smartDescription": "耗能为{energyPrefix:energyIcons(2)}的攻击牌造成[blue]{Amount}[/blue]点额外伤害。",
     "SLIMEBOSS-POTENCY_POWER.title": "潜能",
     "SLIMEBOSS-GOOP_ARMOR_POWER.title": "黏质装甲",
     "SLIMEBOSS-GOOP_ARMOR_POWER.description": "每当你打出一张状态牌时，获得点[gold]格挡[/gold]。",

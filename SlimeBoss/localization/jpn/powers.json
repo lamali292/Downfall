@@ -75,7 +75,7 @@
     "SLIMEBOSS-GROWTH_POWER.title": "増大",
     "SLIMEBOSS-GROWTH_POWER.description": "次に状態異常を引いた時、カードを[blue]1[/blue]枚引く。",
     "SLIMEBOSS-GROWTH_POWER.smartDescription": "次に[blue]{Amount}[/blue]回状態異常を引いた時、カードを[blue]1[/blue]枚引く。",
-    "SLIMEBOSS-THE_PLAYBOOK_POWER.title": "ザ・プレイブック",
+    "SLIMEBOSS-THE_PLAYBOOK_POWER.title": "作戦ノート",
     "SLIMEBOSS-THE_PLAYBOOK_POWER.description": "コスト{energyPrefix:energyIcons(2)}のアタックをプレイするたび、{energyPrefix:energyIcons(2)}を得てダメージを受ける。",
     "SLIMEBOSS-THE_PLAYBOOK_POWER.smartDescription": "コスト{energyPrefix:energyIcons(2)}のアタックをプレイするたび、{energyPrefix:energyIcons(2)}を得て[blue]{Amount}[/blue]ダメージを受ける。",
     "SLIMEBOSS-COMBO_TACKLE_POWER.title": "コンボタックル",
