@@ -69,5 +69,10 @@
     "HEXAGHOST-INFERNO_POTION_POWER.title": "Адское зелье",
     "HEXAGHOST-INFERNO_POTION_POWER.description": "Огоньки накладывают [gold]Ожог души[/gold] и наносят урон ВСЕМ врагам в этом бою.",
     "HEXAGHOST-INFERNO_POTION_POWER.smartDescription": "Огоньки накладывают [gold]Ожог души[/gold] и наносят урон ВСЕМ врагам в этом бою.",
-    "HEXAGHOST-PREMONITION_POWER.title": "Предчувствие"
+    "HEXAGHOST-PREMONITION_POWER.title": "Предчувствие",
+    "HEXAGHOST-PREMONITION_POWER.description": "Дает [gold]силу[/gold], когда [gold]сжигается[/gold] [gold]эфирная[/gold] карта.",
+    "HEXAGHOST-PREMONITION_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]силы[/gold], когда [gold]сжигается[/gold] [gold]эфирная[/gold] карта.",
+    "HEXAGHOST-SOULFIRE_POWER.title": "Пламя души",
+    "HEXAGHOST-SOULFIRE_POWER.description": "Дает [gold]защиту[/gold], когда карта накладывает [gold]Ожог души[/gold] на врага, ",
+    "HEXAGHOST-SOULFIRE_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold], когда карта накладывает [gold]Ожог души[/gold] на врага, "
 }
