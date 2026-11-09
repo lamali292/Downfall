@@ -14,13 +14,14 @@ public class BaubleBurst : GuardianCardModel, IGemSocketCard
     {
         WithDamage(7);
         WithRepeat(3);
+        WithVar("GemReplay", 3);
     }
 
     protected override Artist Artist => Artist.Get<Fulgur>();
     protected override bool IsBetaArt => true;
 
     public int GemSlots => IsUpgraded ? 2 : 1;
-    public int GemReplayCount => 3;
+    public int GemReplayCount => DynamicVars["GemReplay"].IntValue;
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
