@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -9,6 +10,9 @@ namespace Snecko.SneckoCode.Cards.Ancient;
 [Pool(typeof(SneckoCardPool))]
 public class WeightedDice : SneckoCardModel
 {
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
     public WeightedDice() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
         WithCostUpgradeBy(-1);

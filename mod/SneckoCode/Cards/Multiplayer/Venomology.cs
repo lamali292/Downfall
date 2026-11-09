@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Snecko.SneckoCode.Core;
@@ -9,6 +10,9 @@ namespace Snecko.SneckoCode.Cards.Multiplayer;
 [Pool(typeof(SneckoCardPool))]
 public class Venomology : SneckoCardModel
 {
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
     public Venomology() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyAlly)
     {
         WithPower<VenomologyPower>(3, false);
