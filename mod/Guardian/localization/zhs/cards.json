@@ -51,7 +51,6 @@
     "GUARDIAN-HARDEN.title": "装甲协议",
     "GUARDIAN-INCINERATE.description": "造成{Damage:diff()}点伤害。\n[gold]加速[/gold]{IfUpgraded:show:[gold]两次[/gold]|}。",
     "GUARDIAN-INCINERATE.title": "焚烧",
-    "GUARDIAN-LASER_TURRET.description": "造成{Damage:diff()}点伤害。\n[gold]凝滞[/gold]此牌。\n[gold]凝滞[/gold]持续4回合。\n[gold]滴答[/gold]：对随机敌人造成{Damage:diff()}点伤害。",
     "GUARDIAN-LASER_TURRET.title": "镭射炮台",
     "GUARDIAN-MULTI_BEAM.description": "对所有敌人造成{Damage:diff()}点伤害X次。\n[gold]凝滞[/gold]3回合。\n[gold]滴答[/gold]：本场战斗伤害加{Increase:diff()}。",
     "GUARDIAN-MULTI_BEAM.title": "多路光束",

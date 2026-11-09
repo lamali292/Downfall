@@ -46,7 +46,6 @@
     "GUARDIAN-HARDEN.title": "단단해지기",
     "GUARDIAN-INCINERATE.description": "{Damage:diff()}의 피해를 줍니다.\n[gold]가속[/gold]합니다{IfUpgraded:show:([gold] 두 번[/gold])|}.",
     "GUARDIAN-INCINERATE.title": "소각",
-    "GUARDIAN-LASER_TURRET.description": "{Damage:diff()}의 피해를 줍니다.\n이 카드를 [gold]정지장[/gold] 상태로 만듭니다.\n[gold]정지장[/gold]는 4턴 동안 지속됩니다.\n[gold]틱[/gold]: 무작위 적에게 {Damage:diff()}의 피해를 줍니다.",
     "GUARDIAN-LASER_TURRET.title": "레이저 포탑",
     "GUARDIAN-MULTI_BEAM.description": "모든 적에게 {Damage:diff()}의 피해를 X번 줍니다.\n[gold]정지장[/gold]는 3턴 동안 지속됩니다.\n[gold]틱[/gold]: 이 카드의 피해량이 {Increase:diff()} 증가합니다.",
     "GUARDIAN-MULTI_BEAM.title": "다중 광선",

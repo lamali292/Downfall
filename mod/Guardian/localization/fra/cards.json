@@ -50,7 +50,6 @@
     "GUARDIAN-HARDEN.title": "Durcissement",
     "GUARDIAN-INCINERATE.description": "Infligez {Damage:diff()} dégâts.\n[gold]Accélérez[/gold]{IfUpgraded:show:[gold] deux fois[/gold]|}.",
     "GUARDIAN-INCINERATE.title": "Incinération",
-    "GUARDIAN-LASER_TURRET.description": "Infligez {Damage:diff()} dégâts.\nPlacez cette carte en [gold]Stase[/gold].\nLa [gold]Stase[/gold] dure 4 tours.\n[gold]Tic[/gold] : Infligez {Damage:diff()} dégâts à un ennemi aléatoire.",
     "GUARDIAN-LASER_TURRET.title": "Tourelle laser",
     "GUARDIAN-MULTI_BEAM.description": "Infligez {Damage:diff()} dégâts à TOUS les ennemis X fois.\nLa [gold]Stase[/gold] dure 3 tours.\n[gold]Tic[/gold] : Augmentez les dégâts de cette carte de {Increase:diff()}.",
     "GUARDIAN-MULTI_BEAM.title": "Multi-laser",

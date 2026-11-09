@@ -46,7 +46,6 @@
     "GUARDIAN-HARDEN.title": "Indurisci",
     "GUARDIAN-INCINERATE.description": "Infliggi {Damage:diff()} di danno.\n[gold]Accelera[/gold]{IfUpgraded:show:[gold] due volte[/gold]|}.",
     "GUARDIAN-INCINERATE.title": "Incenerisci",
-    "GUARDIAN-LASER_TURRET.description": "Infliggi {Damage:diff()} di danno.\nMetti questa nello [gold]Stasi[/gold].\nLo [gold]Stasi[/gold] dura 4 turni.\n[gold]Tick[/gold]: Infliggi {Damage:diff()} di danno a un nemico casuale.",
     "GUARDIAN-LASER_TURRET.title": "Torretta Laser",
     "GUARDIAN-MULTI_BEAM.description": "Infliggi {Damage:diff()} di danno a TUTTI i nemici X volte.\nLo [gold]Stasi[/gold] dura 3 turni.\n[gold]Tick[/gold]: Aumenta il danno di questa carta di {Increase:diff()}.",
     "GUARDIAN-MULTI_BEAM.title": "Multi-Raggio",
