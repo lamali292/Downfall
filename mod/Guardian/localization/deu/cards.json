@@ -50,7 +50,6 @@
     "GUARDIAN-HARDEN.title": "Erhärten",
     "GUARDIAN-INCINERATE.description": "Füge {Damage:diff()} Schaden zu.\n[gold]Beschleunige[/gold]{IfUpgraded:show:[gold] zweimal[/gold]|}.",
     "GUARDIAN-INCINERATE.title": "Veraschen",
-    "GUARDIAN-LASER_TURRET.description": "Füge {Damage:diff()} Schaden zu.\nLege diese Karte in [gold]Stasis[/gold].\n[gold]Stasis[/gold] dauert 4 Züge.\n[gold]Tick[/gold]: Füge einem zufälligen Gegner {Damage:diff()} Schaden zu.",
     "GUARDIAN-LASER_TURRET.title": "Laserkanone",
     "GUARDIAN-MULTI_BEAM.description": "Füge ALLEN Gegnern X Mal {Damage:diff()} Schaden zu.\n[gold]Stasis[/gold] dauert 3 Züge.\n[gold]Tick[/gold]: Erhöhe den Schaden dieser Karte um {Increase:diff()}.",
     "GUARDIAN-MULTI_BEAM.title": "Multistrahl",
