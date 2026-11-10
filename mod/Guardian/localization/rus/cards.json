@@ -86,8 +86,6 @@
     "GUARDIAN-REVENGE_PROTOCOL.title": "Протокол мести",
     "GUARDIAN-ROLL_ATTACK.description": "Наносит {Damage:diff()} урона.\nЕсли вы в [gold]Оборонительном режиме[/gold], наносит урон ВСЕМ врагам.\nИначе: [gold]Укрепление[/gold] {Brace:diff()}.",
     "GUARDIAN-ROLL_ATTACK.title": "Круговая атака",
-    "GUARDIAN-SECOND_SLAM.description": "Наносит {Damage:diff()} урона.",
-    "GUARDIAN-SECOND_SLAM.title": "Второй бросок",
     "GUARDIAN-SENTRY_BLAST.description": "Наносит {Damage:diff()} урона.\nПомещает [gold]{IfUpgraded:show:«Волну Часового»+|«Волну Часового»}[/gold] в [gold]Стазис[/gold].",
     "GUARDIAN-SENTRY_BLAST.title": "Взрыв Часового",
     "GUARDIAN-SENTRY_WAVE.title": "Волна Часового",

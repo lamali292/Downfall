@@ -75,7 +75,6 @@
     "GUARDIAN-REVENGE_PROTOCOL.title": "Protocollo di Vendetta",
     "GUARDIAN-ROLL_ATTACK.description": "Infliggi {Damage:diff()} di danno.\nSe in [gold]Modalità Difensiva[/gold], colpisce TUTTI i nemici.\nAltrimenti, [gold]Irrobustisci[/gold] {Brace:diff()}.",
     "GUARDIAN-ROLL_ATTACK.title": "Attacco Rotolante",
-    "GUARDIAN-SECOND_SLAM.title": "Secondo Schianto",
     "GUARDIAN-SENTRY_BLAST.description": "Infliggi {Damage:diff()} di danno.\nMetti un{IfUpgraded:show:'[gold]Onda Sentinella+[/gold]|[gold]'Onda Sentinella[/gold]'} nello [gold]Stasi[/gold].",
     "GUARDIAN-SENTRY_BLAST.title": "Esplosione Sentinella",
     "GUARDIAN-SENTRY_WAVE.title": "Onda Sentinella",
