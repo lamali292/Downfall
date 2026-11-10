@@ -75,7 +75,6 @@
     "GUARDIAN-REVENGE_PROTOCOL.title": "복수 프로토콜",
     "GUARDIAN-ROLL_ATTACK.description": "{Damage:diff()}의 피해를 줍니다.\n[gold]방어 모드[/gold]라면, 모든 적에게 영향을 줍니다.\n그렇지 않다면, [gold]대비[/gold] {Brace:diff()}.",
     "GUARDIAN-ROLL_ATTACK.title": "구르기 공격",
-    "GUARDIAN-SECOND_SLAM.title": "두 번째 강타",
     "GUARDIAN-SENTRY_BLAST.description": "{Damage:diff()}의 피해를 줍니다.\n[gold]{IfUpgraded:show:감시기 파동+|감시기 파동}[/gold]을 [gold]정지장[/gold] 상태로 만듭니다.",
     "GUARDIAN-SENTRY_BLAST.title": "감시기 폭발",
     "GUARDIAN-SENTRY_WAVE.title": "감시기 파동",
