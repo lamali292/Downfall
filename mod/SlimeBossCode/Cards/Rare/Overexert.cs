@@ -11,7 +11,7 @@ public class Overexert : SlimeBossCardModel
 {
     public Overexert() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
-        WithPower<PotencyPower>(5);
+        WithPower<PotencyPower>(3);
         WithCommand(0, 2);
         WithPower<OverexertPower>(2, false);
     }

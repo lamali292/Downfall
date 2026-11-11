@@ -12,7 +12,7 @@ public class Lick : SlimeBossCardModel
 {
     public Lick() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyEnemy)
     {
-        WithPower<GoopPower>(4, 2);
+        WithPower<GoopPower>(3, 2);
         WithKeywords(CardKeyword.Exhaust, SlimeBossKeyword.Buried);
         WithTip(SlimeBossKeyword.Slurp);
         WithTags(SlimeBossTag.Lick);

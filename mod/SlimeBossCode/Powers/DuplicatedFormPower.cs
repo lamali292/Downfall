@@ -1,5 +1,6 @@
 ﻿using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -9,16 +10,13 @@ namespace SlimeBoss.SlimeBossCode.Powers;
 
 public class DuplicatedFormPower : SlimeBossPowerModel
 {
-    private int _visualValue;
-
-
     private int CardsPlayed => CombatManager.Instance.History.CardPlaysStarted
         .Count(e => e.Actor == Owner && e.CardPlay.IsFirstInSeries &&
                     e.HappenedThisTurn(CombatState) &&
                     DownfallCmd.TargetsEnemy(e.CardPlay.Card, e.CardPlay.Target));
 
 
-    protected override int? SecondAmount => Math.Min(_visualValue, Amount);
+    protected override int? SecondAmount => Math.Min(CardsPlayed, Amount);
 
 
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
@@ -35,15 +33,13 @@ public class DuplicatedFormPower : SlimeBossPowerModel
         ICombatState combatState)
     {
         if (!participants.Contains(Owner)) return Task.CompletedTask;
-        _visualValue = 0;
         this.InvokeSilentDisplayAmountChanged();
         return Task.CompletedTask;
     }
 
-    public override Task AfterModifyingCardPlayCount(CardModel card)
+    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        _visualValue++;
-        InvokeDisplayAmountChanged();
+        if (cardPlay.Card.Owner.Creature == Owner) InvokeDisplayAmountChanged();
         return Task.CompletedTask;
     }
 }

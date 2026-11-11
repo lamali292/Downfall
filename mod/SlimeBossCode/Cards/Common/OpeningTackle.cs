@@ -17,7 +17,7 @@ public class OpeningTackle : SlimeBossCardModel, IHasConsumeEffect
 {
     public OpeningTackle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(12, 3);
+        WithDamage(12, 4);
         WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
         WithPower<VulnerablePower>(2, 1);

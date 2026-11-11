@@ -12,7 +12,7 @@ public class Teamwork : SlimeBossCardModel
     public Teamwork() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
         WithCommand(0);
-        WithBlock(5, 3);
+        WithBlock(4, 3);
     }
 
     protected override bool HasEnergyCostX => true;

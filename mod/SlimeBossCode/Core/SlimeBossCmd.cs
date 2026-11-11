@@ -72,6 +72,7 @@ public static class SlimeBossCmd
     public static async Task Command(PlayerChoiceContext ctx, Player player, int amount, bool canBeModified,
         CardModel? cardSource = null, CommandType commandType = CommandType.First)
     {
+        if (amount <= 0) return;
         var modified = amount;
         if (canBeModified)
         {
@@ -105,7 +106,8 @@ public static class SlimeBossCmd
         var licks = card.Owner.ExhaustPile
             .Where(e => e.Tags.Contains(SlimeBossTag.Lick))
             .ToList();
-        await CardPileCmd.Add(licks, PileType.Hand);
+        await CardPileCmd.Add(licks.TakeRandom(licks.Count, card.Owner.RunState.Rng.CombatCardSelection).ToList(),
+            PileType.Hand);
     }
 
 

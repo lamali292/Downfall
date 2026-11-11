@@ -15,6 +15,7 @@ public class Liquidate : SlimeBossCardModel
     {
         WithPower<StrengthPower>(2);
         WithPower<PotencyPower>(2, 1);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

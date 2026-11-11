@@ -1,10 +1,11 @@
 ﻿using Downfall.DownfallCode.Events;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class RecklessnessPower : SlimeBossPowerModel, IModifySelfDamage
+public class RecklessnessPower() : SlimeBossPowerModel(PowerType.Debuff), IModifySelfDamage
 {
     public decimal ModifySelfDamage(decimal amount, AbstractModel model)
     {

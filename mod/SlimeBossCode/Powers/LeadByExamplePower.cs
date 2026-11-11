@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using Downfall.DownfallCode.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -13,14 +14,14 @@ public class LeadByExamplePower : SlimeBossPowerModel
         .Count(e =>
             e.Actor == Owner
             && e.HappenedThisTurn(CombatState)
-            && e.CardPlay.Target is { IsEnemy: true });
+            && DownfallCmd.TargetsEnemy(e.CardPlay.Card, e.CardPlay.Target));
     
 
     protected override int? SecondAmount => CardPlayCount;
 
     public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || cardPlay.Target is not { IsEnemy: true } ||
+        if (cardPlay.Card.Owner.Creature != Owner || !DownfallCmd.TargetsEnemy(cardPlay.Card, cardPlay.Target) ||
             CardPlayCount > Amount) return;
         await SlimeBossCmd.Command(ctx, cardPlay.Card.Owner, 1, false);
         InvokeDisplayAmountChanged();

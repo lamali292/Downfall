@@ -7,7 +7,7 @@ using SlimeBoss.SlimeBossCode.Core;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class OozeBathPower : SlimeBossPowerModel
+public class OozeBathPower() : SlimeBossPowerModel(PowerType.Debuff)
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 

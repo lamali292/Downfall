@@ -14,7 +14,7 @@ public class OneTwoCombo : SlimeBossCardModel, IAfterSplit
 {
     public OneTwoCombo() : base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
-        WithDamage(4, 3);
+        WithDamage(3, 2);
         WithCommand(1);
     }
 

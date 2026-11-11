@@ -9,7 +9,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Uncommon;
 [Pool(typeof(SlimeBossCardPool))]
 public class SlimeTap : SlimeBossCardModel
 {
-    public SlimeTap() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public SlimeTap() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithKeyword(CardKeyword.Exhaust);
         WithEnergy(1, 1);

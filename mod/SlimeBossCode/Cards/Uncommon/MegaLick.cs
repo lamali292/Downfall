@@ -15,7 +15,7 @@ public class MegaLick : SlimeBossCardModel
     {
         WithTags(SlimeBossTag.Lick);
         WithPower<WeakPower>(1);
-        WithPower<GoopPower>(4);
+        WithPower<GoopPower>(3);
         WithKeywords(CardKeyword.Exhaust);
         WithCards(0, 1);
     }

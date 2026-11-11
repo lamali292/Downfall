@@ -16,7 +16,8 @@ public class ProtectTheBossPower : SlimeBossPowerModel
         Creature? dealer,
         CardModel? cardSource)
     {
-        return target != Owner || Owner.Player == null || SlimeQueue.GetCount(Owner.Player) == 0 ? amount : 0M;
+        return target != Owner || Owner.Player == null || dealer == null || dealer.Side == Owner.Side ||
+               !props.IsPoweredAttack() || SlimeQueue.GetCount(Owner.Player) == 0 ? amount : 0M;
     }
 
     public override async Task AfterModifyingHpLostAfterOsty()
