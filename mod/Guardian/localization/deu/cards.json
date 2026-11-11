@@ -85,8 +85,6 @@
     "GUARDIAN-REVENGE_PROTOCOL.title": "Kampfprotokoll",
     "GUARDIAN-ROLL_ATTACK.description": "Füge {Damage:diff()} Schaden zu.\nFalls du im [gold]Defensivmodus[/gold] bist, trifft sie ALLE Gegner.\nAndernfalls [gold]Härte[/gold] {Brace:diff()} ab.",
     "GUARDIAN-ROLL_ATTACK.title": "Rollender Angriff",
-    "GUARDIAN-SECOND_SLAM.description": "Füge {Damage:diff()} Schaden zu.",
-    "GUARDIAN-SECOND_SLAM.title": "Zweiter Hieb",
     "GUARDIAN-SENTRY_BLAST.description": "Füge {Damage:diff()} Schaden zu.\nLege eine [gold]{IfUpgraded:show:Wache-Welle+|Wache-Welle}[/gold] in [gold]Stasis[/gold].",
     "GUARDIAN-SENTRY_BLAST.title": "Wache-Strahl",
     "GUARDIAN-SENTRY_WAVE.title": "Wache-Welle",

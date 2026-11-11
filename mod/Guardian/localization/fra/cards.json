@@ -85,8 +85,6 @@
     "GUARDIAN-REVENGE_PROTOCOL.title": "Protocole de vengeance",
     "GUARDIAN-ROLL_ATTACK.description": "Infligez {Damage:diff()} dégâts. \nSi vous êtes en [gold]Mode Défensif[/gold], cela affecte TOUS les ennemis. \nSinon, [gold]Ancrez-vous[/gold] de {Brace:diff()}.",
     "GUARDIAN-ROLL_ATTACK.title": "Roulade",
-    "GUARDIAN-SECOND_SLAM.description": "Infligez {Damage:diff()} dégâts.",
-    "GUARDIAN-SECOND_SLAM.title": "Claque secondaire",
     "GUARDIAN-SENTRY_BLAST.description": "Infligez {Damage:diff()} dégâts.\nPlacez une [gold]{IfUpgraded:show:Sentinelle ondée+|Sentinelle ondée}[/gold] en [gold]Stase[/gold].",
     "GUARDIAN-SENTRY_BLAST.title": "Sentinelle explosive",
     "GUARDIAN-SENTRY_WAVE.title": "Sentinelle ondée",
