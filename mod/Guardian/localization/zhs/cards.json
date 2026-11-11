@@ -86,8 +86,6 @@
     "GUARDIAN-REVENGE_PROTOCOL.title": "危机协议",
     "GUARDIAN-ROLL_ATTACK.description": "如果处于[gold]防御模式[/gold]，对所有敌人造成{Damage:diff()}点伤害。\n否则，造成{Damage:diff()}点伤害并[gold]提防[/gold]{Brace:diff()}。",
     "GUARDIAN-ROLL_ATTACK.title": "翻滚攻击",
-    "GUARDIAN-SECOND_SLAM.description": "造成{Damage:diff()}点伤害。",
-    "GUARDIAN-SECOND_SLAM.title": "再斩",
     "GUARDIAN-SENTRY_BLAST.description": "造成{Damage:diff()}点伤害。\n[gold]凝滞[/gold]一张[gold]{IfUpgraded:show:哨卫脉冲+|哨卫脉冲}[/gold]。",
     "GUARDIAN-SENTRY_BLAST.title": "哨卫射线",
     "GUARDIAN-SENTRY_WAVE.title": "哨卫脉冲",
