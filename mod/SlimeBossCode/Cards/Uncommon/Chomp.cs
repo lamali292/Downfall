@@ -18,7 +18,7 @@ public class Chomp : SlimeBossCardModel
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var card = Owner.RunState.Rng.CombatCardSelection
-            .NextItem(Owner.Hand.Where(e => e.Tags.Contains(SlimeBossTag.Tackle)));
+            .NextItem(Owner.Hand.Where(e => e.Tags.Contains(SlimeBossTag.Tackle) && e.EnergyCost.GetAmountToSpend() > 0));
         if (card == null) return;
         if (IsUpgraded)
             card.SetToFreeThisCombat();

@@ -9,7 +9,7 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class MinionMaster : SlimeBossCardModel
 {
-    public MinionMaster() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+    public MinionMaster() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<MinionMasterPower>(1, false);
         WithKeyword(CardKeyword.Innate, UpgradeType.Add);

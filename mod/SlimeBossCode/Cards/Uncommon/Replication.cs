@@ -24,7 +24,7 @@ public class Replication : SlimeBossCardModel
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
         if (card == null) return;
         var copy = card.CreateClone();
-        var result = await CardPileCmd.Add(copy, PileType.Draw, CardPilePosition.Top);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Draw, Owner, CardPilePosition.Top);
         CardCmd.PreviewCardPileAdd(result, 0.3f);
     }
 }

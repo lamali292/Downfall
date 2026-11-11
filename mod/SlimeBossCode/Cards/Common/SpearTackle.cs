@@ -12,7 +12,7 @@ public class SpearTackle : SlimeBossCardModel
 {
     public SpearTackle() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(11, 2);
+        WithDamage(10, 2);
         WithSelfDamage(3);
         WithTags(SlimeBossTag.Tackle);
         WithCards(2, 1);

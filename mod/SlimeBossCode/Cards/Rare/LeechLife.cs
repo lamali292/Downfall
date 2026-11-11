@@ -12,7 +12,7 @@ public class LeechLife : SlimeBossCardModel
     public LeechLife() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithKeywords(CardKeyword.Ethereal, CardKeyword.Exhaust);
-        WithDamage(8, 2);
+        WithDamage(7, 3);
     }
 
     public override bool CanBeGeneratedInCombat => false;

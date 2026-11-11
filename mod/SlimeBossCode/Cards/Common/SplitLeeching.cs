@@ -12,7 +12,7 @@ public class SplitLeeching : SlimeBossCardModel
 {
     public SplitLeeching() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithCommand(2, 1);
+        WithCommand(1, 1);
         WithTips(_ => [SlimeBossModelDb.Slime<LeechingSlime>().SlimeTip]);
     }
 
