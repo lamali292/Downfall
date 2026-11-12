@@ -1,4 +1,5 @@
 ﻿using Downfall.DownfallCode.Core;
+using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -145,7 +146,7 @@ public static class SlimeQueue
         {
             var activePet = slimes[i];
             var slimeNode = NCombatRoom.Instance?.GetCreatureNode(activePet);
-            slimeNode?.ToggleIsInteractable(true);
+            slimeNode?.ToggleIsInteractableCompat(true);
             if (slimeNode == null) continue;
             HideHealthBar(slimeNode);
             var layoutIndex = totalSlimes - 1 - i;

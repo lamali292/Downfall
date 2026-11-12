@@ -1,4 +1,5 @@
 using Godot;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -59,7 +60,7 @@ public class PetSummonCmd
 
             await PowerCmd.Apply<T2>(ctx, existing, 1M, null, null);
             node?.TrackBlockStatus(summoner.Creature);
-            node?.ToggleIsInteractable(true);
+            node?.ToggleIsInteractableCompat(true);
         }
 
         await CreatureCmd.SetMaxHp(existing, hp);

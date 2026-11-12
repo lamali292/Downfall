@@ -1,4 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -48,7 +49,7 @@ public static class SneckoCmd
             foreach (var card in cards)
                 card.UpgradeInternal();
 
-        var cardReward = new CardReward(cards, CardCreationSource.Other, player, options);
+        var cardReward = GameApiCompat.CreateCardReward(cards, CardCreationSource.Other, player, options);
         // Gold is its own reward so it can be taken without picking a card (and vice versa).
         List<Reward> rewards = [cardReward];
         if (gift.Gold is > 0) rewards.Add(new GoldReward(gift.Gold.Value, player));

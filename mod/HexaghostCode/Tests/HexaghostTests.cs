@@ -367,4 +367,38 @@ public class HexaghostTests
         Assert.AreEqual(1m, step.DynamicVars["Ignited"].Calculate(null), "An Attack primes the Attack flame.");
         Assert.IsTrue(!(HexaghostCmd.GetCurrentFlame(ctx.Player).IsPrimedBy(defend)), "A Skill does not.");
     }
+
+    // The "Hits" text must preview what the attack will really do, including hit-count modifiers (Thumbscrew on
+    // newer game builds). The plain case runs everywhere; the Thumbscrew case only where that relic exists.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task DividerHitsPreviewMatchesCalculatedWithoutModifiers(TestContext ctx)
+    {
+        HexaghostCmd.GetWheel(ctx.Player)[1].IsIgnited = true;
+        HexaghostCmd.GetWheel(ctx.Player)[2].IsIgnited = true;
+        var divider = await ctx.AddCardToHand<Divider>();
+
+        var hits = divider.DynamicVars["Hits"];
+        hits.UpdateCardPreview(divider, CardPreviewMode.Normal, null, true);
+
+        Assert.AreEqual(2m, hits.PreviewValue, "With no hit-count modifier the preview equals the calculated hits.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task DividerHitsPreviewIncludesThumbscrew(TestContext ctx)
+    {
+        // Looked up by name: Thumbscrew only exists on newer game builds, and referencing the type would stop this
+        // whole test class from loading on older ones.
+        var thumbscrew = ModelDb.AllRelics.FirstOrDefault(r => r.GetType().Name == "Thumbscrew");
+        if (thumbscrew == null) return;
+
+        await RelicCmd.Obtain(thumbscrew.ToMutable(), ctx.Player);
+        HexaghostCmd.GetWheel(ctx.Player)[1].IsIgnited = true;
+        HexaghostCmd.GetWheel(ctx.Player)[2].IsIgnited = true;
+        var divider = await ctx.AddCardToHand<Divider>();
+
+        var hits = divider.DynamicVars["Hits"];
+        hits.UpdateCardPreview(divider, CardPreviewMode.Normal, null, true);
+
+        Assert.AreEqual(3m, hits.PreviewValue, "Thumbscrew adds one hit to an attack that already hits more than once.");
+    }
 }

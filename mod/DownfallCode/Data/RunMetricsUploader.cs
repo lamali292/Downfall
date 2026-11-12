@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.AutoSlay;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
@@ -151,7 +152,7 @@ public sealed class RunMetricsUploader<TPayload>
         var log = _config.Logger;
         var mod = _config.ModName;
 
-        if (!MetricUtilities.ShouldUploadMetrics()) return false;
+        if (!RunMetricsCompat.ShouldUploadRunMetrics()) return false;
 
         if (string.IsNullOrEmpty(_config.ApiKey))
         {

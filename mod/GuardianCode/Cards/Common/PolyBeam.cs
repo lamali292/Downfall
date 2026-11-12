@@ -12,7 +12,7 @@ public class PolyBeam : GuardianCardModel
     public PolyBeam() : base(1, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
     {
         WithDamage(2);
-        WithRepeat(4, 1);
+        WithHitCount(4, 1);
     }
 
     protected override Artist Artist => Artist.Get<Thelethargicweirdo>();

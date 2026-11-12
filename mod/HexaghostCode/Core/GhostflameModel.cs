@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using BaseLib.Abstracts;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Events;
@@ -129,11 +130,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
 
     private HoverTip ToHoverTip(string description)
     {
-        return new HoverTip(Title, description)
-        {
-            Id = Id.ToString(),
-            IsSmart = true
-        };
+        return new HoverTip(Title, description).WithIdAndSmart(Id.ToString(), true);
     }
 
     /// <summary>Whether a hook (Inferno Potion, ...) currently makes this flame's damage or Soulburn hit ALL enemies.</summary>

@@ -14,7 +14,7 @@ public class DivideConquer : SlimeBossCardModel
 {
     public DivideConquer() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
-        WithCalculatedVar("Repeat", 0, Calc);
+        WithCalculatedHitCountVar("Repeat", 0, Calc);
         WithDamage(10, 5);
         WithKeyword(CardKeyword.Exhaust);
     }
