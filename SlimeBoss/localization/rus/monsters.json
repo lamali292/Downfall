@@ -1,8 +1,15 @@
 {
     "SLIMEBOSS-CULTIST_SLIME.name": "Слизень-культист",
+    "SLIMEBOSS-SLIME_LEVEL.label": "Ур. {Level}",
     "SLIMEBOSS-DARKLING_SLIME.name": "Темный слизень",
     "SLIMEBOSS-GUERILLA_SLIME.name": "Слизень-громила",
     "SLIMEBOSS-BRUISER_SLIME.name": "Слизень-крушитель",
     "SLIMEBOSS-GUERILLA_SLIME.description": "Наносит [blue]{Damage:diff()}[/blue] урона ВСЕМ врагам.",
+    "SLIMEBOSS-BRUISER_SLIME.description": "Наносит [blue]{Damage:diff()}[/blue] урона случайному врагу.",
+    "SLIMEBOSS-CULTIST_SLIME.description": "Наносит [blue]{Damage:diff()}[/blue] урона случайному врагу.\nНаносит доп. урон за каждый разыгранный в этом бою Талант.",
+    "SLIMEBOSS-PSYCHIC_SLIME.name": "Слизень-медиум",
+    "SLIMEBOSS-PSYCHIC_SLIME.description": "Накладывает [blue]{Slime:diff()}[/blue] [gold]Ожога души[/gold].\nВы [gold]Приказываете[/gold] этому слизню, когда разыгрываете Талант.",
+    "SLIMEBOSS-MASSIVE_SLIME.name": "Слизень-здоровяк",
+    "SLIMEBOSS-MASSIVE_SLIME.description": "Наносит [blue]{Damage:diff()}[/blue] урона ВСЕМ врагам.\nЗасыпает {Sleep:plural(ru):до следующего хода|на [blue]{Sleep:diff()}[/blue] хода|на [blue]{Sleep:diff()}[/blue] ходов} после атаки.",
     "SLIMEBOSS-LEECHING_SLIME.name": "Слизень-пиявка"
 }
