@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿// Deprecated: removed from the card pool. Kept (commented out) rather than deleted, like Fire Away before it.
+/*using BaseLib.Utils;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Powers;
@@ -22,4 +23,4 @@ public class Soulfire : HexaghostCardModel
     {
         await CommonActions.ApplySelf<SoulfirePower>(ctx, this);
     }
-}
+}*/
