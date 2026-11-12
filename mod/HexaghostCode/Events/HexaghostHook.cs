@@ -54,10 +54,10 @@ public static class HexaghostHook
     }
 
     public static bool GhostflameConditionOverwrites(ICombatState cs, Player player, GhostflameModel ghostflame,
-        CardPlay cardPlay)
+        CardModel card)
     {
         return HookUtils.Any<IGhostflameConditionOverwrites>(cs,
-            m => m.GhostflameConditionOverwrites(player, ghostflame, cardPlay));
+            m => m.GhostflameConditionOverwrites(player, ghostflame, card));
     }
 
     public static bool ShouldGhostflameTargetAll(ICombatState cs, GhostflameModel ghostflame,

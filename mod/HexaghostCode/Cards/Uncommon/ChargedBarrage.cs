@@ -15,7 +15,7 @@ public class ChargedBarrage : HexaghostCardModel
     {
         WithPower<SoulBurnPower>(12, 4);
         WithTip(HexaghostTip.Ignite);
-        WithCalculatedVar("Ignited", 0, static (card, _) => HexaghostCmd.GetIgnitedCount(card.Owner));
+        WithCalculatedVar("Ignited", 0, static (card, _) => HexaghostCmd.GetIgnitedCount(card.Owner, card));
     }
 
     protected override Artist Artist => Artist.Get<Inmo>();

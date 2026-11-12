@@ -16,14 +16,14 @@ public class HauntingEcho : HexaghostCardModel
         WithTip(HexaghostTip.Ignite);
     }
 
-    protected override bool ShouldGlowGoldInternal => HexaghostCmd.IsIgnited(Owner);
+    protected override bool ShouldGlowGoldInternal => HexaghostCmd.IsIgnited(Owner, this);
 
     protected override Artist Artist => Artist.Get<Inmo>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        if (!HexaghostCmd.IsIgnited(Owner)) return;
+        if (!HexaghostCmd.IsIgnited(Owner, this)) return;
         await HexaghostCmd.Ignite(ctx, Owner);
     }
 }

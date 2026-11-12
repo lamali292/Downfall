@@ -21,7 +21,7 @@ public class Divider : HexaghostCardModel
 
     private static decimal Calc(CardModel card, Creature? _)
     {
-        return HexaghostCmd.GetIgnitedCount(card.Owner);
+        return HexaghostCmd.GetIgnitedCount(card.Owner, card);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

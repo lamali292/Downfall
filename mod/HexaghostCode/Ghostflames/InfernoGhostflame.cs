@@ -67,15 +67,10 @@ public class InfernoGhostflame : GhostflameModel
         return Task.CompletedTask;
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    // Progress is the energy spent, so 'primed' for a card is its energy cost.
+    protected override int ProgressFrom(CardModel card, int energySpent)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner) return;
-        if (!TryProgress(cardPlay.Resources.EnergySpent)) return;
-        await Ignite(ctx);
-    }
-
-    public override bool AboutToIgnite(CardModel card)
-    {
-        return IgnitionRequirement - IgnitionProgress <= card.EnergyCost.GetAmountToSpend();
+        if (card.Owner != Owner) return 0;
+        return energySpent;
     }
 }

@@ -54,6 +54,67 @@ public class HexaghostTests
             "AdvancingGuard should advance the wheel by one.");
     }
 
+    // The flame the card was played on reacts (only its effect comes after the play), even when the card advanced the wheel.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task AdvancingCardTriggersTheFlameItWasPlayedOn(TestContext ctx)
+    {
+        HexaghostModel.CurrentIndex[ctx.Player] = 1; // the Skill-triggered Crushing flame
+        var wheel = HexaghostCmd.GetWheel(ctx.Player);
+        wheel[1].SetIgniteProgress();
+        wheel[2].SetIgniteProgress();
+        var floatCard = await ctx.AddCardToHand<Float>(); // Skill + Advance
+
+        Assert.IsTrue(wheel[1].IsPrimedBy(floatCard), "Float is played on flame 1, so it primes it.");
+        await ctx.PlayCard(floatCard);
+
+        Assert.AreEqual(2, HexaghostCmd.GetCurrentIndex(ctx.Player), "Float advanced the wheel.");
+        Assert.IsTrue(wheel[1].IsIgnited, "The flame Float was played on ignites.");
+        Assert.IsTrue(!wheel[2].IsIgnited, "The flame Float advanced to does not.");
+    }
+
+    // Any card igniting the flame by hand, when its own play also ignites it (primed), still gets the prime ignition
+    // after the play: twice the damage of an unprimed Kindle.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task KindleIgnitesAgainWhenItsPlayPrimedTheFlame(TestContext ctx)
+    {
+        HexaghostModel.CurrentIndex[ctx.Player] = 1; // Skill-triggered Crushing flame
+        var flame = HexaghostCmd.GetCurrentFlame(ctx.Player);
+        int Hp() => ctx.Combat.Enemies.Sum(e => e.CurrentHp);
+
+        var before = Hp();
+        await ctx.PlayCard(await ctx.AddCardToHand<Kindle>());
+        var single = before - Hp();
+        Assert.IsTrue(single > 0, "Kindle's ignite deals damage.");
+
+        flame.Extinguish();
+        flame.SetIgniteProgress(); // the next Skill ignites it
+        var primedKindle = await ctx.AddCardToHand<Kindle>();
+        Assert.IsTrue(flame.IsPrimedBy(primedKindle), "Kindle primes the full flame.");
+
+        before = Hp();
+        await ctx.PlayCard(primedKindle);
+        Assert.AreEqual(2 * single, before - Hp(), "The prime ignites the flame a second time.");
+    }
+
+    // Not special to Kindle: Haunting Echo ignites the primed flame by hand, then the prime ignites it again.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task HauntingEchoIgnitesPrimedFlameTwice(TestContext ctx)
+    {
+        var flame = HexaghostCmd.GetCurrentFlame(ctx.Player); // Searing: Soulburn when ignited
+        flame.SetIgniteProgress();
+        int Soulburn() => ctx.Combat.Enemies.Sum(e => e.GetPowerAmount<SoulBurnPower>());
+
+        await ctx.PlayCard(await ctx.AddCardToHand<HauntingEcho>(), ctx.Combat.HittableEnemies.First());
+        var twoIgnitions = Soulburn();
+
+        flame.Extinguish();
+        flame.SetIgniteProgress();
+        var before = Soulburn();
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeHexaghost>(), ctx.Combat.HittableEnemies.First()); // one ignition (prime only)
+        Assert.IsTrue(Soulburn() - before > 0, "The prime ignites Searing.");
+        Assert.AreEqual(2 * (Soulburn() - before), twoIgnitions, "Echo + prime = two ignitions.");
+    }
+
     // Afterlife effects run without a CardPlay, so the card is never seen as the block source and
     // enchantments like Nimble (Fresnel Lens) used to be dropped from the Block gained on exhaust.
     [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
@@ -249,22 +310,61 @@ public class HexaghostTests
         Assert.AreEqual(3, ctx.Player.Creature.GetPowerAmount<PlatingPower>(), "Afterlife should apply 3 Plating.");
     }
 
-    // Flames ignite after the card resolves, so a card sees only the flames that were already ignited when it was
-    // played, and the displayed (calculated) count must equal what it actually uses.
+    // Flames ignite after the card resolves, but a card counts the flame its own play will ignite ("primed"), and the
+    // displayed (calculated) count must equal what it actually uses.
     [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
-    public async Task DividerCountsOnlyFlamesIgnitedBeforeItIsPlayed(TestContext ctx)
+    public async Task DividerCountsFlameItsOwnPlayPrimes(TestContext ctx)
     {
         var wheel = HexaghostCmd.GetWheel(ctx.Player);
         wheel[1].IsIgnited = true;
         var current = HexaghostCmd.GetCurrentFlame(ctx.Player);
-        current.SetIgniteProgress();
+        current.SetIgniteProgress(); // an Attack now ignites the current flame
         var divider = await ctx.AddCardToHand<Divider>();
 
-        Assert.AreEqual(1m, divider.DynamicVars["Hits"].Calculate(null), "Only the already ignited flame counts.");
+        Assert.AreEqual(2m, divider.DynamicVars["Hits"].Calculate(null), "The ignited flame and the primed one count.");
+        Assert.IsTrue(!(current.IsIgnited), "Priming must not ignite the flame early.");
 
         await ctx.PlayCard(divider, ctx.Combat.HittableEnemies.First());
 
         Assert.IsTrue(current.IsIgnited, "The flame should ignite after the card resolved.");
         Assert.AreEqual(2, HexaghostCmd.GetIgnitedCount(ctx.Player), "Both flames are ignited after the play.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task DividerDoesNotCountFlameItsPlayDoesNotPrime(TestContext ctx)
+    {
+        HexaghostCmd.GetWheel(ctx.Player)[1].IsIgnited = true;
+        var divider = await ctx.AddCardToHand<Divider>();
+
+        // Searing needs 2 attacks and none was played yet, so this Attack only progresses it.
+        Assert.AreEqual(1m, divider.DynamicVars["Hits"].Calculate(null), "Only the already ignited flame counts.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task HauntingEchoSeesItsOwnPrimedFlame(TestContext ctx)
+    {
+        var current = HexaghostCmd.GetCurrentFlame(ctx.Player);
+        var echo = await ctx.AddCardToHand<HauntingEcho>();
+        Assert.IsTrue(!(HexaghostCmd.IsIgnited(ctx.Player, echo)), "Not primed while the flame needs more attacks.");
+
+        current.SetIgniteProgress();
+        Assert.IsTrue(HexaghostCmd.IsIgnited(ctx.Player, echo), "The Attack would ignite the flame, so it is primed.");
+        Assert.IsTrue(!(current.IsIgnited), "Priming must not ignite the flame early.");
+
+        await ctx.PlayCard(echo, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(current.IsIgnited, "The flame is ignited after the play, and only once.");
+    }
+
+    // A Skill never primes the attack-triggered flame, however full it is.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task SkillDoesNotPrimeAnAttackFlame(TestContext ctx)
+    {
+        HexaghostCmd.GetCurrentFlame(ctx.Player).SetIgniteProgress();
+        var step = await ctx.AddCardToHand<StepThrough>(); // an Attack: primes
+        var defend = await ctx.AddCardToHand<DefendHexaghost>();
+
+        Assert.AreEqual(1m, step.DynamicVars["Ignited"].Calculate(null), "An Attack primes the Attack flame.");
+        Assert.IsTrue(!(HexaghostCmd.GetCurrentFlame(ctx.Player).IsPrimedBy(defend)), "A Skill does not.");
     }
 }

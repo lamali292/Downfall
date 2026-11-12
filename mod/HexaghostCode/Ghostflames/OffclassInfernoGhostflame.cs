@@ -63,15 +63,10 @@ public class OffclassInfernoGhostflame : GhostflameModel
         return Task.CompletedTask;
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    // Progress is the energy spent, so 'primed' for a card is its energy cost.
+    protected override int ProgressFrom(CardModel card, int energySpent)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner || !DownfallCmd.IsOffclass(cardPlay.Card)) return;
-        if (!TryProgress(cardPlay.Resources.EnergySpent)) return;
-        await Ignite(ctx);
-    }
-
-    public override bool AboutToIgnite(CardModel card)
-    {
-        return DownfallCmd.IsOffclass(card) && IgnitionRequirement - IgnitionProgress <= card.EnergyCost.GetAmountToSpend();
+        if (card.Owner != Owner || !DownfallCmd.IsOffclass(card)) return 0;
+        return energySpent;
     }
 }
