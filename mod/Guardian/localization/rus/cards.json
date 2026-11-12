@@ -51,6 +51,7 @@
     "GUARDIAN-HARDEN.title": "Затвердевание",
     "GUARDIAN-INCINERATE.description": "Наносит {Damage:diff()} урона.\nДает [gold]Разгон[/gold]{IfUpgraded:show: дважды|}.",
     "GUARDIAN-INCINERATE.title": "Поджечь",
+    "GUARDIAN-LASER_TURRET.description": "Наносит {Damage:diff()} урона.\nПомещается в [gold]Стазис[/gold] на 4 хода.\n[gold]Тик[/gold]:\nНаносит {Damage:diff()} урона случайному врагу.",
     "GUARDIAN-LASER_TURRET.title": "Лазерная турель",
     "GUARDIAN-MULTI_BEAM.description": "Наносит {Damage:diff()} урона ВСЕМ врагам X раз.\n[gold]Стазис[/gold] длится 3 хода.\n[gold]Тик[/gold]:\nУрон повышается на {Increase:diff()}.",
     "GUARDIAN-MULTI_BEAM.title": "Мульти-луч",
