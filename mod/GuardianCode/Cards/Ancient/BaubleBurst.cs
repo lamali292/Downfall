@@ -13,7 +13,7 @@ public class BaubleBurst : GuardianCardModel, IGemSocketCard
     public BaubleBurst() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(7);
-        WithRepeat(3);
+        WithHitCount(3);
         WithVar("GemReplay", 3);
     }
 

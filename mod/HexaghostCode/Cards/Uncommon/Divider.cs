@@ -16,7 +16,7 @@ public class Divider : HexaghostCardModel
     {
         WithDamage(4, 2);
         WithTip(HexaghostTip.Ignite);
-        WithCalculatedVar("Hits", 0, Calc);
+        WithCalculatedHitCountVar("Hits", 0, Calc);
     }
 
     private static decimal Calc(CardModel card, Creature? _)

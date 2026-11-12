@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Downfall.DownfallCode.Compatibility;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using MegaCrit.Sts2.Core.Combat;
@@ -28,7 +29,7 @@ public class DefensiveFinisherVar(decimal baseAmount) : DynamicVar("DefensiveFin
         PreviewValue = Calculate();
     }
 
-    protected override decimal GetBaseValueForIConvertible()
+    public decimal GetConvertibleValue()
     {
         return Calculate();
     }

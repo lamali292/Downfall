@@ -12,7 +12,7 @@ public class TalonRend : AwakenedCardModel
     public TalonRend() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
-        WithRepeat(2);
+        WithHitCount(2);
         WithConjure();
     }
 

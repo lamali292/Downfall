@@ -14,7 +14,7 @@ public sealed class FinalCanter : HermitCardModel
     public FinalCanter() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(10, 3);
-        WithCalculatedVar("CalculatedHits", 0, CountCursesInHand);
+        WithCalculatedHitCountVar("CalculatedHits", 0, CountCursesInHand);
         WithKeyword(CardKeyword.Retain);
     }
 

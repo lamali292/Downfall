@@ -14,7 +14,7 @@ public class Incineration : HexaghostCardModel
     {
         WithDamage(4);
         WithPower<SoulBurnPower>(4);
-        WithRepeat(3, 1);
+        WithHitCount(3, 1);
     }
 
     protected override Artist Artist => Artist.Get<Claude27A>();

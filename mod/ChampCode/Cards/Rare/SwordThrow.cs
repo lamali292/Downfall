@@ -14,7 +14,7 @@ public class SwordThrow : ChampCardModel
     public SwordThrow() : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
         WithDamage(9, 4);
-        WithRepeat(2);
+        WithHitCount(2);
         WithPower<EntangledNextTurnPower>(1, false);
         //this.WithBerserkerTip();
     }

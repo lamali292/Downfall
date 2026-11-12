@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Downfall.DownfallCode.Compatibility;
 using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
@@ -24,9 +25,10 @@ namespace Downfall.DownfallCode.Nodes;
 
 public partial class NGemUpgradeSelectScreen :
     Control,
-    IOverlayScreen,
-    ICardSelector
+    IOverlayScreen
 {
+    // Deliberately not ICardSelector / ICardSelectionScreen: the game renamed that interface between versions, so
+    // implementing either one breaks loading on the other. Only the game's potion popup checks for it.
     private readonly HashSet<CardModel> _selectedCards = [];
     public readonly TaskCompletionSource<IEnumerable<CardModel>> CompletionSource = new();
     private IReadOnlyList<CardModel>? _cards;

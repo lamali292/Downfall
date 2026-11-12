@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Models;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
@@ -16,7 +17,7 @@ public class Manabomb : AwakenedRelicModel
         WithTip<ManaburnPower>();
     }
 
-    public override async Task AfterDeath(PlayerChoiceContext ctx, Creature creature, bool wasRemovalPrevented,
+    public override async Task AfterDeath(PlayerChoiceContext ctx, Creature creature, CardModel? source, bool wasRemovalPrevented,
         float deathAnimLength)
     {
         if (wasRemovalPrevented) return;

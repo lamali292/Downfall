@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Text.Json;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Debug;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Models;
@@ -114,7 +115,7 @@ public static class DownfallMetrics
         }
 
         var progress = SaveManager.Instance.Progress;
-        return new RunMetrics
+        var metrics = new CompatRunMetrics
         {
             Ascension = run.Ascension,
             TotalPlaytime = progress.TotalPlaytime,
@@ -163,5 +164,7 @@ public static class DownfallMetrics
                     e.GetEntry(localPlayerId).PotionDiscarded)
                 .Select<ModelId, string>(p => p.Entry).ToList()
         };
+        RunMetricsCompat.ApplyGameMode(metrics, run);
+        return metrics;
     }
 }

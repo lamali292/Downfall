@@ -17,7 +17,7 @@ public class PrismaticSpray : GuardianCardModel, IGemSocketCard
     public PrismaticSpray() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(3, 1);
-        WithCalculatedVar("Repeat", 0, CalcRepeat);
+        WithCalculatedHitCountVar("Repeat", 0, CalcRepeat);
         WithTip(GuardianKeyword.Gem);
     }
 

@@ -13,7 +13,7 @@ public class Execution : ChampCardModel
     public Execution() : base(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
-        WithRepeat(4);
+        WithHitCount(4);
         WithFinisher();
         // WithTip(ChampTip.Stance);
     }
@@ -24,7 +24,7 @@ public class Execution : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 4, "vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue, "vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
             .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character),
                 Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
             .Execute(ctx);

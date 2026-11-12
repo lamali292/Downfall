@@ -17,7 +17,7 @@ public class Carrionmaker : AwakenedCardModel
     public Carrionmaker() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
         WithDamage(9, 3);
-        WithCalculatedVar("Hits", 1, Calc);
+        WithCalculatedHitCountVar("Hits", 1, Calc);
     }
 
     private static decimal Calc(CardModel card, Creature? arg2)
