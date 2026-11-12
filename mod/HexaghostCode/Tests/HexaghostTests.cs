@@ -401,4 +401,73 @@ public class HexaghostTests
 
         Assert.AreEqual(3m, hits.PreviewValue, "Thumbscrew adds one hit to an attack that already hits more than once.");
     }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task HauntedHandExhaustedMidTurnDrawsImmediately(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<HauntedHand>();
+
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, false);
+
+        Assert.AreEqual(3, ctx.Player.Hand.Count, "A mid-turn exhaust is not a turn-end Ethereal exhaust: draw right away.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task IgnisAppliesSoulburnAndReplaysOnlyTheNextEtherealCard(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var ignis = await ctx.AddCardToHand<Ignis>();
+        await ctx.PlayCard(ignis, enemy);
+
+        Assert.AreEqual(6, enemy.GetPowerAmount<SoulBurnPower>(), "Ignis applies 6 Soulburn.");
+        Assert.AreEqual(1, ctx.Player.Creature.GetPowerAmount<IgnisPower>(), "Ignis arms one extra play.");
+
+        var strike = await ctx.AddCardToHand<StrikeHexaghost>();
+        await ctx.PlayCard(strike, enemy);
+        Assert.AreEqual(1, ctx.Player.Creature.GetPowerAmount<IgnisPower>(), "A non-Ethereal card must not use it up.");
+
+        var creature = ctx.Player.Creature;
+        await ctx.PlayCard(await ctx.AddCardToHand<Floatwork>(), enemy);
+        Assert.AreEqual(2, creature.GetPowerAmount<DexterityPower>(), "The Ethereal card is played twice: 1 Dexterity each.");
+        Assert.AreEqual(0, creature.GetPowerAmount<IgnisPower>(), "The extra play is used up.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<Floatwork>(), enemy);
+        Assert.AreEqual(3, creature.GetPowerAmount<DexterityPower>(), "The next Ethereal card is played normally.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public Task ReworkedCardsHaveTheirNewStatsAndRarities(TestContext ctx)
+    {
+        var heat = ModelDb.Card<HeatMetal>();
+        Assert.AreEqual(CardRarity.Common, heat.Rarity, "Heat Metal is Common.");
+        Assert.AreEqual(3m, heat.DynamicVars.Damage.BaseValue, "Heat Metal damage");
+        Assert.AreEqual(3m, heat.DynamicVars[nameof(SoulBurnPower)].BaseValue, "Heat Metal Soulburn");
+        Assert.AreEqual(1m, heat.DynamicVars[nameof(VulnerablePower)].BaseValue, "Heat Metal Vulnerable");
+
+        var beyond = ModelDb.Card<PowerFromBeyond>();
+        Assert.AreEqual(CardRarity.Uncommon, beyond.Rarity, "Power from Beyond is Uncommon.");
+        Assert.AreEqual(3m, beyond.DynamicVars.Block.BaseValue, "Power from Beyond block");
+
+        Assert.AreEqual(4m, ModelDb.Card<SeventhEye>().DynamicVars.Block.BaseValue, "Seventh Eye block");
+        Assert.AreEqual(5m, ModelDb.Card<HotStreak>().DynamicVars[nameof(HotStreakPower)].BaseValue, "Hot Streak Soulburn");
+        Assert.AreEqual(6m, ModelDb.Card<Ignis>().DynamicVars[nameof(SoulBurnPower)].BaseValue, "Ignis Soulburn");
+        Assert.AreEqual(CardRarity.Rare, ModelDb.Card<Ignis>().Rarity, "Ignis is Rare.");
+        return Task.CompletedTask;
+    }
+
+    // Afterlife resolves with the card's play count (ResolveAfterlife), so Ignis's extra play also doubles an Ethereal card's
+    // Afterlife effect when it exhausts at turn end - and is used up by it.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task IgnisDoublesAnEtherealCardsAfterlifeAtTurnEnd(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<Ignis>(), enemy);
+        await ctx.AddCardToHand<Floatwork>();
+
+        await EndTurnAndWaitForNextTurn(ctx);
+
+        Assert.AreEqual(5, ctx.Player.Creature.GetPowerAmount<PlatingPower>(),
+            "Floatwork's Afterlife applies 3 Plating twice (Ignis), minus 1 decay.");
+    }
 }
