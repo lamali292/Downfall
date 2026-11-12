@@ -6,6 +6,7 @@ using Hexaghost.HexaghostCode.History;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -66,6 +67,16 @@ public static class HexaghostCmd
         return GetWheel(player).Count(f => f.IsIgnited);
     }
 
+    /// <summary>
+    /// Ignited flames as seen by <paramref name="card" /> while it is played or previewed: the flames that are
+    /// ignited plus the current flame if this card's own play will ignite it (primed). Flames ignite after the card
+    /// resolved, so the card reads the count it is about to cause without that flame's effect firing early.
+    /// </summary>
+    public static int GetIgnitedCount(Player player, CardModel card)
+    {
+        return GetIgnitedCount(player) + (GetCurrentFlame(player).IsPrimedBy(card) ? 1 : 0);
+    }
+
     public static bool AllIgnited(Player player)
     {
         return GetWheel(player).All(f => f.IsIgnited);
@@ -95,6 +106,49 @@ public static class HexaghostCmd
         await HexaghostHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source,
             GetCurrentFlame(player),
             GetCurrentIndex(player), endOfTurnAdvance);
+    }
+
+    /// <summary>
+    /// The flame that was current when <paramref name="card" /> started its current play: the flame the card is
+    /// played on, even if the card itself moved the wheel since. Undoes the card's own Advance/Retract entries after
+    /// its latest play start in the combat history, so there is no state to go stale (and Replay is covered).
+    /// </summary>
+    public static GhostflameModel GetFlameBeforePlay(CardModel card)
+    {
+        var player = card.Owner;
+        var shift = 0;
+        foreach (var entry in CombatManager.Instance.History.Entries)
+            switch (entry)
+            {
+                case CardPlayStartedEntry started when started.CardPlay.Card == card:
+                    shift = 0;
+                    break;
+                case WheelAdvanceEntry { IsEndOfTurnAdvance: false } advance when advance.Source == card:
+                    shift++;
+                    break;
+                case WheelRetractEntry retract when retract.Source == card:
+                    shift--;
+                    break;
+            }
+
+        var wheel = GetWheel(player);
+        var index = ((GetCurrentIndex(player) - shift) % wheel.Length + wheel.Length) % wheel.Length;
+        return wheel[index];
+    }
+
+    /// <summary>
+    /// Whether <paramref name="card" /> ignited <paramref name="flame" /> by hand during its current play while its
+    /// play would also have ignited it afterwards (read from the combat history after the play start, like
+    /// <see cref="GetFlameBeforePlay" />).
+    /// </summary>
+    public static bool WasPrimedAndIgnitedByPlay(CardModel card, GhostflameModel flame)
+    {
+        var result = false;
+        foreach (var entry in CombatManager.Instance.History.Entries)
+            if (entry is CardPlayStartedEntry started && started.CardPlay.Card == card) result = false;
+            else if (entry is GhostflameIgniteEntry ignite && ignite.Source == card && ignite.Flame == flame &&
+                     ignite.WasPrimedBySource) result = true;
+        return result;
     }
 
     public static async Task Retract(PlayerChoiceContext ctx, Player player, AbstractModel? source)
@@ -156,6 +210,13 @@ public static class HexaghostCmd
         return GetCurrentFlame(player).IsIgnited;
     }
 
+    /// <summary>Whether the current flame is ignited or primed by <paramref name="card" />'s own play (see <see cref="GetIgnitedCount(Player, CardModel)" />).</summary>
+    public static bool IsIgnited(Player player, CardModel card)
+    {
+        var flame = GetCurrentFlame(player);
+        return flame.IsIgnited || flame.IsPrimedBy(card);
+    }
+
     public static bool IsPreviousIgnited(Player player)
     {
         return GetWheel(player)[GetPreviousIndex(player)].IsIgnited;
@@ -181,11 +242,25 @@ public static class HexaghostCmd
         return IgniteAt(ctx, player, GetCurrentIndex(player));
     }
 
+    /// <summary>
+    /// Ignites a flame by hand. When this happens during a card's play and that play would also ignite the flame once
+    /// it resolved (primed), the ignition is recorded in the combat history so the flame still ignites a second time
+    /// after the play (see <see cref="WasPrimedAndIgnitedByPlay" />). Primed is only a pre-state: it never replaces
+    /// an ignition the card does itself.
+    /// </summary>
     public static async Task IgniteAt(PlayerChoiceContext ctx, Player player, int index)
     {
         ActivateGhostwheel(player);
         await Cmd.Wait(0.05f);
         var flame = GetWheel(player)[index];
+        if (GetCardBeingPlayed(player) is { } playing)
+        {
+            var combatState = player.Creature.CombatState!;
+            CombatManager.Instance.History.Add(combatState,
+                new GhostflameIgniteEntry(flame, playing, flame.WouldIgniteFrom(playing), player.Creature,
+                    combatState.RoundNumber, player.Creature.Side, CombatManager.Instance.History,
+                    combatState.Players));
+        }
         if (!flame.IsIgnited)
             flame.IsIgnited = true;
 
@@ -223,10 +298,37 @@ public static class HexaghostCmd
         return Task.CompletedTask;
     }
 
-    public static void Refresh(Player player)
+    /// <param name="startingCard">A card whose play is just starting and not yet in the combat history.</param>
+    public static void Refresh(Player player, CardModel? startingCard = null)
     {
         if (!IsGhostwheelActivated(player)) return;
-        HexaghostVisualsBridge.Refresh(player);
+        HexaghostVisualsBridge.Refresh(player, startingCard);
+    }
+
+    /// <summary>
+    /// The flame that shows as ignited only because the card being played right now will ignite it after the play
+    /// (null when none). <paramref name="startingCard" /> covers the moment before the play is in the combat history.
+    /// </summary>
+    /// <summary>The card of <paramref name="player" /> between its play start and finish in the combat history, if any.</summary>
+    public static CardModel? GetCardBeingPlayed(Player player)
+    {
+        CardModel? playing = null;
+        foreach (var entry in CombatManager.Instance.History.Entries)
+            if (entry is CardPlayStartedEntry started && started.CardPlay.Card.Owner == player)
+                playing = started.CardPlay.Card;
+            else if (entry is CardPlayFinishedEntry finished && finished.CardPlay.Card == playing)
+                playing = null;
+        return playing;
+    }
+
+    public static GhostflameModel? GetPrimedFlameForVisuals(Player player, CardModel? startingCard)
+    {
+        if (startingCard != null)
+            return GetCurrentFlame(player).WouldIgniteFrom(startingCard) ? GetCurrentFlame(player) : null;
+        var playing = GetCardBeingPlayed(player);
+        if (playing == null) return null;
+        var flame = GetFlameBeforePlay(playing);
+        return flame.WouldIgniteFrom(playing) ? flame : null;
     }
 
     public static Task<int> ResetWheel(Player player)

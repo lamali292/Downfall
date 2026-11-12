@@ -53,14 +53,8 @@ public class OffclassBolsteringGhostflame : GhostflameModel
         }
     }
 
-    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override int ProgressFrom(CardModel card, int energySpent)
     {
-        return TriggerOnCardType(ctx, cardPlay, CardType.Power, DownfallCmd.IsOffclass);
-    }
-
-    public override bool AboutToIgnite(CardModel card)
-    {
-        return card.Type == CardType.Power && DownfallCmd.IsOffclass(card) &&
-               IgnitionRequirement - IgnitionProgress <= 1;
+        return ProgressOnCardType(card, CardType.Power, DownfallCmd.IsOffclass);
     }
 }

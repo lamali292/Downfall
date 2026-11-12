@@ -40,13 +40,8 @@ public class CrushingGhostflame : GhostflameModel
             targets => CreatureCmd.Damage(ctx, targets, damage, DamageProps.nonCardUnpowered, Owner.Creature));
     }
 
-    public override Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override int ProgressFrom(CardModel card, int energySpent)
     {
-        return TriggerOnCardType(ctx, cardPlay, CardType.Skill);
-    }
-
-    public override bool AboutToIgnite(CardModel card)
-    {
-        return card.Type == CardType.Skill && IgnitionRequirement - IgnitionProgress <= 1;
+        return ProgressOnCardType(card, CardType.Skill);
     }
 }
