@@ -50,7 +50,7 @@
     </ItemGroup>
 
     <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
-        <PackageReference Include="lamali.StS2.RefLib" Version="0.111.0-beta" ExcludeAssets="runtime" PrivateAssets="all"/>
+        <PackageReference Include="lamali.StS2.RefLib" Version="0.113.0" ExcludeAssets="runtime" PrivateAssets="all"/>
         <PackageReference Include="SmartFormat.NET" Version="3.*" ExcludeAssets="runtime" PrivateAssets="all"/>
         <PackageReference Include="Steamworks.NET" Version="2024.8.0" ExcludeAssets="runtime" PrivateAssets="all"/>
     </ItemGroup>
