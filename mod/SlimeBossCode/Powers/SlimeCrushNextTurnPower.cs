@@ -20,7 +20,7 @@ public class SlimeCrushNextTurnPower() : SlimeBossPowerModel(PowerType.Buff, Pow
         if (player.Creature != Owner) return;
         var card = combatState.CreateCard<SlimeCrush>(player);
         if (CreateUpgraded) card.UpgradeInternal();
-        await CardPileCmd.Add(card, PileType.Hand);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         await PowerCmd.Remove(this);
     }
 }

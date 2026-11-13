@@ -2,6 +2,7 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.DynamicVars;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
@@ -60,9 +61,9 @@ public class SneckoChoice : CustomRelicModel, ISneckoPoolSupplier
     private CharacterModel? Character =>
         CharacterId == null ? null : ModelDb.GetByIdOrNull<CharacterModel>(CharacterId);
 
-    public IEnumerable<CharacterModel> AddSneckoChars()
+    public IEnumerable<CharacterModel> AddSneckoChars(Player player)
     {
-        return Character == null ? [] : [Character];
+        return player == Owner && Character != null ? [Character] : [];
     }
 
 

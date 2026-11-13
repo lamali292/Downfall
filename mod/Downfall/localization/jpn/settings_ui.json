@@ -1,7 +1,7 @@
 {
     "DOWNFALL.mod_title": "Downfall",
     "DOWNFALL-UI.title": "UI",
-    "DOWNFALL-INTERNAL.title": "内部的",
+    "DOWNFALL-INTERNAL.title": "内部ツール",
     "DOWNFALL-SYNC.title": "同期",
     "DOWNFALL-HIDE_SECTION.title": "キャラクターの無効化",
     "DOWNFALL-CHARACTER_MISMATCH.title": "Downfallの設定に不整合があります",
@@ -42,7 +42,7 @@
     "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.title": "アート投稿ボタンを表示",
     "DOWNFALL-SHOW_ART_SUBMISSION_BUTTON.hover.desc": "メインメニューに「Downfallアート投稿」ボタンを表示する。",
     "DOWNFALL-AFTERLIFE_COLOR.title": "死後のテキスト色",
-    "DOWNFALL-RESET_COLOR.title": "リセット",
+    "DOWNFALL-RESET_COLOR.title": "デフォルト色に戻す",
     "DOWNFALL-AFTERLIFE_COLOR.hover.desc": "死後カードのキーワードとテキストの色。",
     "DOWNFALL-UPLOAD_METRICS.title": "ゲームプレイデータの送信(Downfall)",
     "DOWNFALL-UPLOAD_METRICS.hover.desc": "バグ修正やModのゲームバランス調整のため、Downfallキャラクターのプレイ時のみ、ゲームプレイのデータがDownfall制作者に送信されます。\n\n個人を特定する情報が収集されることは一切ありません。",

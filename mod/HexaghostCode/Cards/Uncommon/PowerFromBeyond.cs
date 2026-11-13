@@ -6,12 +6,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Hexaghost.HexaghostCode.Cards.Common;
+namespace Hexaghost.HexaghostCode.Cards.Uncommon;
 
 [Pool(typeof(HexaghostCardPool))]
 public class PowerFromBeyond : HexaghostCardModel, IHasAfterlifeEffect
 {
-    public PowerFromBeyond() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+    public PowerFromBeyond() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
         WithAfterlife();
         WithBlock(3, 3);

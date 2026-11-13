@@ -18,6 +18,9 @@ public class Whack : SneckoCardModel
     }
     
     public override bool GainsBlock => true;
+    
+    protected override bool ShouldGlowGoldInternal =>
+        EnergyCost.GetAmountToSpend() != DynamicVars.Energy.IntValue;
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {

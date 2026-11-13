@@ -54,6 +54,67 @@ public class HexaghostTests
             "AdvancingGuard should advance the wheel by one.");
     }
 
+    // The flame the card was played on reacts (only its effect comes after the play), even when the card advanced the wheel.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task AdvancingCardTriggersTheFlameItWasPlayedOn(TestContext ctx)
+    {
+        HexaghostModel.CurrentIndex[ctx.Player] = 1; // the Skill-triggered Crushing flame
+        var wheel = HexaghostCmd.GetWheel(ctx.Player);
+        wheel[1].SetIgniteProgress();
+        wheel[2].SetIgniteProgress();
+        var floatCard = await ctx.AddCardToHand<Float>(); // Skill + Advance
+
+        Assert.IsTrue(wheel[1].IsPrimedBy(floatCard), "Float is played on flame 1, so it primes it.");
+        await ctx.PlayCard(floatCard);
+
+        Assert.AreEqual(2, HexaghostCmd.GetCurrentIndex(ctx.Player), "Float advanced the wheel.");
+        Assert.IsTrue(wheel[1].IsIgnited, "The flame Float was played on ignites.");
+        Assert.IsTrue(!wheel[2].IsIgnited, "The flame Float advanced to does not.");
+    }
+
+    // Any card igniting the flame by hand, when its own play also ignites it (primed), still gets the prime ignition
+    // after the play: twice the damage of an unprimed Kindle.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task KindleIgnitesAgainWhenItsPlayPrimedTheFlame(TestContext ctx)
+    {
+        HexaghostModel.CurrentIndex[ctx.Player] = 1; // Skill-triggered Crushing flame
+        var flame = HexaghostCmd.GetCurrentFlame(ctx.Player);
+        int Hp() => ctx.Combat.Enemies.Sum(e => e.CurrentHp);
+
+        var before = Hp();
+        await ctx.PlayCard(await ctx.AddCardToHand<Kindle>());
+        var single = before - Hp();
+        Assert.IsTrue(single > 0, "Kindle's ignite deals damage.");
+
+        flame.Extinguish();
+        flame.SetIgniteProgress(); // the next Skill ignites it
+        var primedKindle = await ctx.AddCardToHand<Kindle>();
+        Assert.IsTrue(flame.IsPrimedBy(primedKindle), "Kindle primes the full flame.");
+
+        before = Hp();
+        await ctx.PlayCard(primedKindle);
+        Assert.AreEqual(2 * single, before - Hp(), "The prime ignites the flame a second time.");
+    }
+
+    // Not special to Kindle: Haunting Echo ignites the primed flame by hand, then the prime ignites it again.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task HauntingEchoIgnitesPrimedFlameTwice(TestContext ctx)
+    {
+        var flame = HexaghostCmd.GetCurrentFlame(ctx.Player); // Searing: Soulburn when ignited
+        flame.SetIgniteProgress();
+        int Soulburn() => ctx.Combat.Enemies.Sum(e => e.GetPowerAmount<SoulBurnPower>());
+
+        await ctx.PlayCard(await ctx.AddCardToHand<HauntingEcho>(), ctx.Combat.HittableEnemies.First());
+        var twoIgnitions = Soulburn();
+
+        flame.Extinguish();
+        flame.SetIgniteProgress();
+        var before = Soulburn();
+        await ctx.PlayCard(await ctx.AddCardToHand<StrikeHexaghost>(), ctx.Combat.HittableEnemies.First()); // one ignition (prime only)
+        Assert.IsTrue(Soulburn() - before > 0, "The prime ignites Searing.");
+        Assert.AreEqual(2 * (Soulburn() - before), twoIgnitions, "Echo + prime = two ignitions.");
+    }
+
     // Afterlife effects run without a CardPlay, so the card is never seen as the block source and
     // enchantments like Nimble (Fresnel Lens) used to be dropped from the Block gained on exhaust.
     [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
@@ -247,5 +308,166 @@ public class HexaghostTests
         await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, false);
 
         Assert.AreEqual(3, ctx.Player.Creature.GetPowerAmount<PlatingPower>(), "Afterlife should apply 3 Plating.");
+    }
+
+    // Flames ignite after the card resolves, but a card counts the flame its own play will ignite ("primed"), and the
+    // displayed (calculated) count must equal what it actually uses.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task DividerCountsFlameItsOwnPlayPrimes(TestContext ctx)
+    {
+        var wheel = HexaghostCmd.GetWheel(ctx.Player);
+        wheel[1].IsIgnited = true;
+        var current = HexaghostCmd.GetCurrentFlame(ctx.Player);
+        current.SetIgniteProgress(); // an Attack now ignites the current flame
+        var divider = await ctx.AddCardToHand<Divider>();
+
+        Assert.AreEqual(2m, divider.DynamicVars["Hits"].Calculate(null), "The ignited flame and the primed one count.");
+        Assert.IsTrue(!(current.IsIgnited), "Priming must not ignite the flame early.");
+
+        await ctx.PlayCard(divider, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(current.IsIgnited, "The flame should ignite after the card resolved.");
+        Assert.AreEqual(2, HexaghostCmd.GetIgnitedCount(ctx.Player), "Both flames are ignited after the play.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task DividerDoesNotCountFlameItsPlayDoesNotPrime(TestContext ctx)
+    {
+        HexaghostCmd.GetWheel(ctx.Player)[1].IsIgnited = true;
+        var divider = await ctx.AddCardToHand<Divider>();
+
+        // Searing needs 2 attacks and none was played yet, so this Attack only progresses it.
+        Assert.AreEqual(1m, divider.DynamicVars["Hits"].Calculate(null), "Only the already ignited flame counts.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task HauntingEchoSeesItsOwnPrimedFlame(TestContext ctx)
+    {
+        var current = HexaghostCmd.GetCurrentFlame(ctx.Player);
+        var echo = await ctx.AddCardToHand<HauntingEcho>();
+        Assert.IsTrue(!(HexaghostCmd.IsIgnited(ctx.Player, echo)), "Not primed while the flame needs more attacks.");
+
+        current.SetIgniteProgress();
+        Assert.IsTrue(HexaghostCmd.IsIgnited(ctx.Player, echo), "The Attack would ignite the flame, so it is primed.");
+        Assert.IsTrue(!(current.IsIgnited), "Priming must not ignite the flame early.");
+
+        await ctx.PlayCard(echo, ctx.Combat.HittableEnemies.First());
+
+        Assert.IsTrue(current.IsIgnited, "The flame is ignited after the play, and only once.");
+    }
+
+    // A Skill never primes the attack-triggered flame, however full it is.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task SkillDoesNotPrimeAnAttackFlame(TestContext ctx)
+    {
+        HexaghostCmd.GetCurrentFlame(ctx.Player).SetIgniteProgress();
+        var step = await ctx.AddCardToHand<StepThrough>(); // an Attack: primes
+        var defend = await ctx.AddCardToHand<DefendHexaghost>();
+
+        Assert.AreEqual(1m, step.DynamicVars["Ignited"].Calculate(null), "An Attack primes the Attack flame.");
+        Assert.IsTrue(!(HexaghostCmd.GetCurrentFlame(ctx.Player).IsPrimedBy(defend)), "A Skill does not.");
+    }
+
+    // The "Hits" text must preview what the attack will really do, including hit-count modifiers (Thumbscrew on
+    // newer game builds). The plain case runs everywhere; the Thumbscrew case only where that relic exists.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task DividerHitsPreviewMatchesCalculatedWithoutModifiers(TestContext ctx)
+    {
+        HexaghostCmd.GetWheel(ctx.Player)[1].IsIgnited = true;
+        HexaghostCmd.GetWheel(ctx.Player)[2].IsIgnited = true;
+        var divider = await ctx.AddCardToHand<Divider>();
+
+        var hits = divider.DynamicVars["Hits"];
+        hits.UpdateCardPreview(divider, CardPreviewMode.Normal, null, true);
+
+        Assert.AreEqual(2m, hits.PreviewValue, "With no hit-count modifier the preview equals the calculated hits.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task DividerHitsPreviewIncludesThumbscrew(TestContext ctx)
+    {
+        // Looked up by name: Thumbscrew only exists on newer game builds, and referencing the type would stop this
+        // whole test class from loading on older ones.
+        var thumbscrew = ModelDb.AllRelics.FirstOrDefault(r => r.GetType().Name == "Thumbscrew");
+        if (thumbscrew == null) return;
+
+        await RelicCmd.Obtain(thumbscrew.ToMutable(), ctx.Player);
+        HexaghostCmd.GetWheel(ctx.Player)[1].IsIgnited = true;
+        HexaghostCmd.GetWheel(ctx.Player)[2].IsIgnited = true;
+        var divider = await ctx.AddCardToHand<Divider>();
+
+        var hits = divider.DynamicVars["Hits"];
+        hits.UpdateCardPreview(divider, CardPreviewMode.Normal, null, true);
+
+        Assert.AreEqual(3m, hits.PreviewValue, "Thumbscrew adds one hit to an attack that already hits more than once.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task HauntedHandExhaustedMidTurnDrawsImmediately(TestContext ctx)
+    {
+        await ctx.ClearHand();
+        var card = await ctx.AddCardToHand<HauntedHand>();
+
+        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, false);
+
+        Assert.AreEqual(3, ctx.Player.Hand.Count, "A mid-turn exhaust is not a turn-end Ethereal exhaust: draw right away.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task IgnisAppliesSoulburnAndReplaysOnlyTheNextEtherealCard(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var ignis = await ctx.AddCardToHand<Ignis>();
+        await ctx.PlayCard(ignis, enemy);
+
+        Assert.AreEqual(6, enemy.GetPowerAmount<SoulBurnPower>(), "Ignis applies 6 Soulburn.");
+        Assert.AreEqual(1, ctx.Player.Creature.GetPowerAmount<IgnisPower>(), "Ignis arms one extra play.");
+
+        var strike = await ctx.AddCardToHand<StrikeHexaghost>();
+        await ctx.PlayCard(strike, enemy);
+        Assert.AreEqual(1, ctx.Player.Creature.GetPowerAmount<IgnisPower>(), "A non-Ethereal card must not use it up.");
+
+        var creature = ctx.Player.Creature;
+        await ctx.PlayCard(await ctx.AddCardToHand<Floatwork>(), enemy);
+        Assert.AreEqual(2, creature.GetPowerAmount<DexterityPower>(), "The Ethereal card is played twice: 1 Dexterity each.");
+        Assert.AreEqual(0, creature.GetPowerAmount<IgnisPower>(), "The extra play is used up.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<Floatwork>(), enemy);
+        Assert.AreEqual(3, creature.GetPowerAmount<DexterityPower>(), "The next Ethereal card is played normally.");
+    }
+
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public Task ReworkedCardsHaveTheirNewStatsAndRarities(TestContext ctx)
+    {
+        var heat = ModelDb.Card<HeatMetal>();
+        Assert.AreEqual(CardRarity.Common, heat.Rarity, "Heat Metal is Common.");
+        Assert.AreEqual(3m, heat.DynamicVars.Damage.BaseValue, "Heat Metal damage");
+        Assert.AreEqual(3m, heat.DynamicVars[nameof(SoulBurnPower)].BaseValue, "Heat Metal Soulburn");
+        Assert.AreEqual(1m, heat.DynamicVars[nameof(VulnerablePower)].BaseValue, "Heat Metal Vulnerable");
+
+        var beyond = ModelDb.Card<PowerFromBeyond>();
+        Assert.AreEqual(CardRarity.Uncommon, beyond.Rarity, "Power from Beyond is Uncommon.");
+        Assert.AreEqual(3m, beyond.DynamicVars.Block.BaseValue, "Power from Beyond block");
+
+        Assert.AreEqual(4m, ModelDb.Card<SeventhEye>().DynamicVars.Block.BaseValue, "Seventh Eye block");
+        Assert.AreEqual(5m, ModelDb.Card<HotStreak>().DynamicVars[nameof(HotStreakPower)].BaseValue, "Hot Streak Soulburn");
+        Assert.AreEqual(6m, ModelDb.Card<Ignis>().DynamicVars[nameof(SoulBurnPower)].BaseValue, "Ignis Soulburn");
+        Assert.AreEqual(CardRarity.Rare, ModelDb.Card<Ignis>().Rarity, "Ignis is Rare.");
+        return Task.CompletedTask;
+    }
+
+    // Afterlife resolves with the card's play count (ResolveAfterlife), so Ignis's extra play also doubles an Ethereal card's
+    // Afterlife effect when it exhausts at turn end - and is used up by it.
+    [CardTest(typeof(Hexaghost.HexaghostCode.Core.Hexaghost))]
+    public async Task IgnisDoublesAnEtherealCardsAfterlifeAtTurnEnd(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        await ctx.PlayCard(await ctx.AddCardToHand<Ignis>(), enemy);
+        await ctx.AddCardToHand<Floatwork>();
+
+        await EndTurnAndWaitForNextTurn(ctx);
+
+        Assert.AreEqual(5, ctx.Player.Creature.GetPowerAmount<PlatingPower>(),
+            "Floatwork's Afterlife applies 3 Plating twice (Ignis), minus 1 decay.");
     }
 }

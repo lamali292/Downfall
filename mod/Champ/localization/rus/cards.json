@@ -98,6 +98,7 @@
     "CHAMP-IMPROVISING.title": "Импровизация",
     "CHAMP-INSPIRATION.description": "Вы переходите в другую [gold]Стойку[/gold].",
     "CHAMP-INSPIRATION.title": "Вдохновиться",
+    "CHAMP-IRON_FORTRESS.description": "Дает {DexterityPower:diff()} [gold]ловкости[/gold].\nДает {PlatingPower:diff()} [gold]панциря[/gold].",
     "CHAMP-IRON_FORTRESS.title": "Железная крепость",
     "CHAMP-KILLING_SPREE.title": "Кровавая расправа",
     "CHAMP-KILLING_SPREE.description": "Снимает лимит [gold]Бонуса стойки[/gold].\nАктивирует [gold]Бонус стойки[/gold] {Skill:diff()} {Skill:plural(ru):раз|раза|раз}.",

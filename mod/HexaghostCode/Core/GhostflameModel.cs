@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using BaseLib.Abstracts;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Vfx;
 using Hexaghost.HexaghostCode.DynamicVars;
 using Hexaghost.HexaghostCode.Events;
@@ -129,11 +130,7 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
 
     private HoverTip ToHoverTip(string description)
     {
-        return new HoverTip(Title, description)
-        {
-            Id = Id.ToString(),
-            IsSmart = true
-        };
+        return new HoverTip(Title, description).WithIdAndSmart(Id.ToString(), true);
     }
 
     /// <summary>Whether a hook (Inferno Potion, ...) currently makes this flame's damage or Soulburn hit ALL enemies.</summary>
@@ -192,9 +189,10 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
         UpdateVisuals();
     }
 
+    /// <summary>Ignites this flame - not the current one, which may differ when the card that triggered it moved the wheel.</summary>
     protected async Task Ignite(PlayerChoiceContext ctx)
     {
-        await HexaghostCmd.Ignite(ctx, Owner);
+        await HexaghostCmd.IgniteAt(ctx, Owner, FlameIndex);
     }
 
 
@@ -234,8 +232,11 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
         return ExecuteWithContext(ctx => BeforeCardPlayed(ctx, cardPlay));
     }
 
+    // A primed flame already shows as ignited while its card is played; the ignition itself still comes after the card.
     protected virtual Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
+        if (IsActive && IsPrimedBy(cardPlay.Card))
+            HexaghostCmd.Refresh(Owner, cardPlay.Card);
         return Task.CompletedTask;
     }
 
@@ -281,18 +282,54 @@ public abstract class GhostflameModel : AbstractModel, ICustomModel, ICustomAbst
         }
     }
 
-    protected async Task TriggerOnCardType(PlayerChoiceContext ctx, CardPlay cardPlay, CardType type,
-        Func<CardModel, bool>? cond = null)
+    /// <summary>
+    /// Ignition progress that playing <paramref name="card" /> (spending <paramref name="energySpent" />) gives this
+    /// flame (0 = none). The single rule behind both the real after-play trigger and the <see cref="IsPrimedBy" />
+    /// preview, so what a card reads can never differ from what then actually happens.
+    /// </summary>
+    protected abstract int ProgressFrom(CardModel card, int energySpent);
+
+    /// <summary>
+    /// <see cref="ProgressFrom" /> for flames that progress by 1 per played card of <paramref name="type" />, with the
+    /// shared filters (current flame, own card, <see cref="IDoesNotTriggerGhostflame" />, condition overwrites).
+    /// </summary>
+    protected int ProgressOnCardType(CardModel card, CardType type, Func<CardModel, bool>? cond = null)
     {
-        if (!IsActive || cardPlay.Card.Owner != Owner || cardPlay.Card is IDoesNotTriggerGhostflame ||
-            (cond != null && !cond.Invoke(cardPlay.Card))) return;
-        var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, cardPlay);
-        if (cardPlay.Card.Type != type && !shouldCount) return;
-        if (!TryProgress()) return;
-        await Ignite(ctx);
+        if (card.Owner != Owner || card is IDoesNotTriggerGhostflame ||
+            (cond != null && !cond.Invoke(card))) return 0;
+        var shouldCount = HexaghostHook.GhostflameConditionOverwrites(CombatState, Owner, this, card);
+        return card.Type == type || shouldCount ? 1 : 0;
     }
 
-    public abstract bool AboutToIgnite(CardModel card);
+    /// <summary>Flames ignite after the card resolved, so the card's own effect never sees its own ignition.</summary>
+    public override async Task AfterCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        // Only the flame the card was played on reacts, even if the card moved the wheel since.
+        if (HexaghostCmd.GetFlameBeforePlay(cardPlay.Card) != this) return;
+        var amount = ProgressFrom(cardPlay.Card, cardPlay.Resources.EnergySpent);
+        if (amount <= 0) return;
+        // The card ignited this flame by hand and its play would have ignited it anyway: the prime still fires.
+        if (IsIgnited ? HexaghostCmd.WasPrimedAndIgnitedByPlay(cardPlay.Card, this) : TryProgress(amount))
+            await Ignite(ctx);
+    }
+
+    /// <summary>
+    /// Whether playing <paramref name="card" /> will ignite this flame once it resolved ("primed"). Cards use it
+    /// (via <see cref="HexaghostCmd.GetIgnitedCount(Player, CardModel)" />) to count the flame their own play ignites
+    /// without the ignition effect itself - damage, Soulburn, ... - firing before the card's own effect.
+    /// </summary>
+    public bool IsPrimedBy(CardModel card)
+    {
+        return IsActive && WouldIgniteFrom(card);
+    }
+
+    /// <summary>Whether playing <paramref name="card" /> on this flame would ignite it, whichever flame is current.</summary>
+    public bool WouldIgniteFrom(CardModel card)
+    {
+        if (IsIgnited || !HexaghostCmd.IsGhostwheelActivated(Owner)) return false;
+        var progress = ProgressFrom(card, card.EnergyCost.GetAmountToSpend());
+        return progress > 0 && IgnitionProgress + progress >= IgnitionRequirement;
+    }
 }
 
 public enum GhostflameRepeatType

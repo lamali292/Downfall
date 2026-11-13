@@ -1,4 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Hooks;
@@ -28,7 +29,7 @@ public class DownfallCreatureCmd
         if (modifiedAmount > 0M)
         {
             SfxCmd.Play("event:/sfx/block_gain");
-            VfxCmd.PlayOnCreatureCenter(creature, "vfx/vfx_block");
+            GameApiCompat.PlayOnCreatureCenterCompat(creature, "vfx/vfx_block");
             creature.GainBlockInternal(modifiedAmount);
             CombatManager.Instance.History.BlockGained(combatState, creature, (int)modifiedAmount, props, null);
             if (fast)

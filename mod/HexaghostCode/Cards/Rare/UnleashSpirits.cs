@@ -18,7 +18,7 @@ public class UnleashSpirits : HexaghostCardModel
         WithDamage(6, 2);
         WithTip(CardKeyword.Ethereal);
         WithTip(CardKeyword.Exhaust);
-        WithCalculatedVar("Repeat", 1, Calc);
+        WithCalculatedHitCountVar("Repeat", 1, Calc);
     }
 
     protected override Artist Artist => Artist.Get<Inmo>();

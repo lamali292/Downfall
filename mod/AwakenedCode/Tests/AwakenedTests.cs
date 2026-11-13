@@ -1,9 +1,12 @@
+using MegaCrit.Sts2.Core.Models.Encounters;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Cards.Common;
 using Awakened.AwakenedCode.Cards.Rare;
 using Awakened.AwakenedCode.Cards.Uncommon;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Powers;
+using Awakened.AwakenedCode.Relics;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Tests;
 using MegaCrit.Sts2.Core.AutoSlay;
@@ -234,5 +237,47 @@ public class AwakenedTests
         Assert.AreEqual(handCountBefore, ctx.Player.Hand.Count,
             "Byrd's Eye should conjure a spell into hand even when the spellbook started empty " +
             "(hand count should stay the same: -1 for playing Byrd's Eye, +1 for the conjured spell).");
+    }
+
+    // Reported in multiplayer: a Snecko player played the borrowed Book of Secrets and nobody received a spell.
+    // Only the Awakened character gets its spellbook initialized at combat start, and the card read
+    // NextSpell straight off the (empty) spellbook, so it silently did nothing for every other character.
+    [CardTest(typeof(MegaCrit.Sts2.Core.Models.Characters.Ironclad))]
+    public Task OffclassPlayerHasNextSpellWithoutAwakenedSetup(TestContext ctx)
+    {
+        Assert.IsTrue(AwakenedCmd.GetNextSpell(ctx.Player) != null,
+            "A non-Awakened player must still get a next spell (Book of Secrets, Inscribe, ...).");
+        return Task.CompletedTask;
+    }
+
+    // AfterDeath gained a `CardModel? source` parameter in newer game builds; older builds dispatch the
+    // source-less overload, which AfterDeathSourceCompatPatch forwards. Guards that the relic's hook runs on both.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened), typeof(CorpseSlugsNormal))]
+    public async Task ManabombMovesManaburnToAnotherEnemyWhenCarrierDies(TestContext ctx)
+    {
+        await RelicCmd.Obtain<Manabomb>(ctx.Player);
+        var enemies = ctx.Combat.HittableEnemies.ToList();
+        Assert.IsTrue(enemies.Count >= 2, "The encounter needs at least two enemies for this test.");
+        var victim = enemies[0];
+        var others = enemies.Skip(1).ToList();
+
+        await PowerCmd.Apply<ManaburnPower>(new BlockingPlayerChoiceContext(), victim, 3, ctx.Player.Creature, null);
+        await CreatureCmd.Kill(victim);
+
+        Assert.IsTrue(others.Any(e => e.GetPowerAmount<ManaburnPower>() > 0),
+            "Manabomb's AfterDeath should have moved the dead enemy's Manaburn onto another enemy.");
+    }
+
+    // Awakening revives its owner from death (wasRemovalPrevented) - same AfterDeath signature drift as above.
+    [CardTest(typeof(Awakened.AwakenedCode.Core.Awakened))]
+    public async Task AwakeningRevivesOwnerAfterLethalDamage(TestContext ctx)
+    {
+        var player = ctx.Player.Creature;
+        await PowerCmd.Apply<AwakeningPower>(new BlockingPlayerChoiceContext(), player, 5, player, null);
+
+        await CreatureCmd.Kill(player);
+
+        Assert.IsTrue(player.IsAlive, "Awakening should have revived the player after death.");
+        Assert.IsTrue(!player.HasPower<AwakeningPower>(), "Awakening should be consumed by the revive.");
     }
 }

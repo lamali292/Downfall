@@ -7,6 +7,7 @@ using Hexaghost.HexaghostCode.Powers;
 using Hexaghost.HexaghostCode.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -66,15 +67,10 @@ public class InfernoGhostflame : GhostflameModel
         return Task.CompletedTask;
     }
 
-    protected override async Task AfterEnergySpent(PlayerChoiceContext ctx, CardModel card, int amount)
+    // Progress is the energy spent, so 'primed' for a card is its energy cost.
+    protected override int ProgressFrom(CardModel card, int energySpent)
     {
-        if (!IsActive || card.Owner != Owner) return;
-        if (!TryProgress(amount)) return;
-        await Ignite(ctx);
-    }
-
-    public override bool AboutToIgnite(CardModel card)
-    {
-        return IgnitionRequirement - IgnitionProgress <= card.EnergyCost.GetResolved();
+        if (card.Owner != Owner) return 0;
+        return energySpent;
     }
 }

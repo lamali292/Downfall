@@ -15,7 +15,7 @@ public class Blunderbus : SneckoCardModel
     {
         WithDamage(8, 3);
         WithEnergy(3);
-        WithCalculatedVar("Hits", 1, ExpensiveCardsInHand);
+        WithCalculatedHitCountVar("Hits", 1, ExpensiveCardsInHand);
     }
 
     private static decimal ExpensiveCardsInHand(CardModel card, Creature? _)

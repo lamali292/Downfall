@@ -64,9 +64,16 @@ public sealed class ModPatcher
         var timings = new List<(string Name, long Ms)>();
         var okClasses = 0;
         var okMethods = 0;
+        var skipped = new List<string>();
 
         foreach (var type in _types.Distinct().OrderBy(t => t.FullName))
         {
+            if (IsDisabledByPrepare(type))
+            {
+                skipped.Add(type.Name);
+                continue;
+            }
+
             var clock = Stopwatch.StartNew();
             var result = Apply(type);
             clock.Stop();
@@ -93,9 +100,21 @@ public sealed class ModPatcher
                 $"({okClasses} classes / {okMethods} methods OK, {sw.ElapsedMilliseconds}ms):\n  - " +
                 string.Join("\n  - ", failures));
 
+        if (skipped.Count > 0)
+            _logger.Info($"Skipped {skipped.Count} patch(es) not applicable to this game version: {string.Join(", ", skipped)}");
+
         var slowest = timings.OrderByDescending(t => t.Ms).Take(10);
         _logger.Info("Slowest patches:\n  " +
                      string.Join("\n  ", slowest.Select(t => $"{t.Ms,5}ms  {t.Name}")));
+    }
+
+    /// A parameterless static <c>bool Prepare()</c> returning false means "target absent on this game version" (version
+    /// compat patches); that is a deliberate skip, not a failure.
+    private static bool IsDisabledByPrepare(Type patchClass)
+    {
+        var prepare = patchClass.GetMethod("Prepare",
+            BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, null, Type.EmptyTypes, null);
+        return prepare is { ReturnType: var rt } && rt == typeof(bool) && prepare.Invoke(null, null) is false;
     }
 
     private (int MethodCount, string? Error) Apply(Type patchClass)

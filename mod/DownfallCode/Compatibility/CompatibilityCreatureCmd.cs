@@ -58,21 +58,40 @@ public static class CompatibilityCreatureCmd
 
         var method = typeof(CreatureCmd).GetMethod("Damage",
                          BindingFlags.Public | BindingFlags.Static, null, withPlay, null)
+                     ?? FindWithTrailingOptionals(withPlay)
                      ?? typeof(CreatureCmd).GetMethod("Damage",
                          BindingFlags.Public | BindingFlags.Static, null, baseParams, null)
                      ?? throw new MissingMethodException(
                          $"CreatureCmd.Damage({string.Join(", ", baseParams.Select(t => t.Name))}) not found");
 
-        var hasPlay = method.GetParameters().Length == withPlay.Length;
+        var methodParams = method.GetParameters();
+        var hasPlay = methodParams.Length >= withPlay.Length && methodParams[withPlay.Length - 1].ParameterType == typeof(CardPlay);
 
         // Lambda parameters always follow the *new* signature (incl. CardPlay).
         var lambdaParams = withPlay.Select((t, i) => Expression.Parameter(t, $"p{i}")).ToArray();
-        var callArgs = hasPlay ? lambdaParams : lambdaParams[..^1];
+        var callArgs = (hasPlay ? lambdaParams : lambdaParams[..^1]).Cast<Expression>().ToList();
+        // Newer builds append optional parameters (e.g. ModifyDamageHookType); fill them with their defaults.
+        callArgs.AddRange(methodParams.Skip(callArgs.Count)
+            .Select(p => Expression.Constant(p.DefaultValue, p.ParameterType)));
 
-        var call = Expression.Call(method, callArgs.Cast<Expression>());
+        var call = Expression.Call(method, callArgs);
         return Expression.Lambda<TDelegate>(call, lambdaParams).Compile();
     }
 
+
+    /// <summary>A `Damage` overload whose leading parameters are exactly <paramref name="leading"/>, followed only by optional ones.</summary>
+    private static MethodInfo? FindWithTrailingOptionals(Type[] leading)
+    {
+        return typeof(CreatureCmd).GetMethods(BindingFlags.Public | BindingFlags.Static)
+            .FirstOrDefault(m =>
+            {
+                if (m.Name != "Damage") return false;
+                var ps = m.GetParameters();
+                return ps.Length > leading.Length
+                       && ps.Take(leading.Length).Select(p => p.ParameterType).SequenceEqual(leading)
+                       && ps.Skip(leading.Length).All(p => p.IsOptional);
+            });
+    }
 
     public static Task LoseBlock(
         PlayerChoiceContext choiceContext, Creature target, decimal amount, Creature? remover)

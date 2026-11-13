@@ -45,13 +45,8 @@ public class SearingGhostflame : GhostflameModel
             targets => PowerCmd.Apply<SoulBurnPower>(ctx, targets, soulburn, Owner.Creature, null));
     }
 
-    protected override Task BeforeCardPlayed(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override int ProgressFrom(CardModel card, int energySpent)
     {
-        return TriggerOnCardType(ctx, cardPlay, CardType.Attack);
-    }
-
-    public override bool AboutToIgnite(CardModel card)
-    {
-        return card.Type == CardType.Attack && IgnitionRequirement - IgnitionProgress <= 1;
+        return ProgressOnCardType(card, CardType.Attack);
     }
 }

@@ -12,7 +12,7 @@ public class EnragedBash : ChampCardModel
     public EnragedBash() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(7, 3);
-        WithRepeat(1);
+        WithHitCount(1);
         WithBerserkerCombo();
     }
 

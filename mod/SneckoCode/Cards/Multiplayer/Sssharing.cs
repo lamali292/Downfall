@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,6 +11,9 @@ namespace Snecko.SneckoCode.Cards.Multiplayer;
 [Pool(typeof(SneckoCardPool))]
 public class Sssharing : SneckoCardModel
 {
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
     public Sssharing() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
     {
         WithCards(1, 1);

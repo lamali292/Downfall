@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.TestSupport;
+using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Core;
 
@@ -59,7 +60,7 @@ public static class HexaghostVisualsBridge
         Refresh(player);
     }
 
-    public static void Refresh(Player player)
+    public static void Refresh(Player player, CardModel? startingCard = null)
     {
         if (TestMode.IsOn) return;
         var visuals = GetVisuals(player);
@@ -77,9 +78,10 @@ public static class HexaghostVisualsBridge
 
         var wheel = HexaghostCmd.GetWheel(player);
         var index = HexaghostCmd.GetCurrentIndex(player);
-        visuals.RefreshWheel(wheel, index);
+        var primed = HexaghostCmd.GetPrimedFlameForVisuals(player, startingCard);
+        visuals.RefreshWheel(wheel, index, primed);
 
-        var ignited = wheel.Count(f => f.IsIgnited);
+        var ignited = wheel.Count(f => f.IsIgnited || f == primed);
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
         var bodyVisuals = creatureNode?.GetSpecialNode<NHexaghostVisuals>("%Visuals");
         bodyVisuals?.SetIgnitedCount(ignited);
