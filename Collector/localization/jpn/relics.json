@@ -24,7 +24,7 @@
     "COLLECTOR-THE_CONTRACT.description": "取得時、[blue]{Cards:diff()}[/blue]枚の[gold]アップグレード[/gold]済みの[gold]コレクト[/gold]カードから[blue]1[/blue]枚を選び、[gold]デッキ[/gold]に追加する。",
     "COLLECTOR-THE_CONTRACT.flavor": "血で署名を。",
     "COLLECTOR-THIMBLE_HELM.title": "シンブルヘルム",
-    "COLLECTOR-THIMBLE_HELM.description": "[gold]トーチヘッド[/gold]が追加で[blue]{TorchheadBonus:diff()}[/blue]ダメージを与える。",
+    "COLLECTOR-THIMBLE_HELM.description": "[gold]トーチヘッド[/gold]のアタックのダメージが[blue]{TorchheadBonus:diff()}[/blue]増加する。",
     "COLLECTOR-THIMBLE_HELM.flavor": "スパイア最小の英雄たちが身につけていた。",
     "SEA_GLASS.COLLECTOR-COLLECTOR.title": "グリードグラス"
 }
