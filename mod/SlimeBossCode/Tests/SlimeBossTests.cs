@@ -250,8 +250,8 @@ public class SlimeBossTests
         var slimedCards = PileType.Draw.GetPile(ctx.Player).Cards.OfType<Slimed>().ToList();
         Assert.AreEqual(2, slimedCards.Count,
             $"Repurpose should transform 2 cards into Slimed, got {slimedCards.Count}.");
-        Assert.IsTrue(slimedCards.All(c => c.Enchantment is Swift { Amount: 1 }),
-            "Each transformed Slimed should be enchanted with Swift 1.");
+        Assert.IsTrue(slimedCards.All(c => c.Enchantment == null),
+            "Repurpose no longer enchants the Slimed cards it creates.");
     }
 
     // Same batching change as Repurpose, but selecting from hand and with a different enchant amount -
@@ -269,8 +269,8 @@ public class SlimeBossTests
         var slimedCards = PileType.Hand.GetPile(ctx.Player).Cards.OfType<Slimed>().ToList();
         Assert.AreEqual(2, slimedCards.Count,
             $"Avarice should transform every other hand card into Slimed, got {slimedCards.Count}.");
-        Assert.IsTrue(slimedCards.All(c => c.Enchantment is Adroit { Amount: 5 }),
-            "Each transformed Slimed should be enchanted with Adroit 5 (Avarice's Adroit amount).");
+        Assert.IsTrue(slimedCards.All(c => c.Enchantment == null),
+            "Avarice no longer enchants the Slimed cards it creates.");
     }
 
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
