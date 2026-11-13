@@ -15,7 +15,7 @@ public class TongueLash : SlimeBossCardModel
 {
     public TongueLash() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
-        WithCalculatedDamage(4, 2, Calc, DamageProps.card, 1, 1);
+        WithCalculatedDamage(4, 3, Calc, DamageProps.card, 1, 1);
         WithTip<WeakPower>();
     }
 

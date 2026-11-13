@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Models.Powers;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SlimeBoss.SlimeBossCode.Core;
@@ -18,7 +19,7 @@ public class FeedingFrenzy : SlimeBossCardModel
     {
         WithDamage(6, 2);
         WithHeal(6, 2);
-        WithTip(SlimeBossTip.Consume);
+        WithTip<WeakPower>();
         WithTip(CardKeyword.Exhaust);
     }
 

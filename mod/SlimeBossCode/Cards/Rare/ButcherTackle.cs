@@ -15,18 +15,12 @@ public class ButcherTackle : SlimeBossCardModel
     {
         WithTags(SlimeBossTag.Tackle);
         WithDamage(20, 8);
-        WithTip(SlimeBossTip.Consume);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var weakTargets = SlimeBossCmd.WeakTargets(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.Consume(ctx, this, weakTargets,
-            async _ =>
-            {
-                await CommonActions.ApplySelf<ShadowStepPower>(ctx, this, 1);
-                await CommonActions.ApplySelf<SlimeDoubleDamageNextTurnPower>(ctx, this, 1);
-            });
+        await CommonActions.ApplySelf<ShadowStepPower>(ctx, this, 1);
+        await CommonActions.ApplySelf<SlimeDoubleDamageNextTurnPower>(ctx, this, 1);
     }
 }

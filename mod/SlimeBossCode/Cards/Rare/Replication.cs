@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
@@ -13,9 +14,9 @@ namespace SlimeBoss.SlimeBossCode.Cards.Rare;
 [Pool(typeof(SlimeBossCardPool))]
 public class Replication : SlimeBossCardModel
 {
-    public Replication() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    public Replication() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
-        WithKeyword(CardKeyword.Retain, UpgradeType.Add);
+        WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);
         WithKeyword(CardKeyword.Exhaust);
     }
 
@@ -25,6 +26,7 @@ public class Replication : SlimeBossCardModel
         var card = (await CardSelectCmd.FromCombatPile(ctx, PileType.Draw.GetPile(Owner),
             Owner, prefs, c => c.Type == CardType.Power)).FirstOrDefault();
         if (card == null) return;
-        await CardCmd.AutoPlay(ctx, card, null);
+        // Play a copy: the chosen Power stays in the Draw Pile.
+        await CardCmd.AutoPlay(ctx, card.CreateDupeCompat(), null);
     }
 }

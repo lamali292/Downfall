@@ -55,24 +55,63 @@ public class SlimeBossTests
         Assert.IsTrue(gained > 0, $"Hungry Tackle's Consume should grant Energy even though the Weak target died (net gain {gained}).");
     }
 
-    // Slimy Cleaver: the first two Consumes leave Weak untouched (no remove-and-reapply), later ones remove a stack.
+    // Slimy Cleaver: every Weak the player applies to an enemy makes that enemy lose 4 HP.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task SlimyCleaverLetsFirstTwoConsumesKeepWeak(TestContext ctx)
+    public async Task SlimyCleaverMakesEnemyLoseHpWhenWeakIsApplied(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
-        await CreatureCmd.SetCurrentHp(enemy, 9999);
-        await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(new ThrowingPlayerChoiceContext(), enemy, 3, ctx.Player.Creature, null);
         await RelicCmd.Obtain<Relics.SlimyCleaver>(ctx.Player);
+        var hpBefore = enemy.CurrentHp;
 
-        var weakAfter = new List<int>();
-        for (var i = 0; i < 3; i++)
-        {
-            await ctx.PlayCard(await ctx.AddCardToHand<HungryTackle>(), enemy);
-            weakAfter.Add(enemy.GetPower<MegaCrit.Sts2.Core.Models.Powers.WeakPower>()?.Amount ?? 0);
-        }
+        await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(new ThrowingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
 
-        Assert.IsTrue(weakAfter.SequenceEqual([3, 3, 2]),
-            $"Weak after three Consumes should be 3,3,2 but was {string.Join(",", weakAfter)}.");
+        Assert.AreEqual(hpBefore - 4, enemy.CurrentHp, "Applying Weak should cost the enemy 4 HP.");
+    }
+
+    // Football Helmet: playing a 2 Energy Attack gives 4 Block; other plays do not.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task FootballHelmetGrantsBlockOnTwoEnergyAttacksOnly(TestContext ctx)
+    {
+        await RelicCmd.Obtain<Relics.FootballHelmet>(ctx.Player);
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var blockBefore = ctx.Player.Creature.Block;
+
+        await ctx.PlayCard(await ctx.AddCardToHand<ComboTackle>(), enemy);
+        Assert.AreEqual(blockBefore + 4, ctx.Player.Creature.Block, "A 2 Energy Attack should grant 4 Block.");
+
+        await ctx.PlayCard(await ctx.AddCardToHand<LevelUp>());
+        Assert.AreEqual(blockBefore + 4, ctx.Player.Creature.Block, "A Power should not grant Block.");
+    }
+
+    // It Looks Tasty only attacks when the enemy has at least 3 Weak, and removes nothing.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task ItLooksTastyNeedsThreeWeak(TestContext ctx)
+    {
+        var enemy = ctx.Combat.HittableEnemies.First();
+        var hpBefore = enemy.CurrentHp;
+        await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(new ThrowingPlayerChoiceContext(), enemy, 2, ctx.Player.Creature, null);
+
+        await ctx.PlayCard(await ctx.AddCardToHand<ItLooksTasty>(), enemy);
+        Assert.AreEqual(hpBefore, enemy.CurrentHp, "With only 2 Weak the card should do nothing.");
+
+        await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(new ThrowingPlayerChoiceContext(), enemy, 1, ctx.Player.Creature, null);
+        await ctx.PlayCard(await ctx.AddCardToHand<ItLooksTasty>(), enemy);
+        // At least 16: test enemies can carry modifiers (e.g. Strength) that add a point.
+        Assert.IsTrue(hpBefore - enemy.CurrentHp >= 16, "With 3 Weak the card should deal 16 damage.");
+        Assert.AreEqual(3, enemy.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.WeakPower>(), "The Weak check must not remove a stack.");
+    }
+
+    // Replication plays a copy of a Power from the Draw Pile; the original stays there.
+    [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
+    public async Task ReplicationPlaysACopyAndLeavesTheOriginalInTheDrawPile(TestContext ctx)
+    {
+        var levelUp = await ctx.AddCardToTopOfDraw<LevelUp>();
+        var replication = await ctx.AddCardToHand<Replication>();
+
+        await ctx.PlayCard(replication);
+
+        Assert.AreEqual(1, ctx.Player.Creature.GetPower<PotencyPower>()?.Amount ?? 0, "The copy of Level Up should have been played.");
+        Assert.IsTrue(PileType.Draw.GetPile(ctx.Player).Cards.Contains(levelUp), "The original Power should stay in the Draw Pile.");
     }
 
     // Regression guard: calling CardCmd.AutoPlay a second time on the same Power-card instance silently
@@ -91,22 +130,23 @@ public class SlimeBossTests
             $"Known limitation: a second AutoPlay on the same Power card instance is a silent no-op, got Amount={amount}.");
     }
 
-    // End-to-end: Overexert itself, drawing a Power card and choosing to replay it, should apply it twice.
-    // The fix overrides ModifyCardPlayCount directly on Overexert (it's a live combat hook listener while
-    // its own OnPlayInternal is resolving), bumping just the chosen card's play count by 1 - no separate
-    // modifier/power needed, unlike calling CardCmd.AutoPlay twice from the outside (silently no-ops the
-    // second time for Power cards).
+    // Overexert plays X cards from the hand, cheapest first. X is whatever AutoPlay captured, so the expectation is
+    // derived from it: Level Up (1 Energy) always goes before Prepare (2 Energy).
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task OverexertPlaysChosenPowerCardTwice(TestContext ctx)
+    public async Task OverexertPlaysTheCheapestCardsInHandFirst(TestContext ctx)
     {
-        await ctx.AddCardToTopOfDraw<LevelUp>();
+        await ctx.ClearHand();
+        var prepare = await ctx.AddCardToHand<Prepare>();
+        var levelUp = await ctx.AddCardToHand<LevelUp>();
         var overexert = await ctx.AddCardToHand<Overexert>();
-        overexert.EnergyCost.CapturedXValue = 1;
 
         await ctx.PlayCard(overexert);
 
-        var amount = ctx.Player.Creature.GetPower<PotencyPower>()?.Amount ?? 0;
-        Assert.AreEqual(2, amount, $"Overexert should draw and play LevelUp twice, got Potency={amount}.");
+        var x = overexert.EnergyCost.CapturedXValue;
+        var hand = PileType.Hand.GetPile(ctx.Player).Cards;
+        Assert.IsTrue(x >= 1, $"The test needs X >= 1 but X was {x}.");
+        Assert.IsTrue(!hand.Contains(levelUp), "The cheaper card (Level Up) should have been played.");
+        Assert.AreEqual(x >= 2, !hand.Contains(prepare), $"With X={x} the more expensive card should be played only if X >= 2.");
     }
 
     // Glop Chop permanently lowers its own damage by 4 each play for the rest of the combat.
@@ -341,8 +381,8 @@ public class SlimeBossTests
 
         await ctx.PlayCard(await ctx.AddCardToHand<Slimed>());
         await ctx.PlayCard(await ctx.AddCardToHand<SlimeSpikes>());
-        Assert.AreEqual(4, ctx.Player.Creature.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.ThornsPower>(),
-            "4 Thorns after a Status was played.");
+        Assert.AreEqual(2, ctx.Player.Creature.GetPowerAmount<MegaCrit.Sts2.Core.Models.Powers.ThornsPower>(),
+            "2 Thorns after a Status was played.");
     }
 
     // Recklessness grants Strength per 2-Energy Attack played, and not for other costs.
@@ -393,17 +433,18 @@ public class SlimeBossTests
             "A free Heavy Tackle should not trigger Recklessness.");
     }
 
-    // Psychic Slime is Commanded whenever its owner plays a Power, and Commanding it applies Soulburn.
+    // Psychic Slime is Commanded whenever its owner plays a Power, and Commanding it deals 6 damage to a random enemy.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task PsychicSlimeAppliesSoulburnWhenAPowerIsPlayed(TestContext ctx)
+    public async Task PsychicSlimeDealsDamageWhenAPowerIsPlayed(TestContext ctx)
     {
         await SlimeBossCmd.Split<PsychicSlime>(new ThrowingPlayerChoiceContext(), ctx.Player);
-        var enemy = ctx.Combat.HittableEnemies.First();
+        var enemies = ctx.Combat.HittableEnemies.ToList();
+        var hpBefore = enemies.Sum(e => e.CurrentHp);
         var power = await ctx.AddCardToHand<SplitMassive>();
 
         await ctx.PlayCard(power);
 
-        Assert.AreEqual(6, enemy.GetPowerAmount<Downfall.DownfallCode.Powers.SoulBurnPower>(),
-            "Playing a Power should Command Psychic Slime, applying 6 Soulburn.");
+        var lost = hpBefore - enemies.Sum(e => e.CurrentHp);
+        Assert.AreEqual(6, lost, "Playing a Power should Command Psychic Slime, dealing 6 damage to one enemy.");
     }
 }

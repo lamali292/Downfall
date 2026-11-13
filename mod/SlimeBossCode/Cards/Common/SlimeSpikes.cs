@@ -12,8 +12,8 @@ public class SlimeSpikes : SlimeBossCardModel
 {
     public SlimeSpikes() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
-        WithBlock(7, 2);
-        WithPower<SlimeSpikesPower>(4, 2, false);
+        WithBlock(7, 3);
+        WithPower<SlimeSpikesPower>(2, 0, false);
         WithTip<ThornsPower>();
     }
 
