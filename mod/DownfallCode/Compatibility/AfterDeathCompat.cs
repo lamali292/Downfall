@@ -32,12 +32,23 @@ internal static class AfterDeathSourceCompatPatch
     private static void Postfix(AbstractModel __instance, PlayerChoiceContext choiceContext, Creature creature,
         bool wasRemovalPrevented, float deathAnimLength, ref Task __result)
     {
+        // Only models from this mod's own folder (Downfall plus its submod assemblies): other mods ship the same
+        // shim for theirs, and forwarding for every model would make each of them fire twice when both are loaded.
         var forwarded = NewOverrides.GetOrAdd(__instance.GetType(), t =>
-            t.GetMethod("AfterDeath", BindingFlags.Public | BindingFlags.Instance, null, NewSignature, null));
+            !IsOwnModel(t) ? null : t.GetMethod("AfterDeath", BindingFlags.Public | BindingFlags.Instance, null, NewSignature, null));
         if (forwarded == null) return;
 
         var ours = forwarded.Invoke(__instance, [choiceContext, creature, null, wasRemovalPrevented, deathAnimLength]) as Task;
         if (ours != null) __result = Chain(__result, ours);
+    }
+
+    private static readonly string? OwnFolder = Path.GetDirectoryName(typeof(AfterDeathSourceCompatPatch).Assembly.Location);
+
+    private static bool IsOwnModel(Type type)
+    {
+        if (type.Assembly == typeof(AfterDeathSourceCompatPatch).Assembly) return true;
+        var folder = Path.GetDirectoryName(type.Assembly.Location);
+        return OwnFolder != null && string.Equals(folder, OwnFolder, StringComparison.OrdinalIgnoreCase);
     }
 
     private static async Task Chain(Task first, Task second)
