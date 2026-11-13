@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 
 # This script lives in build/, but local.props, .godot, and Downfall.csproj
 # live at the project root — one level up.
-$ProjectRoot = Split-Path $PSScriptRoot -Parent
+$ProjectRoot = Join-Path (Split-Path $PSScriptRoot -Parent) "mod"   # the Godot project (project.godot, csprojs, local.props) lives in mod/
 Set-Location $ProjectRoot
 
 . (Join-Path $PSScriptRoot "common.ps1")
@@ -13,7 +13,7 @@ if ($Clean) {
     Write-Host "Cleaned .godot"
 }
 Write-Host "=== Generating images (ImageGen) ==="
-dotnet run --project ImageGen/ImageGen.csproj
+dotnet run --project ../ImageGen/ImageGen.csproj
 if ($LASTEXITCODE -ne 0) { throw "ImageGen failed" }
 
 Write-Host "=== Fetching spine-godot extension ===" -ForegroundColor Cyan

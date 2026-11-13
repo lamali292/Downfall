@@ -1,0 +1,35 @@
+using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Powers;
+using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Hexaghost.HexaghostCode.Cards.Uncommon;
+
+[Pool(typeof(HexaghostCardPool))]
+public class ChargedBarrage : HexaghostCardModel
+{
+    public ChargedBarrage() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        WithPower<SoulBurnPower>(12, 4);
+        WithTip(HexaghostTip.Ignite);
+        WithCalculatedVar("Ignited", 0, static (card, _) => HexaghostCmd.GetIgnitedCount(card.Owner, card));
+    }
+
+    protected override Artist Artist => Artist.Get<Inmo>();
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var count = (int)DynamicVars["Ignited"].Calculate(cardPlay.Target);
+
+        var scale = 0.8f;
+        for (var i = 0; i < count; i++)
+        {
+            await SoulBurnPower.SoulburnEffect(cardPlay.Target, scale);
+            scale *= 0.9f;
+            await CommonActions.Apply<SoulBurnPower>(ctx, this, cardPlay);
+        }
+    }
+}

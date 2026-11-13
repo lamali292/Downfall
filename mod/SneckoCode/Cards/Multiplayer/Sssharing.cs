@@ -1,0 +1,40 @@
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Utils;
+using Downfall.DownfallCode.CustomEnums;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Snecko.SneckoCode.Core;
+
+namespace Snecko.SneckoCode.Cards.Multiplayer;
+
+[Pool(typeof(SneckoCardPool))]
+public class Sssharing : SneckoCardModel
+{
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
+    public Sssharing() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
+    {
+        WithCards(1, 1);
+        WithKeyword(CardKeyword.Exhaust);
+        WithTip(CardKeyword.Retain);
+        WithTip(DownfallTip.Offclass);
+    }
+
+
+    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var amount = DynamicVars.Cards.IntValue;
+        foreach (var player in Owner.RunState.Players)
+        {
+            var pool = SneckoModel.GetCombatSneckoCards(Owner, amount, player)
+                .ToList();
+            foreach (var card in pool) card.SetToFreeThisTurn();
+            await CardPileCmd.AddGeneratedCardsToCombat(pool, PileType.Hand, Owner);
+        }
+    }
+}

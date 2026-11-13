@@ -1,0 +1,29 @@
+using BaseLib.Utils;
+using Downfall.DownfallCode.Interfaces;
+using Guardian.GuardianCode.Core;
+using Guardian.GuardianCode.CustomEnums;
+using Guardian.GuardianCode.Interfaces;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Guardian.GuardianCode.Cards.Uncommon;
+
+[Pool(typeof(GuardianCardPool))]
+public class RefractedBeam : GuardianCardModel, IGemSocketCard, IStackingUpgradeCard
+{
+    public RefractedBeam() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        WithDamage(3);
+        WithHitCount(3, 1);
+        WithTip(GuardianKeyword.Gem);
+    }
+
+    public override int MaxUpgradeLevel => 1 + CurrentUpgradeLevel;
+
+    public int GemSlots => 1 + CurrentUpgradeLevel;
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
+    }
+}

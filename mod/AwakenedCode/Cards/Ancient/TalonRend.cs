@@ -1,0 +1,29 @@
+﻿using Awakened.AwakenedCode.Core;
+using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Awakened.AwakenedCode.Cards.Ancient;
+
+[Pool(typeof(AwakenedCardPool))]
+public class TalonRend : AwakenedCardModel
+{
+    public TalonRend() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
+    {
+        WithDamage(5, 3);
+        WithHitCount(2);
+        WithConjure();
+    }
+
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue, "vfx/vfx_attack_slash")
+            .Execute(ctx);
+        await AwakenedCmd.Conjure(Owner);
+        await AwakenedCmd.Conjure(Owner);
+    }
+}

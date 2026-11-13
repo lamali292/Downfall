@@ -10,7 +10,7 @@ param(
     [string[]]$Projects = @("Downfall", "Automaton", "Awakened", "Champ", "Guardian", "Hermit", "Hexaghost", "SlimeBoss", "Snecko")
 )
 $ErrorActionPreference = "Stop"
-$ProjectRoot = Split-Path $PSScriptRoot -Parent
+$ProjectRoot = Join-Path (Split-Path $PSScriptRoot -Parent) "mod"   # the Godot project (project.godot, csprojs, local.props) lives in mod/
 Set-Location $ProjectRoot
 . (Join-Path $PSScriptRoot "common.ps1")
 if (Test-Path "local.props") { $null = Get-LocalProps }

@@ -1,0 +1,33 @@
+﻿using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Extensions;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Snecko.SneckoCode.Core;
+
+namespace Snecko.SneckoCode.Cards.Multiplayer;
+
+[Pool(typeof(SneckoCardPool))]
+public class SpreadTheChaos : SneckoCardModel
+{
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
+    public SpreadTheChaos() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
+    {
+        WithMuddle(1, 1);
+    }
+
+
+    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var cards = cardPlay.Target?.Player?
+            .Hand.Where(e => !e.EnergyCost.CostsX).OrderByDescending(e => e.EnergyCost.GetAmountToSpend())
+            .Take(DynamicVars["Muddle"].IntValue);
+        if (cards == null) return;
+        await MuddleCmd.Muddle(ctx, cards);
+    }
+}
