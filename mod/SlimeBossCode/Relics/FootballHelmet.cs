@@ -10,7 +10,7 @@ namespace SlimeBoss.SlimeBossCode.Relics;
 [Pool(typeof(SlimeBossRelicPool))]
 public class FootballHelmet : SlimeBossRelicModel
 {
-    public FootballHelmet() : base(RelicRarity.Uncommon)
+    public FootballHelmet() : base(RelicRarity.Shop)
     {
         WithEnergy(2);
         WithBlock(4);
