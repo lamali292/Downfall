@@ -22,9 +22,12 @@ public class HungryTackle : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var weakTargets = SlimeBossCmd.WeakTargets(this, cardPlay);
+        // Checked before the attack: an enemy it kills has already lost its Weak, but still counts.
+        var hadWeak = SlimeBossCmd.HasWeak(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        await SlimeBossCmd.Consume(ctx, this, weakTargets,
-            _ => PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner));
+        if (!hadWeak) return;
+        if (cardPlay.Target?.GetPower<WeakPower>() is { Amount: > 0 } weak)
+            await PowerCmd.ModifyAmount(ctx, weak, -1, Owner.Creature, this);
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 }

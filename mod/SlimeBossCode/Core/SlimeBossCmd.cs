@@ -52,57 +52,12 @@ public static class SlimeBossCmd
 
 
     /// <summary>
-    /// The card's targets that currently have Weak. Call this at the start of OnPlay, before the card's attack,
-    /// and hand the result to <see cref="Consume"/>: a dead creature has already lost its powers, so an enemy
-    /// the attack kills can only still be consumed from a list taken beforehand.
-    /// </summary>
-    public static List<Creature> WeakTargets(CardModel card, CardPlay cardPlay)
-    {
-        // card.GetTargets() only resolves AoE target types; single-target cards (AnyEnemy etc.) need the
-        // actually-clicked target from CardPlay - MyGetTargets handles both uniformly (see the
-        // DuplicatedFormDoublesAoeCardsTargetingEnemies regression test for the AoE-side version of this).
-        return card.MyGetTargets(cardPlay.Target).Where(t => t.GetPower<WeakPower>() is { Amount: > 0 }).ToList();
-    }
-
-    /// <summary>
-    /// Whether the card's target(s) have at least <paramref name="minWeak"/> Weak. A plain check: unlike
-    /// <see cref="Consume"/> it removes nothing.
+    /// Whether the card's target(s) have at least <paramref name="minWeak"/> Weak. A plain check that removes nothing.
     /// </summary>
     public static bool HasWeak(CardModel card, CardPlay cardPlay, int minWeak = 1)
     {
         return card.MyGetTargets(cardPlay.Target).Any(t => t.GetPower<WeakPower>() is { } weak && weak.Amount >= minWeak);
     }
-
-    /// <summary>
-    /// "Consume - if the enemy has Weak, remove a stack of Weak and perform an additional effect." Always
-    /// attempted explicitly by the card itself (like Schlurp) rather than gated behind an attack landing -
-    /// there is no separate Goop resource anymore, Consume keys directly off the target's Weak stacks.
-    /// <paramref name="weakTargets"/> comes from <see cref="WeakTargets"/>; one that died since still counts
-    /// (its Weak is left untouched), one that lost its Weak otherwise does not.
-    /// </summary>
-    public static async Task<bool> Consume(PlayerChoiceContext ctx, CardModel card, IEnumerable<Creature> weakTargets,
-        Func<Creature, Task> effect)
-    {
-        var consumed = 0;
-        foreach (var target in weakTargets)
-        {
-            if (target.IsAlive)
-            {
-                var weak = target.GetPower<WeakPower>();
-                if (weak is not { Amount: > 0 }) continue;
-                if (!SlimeBossHook.TryPreventConsumeWeakRemoval(target.CombatState!, target, card.Owner.Creature))
-                    await PowerCmd.ModifyAmount(ctx, weak, -1, card.Owner.Creature, card);
-            }
-
-            consumed++;
-            await effect(target);
-            if (target.CombatState != null)
-                await SlimeBossHook.AfterConsumeEffect(target.CombatState, ctx, target, card.Owner.Creature);
-        }
-
-        return consumed > 0;
-    }
-
 
     private static async Task RunCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source,
         Creature? forcedTarget, bool isAutomatic)

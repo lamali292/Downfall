@@ -11,18 +11,6 @@ namespace SlimeBoss.SlimeBossCode.Events;
 
 public static class SlimeBossHook
 {
-    public static Task AfterConsumeEffect(ICombatState cs, PlayerChoiceContext ctx, Creature creature,
-        Creature attacker)
-    {
-        return MyHookUtils.Dispatch<IAfterConsumeEffect>(cs,
-            e => e.AfterConsumeEffect(ctx, creature, attacker), MyHookUtils.HookScope.CombatRaw);
-    }
-
-    public static bool TryPreventConsumeWeakRemoval(ICombatState cs, Creature target, Creature consumer)
-    {
-        return MyHookUtils.Any<IPreventConsumeWeakRemoval>(cs, e => e.TryPreventWeakRemoval(target, consumer));
-    }
-
     /// <summary>
     /// A Slime's non-damage effect after modifiers: <c>(base + additive) * multiplicative</c>. Like damage,
     /// every additive modifier applies before any multiplicative one, whatever order the powers were applied in.

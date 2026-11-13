@@ -23,7 +23,7 @@ public class SlimeBossTests
     public IEnumerable<CardTestCase> PlaySlimeBossCards(CharacterModel character) => AllCardsTest.PlayAllCards(character);
 
     
-    // Without Weak on the target, Equalizer Tackle's Consume shouldn't trigger at all - no Block gained.
+    // Without Weak on the target, Equalizer Tackle's Weak bonus shouldn't trigger at all - no Block gained.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
     public async Task EqualizeGrantsNoBlockWithoutWeakOnTarget(TestContext ctx)
     {
@@ -34,13 +34,13 @@ public class SlimeBossTests
         await ctx.PlayCard(equalize, enemy);
 
         Assert.AreEqual(startingBlock, ctx.Player.Creature.Block,
-            "Equalizer Tackle's Consume should not trigger (no Block gained) when the target has no Weak.");
+            "Equalizer Tackle's Weak bonus should not trigger (no Block gained) when the target has no Weak.");
     }
 
-    // Consume must still trigger when the card's own attack kills the Weakened target (dead creatures lose
+    // The Weak bonus must still trigger when the card's own attack kills the Weakened target (dead creatures lose
     // their powers, so Weak can't be read after the attack).
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task ConsumeTriggersWhenAttackKillsWeakenedTarget(TestContext ctx)
+    public async Task HungryTackleGrantsEnergyWhenAttackKillsWeakenedTarget(TestContext ctx)
     {
         var enemy = ctx.Combat.HittableEnemies.First();
         await CreatureCmd.SetCurrentHp(enemy, 1);
@@ -52,7 +52,7 @@ public class SlimeBossTests
 
         Assert.IsTrue(enemy.IsDead, "Test setup: the attack should have killed the enemy.");
         var gained = ctx.Player.PlayerCombatState!.Energy - energyBefore + tackle.EnergyCost.GetAmountToSpend();
-        Assert.IsTrue(gained > 0, $"Hungry Tackle's Consume should grant Energy even though the Weak target died (net gain {gained}).");
+        Assert.IsTrue(gained > 0, $"Hungry Tackle should grant Energy even though the Weak target died (net gain {gained}).");
     }
 
     // Slimy Cleaver: every Weak the player applies to an enemy makes that enemy lose 4 HP.
