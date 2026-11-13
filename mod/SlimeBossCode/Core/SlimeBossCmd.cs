@@ -51,14 +51,6 @@ public static class SlimeBossCmd
     private const int DuplicateSplitPotency = 2;
 
 
-    /// <summary>
-    /// Whether the card's target(s) have at least <paramref name="minWeak"/> Weak. A plain check that removes nothing.
-    /// </summary>
-    public static bool HasWeak(CardModel card, CardPlay cardPlay, int minWeak = 1)
-    {
-        return card.MyGetTargets(cardPlay.Target).Any(t => t.GetPower<WeakPower>() is { } weak && weak.Amount >= minWeak);
-    }
-
     private static async Task RunCommand(PlayerChoiceContext ctx, Player player, SlimeModel slime, CardModel? source,
         Creature? forcedTarget, bool isAutomatic)
     {

@@ -23,7 +23,7 @@ public class HungryTackle : SlimeBossCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         // Checked before the attack: an enemy it kills has already lost its Weak, but still counts.
-        var hadWeak = SlimeBossCmd.HasWeak(this, cardPlay);
+        var hadWeak = cardPlay.Target?.GetPowerAmount<WeakPower>() > 0;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!hadWeak) return;
         if (cardPlay.Target?.GetPower<WeakPower>() is { Amount: > 0 } weak)

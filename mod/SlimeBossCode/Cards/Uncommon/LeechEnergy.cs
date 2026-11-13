@@ -25,7 +25,7 @@ public class LeechEnergy : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var hasEnoughWeak = SlimeBossCmd.HasWeak(this, cardPlay, DynamicVars["WeakNeeded"].IntValue);
+        var hasEnoughWeak = cardPlay.Target?.GetPowerAmount<WeakPower>() >= DynamicVars["WeakNeeded"].IntValue;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!hasEnoughWeak) return;
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);

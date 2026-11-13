@@ -26,7 +26,7 @@ public class EqualizerTackle : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var hasWeak = SlimeBossCmd.HasWeak(this, cardPlay);
+        var hasWeak = cardPlay.Target?.GetPowerAmount<WeakPower>() > 0;
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (hasWeak) await CommonActions.CardBlock(this, cardPlay);
     }

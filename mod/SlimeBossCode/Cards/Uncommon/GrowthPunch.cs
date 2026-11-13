@@ -21,7 +21,7 @@ public class GrowthPunch : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var hasWeak = SlimeBossCmd.HasWeak(this, cardPlay);
+        var hasWeak = cardPlay.Target?.GetPowerAmount<WeakPower>() > 0;
         await CommonActions.CardBlock(this, cardPlay);
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         if (!hasWeak) return;
