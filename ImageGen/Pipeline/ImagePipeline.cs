@@ -15,7 +15,7 @@ public abstract class ImagePipeline
     protected ImagePipeline(string scriptDir, string cacheFileName, bool force)
     {
         ImagesDir = Path.Join(scriptDir, "images");
-        Parent = Path.GetFullPath(Path.Join(scriptDir, ".."));
+        Parent = Path.GetFullPath(Path.Join(scriptDir, "..", "mod"));
         Force = force;
         _cacheFile = Path.Join(scriptDir, cacheFileName);
         _cache = File.Exists(_cacheFile)

@@ -1,0 +1,33 @@
+using BaseLib.Utils;
+using Champ.ChampCode.Core;
+using Downfall.DownfallCode.Artists;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace Champ.ChampCode.Cards.Uncommon;
+
+[Pool(typeof(ChampCardPool))]
+public class Challenge : ChampCardModel
+{
+    public Challenge() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+        WithBlock(7, 3);
+        WithDamage(7, 3);
+        WithTip<StrengthPower>();
+    }
+
+    protected override Artist Artist => Artist.Get<Magerblutooth>();
+
+    protected override bool ShouldGlowGoldInternal =>
+        CombatState?.HittableEnemies.Any(e => e.GetPowerAmount<StrengthPower>() > 0) ?? false;
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var repeats = cardPlay.Target != null && cardPlay.Target.GetPowerAmount<StrengthPower>() > 0 ? 2 : 1;
+    
+        await CommonActions.CardAttack(this, cardPlay, repeats)
+            .BeforeDamage(async () => await CommonActions.CardBlock(this, cardPlay))
+            .Execute(ctx);
+    }
+}

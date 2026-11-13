@@ -1,0 +1,76 @@
+﻿using BaseLib.Utils;
+using Hexaghost.HexaghostCode.Core;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+
+namespace Hexaghost.HexaghostCode.Events;
+
+public static class HexaghostHook
+{
+    public static int ModifyGhostflameEffectAdditive(ICombatState cs, Player owner,
+        GhostflameModel ghostflameModel)
+    {
+        return HookUtils.Aggregate<IModifyGhostflameEffectAdditive, int>(cs, 0,
+            (m, current) => current + m.ModifyGhostflameEffectAdditive(owner, ghostflameModel));
+    }
+
+    public static int ModifyGhostflameRepeatAdditive(ICombatState cs, Player owner, GhostflameRepeatType repeatType,
+        GhostflameModel ghostflameModel)
+    {
+        return HookUtils.Aggregate<IModifyGhostflameRepeatAdditive, int>(cs, 0,
+            (m, current) => current + m.ModifyGhostflameRepeatAdditive(owner, repeatType, ghostflameModel));
+    }
+
+    public static Task AfterWheelRetract(ICombatState cs, PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame, int ghostflameIndex)
+    {
+        return HookUtils.Dispatch<IWheelMoved>(cs, ctx,
+            m => m.AfterWheelRetract(ctx, player, source, ghostflame, ghostflameIndex));
+    }
+
+    public static Task AfterWheelAdvance(ICombatState cs, PlayerChoiceContext ctx, Player player, AbstractModel? source,
+        GhostflameModel ghostflame, int ghostflameIndex, bool endOfTurnAdvance)
+    {
+        return HookUtils.Dispatch<IWheelMoved>(cs, ctx,
+            m => m.AfterWheelAdvance(ctx, player, source, ghostflame, ghostflameIndex, endOfTurnAdvance));
+    }
+
+
+    public static Task AfterGhostwheelIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player,
+        GhostflameModel flame, int index)
+    {
+        return HookUtils.Dispatch<IAfterGhostflameIgnited>(cs, ctx,
+            m => m.AfterGhostflameIgnited(ctx, player, flame, index));
+    }
+
+    public static Task AfterGhostwheelAllIgnited(ICombatState cs, PlayerChoiceContext ctx, Player player,
+        GhostflameModel flame, int index)
+    {
+        return HookUtils.Dispatch<IAfterGhostwheelAllIgnited>(cs, ctx,
+            m => m.AfterGhostwheelAllIgnited(ctx, player, flame, index));
+    }
+
+    public static bool GhostflameConditionOverwrites(ICombatState cs, Player player, GhostflameModel ghostflame,
+        CardModel card)
+    {
+        return HookUtils.Any<IGhostflameConditionOverwrites>(cs,
+            m => m.GhostflameConditionOverwrites(player, ghostflame, card));
+    }
+
+    public static bool ShouldGhostflameTargetAll(ICombatState cs, GhostflameModel ghostflame,
+        GhostflameRepeatType damage, out IEnumerable<IShouldGhostflameTargetAll> matches)
+    {
+        return HookUtils.Any(cs,
+            m => m.ShouldGhostflameTargetAll(ghostflame, damage), out matches);
+    }
+
+    public static Task AfterShouldGhostflameTargetedAll(ICombatState cs, PlayerChoiceContext ctx,
+        GhostflameModel ghostflame,
+        IEnumerable<IShouldGhostflameTargetAll> matches)
+    {
+        return HookUtils.AfterModifying(cs, matches, m => m.AfterShouldGhostflameTargetedAll(ctx, ghostflame));
+    }
+}

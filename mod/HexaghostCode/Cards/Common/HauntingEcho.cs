@@ -1,0 +1,29 @@
+using BaseLib.Utils;
+using Downfall.DownfallCode.Artists;
+using Hexaghost.HexaghostCode.Core;
+using Hexaghost.HexaghostCode.CustomEnums;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+
+namespace Hexaghost.HexaghostCode.Cards.Common;
+
+[Pool(typeof(HexaghostCardPool))]
+public class HauntingEcho : HexaghostCardModel
+{
+    public HauntingEcho() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+    {
+        WithDamage(7, 3);
+        WithTip(HexaghostTip.Ignite);
+    }
+
+    protected override bool ShouldGlowGoldInternal => HexaghostCmd.IsIgnited(Owner, this);
+
+    protected override Artist Artist => Artist.Get<Inmo>();
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (!HexaghostCmd.IsIgnited(Owner, this)) return;
+        await HexaghostCmd.Ignite(ctx, Owner);
+    }
+}

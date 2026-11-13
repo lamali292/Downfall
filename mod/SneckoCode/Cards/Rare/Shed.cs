@@ -1,0 +1,29 @@
+﻿using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Extensions;
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Snecko.SneckoCode.Core;
+
+namespace Snecko.SneckoCode.Cards.Rare;
+
+[Pool(typeof(SneckoCardPool))]
+public class Shed : SneckoCardModel
+{
+    public Shed() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+        WithKeyword(CardKeyword.Exhaust);
+        WithBlock(5, 2);
+    }
+
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    {
+        var cards = Owner.Hand;
+        await MuddleCmd.Muddle(ctx, cards);
+        var nowNull = cards.Count(e => e.EnergyCost.Is0Cost);
+        for (var i = 0; i < nowNull; i++) await CommonActions.CardBlock(this, cardPlay);
+    }
+}
