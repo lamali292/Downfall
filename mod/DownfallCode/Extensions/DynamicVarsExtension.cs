@@ -11,6 +11,9 @@ public static class DynamicVarsExtension
         public EnemyDamageVar EnemyDamage
             => (EnemyDamageVar)vars["EnemyDamage"];
 
+        public SelfDamageVar SelfDamage
+            => (SelfDamageVar)vars["SelfDamage"];
+
         public EnchantmentVar<T> Enchantment<T>() where T : EnchantmentModel
         {
             return (EnchantmentVar<T>)vars[typeof(T).Name];

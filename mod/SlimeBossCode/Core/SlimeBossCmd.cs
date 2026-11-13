@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -249,7 +250,7 @@ public static class SlimeBossCmd
         if (player.Creature.Side == CombatSide.Enemy) relativeOffset.X = -relativeOffset.X;
 
         slimeNode.Scale = Vector2.One * LocalSlimeScale;
-        slimeNode.ToggleIsInteractable(true);
+        slimeNode.ToggleIsInteractableCompat(true);
         HideHealthBar(slimeNode);
         slimeNode.GlobalPosition = playerNode.GlobalPosition + relativeOffset;
         slimeNode.UpdateBounds(slimeNode.Visuals);

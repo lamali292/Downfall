@@ -18,7 +18,7 @@ public class DivideAndConquer : SlimeBossCardModel
     {
         WithTip(SlimeBossTip.Split);
         WithDamage(4, 2);
-        WithCalculatedVar("Repeat", 1, Calc);
+        WithCalculatedHitCountVar("Repeat", 1, Calc);
     }
 
     protected override Artist Artist => Artist.Get<Opal>();

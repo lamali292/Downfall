@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Context;
@@ -39,7 +40,7 @@ public static class SlimePetPositionPatch
             foreach (var (node, position, interactable) in __state)
             {
                 node.Position = position;
-                node.ToggleIsInteractable(interactable);
+                node.ToggleIsInteractableCompat(interactable);
             }
             return;
         }
