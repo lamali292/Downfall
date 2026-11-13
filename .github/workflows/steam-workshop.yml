@@ -18,7 +18,8 @@ jobs:
   steam:
     # For workflow_run only proceed when the Release workflow succeeded.
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
-    runs-on: ubuntu-latest
+    # Pinned: steamcmd (steam-workshop-deploy container) fails to self-update on ubuntu-26.04, the new ubuntu-latest.
+    runs-on: ubuntu-24.04
     # Own environment (main-only + required reviewer): the `release` environment is restricted to
     # v* tags, and a Steam upload must need explicit approval whoever triggers it.
     environment: steam
