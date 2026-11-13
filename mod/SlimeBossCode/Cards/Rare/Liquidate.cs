@@ -16,6 +16,7 @@ public class Liquidate : SlimeBossCardModel
         WithKeyword(CardKeyword.Exhaust);
         WithPower<StrengthPower>(2);
         WithPower<PotencyPower>(2, 1);
+        WithKeyword(CardKeyword.Exhaust);
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

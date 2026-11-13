@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,6 +14,9 @@ namespace Snecko.SneckoCode.Cards.Multiplayer;
 [Pool(typeof(SneckoCardPool))]
 public class DiceCase : SneckoCardModel
 {
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
     public DiceCase() : base(3, CardType.Power, CardRarity.Uncommon, TargetType.AnyAlly)
     {
         WithKeyword(CardKeyword.Ethereal, UpgradeType.Remove);

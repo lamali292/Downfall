@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Downfall.DownfallCode.Compatibility;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using Champ.ChampCode.Powers;
@@ -29,7 +30,7 @@ public class DefensiveSkillVar(decimal baseAmount) : DynamicVar("DefensiveSkill"
         PreviewValue = Calculate();
     }
 
-    protected override decimal GetBaseValueForIConvertible()
+    public decimal GetConvertibleValue()
     {
         return Calculate();
     }

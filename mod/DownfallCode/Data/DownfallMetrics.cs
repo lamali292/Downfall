@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Text.Json;
 using Downfall.DownfallCode.Abstract;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Debug;
 using MegaCrit.Sts2.Core.Map;
 using MegaCrit.Sts2.Core.Models;
@@ -43,7 +44,9 @@ public static class DownfallMetrics
             ApiKey = BuildSecrets.MetricsApiKey,
             RejectForeignContent = false,
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
-            IsOwnCharacter = e => e is DownfallCharacterModel or Ironclad or Defect or Silent or Necrobinder or Regent,
+            // Base-game characters are matched by namespace, not type: Fool only exists in the beta game version.
+            IsOwnCharacter = e => e is DownfallCharacterModel or Ironclad or Defect or Silent or Necrobinder or Regent
+                                  || e.GetType().Namespace == typeof(Ironclad).Namespace,
             AllowedAssemblies = AllowedAssemblies,
             ConfigureRequest =  req =>  
             {
@@ -114,7 +117,7 @@ public static class DownfallMetrics
         }
 
         var progress = SaveManager.Instance.Progress;
-        return new RunMetrics
+        var metrics = new CompatRunMetrics
         {
             Ascension = run.Ascension,
             TotalPlaytime = progress.TotalPlaytime,
@@ -163,5 +166,7 @@ public static class DownfallMetrics
                     e.GetEntry(localPlayerId).PotionDiscarded)
                 .Select<ModelId, string>(p => p.Entry).ToList()
         };
+        RunMetricsCompat.ApplyGameMode(metrics, run);
+        return metrics;
     }
 }

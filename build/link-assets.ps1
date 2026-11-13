@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 
 # This script lives in build/, but local.props and the symlink targets
 # (src, images, etc.) live at the project root — one level up.
-$ProjectRoot = Split-Path $PSScriptRoot -Parent
+$ProjectRoot = Join-Path (Split-Path $PSScriptRoot -Parent) "mod"   # the Godot project (project.godot, csprojs, local.props) lives in mod/
 Set-Location $ProjectRoot
 
 # Parse AssetSourcePath from local.props

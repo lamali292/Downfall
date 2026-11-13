@@ -12,7 +12,7 @@ var scriptDir = ProjectDir();
 if (args.Contains("--sync-cards"))
 {
     const string sheetId = "1adgDbqi4A7oHqtAb2klUFrUsl4-TQR_AIWqDdDQUQ1g";
-    var localProps = Path.Join(scriptDir, "..", "local.props");
+    var localProps = Path.Join(scriptDir, "..", "mod", "local.props");
     var propsText = File.ReadAllText(localProps);
     var branch = ReadProp(propsText, "Sts2Branch") is { Length: > 0 } b ? b : "beta";
     var gamePath = ReadProp(propsText, branch == "public" ? "Sts2PublicPath" : "Sts2BetaPath");

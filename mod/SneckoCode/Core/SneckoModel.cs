@@ -16,10 +16,10 @@ public class SneckoModel() : CustomSingletonModel(HookType.Run)
 {
     public static IEnumerable<CharacterModel> GetSneckoCharacterModels(Player player)
     {
-        // Each ISneckoPoolSupplier (SneckoChoice, PrismaticSnecko, ...) contributes the character
+        // Each of this player's ISneckoPoolSupplier relics contributes the character
         // pool(s) it grants - usually one, but Prismatic Snecko contributes every character at once.
         return MyHookUtils.Collect<ISneckoPoolSupplier, IEnumerable<CharacterModel>>(null,
-                supplier => supplier.AddSneckoChars(), MyHookUtils.HookScope.Run, player.RunState)
+                supplier => supplier.AddSneckoChars(player), MyHookUtils.HookScope.Run, player.RunState)
             .SelectMany(c => c)
             .Distinct();
     }

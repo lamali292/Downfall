@@ -15,6 +15,7 @@ public class StepThrough : HexaghostCardModel
     {
         WithDamage(8, 3);
         WithTip(HexaghostTip.Ignite);
+        WithCalculatedVar("Ignited", 0, static (card, _) => HexaghostCmd.GetIgnitedCount(card.Owner, card));
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
@@ -22,7 +23,7 @@ public class StepThrough : HexaghostCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var ignited = HexaghostCmd.GetIgnitedCount(Owner);
+        var ignited = (int)DynamicVars["Ignited"].Calculate(cardPlay.Target);
         if (ignited == 0) return;
         await CardPileCmd.Draw(ctx, ignited, Owner);
     }

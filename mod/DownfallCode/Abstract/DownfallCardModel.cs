@@ -6,6 +6,7 @@ using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.DynamicVars;
 using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -81,9 +82,38 @@ public abstract class DownfallCardModel
         return WithVar(new RepeatVar(baseVal).WithUpgrade(upgradeVal));
     }
 
+    /// <summary>
+    ///     Hit count = baseVal + bonus (like <c>WithCalculatedVar</c>), previewed through hit-count hooks such as
+    ///     Thumbscrew. <paramref name="bonus"/> must be a static method.
+    /// </summary>
+    protected ConstructedCardModel WithCalculatedHitCountVar(string name, int baseVal,
+        Func<CardModel, Creature?, decimal> bonus, int upgrade = 0, int bonusUpgrade = 0)
+    {
+        var hits = new DownfallCalculatedHitCountVar(name);
+        hits.WithMultiplier(bonus);
+        return WithVars(
+            new DynamicVar($"{name}Base", baseVal).WithUpgrade(upgrade),
+            new DynamicVar($"{name}Extra", 1).WithUpgrade(bonusUpgrade),
+            hits);
+    }
+
+    /// <summary>
+    ///     The "Repeat" variable, used as the attack's hit count: like <c>WithRepeat</c>, but the previewed value includes
+    ///     hit-count modifiers such as Thumbscrew.
+    /// </summary>
+    protected ConstructedCardModel WithHitCount(int baseVal, int upgradeVal = 0)
+    {
+        return WithVar(new DownfallHitCountVar(baseVal).WithUpgrade(upgradeVal));
+    }
+
     protected ConstructedCardModel WithHpLoss(int baseVal, int upgrade = 0)
     {
         return WithVar(new HpLossVar(baseVal).WithUpgrade(upgrade));
+    }
+
+    protected ConstructedCardModel WithSelfDamage(int baseVal, int upgrade = 0)
+    {
+        return WithVar(new SelfDamageVar(baseVal, DamageProps.cardUnpowered).WithUpgrade(upgrade));
     }
 
     protected ConstructedCardModel WithEnemyDamage(int baseValue, int upgrade = 0)
@@ -192,4 +222,4 @@ public abstract class DownfallCardModel<T>(
 {
     public override string CustomPortraitPath =>
         $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.tres".CardImageAtlasPath<T>();
-}
+}

@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,6 +12,9 @@ namespace Snecko.SneckoCode.Cards.Ancient;
 [Pool(typeof(SneckoCardPool))]
 public class Whiplash : SneckoCardModel
 {
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
     public Whiplash() : base(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithOverflow();

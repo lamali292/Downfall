@@ -84,12 +84,7 @@ public class FlareFlickChoice : HexaghostCardModel
 
     private static LocString GetTitle(CardKeyword keyword)
     {
-        return new LocString("card_keywords", GetLocKeyPrefix(keyword) + ".title");
-    }
-
-    private static string GetLocKeyPrefix(CardKeyword keyword)
-    {
-        return StringHelper.Slugify(keyword.ToString());
+        return keyword.GetTitle();
     }
     
     public override bool CanBeGeneratedByModifiers => false;

@@ -417,7 +417,8 @@ public partial class NGhostflames : Control
                     .SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
     }
 
-    public void RefreshWheel(GhostflameModel[] wheel, int currentIndex)
+    /// <param name="primed">The flame its played card will ignite after the play, shown ignited already.</param>
+    public void RefreshWheel(GhostflameModel[] wheel, int currentIndex, GhostflameModel? primed = null)
     {
         if (_player == null)
         {
@@ -444,7 +445,7 @@ public partial class NGhostflames : Control
             wheel[i].UpdateVisuals();
             _fires[i]?.SetState(
                 wheel[i].FireColor,
-                wheel[i].IsIgnited ? NFire.FireSize.Large : NFire.FireSize.Small);
+                wheel[i].IsIgnited || wheel[i] == primed ? NFire.FireSize.Large : NFire.FireSize.Small);
 
             if (_intents[i] != null)
                 _intents[i]!.UpdateIntent(wheel[i].Intent, [], _player.Creature);

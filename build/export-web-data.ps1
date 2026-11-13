@@ -22,7 +22,7 @@ param(
     [int]$TimeoutMinutes = 15
 )
 $ErrorActionPreference = "Stop"
-$ProjectRoot = Split-Path $PSScriptRoot -Parent
+$ProjectRoot = Join-Path (Split-Path $PSScriptRoot -Parent) "mod"   # the Godot project (project.godot, csprojs, local.props) lives in mod/
 Set-Location $ProjectRoot
 
 . (Join-Path $PSScriptRoot "common.ps1")
@@ -34,7 +34,7 @@ if (-not (Test-Path $exe)) { throw "Game executable not found: $exe" }
 
 $modsDir = Get-Sts2ModsDir $gameDir
 if (-not (Test-Path (Join-Path $modsDir (Join-Path "STS2Export" "STS2Export.dll")))) {
-    throw "STS2Export is not in $modsDir. Build it first: cd ../sts2-exporter; dotnet build STS2Export.csproj"
+    throw "STS2Export is not in $modsDir. Build it first: cd ../../DownfallTools/sts2-exporter; dotnet build STS2Export.csproj"
 }
 
 if (-not $NoBuild) {
@@ -43,7 +43,7 @@ if (-not $NoBuild) {
     if ($LASTEXITCODE -ne 0) { throw "Build failed" }
 }
 
-$webRoot = Join-Path (Split-Path $ProjectRoot -Parent) "DownfallWeb"
+$webRoot = Join-Path (Split-Path (Split-Path $ProjectRoot -Parent) -Parent) (Join-Path "DownfallTools" "DownfallWeb")
 $outDir = Join-Path $webRoot (Join-Path "data" "game-export")
 if (Test-Path $outDir) { Remove-Item $outDir -Recurse -Force }
 New-Item -ItemType Directory -Path $outDir -Force | Out-Null

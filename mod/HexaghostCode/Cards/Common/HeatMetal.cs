@@ -6,16 +6,16 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Hexaghost.HexaghostCode.Cards.Uncommon;
+namespace Hexaghost.HexaghostCode.Cards.Common;
 
 [Pool(typeof(HexaghostCardPool))]
 public class HeatMetal : HexaghostCardModel
 {
-    public HeatMetal() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    public HeatMetal() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(4, 2);
-        WithPower<SoulBurnPower>(4, 2);
-        WithPower<VulnerablePower>(2);
+        WithDamage(3, 1);
+        WithPower<SoulBurnPower>(3, 1);
+        WithPower<VulnerablePower>(1, 1);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();

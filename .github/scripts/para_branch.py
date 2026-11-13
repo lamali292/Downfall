@@ -13,6 +13,7 @@ import json
 import os
 from pathlib import Path
 
+MOD_ROOT = Path("mod") if Path("mod/project.godot").is_file() else Path(".")  # mod folders live in mod/ (branches that predate the move keep them at the repo root)
 _PATH = Path(".github/configs/paratranz-branch.json")
 _config = json.loads(_PATH.read_text(encoding="utf-8-sig")) if _PATH.is_file() else {}
 
@@ -44,4 +45,4 @@ def is_wanted(local_mod_name):
         return False
     if _only_env and name not in _only_env:
         return False
-    return (Path(local_mod_name) / "localization" / "eng").is_dir()
+    return (MOD_ROOT / local_mod_name / "localization" / "eng").is_dir()

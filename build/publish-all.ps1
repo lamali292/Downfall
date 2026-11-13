@@ -22,7 +22,7 @@ param(
     [switch]$SkipImport
 )
 $ErrorActionPreference = "Stop"
-$ProjectRoot = Split-Path $PSScriptRoot -Parent
+$ProjectRoot = Join-Path (Split-Path $PSScriptRoot -Parent) "mod"   # the Godot project (project.godot, csprojs, local.props) lives in mod/
 Set-Location $ProjectRoot
 
 . (Join-Path $PSScriptRoot "common.ps1")

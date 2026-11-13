@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using Downfall.DownfallCode.Compatibility;
 using BaseLib.Patches.Content;
 using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
@@ -113,10 +114,11 @@ public class GemFinderReward(int choosable, int choices, Player player) : Custom
             IEnumerable<CardModel> selectedCards;
             if (TestMode.IsOn)
             {
-                if (CardSelectCmd.Selector == null)
+                var selector = CardSelectCmdCompatibility.GetCurrentSelector(Player);
+                if (selector == null)
                     selectedCards = [];
                 else
-                    selectedCards = await CardSelectCmd.Selector.GetSelectedCards(cards,
+                    selectedCards = await selector.GetSelectedCards(cards,
                             prefs.MinSelect,
                             prefs.MaxSelect);
             }

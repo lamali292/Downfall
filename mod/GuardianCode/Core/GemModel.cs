@@ -1,3 +1,4 @@
+using Downfall.DownfallCode.Compatibility;
 using System.Text;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
@@ -141,11 +142,7 @@ public abstract class GemModel : CardModifier, ICustomModel
 
     private HoverTip ToHoverTip(string description)
     {
-        return new HoverTip(Title, description, Icon)
-        {
-            Id = Id.ToString(),
-            IsSmart = true
-        };
+        return new HoverTip(Title, description, Icon).WithIdAndSmart(Id.ToString(), true);
     }
 
     private static void AddDumbVariablesToDescription(LocString description)

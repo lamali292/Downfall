@@ -74,5 +74,8 @@
   "HEXAGHOST-PREMONITION_POWER.smartDescription": "Whenever an [gold]Ethereal[/gold] card is [gold]Exhausted[/gold], gain [blue]{Amount}[/blue] [gold]Strength[/gold].",
   "HEXAGHOST-SOULFIRE_POWER.title": "Soulfire",
   "HEXAGHOST-SOULFIRE_POWER.description": "Whenever you apply [gold]Soulburn[/gold] with a card, gain [gold]Block[/gold].",
-  "HEXAGHOST-SOULFIRE_POWER.smartDescription": "Whenever you apply [gold]Soulburn[/gold] with a card, gain [blue]{Amount}[/blue] [gold]Block[/gold]."
+  "HEXAGHOST-SOULFIRE_POWER.smartDescription": "Whenever you apply [gold]Soulburn[/gold] with a card, gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "HEXAGHOST-IGNIS_POWER.title": "Ignis",
+  "HEXAGHOST-IGNIS_POWER.description": "This turn, your next [gold]Ethereal[/gold] card is played an extra time.",
+  "HEXAGHOST-IGNIS_POWER.smartDescription": "This turn, your next {Amount:plural:[gold]Ethereal[/gold] card is|[blue]{}[/blue] [gold]Ethereal[/gold] cards are} played an extra time."
 }

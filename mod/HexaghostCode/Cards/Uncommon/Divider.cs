@@ -16,19 +16,19 @@ public class Divider : HexaghostCardModel
     {
         WithDamage(4, 2);
         WithTip(HexaghostTip.Ignite);
-        WithCalculatedVar("Hits", 0, Calc);
+        WithCalculatedHitCountVar("Hits", 0, Calc);
     }
 
     private static decimal Calc(CardModel card, Creature? _)
     {
-        return HexaghostCmd.GetIgnitedCount(card.Owner);
+        return HexaghostCmd.GetIgnitedCount(card.Owner, card);
     }
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var count =  (int)DynamicVars["Hits"].Calculate(cardPlay.Target);
+        var count = (int)DynamicVars["Hits"].Calculate(cardPlay.Target);
         if (count == 0) return;
         await CommonActions.CardAttack(this, cardPlay, count).Execute(ctx);
     }

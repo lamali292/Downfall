@@ -17,19 +17,12 @@ public class Reversal : HexaghostCardModel
         WithTip(HexaghostTip.Extinguish);
     }
 
-    protected override bool ShouldGlowGoldInternal
-    {
-        get
-        {
-            var a = HexaghostCmd.GetCurrentFlame(Owner);
-            return a.IsIgnited || a.AboutToIgnite(this);
-        }
-    }
+    protected override bool ShouldGlowGoldInternal => HexaghostCmd.IsIgnited(Owner, this);
 
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        if (HexaghostCmd.IsIgnited(Owner))
+        if (HexaghostCmd.IsIgnited(Owner, this))
         {
             // Here it's maybe relevant if the Extinguish happens between attack 1 and attacks 2 and 3
             // or if this is fine. Might be relevant for Vigor that its one attack.

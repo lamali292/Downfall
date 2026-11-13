@@ -1,4 +1,5 @@
 using BaseLib.Commands;
+using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -112,10 +113,11 @@ public class DownfallCardSelectionCmd
                 prefs,
                 cards,
                 pileTypes);
-        if (CardSelectCmd.Selector == null)
+        var selector = CardSelectCmdCompatibility.GetCurrentSelector(player);
+        if (selector == null)
             return [];
 
-        return await CardSelectCmd.Selector.GetSelectedCards(
+        return await selector.GetSelectedCards(
             cards,
             prefs.MinSelect,
             prefs.MaxSelect);
@@ -135,10 +137,11 @@ public class DownfallCardSelectionCmd
                 prefs,
                 filter,
                 pileTypes);
-        if (CardSelectCmd.Selector == null)
+        var selector = CardSelectCmdCompatibility.GetCurrentSelector(player);
+        if (selector == null)
             return [];
 
-        return await CardSelectCmd.Selector.GetSelectedCards(
+        return await selector.GetSelectedCards(
             pileTypes.SelectMany(e => e.GetPile(player).Cards),
             prefs.MinSelect,
             prefs.MaxSelect);

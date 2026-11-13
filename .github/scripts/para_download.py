@@ -46,10 +46,10 @@ def save_translation(mod_name, lang_code, filename, translated_dict):
     if not translated_dict:
         return
 
-    local_dir = Path(mod_name) / "localization" / lang_code
+    local_dir = para_branch.MOD_ROOT / mod_name / "localization" / lang_code
     local_dir.mkdir(parents=True, exist_ok=True)
     output_path = local_dir / filename
-    source_path = Path(mod_name) / "localization" / "eng" / filename
+    source_path = para_branch.MOD_ROOT / mod_name / "localization" / "eng" / filename
 
     try:
         with open(source_path, "r", encoding="utf-8-sig") as f:

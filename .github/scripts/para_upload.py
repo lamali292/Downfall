@@ -57,7 +57,7 @@ async def main():
     EXCLUDED_REPOS = {"gremlins"}
     
     repos = sorted(
-        d for d in Path(".").iterdir()
+        d for d in para_branch.MOD_ROOT.iterdir()
         if d.is_dir()
         and d.name.lower() not in EXCLUDED_REPOS
         and para_branch.is_wanted(d.name)

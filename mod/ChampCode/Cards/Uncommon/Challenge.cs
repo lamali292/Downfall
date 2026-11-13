@@ -19,6 +19,9 @@ public class Challenge : ChampCardModel
 
     protected override Artist Artist => Artist.Get<Magerblutooth>();
 
+    protected override bool ShouldGlowGoldInternal =>
+        CombatState?.HittableEnemies.Any(e => e.GetPowerAmount<StrengthPower>() > 0) ?? false;
+
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         var repeats = cardPlay.Target != null && cardPlay.Target.GetPowerAmount<StrengthPower>() > 0 ? 2 : 1;

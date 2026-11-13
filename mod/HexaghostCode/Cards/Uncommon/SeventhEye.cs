@@ -13,7 +13,7 @@ public class SeventhEye : HexaghostCardModel
 {
     public SeventhEye() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
-        WithBlock(5, 3);
+        WithBlock(4, 3);
         WithKeyword(CardKeyword.Retain);
         WithVar("Discard", 1);
     }

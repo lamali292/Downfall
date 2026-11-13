@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -11,6 +12,9 @@ namespace Snecko.SneckoCode.Cards.Multiplayer;
 [Pool(typeof(SneckoCardPool))]
 public class Muddy : SneckoCardModel
 {
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
     public Muddy() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
     {
         WithKeyword(CardKeyword.Exhaust);

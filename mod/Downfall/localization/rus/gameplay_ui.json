@@ -1,3 +1,15 @@
 {
-    "DOWNFALL-PLAQUE": "{original} | {type}"
+    "DOWNFALL-PLAQUE": "{original} | {type}",
+    "DOWNFALL-FILTER_RARITY_COMMON": "Обычные",
+    "DOWNFALL-FILTER_RARITY_RARE": "Редкие",
+    "DOWNFALL-FILTER_RARITY_SHOP": "Магазинные",
+    "DOWNFALL-FILTER_RARITY_STARTER": "Стартовые",
+    "DOWNFALL-FILTER_RARITY_UNCOMMON": "Необычные",
+    "DOWNFALL-LIBRARY_SINGLEPLAYER_CARDS": "Карты для одиночного режима",
+    "DOWNFALL-POTION_POOL_OTHER": "Любые другие зелья.",
+    "DOWNFALL-POTION_POOL_SHARED": "Зелья, доступные каждому персонажу.",
+    "DOWNFALL-POTION_POOL_SPECIAL": "Зелья, получаемые из событий или созданные другими способами.",
+    "DOWNFALL-RELIC_POOL_EVENT": "Реликвии, получаемые из событий.",
+    "DOWNFALL-RELIC_POOL_OTHER": "Любые другие реликвии.",
+    "DOWNFALL-RELIC_POOL_SHARED": "Реликвии, доступные каждому персонажу."
 }

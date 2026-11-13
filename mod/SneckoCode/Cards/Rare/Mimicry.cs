@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using Downfall.DownfallCode.Artists;
+using BaseLib.Utils;
 using Downfall.DownfallCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,6 +12,9 @@ namespace Snecko.SneckoCode.Cards.Rare;
 [Pool(typeof(SneckoCardPool))]
 public class Mimicry : SneckoCardModel
 {
+    protected override Artist Artist => Artist.Get<Fulgur>();
+    protected override bool IsBetaArt => true;
+
     public Mimicry() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
         WithPower<MimicryPower>(2, 1, false);
