@@ -1,5 +1,5 @@
 {
-    "SNECKO-AMASS.description": "{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。\n追加で[gold]手札[/gold]の他のカードの合計{energyPrefix:energyIcons(1)}コストに等しい[gold]ブロック[/gold]を得る。",
+    "SNECKO-AMASS.description": "{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]の他のカードの合計{energyPrefix:energyIcons(1)}コストを得る[gold]ブロック[/gold]に加算する。",
     "SNECKO-AMASS.title": "蓄積",
     "SNECKO-BEHOLD.description": "{Damage:diff()}ダメージを与える。\n[gold]オーバーフロー[/gold]：[gold]ナイフ[/gold]を{Cards:diff()}枚[gold]手札[/gold]に加える。",
     "SNECKO-BEHOLD.title": "見よ！",
@@ -23,11 +23,11 @@
     "SNECKO-CRYSTAL_BOOMERANG.title": "水晶ブーメラン",
     "SNECKO-DANGER_NOODLE.description": "{Damage:diff()}ダメージを与える。\nカードを1枚[gold]泥まみれ[/gold]にする。{InCombat:cond:|\n[gold]ギフト[/gold]：コスト3+。}",
     "SNECKO-DANGER_NOODLE.title": "デンジャーヌードル",
-    "SNECKO-DECEPTION.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]脱力[/gold]と[gold]弱体[/gold]を{CalculatedPower:diff()}付与する。このターンにプレイした[gold]他クラス[/gold]カード1枚につき、追加で1付与する。",
+    "SNECKO-DECEPTION.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]脱力[/gold]と[gold]弱体[/gold]を{CalculatedPower:diff()}付与する。このターンにプレイした[gold]他クラス[/gold]カード1枚につき、付与するデバフ値が1増加する。",
     "SNECKO-DECEPTION.title": "誤魔化し",
     "SNECKO-DEFEND_SNECKO.description": "{Block:diff()}[gold]ブロック[/gold]を得る。",
     "SNECKO-DEFEND_SNECKO.title": "防御",
-    "SNECKO-DEFENSIVE_FLAIR.description": "{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]の他の[gold]他クラス[/gold]カード1枚につき、追加で{CalculationExtra:diff()}[gold]ブロック[/gold]を得る。{InCombat:cond:|\n[gold]ギフト[/gold]：アンコモン。}",
+    "SNECKO-DEFENSIVE_FLAIR.description": "{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]の他の[gold]他クラス[/gold]カード1枚につき、得る[gold]ブロック[/gold]が{CalculationExtra:diff()}増加する。{InCombat:cond:|\n[gold]ギフト[/gold]：アンコモン。}",
     "SNECKO-DEFENSIVE_FLAIR.title": "防衛センス",
     "SNECKO-DICE_BLOCK.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]オーバーフロー[/gold]：再び{Block:diff()}[gold]ブロック[/gold]を得る。",
     "SNECKO-DICE_BLOCK.title": "ブロックダイス",
@@ -71,7 +71,7 @@
     "SNECKO-MAKESHIFT_BLADE.title": "即席ブレード",
     "SNECKO-MARKED_CARD.description": "カードを{Muddle:diff()}枚[gold]泥まみれ[/gold]にする。\nそれらは必ずより安くなる。",
     "SNECKO-MARKED_CARD.title": "目印付きカード",
-    "SNECKO-MEDUSA.description": "{Damage:diff()}ダメージを与える。\n敵がデバフを受けている場合、2回攻撃する。",
+    "SNECKO-MEDUSA.description": "{Damage:diff()}ダメージを与える。\n敵がデバフを受けている場合、2回ダメージを与える。",
     "SNECKO-MEDUSA.title": "メデューサ",
     "SNECKO-MESMERIZE.description": "ターン終了時まですべての敵は[gold]筋力[/gold]{MesmerizePower:diff()}を失う。\nカードを1枚[gold]泥まみれ[/gold]にする。",
     "SNECKO-MESMERIZE.title": "催眠",
@@ -184,11 +184,11 @@
     "SNECKO-MULLIGAN.title": "マリガン",
     "SNECKO-MULLIGAN.description": "元のコストより多いコストでカードをプレイするたび、次のターン、{energyPrefix:energyIcons(1)}を得る。",
     "SNECKO-PARALYTIC_VENOM.title": "麻痺毒",
-    "SNECKO-PARALYTIC_VENOM.description": "アタックでブロックされずにダメージを与えるたび、[gold]猛毒[/gold]{ParalyticVenomPower:diff()}を付与する。",
+    "SNECKO-PARALYTIC_VENOM.description": "アタックでブロックを上回るダメージを与えるたび、[gold]猛毒[/gold]{ParalyticVenomPower:diff()}を付与する。",
     "SNECKO-TOXIC_BITE.title": "猛毒の牙",
     "SNECKO-TOXIC_BITE.description": "{Damage:diff()}ダメージを与える。\n[gold]猛毒[/gold]{VenomPower:diff()}を付与する。{InCombat:cond:|\n[gold]ギフト[/gold]：コモンのデバフ。}",
     "SNECKO-MUDDY.title": "泥んこ",
     "SNECKO-MUDDY.description": "他のプレイヤーを1人選ぶ。\n次のターン開始時、そのプレイヤーは追加でカードを{DrawCardsNextTurnPower:diff()}枚引き、[gold]手札[/gold]をすべて[gold]泥まみれ[/gold]にする。",
     "SNECKO-VENOMOLOGY.title": "毒液学",
-    "SNECKO-VENOMOLOGY.description": "他のプレイヤー1人を選ぶ。\nこのターン、そのプレイヤーのアタックがブロックされずにダメージを与えるたび、[gold]猛毒[/gold]{VenomologyPower:diff()}を付与する。"
+    "SNECKO-VENOMOLOGY.description": "他のプレイヤー1人を選ぶ。\nこのターン、そのプレイヤーのアタックがブロックを上回るダメージを与えるたび、[gold]猛毒[/gold]{VenomologyPower:diff()}を付与する。"
 }
