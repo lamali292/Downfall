@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using SlimeBoss.SlimeBossCode.Core;
+using MegaCrit.Sts2.Core.ValueProps;
 using SlimeBoss.SlimeBossCode.DynamicVars;
 using SlimeBoss.SlimeBossCode.Events;
 using SlimeBoss.SlimeBossCode.Extensions;
@@ -24,12 +25,8 @@ public class PsychicSlime : SlimeModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new SlimePowerVar<SoulBurnPower>(6)
+        new DamageVar(6, DamageProps.nonCardUnpowered)
     ];
-
-    public override IEnumerable<IHoverTip> ExtraTips => [HoverTipFactory.FromPower<SoulBurnPower>()];
-
-    public override string CounterIconPath => "res://Downfall/images/powers/soul_burn_power.png";
 
     protected override string? SkinName => "hex";
 
@@ -38,10 +35,8 @@ public class PsychicSlime : SlimeModel
         var target = forcedTarget ?? CombatState.GetOpponentsOf(PetOwner).Where(e => e.IsHittable).ToList()
             .OrderBy(_ => Guid.NewGuid()).FirstOrDefault();
         if (target == null) return;
-        var amount = SlimeBossHook.ModifySlimeEffects(CombatState, DynamicVars.Slime.IntValue, out _, this);
         SpawnFireball(target);
-        // The player is the applier, so Red Candle's bonus applies.
-        await PowerCmd.Apply<SoulBurnPower>(ctx, target, amount, PetOwner, null);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).Unpowered().FromSlime(this).Targeting(target).Execute(ctx);
     }
 
 

@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Models.Powers;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,15 +14,15 @@ public class ItLooksTasty : SlimeBossCardModel
     public ItLooksTasty() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(16, 4);
-        WithTip(SlimeBossTip.Consume);
+        WithVar("WeakNeeded", 3);
+        WithTip<WeakPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
-    protected override Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
+    protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var weakTargets = SlimeBossCmd.WeakTargets(this, cardPlay);
-        return SlimeBossCmd.Consume(ctx, this, weakTargets,
-            _ => CommonActions.CardAttack(this, cardPlay).Execute(ctx));
+        if (!SlimeBossCmd.HasWeak(this, cardPlay, DynamicVars["WeakNeeded"].IntValue)) return;
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
     }
 }

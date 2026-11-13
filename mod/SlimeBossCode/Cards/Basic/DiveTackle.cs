@@ -17,7 +17,7 @@ public class DiveTackle : SlimeBossCardModel
     public DiveTackle() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithTags(SlimeBossTag.Tackle);
-        WithDamage(8, 2);
+        WithDamage(10, 2);
         WithPower<WeakPower>(2, 1);
     }
 

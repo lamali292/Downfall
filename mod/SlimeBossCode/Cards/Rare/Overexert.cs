@@ -27,24 +27,18 @@ public class Overexert : SlimeBossCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var x = ResolveEnergyXValue();
-        var drawAmount = x + (IsUpgraded ? 1 : 0);
+        var count = ResolveEnergyXValue() + (IsUpgraded ? 1 : 0);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var drawn = await CardPileCmd.Draw(ctx, drawAmount, Owner);
 
-        // The X energy is already spent, so without this the drawn cards would show as unplayable in the picker.
-        var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.PlaySelectionPrompt, 1)
+        // Snapshot up front: playing cards changes the hand. OrderBy is stable, so equal costs keep hand order.
+        var toPlay = Owner.Hand.Where(c => c != this)
+            .OrderBy(c => c.EnergyCost.GetAmountToSpend())
+            .Take(count)
+            .ToList();
+        foreach (var card in toPlay)
         {
-            PretendCardsCanBePlayed = true
-        };
-        var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, c => drawn.Contains(c), this)).FirstOrDefault();
-        if (card == null) return;
-
-        // The second play uses a copy: a Power card resolves out of every pile after its first play, and the game's
-        // unplayable-checks would then reject a second AutoPlay of the same instance.
-        var dupe = card.CreateDupeCompat();
-        card.ExhaustOnNextPlay = true;
-        await CardCmd.AutoPlay(ctx, card, null);
-        await CardCmd.AutoPlay(ctx, dupe, null);
+            if (card.Pile?.Type != PileType.Hand) continue;
+            await CardCmd.AutoPlay(ctx, card, null);
+        }
     }
 }

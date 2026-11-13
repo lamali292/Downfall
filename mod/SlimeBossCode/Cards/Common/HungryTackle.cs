@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Models.Powers;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +17,7 @@ public class HungryTackle : SlimeBossCardModel
         WithEnergy(3, 1);
         WithTags(SlimeBossTag.Tackle);
         WithKeyword(CardKeyword.Exhaust);
-        WithTip(SlimeBossTip.Consume);
+        WithTip<WeakPower>();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)

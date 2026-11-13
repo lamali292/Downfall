@@ -12,7 +12,7 @@ public class PileOn : SlimeBossCardModel
     public PileOn() : base(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
         WithCostUpgradeBy(-1);
-        WithDamage(5);
+        WithDamage(10);
         WithTip(SlimeBossTip.Command);
     }
 

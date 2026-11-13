@@ -65,6 +65,15 @@ public static class SlimeBossCmd
     }
 
     /// <summary>
+    /// Whether the card's target(s) have at least <paramref name="minWeak"/> Weak. A plain check: unlike
+    /// <see cref="Consume"/> it removes nothing.
+    /// </summary>
+    public static bool HasWeak(CardModel card, CardPlay cardPlay, int minWeak = 1)
+    {
+        return card.MyGetTargets(cardPlay.Target).Any(t => t.GetPower<WeakPower>() is { } weak && weak.Amount >= minWeak);
+    }
+
+    /// <summary>
     /// "Consume - if the enemy has Weak, remove a stack of Weak and perform an additional effect." Always
     /// attempted explicitly by the card itself (like Schlurp) rather than gated behind an attack landing -
     /// there is no separate Goop resource anymore, Consume keys directly off the target's Weak stacks.

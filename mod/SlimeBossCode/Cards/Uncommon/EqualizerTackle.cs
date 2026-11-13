@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Models.Powers;
+using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,20 +18,16 @@ public class EqualizerTackle : SlimeBossCardModel
     {
         WithTags(SlimeBossTag.Tackle);
         WithDamage(12, 3);
-        WithTip(SlimeBossTip.Consume);
-        WithTip(StaticHoverTip.Block);
+        WithBlock(12, 3);
+        WithTip<WeakPower>();
     }
 
     protected override Artist Artist => Artist.Get<Opal>();
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        var weakTargets = SlimeBossCmd.WeakTargets(this, cardPlay);
-        var result = await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
-        var damage = result.Results.SelectMany(e => e).Sum(e => e.BlockedDamage + e.UnblockedDamage);
-        // TODO scale with dex?
-        await SlimeBossCmd.Consume(ctx, this, weakTargets, _ => damage > 0
-            ? CreatureCmd.GainBlock(Owner.Creature, damage, BlockProps.cardUnpowered, cardPlay)
-            : Task.CompletedTask);
+        var hasWeak = SlimeBossCmd.HasWeak(this, cardPlay);
+        await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
+        if (hasWeak) await CommonActions.CardBlock(this, cardPlay);
     }
 }
