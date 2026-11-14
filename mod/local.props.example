@@ -9,8 +9,6 @@
         <!-- Full path to each "Slay the Spire 2" game folder (only the selected branch's path is needed) -->
         <Sts2BetaPath>C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</Sts2BetaPath>
         <Sts2PublicPath>C:\...\Slay the Spire 2</Sts2PublicPath>
-        <!-- Path to your GDRE extracted Slay the Spire 2 assets folder -->
-        <AssetSourcePath>C:\...\Slay the Spire 2</AssetSourcePath>
 
         <!-- Set to true to also copy built dlls/pcks into a "mods" folder next to GodotPath, so running the
              Godot editor standalone on this project (Debug config) loads mods the same way the game does. -->
