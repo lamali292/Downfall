@@ -43,7 +43,7 @@
     "GUARDIAN-GEM_CANNON.title": "ジェムキャノン",
     "GUARDIAN-GEM_FINDER.description": "カードに埋め込まれていない[gold]ジェム[/gold]をプレイするたび、次のターン開始時、カードを{GemFinderPower:diff()}枚引く。",
     "GUARDIAN-GEM_FINDER.title": "ジェム探査",
-    "GUARDIAN-GIGA_BEAM.description": "すべての敵に{Damage:diff()}ダメージを与える。\nこのカードには、{StrengthEffect:diff()}倍の[gold]筋力[/gold]ボーナスが適用される。\n次のあなたのターンはスキップされる。",
+    "GUARDIAN-GIGA_BEAM.description": "すべての敵に{Damage:diff()}ダメージを与える。\nこのカードには[gold]筋力[/gold]の効果が{StrengthEffect:diff()}回適用される。\n次のあなたのターンはスキップされる。",
     "GUARDIAN-GIGA_BEAM.title": "ギガビーム",
     "GUARDIAN-GUARDIAN_WHIRL.description": "すべての敵に{Damage:diff()}ダメージを2回与える。\n[gold]ブロック[/gold]値が{Threshold:diff()}以上の場合、追加で2回攻撃する。",
     "GUARDIAN-GUARDIAN_WHIRL.title": "旋風刃",
