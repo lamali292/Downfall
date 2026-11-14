@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 ]
+[gd_scene load_steps=15 format=3 uid="uid://crvu20is8pvtn"]
 
-[ext_resource type="Script" path="res://AwakenedCode/Vfx/NAwakenMeter.cs" id="1_8mx5x"]
-[ext_resource type="Texture2D" path="res://images/ui/combat/health_bar_bg.png" id="1_wn1jl"]
-[ext_resource type="Texture2D" path="res://images/ui/combat/health_bar.png" id="2_8mx5x"]
-[ext_resource type="Shader" path="res://Awakened/scenes/ui/awaken_bar.gdshader" id="3_3khdq"]
-[ext_resource type="Texture2D" path="res://images/ui/combat/health_bar_fill.png" id="4_dtlq0"]
+[ext_resource type="Script" uid="uid://c5kjkvu4yfmdq" path="res://AwakenedCode/Vfx/NAwakenMeter.cs" id="1_8mx5x"]
+[ext_resource type="Texture2D" uid="uid://bydu5n4y1b5o" path="res://images/ui/combat/health_bar_bg.png" id="1_wn1jl"]
+[ext_resource type="Texture2D" uid="uid://ta0irxtri5jj" path="res://images/ui/combat/health_bar.png" id="2_8mx5x"]
+[ext_resource type="Shader" uid="uid://dao8nwtqac37b" path="res://Awakened/scenes/ui/awaken_bar.gdshader" id="3_3khdq"]
+[ext_resource type="Texture2D" uid="uid://g08m1dy2l4bh" path="res://images/ui/combat/health_bar_fill.png" id="4_dtlq0"]
+[ext_resource type="Texture2D" uid="uid://ce37xptc8x4au" path="res://images/packed/combat_ui/pile_button_count.png" id="5_count"]
+[ext_resource type="FontFile" uid="uid://dc8ocd36hqnbe" path="res://fonts/kreon_bold.ttf" id="6_font"]
+[ext_resource type="Script" path="res://addons/mega_text/MegaLabel.cs" id="7_label"]
 
 [sub_resource type="Gradient" id="Gradient_i1u3a"]
 offsets = PackedFloat32Array(0, 0.514583, 1)
@@ -25,6 +28,10 @@ noise = SubResource("FastNoiseLite_thhku")
 shader = ExtResource("3_3khdq")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_fdxpv")
 shader_parameter/gradient_tex = SubResource("GradientTexture1D_yp82w")
+
+[sub_resource type="FontVariation" id="FontVariation_count"]
+base_font = ExtResource("6_font")
+spacing_glyph = 1
 
 [node name="AwakenMeter" type="Control"]
 layout_mode = 3
@@ -95,3 +102,55 @@ grow_vertical = 2
 texture = ExtResource("4_dtlq0")
 patch_margin_left = 6
 patch_margin_right = 6
+
+[node name="CountContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 72.0
+offset_top = -14.5
+offset_right = 120.0
+offset_bottom = 33.5
+rotation = 1.5707964
+scale = Vector2(0.33333, 0.33333)
+pivot_offset = Vector2(24, 24)
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="CountContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_count")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="CountContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = -4.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1254902)
+theme_override_colors/font_outline_color = Color(0.2, 0.15, 0.4, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = SubResource("FontVariation_count")
+theme_override_font_sizes/font_size = 26
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_label")
+AutoSizeEnabled = true
+MinFontSize = 20
+MaxFontSize = 26

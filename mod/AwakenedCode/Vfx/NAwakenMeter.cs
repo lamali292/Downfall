@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.CustomEnums;
 using Godot;
+using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
@@ -15,6 +16,7 @@ public partial class NAwakenMeter : Control
     private const string DisplayScenePath = "res://Awakened/scenes/ui/awaken_meter.tscn";
     private const int MaxProgress = 7;
     private NinePatchRect? _bar;
+    private MegaLabel? _count;
     private Tween? _moveTween;
     private Vector2 _restPosition;
 
@@ -46,6 +48,7 @@ public partial class NAwakenMeter : Control
     public override void _Ready()
     {
         _bar = GetNode<NinePatchRect>("%AwakenForeground");
+        _count = GetNode<MegaLabel>("%Count");
         AnchorTop = 1f;
         AnchorBottom = 1f;
         MouseFilter = MouseFilterEnum.Stop;
@@ -167,6 +170,7 @@ public partial class NAwakenMeter : Control
             return;
 
         progress = Mathf.Clamp(progress, 0, MaxProgress);
+        _count?.SetTextAutoSize(progress.ToString());
         var ratio = (float)progress / MaxProgress;
         var maxWidth = _bar.GetParent<Control>().Size.X;
         var targetSize = new Vector2(21 + maxWidth * ratio, _bar.Size.Y);
