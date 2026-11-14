@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CardLocSettings">
+    <defaults>
+      <preset id="card" markers="CustomCardModel">
+        <files>
+          <file name="cards" fields="title,description,selectionScreenPrompt?" />
+        </files>
+      </preset>
+      <preset id="power" markers="CustomPowerModel,CustomTemporaryPowerModel">
+        <files>
+          <file name="powers" fields="title,description,smartDescription?,selectionScreenPrompt?,remoteDescription?" />
+        </files>
+      </preset>
+      <preset id="relic" markers="CustomRelicModel">
+        <files>
+          <file name="relics" fields="title,description,flavor,selectionScreenPrompt?" />
+        </files>
+      </preset>
+      <preset id="potion" markers="CustomPotionModel">
+        <files>
+          <file name="potions" fields="title,description,selectionScreenPrompt?" />
+        </files>
+      </preset>
+      <preset id="character" markers="CustomCharacterModel">
+        <files>
+          <file name="characters" fields="title,titleObject,shortTitle,pronounSubject,pronounPossessive,pronounObject,possessiveAdjective,goldMonologue,eventDeathPrevention,description,cardsModifierTitle,cardsModifierDescription,banter.dead.endTurnPing,banter.alive.endTurnPing,aromaPrinciple" />
+        </files>
+      </preset>
+      <preset id="enchantment" markers="CustomEnchantmentModel">
+        <files>
+          <file name="enchantments" fields="title,description,extraCardText?" />
+        </files>
+      </preset>
+      <preset id="affliction" markers="AfflictionModel">
+        <files>
+          <file name="afflictions" fields="title,description" />
+        </files>
+      </preset>
+      <preset id="orb" markers="CustomOrbModel">
+        <files>
+          <file name="orbs" fields="title,description,smartDescription?" />
+        </files>
+      </preset>
+      <preset id="monster" markers="CustomMonsterModel">
+        <files>
+          <file name="monsters" fields="name,description?" />
+        </files>
+      </preset>
+      <preset id="ancient" markers="CustomAncientModel">
+        <files>
+          <file name="ancients" fields="title,epithet" />
+        </files>
+      </preset>
+    </defaults>
+    <modules>
+      <module baseDir="mod/SneckoCode" localizationBase="../Snecko/localization/eng" keyPrefix="SNECKO-">
+        <presets>
+          <preset id="card" base="card" markers="SneckoCardModel" />
+          <preset id="power" base="power" markers="TemporaryPower,SneckoPowerModel" />
+          <preset id="character" base="character" markers="DownfallCharacterModel" />
+          <preset id="relic" base="relic" markers="SneckoRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel" />
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+      <module baseDir="mod/SlimeBossCode" localizationBase="../SlimeBoss/localization/eng" keyPrefix="SLIMEBOSS-">
+        <presets>
+          <preset id="card" base="card" markers="SlimeBossCardModel" />
+          <preset id="power" base="power" markers="DownfallPowerModel,TemporaryPower,SlimeBossPowerModel" />
+          <preset id="character" base="character" markers="DownfallCharacterModel" />
+          <preset id="relic" base="relic" markers="DownfallRelicModel,SlimeBossRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel" />
+          <preset id="slime" markers="SlimeModel">
+            <files>
+              <file name="monsters" fields="name,description" />
+            </files>
+          </preset>
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+      <module baseDir="mod/AwakenedCode" localizationBase="../Awakened/localization/eng" keyPrefix="AWAKENED-">
+        <presets>
+          <preset id="card" base="card" markers="AwakenedCardModel">
+            <files>
+              <file name="chants" fields="chant?" />
+            </files>
+          </preset>
+          <preset id="power" base="power" markers="AwakenedPowerModel,TemporaryPower" />
+          <preset id="character" base="character" markers="DownfallCharacterModel" />
+          <preset id="relic" base="relic" markers="AwakenedRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel" />
+          <preset id="potions" markers="AwakenedPotionModel">
+            <files>
+              <file name="potions" fields="title,description,selectionScreenPrompt?" />
+            </files>
+          </preset>
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+      <module baseDir="mod/HexaghostCode" localizationBase="../Hexaghost/localization/eng" keyPrefix="HEXAGHOST-">
+        <presets>
+          <preset id="card" base="card" markers="HexaghostCardModel" />
+          <preset id="power" base="power" markers="TemporaryPower,HexaghostPowerModel" />
+          <preset id="potion" base="potion" markers="HexaghostPotionModel" />
+          <preset id="character" base="character" markers="DownfallCharacterModel" />
+          <preset id="relic" base="relic" markers="HexaghostRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel" />
+          <preset id="ghostflame" markers="GhostflameModel">
+            <files>
+              <file name="ghostflames" fields="title,description" />
+            </files>
+          </preset>
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+      <module baseDir="mod/HermitCode" localizationBase="../Hermit/localization/eng" keyPrefix="HERMIT-">
+        <presets>
+          <preset id="card" base="card" markers="HermitCardModel" />
+          <preset id="power" base="power" markers="DownfallPowerModel,TemporaryPower,HermitPowerModel" />
+          <preset id="character" base="character" markers="DownfallCharacterModel" />
+          <preset id="relic" base="relic" markers="DownfallRelicModel,HermitRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel" />
+          <preset id="slime" markers="SlimeModel">
+            <files>
+              <file name="monsters" fields="name" />
+            </files>
+          </preset>
+          <preset id="affliction" base="affliction" markers="DownfallAfflictionModel" />
+          <preset id="potion" base="potion" markers="HermitPotionModel" />
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+      <module baseDir="mod/GuardianCode" localizationBase="../Guardian/localization/eng" keyPrefix="GUARDIAN-">
+        <presets>
+          <preset id="card" base="card" markers="GuardianCardModel" />
+          <preset id="power" base="power" markers="GuardianPowerModel,DownfallPowerModel" />
+          <preset id="character" base="character" markers="DownfallCharacterModel" />
+          <preset id="relic" base="relic" markers="DownfallRelicModel,GuardianRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel" />
+          <preset id="gem" markers="GemModel">
+            <files>
+              <file name="gems" fields="title,description,smartDescription?" />
+            </files>
+          </preset>
+          <preset id="ghostflame" markers="GhostflameModel">
+            <files>
+              <file name="ghostflames" fields="title" />
+            </files>
+          </preset>
+          <preset id="potion" base="potion" markers="GuardianPotionModel" />
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+      <module baseDir="mod/DownfallCode" localizationBase="../Downfall/localization/eng" keyPrefix="DOWNFALL-">
+        <presets>
+          <preset id="card" base="card" markers="DownfallCardModel" />
+          <preset id="power" base="power" markers="DownfallPowerModel,TemporaryPower,PowerNextTurn" />
+          <preset id="relic" base="relic" markers="DownfallRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel" />
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+      <module baseDir="mod/AutomatonCode" localizationBase="../Automaton/localization/eng" keyPrefix="AUTOMATON-">
+        <presets>
+          <preset id="card" base="card" markers="AutomatonCardModel">
+            <files>
+              <file name="encode" fields="functionPrefix?,functionName?,functionEnd?" />
+            </files>
+          </preset>
+          <preset id="power" base="power" markers="AutomatonPowerModel,DownfallPowerModel,TemporaryPower" />
+          <preset id="character" base="character" markers="DownfallCharacterModel" />
+          <preset id="relic" base="relic" markers="AutomatonRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel,AutomatonEnchantmentModel" />
+          <preset id="potion" base="potion" markers="AutomatonPotionModel" />
+          <preset id="encodable" markers="Encodable">
+            <files>
+              <file name="encode" fields="encode" />
+            </files>
+          </preset>
+          <preset id="compilable" markers="Compilable,CardToPileCompile">
+            <files>
+              <file name="encode" fields="compile" />
+            </files>
+          </preset>
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+      <module baseDir="mod/ChampCode" localizationBase="../Champ/localization/eng" keyPrefix="CHAMP-">
+        <presets>
+          <preset id="card" base="card" markers="ChampCardModel" />
+          <preset id="power" base="power" markers="TemporaryPower,ChampPowerModel" />
+          <preset id="character" base="character" markers="DownfallCharacterModel" />
+          <preset id="relic" base="relic" markers="ChampRelicModel" />
+          <preset id="enchantment" base="enchantment" markers="DownfallEnchantmentModel" />
+          <preset id="stance" markers="ChampStanceModel">
+            <files>
+              <file name="champ_stances" fields="title,description,finisher" />
+            </files>
+          </preset>
+          <preset id="potion" base="potion" markers="ChampPotionModel" />
+        </presets>
+        <pinnedColors>
+          <color tag="gold" />
+          <color tag="blue" />
+        </pinnedColors>
+      </module>
+    </modules>
+  </component>
+</project>
