@@ -8,9 +8,9 @@ using SlimeBoss.SlimeBossCode.Core;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class FootballHelmet : SlimeBossRelicModel
+public class ProtectiveGear : SlimeBossRelicModel
 {
-    public FootballHelmet() : base(RelicRarity.Shop)
+    public ProtectiveGear() : base(RelicRarity.Shop)
     {
         WithEnergy(2);
         WithBlock(4);

@@ -68,11 +68,11 @@ public class SlimeBossTests
         Assert.AreEqual(hpBefore - 4, enemy.CurrentHp, "Applying Weak should cost the enemy 4 HP.");
     }
 
-    // Football Helmet: playing a 2 Energy Attack gives 4 Block; other plays do not.
+    // Protective Gear: playing a 2 Energy Attack gives 4 Block; other plays do not.
     [CardTest(typeof(SlimeBoss.SlimeBossCode.Core.SlimeBoss))]
-    public async Task FootballHelmetGrantsBlockOnTwoEnergyAttacksOnly(TestContext ctx)
+    public async Task ProtectiveGearGrantsBlockOnTwoEnergyAttacksOnly(TestContext ctx)
     {
-        await RelicCmd.Obtain<Relics.FootballHelmet>(ctx.Player);
+        await RelicCmd.Obtain<Relics.ProtectiveGear>(ctx.Player);
         var enemy = ctx.Combat.HittableEnemies.First();
         var blockBefore = ctx.Player.Creature.Block;
 

@@ -20,14 +20,11 @@
   "SLIMEBOSS-SLIMY_CLEAVER.title": "Slimy Cleaver",
   "SLIMEBOSS-SLIMY_CLEAVER.description": "Whenever you apply [gold]Weak[/gold] to an enemy, they lose [blue]{HpLoss}[/blue] HP.",
   "SLIMEBOSS-SLIMY_CLEAVER.flavor": "Dull enough to bounce right off, sharp enough to still get the job done.",
-  "SLIMEBOSS-FOOTBALL_HELMET.title": "Football Helmet",
-  "SLIMEBOSS-FOOTBALL_HELMET.description": "Whenever you play a {Energy:energyIcons()} Attack, gain [blue]{Block}[/blue] [gold]Block[/gold].",
-  "SLIMEBOSS-FOOTBALL_HELMET.flavor": "Built for the ones who charge in headfirst.",
+  "SLIMEBOSS-PROTECTIVE_GEAR.title": "Protective Gear",
+  "SLIMEBOSS-PROTECTIVE_GEAR.description": "Whenever you play a {Energy:energyIcons()} Attack, gain [blue]{Block}[/blue] [gold]Block[/gold].",
+  "SLIMEBOSS-PROTECTIVE_GEAR.flavor": "Built for the ones who charge in headfirst.",
   "SLIMEBOSS-STONE_OF_NOMAKK.title": "Stone of Nomakk",
   "SLIMEBOSS-STONE_OF_NOMAKK.description": "At the start of each combat, gain [blue]{PotencyPower}[/blue] [gold]Potency[/gold].",
   "SLIMEBOSS-STONE_OF_NOMAKK.flavor": "When presented to one of your Goop Gang, it seems to make the blob dance.",
-  "SEA_GLASS.SLIMEBOSS-SLIME_BOSS.title": "Legion Glass",
-  "SLIMEBOSS-PROTECTIVE_GEAR.title": "",
-  "SLIMEBOSS-PROTECTIVE_GEAR.description": "",
-  "SLIMEBOSS-PROTECTIVE_GEAR.flavor": ""
+  "SEA_GLASS.SLIMEBOSS-SLIME_BOSS.title": "Legion Glass"
 }
