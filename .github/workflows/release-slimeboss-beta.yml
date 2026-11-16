@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Clean stale build artifacts
-        run: rm -rf .godot obj bin
+        run: rm -rf mod/.godot mod/obj mod/bin
 
       - name: Set version from tag
         run: |
@@ -76,16 +76,16 @@ jobs:
 
       - name: Sync manifest version
         run: |
-          sed -i -E 's/("version"[[:space:]]*:[[:space:]]*")[0-9]+\.[0-9]+\.[0-9]+(")/\1'"$VERSION"'\2/' SlimeBoss.json
-          grep '"version"' SlimeBoss.json
+          sed -i -E 's/("version"[[:space:]]*:[[:space:]]*")[0-9]+\.[0-9]+\.[0-9]+(")/\1'"$VERSION"'\2/' mod/SlimeBoss.json
+          grep '"version"' mod/SlimeBoss.json
 
       - name: Build image atlases
         run: dotnet run --project ImageGen -c Release
 
       - name: Import Godot resources
         run: |
-          "$GODOT_PATH" --headless --audio-driver Dummy --import || true
-          "$GODOT_PATH" --headless --audio-driver Dummy --import
+          "$GODOT_PATH" --headless --audio-driver Dummy --path mod --import || true
+          "$GODOT_PATH" --headless --audio-driver Dummy --path mod --import
 
       # Publishing SlimeBoss.csproj also builds its Downfall.csproj reference, but only the
       # SlimeBossBeta output folder is packaged: Downfall itself stays a separate Workshop item.
@@ -100,7 +100,7 @@ jobs:
       - name: Publish SlimeBossBeta
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
-          dotnet publish SlimeBoss.csproj -c Release \
+          dotnet publish mod/SlimeBoss.csproj -c Release \
             /p:GodotPath="$GODOT_PATH" \
             /p:ModsPath="${{ github.workspace }}/output/mods/" \
             /p:SkipGodotImport=true
