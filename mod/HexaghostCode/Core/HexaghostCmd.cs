@@ -103,6 +103,7 @@ public static class HexaghostCmd
         CombatManager.Instance.History.Add(combatState,
             new WheelAdvanceEntry(source, endOfTurnAdvance, player.Creature, combatState.RoundNumber,
                 player.Creature.Side, CombatManager.Instance.History, combatState.Players));
+        Refresh(player);
         await HexaghostHook.AfterWheelAdvance(player.Creature.CombatState!, ctx, player, source,
             GetCurrentFlame(player),
             GetCurrentIndex(player), endOfTurnAdvance);
@@ -159,6 +160,7 @@ public static class HexaghostCmd
         CombatManager.Instance.History.Add(combatState,
             new WheelRetractEntry(source, player.Creature, combatState.RoundNumber,
                 player.Creature.Side, CombatManager.Instance.History, combatState.Players));
+        Refresh(player);
         await HexaghostHook.AfterWheelRetract(player.Creature.CombatState!, ctx, player, source,
             GetCurrentFlame(player),
             GetCurrentIndex(player));
@@ -201,7 +203,8 @@ public static class HexaghostCmd
         var flame = GetCurrentFlame(player);
         flame.Extinguish();
         flame.UpdateVisuals();
-        Refresh(player);
+        // No Refresh here: the visuals read the card's Advance/Retract history entry (GetFlameBeforePlay), which the
+        // callers add right after moving. Refreshing earlier showed the flame moved onto as primed (ignited).
         return Task.CompletedTask;
     }
 
