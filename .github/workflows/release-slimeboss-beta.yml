@@ -124,7 +124,8 @@ jobs:
 
   steam:
     needs: build
-    runs-on: ubuntu-latest
+    # Pinned: steamcmd (steam-workshop-deploy container) fails to self-update on ubuntu-26.04, the new ubuntu-latest.
+    runs-on: ubuntu-24.04
     # Same `slimeboss` environment as the build job; add a required reviewer there to gate uploads.
     environment: slimeboss
     permissions:
