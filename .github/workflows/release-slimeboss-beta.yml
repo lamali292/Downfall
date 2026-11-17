@@ -72,7 +72,7 @@ jobs:
           unzip -q megadot.zip -d megadot
           chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
-          unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+          unzip -oq spine-godot.zip -d "${{ github.workspace }}/mod"
 
       - name: Sync manifest version
         run: |
@@ -111,6 +111,9 @@ jobs:
           for f in SlimeBossBeta.dll SlimeBossBeta.pck SlimeBossBeta.json; do
             test -f "output/mods/SlimeBossBeta/$f" || { echo "$f missing"; exit 1; }
           done
+          # Imported Spine resources must be in the pck, else the sprite fails to load in game
+          # (happens when the spine-godot extension isn't in mod/bin during the Godot import).
+          grep -qa '\.spatlas' output/mods/SlimeBossBeta/SlimeBossBeta.pck || { echo "SlimeBossBeta.pck has no imported Spine resources"; exit 1; }
           find output/mods/SlimeBossBeta -name '*.pdb' -delete
           ls -la output/mods/SlimeBossBeta
 
