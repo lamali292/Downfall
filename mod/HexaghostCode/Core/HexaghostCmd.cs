@@ -363,7 +363,7 @@ public static class HexaghostCmd
         else
             throw new Exception(
                 $"Card {card.Title} does not have a damage variable supported by CommonActions.CardAttack");
-        a = a.FromCardCompatibility(card, cardPlay);
+        a = a.FromCard(card, cardPlay);
         if (cardPlay?.Target != null) return a.Targeting(cardPlay.Target);
         if (card.CombatState != null)
             return card.TargetType == TargetType.AllEnemies

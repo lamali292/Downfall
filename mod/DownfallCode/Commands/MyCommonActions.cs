@@ -150,7 +150,7 @@ public static class MyCommonActions
     private static AttackCommand FromModel(this AttackCommand cmd, AbstractModel model)
     {
         if (model is CardModel card)
-            return cmd.FromCardCompatibility(card, null);
+            return cmd.FromCard(card, null);
         if (cmd.Attacker != null)
             throw new InvalidOperationException("Attacker has already been set.");
 

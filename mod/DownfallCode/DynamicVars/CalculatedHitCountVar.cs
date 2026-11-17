@@ -31,7 +31,7 @@ public static class HitCountPreview
     public static decimal Modify(CardModel card, int hits, bool runGlobalHooks)
     {
         if (!runGlobalHooks || card.CombatState == null) return hits;
-        return Hook.ModifyAttackHitCount(card.CombatState, DamageCmd.Attack(0m).FromCardCompatibility(card, null), hits);
+        return Hook.ModifyAttackHitCount(card.CombatState, DamageCmd.Attack(0m).FromCard(card, null), hits);
     }
 }
 
