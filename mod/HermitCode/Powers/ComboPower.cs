@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,12 +6,12 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Powers;
 
-public sealed class ComboPower : HermitPowerModel, IModifyCardPlayResultLocation
+public sealed class ComboPower : HermitPowerModel
 {
     public override int DisplayAmount => Math.Max(0, Amount - GetInternalData<Data>().DeadOnCardsPlayed);
 
-    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
-        ResourceInfo resources, CardLocationCompatiblity cardLocation)
+    public override CardLocation ModifyCardPlayResultLocation(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocation cardLocation)
     {
         if (
             GetInternalData<Data>().DeadOnCardsPlayed >= Amount
@@ -24,7 +23,7 @@ public sealed class ComboPower : HermitPowerModel, IModifyCardPlayResultLocation
 
         Flash();
         SetDeadOnCardsPlayed(GetInternalData<Data>().DeadOnCardsPlayed + 1);
-        return new CardLocationCompatiblity(card.Owner, PileType.Hand, CardPilePosition.Bottom);
+        return new CardLocation(card.Owner, PileType.Hand, CardPilePosition.Bottom);
     }
 
     protected override object InitInternalData()

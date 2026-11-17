@@ -47,7 +47,7 @@ public static class GuardianHook
 
     /// <summary>
     ///     Overloads for callers with no <see cref="PlayerChoiceContext" /> at hand (e.g. a
-    ///     <c>IModifyCardPlayResultLocation</c> redirect into Stasis, which never calls
+    ///     <c>ModifyCardPlayResultLocation</c> redirect into Stasis, which never calls
     ///     <see cref="GuardianCmd.PutIntoStasis" />) — a fresh context is created per listener via
     ///     <see cref="MyHookUtils.DispatchWithContext{THook}" />.
     /// </summary>

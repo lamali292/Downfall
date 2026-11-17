@@ -1,4 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -15,6 +15,6 @@ public class SneckoConstrictPower() : SneckoPowerModel(PowerType.Debuff)
     {
         if (side != Owner.Side)
             return;
-        await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
+        await CreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
     }
 }

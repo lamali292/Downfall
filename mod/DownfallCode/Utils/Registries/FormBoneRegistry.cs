@@ -1,79 +1,23 @@
 ﻿using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
 
 namespace Downfall.DownfallCode.Utils;
 
-public static class FormBoneRegistry
-{
-    private const string Ns = "MegaCrit.Sts2.Core.Nodes.Vfx.Forms.";
-    private static readonly Dictionary<(string Form, Type Character), string> Bones = new();
-
-    public static void RegisterVoidForm<TCharacter>(string bone) where TCharacter : CharacterModel
-    {
-        Register(Ns + "NVoidFormVfx", typeof(TCharacter), bone);
-    }
-
-    public static void RegisterSerpentForm<TCharacter>(string bone) where TCharacter : CharacterModel
-    {
-        Register(Ns + "NSerpentFormVfx", typeof(TCharacter), bone);
-    }
-
-    public static void RegisterReaperForm<TCharacter>(string bone) where TCharacter : CharacterModel
-    {
-        Register(Ns + "NReaperFormVfx", typeof(TCharacter), bone);
-    }
-
-    public static void RegisterEchoForm<TCharacter>(string bone) where TCharacter : CharacterModel
-    {
-        Register(Ns + "NEchoFormVfx", typeof(TCharacter), bone);
-    }
-
-    public static void Register(string formTypeName, Type characterType, string boneName)
-    {
-        Bones[(formTypeName, characterType)] = boneName;
-    }
-
-    public static bool TryGet(string formTypeName, Type characterType, out string? boneName)
-    {
-        return Bones.TryGetValue((formTypeName, characterType), out boneName);
-    }
-}
-
-/*
+/// <summary>Which spine bone the vanilla Form VFX (Void/Serpent/Reaper/Echo) attaches to, per character.</summary>
 public static class FormBoneRegistry
 {
     private static readonly Dictionary<(Type Form, Type Character), string> Bones = new();
 
-
-    public static void RegisterVoidForm<TCharacter>(string boneName)
+    /// <summary>Attaches vanilla form VFX <typeparamref name="TForm" /> (e.g. <c>NVoidFormVfx</c>) to <paramref name="bone" /> for <typeparamref name="TCharacter" />.</summary>
+    public static void Register<TForm, TCharacter>(string bone)
+        where TForm : NFormVfx
         where TCharacter : CharacterModel
     {
-        Register<NVoidFormVfx, TCharacter>(boneName);
+        Bones[(typeof(TForm), typeof(TCharacter))] = bone;
     }
-
-    public static void RegisterSerpentForm<TCharacter>(string boneName)
-        where TCharacter : CharacterModel
-    {
-        Register<NSerpentFormVfx, TCharacter>(boneName);
-    }
-
-    public static void RegisterReaperForm<TCharacter>(string boneName)
-        where TCharacter : CharacterModel
-    {
-        Register<NReaperFormVfx, TCharacter>(boneName);
-    }
-
-    public static void RegisterEchoForm<TCharacter>(string boneName)
-        where TCharacter : CharacterModel
-    {
-        Register<NEchoFormVfx, TCharacter>(boneName);
-    }
-
-
-    public static void Register<TForm, TCharacter>(string boneName)
-        where TForm : Node2D
-        where TCharacter : CharacterModel
-        => Bones[(typeof(TForm), typeof(TCharacter))] = boneName;
 
     public static bool TryGet(Type formType, Type characterType, out string? boneName)
-        => Bones.TryGetValue((formType, characterType), out boneName);
-}*/
+    {
+        return Bones.TryGetValue((formType, characterType), out boneName);
+    }
+}

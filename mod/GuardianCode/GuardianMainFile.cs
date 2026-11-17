@@ -11,6 +11,7 @@ using Guardian.GuardianCode.Interfaces;
 using Guardian.GuardianCode.Localization;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Saves.Runs;
@@ -42,10 +43,10 @@ public static class GuardianMainFile
         TranscendenceHooks.OnTransformed += CopyGemsToTranscendence;
         CombatUiHooks.Register(GuardianCombatModel.SetupGuardianCombatUi);
 
-        FormBoneRegistry.RegisterVoidForm<Core.Guardian>("head");
-        FormBoneRegistry.RegisterSerpentForm<Core.Guardian>("body");
-        FormBoneRegistry.RegisterReaperForm<Core.Guardian>("head");
-        FormBoneRegistry.RegisterEchoForm<Core.Guardian>("head");
+        FormBoneRegistry.Register<NVoidFormVfx, Core.Guardian>("head");
+        FormBoneRegistry.Register<NSerpentFormVfx, Core.Guardian>("body");
+        FormBoneRegistry.Register<NReaperFormVfx, Core.Guardian>("head");
+        FormBoneRegistry.Register<NEchoFormVfx, Core.Guardian>("head");
     }
 
     private static void CopyGemsToTranscendence(CardModel starter, CardModel result)

@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -36,7 +35,7 @@ public class DamageEncode : ValueEncode
                 .FromCardCompatibility(card, cardPlay)
                 .Targeting(target)
                 .Execute(ctx);
-        return CompatibilityCreatureCmd.Damage(ctx, target, model.DynamicVars.Damage.BaseValue,
+        return CreatureCmd.Damage(ctx, target, model.DynamicVars.Damage.BaseValue,
             DamageProps.nonCardUnpowered,
             model.Creature, null, null);
     }

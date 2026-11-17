@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,7 +25,7 @@ public class TrashToTreasure : SneckoCardModel
             e => e != this, this)).FirstOrDefault();
         if (card == null) return;
         var cost = card.EnergyCost.GetAmountToSpend();
-        await CardCmdCompatibility.Exhaust(ctx, card);
+        await CardCmd.Exhaust(ctx, card);
         await PlayerCmd.GainEnergy(cost, Owner);
     }
 }

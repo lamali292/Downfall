@@ -1,5 +1,5 @@
-using Downfall.DownfallCode.Compatibility;
 using Godot;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Cards;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -50,16 +50,16 @@ public class CardRemovalCmd
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Cubic);
 
-        if (!TestMode.IsOn && CardRemoveVfxCompat.IsAvailable)
+        if (!TestMode.IsOn)
         {
             tween.TweenInterval(0.25);
             tween.TweenCallback(Callable.From(() =>
             {
-                var vfx = CardRemoveVfxCompat.Create(cardNode);
+                var vfx = NCardRemoveVfx.Create(cardNode);
                 if (vfx != null)
                     container.AddChildSafely(vfx);
             }));
-            tween.TweenInterval(CardRemoveVfxCompat.DeleteCardDelay);
+            tween.TweenInterval(NCardRemoveVfx.deleteCardDelay);
         }
         tween.TweenCallback(Callable.From(cardNode.QueueFreeSafely));
     }

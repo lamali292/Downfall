@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -16,11 +15,11 @@ using SlimeBoss.SlimeBossCode.Interfaces;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff), IModifyDamageAdditive
+public class GoopPower() : SlimeBossPowerModel(PowerType.Debuff)
 {
     public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
 
-    public decimal ModifyDamageAdditiveCompability(
+    public override decimal ModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,

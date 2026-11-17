@@ -7,6 +7,7 @@ using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Patches;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
 using MegaCrit.Sts2.Core.Models;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
@@ -38,10 +39,10 @@ public static class HermitMainFile
             .PatchAll();
 
 
-        FormBoneRegistry.RegisterVoidForm<Core.Hermit>("HEAD");
-        FormBoneRegistry.RegisterSerpentForm<Core.Hermit>("Waist");
-        FormBoneRegistry.RegisterReaperForm<Core.Hermit>("HEAD");
-        FormBoneRegistry.RegisterEchoForm<Core.Hermit>("Waist");
+        FormBoneRegistry.Register<NVoidFormVfx, Core.Hermit>("HEAD");
+        FormBoneRegistry.Register<NSerpentFormVfx, Core.Hermit>("Waist");
+        FormBoneRegistry.Register<NReaperFormVfx, Core.Hermit>("HEAD");
+        FormBoneRegistry.Register<NEchoFormVfx, Core.Hermit>("Waist");
     }
 
     private static void PostModelInit()

@@ -3,7 +3,6 @@ using Awakened.AwakenedCode.CustomEnums;
 using Awakened.AwakenedCode.Powers;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -33,7 +32,7 @@ public class Nihil : AwakenedCardModel
             {
                 var a = combatStateEnemy.GetInstancedPowerAmountSum<ManaburnPower>();
                 if (a <= 0) continue;
-                await CompatibilityCreatureCmd.Damage(
+                await CreatureCmd.Damage(
                     ctx,
                     combatStateEnemy,
                     a,

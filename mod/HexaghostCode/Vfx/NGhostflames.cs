@@ -1,8 +1,8 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Utils.UI;
 using Godot;
 using Hexaghost.HexaghostCode.Core;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -364,7 +364,7 @@ public partial class NGhostflames : Control
         // predates get_global_bone_transform (public branch, as of 2026-09), where we
         // fall back to a fixed offset.
         var spineBody = _creatureNode.Visuals.SpineBody;
-        var coreBoneCenter = spineBody?.GetGlobalBoneTransformCompat("hexacore")?.Origin;
+        var coreBoneCenter = GetGlobalBoneTransform(spineBody, "hexacore")?.Origin;
         var globalCenter = coreBoneCenter
             ?? GhostflameLayout.FallbackCenter(_creatureNode.GlobalPosition, scaleY);
 
@@ -390,6 +390,12 @@ public partial class NGhostflames : Control
             anchor.GlobalPosition = fire.GlobalPosition;
             anchor.Rotation = -Rotation;
         }
+    }
+
+    private static Transform2D? GetGlobalBoneTransform(MegaSprite? sprite, string boneName)
+    {
+        if (sprite == null) return null;
+        return sprite.GetSkeleton()?.FindBone(boneName) == null ? null : sprite.GetGlobalBoneTransform(boneName);
     }
 
     // ── Wheel state ─────────────────────────────────────────────────────────────

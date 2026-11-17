@@ -2,7 +2,6 @@
 using Champ.ChampCode.Relics;
 using Champ.ChampCode.Stance;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
@@ -108,12 +107,8 @@ public class Champ : DownfallCharacterModel
         skeleton.SetSlotsToSetupPose();
     }
 
-    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
     {
-        var creature = controller.GetOwningCreature();
-        if (creature == null)
-            return null;
-
         ApplySkin(controller, creature);
 
         var idle = new AnimState("idle_loop", true);
@@ -139,7 +134,7 @@ public class Champ : DownfallCharacterModel
             if (trigger == CreatureAnimator.hitTrigger)
                 continue;
             foreach (var (_, state, when) in idles)
-                animState.AddConditionalNextState(state, when);
+                animState.AddNextState(state, when);
             animator.AddAnyState(trigger, animState);
         }
 
@@ -154,7 +149,7 @@ public class Champ : DownfallCharacterModel
         foreach (var (hurtState, hurtWhen) in hurts)
         {
             foreach (var (_, idleState, idleWhen) in idles)
-                hurtState.AddConditionalNextState(idleState, idleWhen);
+                hurtState.AddNextState(idleState, idleWhen);
 
             animator.AddAnyState(CreatureAnimator.hitTrigger, hurtState, hurtWhen);
         }

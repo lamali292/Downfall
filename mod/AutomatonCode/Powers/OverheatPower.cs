@@ -1,5 +1,4 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -18,7 +17,7 @@ public class OverheatPower() : AutomatonPowerModel(PowerType.Debuff)
         if (creator == null || creator.Creature != Applier)
             return;
         Flash();
-        await CompatibilityCreatureCmd.Damage(new BlockingPlayerChoiceContext(), Owner, Amount,
+        await CreatureCmd.Damage(new BlockingPlayerChoiceContext(), Owner, Amount,
             DamageProps.nonCardHpLoss, card.Owner.Creature, card, null);
         await PowerCmd.Remove(this);
     }

@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using Hexaghost.HexaghostCode.Core;
+﻿using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,23 +8,23 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Powers;
 
-public class SizzlePower : HexaghostPowerModel, IModifyCardPlayResultLocation
+public class SizzlePower : HexaghostPowerModel
 {
     public SizzlePower()
     {
         WithTip(CardKeyword.Exhaust);
     }
     
-    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
-        ResourceInfo resources, CardLocationCompatiblity cardLocation)
+    public override CardLocation ModifyCardPlayResultLocation(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocation cardLocation)
     {
-        if (card.Owner.Creature != Owner || cardLocation.PileType != PileType.Discard)
+        if (card.Owner.Creature != Owner || cardLocation.pileType != PileType.Discard)
             return cardLocation;
-        return cardLocation with { PileType = PileType.Exhaust };
+        return cardLocation with { pileType = PileType.Exhaust };
     }
 
-    public async Task AfterModifyingCardPlayResultLocationCompability(CardModel card,
-        CardLocationCompatiblity cardLocation)
+    public override async Task AfterModifyingCardPlayResultLocation(CardModel card,
+        CardLocation cardLocation)
     {
         if (card.Owner.Creature != Owner) return;
         Flash();

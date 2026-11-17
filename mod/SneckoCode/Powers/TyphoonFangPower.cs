@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.Combat;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -43,7 +42,7 @@ public class TyphoonFangPower : SneckoPowerModel, IAfterOverflowEffect
 
         var enemy = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
 
-        var freshDupe = Source?.CreateDupeCompat();
+        var freshDupe = Source == null ? null : Source.CreateDupe(Source.Owner);
         Dupe = freshDupe;
         if (enemy == null || freshDupe == null || LocalContext.NetId == null) return;
         Flash();
@@ -60,7 +59,7 @@ public class TyphoonFangPower : SneckoPowerModel, IAfterOverflowEffect
 
     public void SetCard(CardModel card)
     {
-        Dupe = card.CreateDupeCompat();
+        Dupe = card.CreateDupe(card.Owner);
         Source = card;
     }
 

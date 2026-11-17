@@ -1,4 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
+﻿using MegaCrit.Sts2.Core.Commands;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
@@ -36,7 +36,7 @@ public class PoltergeistPower : HexaghostPowerModel, IWheelMoved
         if (player.Creature != Owner) return;
         var creature = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (creature == null) return;
-        await CompatibilityCreatureCmd.Damage(ctx, creature, Amount,
+        await CreatureCmd.Damage(ctx, creature, Amount,
             DamageProps.nonCardHpLoss, Owner, null, null);
         Flash();
     }

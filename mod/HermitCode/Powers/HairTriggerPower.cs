@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using Hermit.HermitCode.Cards.Basic;
+﻿using Hermit.HermitCode.Cards.Basic;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
@@ -21,12 +20,12 @@ public class HairTriggerPower : HermitPowerModel, IAfterDeadOnTrigger
 
     public async Task AfterDeadOnTrigger(PlayerChoiceContext ctx, CardModel card)
     {
-        if (card.Owner.Creature != Owner) return;
+        if (card.Owner.Creature != Owner || Owner.Player == null) return;
         var canonical = ModelDb.Card<StrikeHermit>();
         var strike = CombatState.CreateCard(canonical, card.Owner);
         for (var i = 0; i < Amount; i++)
         {
-            var clone = strike.CreateDupeCompat(Owner.Player);
+            var clone = strike.CreateDupe(Owner.Player);
             await CardCmd.AutoPlay(ctx, clone, null);
         }
     }

@@ -1,7 +1,6 @@
 ﻿using Awakened.AwakenedCode.Cards.Basic;
 using Awakened.AwakenedCode.Relics;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Config;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
@@ -66,12 +65,9 @@ public class Awakened : DownfallCharacterModel
 
     private Func<Creature, bool> IsAwakened => creature => AwakenedModel.IsAwakened(creature.Player);
 
-    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
-    {
-        var creature = controller.GetOwningCreature();
-        if (creature == null)
-            return null;
 
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
+    {
         var idle            = new AnimState("idle_loop", true);
         var idleLow         = new AnimState("low_health_loop", true);
         var idleAwakened    = new AnimState("idle_loop_awakened", true);
@@ -93,7 +89,7 @@ public class Awakened : DownfallCharacterModel
         foreach (var (animState, trigger) in AnimationStates)
         {
             foreach (var (_, state, when) in idles)
-                animState.AddConditionalNextState(state, when);
+                animState.AddNextState(state, when);
             animator.AddAnyState(trigger, animState);
         }
 
@@ -103,7 +99,6 @@ public class Awakened : DownfallCharacterModel
 
         AnimState PickIdle() => idles.First(i => i.when()).state;
     }
-
 }
 
 public class AwakenedRelicPool : DownfallRelicPool<Awakened>;

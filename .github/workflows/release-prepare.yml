@@ -7,7 +7,7 @@ on:
         description: 'Version (X.Y.Z). Leave empty to auto-bump the patch number.'
         required: false
       game_version:
-        description: 'STS2 version for min_game_version (e.g. 0.107.1). Empty = keep current.'
+        description: 'STS2 version for min_game_version (e.g. 0.111.1). Empty = keep current.'
         required: false
       steam:
         description: 'Also upload to Steam Workshop'

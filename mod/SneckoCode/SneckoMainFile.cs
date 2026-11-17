@@ -3,6 +3,7 @@ using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
 using Snecko.SneckoCode.Core;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
@@ -34,10 +35,10 @@ public static class SneckoMainFile
             .Add(typeof(SneckoSpiritAutoSkipPatch))
             .PatchAll();*/
 
-        FormBoneRegistry.RegisterVoidForm<Core.Snecko>("eye");
-        FormBoneRegistry.RegisterSerpentForm<Core.Snecko>("spine5");
-        FormBoneRegistry.RegisterReaperForm<Core.Snecko>("spine10");
-        FormBoneRegistry.RegisterEchoForm<Core.Snecko>("spine10");
+        FormBoneRegistry.Register<NVoidFormVfx, Core.Snecko>("eye");
+        FormBoneRegistry.Register<NSerpentFormVfx, Core.Snecko>("spine5");
+        FormBoneRegistry.Register<NReaperFormVfx, Core.Snecko>("spine10");
+        FormBoneRegistry.Register<NEchoFormVfx, Core.Snecko>("spine10");
 
         //RunManager.Instance.RunStarted += _ => SneckoSpiritGate.Reset();
     }

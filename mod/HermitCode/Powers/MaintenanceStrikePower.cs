@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -7,14 +6,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-public sealed class MaintenanceStrikePower : HermitPowerModel, IModifyDamageAdditive
+public sealed class MaintenanceStrikePower : HermitPowerModel
 {
     public MaintenanceStrikePower()
     {
         WithStrikeTip();
     }
 
-    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer == Owner &&

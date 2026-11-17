@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using Automaton.AutomatonCode.Events;
@@ -25,9 +24,4 @@ public static class EncodeOutcome
             await AutomatonCmd.EncodeCard(card, ctx);
     }
     
-    public static CardLocationCompatiblity HideFromDiscard(CardModel card, CardLocationCompatiblity location)
-    {
-        if (location.PileType != PileType.Discard || !AutomatonCmd.IsEncodable(card)) return location;
-        return location with { PileType = PileType.None };
-    }
 }

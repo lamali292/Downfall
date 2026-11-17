@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -17,7 +17,7 @@ public sealed class OverwhelmingPowerPower() : HermitPowerModel(PowerType.Debuff
         var player = Owner.Player;
         if (player?.PlayerCombatState?.Energy != 0) return;
         Flash();
-        await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount,
+        await CreatureCmd.Damage(ctx, Owner, Amount,
             DamageProps.nonCardHpLoss, Owner, null, null);
     }
 }

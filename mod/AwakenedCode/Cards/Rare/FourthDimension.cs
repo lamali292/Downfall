@@ -1,7 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -33,7 +32,7 @@ public class FourthDimension : AwakenedCardModel
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++) cards.Add(card.CreateClone());
         var a = await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Draw, Owner,
             CardPilePosition.Random);
-        await CardCmdCompatibility.Exhaust(ctx, card);
+        await CardCmd.Exhaust(ctx, card);
         CardCmd.PreviewCardPileAdd(a, 0.1f, CardPreviewStyle.MessyLayout);
     }
 }

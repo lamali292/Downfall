@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using Downfall.DownfallCode.Voting;
+﻿using Downfall.DownfallCode.Voting;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Helpers;
@@ -101,7 +100,7 @@ public static class TestMainFile
     private static async Task WaitForSaveManagerReady()
     {
         var tree = (SceneTree)Engine.GetMainLoop();
-        for (var i = 0; i < 300 && !SaveManager.Instance.ArePrefsLoaded(); i++)
+        for (var i = 0; i < 300 && !SaveManager.Instance.IsPrefsLoaded; i++)
             await tree.ToSignal(tree, SceneTree.SignalName.ProcessFrame);
     }
 

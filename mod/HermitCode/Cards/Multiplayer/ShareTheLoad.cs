@@ -32,8 +32,7 @@ public class ShareTheLoad : HermitCardModel
             foreach (var player in Owner.OtherTeammates)
             {
                 await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, player);
-                // TODO : use DrawWithoutBlockingOnOtherPlayers here on main/beta merge.
-                await CardPileCmd.Draw(ctx, DynamicVars.Cards.BaseValue, player);
+                await CardPileCmd.DrawWithoutBlockingOnOtherPlayers(ctx, DynamicVars.Cards.BaseValue, player, this);
             }
         });
     }

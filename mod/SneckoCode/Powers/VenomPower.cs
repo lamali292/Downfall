@@ -1,4 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +15,7 @@ public class VenomPower() : SneckoPowerModel(PowerType.Debuff)
         CardModel? cardSource)
     {
         if (power == this || applier == Owner || power.Owner != Owner || power.GetDownfallTypeForAmount(amount) != PowerType.Debuff) return;
-        await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, applier, null,
+        await CreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, applier, null,
             null);
     }
 }

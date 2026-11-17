@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -27,7 +26,7 @@ public class Refreshment : ChampCardModel
         await ChampCmd.BerserkerCombo(cardPlay, async () =>
         {
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-            await CardCmdCompatibility.Exhaust(ctx, this);
+            await CardCmd.Exhaust(ctx, this);
         });
         await ChampCmd.DefensiveCombo(cardPlay, () => CommonActions.Draw(this, ctx));
     }

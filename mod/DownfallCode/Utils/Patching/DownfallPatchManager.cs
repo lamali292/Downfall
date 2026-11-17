@@ -11,11 +11,9 @@ public class DownfallPatchManager
     {
         var patcher = ModPatcher.Create(DownfallMainFile.ModId, DownfallMainFile.Logger)
             .Add(typeof(ModelDbInitPatch))
-            .Add(typeof(ModelIdCacheCompletionPatch))
             .Add(typeof(AfterDeathSourceCompatPatch))
             .Add(typeof(DynamicVarConvertibleValuePatch))
             .Add(typeof(CombatUiActivatePatch))
-            .Add(typeof(ModifyDamageInternalPatch))
             .Add(typeof(CustomAfflictionModel.AfflictionModelOverlayPathPatch))
             .Add(typeof(CardDescriptionPatch))
             .Add(typeof(GetCardTextPatch))
@@ -40,7 +38,6 @@ public class DownfallPatchManager
             .Add(typeof(PowerShouldRemoveDueToZeroPatch))
             .Add(typeof(DeferredInitializationFmodFlushPatch))
             .Add(typeof(NCardUpdateTypePlaquePatch))
-            .Add(typeof(RefreshConditionalNextStatesPatch))
             .Add(typeof(PluralRulesPatch))
             .Add(typeof(TranscendenceTransformationPatch))
             .Add(typeof(CardModifierGlowGoldPatch))
@@ -76,34 +73,20 @@ public class DownfallPatchManager
             .Add(typeof(RunConfigSyncHook))
             .Add(typeof(PrismaticGemPoolFilter));
 
-        patcher.Add(GameVersion.HasResolveTurnEndCardEffects
-            ? typeof(ReturnToHandAfterTurnEndPatchBeta)
-            : typeof(ReturnToHandAfterTurnEndPatchMain));
+        patcher.Add(typeof(ReturnToHandAfterTurnEndPatch))
+            .Add(typeof(NCardUpdatePortraitPatch));
 
-        patcher.Add(GameVersion.HasNCardUpdatePortrait
-            ? typeof(NCardUpdatePortraitPatch)
-            : typeof(NCardReloadPortraitPatch));
-
-        foreach (var patch in CardPlayLocationCompat.PatchTypes)
-            patcher.Add(patch);
-
-        // Handshake mod-list mismatch handling only exists on beta; main has no PeerVersionInfo/HandshakeFailed to hook.
-        if (GameVersion.HasHandshakeModList)
-            patcher.Add(typeof(AdvertiseDisabledCharactersPatch))
-                .Add(typeof(CaptureFailedJoinLobbyPatch))
-                .Add(typeof(CharacterMismatchPopupPatch))
-                .Add(typeof(CharacterMismatchPopupButtonsPatch));
+        patcher.Add(typeof(AdvertiseDisabledCharactersPatch))
+            .Add(typeof(CaptureFailedJoinLobbyPatch))
+            .Add(typeof(CharacterMismatchPopupPatch))
+            .Add(typeof(CharacterMismatchPopupButtonsPatch));
 
         patcher.Add(typeof(IsEditorPatches));
 
-        // Todo : only for 0.110.1
-        // /*
-        // patcher.Add(typeof(VoidFormBonePatch))
-        //     .Add(typeof(ReaperFormBonePatch))
-        //     .Add(typeof(SerpentFormBonePatch))
-        //     .Add(typeof(EchoFormBonePatch));
-        //     */
-        FormBonePatcher.Apply(patcher.Harmony, DownfallMainFile.Logger);
+        patcher.Add(typeof(VoidFormBonePatch))
+            .Add(typeof(SerpentFormBonePatch))
+            .Add(typeof(ReaperFormBonePatch))
+            .Add(typeof(EchoFormBonePatch));
 
         patcher.PatchAll();
     }

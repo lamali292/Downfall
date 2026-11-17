@@ -1,5 +1,6 @@
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.History;
 using Hermit.HermitCode.Utils;
@@ -35,11 +36,11 @@ public sealed class Ricochet : HermitCardModel
         if (play.Target == null) return;
         // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
         var extraHitCount = (int)((CalculatedVar)DynamicVars["CalculatedHits"]).Calculate(play.Target);
-        var context = await AttackContextCompatibility.CreateContextAsync(CombatState!, ctx, play);
+        var context = await AttackCommand.CreateContextAsync(CombatState!, ctx, play);
         try
         {
             HermitSfx.PlayGun2();
-            var mainHits = (await CompatibilityCreatureCmd.Damage(
+            var mainHits = (await CreatureCmd.Damage(
                 ctx, play.Target, DynamicVars.Damage.BaseValue,
                 DamageProps.card,
                 this, play)).ToList();
@@ -52,7 +53,7 @@ public sealed class Ricochet : HermitCardModel
                 {
                     var target = RunState!.Rng.CombatTargets.NextItem(CombatState!.HittableEnemies);
                     if (target is not { IsHittable: true }) continue;
-                    context.AddHit(await CompatibilityCreatureCmd.Damage(
+                    context.AddHit(await CreatureCmd.Damage(
                         ctx, target, DynamicVars.Damage.BaseValue,
                         DamageProps.card,
                         Owner.Creature, this, play));

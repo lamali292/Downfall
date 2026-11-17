@@ -1,5 +1,5 @@
 ﻿using Awakened.AwakenedCode.Core;
-using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -14,7 +14,7 @@ public class DaggerstormPower : AwakenedPowerModel
         if (player?.Creature != Owner) return;
         var enemy = card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (enemy == null) return;
-        await CompatibilityCreatureCmd.Damage(new BlockingPlayerChoiceContext(), enemy, Amount,
+        await CreatureCmd.Damage(new BlockingPlayerChoiceContext(), enemy, Amount,
             DamageProps.nonCardUnpowered, Owner, null, null);
     }
 }

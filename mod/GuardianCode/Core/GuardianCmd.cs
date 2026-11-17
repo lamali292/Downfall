@@ -1,6 +1,5 @@
 ﻿using Downfall.DownfallCode.Extensions;
 using BaseLib.Patches.Content;
-using Downfall.DownfallCode.Compatibility;
 using Guardian.GuardianCode.Cards.Abstract;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.Displays;
@@ -129,7 +128,7 @@ public static class GuardianCmd
     {
         if (card.Keywords.Contains(GuardianKeyword.Volatile))
         {
-            await CardCmdCompatibility.Exhaust(ctx, card);
+            await CardCmd.Exhaust(ctx, card);
             return;
         }
 
