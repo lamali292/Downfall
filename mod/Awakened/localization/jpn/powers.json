@@ -93,7 +93,7 @@
     "AWAKENED-SPLIT_WIDE_POWER.description": "この敵をアタックするたび、ターン終了時まで[gold]筋力[/gold]を得る。",
     "AWAKENED-SPLIT_WIDE_POWER.smartDescription": "この敵をアタックするたび、ターン終了時まで[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
     "AWAKENED-STORM_RULER_POWER.title": "ストームルーラー",
-    "AWAKENED-STORM_RULER_POWER.description": "[gold]雷撃[/gold]が追加ダメージを与える。",
+    "AWAKENED-STORM_RULER_POWER.description": "[gold]雷撃[/gold]のダメージが増加する。",
     "AWAKENED-STORM_RULER_POWER.smartDescription": "[gold]雷撃[/gold]のダメージが[blue]{Amount}[/blue]増加する。",
     "AWAKENED-THAUMATURGY_POWER.title": "魔導学",
     "AWAKENED-THAUMATURGY_POWER.description": "次のターン開始時、[gold]セレモニー[/gold]を1枚[gold]手札[/gold]に加える。",
