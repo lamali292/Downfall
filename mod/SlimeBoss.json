@@ -6,15 +6,15 @@
   "version": "0.1.22",
   "has_pck": true,
   "has_dll": true,
-  "min_game_version": "0.107.1",
+  "min_game_version": "0.111.1",
   "dependencies": [
     {
       "id": "BaseLib",
-      "min_version": "3.4.7"
+      "min_version": "3.4.8"
     },
     {
       "id": "Downfall",
-      "min_version": "0.1.21"
+      "min_version": "0.1.26"
     }
   ],
   "affects_gameplay": true
