@@ -6,7 +6,6 @@ using BaseLib.Patches.Saves;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Downfall.DownfallCode.Audio;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Config;
 using Downfall.DownfallCode.CustomEnums;
 using Downfall.DownfallCode.Data;
@@ -151,7 +150,7 @@ public static class DownfallMainFile
                 ? loadContext.LoadFromAssemblyPath(dllPath)
                 : Assembly.LoadFrom(dllPath);
 
-            ModManagerCompat.AssociateAssemblyWithMod(ModId, assembly);
+            ModManager.AssociateAssemblyWithMod(ModId, assembly);
             DownfallMetrics.AllowAssembly(assembly);
 
             var mainFile = assembly.GetType(mainTypeName);

@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using Downfall.DownfallCode.Tests;
+﻿using Downfall.DownfallCode.Tests;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Cards.Common;
 using Hexaghost.HexaghostCode.Cards.Multiplayer;
@@ -124,7 +123,7 @@ public class HexaghostTests
         CardCmd.Enchant<Nimble>(card, 2);
         ctx.Player.Creature.LoseBlockInternal(ctx.Player.Creature.Block);
 
-        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, true);
+        await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card, true);
 
         Assert.AreEqual(card.DynamicVars.Block.BaseValue + 2, (decimal)ctx.Player.Creature.Block,
             "Afterlife Block on exhaust should include Nimble's +2.");
@@ -136,7 +135,7 @@ public class HexaghostTests
         var card = await ctx.AddCardToHand<PowerFromBeyond>();
         ctx.Player.Creature.LoseBlockInternal(ctx.Player.Creature.Block);
 
-        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, true);
+        await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card, true);
 
         Assert.AreEqual(card.DynamicVars.Block.BaseValue, (decimal)ctx.Player.Creature.Block,
             "Afterlife Block on exhaust without enchantment should be the base Block.");
@@ -150,7 +149,7 @@ public class HexaghostTests
         var card = await ctx.AddCardToHand<PowerFromBeyond>();
         ctx.Player.Creature.LoseBlockInternal(ctx.Player.Creature.Block);
 
-        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, true);
+        await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card, true);
 
         Assert.AreEqual(card.DynamicVars.Block.BaseValue * 2, (decimal)ctx.Player.Creature.Block,
             "Vambrace should double the first card Block, including Afterlife Block on exhaust.");
@@ -165,7 +164,7 @@ public class HexaghostTests
         var enemy = ctx.Combat.HittableEnemies.First();
         var hpBefore = enemy.CurrentHp;
 
-        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, true);
+        await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card, true);
 
         Assert.AreEqual(card.DynamicVars.Damage.BaseValue + 3, (decimal)(hpBefore - enemy.CurrentHp),
             "Afterlife damage on exhaust should include Sharp's +3.");
@@ -305,7 +304,7 @@ public class HexaghostTests
     {
         var card = await ctx.AddCardToHand<Floatwork>();
 
-        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, false);
+        await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card, false);
 
         Assert.AreEqual(3, ctx.Player.Creature.GetPowerAmount<PlatingPower>(), "Afterlife should apply 3 Plating.");
     }
@@ -408,7 +407,7 @@ public class HexaghostTests
         await ctx.ClearHand();
         var card = await ctx.AddCardToHand<HauntedHand>();
 
-        await CardCmdCompatibility.Exhaust(new BlockingPlayerChoiceContext(), card, false);
+        await CardCmd.Exhaust(new BlockingPlayerChoiceContext(), card, false);
 
         Assert.AreEqual(3, ctx.Player.Hand.Count, "A mid-turn exhaust is not a turn-end Ethereal exhaust: draw right away.");
     }

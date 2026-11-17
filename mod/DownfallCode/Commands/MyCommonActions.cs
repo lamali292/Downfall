@@ -1,7 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Patches.Features;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -61,8 +60,9 @@ public static class MyCommonActions
     public static async Task LoseHpToTarget(
         PlayerChoiceContext ctx, AbstractModel model, IEnumerable<Creature> targets)
     {
-        await CompatibilityCreatureCmd.Damage(ctx, targets, model.DynamicVars.HpLoss.BaseValue,
-            model is CardModel ? DamageProps.cardHpLoss : DamageProps.nonCardHpLoss, model.Creature, model as CardModel,
+        await CreatureCmd.Damage(ctx, targets,
+            new DamageVar(model.DynamicVars.HpLoss.BaseValue,
+                model is CardModel ? DamageProps.cardHpLoss : DamageProps.nonCardHpLoss), model.Creature, model as CardModel,
             null);
     }
 

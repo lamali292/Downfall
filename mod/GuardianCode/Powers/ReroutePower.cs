@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Compatibility;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Events;
 using Guardian.GuardianCode.Piles;
@@ -11,13 +10,13 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Guardian.GuardianCode.Powers;
 
-public class ReroutePower : GuardianPowerModel, IModifyCardPlayResultLocation
+public class ReroutePower : GuardianPowerModel
 {
     private CardModel? _cardSource;
 
 
-    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
-        ResourceInfo resources, CardLocationCompatiblity cardLocation)
+    public override CardLocation ModifyCardPlayResultLocation(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocation cardLocation)
     {
         var player = card.Owner;
         if (_cardSource == card || card.Keywords.Contains(CardKeyword.Exhaust) ||
@@ -32,14 +31,14 @@ public class ReroutePower : GuardianPowerModel, IModifyCardPlayResultLocation
             return cardLocation;
 
         GuardianCombatModel.PendingStasisRedirect[player] = card;
-        return new CardLocationCompatiblity(card.Owner, GuardianPile.Stasis, CardPilePosition.Bottom);
+        return new CardLocation(card.Owner, GuardianPile.Stasis, CardPilePosition.Bottom);
     }
 
-    public async Task AfterModifyingCardPlayResultLocationCompability(CardModel card,
-        CardLocationCompatiblity cardLocation)
+    public override async Task AfterModifyingCardPlayResultLocation(CardModel card,
+        CardLocation cardLocation)
     {
         // This only fires when we actually redirected the card into Stasis (see
-        // HookUtils.Modify in ModifyCardPlayResultLocationPatch), and the vanilla move has
+        // Hook.ModifyCardPlayResultLocation), and the vanilla move has
         // already happened by this point. Unlike GuardianCmd.PutIntoStasis, this path never
         // dispatches the Stasis-entry hooks itself, so relics like CryoChamber (upgrade on
         // entry) and QuantumChamber (after entry) never fired for a Reroute-stashed card.

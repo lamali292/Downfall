@@ -31,7 +31,7 @@ public class GuardianCombatModel() : CustomSingletonModel(HookType.Combat)
     internal static readonly PlayerField<int> StasisSlots = new(() => -1);
     internal static readonly SpireField<CardModel, int> StasisCounter = new(_ => 0);
 
-    // The card, if any, a IModifyCardPlayResultLocation redirect (Reroute) has already committed
+    // The card, if any, a ModifyCardPlayResultLocation redirect (Reroute) has already committed
     // to sending into Stasis this play but that hasn't physically moved there yet — see
     // GetEffectiveStasisCount. A single slot, not a collection: card plays for one player are
     // never concurrent, so at most one redirect can be in flight at a time.

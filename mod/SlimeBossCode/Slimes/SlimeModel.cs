@@ -1,6 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
-using Downfall.DownfallCode.Compatibility;
 using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -172,11 +171,11 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
             switch (dynamicVar)
             {
                 case CustomModelCalculatedDamageVar calc:
-                    calc.PreviewValue = CompatibilityHook.ModifyDamage(CombatState.RunState, CombatState, null, Creature,
+                    calc.PreviewValue = Hook.ModifyDamage(CombatState.RunState, CombatState, null, Creature,
                         calc.CalculateCustom(null), calc.Props, null, null, ModifyDamageHookType.All, CardPreviewMode.Normal, out _);
                     break;
                 case DamageVar dmg:
-                    dmg.PreviewValue = CompatibilityHook.ModifyDamage(
+                    dmg.PreviewValue = Hook.ModifyDamage(
                         CombatState.RunState,
                         CombatState,
                         null,

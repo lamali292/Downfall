@@ -1,5 +1,4 @@
 ﻿using BaseLib.Patches.Localization;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Localization;
@@ -11,15 +10,14 @@ using SlimeBoss.SlimeBossCode.Slimes;
 
 namespace SlimeBoss.SlimeBossCode.Powers;
 
-public class PotencyPower : SlimeBossPowerModel, IModifySlimeEffects,
-    IModifyDamageAdditive
+public class PotencyPower : SlimeBossPowerModel, IModifySlimeEffects
 {
 
     // Potency can be applied either to a player (boosts every Slime that player owns) or directly to a
     // Slime's own Creature (boosts just that Slime). Both stack. Never crosses to another player's Slimes.
     private bool AppliesTo(SlimeModel slime) => slime.Creature == Owner || slime.PetOwner == Owner;
 
-    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer?.Monster is SlimeModel slime && AppliesTo(slime) ? Amount : 0;

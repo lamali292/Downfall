@@ -1,10 +1,10 @@
+using MegaCrit.Sts2.Core.Commands;
 using Awakened.AwakenedCode.Cards.Token;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.Interfaces;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -29,7 +29,7 @@ public class Dejection : AwakenedCardModel
         var selected = (await DownfallCardSelectionCmd.SelectFromHand(ctx, CardSelectorPrefs.ExhaustSelectionPrompt, this))
             .FirstOrDefault();
         if (selected == null) return;
-        await CardCmdCompatibility.Exhaust(ctx, selected);
+        await CardCmd.Exhaust(ctx, selected);
         if (selected is ISpell) await DownfallCardCmd.GiveCard<Ceremony>(Owner, PileType.Hand);
     }
 }

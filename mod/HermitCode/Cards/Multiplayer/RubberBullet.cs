@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,7 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hermit.HermitCode.Cards.Multiplayer;
 
-public class RubberBullet : HermitCardModel, IModifyCardPlayResultLocation
+public class RubberBullet : HermitCardModel
 {
     public RubberBullet() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -25,21 +24,21 @@ public class RubberBullet : HermitCardModel, IModifyCardPlayResultLocation
 
     
     // Runs before this card's own effect (see CardModel.OnPlayWrapper), same as every other
-    // IModifyCardPlayResultLocation redirect (Combo, Feral, Reroute, ...) - so this composes with
+    // ModifyCardPlayResultLocation redirect (Combo, Feral, Reroute, ...) - so this composes with
     // them generically instead of RubberBullet needing to know about any of them by name: if
     // something else already committed this exact card to the owner's own hand (e.g. Combo), that
     // wins and we back off, whichever order the hooks happen to run in.
-    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
-        ResourceInfo resources, CardLocationCompatiblity cardLocation)
+    public override CardLocation ModifyCardPlayResultLocation(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocation cardLocation)
     {
-        if (card != this || !HermitCmd.HasActiveDeadOnEffect(card) || cardLocation is { PileType: PileType.Hand, Player: var p } && p == card.Owner) return cardLocation;
+        if (card != this || !HermitCmd.HasActiveDeadOnEffect(card) || cardLocation is { pileType: PileType.Hand, player: var p } && p == card.Owner) return cardLocation;
         var teammate = Owner.RandomOtherTeammate;
-        return teammate == null ? cardLocation : new CardLocationCompatiblity(Player: teammate, PileType: PileType.Hand, Position: CardPilePosition.Bottom);
+        return teammate == null ? cardLocation : new CardLocation(teammate, PileType.Hand, CardPilePosition.Bottom);
     }
 
-    public Task AfterModifyingCardPlayResultLocationCompability(CardModel card, CardLocationCompatiblity cardLocation)
+    public override Task AfterModifyingCardPlayResultLocation(CardModel card, CardLocation cardLocation)
     {
-        if (card == this && cardLocation.Player != card.Owner)
+        if (card == this && cardLocation.player != card.Owner)
             HermitSfx.PlayReload();
         return Task.CompletedTask;
     }

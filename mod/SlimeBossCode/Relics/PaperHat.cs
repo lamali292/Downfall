@@ -1,5 +1,4 @@
 using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -12,7 +11,7 @@ using SlimeBoss.SlimeBossCode.Slimes;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class PaperHat : SlimeBossRelicModel, IModifyDamageMultiplicative
+public class PaperHat : SlimeBossRelicModel
 {
     private const decimal BonusMultiplier = 1.25m;
 
@@ -21,7 +20,7 @@ public class PaperHat : SlimeBossRelicModel, IModifyDamageMultiplicative
         WithTip<WeakPower>();
     }
 
-    public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (target == null || target.GetPowerAmount<WeakPower>() <= 0) return 1m;

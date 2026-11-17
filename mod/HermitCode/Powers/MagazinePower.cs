@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using Hermit.HermitCode.Core;
+﻿using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,8 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-public class MagazinePower : HermitPowerModel,
-    IModifyDamageAdditive
+public class MagazinePower : HermitPowerModel
 {
     public MagazinePower()
     {
@@ -20,7 +18,7 @@ public class MagazinePower : HermitPowerModel,
     }
 
 
-    public decimal ModifyDamageAdditiveCompability(
+    public override decimal ModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,

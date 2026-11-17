@@ -3,13 +3,14 @@ using Automaton.AutomatonCode.Core;
 using Automaton.AutomatonCode.Functions;
 using Automaton.AutomatonCode.Localization;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
+using Automaton.AutomatonCode.Patches;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Automaton.AutomatonCode;
@@ -41,15 +42,12 @@ public static class AutomatonMainFile
         BundledSubmodLocRegistry.Register(ModId);
         CharacterOrderRegistry.Register<Core.Automaton>(20);
         VotingPoolRegistry.Register<AutomatonCardPool>(VotingPool.Automaton, ModId);
-        FormBoneRegistry.RegisterVoidForm<Core.Automaton>("chest");
-        FormBoneRegistry.RegisterSerpentForm<Core.Automaton>("chest");
-        FormBoneRegistry.RegisterReaperForm<Core.Automaton>("chest");
-        FormBoneRegistry.RegisterEchoForm<Core.Automaton>("chest");
-        RegisterEncodeLocationFilter();
-    }
-
-    private static void RegisterEncodeLocationFilter()
-    {
-        CardPlayLocationCompat.RegisterInitialLocationFilter(EncodeOutcome.HideFromDiscard);
+        FormBoneRegistry.Register<NVoidFormVfx, Core.Automaton>("chest");
+        FormBoneRegistry.Register<NSerpentFormVfx, Core.Automaton>("chest");
+        FormBoneRegistry.Register<NReaperFormVfx, Core.Automaton>("chest");
+        FormBoneRegistry.Register<NEchoFormVfx, Core.Automaton>("chest");
+        ModPatcher.Create(ModId, Logger)
+            .Add(typeof(HideEncodableFromDiscardPatch))
+            .PatchAll();
     }
 }

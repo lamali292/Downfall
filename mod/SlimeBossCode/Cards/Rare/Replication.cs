@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Compatibility;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Commands;
 using Downfall.DownfallCode.CustomEnums;
@@ -27,6 +26,6 @@ public class Replication : SlimeBossCardModel
             Owner, prefs, c => c.Type == CardType.Power)).FirstOrDefault();
         if (card == null) return;
         // Play a copy: the chosen Power stays in the Draw Pile.
-        await CardCmd.AutoPlay(ctx, card.CreateDupeCompat(), null);
+        await CardCmd.AutoPlay(ctx, card.CreateDupe(Owner), null);
     }
 }

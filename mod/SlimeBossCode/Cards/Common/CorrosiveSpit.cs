@@ -1,5 +1,5 @@
+using MegaCrit.Sts2.Core.Commands;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -21,7 +21,7 @@ public class CorrosiveSpit : SlimeBossCardModel
     {
         await CommonActions.Apply<WeakPower>(ctx, this, cardPlay);
         if (cardPlay.Target == null) return;
-        await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.HpLoss.BaseValue,
+        await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.HpLoss.BaseValue,
             DamageProps.nonCardHpLoss, Owner.Creature, this, cardPlay);
     }
 }

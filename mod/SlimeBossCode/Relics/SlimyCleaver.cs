@@ -1,5 +1,5 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,7 +25,7 @@ public class SlimyCleaver : SlimeBossRelicModel
         if (power is not WeakPower || amount <= 0 || !power.Owner.IsEnemy) return;
         // Slimes are pets of the player: a Weak they apply counts as the player's.
         if (applier != Owner.Creature && applier?.PetOwner != Owner) return;
-        await CompatibilityCreatureCmd.Damage(ctx, power.Owner, DynamicVars["HpLoss"].BaseValue,
+        await CreatureCmd.Damage(ctx, power.Owner, DynamicVars["HpLoss"].BaseValue,
             DamageProps.nonCardHpLoss, Owner.Creature, null, null);
     }
 }

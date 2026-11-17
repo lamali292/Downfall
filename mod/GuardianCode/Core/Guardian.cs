@@ -1,5 +1,4 @@
 ﻿using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Config;
 using Godot;
 using Guardian.GuardianCode.Cards.Basic;
@@ -68,12 +67,9 @@ public class Guardian : DownfallCharacterModel
 
     private Func<Creature, bool> IsDefensive => creature => creature.Player != null && GuardianCmd.IsInMode<GuardianDefensiveMode>(creature.Player);
 
-    public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
-    {
-        var creature = controller.GetOwningCreature();
-        if (creature == null)
-            return null;
 
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
+    {
         var idle          = new AnimState("idle_loop", true);
         var idleDefensive = new AnimState("idle_loop_defensive", true);
 
@@ -103,18 +99,18 @@ public class Guardian : DownfallCharacterModel
         
         var transitionIn   = new AnimState("transition_in");
         foreach (var (_, idleState, idleWhen) in idles)
-            transitionIn.AddConditionalNextState(idleState, idleWhen);
+            transitionIn.AddNextState(idleState, idleWhen);
         animator.AddAnyState("TransitionIn", transitionIn);
         
         var transitionOut   = new AnimState("transition_out");
         foreach (var (_, idleState, idleWhen) in idles)
-            transitionOut.AddConditionalNextState(idleState, idleWhen);
+            transitionOut.AddNextState(idleState, idleWhen);
         animator.AddAnyState("TransitionOut", transitionOut);
         
         foreach (var (state, when) in attacks)
         {
             foreach (var (_, idleState, idleWhen) in idles)
-                state.AddConditionalNextState(idleState, idleWhen);
+                state.AddNextState(idleState, idleWhen);
             animator.AddAnyState(CreatureAnimator.attackTrigger, state, when);
         }
 
@@ -127,7 +123,7 @@ public class Guardian : DownfallCharacterModel
         foreach (var (state, when) in hurts)
         {
             foreach (var (_, idleState, idleWhen) in idles)
-                state.AddConditionalNextState(idleState, idleWhen);
+                state.AddNextState(idleState, idleWhen);
             animator.AddAnyState(CreatureAnimator.hitTrigger, state, when);
         }
 
@@ -137,7 +133,7 @@ public class Guardian : DownfallCharacterModel
 
         AnimState PickIdle() => idles.First(i => i.when()).state;
     }
-
+    
 }
 
 public class GuardianRelicPool : DownfallRelicPool<Guardian>;

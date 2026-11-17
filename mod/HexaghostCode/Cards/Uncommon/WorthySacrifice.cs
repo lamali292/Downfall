@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +26,7 @@ public class WorthySacrifice : HexaghostCardModel
     {
         var cards = (await DownfallCardSelectionCmd.SelectFromHand(ctx, CardSelectorPrefs.ExhaustSelectionPrompt, this))
             .ToList();
-        foreach (var card in cards) await CardCmdCompatibility.Exhaust(ctx, card);
+        foreach (var card in cards) await CardCmd.Exhaust(ctx, card);
 
         await TransformCards(cards, CardType.Attack, CardType.Skill);
         await TransformCards(cards, CardType.Skill, CardType.Attack);

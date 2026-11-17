@@ -35,9 +35,7 @@ public class CircleFlame : HexaghostCardModel, IHasAfterlifeEffect
         if (!wasExhausted) return;
         var player = Owner.RandomOtherTeammate;
         if (player == null) return;
-        // TODO: use CreateCloneForPlayer on main / beta merge
-        var clone = CreateClone();
-        clone._owner = player;
+        var clone = CreateCloneForPlayer(player);
         var a = await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Discard, Owner);
         CardCmd.PreviewCardPileAdd(a, 0.5f);
     }

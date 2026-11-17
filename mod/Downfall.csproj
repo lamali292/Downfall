@@ -7,7 +7,9 @@
         <ModId Condition="'$(ModId)' == ''">Downfall</ModId>
         <ModName Condition="'$(ModName)' == ''">$(ModId)</ModName>
         <IsStandaloneMod>true</IsStandaloneMod>
-        <AssemblyName Condition="'$(Configuration)' == 'Debug'">DownfallEditorHost</AssemblyName>
+        <!-- Debug is only what the editor builds: an empty stub (no code) that MoDot needs as the project assembly to
+             mount sts2.dll. The real mod is the non-Debug build, loaded by the game's ModManager from the mods folder. -->
+        <AssemblyName Condition="'$(Configuration)' == 'Debug'">DownfallEditorStub</AssemblyName>
         <AssemblyName Condition="'$(Configuration)' != 'Debug'">$(ModId)</AssemblyName>
     </PropertyGroup>
 
@@ -23,7 +25,7 @@
         <PackFolders>Downfall</PackFolders>
     </PropertyGroup>
 
-    <ItemGroup Condition="!$(DefineConstants.Contains('TOOLS'))">
+    <ItemGroup Condition="'$(Configuration)' != 'Debug'">
         <Compile Include="DownfallCode/**/*.cs"/>
         <Using Include="Downfall.DownfallCode.Extensions"/>
     </ItemGroup>
@@ -31,13 +33,6 @@
         <AdditionalFiles Include="Downfall/**/*"/>
     </ItemGroup>
 
-    <ItemGroup Condition="$(DefineConstants.Contains('TOOLS'))">
-        <Compile Include="editor/**/*.cs"/>
-        <None Include="editor/**" Exclude="editor/**/*.cs"/>
-    </ItemGroup>
-    <ItemGroup Condition="!$(DefineConstants.Contains('TOOLS'))">
-        <None Include="editor/**"/>
-    </ItemGroup>
 
     <Target Name="CopyBaseLibDependencies" AfterTargets="CopyToModsFolderOnBuild" Condition="'$(Configuration)' != 'Debug'">
         <Message Text="Copying BaseLib dependencies to the Godot editor mods folder..." Importance="high" Condition="'$(CopyToGodotMods)' == 'true'"/>

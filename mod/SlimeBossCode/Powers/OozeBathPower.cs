@@ -1,4 +1,4 @@
-using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -22,7 +22,7 @@ public class OozeBathPower : SlimeBossPowerModel
         IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || !TargetHasWeak) return;
-        await CompatibilityCreatureCmd.Damage(new BlockingPlayerChoiceContext(), Owner, Amount,
+        await CreatureCmd.Damage(new BlockingPlayerChoiceContext(), Owner, Amount,
             DamageProps.nonCardHpLoss, Applier, null, null);
     }
 
@@ -30,6 +30,6 @@ public class OozeBathPower : SlimeBossPowerModel
     {
         if (cardPlay.Card.Owner.Creature != Applier || cardPlay.Card.Type != CardType.Status || !TargetHasWeak)
             return;
-        await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, Applier, null, null);
+        await CreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, Applier, null, null);
     }
 }

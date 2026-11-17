@@ -21,6 +21,15 @@ public abstract class DownfallCharacterModel : CustomCharacterModel
     public abstract float CardColorS { get; }
     public abstract float CardColorV { get; }
 
+    /// <summary>
+    ///     Name colour on the Dread screen, drawn over a dark shadow. Every base-game character uses full brightness
+    ///     (V = 1.0), saturation between 0.44 and 1.0 and alpha 0xC0, so this keeps the hue of <see cref="NameColor" />
+    ///     and lifts it to that range; the (often darker) NameColor itself would blend into the shadow.
+    ///     Only exists on game versions with a Dread screen; older versions never call it.
+    /// </summary>
+    public override Color DreadNameColor =>
+        Color.FromHsv(NameColor.H, Math.Clamp(NameColor.S, 0.65f, 0.9f), 1f, 0xC0 / 255f);
+
     public override string CustomCharacterSelectBg =>
         $"res://{ModId}/scenes/character/selection_screen.tscn";
 

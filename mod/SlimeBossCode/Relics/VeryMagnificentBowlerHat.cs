@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -15,7 +14,7 @@ using SlimeBoss.SlimeBossCode.Slimes;
 namespace SlimeBoss.SlimeBossCode.Relics;
 
 [Pool(typeof(SlimeBossRelicPool))]
-public class VeryMagnificentBowlerHat : SlimeBossRelicModel, IModifyDamageMultiplicative
+public class VeryMagnificentBowlerHat : SlimeBossRelicModel
 {
     public VeryMagnificentBowlerHat() : base(RelicRarity.Starter)
     {
@@ -30,7 +29,7 @@ public class VeryMagnificentBowlerHat : SlimeBossRelicModel, IModifyDamageMultip
         await SlimeBossCmd.Split<BruiserSlime>(ctx, player);
     }
 
-    public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer?.Monster is BruiserSlime slime && slime.PetOwner == Owner.Creature ? 2m : 1m;

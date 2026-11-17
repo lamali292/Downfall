@@ -1,4 +1,3 @@
-﻿using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,14 +12,14 @@ using SlimeBoss.SlimeBossCode.Slimes;
 namespace SlimeBoss.SlimeBossCode.Powers;
 
 /// <summary>Slime counterpart of DoubleDamagePower: the owner's Slimes deal double damage and double their non-damage effects until the owner's turn ends.</summary>
-public class SlimeDoubleDamagePower : SlimeBossPowerModel, IModifyDamageMultiplicative, IModifySlimeEffects
+public class SlimeDoubleDamagePower : SlimeBossPowerModel, IModifySlimeEffects
 {
     public int ModifySlimeEffectsMultiplicative(SlimeModel slime)
     {
         return slime.PetOwner == Owner ? 2 : 1;
     }
 
-    public decimal ModifyDamageMultiplicativeCompability(Creature? target, decimal amount, ValueProp props,
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         return dealer?.Monster is SlimeModel slime && slime.PetOwner == Owner ? 2m : 1m;

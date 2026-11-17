@@ -11,7 +11,6 @@ using Automaton.AutomatonCode.Extensions;
 using Automaton.AutomatonCode.Powers;
 using Automaton.AutomatonCode.Relics;
 using BaseLib.Extensions;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Tests;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -152,7 +151,7 @@ public class AutomatonTests
         var beforeCount = ctx.Player.EncodePile.Count;
 
         var card = await ctx.AddCardToHand<Boost>();
-        var dupe = card.CreateDupeCompat();
+        var dupe = card.CreateDupe(card.Owner);
         await CardCmd.AutoPlay(choiceCtx, dupe, null);
 
         Assert.AreEqual(beforeCount, ctx.Player.EncodePile.Count,
@@ -170,7 +169,7 @@ public class AutomatonTests
         await RelicCmd.Obtain<PlatinumCore>(ctx.Player);
         var beforeCount = ctx.Player.EncodePile.Count;
 
-        var dupe = (await ctx.AddCardToHand<StrikeAutomaton>()).CreateDupeCompat();
+        var dupe = (await ctx.AddCardToHand<StrikeAutomaton>()).CreateDupe(ctx.Player);
         await CardCmd.AutoPlay(choiceCtx, dupe, ctx.Combat.HittableEnemies.First());
 
         Assert.AreEqual(beforeCount, ctx.Player.EncodePile.Count,

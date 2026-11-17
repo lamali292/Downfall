@@ -1,4 +1,3 @@
-﻿using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -16,6 +15,6 @@ public class ThePlaybookPower : SlimeBossPowerModel
     {
         if (cardPlay.Card.Owner.Creature != Owner || !SlimeBossCmd.IsTwoEnergyAttack(cardPlay.Card, cardPlay)) return;
         await PlayerCmd.GainEnergy(EnergyGain, Owner.Player!);
-        await CompatibilityCreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, Owner, null, cardPlay);
+        await CreatureCmd.Damage(ctx, Owner, Amount, DamageProps.nonCardHpLoss, Owner, null, cardPlay);
     }
 }

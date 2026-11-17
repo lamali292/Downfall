@@ -1,7 +1,6 @@
 using Awakened.AwakenedCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -36,6 +35,6 @@ public class Bloodthirst : AwakenedCardModel
             return;
         var potion = ModelDb.Potion<PowerPotion>().ToMutable();
         await PotionCmd.TryToProcure(potion, Owner);
-        await CardCmdCompatibility.Exhaust(ctx, this);
+        await CardCmd.Exhaust(ctx, this);
     }
 }

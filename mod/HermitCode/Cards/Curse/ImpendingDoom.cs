@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.CustomEnums;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Patches;
@@ -60,7 +59,7 @@ public sealed class ImpendingDoom : HermitCardModel
             {
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(child);
             }
-            await CompatibilityCreatureCmd.Damage(ctx, targets, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props, Owner.Creature, this, null);
+            await CreatureCmd.Damage(ctx, targets, DynamicVars.Damage, Owner.Creature, this, null);
         });
     }
 

@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +16,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Guardian.GuardianCode.Cards.Rare;
 
 [Pool(typeof(GuardianCardPool))]
-public class GigaBeam : GuardianCardModel, IModifyDamageAdditive
+public class GigaBeam : GuardianCardModel
 {
     public GigaBeam() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
@@ -30,7 +29,7 @@ public class GigaBeam : GuardianCardModel, IModifyDamageAdditive
 
     protected override Artist Artist => Artist.Get<CartesianCanvas>();
 
-    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         return cardSource != this || !props.IsPoweredAttack()

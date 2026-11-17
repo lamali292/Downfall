@@ -6,7 +6,6 @@ using SlimeBoss.SlimeBossCode.Core;
 using SlimeBoss.SlimeBossCode.CustomEnums;
 using BaseLib.Extensions;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
@@ -36,6 +35,6 @@ public class FeedingFrenzy : SlimeBossCardModel
         if (cardPlay.Target?.GetPower<WeakPower>() is { Amount: > 0 } weak)
             await PowerCmd.ModifyAmount(ctx, weak, -1, Owner.Creature, this);
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
-        await CardCmdCompatibility.Exhaust(ctx, this);
+        await CardCmd.Exhaust(ctx, this);
     }
 }

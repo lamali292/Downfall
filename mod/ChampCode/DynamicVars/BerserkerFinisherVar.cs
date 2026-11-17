@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using Downfall.DownfallCode.Compatibility;
 using Champ.ChampCode.Core;
 using Champ.ChampCode.Events;
 using MegaCrit.Sts2.Core.Combat;

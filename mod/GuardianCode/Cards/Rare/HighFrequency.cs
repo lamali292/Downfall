@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.CustomEnums;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.CustomEnums;
@@ -37,6 +36,6 @@ public class HighFrequency : GuardianCardModel
             await GuardianCmd.PutIntoStasis(a, ctx, this, true);
         }
 
-        await CardCmdCompatibility.Exhaust(ctx, card);
+        await CardCmd.Exhaust(ctx, card);
     }
 }
