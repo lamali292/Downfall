@@ -32,7 +32,7 @@ public class DamageEncode : ValueEncode
         if (target == null) return Task.CompletedTask;
         if (model is CardModel card)
             return DamageCmd.Attack(card.DynamicVars.Damage.BaseValue)
-                .FromCardCompatibility(card, cardPlay)
+                .FromCard(card, cardPlay)
                 .Targeting(target)
                 .Execute(ctx);
         return CreatureCmd.Damage(ctx, target, model.DynamicVars.Damage.BaseValue,

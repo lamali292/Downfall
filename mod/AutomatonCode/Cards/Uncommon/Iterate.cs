@@ -33,7 +33,7 @@ public class Iterate : AutomatonCardModel
     {
         if (cardPlay.Target == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCardCompatibility(this, cardPlay)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .WithHitFx("vfx/vfx_attack_slash")
