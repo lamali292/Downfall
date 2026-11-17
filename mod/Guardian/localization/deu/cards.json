@@ -74,7 +74,6 @@
     "GUARDIAN-RECOVER.title": "Rückgewinnung",
     "GUARDIAN-REFRACTED_BEAM.description": "Füge {Repeat:diff()} Mal {Damage:diff()} Schaden zu.{InCombat:cond:|\nKann beliebig oft [gold]verbessert[/gold] werden.\nErhalte jedes Mal, wenn du diese Karte [gold]verbesserst[/gold], +1 [gold]Fassung[/gold].}",
     "GUARDIAN-REFRACTED_BEAM.title": "Prismenstrahl",
-    "GUARDIAN-REPULSOR_GUARDIAN.description": "Wenn du zum ersten Mal in einem Zug einen Status oder [red]Fluch[/red] ziehst, [gold]Erschöpfe[/gold] ihn und ziehe eine Karte.",
     "GUARDIAN-REPULSOR_GUARDIAN.title": "Repulsor",
     "GUARDIAN-REROUTE.description": "Füge {Damage:diff()} Schaden zu.\nLege die nächste Karte, die du in diesem Zug spielst, in [gold]Stasis[/gold].",
     "GUARDIAN-REROUTE.title": "Umsteuern",

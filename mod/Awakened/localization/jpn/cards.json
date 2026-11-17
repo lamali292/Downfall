@@ -113,7 +113,6 @@
     "AWAKENED-MANA_SHIELD.title": "マナシールド",
     "AWAKENED-MANTIS.description": "[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]羽根撃ち[/gold]を1枚[gold]手札[/gold]に加える。",
     "AWAKENED-MANTIS.title": "カマキリ",
-    "AWAKENED-MIDDEN_HEAP.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]山札[/gold]または[gold]捨て札[/gold]から状態異常または[red]呪い[/red]を{Cards:diff()}枚[gold]手札[/gold]に加える。",
     "AWAKENED-MIDDEN_HEAP.title": "埋葬された山",
     "AWAKENED-MINNIEGUN.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。\n[gold]虚無[/gold]を1枚[gold]山札[/gold]に加える。",
     "AWAKENED-MINNIEGUN.title": "ミニーガン",

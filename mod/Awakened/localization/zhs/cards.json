@@ -113,7 +113,6 @@
     "AWAKENED-MANA_SHIELD.title": "气盾",
     "AWAKENED-MANTIS.description": "获得{StrengthPower:diff()}点[gold]力量[/gold]。\n将一张[gold]羽刺[/gold]加入你的[gold]手牌[/gold]。",
     "AWAKENED-MANTIS.title": "螳螂",
-    "AWAKENED-MIDDEN_HEAP.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n从[gold]抽牌堆[/gold]或[gold]弃牌堆[/gold]中将{Cards:diff()}张状态或[red]诅咒[/red]牌加入[gold]手牌[/gold]。",
     "AWAKENED-MIDDEN_HEAP.title": "秽物堆",
     "AWAKENED-MINNIEGUN.description": "造成{Damage:diff()}点伤害{Repeat:diff()}次。\n将一张[gold]虚空[/gold]加入你的[gold]抽牌堆[/gold]。",
     "AWAKENED-MINNIEGUN.title": "迷你枪",
