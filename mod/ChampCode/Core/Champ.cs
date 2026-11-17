@@ -25,6 +25,7 @@ public class Champ : DownfallCharacterModel
     public override string CharId => "Champ";
     public override string ModId => ChampMainFile.ModId;
     public override Color NameColor => Color;
+    public override Color DreadNameColor => new("FFCE40C0");
     public override Color LabOutlineColor => Color;
     public override Color DeckEntryCardColor => Color;
     public override float CardColorH => 0.6f;
