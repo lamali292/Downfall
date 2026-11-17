@@ -13,8 +13,7 @@ public class SlimeSpikes : SlimeBossCardModel
     public SlimeSpikes() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         WithBlock(7, 3);
-        WithPower<SlimeSpikesPower>(2, 0, false);
-        WithTip<ThornsPower>();
+        WithPower<ThornsPower>(2);
     }
 
     protected override bool ShouldGlowGoldInternal => SlimeBossCmd.HasPlayedStatusThisTurn(Owner);
@@ -23,11 +22,6 @@ public class SlimeSpikes : SlimeBossCardModel
     {
         var playedStatus = SlimeBossCmd.HasPlayedStatusThisTurn(Owner);
         await CommonActions.CardBlock(this, cardPlay);
-        if (playedStatus) await CommonActions.ApplySelf<SlimeSpikesPower>(ctx, this);
+        if (playedStatus) await CommonActions.ApplySelf<ThornsPower>(ctx, this);
     }
-}
-
-public class SlimeSpikesPower : CustomTemporaryPowerModelWrapper<SlimeSpikes, ThornsPower>
-{
-    protected override bool UntilEndOfOtherSideTurn => true;
 }

@@ -1,4 +1,4 @@
-{
+﻿{
   "SLIMEBOSS-PERFECTED_TACKLE.title": "Perfected Tackle",
   "SLIMEBOSS-PERFECTED_TACKLE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for all your other {energyPrefix:energyIcons(2)} Attacks.",
   "SLIMEBOSS-PILE_ON.title": "Pile On!",
@@ -202,5 +202,5 @@
   "SLIMEBOSS-LIQUIDATE.title": "Liquidate",
   "SLIMEBOSS-LIQUIDATE.description": "Lose {StrengthPower:inverseDiff()} [gold]Strength[/gold].\nGain {PotencyPower:diff()} [gold]Potency[/gold].",
   "SLIMEBOSS-SLIME_SPIKES.title": "Slime Spikes",
-  "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you have played a Status this turn, gain {SlimeSpikesPower:diff()} [gold]Thorns[/gold] this turn."
+  "SLIMEBOSS-SLIME_SPIKES.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you have played a Status this turn, gain {ThornsPower:diff()} [gold]Thorns[/gold]."
 }
