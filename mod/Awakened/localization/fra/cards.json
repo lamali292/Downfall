@@ -113,7 +113,6 @@
     "AWAKENED-MANA_SHIELD.title": "Bouclier de Mana",
     "AWAKENED-MANTIS.description": "Gagnez {StrengthPower:diff()} de [gold]Force[/gold].\nAjoutez un [gold]Jab de Plumes[/gold] dans votre [gold]Main[/gold].",
     "AWAKENED-MANTIS.title": "Mante",
-    "AWAKENED-MIDDEN_HEAP.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nPlacez {Cards:diff()} {Cards:plural:Statut ou [red][/red]Malédiction|Statuts ou [red]Malédictions[/red]} de votre [gold]Pioche[/gold] ou de votre [gold]Défausse[/gold] dans votre [gold]Main[/gold].",
     "AWAKENED-MIDDEN_HEAP.title": "Tas d'immondices",
     "AWAKENED-MINNIEGUN.description": "Infligez {Damage:diff()} dégâts {Repeat:diff()} fois.\nMélangez un [gold]Néant[/gold] dans votre [gold]Pioche[/gold].",
     "AWAKENED-MINNIEGUN.title": "Minniegun",

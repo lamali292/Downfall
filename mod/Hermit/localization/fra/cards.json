@@ -63,7 +63,6 @@
     "HERMIT-MEMENTO_CARD.description": "Appliquez {VulnerablePower:diff()} de [gold]Vulnérabilité[/gold] à {Multiplayer:vous-même et TOUS les ennemis|TOUT LE MONDE}.",
     "HERMIT-SHORT_FUSE.title": "Mèche courte",
     "HERMIT-GRUDGE.title": "Rancune",
-    "HERMIT-GRUDGE.description": "Infligez {CalculatedDamage:diff()} dégâts à TOUS les ennemis.\nInflige {ExtraDamage:diff()} dégâts supplémentaires pour TOUTES vos [red]Malédictions[/red].",
     "HERMIT-SPITE.title": "Dépit",
     "HERMIT-SPITE.description": "[gold]Épuisez[/gold] toutes les cartes [gold]Injouables[/gold] dans votre [gold]Main[/gold].\nGagnez {Block:diff()} [gold]d'Armure[/gold].\nPiochez {Cards:diff()} cartes.",
     "HERMIT-MANIFEST.title": "Manifeste",
@@ -133,7 +132,6 @@
     "HERMIT-EYE_OF_THE_STORM.title": "Oeil du Cyclone",
     "HERMIT-EYE_OF_THE_STORM.description": "Gagnez {energyPrefix:energyIcons(1)} jusqu'à votre maximum.",
     "HERMIT-FINAL_CANTER.title": "Galop Final",
-    "HERMIT-FINAL_CANTER.description": "Infligez {Damage:diff()} dégâts pour chaque [red]Malédiction[/red] dans votre [gold]Main[/gold]. {InCombat:cond:\n(Touche {CalculatedHits:diff()} {CalculatedHits:plural:fois|fois})|}",
     "HERMIT-HEROIC_BRAVADO.title": "Bravado Héroïque",
     "HERMIT-HEROIC_BRAVADO.description": "Gagnez 1 de [gold]Robustesse[/gold].\nAugmentez le coût de cette carte de {CostIncrease:diff()}.",
     "HERMIT-FROM_BEYOND.title": "De l'Au-Delà",
@@ -159,11 +157,9 @@
     "HERMIT-LAST_CHANCE.title": "Dernière Chance",
     "HERMIT-LAST_CHANCE.description": "Infligez {Damage:diff()} dégâts.\nSi vous avez un débuff, piochez {Cards:diff()} cartes.",
     "HERMIT-TORN_PAGE.title": "Page Déchirée",
-    "HERMIT-TORN_PAGE.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\n[purple]Affligez[/purple] TOUTES les [red]Malédictions[/red] dans votre [gold]Main[/gold] avec [purple]Nécromantique[/purple].",
     "HERMIT-UNYIELDING.title": "Dur à Cuire",
     "HERMIT-UNYIELDING.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\nSi vous êtes [gold]Vulnérable[/gold], recevez 50% de dégâts en moins ce tour.",
     "HERMIT-DEATHWISH.title": "Pas d'Hésitation",
-    "HERMIT-DEATHWISH.description": "Les cartes adjacentes à des [red]Malédictions[/red] sont considérées comme [gold]Dans le Mille[/gold] et infligent {DeathwishPower:diff()} dégâts supplémentaires.",
     "HERMIT-RUBBER_BULLET.title": "Balle en Caoutchouc",
     "HERMIT-RUBBER_BULLET.description": "Infligez {Damage:diff()} dégâts.\n[gold]Dans le Mille[/gold] : Augmentez les dégâts de cette carte de {Increase:diff()} ce combat, et mettez-là dans la [gold]Main[/gold] d'un autre joueur aléatoire.",
     "HERMIT-BIG_BRUISER.title": "Gros Cogneur",
@@ -173,6 +169,5 @@
     "HERMIT-SHARE_THE_LOAD.title": "Partager la Charge",
     "HERMIT-SHARE_THE_LOAD.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\n[gold]Dans le Mille[/gold] : TOUS les alliés gagnent {Energy:energyIcons()} et piochent {Cards:diff()} cartes.",
     "HERMIT-TECHNIQUE.title": "Technique",
-    "HERMIT-LONG_SHADOWS.title": "Ombres Profondes",
-    "HERMIT-LONG_SHADOWS.description": "Lorsque vous piochez une [red]Malédiction[/red], piochez {LongShadowsPower:plural:une carte|{LongShadowsPower:diff()} cartes}."
+    "HERMIT-LONG_SHADOWS.title": "Ombres Profondes"
 }

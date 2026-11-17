@@ -63,7 +63,6 @@
     "HERMIT-MEMENTO_CARD.description": "Wende {VulnerablePower:diff()} [gold]Verwundbar[/gold] auf {Multiplayer:dich selbst und ALLE Gegner|JEDEN} an.",
     "HERMIT-SHORT_FUSE.title": "Kurze Lunte",
     "HERMIT-GRUDGE.title": "Groll",
-    "HERMIT-GRUDGE.description": "Füge ALLEN Gegnern {CalculatedDamage:diff()} Schaden zu.\nFügt {ExtraDamage:diff()} Schaden mehr zu für ALLE deine [red]Fluch[/red]-Karten.",
     "HERMIT-SPITE.title": "Gehässig",
     "HERMIT-SPITE.description": "[gold]Erschöpfe[/gold] alle [gold]Unspielbaren[/gold] Karten auf deiner [gold]Hand[/gold].\nErhalte {Block:diff()} [gold]Block[/gold].\nZiehe {Cards:diff()} Karten.",
     "HERMIT-MANIFEST.title": "Verkörperung",
@@ -133,7 +132,6 @@
     "HERMIT-EYE_OF_THE_STORM.title": "Auge des Sturms",
     "HERMIT-EYE_OF_THE_STORM.description": "Erhalte {energyPrefix:energyIcons(1)} bis zu deinem Maximum.",
     "HERMIT-FINAL_CANTER.title": "Letzter Ritt",
-    "HERMIT-FINAL_CANTER.description": "Füge {Damage:diff()} Schaden für jeden [red]Fluch[/red] auf deiner [gold]Hand[/gold] zu.{InCombat:cond:\n(Trifft {CalculatedHits:diff()} {CalculatedHits:plural:Mal|Mal})|}",
     "HERMIT-HEROIC_BRAVADO.title": "Revolverheld",
     "HERMIT-HEROIC_BRAVADO.description": "Erhalte 1 [gold]Robust[/gold].\nErhöhe die Kosten dieser Karte um {CostIncrease:diff()}.",
     "HERMIT-FROM_BEYOND.title": "Aus dem Jenseits",
@@ -159,11 +157,9 @@
     "HERMIT-LAST_CHANCE.title": "Letzte Chance",
     "HERMIT-LAST_CHANCE.description": "Füge {Damage:diff()} Schaden zu.\nFalls du einen Debuff hast, ziehe {Cards:diff()} Karten.",
     "HERMIT-TORN_PAGE.title": "Zerrissene Seite",
-    "HERMIT-TORN_PAGE.description": "Erhalte {Block:diff()} [gold]Block[/gold].\n[purple]Belege[/purple] ALLE [red]Flüche[/red] auf deiner [gold]Hand[/gold] mit [purple]Nekromantisch[/purple].",
     "HERMIT-UNYIELDING.title": "Unnachgiebig",
     "HERMIT-UNYIELDING.description": "Erhalte {Block:diff()} [gold]Block[/gold].\nFalls du [gold]Verwundbar[/gold] bist, nimm in diesem Zug 50% weniger Schaden.",
     "HERMIT-DEATHWISH.title": "Feuer frei!",
-    "HERMIT-DEATHWISH.description": "Karten neben [red]Flüchen[/red] gelten als [gold]Volltreffer[/gold] und fügen {DeathwishPower:diff()} Schaden mehr zu.",
     "HERMIT-RUBBER_BULLET.title": "Gummigeschoss",
     "HERMIT-RUBBER_BULLET.description": "Füge {Damage:diff()} Schaden zu.\n[gold]Volltreffer[/gold]: Erhöhe den Schaden dieser Karte für diesen Kampf um {Increase:diff()} und lege sie auf die [gold]Hand[/gold] eines anderen zufälligen Spielers.",
     "HERMIT-BIG_BRUISER.title": "Großer Raufbold",
@@ -173,6 +169,5 @@
     "HERMIT-SHARE_THE_LOAD.title": "Lasten teilen",
     "HERMIT-SHARE_THE_LOAD.description": "Erhalte {Block:diff()} [gold]Block[/gold].\n[gold]Volltreffer[/gold]: ALLE Mitspieler erhalten {Energy:energyIcons()} und ziehen {Cards:diff()} Karten.",
     "HERMIT-TECHNIQUE.title": "Technik",
-    "HERMIT-LONG_SHADOWS.title": "Lange Schatten",
-    "HERMIT-LONG_SHADOWS.description": "Immer wenn du einen [red]Fluch[/red] ziehst, ziehe {LongShadowsPower:plural:eine Karte|{LongShadowsPower:diff()} Karten}."
+    "HERMIT-LONG_SHADOWS.title": "Lange Schatten"
 }

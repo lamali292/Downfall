@@ -113,7 +113,6 @@
     "AWAKENED-MANA_SHIELD.title": "Manaschild",
     "AWAKENED-MANTIS.description": "Erhalte {StrengthPower:diff()} [gold]Stärke[/gold].\nErhalte einen [gold]Federstich[/gold] auf deine [gold]Hand[/gold].",
     "AWAKENED-MANTIS.title": "Mantis",
-    "AWAKENED-MIDDEN_HEAP.description": "Erhalte {Block:diff()} [gold]Block[/gold].\nNimm {Cards:diff()} Status- oder [red]Fluch[/red]{Cards:plural:karte|karten} aus deinem [gold]Nachziehstapel[/gold] oder [gold]Abwurfstapel[/gold] auf deine [gold]Hand[/gold].",
     "AWAKENED-MIDDEN_HEAP.title": "Misthaufen",
     "AWAKENED-MINNIEGUN.description": "Füge {Repeat:diff()} Mal {Damage:diff()} Schaden zu.\nMische eine [gold]Leere[/gold] in deinen [gold]Nachziehstapel[/gold].",
     "AWAKENED-MINNIEGUN.title": "Minniegun",
