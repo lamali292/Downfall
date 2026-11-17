@@ -26,8 +26,13 @@ public static class RunMetricsCompat
     public static void ApplyGameMode(RunMetrics metrics, SerializableRun run)
     {
         if (GameModeProp == null) return;
-        var mode = RunGameModeProp?.GetValue(run)?.ToString()?.ToUpperInvariant() ?? "STANDARD";
-        GameModeProp.SetValue(metrics, mode);
+        GameModeProp.SetValue(metrics, GetGameMode(run));
+    }
+
+    /// <summary>The run's game mode as an upper-case string ("STANDARD", "BLITZ", "DREAD", ...); "STANDARD" on versions without modes.</summary>
+    public static string GetGameMode(SerializableRun run)
+    {
+        return RunGameModeProp?.GetValue(run)?.ToString()?.ToUpperInvariant() ?? "STANDARD";
     }
 
     /// <summary>Calls <c>MetricUtilities.ShouldUploadMetrics</c> with whichever signature this version has.</summary>

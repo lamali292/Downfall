@@ -49,7 +49,15 @@ public sealed class MetricsUploaderConfig
     public IReadOnlySet<Assembly>? AllowedAssemblies { get; init; }
 
     public int MinFloors { get; init; } = 5;
-    public bool RequireStandardGameMode { get; init; } = true;
+
+    /// <summary>
+    ///     Game modes (upper-case, e.g. "STANDARD", "BLITZ", "DREAD") that are uploaded. Runs in any other mode
+    ///     are skipped. Game versions without game modes always count as "STANDARD".
+    /// </summary>
+    public IReadOnlySet<string> AllowedGameModes { get; init; } = new HashSet<string> { "STANDARD" };
+
+    /// <summary>Per-mode override of <see cref="MinFloors" /> (e.g. Blitz runs are much shorter).</summary>
+    public Func<string, int>? MinFloorsForGameMode { get; init; }
     public bool SkipAbandonedRuns { get; init; } = true;
     public bool RejectForeignContent { get; init; } = true;
 
@@ -172,13 +180,15 @@ public sealed class RunMetricsUploader<TPayload>
             return false;
         }
 
-        if (_config.RequireStandardGameMode && run.GameMode != GameMode.Standard)
+        var gameMode = RunMetricsCompat.GetGameMode(run);
+        if (!_config.AllowedGameModes.Contains(gameMode))
         {
-            log?.Info($"[{mod}] Skipping metrics upload, custom mode detected.");
+            log?.Info($"[{mod}] Skipping metrics upload, game mode {gameMode} is not uploaded.");
             return false;
         }
 
-        if (run.MapPointHistory.SelectMany(logs => logs).Count() < _config.MinFloors)
+        var minFloors = _config.MinFloorsForGameMode?.Invoke(gameMode) ?? _config.MinFloors;
+        if (run.MapPointHistory.SelectMany(logs => logs).Count() < minFloors)
         {
             log?.Info($"[{mod}] Skipping metrics upload, not enough progress.");
             return false;

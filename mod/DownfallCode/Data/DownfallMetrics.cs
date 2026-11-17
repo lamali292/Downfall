@@ -43,6 +43,9 @@ public static class DownfallMetrics
             EndpointUrl = "https://api.downfall-sts2.org/runs",
             ApiKey = BuildSecrets.MetricsApiKey,
             RejectForeignContent = false,
+            // The server stores the mode and keeps non-Standard runs out of the Standard stats.
+            AllowedGameModes = new HashSet<string> { "STANDARD", "DREAD", "BLITZ" },
+            MinFloorsForGameMode = mode => mode == "BLITZ" ? 3 : 5,
             ModVersionProvider = DownfallMainFile.GetDownfallVersion,
             // Base-game characters are matched by namespace, not type: Fool only exists in the beta game version.
             IsOwnCharacter = e => e is DownfallCharacterModel or Ironclad or Defect or Silent or Necrobinder or Regent
