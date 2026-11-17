@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using Hexaghost.HexaghostCode.Core;
+﻿using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -8,7 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Hexaghost.HexaghostCode.Powers;
 
-public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IModifyCardPlayResultLocation
+public class IntoShadowPower : HexaghostPowerModel, IWheelMoved
 {
     
     public Task AfterWheelAdvance(PlayerChoiceContext ctx, Player player, AbstractModel? source,
@@ -50,11 +49,11 @@ public class IntoShadowPower : HexaghostPowerModel, IWheelMoved, IModifyCardPlay
 
     // The result location is decided before the card's effect runs, so a charge a card creates by Retracting
     // is never mistaken for the one it is using (same split as Corruption / Free Attack).
-    public CardLocationCompatiblity ModifyCardPlayResultLocationCompability(CardModel card, bool isAutoPlay,
-        ResourceInfo resources, CardLocationCompatiblity location)
+    public override CardLocation ModifyCardPlayResultLocation(CardModel card, bool isAutoPlay,
+        ResourceInfo resources, CardLocation location)
     {
-        if (card.Owner.Creature != Owner || FreeCards <= 0 || location.PileType == PileType.None) return location;
-        return location with { PileType = PileType.Exhaust };
+        if (card.Owner.Creature != Owner || FreeCards <= 0 || location.pileType == PileType.None) return location;
+        return location with { pileType = PileType.Exhaust };
     }
 
     // Consumed before the card's effect runs, for the same reason.

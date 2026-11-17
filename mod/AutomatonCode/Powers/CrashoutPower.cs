@@ -1,5 +1,5 @@
 ﻿using Automaton.AutomatonCode.Core;
-using Downfall.DownfallCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -14,6 +14,6 @@ public class CrashoutPower : AutomatonPowerModel
         if (player.Creature != Owner || cardPlay.Card.Type != CardType.Status) return;
         var enemy = CombatState.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
         if (enemy == null) return;
-        await CompatibilityCreatureCmd.Damage(ctx, enemy, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
+        await CreatureCmd.Damage(ctx, enemy, Amount, DamageProps.nonCardUnpowered, Owner, null, null);
     }
 }

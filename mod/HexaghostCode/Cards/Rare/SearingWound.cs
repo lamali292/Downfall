@@ -1,6 +1,6 @@
+using MegaCrit.Sts2.Core.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Powers;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -30,7 +30,7 @@ public class SearingWound : HexaghostCardModel
             if (amount <= 0) continue;
             await SoulBurnPower.SoulburnEffect(enemy, scale);
             scale *= 0.9f;
-            await CompatibilityCreatureCmd.Damage(ctx, enemy, amount,
+            await CreatureCmd.Damage(ctx, enemy, amount,
                 DamageProps.cardHpLoss,
                 Owner.Creature, this, cardPlay);
         }

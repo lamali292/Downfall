@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using Downfall.DownfallCode.Core;
 using Hexaghost.HexaghostCode.Ghostflames;
 using Hexaghost.HexaghostCode.Interfaces;
@@ -120,9 +119,17 @@ public class HexaghostModel() : CustomSingletonModel(HookType.Combat)
         var playCount = await card.GeneratePlayCount(card.CombatState!, null);
         for (var i = 0; i < playCount; ++i)
         {
-            var cardPlay = CardPlayCompat.Create(card, null, PileType.Exhaust,
-                new ResourceInfo { EnergySpent = 0, EnergyValue = 0, StarsSpent = 0, StarValue = 0 },
-                true, i, playCount);
+            var cardPlay = new CardPlay
+            {
+                Card = card,
+                Player = card.Owner,
+                Target = null,
+                ResultPile = PileType.Exhaust,
+                Resources = new ResourceInfo { EnergySpent = 0, EnergyValue = 0, StarsSpent = 0, StarValue = 0 },
+                IsAutoPlay = true,
+                PlayIndex = i,
+                PlayCount = playCount
+            };
             await afterlifeEffect.AfterlifeEffect(ctx, cardPlay, true, causedByEthereal);
         }
     }

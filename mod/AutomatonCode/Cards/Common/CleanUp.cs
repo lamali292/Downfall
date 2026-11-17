@@ -1,7 +1,6 @@
 ﻿using Automaton.AutomatonCode.Core;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -30,7 +29,7 @@ public class CleanUp : AutomatonCardModel
         var hitCount = 1;
         if (card != null)
         {
-            await CardCmdCompatibility.Exhaust(ctx, card);
+            await CardCmd.Exhaust(ctx, card);
             hitCount = card is { Type: CardType.Curse or CardType.Status } ? 2 : 1;
         }
 

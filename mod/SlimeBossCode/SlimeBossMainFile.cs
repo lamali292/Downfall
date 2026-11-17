@@ -4,6 +4,7 @@ using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
 using SlimeBoss.SlimeBossCode.Patches;
 using SlimeBoss.SlimeBossCode.Slimes;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -35,9 +36,9 @@ public static class SlimeBossMainFile
 
       
         
-        FormBoneRegistry.RegisterVoidForm<Core.SlimeBoss>("hat");
-        FormBoneRegistry.RegisterSerpentForm<Core.SlimeBoss>("hat");
-        FormBoneRegistry.RegisterReaperForm<Core.SlimeBoss>("hat");
-        FormBoneRegistry.RegisterEchoForm<Core.SlimeBoss>("hat");
+        FormBoneRegistry.Register<NVoidFormVfx, Core.SlimeBoss>("hat");
+        FormBoneRegistry.Register<NSerpentFormVfx, Core.SlimeBoss>("hat");
+        FormBoneRegistry.Register<NReaperFormVfx, Core.SlimeBoss>("hat");
+        FormBoneRegistry.Register<NEchoFormVfx, Core.SlimeBoss>("hat");
     }
 }

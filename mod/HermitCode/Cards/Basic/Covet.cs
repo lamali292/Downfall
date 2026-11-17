@@ -1,6 +1,5 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -34,7 +33,7 @@ public sealed class Covet : HermitCardModel
         var discarded = selected.Except(curses).ToList();
         if (discarded.Count > 0) await CardCmd.Discard(ctx, discarded);
         foreach (var curse in curses)
-            await CardCmdCompatibility.Exhaust(ctx, curse);
+            await CardCmd.Exhaust(ctx, curse);
         await CommonActions.Draw(this, ctx);
     }
 }

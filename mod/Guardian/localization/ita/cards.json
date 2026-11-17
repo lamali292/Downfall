@@ -3,7 +3,6 @@
     "GUARDIAN-ANCIENT_CONSTRUCT.title": "Costrutto Antico",
     "GUARDIAN-ANCIENT_POWER.description": "Ottieni {AncientStrengthPower:diff()} [gold]Forza[/gold] in questo turno.\nOttieni {AncientDexterityPower:diff()} [gold]Destrezza[/gold] in questo turno.",
     "GUARDIAN-ANCIENT_POWER.title": "Potere Antico",
-    "GUARDIAN-BAUBLE_BURST.description": "Infliggi {Damage:diff()} di danno {Repeat:diff()} volte.\nEsegui 3 volte:",
     "GUARDIAN-BAUBLE_BURST.title": "Raffica di Cianfrusaglie",
     "GUARDIAN-BODY_CRASH.description": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nInfliggi danno pari al tuo [gold]Blocco[/gold].{InCombat:cond:\n(Infligge {VisualBlock:diff()} di danno)|}",
     "GUARDIAN-BODY_CRASH.title": "Impatto Corporeo",

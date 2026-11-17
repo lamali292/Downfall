@@ -1,7 +1,7 @@
+using MegaCrit.Sts2.Core.Commands;
 using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using Hexaghost.HexaghostCode.Core;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,6 +26,6 @@ public class SwordOfNight : HexaghostCardModel
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var result = await ScryCmd.Execute(ctx, this);
         foreach (var cardModel in result.Discarded.Where(card => card.Keywords.Contains(CardKeyword.Ethereal)))
-            await CardCmdCompatibility.Exhaust(ctx, cardModel);
+            await CardCmd.Exhaust(ctx, cardModel);
     }
 }

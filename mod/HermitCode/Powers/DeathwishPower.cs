@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using Hermit.HermitCode.Core;
+﻿using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using Hermit.HermitCode.Events;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,14 +8,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Hermit.HermitCode.Powers;
 
-public class DeathwishPower : HermitPowerModel, IShouldTriggerDeadOn, IModifyDamageAdditive
+public class DeathwishPower : HermitPowerModel, IShouldTriggerDeadOn
 {
     public DeathwishPower()
     {
         WithTip(HermitKeywords.DeadOn);
     }
 
-    public decimal ModifyDamageAdditiveCompability(Creature? target, decimal amount, ValueProp props, Creature? dealer,
+    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource, CardPlay? cardPlay)
     {
         if (dealer != Owner || cardSource is null || !props.IsPoweredAttack() ||

@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Compatibility;
 using BaseLib.Utils;
 using Champ.ChampCode.Core;
 using Downfall.DownfallCode.Artists;
@@ -24,17 +23,17 @@ public class FanOfKnives : ChampCardModel
     {
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        var context = await AttackContextCompatibility.CreateContextAsync(CombatState, ctx, cardPlay);
+        var context = await AttackCommand.CreateContextAsync(CombatState, ctx, cardPlay);
         var targets = CombatState.HittableEnemies.ToList();
-        context.AddHit(await CompatibilityCreatureCmd.Damage(ctx, targets, DynamicVars.Damage.BaseValue, DynamicVars.Damage.Props,
+        context.AddHit(await CreatureCmd.Damage(ctx, targets, DynamicVars.Damage,
             Owner.Creature, this, cardPlay));
 
         await ChampCmd.BerserkerCombo(cardPlay, async () =>
         {
             var remaining = CombatState.HittableEnemies.ToList();
             if (remaining.Count == 0) return;
-            context.AddHit(await CompatibilityCreatureCmd.Damage(ctx, remaining, DynamicVars.Damage.BaseValue,
-                DynamicVars.Damage.Props, Owner.Creature, this, cardPlay));
+            context.AddHit(await CreatureCmd.Damage(ctx, remaining, DynamicVars.Damage,
+                Owner.Creature, this, cardPlay));
         });
 
         await context.DisposeAsync();

@@ -1,5 +1,4 @@
-﻿using Downfall.DownfallCode.Compatibility;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -32,7 +31,7 @@ public class EnemyDamageVar : DynamicVar
     {
         var originalDamage1 = BaseValue;
         if (runGlobalHooks)
-            originalDamage1 = CompatibilityHook.ModifyDamage(card.Owner.RunState, card.CombatState, card.Owner.Creature,
+            originalDamage1 = Hook.ModifyDamage(card.Owner.RunState, card.CombatState, card.Owner.Creature,
                 target, BaseValue, Props,
                 card, null, ModifyDamageHookType.All, previewMode, out _);
         PreviewValue = originalDamage1;

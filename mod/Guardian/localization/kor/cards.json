@@ -3,7 +3,6 @@
     "GUARDIAN-ANCIENT_CONSTRUCT.title": "고대의 구조물",
     "GUARDIAN-ANCIENT_POWER.description": "이번 턴에 {TemporaryStrengthUpPower:diff()} [gold]힘[/gold]을 얻습니다.\n이번 턴에 {TemporaryDexterityUpPower:diff()} [gold]민첩[/gold]을 얻습니다.",
     "GUARDIAN-ANCIENT_POWER.title": "고대의 힘",
-    "GUARDIAN-BAUBLE_BURST.description": "{Damage:diff()}의 피해를 {Repeat:diff()}번 줍니다.\n3번 수행합니다:",
     "GUARDIAN-BAUBLE_BURST.title": "장신구 폭발",
     "GUARDIAN-BODY_CRASH.description": "{Block:diff()} [gold]방어도[/gold]를 얻습니다.\n자신의 [gold]방어도[/gold]만큼 피해를 줍니다.{InCombat:cond:\n({VisualBlock:diff()}의 피해를 줍니다)|}",
     "GUARDIAN-BODY_CRASH.title": "몸통 박치기",

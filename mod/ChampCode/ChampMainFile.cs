@@ -9,6 +9,7 @@ using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace Champ.ChampCode;
@@ -36,9 +37,9 @@ public static class ChampMainFile
         CharacterOrderRegistry.Register<Core.Champ>(10);
         VotingPoolRegistry.Register<ChampCardPool>(VotingPool.Champ, ModId);
 
-        FormBoneRegistry.RegisterVoidForm<Core.Champ>("Head");
-        FormBoneRegistry.RegisterSerpentForm<Core.Champ>("Neck");
-        FormBoneRegistry.RegisterReaperForm<Core.Champ>("Neck");
-        FormBoneRegistry.RegisterEchoForm<Core.Champ>("Neck");
+        FormBoneRegistry.Register<NVoidFormVfx, Core.Champ>("Head");
+        FormBoneRegistry.Register<NSerpentFormVfx, Core.Champ>("Neck");
+        FormBoneRegistry.Register<NReaperFormVfx, Core.Champ>("Neck");
+        FormBoneRegistry.Register<NEchoFormVfx, Core.Champ>("Neck");
     }
 }

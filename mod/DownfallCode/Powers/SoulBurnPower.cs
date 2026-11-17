@@ -1,6 +1,6 @@
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using BaseLib.Hooks;
 using Downfall.DownfallCode.Abstract;
-using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.Events;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -32,7 +32,7 @@ public class SoulBurnPower : DownfallPowerModel
     {
         if (Amount <= 0) yield break;
         if (DynamicVars["Turns"].BaseValue != 1) yield break;
-        var a = (int)CompatibilityHook.ModifyDamage(Owner.CombatState!.RunState,
+        var a = (int)Hook.ModifyDamage(Owner.CombatState!.RunState,
             Owner.CombatState,
             Owner,
             Applier,
@@ -75,13 +75,13 @@ public class SoulBurnPower : DownfallPowerModel
         if (targetAll)
         {
             foreach (var target in CombatState.HittableEnemies) await SoulburnEffect(target);
-            await CompatibilityCreatureCmd.Damage(ctx, CombatState.HittableEnemies, keepOne ? Amount - 1 : Amount,
-                DamageProps.nonCardHpLoss, aliveApplier, null, null);
+            await CreatureCmd.Damage(ctx, CombatState.HittableEnemies,
+                new DamageVar(keepOne ? Amount - 1 : Amount, DamageProps.nonCardHpLoss), aliveApplier, null, null);
         }
         else
         {
             await SoulburnEffect(Owner);
-            await CompatibilityCreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
+            await CreatureCmd.Damage(ctx, Owner, keepOne ? Amount - 1 : Amount,
                 DamageProps.nonCardHpLoss, aliveApplier, null, null);
         }
 

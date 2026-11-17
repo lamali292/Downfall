@@ -28,11 +28,8 @@ public class Fork : AutomatonCardModel
         var prefs = new CardSelectorPrefs(DownfallCardSelectorPrefs.ToAllPlayerHandSelectionPrompt, 1);
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, e => e.EnergyCost.GetResolved() == 1, this))
             .FirstOrDefault();
-        if (card == null || cardPlay.Target == null) return;
-
-        // TODO: use CreateCloneForPlayer on main / beta merge
-        var clone = card.CreateClone();
-        clone._owner = cardPlay.Target.Player;
+        if (card == null || cardPlay.Target?.Player == null) return;
+        var clone = card.CreateCloneForPlayer(cardPlay.Target.Player);
         await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, Owner);
     }
 }

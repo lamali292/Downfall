@@ -1,5 +1,4 @@
 ﻿using Champ.ChampCode.Core;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
@@ -7,9 +6,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Champ.ChampCode.Powers;
 
-public class HoneBladePower : ChampPowerModel, IModifyDamageAdditive
+public class HoneBladePower : ChampPowerModel
 {
-    public decimal ModifyDamageAdditiveCompability(
+    public override decimal ModifyDamageAdditive(
         Creature? target,
         decimal amount,
         ValueProp props,

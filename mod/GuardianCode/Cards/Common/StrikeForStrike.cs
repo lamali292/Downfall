@@ -1,5 +1,5 @@
+using MegaCrit.Sts2.Core.Commands;
 using BaseLib.Utils;
-using Downfall.DownfallCode.Compatibility;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -33,6 +33,6 @@ public class StrikeForStrike : GuardianCardModel, IGemSocketCard
     {
         await CommonActions.CardAttack(this, cardPlay).Execute(ctx);
         var damage = (DamageVar)DynamicVars["SelfDamage"];
-        await CompatibilityCreatureCmd.Damage(ctx, Owner.Creature, damage.BaseValue, damage.Props, this, cardPlay);
+        await CreatureCmd.Damage(ctx, Owner.Creature, damage.BaseValue, damage.Props, this, cardPlay);
     }
 }

@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Compatibility;
 using Guardian.GuardianCode.Core;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -24,7 +23,7 @@ public class ExhaustStatusesPower : GuardianPowerModel
         if (card.Type is not (CardType.Status or CardType.Curse)) return;
 
         _triggers++;
-        await CardCmdCompatibility.Exhaust(choiceContext, card);
+        await CardCmd.Exhaust(choiceContext, card);
         await CardPileCmd.Draw(choiceContext, 1, Owner.Player);
         InvokeDisplayAmountChanged();
     }

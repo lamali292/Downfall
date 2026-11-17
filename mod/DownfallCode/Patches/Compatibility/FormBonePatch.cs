@@ -1,170 +1,68 @@
-﻿using System.Reflection;
-using Downfall.DownfallCode.Utils;
+﻿using Downfall.DownfallCode.Utils;
 using Godot;
 using HarmonyLib;
-using Logger = MegaCrit.Sts2.Core.Logging.Logger;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Utilities;
 
 namespace Downfall.DownfallCode.Patches;
 
-public static class FormBonePatcher
+/// <summary>
+///     Attaches a vanilla Form VFX to the bone registered for the owner's character (see <see cref="FormBoneRegistry" />)
+///     instead of the hardcoded vanilla one. Characters without a registered bone keep the vanilla behavior.
+///     <c>_owner</c> is a protected field of the base <see cref="NFormVfx" /> (Harmony's <c>___name</c> injection only
+///     finds fields declared on the patched class itself), so it is read through a cached field reference; the
+///     bone follower and spine copier are declared on the form classes and are injected.
+/// </summary>
+internal static class FormBoneHelper
 {
-    private const string Ns = "MegaCrit.Sts2.Core.Nodes.Vfx.Forms.";
+    private static readonly AccessTools.FieldRef<NFormVfx, Player?> OwnerRef =
+        AccessTools.FieldRefAccess<NFormVfx, Player?>("_owner");
 
-    private static readonly string[] FormTypeNames =
+    /// <returns>false to skip the vanilla method (the bone was attached here), true to run vanilla.</returns>
+    public static bool TryAttach(Type formType, NFormVfx form, NSpineSpriteBoneFollower? follower,
+        NSpineSpriteCopier? copier, MegaSprite spineSprite, Node2D sourceNode)
     {
-        Ns + "NVoidFormVfx",
-        Ns + "NSerpentFormVfx",
-        Ns + "NReaperFormVfx",
-        Ns + "NEchoFormVfx"
-    };
-
-    public static void Apply(Harmony harmony, Logger logger)
-    {
-        var prefix = new HarmonyMethod(typeof(FormBonePatcher), nameof(Prefix));
-
-        foreach (var name in FormTypeNames)
-        {
-            Type? formType;
-            try
-            {
-                formType = AccessTools.TypeByName(name);
-            }
-            catch
-            {
-                formType = null;
-            }
-
-            if (formType == null)
-            {
-                logger.Info($"[FormBone] skip, type not present in this version: {name}");
-                continue;
-            }
-
-            var method = AccessTools.DeclaredMethod(formType, "SetSpineSprite");
-            if (method == null)
-            {
-                logger.Warn($"[FormBone] skip, no SetSpineSprite on {formType.Name}");
-                continue;
-            }
-
-            try
-            {
-                harmony.Patch(method, prefix);
-                logger.Info($"[FormBone] patched {formType.Name}");
-            }
-            catch (Exception ex)
-            {
-                logger.Error($"[FormBone] FAILED {formType.Name}: {ex.Message}");
-            }
-        }
-    }
-
-    private static bool Prefix(object __instance, object spineSprite, Node2D sourceNode,
-        MethodBase __originalMethod)
-    {
-        var type = __instance.GetType();
-
-        var owner = AccessTools.Field(type, "_owner")?.GetValue(__instance);
-        var character = owner == null ? null : GetMember(owner, "Character");
-        if (character == null) return true;
-
-        var formName = __originalMethod.DeclaringType!.FullName!;
-        if (!FormBoneRegistry.TryGet(formName, character.GetType(), out var boneName) || boneName == null)
+        var character = OwnerRef(form)?.Character;
+        if (character == null || !FormBoneRegistry.TryGet(formType, character.GetType(), out var boneName) ||
+            boneName == null)
             return true;
 
-        var megaSpriteType = AccessTools.TypeByName("MegaCrit.Sts2.Core.Bindings.MegaSpine.MegaSprite");
-
-        var copier = AccessTools.Field(type, "_spineCopier")?.GetValue(__instance);
-        if (copier != null)
-            AccessTools.Method(copier.GetType(), "Initialize", [megaSpriteType, typeof(Node2D)])
-                ?.Invoke(copier, [spineSprite, sourceNode]);
-
-        // The follower's SetSpineSprite is overloaded; the Type[] picks (MegaSprite, string).
-        var follower = AccessTools.Field(type, "_boneFollower")?.GetValue(__instance);
-        if (follower != null)
-            AccessTools.Method(follower.GetType(), "SetSpineSprite", [megaSpriteType, typeof(string)])
-                ?.Invoke(follower, [spineSprite, boneName]);
-
-        return false; // bone follower called exactly once
-    }
-
-    private static object? GetMember(object obj, string name)
-    {
-        var t = obj.GetType();
-        var prop = AccessTools.Property(t, name);
-        return prop != null ? prop.GetValue(obj) : AccessTools.Field(t, name)?.GetValue(obj);
+        copier?.Initialize(spineSprite, sourceNode);
+        follower?.SetSpineSprite(spineSprite, boneName);
+        return false;
     }
 }
 
-/*
 [HarmonyPatch(typeof(NVoidFormVfx), "SetSpineSprite")]
-public static class VoidFormBonePatch
+internal static class VoidFormBonePatch
 {
-    private static bool Prefix(NVoidFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode)
-    {
-        var owner = __instance._owner;
-        if (owner?.Character == null) return true;
-
-        if (!FormBoneRegistry.TryGet(typeof(NVoidFormVfx), owner.Character.GetType(), out var boneName))
-            return true;
-
-        if (__instance._boneFollower != null)
-            __instance._boneFollower.SetSpineSprite(spineSprite, boneName);
-        return false;
-    }
+    private static bool Prefix(NFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode,
+        NSpineSpriteBoneFollower? ____boneFollower) =>
+        FormBoneHelper.TryAttach(typeof(NVoidFormVfx), __instance, ____boneFollower, null, spineSprite, sourceNode);
 }
 
 [HarmonyPatch(typeof(NSerpentFormVfx), "SetSpineSprite")]
-public static class SerpentFormBonePatch
+internal static class SerpentFormBonePatch
 {
-    private static bool Prefix(NSerpentFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode)
-    {
-        var owner = __instance._owner;
-        if (owner?.Character == null) return true;
-
-        if (!FormBoneRegistry.TryGet(typeof(NSerpentFormVfx), owner.Character.GetType(), out var boneName))
-            return true;
-
-        if (__instance._boneFollower != null)
-            __instance._boneFollower.SetSpineSprite(spineSprite, boneName);
-        return false;
-    }
+    private static bool Prefix(NFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode,
+        NSpineSpriteBoneFollower? ____boneFollower) =>
+        FormBoneHelper.TryAttach(typeof(NSerpentFormVfx), __instance, ____boneFollower, null, spineSprite, sourceNode);
 }
 
 [HarmonyPatch(typeof(NReaperFormVfx), "SetSpineSprite")]
-public static class ReaperFormBonePatch
+internal static class ReaperFormBonePatch
 {
-    private static bool Prefix(NReaperFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode)
-    {
-        var owner = __instance._owner;
-        if (owner?.Character == null) return true;
-
-        if (!FormBoneRegistry.TryGet(typeof(NReaperFormVfx), owner.Character.GetType(), out var boneName))
-            return true;
-
-        if (__instance._boneFollower != null)
-            __instance._boneFollower.SetSpineSprite(spineSprite, boneName);
-        return false;
-    }
+    private static bool Prefix(NFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode,
+        NSpineSpriteBoneFollower? ____boneFollower) =>
+        FormBoneHelper.TryAttach(typeof(NReaperFormVfx), __instance, ____boneFollower, null, spineSprite, sourceNode);
 }
 
 [HarmonyPatch(typeof(NEchoFormVfx), "SetSpineSprite")]
-public static class EchoFormBonePatch
+internal static class EchoFormBonePatch
 {
-    private static bool Prefix(NEchoFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode)
-    {
-        var owner = __instance._owner;
-        if (owner?.Character == null) return true;
-
-        if (!FormBoneRegistry.TryGet(typeof(NEchoFormVfx), owner.Character.GetType(), out var boneName))
-            return true;
-
-        if (__instance._spineCopier != null)
-            __instance._spineCopier.Initialize(spineSprite, sourceNode);
-
-        if (__instance._boneFollower != null)
-            __instance._boneFollower.SetSpineSprite(spineSprite, boneName);
-        return false;
-    }
+    private static bool Prefix(NFormVfx __instance, MegaSprite spineSprite, Node2D sourceNode,
+        NSpineSpriteBoneFollower? ____boneFollower, NSpineSpriteCopier? ____spineCopier) =>
+        FormBoneHelper.TryAttach(typeof(NEchoFormVfx), __instance, ____boneFollower, ____spineCopier, spineSprite, sourceNode);
 }
-*/

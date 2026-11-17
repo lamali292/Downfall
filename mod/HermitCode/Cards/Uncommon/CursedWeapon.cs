@@ -1,6 +1,6 @@
+using MegaCrit.Sts2.Core.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,8 +13,6 @@ public sealed class CursedWeapon : HermitCardModel
 {
     private const string IncreaseKey = "Increase";
     private const int BaseDamage = 10;
-    private int _currentDamage = 10;
-    private int _increasedDamage;
 
     public CursedWeapon() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -33,24 +31,24 @@ public sealed class CursedWeapon : HermitCardModel
     // ReSharper disable once MemberCanBePrivate.Global
     public int CurrentDamage
     {
-        get => _currentDamage;
+        get;
         set
         {
             AssertMutable();
-            _currentDamage = value;
-            DynamicVars.Damage.BaseValue = _currentDamage;
+            field = value;
+            DynamicVars.Damage.BaseValue = field;
         }
-    }
+    } = 10;
 
     [SavedProperty]
     // ReSharper disable once MemberCanBePrivate.Global
     public int IncreasedDamage
     {
-        get => _increasedDamage;
+        get;
         set
         {
             AssertMutable();
-            _increasedDamage = value;
+            field = value;
         }
     }
 
@@ -83,7 +81,7 @@ public sealed class CursedWeapon : HermitCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
-        await CompatibilityCreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
+        await CreatureCmd.Damage(ctx, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             DamageProps.cardHpLoss, Owner.Creature, this, play);
 
         // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);

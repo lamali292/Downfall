@@ -10,6 +10,7 @@ using Downfall.DownfallCode.Utils;
 using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
 using MegaCrit.Sts2.Core.Models;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
@@ -42,10 +43,10 @@ public static class AwakenedMainFile
             .PatchAll();
 
 
-        FormBoneRegistry.RegisterVoidForm<Core.Awakened>("Eye");
-        FormBoneRegistry.RegisterSerpentForm<Core.Awakened>("Shoulder_feathers");
-        FormBoneRegistry.RegisterReaperForm<Core.Awakened>("Shoulder_feathers");
-        FormBoneRegistry.RegisterEchoForm<Core.Awakened>("Shoulder_feathers");
+        FormBoneRegistry.Register<NVoidFormVfx, Core.Awakened>("Eye");
+        FormBoneRegistry.Register<NSerpentFormVfx, Core.Awakened>("Shoulder_feathers");
+        FormBoneRegistry.Register<NReaperFormVfx, Core.Awakened>("Shoulder_feathers");
+        FormBoneRegistry.Register<NEchoFormVfx, Core.Awakened>("Shoulder_feathers");
     }
 
     private static void PostModelInit()

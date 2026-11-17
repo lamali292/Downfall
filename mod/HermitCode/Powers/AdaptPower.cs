@@ -1,5 +1,4 @@
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
 using Hermit.HermitCode.Core;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -24,7 +23,7 @@ public sealed class AdaptPower : HermitPowerModel
         var selected = await DownfallCardSelectionCmd.FromHand(ctx, Owner.Player, prefs, this);
         foreach (var card in selected)
         {
-            await CardCmdCompatibility.Exhaust(ctx, card);
+            await CardCmd.Exhaust(ctx, card);
             await CreatureCmd.GainBlock(Owner, 8, BlockProps.nonCardUnpowered, null);
         }
     }

@@ -44,20 +44,6 @@ fmod/.cache/
 **/.ipynb_checkpoints/
 *.ipynb
 
-/mod/src
-/mod/images
-/mod/fonts
-/mod/localization
-/mod/materials
-/mod/models
-/mod/scenes
-/mod/animations
-/mod/banks
-/mod/debug_audio
-/mod/shaders
-/mod/themes
-/mod/addons
-
 
 mod/*/images/atlases/
 mod/*/images/powers/
@@ -70,3 +56,4 @@ mod/*/images/enchantments/
 
 *.import
 /dist/
+/mod/override.cfg

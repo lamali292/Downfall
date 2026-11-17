@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
 using Downfall.DownfallCode.Commands;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -30,7 +29,7 @@ public class QuickSnack : SlimeBossCardModel
         var card = (await CardSelectCmd.FromHand(ctx, Owner, prefs, null, this)).FirstOrDefault();
         if (card == null) return;
         var amount = card.EnergyCost.GetResolved();
-        await CardCmdCompatibility.Exhaust(ctx, card);
+        await CardCmd.Exhaust(ctx, card);
         await DownfallCardCmd.GiveCards<Lick>(Owner, PileType.Hand, amount);
     }
 }

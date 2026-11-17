@@ -2,7 +2,6 @@
 using BaseLib.Commands;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
-using Downfall.DownfallCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -27,7 +26,7 @@ public class Refactor : AutomatonCardModel
 
         var statuses = result.Discarded.Where(c => c.Type == CardType.Status).ToList();
         foreach (var status in statuses)
-            await CardCmdCompatibility.Exhaust(ctx, status);
+            await CardCmd.Exhaust(ctx, status);
 
         if (statuses.Count > 0)
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.IntValue * statuses.Count,

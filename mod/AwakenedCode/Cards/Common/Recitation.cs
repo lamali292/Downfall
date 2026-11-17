@@ -1,4 +1,3 @@
-using Downfall.DownfallCode.Compatibility;
 using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
 using BaseLib.Utils;
@@ -24,13 +23,13 @@ public class Recitation : AwakenedCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
         if (CombatState == null || cardPlay.Target == null) return;
-        var context = await AttackContextCompatibility.CreateContextAsync(CombatState, ctx, cardPlay);
-        var list1 = await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+        var context = await AttackCommand.CreateContextAsync(CombatState, ctx, cardPlay);
+        var list1 = await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
             DynamicVars.Damage.Props, this, cardPlay);
         context.AddHit(list1);
         await ChantCmd.Chant(cardPlay, async () =>
         {
-            var list2 = await CompatibilityCreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
+            var list2 = await CreatureCmd.Damage(ctx, cardPlay.Target, DynamicVars.Damage.BaseValue,
                 DynamicVars.Damage.Props, this, cardPlay);
             context.AddHit(list2);
         });

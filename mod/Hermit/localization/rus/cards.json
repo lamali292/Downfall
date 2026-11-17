@@ -108,7 +108,7 @@
     "HERMIT-ENERVATE.title": "Лишить воли",
     "HERMIT-ENERVATE.description": "Наносит {Damage:diff()} урона.\n[gold]В яблочко[/gold]:\nВы получаете {Energy:energyIcons()} и добираете {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.",
     "HERMIT-RICOCHET.title": "Рикошет",
-    "HERMIT-RICOCHET.description": "Наносит {Damage:diff()} урона.\nНаносит столько же урона случайному врагу за каждую разыгранную [gold]В яблочко[/gold] карту.{InCombat:cond:\n(Наносит урон еще {CalculatedHits:diff()} {CalculatedHits:plural(ru):раз|раза|раз})|}",
+    "HERMIT-RICOCHET.description": "Наносит {Damage:diff()} урона.\nНаносит столько же урона случайному врагу за каждую разыгранную в этом ходу карту [gold]В яблочко[/gold] .{InCombat:cond:\n(Наносит урон еще {CalculatedHits:diff()} {CalculatedHits:plural(ru):раз|раза|раз})|}",
     "HERMIT-TRACKING_SHOT.title": "Прицельные выстрелы",
     "HERMIT-TRACKING_SHOT.description": "Наносит {Damage:diff()} урона дважды.",
     "HERMIT-LONE_WOLF.title": "Одинокий волк",
