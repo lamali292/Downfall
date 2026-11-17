@@ -77,11 +77,25 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
             var description = Description;
             UpdatePreviewValues();
             DynamicVars.AddTo(description);
-            var pool = Creature.PetOwner?.Character.CardPool ?? ModelDb.CardPool<ColorlessCardPool>();
+            var pool = PreviewPetOwnerPool() ?? ModelDb.CardPool<ColorlessCardPool>();
             description.Add("energyPrefix", pool.EnergyColorName);
             return description;
         }
     }
+
+    // Tooltips are built for canonical/detached slimes (e.g. relic hover tips on the Orobas event screen)
+    // whose Creature is not set yet; MonsterModel.Creature throws in that case.
+    private Creature? CreatureOrNull
+    {
+        get
+        {
+            if (IsCanonical) return null;
+            try { return Creature; }
+            catch (InvalidOperationException) { return null; }
+        }
+    }
+
+    private CardPoolModel? PreviewPetOwnerPool() => CreatureOrNull?.PetOwner?.Character.CardPool;
 
     public HoverTip SlimeTip => new(Title, SmartDescription);
 
@@ -165,7 +179,7 @@ public abstract class SlimeModel : CustomMonsterModel, ICustomAbstractModel
     protected virtual void UpdatePreviewValues()
     {
         if (IsCanonical) return;
-        if (Creature is not { IsAlive: true }) return;
+        if (CreatureOrNull is not { IsAlive: true }) return;
 
         foreach (var dynamicVar in DynamicVars.Values)
             switch (dynamicVar)
