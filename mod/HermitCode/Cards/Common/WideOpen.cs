@@ -11,7 +11,7 @@ public sealed class WideOpen : HermitCardModel
 {
     public WideOpen() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
-        WithDamage(6, 2);
+        WithDamage(7, 2);
         WithPower<VulnerablePower>(1, 1);
     }
 

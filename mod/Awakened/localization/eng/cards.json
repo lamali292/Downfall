@@ -200,7 +200,7 @@
   "AWAKENED-THE_ENCYCLOPEDIA.description": "Choose 2 of {Cards:diff()} random cards to add into your [gold]Hand[/gold].\nThey cost 2 less {energyPrefix:energyIcons(1)}.",
   "AWAKENED-THE_ENCYCLOPEDIA.title": "The Encyclopedia",
   "AWAKENED-THE_TOWER.description": "Deal {CalculatedDamage:diff()} damage to ALL enemies.\nDeals {ExtraDamage:diff()} additional damage for each card created this combat.",
-  "AWAKENED-THE_TOWER.title": "The Tower",
+  "AWAKENED-THE_TOWER.title": "Tower",
   "AWAKENED-THUNDERBOLT.description": "Deal {Damage:diff()} damage{TargetType:choose(AllEnemies): to ALL enemies|}.",
   "AWAKENED-THUNDERBOLT.title": "Thunderbolt",
   "AWAKENED-UNLEASH.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each other card in your [gold]Hand[/gold].",

@@ -138,7 +138,7 @@
   "SNECKO-TRASH_CAN.description": "At the end of your turn, you may [gold]Exhaust[/gold] a card.",
   "SNECKO-TRASH_CAN.title": "Trash Can",
   "SNECKO-TRASH_TO_TREASURE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Exhaust[/gold] a card.\nGain {energyPrefix:energyIcons(1)} equal to its cost.",
-  "SNECKO-TRASH_TO_TREASURE.title": "Trash to Treasure",
+  "SNECKO-TRASH_TO_TREASURE.title": "Upcycling",
   "SNECKO-TSUNAMI.description": "Whenever you [gold]Overflow[/gold], gain {TsunamiPower:diff()} [gold]Block[/gold].",
   "SNECKO-TSUNAMI.title": "Tsunami",
   "SNECKO-TYPHOON_FANG.description": "Deal {Damage:diff()} damage.\n[gold]Overflow[/gold]: This turn, whenever you [gold]Overflow[/gold], play a copy of this card.",
