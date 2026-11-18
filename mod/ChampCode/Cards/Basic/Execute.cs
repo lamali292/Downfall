@@ -14,6 +14,7 @@ public class Execute : ChampCardModel, ITranscendenceCard
     public Execute() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
+        WithHitCount(2);
         WithFinisher();
     }
 
@@ -24,7 +25,7 @@ public class Execute : ChampCardModel, ITranscendenceCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 2, "vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue, "vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
             .WithAttackerAnim(Core.Champ.GetJumpAnimIfApplicable(Owner.Character),
                 Core.Champ.GetJumpAttackDelayIfApplicable(Owner.Character))
             .Execute(ctx);

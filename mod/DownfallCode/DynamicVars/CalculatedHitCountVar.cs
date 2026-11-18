@@ -36,12 +36,19 @@ public static class HitCountPreview
 }
 
 /// <summary>
-///     The "Repeat" variable of an attack whose Repeat value is its hit count. Same variable and name as
-///     <c>RepeatVar</c> (so <c>DynamicVars.Repeat</c> and the "{Repeat}" card text keep working), but the preview
-///     also runs <c>Hook.ModifyAttackHitCount</c> (Thumbscrew, ...). Create it with <c>DownfallCardModel.WithHitCount</c>.
+///     A copy of the game's <c>HitCountVar</c> ("HitCount", {HitCount} in card text): the number of hits of an attack,
+///     previewed through <c>Hook.ModifyAttackHitCount</c> (Thumbscrew, ...). Older game builds don't ship
+///     <c>HitCountVar</c>, so this version works everywhere. Read it with <c>DynamicVars.HitCountCompat</c> (the game's
+///     <c>DynamicVars.HitCount</c> casts to the game type). Create it with <c>DownfallCardModel.WithHitCount</c>.
 /// </summary>
-public class DownfallHitCountVar(int hits) : RepeatVar(hits)
+public class DownfallHitCountVar(string name, int hits) : DynamicVar(name, hits)
 {
+    public const string DefaultName = "HitCount";
+
+    public DownfallHitCountVar(int hits) : this(DefaultName, hits)
+    {
+    }
+
     public override void UpdateCardPreview(CardModel card, CardPreviewMode previewMode, Creature? target,
         bool runGlobalHooks)
     {

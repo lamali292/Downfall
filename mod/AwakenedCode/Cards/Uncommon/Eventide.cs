@@ -14,6 +14,7 @@ public class Eventide : AwakenedCardModel
     public Eventide() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.RandomEnemy)
     {
         WithDamage(8, 2);
+        WithHitCount(2);
         WithTip<Void>();
     }
 
@@ -21,7 +22,7 @@ public class Eventide : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue).Execute(ctx);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Top);
     }
 }

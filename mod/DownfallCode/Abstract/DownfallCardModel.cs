@@ -98,12 +98,13 @@ public abstract class DownfallCardModel
     }
 
     /// <summary>
-    ///     The "Repeat" variable, used as the attack's hit count: like <c>WithRepeat</c>, but the previewed value includes
+    ///     The attack's hit count ("HitCount"): the previewed value includes
     ///     hit-count modifiers such as Thumbscrew.
+    ///     Pass <paramref name="name"/> to use a different variable name than "HitCount".
     /// </summary>
-    protected ConstructedCardModel WithHitCount(int baseVal, int upgradeVal = 0)
+    protected ConstructedCardModel WithHitCount(int baseVal, int upgradeVal = 0, string name = DownfallHitCountVar.DefaultName)
     {
-        return WithVar(new DownfallHitCountVar(baseVal).WithUpgrade(upgradeVal));
+        return WithVar(new DownfallHitCountVar(name, baseVal).WithUpgrade(upgradeVal));
     }
 
     protected ConstructedCardModel WithHpLoss(int baseVal, int upgrade = 0)

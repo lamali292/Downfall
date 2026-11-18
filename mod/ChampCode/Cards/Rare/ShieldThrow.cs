@@ -18,6 +18,7 @@ public class ShieldThrow : ChampCardModel
     {
         WithCalculatedDamage(0, BlockDamage);
         WithCostUpgradeBy(-1);
+        WithHitCount(2);
         // this.WithDefensiveTip();
         WithTip(StaticHoverTip.Block);
         WithPower<NoBlockNextTurnPower>(1, false);
@@ -35,7 +36,7 @@ public class ShieldThrow : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).WithHitCount(2).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue).Execute(ctx);
         if (Owner.ShouldDefensiveComboTrigger) return;
         await CommonActions.ApplySelf<NoBlockNextTurnPower>(ctx, this);
     }

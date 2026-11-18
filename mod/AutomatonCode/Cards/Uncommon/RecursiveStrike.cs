@@ -16,6 +16,7 @@ public class RecursiveStrike : AutomatonCardModel
     public RecursiveStrike() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
         WithDamage(6, 3);
+        WithHitCount(2);
         WithCards(2);
         WithTip(AutomatonKeyword.Encode);
         WithTags(CardTag.Strike);
@@ -31,7 +32,7 @@ public class RecursiveStrike : AutomatonCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 2)
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++)

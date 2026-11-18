@@ -14,7 +14,7 @@ public sealed class TrackingShot : HermitCardModel
     public TrackingShot() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
-        WithRepeat(2);
+        WithHitCount(2);
         WithKeyword(HermitKeywords.Concentrate);
     }
 
@@ -23,7 +23,7 @@ public sealed class TrackingShot : HermitCardModel
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay play)
     {
         // await CreatureCmd.TriggerAnim(Owner.Creature, "Attack", Owner.Character.AttackAnimDelay);
-        await CommonActions.CardAttack(this, play, 2).WithHermitGunHitFx().BeforeDamage(() =>
+        await CommonActions.CardAttack(this, play, DynamicVars.HitCountCompat.IntValue).WithHermitGunHitFx().BeforeDamage(() =>
             {
                 var i = Rng.Chaotic.NextInt(2);
                 if (i == 0)

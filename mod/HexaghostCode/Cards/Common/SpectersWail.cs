@@ -13,6 +13,7 @@ public class SpectersWail : HexaghostCardModel, IHasAfterlifeEffect
     {
         WithAfterlife();
         WithDamage(4, 2);
+        WithHitCount(2);
     }
 
 
@@ -24,6 +25,6 @@ public class SpectersWail : HexaghostCardModel, IHasAfterlifeEffect
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 2).WithAttackerFx("vfx/vfx_spooky_scream").Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue).WithAttackerFx("vfx/vfx_spooky_scream").Execute(ctx);
     }
 }

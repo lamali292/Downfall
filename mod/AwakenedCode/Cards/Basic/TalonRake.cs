@@ -15,6 +15,7 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
     public TalonRake() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(5, 3);
+        WithHitCount(2);
         WithConjure();
     }
 
@@ -28,7 +29,7 @@ public class TalonRake : AwakenedCardModel, ITranscendenceCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 2)
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(ctx);
         await AwakenedCmd.Conjure(Owner);

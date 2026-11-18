@@ -16,6 +16,7 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
     public TwinSlam() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
     {
         WithDamage(7);
+        WithHitCount(2);
         WithVar("GemReplay", 2);
     }
 
@@ -31,6 +32,6 @@ public class TwinSlam : GuardianCardModel, ITranscendenceCard, IGemSocketCard
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue).Execute(ctx);
     }
 }

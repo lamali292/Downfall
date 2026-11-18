@@ -20,11 +20,11 @@ public class EnragedBash : ChampCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue)
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue)
             .Execute(ctx);
         await ChampCmd.BerserkerCombo(cardPlay, () =>
         {
-            DynamicVars.Repeat.UpgradeValueBy(1);
+            DynamicVars.HitCountCompat.UpgradeValueBy(1);
             return Task.CompletedTask;
         });
     }

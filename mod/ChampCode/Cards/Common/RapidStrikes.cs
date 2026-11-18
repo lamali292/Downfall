@@ -12,13 +12,14 @@ public class RapidStrikes : ChampCardModel
     public RapidStrikes() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
         WithDamage(4, 2);
+        WithHitCount(2);
         WithTags(CardTag.Strike);
         WithEnergyTip();
     }
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, 2).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue).Execute(ctx);
         Owner.RunState.Rng.CombatCardSelection.NextItem(Owner.Hand
                 .Where(c => c.Tags.Contains(CardTag.Strike) && !c.EnergyCost.CostsX && c.EnergyCost.GetAmountToSpend() > 0)
             )?

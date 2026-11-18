@@ -25,7 +25,7 @@ public class Minniegun : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay).WithHitCount(DynamicVars.Repeat.IntValue).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay).WithHitCount(DynamicVars.HitCountCompat.IntValue).Execute(ctx);
         await DownfallCardCmd.GiveCard<Void>(Owner, PileType.Draw, CardPilePosition.Random, false, 0.3f);
     }
 }

@@ -21,7 +21,7 @@ public class PlumeJab : AwakenedCardModel
 
     protected override async Task OnPlayInternal(PlayerChoiceContext ctx, CardPlay cardPlay)
     {
-        await CommonActions.CardAttack(this, cardPlay, DynamicVars.Repeat.IntValue).Execute(ctx);
+        await CommonActions.CardAttack(this, cardPlay, DynamicVars.HitCountCompat.IntValue).Execute(ctx);
     }
 
     // Razor Sharp stuff. 
@@ -30,7 +30,7 @@ public class PlumeJab : AwakenedCardModel
         if (card != this) return Task.CompletedTask;
         var a = Owner.Creature.GetPowerAmount<RazorSharpPower>();
         if (a == 0) return Task.CompletedTask;
-        DynamicVars.Repeat.UpgradeValueBy(a);
+        DynamicVars.HitCountCompat.UpgradeValueBy(a);
         return Task.CompletedTask;
     }
 
@@ -39,7 +39,7 @@ public class PlumeJab : AwakenedCardModel
         Creature? applier,
         CardModel? cardSource)
     {
-        if (power is RazorSharpPower && power.Owner == Owner.Creature) DynamicVars.Repeat.UpgradeValueBy(amount);
+        if (power is RazorSharpPower && power.Owner == Owner.Creature) DynamicVars.HitCountCompat.UpgradeValueBy(amount);
         return Task.CompletedTask;
     }
 }
