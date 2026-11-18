@@ -28,7 +28,7 @@
     "SLIMEBOSS-GOOP_SPRAY.description": "[gold]脱力[/gold]{WeakPower:diff()}を付与する。\nカードを{Cards:diff()}枚引く。",
     "SLIMEBOSS-GOOP_SPRAY.title": "ヘドロ噴射",
     "SLIMEBOSS-GROW.description": "スライムスロットを1つ失う。\n[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]敏捷[/gold]{DexterityPower:diff()}を得る。",
-    "SLIMEBOSS-GROW.title": "成長",
+    "SLIMEBOSS-GROW.title": "発達",
     "SLIMEBOSS-GROWTH_PUNCH.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n{Damage:diff()}ダメージを与える。\nその敵に[gold]脱力[/gold]が付与されている場合、この戦闘中、これらの効果が{Increase:diff()}増加する。",
     "SLIMEBOSS-GROWTH_PUNCH.title": "成長するパンチ",
     "SLIMEBOSS-HUNGRY_TACKLE.description": "{Damage:diff()}ダメージを与える。\nその敵に[gold]脱力[/gold]が付与されている場合、それを1スタック取り除いて{Energy:energyIcons()}を得る。",
