@@ -74,5 +74,8 @@
     "HEXAGHOST-PREMONITION_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]силы[/gold], когда [gold]сжигается[/gold] [gold]эфирная[/gold] карта.",
     "HEXAGHOST-SOULFIRE_POWER.title": "Пламя души",
     "HEXAGHOST-SOULFIRE_POWER.description": "Дает [gold]защиту[/gold], когда карта накладывает [gold]Ожог души[/gold] на врага, ",
-    "HEXAGHOST-SOULFIRE_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold], когда карта накладывает [gold]Ожог души[/gold] на врага, "
+    "HEXAGHOST-SOULFIRE_POWER.smartDescription": "Дает [blue]{Amount}[/blue] [gold]защиты[/gold], когда карта накладывает [gold]Ожог души[/gold] на врага, ",
+    "HEXAGHOST-IGNIS_POWER.title": "Игнис",
+    "HEXAGHOST-IGNIS_POWER.description": "Следующая [gold]эфирная[/gold] карта в этом ходу разыгрывается еще раз.",
+    "HEXAGHOST-IGNIS_POWER.smartDescription": "{Amount:plural(ru):Следующая [gold]эфирная[/gold] карта|Следующие [blue]{}[/blue] [gold]эфирные[/gold] карты|Следующие [blue]{}[/blue] [gold]эфирных[/gold] карт} в этом ходу {Amount:plural(ru):разыгрывается|разыгрываются|разыгрываются} еще раз."
 }
