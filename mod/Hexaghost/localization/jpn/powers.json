@@ -74,5 +74,8 @@
     "HEXAGHOST-PREMONITION_POWER.smartDescription": "[gold]エセリアル[/gold]が[gold]廃棄[/gold]されるたび、[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
     "HEXAGHOST-SOULFIRE_POWER.title": "ソウルファイア",
     "HEXAGHOST-SOULFIRE_POWER.description": "カードにより[gold]ソウルバーン[/gold]を付与するたび、[gold]ブロック[/gold]を得る。",
-    "HEXAGHOST-SOULFIRE_POWER.smartDescription": "カードにより[gold]ソウルバーン[/gold]を付与するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。"
+    "HEXAGHOST-SOULFIRE_POWER.smartDescription": "カードにより[gold]ソウルバーン[/gold]を付与するたび、[blue]{Amount}[/blue][gold]ブロック[/gold]を得る。",
+    "HEXAGHOST-IGNIS_POWER.title": "イグニス",
+    "HEXAGHOST-IGNIS_POWER.description": "このターン、次にプレイする[gold]エセリアル[/gold]をもう1回プレイする。 ",
+    "HEXAGHOST-IGNIS_POWER.smartDescription": "このターン、次にプレイする[blue]{Amount}[/blue]枚の[gold]エセリアル[/gold]をもう1回プレイする。 "
 }

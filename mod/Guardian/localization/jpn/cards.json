@@ -77,6 +77,7 @@
     "GUARDIAN-RECOVER.title": "リカバー",
     "GUARDIAN-REFRACTED_BEAM.description": "{Damage:diff()}ダメージを{Repeat:diff()}回与える。{InCombat:cond:|\nこのカードは何度でも[gold]アップグレード[/gold]できる。\nこのカードを[gold]アップグレード[/gold]するたび、[gold]ソケット[/gold]を1つ得る。}",
     "GUARDIAN-REFRACTED_BEAM.title": "リフレクトビーム",
+    "GUARDIAN-REPULSOR_GUARDIAN.description": "毎ターン、最初に状態異常か[gold]呪い[/gold]を引いた時、それを[gold]廃棄[/gold]してカードを1枚引く。",
     "GUARDIAN-REPULSOR_GUARDIAN.title": "リパルサー",
     "GUARDIAN-REROUTE.description": "{Damage:diff()}ダメージを与える。\nこのターン、次にプレイするカードを[gold]停滞[/gold]させる。",
     "GUARDIAN-REROUTE.title": "経路変更",

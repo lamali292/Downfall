@@ -113,6 +113,7 @@
     "AWAKENED-MANA_SHIELD.title": "Мана-щит",
     "AWAKENED-MANTIS.description": "Дает {StrengthPower:diff()} [gold]силы[/gold].\nДобавляет в [gold]руку[/gold] [gold]«Укол пером»[/gold].",
     "AWAKENED-MANTIS.title": "Богомол",
+    "AWAKENED-MIDDEN_HEAP.description": "Дает {Block:diff()} [gold]защиты[/gold].\nВы кладете {Cards:diff()} {Cards:plural(ru):карту|карты|карт} Статуса или [red]Проклятия[/red] из [gold]стопки добора[/gold] или [gold]стопки сброса[/gold] в [gold]руку[/gold].",
     "AWAKENED-MIDDEN_HEAP.title": "Куча отбросов",
     "AWAKENED-MINNIEGUN.description": "Наносит {Damage:diff()} урона {Repeat:diff()} {Repeat:plural(ru):раз|раза|раз}.\nЗамешивает [gold]«Бездну»[/gold] в [gold]стопку добора[/gold].",
     "AWAKENED-MINNIEGUN.title": "Минниган",
