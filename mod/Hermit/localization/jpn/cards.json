@@ -107,7 +107,7 @@
     "HERMIT-CURSED_WEAPON.description": "HPを{HpLoss:diff()}失う。\n{Damage:diff()}ダメージを与える。\nすべての[gold]呪いの武器[/gold]のダメージが永続的に{Increase:diff()}増加する。",
     "HERMIT-ENERVATE.title": "エネルベート",
     "HERMIT-ENERVATE.description": "{Damage:diff()}ダメージを与える。\n[gold]デッド-オン[/gold]：{Energy:energyIcons()}を得て、カードを{Cards:diff()}枚引く。",
-    "HERMIT-RICOCHET.title": "トリックショット",
+    "HERMIT-RICOCHET.title": "決め技",
     "HERMIT-RICOCHET.description": "{Damage:diff()}ダメージを与える。\nこのターン中に[gold]デッド-オン[/gold]効果が発動した回数分、ランダムな敵に追加で繰り返す。{InCombat:cond:\n(追加で{CalculatedHits:diff()}回攻撃)|}",
     "HERMIT-TRACKING_SHOT.title": "移動射撃",
     "HERMIT-TRACKING_SHOT.description": "{Damage:diff()}ダメージを2回与える。",
