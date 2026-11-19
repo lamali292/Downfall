@@ -28,7 +28,7 @@
     "SLIMEBOSS-GOOP_SPRAY.description": "[gold]脱力[/gold]{WeakPower:diff()}を付与する。\nカードを{Cards:diff()}枚引く。",
     "SLIMEBOSS-GOOP_SPRAY.title": "ヘドロ噴射",
     "SLIMEBOSS-GROW.description": "スライムスロットを1つ失う。\n[gold]筋力[/gold]{StrengthPower:diff()}を得る。\n[gold]敏捷[/gold]{DexterityPower:diff()}を得る。",
-    "SLIMEBOSS-GROW.title": "発達",
+    "SLIMEBOSS-GROW.title": "体積増大",
     "SLIMEBOSS-GROWTH_PUNCH.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n{Damage:diff()}ダメージを与える。\nその敵に[gold]脱力[/gold]が付与されている場合、この戦闘中、これらの効果が{Increase:diff()}増加する。",
     "SLIMEBOSS-GROWTH_PUNCH.title": "成長するパンチ",
     "SLIMEBOSS-HUNGRY_TACKLE.description": "{Damage:diff()}ダメージを与える。\nその敵に[gold]脱力[/gold]が付与されている場合、それを1スタック取り除いて{Energy:energyIcons()}を得る。",
@@ -200,5 +200,5 @@
     "SLIMEBOSS-LIQUIDATE.title": "液状化",
     "SLIMEBOSS-LIQUIDATE.description": "[gold]筋力[/gold]{StrengthPower:inverseDiff()}を失う。\n[gold]潜在[/gold]{PotencyPower:diff()}を得る。",
     "SLIMEBOSS-SLIME_SPIKES.title": "スライムスパイク",
-    "SLIMEBOSS-SLIME_SPIKES.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこのターン、状態異常をプレイするたび、ターン終了時まで[gold]トゲ[/gold]{SlimeSpikesPower:diff()}を得る。"
+    "SLIMEBOSS-SLIME_SPIKES.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\nこのターン、状態異常をプレイするたび、[gold]トゲ[/gold]{ThornsPower:diff()}を得る。"
 }
