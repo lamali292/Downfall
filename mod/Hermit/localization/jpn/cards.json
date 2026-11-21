@@ -14,7 +14,7 @@
     "HERMIT-WIDE_OPEN.title": "風穴を開ける",
     "HERMIT-WIDE_OPEN.description": "{Damage:diff()}ダメージを与える。\n[gold]弱体[/gold]{VulnerablePower:diff()}を付与する。",
     "HERMIT-COVET.title": "コベット",
-    "HERMIT-COVET.description": "カードを{Discard:diff()}枚捨てる。\nカードを{Cards:diff()}枚引く。\n[gold]呪い[/gold]を捨てた場合、それを[gold]廃棄[/gold]する。",
+    "HERMIT-COVET.description": "カードを{Discard:diff()}枚捨てる。\nカードを{Cards:diff()}枚引く。\n捨てた[gold]呪い[/gold]は[gold]廃棄[/gold]される。",
     "HERMIT-HIGH_CALIBER.title": "ハイ-キャリバー",
     "HERMIT-HIGH_CALIBER.description": "{Damage:diff()}ダメージを与える。\n[gold]{IfUpgraded:show:ストライク{UpgradeAmount}|ストライク{UpgradeAmount}}[/gold]を1枚[gold]手札[/gold]に加える。",
     "HERMIT-BODY_ARMOR.title": "ボディアーマー",
