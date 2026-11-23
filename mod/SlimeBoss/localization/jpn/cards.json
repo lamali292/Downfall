@@ -80,7 +80,7 @@
     "SLIMEBOSS-REFORMATION.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]をすべて捨てる。\n[gold]捨て札[/gold]からカードを1枚[gold]手札[/gold]に加える。",
     "SLIMEBOSS-REFORMATION.title": "再統合",
     "SLIMEBOSS-REPLICATION.description": "[gold]山札[/gold]のパワーのコピーを1枚プレイする。",
-    "SLIMEBOSS-REPLICATION.title": "複製",
+    "SLIMEBOSS-REPLICATION.title": "技能の増殖",
     "SLIMEBOSS-REPURPOSE.description": "[gold]山札[/gold]のカードを{Cards:diff()}枚まで選び、[gold]粘液[/gold]に[gold]変化[/gold]させる。\n[gold]変化[/gold]させたカード1枚につき、次のターン、カードを{DrawCardsNextTurnPower:diff()}枚引く。",
     "SLIMEBOSS-REPURPOSE.title": "再利用",
     "SLIMEBOSS-ROLL_THROUGH.description": "すべての敵に{Damage:diff()}ダメージを与える。\nすべての敵に[gold]脱力[/gold]{WeakPower:diff()}を付与する。",
