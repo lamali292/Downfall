@@ -62,7 +62,7 @@
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.title": "マキシマムオーバードライブ",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.description": "[gold]停滞[/gold]中のカードのカウントが減少するたび、ターン終了時まで[gold]筋力[/gold][blue]1[/blue]を得る。",
     "GUARDIAN-MAXIMUM_OVERDRIVE_POWER.smartDescription": "[gold]停滞[/gold]中のカードのカウントが減少するたび、ターン終了時まで[gold]筋力[/gold][blue]{Amount}[/blue]を得る。",
-    "GUARDIAN-OVERBLOCK_BLOCK_POWER.title": "過剰な防御",
+    "GUARDIAN-OVERBLOCK_BLOCK_POWER.title": "過剰防衛",
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.description": "[gold]防御態勢[/gold]に入るたび、[gold]ブロック[/gold]が最も少ない味方が[gold]ブロック[/gold]と、ターン終了時まで[gold]トゲ[/gold]を得る。",
     "GUARDIAN-OVERBLOCK_BLOCK_POWER.smartDescription": "[gold]防御態勢[/gold]に入るたび、[gold]ブロック[/gold]が最も少ない味方が[blue]{Amount}[/blue][gold]ブロック[/gold]と、ターン終了時まで[gold]トゲ[/gold][blue]{ThornsPower}[/blue]を得る。",
     "GUARDIAN-BASTION_POWER.title": "要塞",

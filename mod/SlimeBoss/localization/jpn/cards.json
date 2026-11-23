@@ -100,7 +100,7 @@
     "SLIMEBOSS-REFORMATION.description": "{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]捨て札[/gold]からカードを1枚[gold]山札[/gold]の一番上に置く。",
     "SLIMEBOSS-REFORMATION.title": "再統合",
     "SLIMEBOSS-REPLICATION.description": "カードを1枚選ぶ。\nそのコピーを1枚[gold]山札[/gold]の一番上に加える。",
-    "SLIMEBOSS-REPLICATION.title": "複製",
+    "SLIMEBOSS-REPLICATION.title": "技能の増殖",
     "SLIMEBOSS-REPURPOSE.description": "[gold]吸収[/gold]：ランダムな[gold]上級スライム[/gold]に[gold]分裂[/gold]する。{IfUpgraded:show:\n{Command:diff()}回[gold]命令[/gold]する。|}",
     "SLIMEBOSS-REPURPOSE.title": "再利用",
     "SLIMEBOSS-ROLL_THROUGH.description": "すべての敵に{Damage:diff()}ダメージを与える。\n次の{RollThroughPower:diff()}枚の「タックル」カードからダメージを受けない。",

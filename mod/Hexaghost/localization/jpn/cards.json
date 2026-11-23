@@ -1,6 +1,6 @@
 {
     "HEXAGHOST-ADVANCING_GUARD.description": "{Block:diff()}[gold]ブロック[/gold]を得る。",
-    "HEXAGHOST-ADVANCING_GUARD.title": "前進防御",
+    "HEXAGHOST-ADVANCING_GUARD.title": "堂々たる前進",
     "HEXAGHOST-APOCRYPHRA.title": "アポクリファ！",
     "HEXAGHOST-APOCRYPHRA.description": "すべての敵に{Damage:diff()}ダメージを与え、[afterlife]ソウルバーン[/afterlife]{SoulBurnPower:diff()}[afterlife]を付与する。[/afterlife]\n[afterlife]このカードを手札に戻す。[/afterlife]",
     "HEXAGHOST-BACKTRACK_SMACK.description": "{Damage:diff()}ダメージを2回与える。",

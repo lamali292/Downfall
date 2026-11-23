@@ -188,7 +188,7 @@
     "AWAKENED-STRIKE_AWAKENED.description": "{Damage:diff()}ダメージを与える。",
     "AWAKENED-STRIKE_AWAKENED.title": "ストライク",
     "AWAKENED-TAKE_FLIGHT.description": "{Block:diff()}[gold]ブロック[/gold]を得る。",
-    "AWAKENED-TAKE_FLIGHT.title": "飛翔",
+    "AWAKENED-TAKE_FLIGHT.title": "両翼の顕現",
     "AWAKENED-TALON_RAKE.description": "{Damage:diff()}ダメージを2回与える。\n1回[gold]喚起[/gold]する。",
     "AWAKENED-TALON_RAKE.title": "引っ掻き",
     "AWAKENED-TALON_REND.description": "{Damage:diff()}ダメージを2回与える。\n2回[gold]喚起[/gold]する。",
