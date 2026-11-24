@@ -2,5 +2,8 @@
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-0r.char": "Я зол на Архитектора",
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-0r.next": "Продолжить",
     "THE_ARCHITECT.talk.SNECKO-SNECKO.0-1r.ancient": "Ты умрешь",
-    "THE_ARCHITECT.talk.SNECKO-SNECKO.0-attack": "Both"
+    "THE_ARCHITECT.talk.SNECKO-SNECKO.0-attack": "Both",
+    "SNECKO-SNECKO_SPIRIT.title": "Сетиру",
+    "SNECKO-SNECKO_SPIRIT.epithet": "Заёмщик",
+    "SNECKO-SNECKO_SPIRIT.talk.firstVisitEver.0-0.sfx": "event:/sfx/npcs/snecko_spirit/hiss"
 }
