@@ -1,7 +1,7 @@
 {
     "HEXAGHOST-ADVANCING_GUARD.description": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
     "HEXAGHOST-ADVANCING_GUARD.title": "팽창된 보호",
-    "HEXAGHOST-BACKTRACK_SMACK.description": "피해를 {Damage:diff()}만큼 2번 줍니다.",
+    "HEXAGHOST-BACKTRACK_SMACK.description": "피해를 {Damage:diff()}만큼 {HitCount:diff()}번 줍니다.",
     "HEXAGHOST-BACKTRACK_SMACK.title": "되짚어 치기",
     "HEXAGHOST-BAD_OMEN.description": "현재 유령불꽃을 선택한 유령불꽃으로 변경합니다.",
     "HEXAGHOST-BAD_OMEN.title": "흉조",
@@ -122,7 +122,7 @@
     "HEXAGHOST-SHIELD_OF_NIGHT.description": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n[gold]예지[/gold] {Scry:diff()}.\n버려진 [gold]휘발성[/gold] 카드가 [gold]소멸[/gold]됩니다.",
     "HEXAGHOST-SHIELD_OF_NIGHT.title": "밤의 방패",
     "HEXAGHOST-SNEAKY_TEAKWOOD_MATCH.title": "은밀한 유목 성냥",
-    "HEXAGHOST-SPECTERS_WAIL.description": "[afterlife]모든 적에게 피해를[/afterlife] {Damage:diff()}만큼 2번 [afterlife]줍니다.[/afterlife]",
+    "HEXAGHOST-SPECTERS_WAIL.description": "[afterlife]모든 적에게 피해를[/afterlife] {Damage:diff()}만큼 {HitCount:diff()}번 [afterlife]줍니다.[/afterlife]",
     "HEXAGHOST-SPECTERS_WAIL.title": "유령의 통곡",
     "HEXAGHOST-SPECTRAL_GRACE.description": "피해를 {Damage:diff()} 줍니다.\n카드를 {Cards:diff()}장 버립니다.",
     "HEXAGHOST-SPECTRAL_GRACE.title": "유령의 은총",

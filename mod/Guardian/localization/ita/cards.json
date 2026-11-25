@@ -56,7 +56,7 @@
     "GUARDIAN-OVERLOAD.title": "Sovraccarico",
     "GUARDIAN-PIERCING_HIDE.description": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\nOttieni {PiercingHidePower:diff()} [gold]Spine[/gold] in questo turno.\n[gold]Irrobustisci[/gold] {Brace:diff()}.",
     "GUARDIAN-PIERCING_HIDE.title": "Pelle Trafiggente",
-    "GUARDIAN-POLY_BEAM.description": "Infliggi {Damage:diff()} di danno a un nemico casuale {Repeat:diff()} volte.",
+    "GUARDIAN-POLY_BEAM.description": "Infliggi {Damage:diff()} di danno a un nemico casuale {HitCount:diff()} volte.",
     "GUARDIAN-POLY_BEAM.title": "Poli-Raggio",
     "GUARDIAN-PREPROGRAM.title": "Preprogramma",
     "GUARDIAN-PRIMING_SHOT.description": "Infliggi {Damage:diff()} di danno.\n[gold]Irrobustisci[/gold] {Brace:diff()}.",

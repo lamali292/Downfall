@@ -63,7 +63,7 @@
     "AUTOMATON-INFINITE_BEAMS.title": "Raggi Infiniti",
     "AUTOMATON-INFINITE_LOOP.title": "Ciclo Infinito",
     "AUTOMATON-INVALIDATE.title": "Invalida",
-    "AUTOMATON-ITERATE.description": "Infliggi {Damage:diff()} di danno {Repeat:diff()} volte.\nAlla fine del tuo turno, gioca questa se è nel tuo [gold]Mucchio Deposito[/gold].",
+    "AUTOMATON-ITERATE.description": "Infliggi {Damage:diff()} di danno {HitCount:diff()} volte.\nAlla fine del tuo turno, gioca questa se è nel tuo [gold]Mucchio Deposito[/gold].",
     "AUTOMATON-ITERATE.title": "Itera",
     "AUTOMATON-ITS_A_FEATURE.title": "È Una Caratteristica",
     "AUTOMATON-LIBRARY.description": "All'inizio del tuo turno, aggiungi una carta casuale con [gold]Codifica[/gold] alla tua [gold]Mano[/gold].\nÈ gratuita da giocare in questo turno.",

@@ -89,7 +89,7 @@
     "HERMIT-RICOCHET.title": "트릭샷",
     "HERMIT-RICOCHET.description": "{Damage:diff()} 피해를 줍니다.\n이번 턴에 발동된 [gold]정조준[/gold] 효과 1번당, 무작위 적에게 피해를 다시 줍니다.{InCombat:cond:\n({CalculatedHits:diff()}번 추가 적중)|}",
     "HERMIT-TRACKING_SHOT.title": "추적 사격",
-    "HERMIT-TRACKING_SHOT.description": "{Damage:diff()} 피해를 두 번 줍니다.",
+    "HERMIT-TRACKING_SHOT.description": "{Damage:diff()} 피해를 {HitCount:diff()}번 줍니다.",
     "HERMIT-LONE_WOLF.title": "외로운 늑대",
     "HERMIT-LONE_WOLF.description": "카드 1장을 선택합니다.\n그 카드는 이번 턴 동안 비용이 0이 됩니다.\n나머지 [gold]손패[/gold]를 모두 버립니다.",
     "HERMIT-HIGH_NOON.title": "정오",

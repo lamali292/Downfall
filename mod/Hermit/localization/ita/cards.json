@@ -92,7 +92,7 @@
     "HERMIT-RICOCHET.title": "Rimbalzo",
     "HERMIT-RICOCHET.description": "Infliggi {Damage:diff()} di danno.\nPer ogni effetto [gold]Nel Segno[/gold] attivato in questo turno, infliggilo di nuovo a un nemico casuale.{InCombat:cond:\n(Colpisce {CalculatedHits:diff()} {CalculatedHits:plural:volta in più|volte in più})|}",
     "HERMIT-TRACKING_SHOT.title": "Colpi Traccianti",
-    "HERMIT-TRACKING_SHOT.description": "Infliggi {Damage:diff()} di danno due volte.",
+    "HERMIT-TRACKING_SHOT.description": "Infliggi {Damage:diff()} di danno {HitCount:choose(2):due volte|{HitCount:diff()} volte}.",
     "HERMIT-LONE_WOLF.title": "Lupo Solitario",
     "HERMIT-LONE_WOLF.description": "Scegli una carta.\nÈ gratuita da giocare in questo turno.\nScarta il resto della tua [gold]Mano[/gold].",
     "HERMIT-HIGH_NOON.title": "Mezzogiorno",

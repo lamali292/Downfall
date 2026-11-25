@@ -56,7 +56,7 @@
     "GUARDIAN-OVERLOAD.title": "과부하",
     "GUARDIAN-PIERCING_HIDE.description": "{Block:diff()} [gold]방어도[/gold]를 얻습니다.\n이번 턴에 {TemporaryThornsPower:diff()} [gold]가시[/gold]를 얻습니다.\n[gold]대비[/gold] {Brace:diff()}.",
     "GUARDIAN-PIERCING_HIDE.title": "꿰뚫는 가죽",
-    "GUARDIAN-POLY_BEAM.description": "무작위 적에게 {Damage:diff()}의 피해를 {Repeat:diff()}번 줍니다.",
+    "GUARDIAN-POLY_BEAM.description": "무작위 적에게 {Damage:diff()}의 피해를 {HitCount:diff()}번 줍니다.",
     "GUARDIAN-POLY_BEAM.title": "교차 광선",
     "GUARDIAN-PREPROGRAM.title": "사전 프로그래밍",
     "GUARDIAN-PRIMING_SHOT.description": "{Damage:diff()}의 피해를 줍니다.\n[gold]대비[/gold] {Brace:diff()}.",
