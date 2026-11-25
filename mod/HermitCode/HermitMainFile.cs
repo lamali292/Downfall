@@ -1,7 +1,6 @@
 ﻿using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Downfall.DownfallCode.Voting;
 using Hermit.HermitCode.Cards.Uncommon;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.Patches;
@@ -29,7 +28,6 @@ public static class HermitMainFile
         PostInitRegistry.Register(PostModelInit);
         BundledSubmodLocRegistry.Register(ModId);
         CharacterOrderRegistry.Register<Core.Hermit>(0);
-        VotingPoolRegistry.Register<HermitCardPool>(VotingPool.Hermit, ModId);
 
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(DeadOnPatch))

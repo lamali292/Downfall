@@ -2,7 +2,6 @@
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Downfall.DownfallCode.Voting;
 using Hexaghost.HexaghostCode.Core;
 using Hexaghost.HexaghostCode.CustomEnums;
 using Hexaghost.HexaghostCode.Events;
@@ -34,7 +33,6 @@ public static class HexaghostMainFile
 
         BundledSubmodLocRegistry.Register(ModId);
         CharacterOrderRegistry.Register<Core.Hexaghost>(60);
-        VotingPoolRegistry.Register<HexaghostCardPool>(VotingPool.Hexaghost, ModId);
 
         ModPatcher.Create(ModId, Logger)
             .Add(typeof(NCreatureAnimationPatch))

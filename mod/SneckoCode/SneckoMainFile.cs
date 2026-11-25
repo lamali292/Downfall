@@ -1,6 +1,5 @@
 ﻿using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Utils;
-using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
@@ -24,7 +23,6 @@ public static class SneckoMainFile
         BundledSubmodLocRegistry.Register(ModId);
         CharacterOrderRegistry.Register<Core.Snecko>(70);
         MuddleListenerRegistry.Register("IntoTheSpireverse.IntoTheSpireverseCode.Utils");
-        VotingPoolRegistry.Register<SneckoCardPool>(VotingPool.Snecko, ModId);
 
 
         /*

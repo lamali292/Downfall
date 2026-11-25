@@ -4,7 +4,6 @@ using BaseLib.Utils;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Downfall.DownfallCode.Voting;
 using Guardian.GuardianCode.Cards;
 using Guardian.GuardianCode.Core;
 using Guardian.GuardianCode.Interfaces;
@@ -38,7 +37,6 @@ public static class GuardianMainFile
 
         BundledSubmodLocRegistry.Register(ModId);
         CharacterOrderRegistry.Register<Core.Guardian>(40);
-        VotingPoolRegistry.Register<GuardianCardPool>(VotingPool.Guardian, ModId);
 
         TranscendenceHooks.OnTransformed += CopyGemsToTranscendence;
         CombatUiHooks.Register(GuardianCombatModel.SetupGuardianCombatUi);

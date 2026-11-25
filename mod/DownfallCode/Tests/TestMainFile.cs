@@ -1,4 +1,4 @@
-﻿using Downfall.DownfallCode.Voting;
+﻿using Downfall.DownfallCode;
 using Downfall.DownfallCode.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Helpers;

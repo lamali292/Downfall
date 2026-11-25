@@ -1,4 +1,3 @@
-﻿using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Platform.Steam;
 using Steamworks;
 

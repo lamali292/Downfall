@@ -25,8 +25,6 @@
         <!-- Pure modules under test -->
         <Compile Include="../mod/DownfallCode/Extensions/LinqExtensions.cs" Link="Pure/LinqExtensions.cs"/>
         <Compile Include="../mod/HermitCode/Core/HandGeometry.cs" Link="Pure/HandGeometry.cs"/>
-        <Compile Include="../mod/DownfallCode/Voting/Client/VotingRequest.cs" Link="Pure/VotingRequest.cs"/>
-        <Compile Include="../mod/DownfallCode/Voting/Client/VotingTransport.cs" Link="Pure/VotingTransport.cs"/>
         <Compile Include="../mod/DownfallCode/Utils/Compat/ReplaceableSubmod.IsSupersededByAny.cs" Link="Pure/ReplaceableSubmod.IsSupersededByAny.cs"/>
     </ItemGroup>
 </Project>

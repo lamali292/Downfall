@@ -6,7 +6,6 @@ using Champ.ChampCode.Localization;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
@@ -35,7 +34,6 @@ public static class ChampMainFile
 
         BundledSubmodLocRegistry.Register(ModId);
         CharacterOrderRegistry.Register<Core.Champ>(10);
-        VotingPoolRegistry.Register<ChampCardPool>(VotingPool.Champ, ModId);
 
         FormBoneRegistry.Register<NVoidFormVfx, Core.Champ>("Head");
         FormBoneRegistry.Register<NSerpentFormVfx, Core.Champ>("Neck");

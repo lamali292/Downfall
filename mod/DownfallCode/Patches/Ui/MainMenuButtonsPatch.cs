@@ -1,4 +1,4 @@
-﻿using Downfall.DownfallCode.Voting;
+﻿using Downfall.DownfallCode;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;

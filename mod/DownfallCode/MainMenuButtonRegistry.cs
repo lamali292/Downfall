@@ -1,7 +1,7 @@
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.Screens.MainMenu;
 
-namespace Downfall.DownfallCode.Voting;
+namespace Downfall.DownfallCode;
 
 // Lib mod
 public static class MainMenuButtonRegistry

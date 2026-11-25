@@ -14,7 +14,6 @@ using Downfall.DownfallCode.Multiplayer;
 using Downfall.DownfallCode.Nodes;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Downfall.DownfallCode.Voting;
 using Godot;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Logging;
@@ -39,7 +38,6 @@ public static class DownfallMainFile
         PostInitRegistry.Register(PostModelInit);
         CustomLocTableManager.Register("card_modifiers");
         CustomLocTableManager.Register("artists");
-        CustomLocTableManager.Register("voting_ui");
         ExtendedSaveTypes.RegisterListSaveType<SerializableCard>();
         ModConfigRegistry.Register(ModId, new DownfallConfig());
 
@@ -59,18 +57,6 @@ public static class DownfallMainFile
             echoLoc.Add("card", title);
             return echoLoc.GetFormattedText();
         });
-
-
-        /*
-        MainMenuButtonRegistry.Register(new MainMenuButtonRegistry.Entry
-        {
-            Label = "Art Voting", // fallback if the loc table entry is somehow missing
-            LocLabel = new LocString("main_menu_ui", "DOWNFALL-ART_SUBMISSION"),
-            IsVisible = () => DownfallConfig.ShowArtSubmissionButton,
-            SubmenuType = typeof(NArtVotingScreen),
-            CreateSubmenu = NArtVotingScreen.Create,
-            OnPress = stack => { stack?.PushSubmenuType<NArtVotingScreen>(); }
-        });*/
 
         // mention downfall sts1 credits somewhere
         ModCredits.Register(ModId,

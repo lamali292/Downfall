@@ -7,7 +7,6 @@ using Automaton.AutomatonCode.Patches;
 using Downfall.DownfallCode.Localization;
 using Downfall.DownfallCode.Patches;
 using Downfall.DownfallCode.Utils;
-using Downfall.DownfallCode.Voting;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Nodes.Vfx.Forms;
@@ -41,7 +40,6 @@ public static class AutomatonMainFile
             new CompileDescriptionSource());
         BundledSubmodLocRegistry.Register(ModId);
         CharacterOrderRegistry.Register<Core.Automaton>(20);
-        VotingPoolRegistry.Register<AutomatonCardPool>(VotingPool.Automaton, ModId);
         FormBoneRegistry.Register<NVoidFormVfx, Core.Automaton>("chest");
         FormBoneRegistry.Register<NSerpentFormVfx, Core.Automaton>("chest");
         FormBoneRegistry.Register<NReaperFormVfx, Core.Automaton>("chest");
