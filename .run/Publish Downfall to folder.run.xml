@@ -1,6 +1,16 @@
 ﻿<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Publish Downfall to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
-    <riderPublish configuration="ExportRelease" platform="Any CPU" target_folder="$PROJECT_DIR$/mod/bin/ExportRelease/net9.0/publish" target_framework="net9.0" uuid_high="235595486208609568" uuid_low="-5314557146192442183" />
+  <configuration default="false" name="Publish Downfall to folder" type="RunExe" factoryName=".NET Executable">
+    <option name="EXE_PATH" value="powershell.exe" />
+    <option name="PROGRAM_PARAMETERS" value="-NoProfile -ExecutionPolicy Bypass -File build/publish-all.ps1" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="PASS_PARENT_ENVS" value="1" />
+    <option name="ENV_FILE_PATHS" value="" />
+    <option name="REDIRECT_INPUT_PATH" value="" />
+    <option name="MIXED_MODE_DEBUG" value="0" />
+    <option name="USE_MONO" value="0" />
+    <option name="RUNTIME_ARGUMENTS" value="" />
+    <option name="AUTO_ATTACH_CHILDREN" value="0" />
+    <option name="RUNTIME_TYPE" value="coreclr" />
     <method v="2" />
   </configuration>
 </component>
