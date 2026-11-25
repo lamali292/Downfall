@@ -1,12 +1,11 @@
 ﻿using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Nodes.Ftue;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Downfall.DownfallCode.Utils.UI.Ftue;
 
-public partial class NDownfallPointerFtue : NFtue
+public partial class NDownfallPointerFtue : NDownfallFtueBase
 {
     private const float ArrowHeading = 2.356f; // the arrow art points down-left, in screen radians
     private static readonly Vector2 ArrowSize = new(244, 204);

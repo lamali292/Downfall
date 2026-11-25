@@ -3,12 +3,11 @@ using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Nodes.Ftue;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
 namespace Downfall.DownfallCode.Utils.UI.Ftue;
 
-public partial class NDownfallRulesFtue : NFtue
+public partial class NDownfallRulesFtue : NDownfallFtueBase
 {
     private TextureRect _image = null!;
     private MegaLabel _header = null!;
