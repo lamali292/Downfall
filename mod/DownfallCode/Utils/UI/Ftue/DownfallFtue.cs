@@ -35,7 +35,7 @@ public static class DownfallFtue
     
     private const int SettleTicks = 4;
     
-    private const bool ForceShow = false;
+    private const bool ForceShow = true;
 
     private static readonly HashSet<string> Pending = new();
 

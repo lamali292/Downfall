@@ -1,11 +1,8 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Downfall.DownfallCode.Abstract;
 using Hermit.HermitCode.Core;
 using Hermit.HermitCode.CustomEnums;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.HoverTips;
-
 namespace Hermit.HermitCode.Cards;
 
 [Pool(typeof(HermitCardPool))]

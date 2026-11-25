@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using Downfall.DownfallCode.Abstract;
 using Guardian.GuardianCode.CustomEnums;
 using Guardian.GuardianCode.DynamicVars;
@@ -30,19 +29,19 @@ public abstract class GuardianCardModel : DownfallCardModel<Core.Guardian>
         if (card is IGemSocketCard { FreeSlots: > 0 }) yield return HoverTipFactory.Static(GuardianTip.Socket);
     }
 
-    public ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)
+    protected ConstructedCardModel WithAccelerate(int baseVal, int upgradeVal = 0)
     {
         WithTip(GuardianTip.Accelerate, baseVal, upgradeVal);
         return WithVars(new AccelerateVar(baseVal).WithUpgrade(upgradeVal));
     }
 
-    public ConstructedCardModel WithBrace(int baseVal, int upgradeVal = 0)
+    protected ConstructedCardModel WithBrace(int baseVal, int upgradeVal = 0)
     {
         WithTip(GuardianTip.Brace, baseVal, upgradeVal);
         return WithVars(new BraceVar(baseVal).WithUpgrade(upgradeVal));
     }
 
-    public ConstructedCardModel WithPolish(int baseVal, int upgradeVal = 0)
+    protected ConstructedCardModel WithPolish(int baseVal, int upgradeVal = 0)
     {
         WithTip(GuardianTip.Polish);
         return WithVars(new PolishVar(baseVal).WithUpgrade(upgradeVal));

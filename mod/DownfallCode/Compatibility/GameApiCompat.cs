@@ -20,6 +20,18 @@ public static class GameApiCompat
     private static readonly MethodInfo? SetIsInteractableMethod =
         AccessTools.Method(typeof(NCreature), "SetIsInteractable", [typeof(bool), typeof(bool)]);
 
+    private static readonly MethodInfo UpgradeInternalMethod = typeof(CardModel).GetMethod("UpgradeInternal")!;
+    private static readonly bool UpgradeInternalHasSilent = UpgradeInternalMethod.GetParameters().Length == 1;
+
+    /// <summary>
+    ///     `CardModel.UpgradeInternal()` on older builds, `UpgradeInternal(bool silent = false)` on newer ones.
+    ///     Prefer `CardCmd.Upgrade` for real gameplay upgrades; this is the raw no-hooks upgrade.
+    /// </summary>
+    public static void UpgradeInternalCompat(this CardModel card)
+    {
+        UpgradeInternalMethod.Invoke(card, UpgradeInternalHasSilent ? [false] : []);
+    }
+
     private static readonly ConstructorInfo CombatStateCtor =
         typeof(CombatState).GetConstructors().OrderByDescending(c => c.GetParameters().Length).First();
 
