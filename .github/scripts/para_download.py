@@ -4,13 +4,12 @@ import re
 from collections import OrderedDict
 from pathlib import Path
 
-import requests
-
 with open(".github/configs/paratranz.json", encoding="utf-8") as f:
     config = json.load(f)
 
 
 import para_branch
+import para_http
 
 
 def get_api_key(lang_code):
@@ -21,25 +20,28 @@ def get_api_key(lang_code):
     return token
 
 
-def fetch_json(url, token):
-    headers = {"Authorization": token, "accept": "*/*"}
-    r = requests.get(url, headers=headers)
+PAGE_SIZE = 1000  # the API's maximum for /strings
+
+
+def fetch_json(url, token, **params):
+    # Rate limiting / retry / shared cooldown live in para_http (shared with build/loc/*).
+    r = para_http.client.request("GET", url, headers={"Authorization": token, "accept": "*/*"}, params=params)
     r.raise_for_status()
     return r.json()
 
 
-def get_translations(project_id, file_id, token):
-    url = f"https://paratranz.cn/api/projects/{project_id}/files/{file_id}/translation"
-    translations = fetch_json(url, token)
-
-    keys, values = [], []
-    for item in translations:
-        translation = item.get("translation", "")
-        if item["stage"] >= 1:
-            keys.append(item["key"])
-            values.append(translation)
-
-    return keys, values, len(translations)
+def fetch_strings_by_file(project_id, token):
+    """All strings of a project grouped by Paratranz file path, in a few paged requests
+    (a project has ~4-5k strings -> ~5 requests, instead of one /translation request per file)."""
+    by_file, page = {}, 1
+    while True:
+        d = fetch_json(f"https://paratranz.cn/api/projects/{project_id}/strings", token,
+                       pageSize=PAGE_SIZE, page=page)
+        for row in d["results"]:
+            by_file.setdefault(row["file"]["name"], []).append(row)
+        if page >= d["pageCount"]:
+            return by_file
+        page += 1
 
 
 def save_translation(mod_name, lang_code, filename, translated_dict):
@@ -69,12 +71,10 @@ def save_translation(mod_name, lang_code, filename, translated_dict):
             json.dump(translated_dict, f, ensure_ascii=False, indent=4, sort_keys=True)
 
 
-def process_file(project_id, file_id, paratranz_path, token, index, total):
-    keys, values, raw_count = get_translations(project_id, file_id, token)
-
+def process_file(paratranz_path, rows):
     parts = Path(paratranz_path).parts
-    if len(parts) < 4 or parts[1] != "localization":
-        print(f"  [{index}/{total}] Skip (unexpected path): {paratranz_path}")
+    if "TM" in paratranz_path or len(parts) < 4 or parts[1] != "localization":
+        print(f"  Skip (unexpected path): {paratranz_path}")
         return 0
 
     mod_name = para_branch.local_mod(parts[0])
@@ -84,35 +84,30 @@ def process_file(project_id, file_id, paratranz_path, token, index, total):
     if mod_name is None or not para_branch.is_wanted(mod_name):
         return 0
 
-    translated_dict = {}
-    for k, v in zip(keys, values):
-        v = re.sub(r'\\"', '"', v)
-        translated_dict[k] = v
+    # Only strings that are translated (stage >= 1), like the former per-file /translation download.
+    translated_dict = {r["key"]: re.sub(r'\\"', '"', r.get("translation") or "")
+                       for r in rows if r["stage"] >= 1}
 
     save_translation(mod_name, lang_code, filename, translated_dict)
-    print(f"  [{index}/{total}] {paratranz_path} ({len(translated_dict)}/{raw_count} translated)")
+    print(f"  {paratranz_path} ({len(translated_dict)}/{len(rows)} translated)")
     return len(translated_dict)
 
 
-def main():
+def main(langs=None, workers=3):
+    para_http.client.configure(workers=workers)
     grand_total = 0
     for lang_code, project_id in config["projects"].items():
+        if langs and lang_code not in langs:
+            continue
         project_id = int(project_id)
         token = get_api_key(lang_code)
         print(f"\n--- Downloading from project {project_id} ({lang_code}) ---")
 
-        files_url = f"https://paratranz.cn/api/projects/{project_id}/files/"
-        files = fetch_json(files_url, token)
+        by_file = fetch_strings_by_file(project_id, token)
+        print(f"  {len(by_file)} files, {sum(map(len, by_file.values()))} strings")
 
-        files = [f for f in files if "TM" not in f["name"]]
-        total = len(files)
-        print(f"  {total} files to process")
-
-        project_total = 0
-        for i, f in enumerate(files, start=1):
-            project_total += process_file(project_id, f["id"], f["name"], token, i, total)
-
-        print(f"  {lang_code}: {project_total} strings across {total} files")
+        project_total = sum(process_file(name, rows) for name, rows in sorted(by_file.items()))
+        print(f"  {lang_code}: {project_total} strings across {len(by_file)} files")
         grand_total += project_total
 
     print(f"\nDone. {grand_total} strings written in total.")
