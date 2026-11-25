@@ -1,5 +1,6 @@
 ﻿using Awakened.AwakenedCode.Core;
 using Awakened.AwakenedCode.CustomEnums;
+using BaseLib.Abstracts;
 using Downfall.DownfallCode.Abstract;
 using Awakened.AwakenedCode.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;

@@ -26,7 +26,6 @@ public class DownfallPatchManager
             .Add(typeof(RichTextEffectRegistryPatch))
             .Add(typeof(MaxUpgradeLevelPatch))
             .Add(typeof(StackingUpgradeDowngradePatch))
-            .Add(typeof(ConstructedUpgradePatch))
             .Add(typeof(AddExtraHpBarPatch))
             .Add(typeof(CustomIntentLabelPatch))
             .Add(typeof(CardOverlayPatch))

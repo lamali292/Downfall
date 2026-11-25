@@ -3,6 +3,7 @@ using BaseLib.Cards.Variables;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Downfall.DownfallCode.Artists;
+using Downfall.DownfallCode.Compatibility;
 using Downfall.DownfallCode.DynamicVars;
 using Downfall.DownfallCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -143,6 +144,26 @@ public abstract class DownfallCardModel
                 if (mutable is T1 obj) modifyBaseTipCard?.Invoke(obj, card);
                 return HoverTipFactory.FromCard(mutable);
             }
+        }));
+    }
+
+    /// <summary>
+    ///     Adds a CardTip for a card that is shown upgraded once this card is upgraded. Replaces BaseLib's
+    ///     <c>WithUpgradingCardTip</c> (non-virtual, hence <c>new</c>): BaseLib's calls <c>UpgradeInternal</c>
+    ///     directly, whose signature differs between the main and beta game builds, so ours goes through
+    ///     <see cref="GameApiCompat.UpgradeInternalCompat"/>.
+    /// </summary>
+    /// <param name="modifyTipCard">Receives the preview card and this card before the tip is generated.</param>
+    protected new ConstructedCardModel WithUpgradingCardTip<T>(
+        Action<T, CardModel>? modifyTipCard = null)
+        where T : CardModel
+    {
+        return WithTip(new TooltipSource(card =>
+        {
+            var tipCard = ModelDb.Card<T>().ToMutable();
+            if (card.IsUpgraded) tipCard.UpgradeInternalCompat();
+            if (tipCard is T preview) modifyTipCard?.Invoke(preview, card);
+            return HoverTipFactory.FromCard(tipCard);
         }));
     }
 

@@ -1,4 +1,5 @@
-﻿using Champ.ChampCode.Core;
+﻿using BaseLib.Abstracts;
+using Champ.ChampCode.Core;
 using Champ.ChampCode.CustomEnums;
 using Champ.ChampCode.Extensions;
 using Champ.ChampCode.Interfaces;
@@ -41,17 +42,17 @@ public abstract class ChampCardModel : DownfallCardModel<Core.Champ>, IFinisherC
 
     protected ConstructedCardModel WithDefensiveTip()
     {
-        return WithTips(e => ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTips);
+        return WithTips(_ => ChampModelDb.ChampStance<ChampDefensiveStance>().HoverTips);
     }
 
     protected ConstructedCardModel WithBerserkerTip()
     {
-        return WithTips(e => ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTips);
+        return WithTips(_ => ChampModelDb.ChampStance<ChampBerserkerStance>().HoverTips);
     }
 
     protected ConstructedCardModel WithUltimateTip()
     {
-        return WithTips(e => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
+        return WithTips(_ => ChampModelDb.ChampStance<ChampUltimateStance>().HoverTips);
     }
 
     protected ConstructedCardModel WithFinisher()
