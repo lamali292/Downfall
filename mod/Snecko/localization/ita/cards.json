@@ -118,7 +118,6 @@
     "SNECKO-TRASH_CAN.description": "Alla fine del tuo turno, you may [gold]Esaurisci[/gold] a card.",
     "SNECKO-TRASH_CAN.title": "Cestino",
     "SNECKO-TRASH_TO_TREASURE.description": "Ottieni {Block:diff()} di [gold]Blocco[/gold].\n[gold]Esaurisci[/gold] a card.\nOttieni {energyPrefix:energyIcons(1)} equal to suo cost.",
-    "SNECKO-TRASH_TO_TREASURE.title": "Da Spazzatura a Tesoro",
     "SNECKO-TSUNAMI.description": "Whenever you [gold]Overflow[/gold], gain {TsunamiPower:diff()} [gold]Blocco[/gold].",
     "SNECKO-TSUNAMI.title": "Tsunami",
     "SNECKO-TYPHOON_FANG.description": "Infliggi {Damage:diff()} di danno.\n[gold]Overflow[/gold]: In questo turno, ogni volta che fai [gold]Overflow[/gold], gioca una copia di questa carta.",

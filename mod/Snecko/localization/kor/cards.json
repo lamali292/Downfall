@@ -106,7 +106,6 @@
     "SNECKO-TRASH_CAN.description": "내 턴이 끝날 때, 카드 1장을 [gold]소멸[/gold]시킬 수 있습니다.",
     "SNECKO-TRASH_CAN.title": "쓰레기통",
     "SNECKO-TRASH_TO_TREASURE.description": "{Block:diff()} [gold]방어도[/gold]를 얻습니다.\n카드 1장을 [gold]소멸[/gold]시킵니다.\n그 카드의 비용만큼 {energyPrefix:energyIcons(1)}를 얻습니다.",
-    "SNECKO-TRASH_TO_TREASURE.title": "쓰레기에서 보물로",
     "SNECKO-TSUNAMI.description": "[gold]과류[/gold] 효과가 {TsunamiPower:diff()} [gold]방어도[/gold]도 부여합니다.",
     "SNECKO-TSUNAMI.title": "해일",
     "SNECKO-TYPHOON_FANG.description": "{Damage:diff()} 피해를 줍니다.\n[gold]과류[/gold]:\n이번 턴 동안 내가 [gold]과류[/gold]할 때마다, 이 카드의 복사본 1장을 발동합니다.",

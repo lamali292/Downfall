@@ -129,7 +129,6 @@
     "SNECKO-TRASH_CAN.description": "À la fin de votre tour, vous pouvez [gold]Épuiser[/gold] une carte.",
     "SNECKO-TRASH_CAN.title": "Vide-Ordures",
     "SNECKO-TRASH_TO_TREASURE.description": "Gagnez {Block:diff()} [gold]d'Armure[/gold].\n[gold]Épuisez[/gold] une carte.\nGagnez {energyPrefix:energyIcons(1)} égal à votre coût.",
-    "SNECKO-TRASH_TO_TREASURE.title": "Déchet en Trésor",
     "SNECKO-TSUNAMI.description": "Lorsque vous [gold]Excédez[/gold], gagnez {TsunamiPower:diff()} [gold]d'Armure[/gold].",
     "SNECKO-TSUNAMI.title": "Tsunami",
     "SNECKO-TYPHOON_FANG.description": "Infligez {Damage:diff()} dégâts.\n[gold]Excédent[/gold]: Ce tour, lorsque vous [gold]Excédez[/gold], jouez une copie de cette carte.",

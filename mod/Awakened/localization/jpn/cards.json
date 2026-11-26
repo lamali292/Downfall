@@ -198,7 +198,7 @@
     "AWAKENED-THE_ENCYCLOPEDIA.description": "ランダムな{Cards:diff()}枚のカードから2枚を選び、[gold]手札[/gold]に加える。\nそれらのコストは2{energyPrefix:energyIcons(1)}減少する。",
     "AWAKENED-THE_ENCYCLOPEDIA.title": "エンサイクロペディア",
     "AWAKENED-THE_TOWER.description": "すべての敵に{CalculatedDamage:diff()}ダメージを与える。\nこの戦闘中に作成したカード1枚につき、ダメージが{ExtraDamage:diff()}増加する。",
-    "AWAKENED-THE_TOWER.title": "塔",
+    "AWAKENED-THE_TOWER.title": "タワー",
     "AWAKENED-THUNDERBOLT.description": "{TargetType:choose(AllEnemies):すべての敵に|}{Damage:diff()}ダメージを与える。",
     "AWAKENED-THUNDERBOLT.title": "雷撃",
     "AWAKENED-UNLEASH.description": "{CalculatedDamage:diff()}ダメージを与える。\n[gold]手札[/gold]にある他のカード1枚につき、ダメージが{ExtraDamage:diff()}増加する。",

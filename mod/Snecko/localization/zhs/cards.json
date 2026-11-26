@@ -129,7 +129,6 @@
     "SNECKO-TRASH_CAN.description": "在你的回合结束时，你可以[gold]消耗[/gold]一张牌。",
     "SNECKO-TRASH_CAN.title": "垃圾桶",
     "SNECKO-TRASH_TO_TREASURE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]消耗[/gold]一张牌。\n获得等同于其耗能的{energyPrefix:energyIcons(1)}。",
-    "SNECKO-TRASH_TO_TREASURE.title": "变废为宝",
     "SNECKO-TSUNAMI.description": "每当你触发[gold]溢出[/gold]时，获得{TsunamiPower:diff()}点[gold]格挡[/gold]。",
     "SNECKO-TSUNAMI.title": "巨浪",
     "SNECKO-TYPHOON_FANG.description": "造成{Damage:diff()}点伤害。\n[gold]溢出[/gold]：本回合每当你触发[gold]溢出[/gold]效果时，打出一张此牌的复制。",

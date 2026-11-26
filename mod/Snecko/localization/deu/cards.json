@@ -129,7 +129,6 @@
     "SNECKO-TRASH_CAN.description": "Du darfst am Ende deines Zuges eine Karte [gold]erschöpfen[/gold].",
     "SNECKO-TRASH_CAN.title": "Mülleimer",
     "SNECKO-TRASH_TO_TREASURE.description": "Erhalte {Block:diff()} [gold]Block[/gold].\n[gold]Erschöpfe[/gold] eine Karte.\nErhalte {energyPrefix:energyIcons(1)} in Höhe ihrer Kosten.",
-    "SNECKO-TRASH_TO_TREASURE.title": "Schrott zu Schätzen",
     "SNECKO-TSUNAMI.description": "Immer wenn du [gold]Überschuss[/gold] aktivierst, erhalte {TsunamiPower:diff()} [gold]Block[/gold].",
     "SNECKO-TSUNAMI.title": "Tsunami",
     "SNECKO-TYPHOON_FANG.description": "Füge {Damage:diff()} Schaden zu.\n[gold]Überschuss[/gold]: Immer wenn du in diesem Zug [gold]Überschuss[/gold] aktivierst, spiele eine Kopie dieser Karte.",
